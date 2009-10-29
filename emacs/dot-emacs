@@ -5,8 +5,8 @@
 
 
 ;;; l10n, i18n...
-(set-language-environment 'Korean)
-;(set-language-environment "UTF-8")
+;(set-language-environment 'Korean)
+(set-language-environment "UTF-8")
 ;(setq default-input-method "korean-hangul3")
 ;(set-input-method "korean-hangul")
 ;(prefer-coding-system 'utf-8-dos)
@@ -59,7 +59,8 @@
 (setq-default tab-width 4)
 
 ;;; grep-find, rgrep, find-grep-dired
-(setq find-program "c:/cygwin/bin/find.exe")
+;(setq find-program "c:/cygwin/bin/find.exe")
+
 
 ;;; color-theme
 ;; (require 'color-theme)
@@ -101,17 +102,32 @@
     (add-hook i (lambda () (paredit-mode +1))))
 
 
-;;; clojure-mode.el
-;(setq slime-net-coding-system 'utf-8-unix)
-;(clojure-slime-config "c:/tools/clojure")
-
-
-
+;;; psvn
+(require 'psvn)
 
 
 ;;; haskell-mode
-(load "~/haskell-mode-2.4/haskell-site-file.el")
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-(setq haskell-program-name "ghci")
+;; (load "~/.emacs.d/haskell-mode-2.4/haskell-site-file.el")
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;; (add-hook 'haskell-mode-hook 'font-lock-mode)
+;; ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+;; (setq haskell-program-name "/home/adaltan/local/ghc/bin/ghci")
+
+
+;;; FUEL
+;(load-file "/home/adaltan/factor/misc/fuel/fu.el")
+
+
+;;; SLIME
+(add-to-list 'load-path "~/lisp/slime-2009-10-26/")
+(setq inferior-lisp-program "~/lisp/sbcl-1.0.29-x86-linux/run-sbcl.sh")
+(setq common-lisp-hyperspec-root "~/lisp/HyperSpec/")
+(require 'slime)
+(setq slime-net-coding-system 'utf-8-unix)
+(slime-setup '(slime-fancy))
+
+
+
+
+;;; EOF
