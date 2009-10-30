@@ -14,8 +14,12 @@
 ;; (global-set-key [?\S- ] 'toggle-input-method)
 
 
+;;; tabs & indents
+(setq tab-width 4
+    indentn-tabs-mode nil)
+
 ;;; default font
-;(set-default-font "Fixedsys-12")
+(set-default-font "Terminus-12")
 
 ;;; global-font-lock-mode
 (global-font-lock-mode 1 t)
@@ -78,17 +82,18 @@
   (interactive "*")
   (insert (format-time-string "[%Y-%m-%d %H:%M]"  (current-time))))
 
-
+;; cc-mode
+(setq c-default-style "java")
+(setq c-basic-offset 4)
 
 ;;; emacs-lisp-mode
 (setq lisp-indent-offset 4)
 
-
-;;; elpa
+;;; ELPA
 (when
     (load
-     (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
+        (expand-file-name "~/.emacs.d/elpa/package.el"))
+    (package-initialize))
 
 
 ;;; paredit.el
@@ -104,29 +109,6 @@
 
 ;;; psvn
 (require 'psvn)
-
-
-;;; haskell-mode
-;; (load "~/.emacs.d/haskell-mode-2.4/haskell-site-file.el")
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-;; (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;; (add-hook 'haskell-mode-hook 'font-lock-mode)
-;; ;;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-;; (setq haskell-program-name "/home/adaltan/local/ghc/bin/ghci")
-
-
-;;; FUEL
-;(load-file "/home/adaltan/factor/misc/fuel/fu.el")
-
-
-;;; SLIME
-(add-to-list 'load-path "~/lisp/slime-2009-10-26/")
-(setq inferior-lisp-program "~/lisp/sbcl-1.0.29-x86-linux/run-sbcl.sh")
-(setq common-lisp-hyperspec-root "~/lisp/HyperSpec/")
-(require 'slime)
-(setq slime-net-coding-system 'utf-8-unix)
-(slime-setup '(slime-fancy))
-
 
 
 
