@@ -15,11 +15,11 @@
 
 
 ;;; tabs & indents
-(setq tab-width 4
+(setq tab-width 2
     indentn-tabs-mode nil)
 
 ;;; default font
-(set-default-font "Terminus-12")
+(set-frame-font "Terminus-12")
 
 ;;; global-font-lock-mode
 (global-font-lock-mode 1 t)
@@ -31,7 +31,7 @@
 (column-number-mode t)
 
 ;;; time/load
-;(display-time-mode t)
+(display-time-mode t)
 
 ;;; show matching parent?
 (show-paren-mode t)
@@ -53,14 +53,23 @@
 
 ;;; no backup files
 (setq-default make-backup-files nil)
+(setq-default version-control nil) ; backup uses version numbers?
 
 ;;; menu-bar -- turn-off when '-nw'
 (menu-bar-mode window-system)
-(tool-bar-mode nil)
+;(tool-bar-mode nil)
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+(setq-default tab-width 2)
+
+;;; fill
+(setq-default fill-column 80)
+
+;;; user?
+(setq-default user-full-name "Yun, Jonghyouk")
+(setq-default user-mail-address "ageldama@gmail.com")
+
 
 ;;; grep-find, rgrep, find-grep-dired
 ;(setq find-program "c:/cygwin/bin/find.exe")
@@ -87,7 +96,7 @@
 (setq c-basic-offset 4)
 
 ;;; emacs-lisp-mode
-(setq lisp-indent-offset 4)
+(setq lisp-indent-offset 2)
 
 ;;; ELPA
 (when
@@ -109,6 +118,19 @@
 
 ;;; psvn
 (require 'psvn)
+
+
+;;; clojure
+(clojure-slime-config "/home/adaltan/local")
+(setq slime-net-coding-system 'utf-8-unix)
+
+
+;;; factor
+;(load-file "/home/adaltan/factor/misc/fuel/fu.el")
+
+
+;;; jde
+;(load-file "~/.emacs.d/my-jde.el")
 
 
 
