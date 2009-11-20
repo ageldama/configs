@@ -19,7 +19,7 @@
     indentn-tabs-mode nil)
 
 ;;; default font
-(set-frame-font "Terminus-12")
+;(set-frame-font "Terminus-16")
 
 ;;; global-font-lock-mode
 (global-font-lock-mode 1 t)
@@ -51,13 +51,18 @@
 ;;; interactive-switch-buffer
 (iswitchb-mode t)
 
+;;; ido-mode
+(require 'ido)
+(ido-mode t)
+
 ;;; no backup files
 (setq-default make-backup-files nil)
 (setq-default version-control nil) ; backup uses version numbers?
 
 ;;; menu-bar -- turn-off when '-nw'
 (menu-bar-mode window-system)
-;(tool-bar-mode nil)
+(tool-bar-mode nil)
+(scroll-bar-mode -1)
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
@@ -76,20 +81,12 @@
 
 
 ;;; color-theme
-;; (require 'color-theme)
+;(require 'color-theme)
 ;; (setq color-theme-is-global t)
-;; (color-theme-oswald)
+;(color-theme-word-perfect)
 
 
-;;; browse-url = lynx
-;; (setq browse-url-browser-function 'browse-url-firefox)
-
-
-;; current date and time.
-(defun insert-current-date-time()
-  "Insert the current date and time at point."
-  (interactive "*")
-  (insert (format-time-string "[%Y-%m-%d %H:%M]"  (current-time))))
+;;; TODO: browse-url
 
 ;; cc-mode
 (setq c-default-style "java")
@@ -116,10 +113,6 @@
     (add-hook i (lambda () (paredit-mode +1))))
 
 
-;;; psvn
-(require 'psvn)
-
-
 ;;; clojure
 (clojure-slime-config "/home/adaltan/local")
 (setq slime-net-coding-system 'utf-8-unix)
@@ -131,6 +124,16 @@
 
 ;;; jde
 ;(load-file "~/.emacs.d/my-jde.el")
+
+
+;;; erc
+(require 'erc)
+(setq erc-interpret-mirc-color t)
+(defun erc-connect-ozinger ()
+  (interactive)
+  (erc :server "ozinger.ruree.net" :port 6669
+    :nick "ageldama"
+    :full-name "Yun, Jonghyouk"))
 
 
 
