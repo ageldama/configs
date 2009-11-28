@@ -43,17 +43,22 @@
 (transient-mark-mode t)
 
 ;;; interactive-search
-(isearch-mode t)
+;(isearch-mode t)
 
 ;;; interactive-completion
-(icomplete-mode t)
+;(icomplete-mode t)
 
 ;;; interactive-switch-buffer
-(iswitchb-mode t)
+;(iswitchb-mode t)
 
 ;;; ido-mode
-(require 'ido)
-(ido-mode t)
+;(require 'ido)
+;(ido-mode t)
+
+;;; icicles-mode
+(add-to-list 'load-path "/home/adaltan/icicles/")
+(require 'icicles)
+(icy-mode +1)
 
 ;;; no backup files
 (setq-default make-backup-files nil)
@@ -95,31 +100,28 @@
 ;;; emacs-lisp-mode
 (setq lisp-indent-offset 2)
 
-;;; ELPA
-(when
-    (load
-        (expand-file-name "~/.emacs.d/elpa/package.el"))
-    (package-initialize))
 
+;;; elpa
+(when
+  (load
+    (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
 
 ;;; paredit.el
 (autoload 'paredit-mode "paredit"
     "Minor mode for pseudo-structurally editing Lisp code." t)
 (dolist (i '(emacs-lisp-mode-hook 
-                lisp-mode-hook 
-                lisp-interaction-mode-hook
-                slime-repl-mode-hook 
-                slime-mode-hook))
+              lisp-mode-hook 
+              lisp-interaction-mode-hook
+              scheme-mode-hook
+              inferior-scheme-mode-hook
+              slime-repl-mode-hook 
+              slime-mode-hook))
     (add-hook i (lambda () (paredit-mode +1))))
 
 
 ;;; clojure
-(clojure-slime-config "/home/adaltan/local")
 (setq slime-net-coding-system 'utf-8-unix)
-
-
-;;; factor
-;(load-file "/home/adaltan/factor/misc/fuel/fu.el")
 
 
 ;;; jde
@@ -136,5 +138,18 @@
     :full-name "Yun, Jonghyouk"))
 
 
+;;; view-mode + bookmark = lee0c ppa-dol
+(add-hook 'view-mode-hook
+  (function (lambda ()
+     (local-set-key "\S-m" 'bookmark-set)
+     (local-set-key "\S-s" 'bookmark-save))))
+
+
+
+
+
 
 ;;; EOF
+
+
+
