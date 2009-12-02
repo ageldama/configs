@@ -43,22 +43,22 @@
 (transient-mark-mode t)
 
 ;;; interactive-search
-;(isearch-mode t)
+(isearch-mode t)
 
 ;;; interactive-completion
-;(icomplete-mode t)
+(icomplete-mode t)
 
 ;;; interactive-switch-buffer
-;(iswitchb-mode t)
+(iswitchb-mode t)
 
 ;;; ido-mode
-;(require 'ido)
-;(ido-mode t)
+(require 'ido)
+(ido-mode t)
 
 ;;; icicles-mode
-(add-to-list 'load-path "/home/adaltan/icicles/")
-(require 'icicles)
-(icy-mode +1)
+;; (add-to-list 'load-path "/home/adaltan/icicles/")
+;; (require 'icicles)
+;; (icy-mode +1)
 
 ;;; no backup files
 (setq-default make-backup-files nil)
@@ -66,8 +66,9 @@
 
 ;;; menu-bar -- turn-off when '-nw'
 (menu-bar-mode window-system)
-(tool-bar-mode nil)
-(scroll-bar-mode -1)
+(if window-system
+  (tool-bar-mode -1)
+  (scroll-bar-mode -1))
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
@@ -122,6 +123,10 @@
 
 ;;; clojure
 (setq slime-net-coding-system 'utf-8-unix)
+
+;;; haskell-mode
+(require 'inf-haskell)
+
 
 
 ;;; jde
