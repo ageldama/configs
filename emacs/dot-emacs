@@ -5,11 +5,11 @@
 
 
 ;;; l10n, i18n...
-;(set-language-environment 'Korean)
-(set-language-environment "UTF-8")
+(set-language-environment 'Korean)
+;(set-language-environment "UTF-8")
 ;(setq default-input-method "korean-hangul3")
 ;(set-input-method "korean-hangul")
-;(prefer-coding-system 'utf-8-dos)
+(prefer-coding-system 'utf-8-unix)
 ;(utf-translate-cjk-load-tables)
 ;; (global-set-key [?\S- ] 'toggle-input-method)
 
@@ -43,7 +43,7 @@
 (transient-mark-mode t)
 
 ;;; interactive-search
-(isearch-mode t)
+;(isearch-mode 1)
 
 ;;; interactive-completion
 (icomplete-mode t)
@@ -55,20 +55,14 @@
 (require 'ido)
 (ido-mode t)
 
-;;; icicles-mode
-;; (add-to-list 'load-path "/home/adaltan/icicles/")
-;; (require 'icicles)
-;; (icy-mode +1)
-
 ;;; no backup files
 (setq-default make-backup-files nil)
 (setq-default version-control nil) ; backup uses version numbers?
 
 ;;; menu-bar -- turn-off when '-nw'
-(menu-bar-mode window-system)
-(if window-system
-  (tool-bar-mode -1)
-  (scroll-bar-mode -1))
+(unless window-system (menu-bar-mode -1))
+;(tool-bar-mode -1)
+;(scroll-bar-mode -1)
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
@@ -87,9 +81,9 @@
 
 
 ;;; color-theme
-;(require 'color-theme)
+(require 'color-theme)
 ;; (setq color-theme-is-global t)
-;(color-theme-word-perfect)
+;(color-theme-infodoc)
 
 
 ;;; TODO: browse-url
@@ -101,60 +95,58 @@
 ;;; emacs-lisp-mode
 (setq lisp-indent-offset 2)
 
-
-;;; elpa
-(when
-  (load
-    (expand-file-name "~/.emacs.d/elpa/package.el"))
-  (package-initialize))
-
-;;; paredit.el
-(autoload 'paredit-mode "paredit"
-    "Minor mode for pseudo-structurally editing Lisp code." t)
-(dolist (i '(emacs-lisp-mode-hook 
-              lisp-mode-hook 
-              lisp-interaction-mode-hook
-              scheme-mode-hook
-              inferior-scheme-mode-hook
-              slime-repl-mode-hook 
-              slime-mode-hook))
-    (add-hook i (lambda () (paredit-mode +1))))
-
-
-;;; clojure
-(setq slime-net-coding-system 'utf-8-unix)
-
-;;; haskell-mode
-(require 'inf-haskell)
-
-
-
-;;; jde
-;(load-file "~/.emacs.d/my-jde.el")
-
-
-;;; erc
-(require 'erc)
-(setq erc-interpret-mirc-color t)
-(defun erc-connect-ozinger ()
-  (interactive)
-  (erc :server "ozinger.ruree.net" :port 6669
-    :nick "ageldama"
-    :full-name "Yun, Jonghyouk"))
-
-
-;;; view-mode + bookmark = lee0c ppa-dol
-(add-hook 'view-mode-hook
+;;; view-mode + bookmark
+(add-hook 'view-mode-hook 
   (function (lambda ()
      (local-set-key "\S-m" 'bookmark-set)
      (local-set-key "\S-s" 'bookmark-save))))
 
 
 
+;;; ELPA
+(when
+  (load
+    (expand-file-name "~/.emacs.d/elpa/package.el"))
+  (package-initialize))
+
+
+;;; paredit.el
+(autoload 'paredit-mode "paredit"
+    "Minor mode for pseudo-structurally editing Lisp code." t)
+(dolist (i '(emacs-lisp-mode-hook 
+                lisp-mode-hook 
+                lisp-interaction-mode-hook
+                slime-repl-mode-hook 
+                slime-mode-hook))
+    (add-hook i (lambda () (paredit-mode +1))))
+
+
+;;; slime
+(setq slime-net-coding-system 'utf-8-unix)
+
+
+;;; haskel
+
+(require 'haskell-mode)
+(require 'inf-haskell)
+
+(setq auto-mode-alist
+  (append auto-mode-alist
+    '(("\\.[hg]s$"  . haskell-mode)
+       ("\\.hi$"     . haskell-mode)
+       ("\\.l[hg]s$" . literate-haskell-mode))))
+
+(autoload 'haskell-mode "haskell-mode"
+  "Major mode for editing Haskell scripts." t)
+
+(autoload 'literate-haskell-mode "haskell-mode"
+  "Major mode for editing literate Haskell scripts." t)
+
+(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
 
 
-;;; EOF
-
-
-
+;;;EOF
