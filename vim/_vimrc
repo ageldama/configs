@@ -57,7 +57,7 @@ set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
 set guioptions=m
 
 " 색상설정
-color koehler
+"color koehler
 set bg=dark
 
 " 파일인코딩

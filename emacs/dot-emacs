@@ -1,28 +1,33 @@
 (setq inhibit-startup-screen t)
 
 ;;; load-path
-(setq load-path (cons (expand-file-name "~/.emacs.d/") load-path))
-
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 
 ;;; l10n, i18n...
-(set-language-environment 'Korean)
+;(set-language-environment 'Korean)
 ;(set-language-environment "UTF-8")
 ;(setq default-input-method "korean-hangul3")
 ;(set-input-method "korean-hangul")
-(prefer-coding-system 'utf-8-unix)
+;(prefer-coding-system 'utf-8-unix)
 ;(utf-translate-cjk-load-tables)
 ;; (global-set-key [?\S- ] 'toggle-input-method)
 
 
 ;;; tabs & indents
 (setq tab-width 2
-    indentn-tabs-mode nil)
+    indent-tabs-mode nil)
 
 ;;; default font
 ;(set-frame-font "Terminus-16")
 
+
+(set-fontset-font "fontset-default" '(#x1100 . #xffdc)  '("NanumGothicCoding" . "unicode-bmp")) ;;; 유니코드 한글영역...NanumGothicCoding에다가 원하는폰트를 적는다
+(set-fontset-font "fontset-default" '(#xe0bc . #xf66e)  '("NanumGothicCoding" . "unicode-bmp")) ;;;유니코드 사용자 영역
+(set-fontset-font "fontset-default" 'kana '("Meiryo" . "unicode-bmp"))
+(set-fontset-font "fontset-default" 'han '("Microsoft YaHei" . "unicode-bmp"))
+
 ;;; global-font-lock-mode
-(global-font-lock-mode 1 t)
+(global-font-lock-mode 1)
 
 ;;; ding-dang!
 (setq visible-bell t)
@@ -60,9 +65,11 @@
 (setq-default version-control nil) ; backup uses version numbers?
 
 ;;; menu-bar -- turn-off when '-nw'
-(unless window-system (menu-bar-mode -1))
-;(tool-bar-mode -1)
-;(scroll-bar-mode -1)
+;(unless window-system (menu-bar-mode -1))
+;; (if window-system
+;;   (progn
+     (tool-bar-mode -1)
+     (scroll-bar-mode -1)
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
@@ -72,7 +79,7 @@
 (setq-default fill-column 80)
 
 ;;; user?
-(setq-default user-full-name "Yun, Jonghyouk")
+(setq-default user-full-name "Jonghyouk Yun")
 (setq-default user-mail-address "ageldama@gmail.com")
 
 
@@ -81,9 +88,12 @@
 
 
 ;;; color-theme
+(add-to-list 'load-path (expand-file-name "~/local/color-theme-6.6.0/"))
 (require 'color-theme)
-;; (setq color-theme-is-global t)
-;(color-theme-infodoc)
+(color-theme-initialize)
+(setq color-theme-is-global t)
+;(color-theme-simple-1)
+(color-theme-euphoria)
 
 
 ;;; TODO: browse-url
@@ -103,50 +113,23 @@
 
 
 
-;;; ELPA
+
+;;; This was installed by package-install.el.
+;;; This provides support for the package system and
+;;; interfacing with ELPA, the package archive.
+;;; Move this code earlier if you want to reference
+;;; packages in your .emacs.
 (when
   (load
     (expand-file-name "~/.emacs.d/elpa/package.el"))
   (package-initialize))
 
 
-;;; paredit.el
-(autoload 'paredit-mode "paredit"
-    "Minor mode for pseudo-structurally editing Lisp code." t)
-(dolist (i '(emacs-lisp-mode-hook 
-                lisp-mode-hook 
-                lisp-interaction-mode-hook
-                slime-repl-mode-hook 
-                slime-mode-hook))
-    (add-hook i (lambda () (paredit-mode +1))))
-
-
-;;; slime
-(setq slime-net-coding-system 'utf-8-unix)
-
-
-;;; haskel
-
-(require 'haskell-mode)
-(require 'inf-haskell)
-
-(setq auto-mode-alist
-  (append auto-mode-alist
-    '(("\\.[hg]s$"  . haskell-mode)
-       ("\\.hi$"     . haskell-mode)
-       ("\\.l[hg]s$" . literate-haskell-mode))))
-
-(autoload 'haskell-mode "haskell-mode"
-  "Major mode for editing Haskell scripts." t)
-
-(autoload 'literate-haskell-mode "haskell-mode"
-  "Major mode for editing literate Haskell scripts." t)
-
-(add-hook 'haskell-mode-hook 'turn-on-haskell-decl-scan)
+;;; haskell-mode
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
 
-
-
-;;;EOF
+(require 'inf-haskell)
+(setq haskell-program-name "/home/adaltan/local/ghc-6.12.3/bin/ghci")
