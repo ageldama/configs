@@ -36,7 +36,7 @@
 (column-number-mode t)
 
 ;;; time/load
-(display-time-mode t)
+(display-time-mode -1)
 
 ;;; show matching parent?
 (show-paren-mode t)
@@ -93,7 +93,12 @@
 (color-theme-initialize)
 (setq color-theme-is-global t)
 ;(color-theme-simple-1)
-(color-theme-euphoria)
+(when window-system
+  (color-theme-euphoria))
+
+(unless window-system
+  (menu-bar-mode -1))
+
 
 
 ;;; TODO: browse-url
@@ -112,6 +117,12 @@
      (local-set-key "\S-s" 'bookmark-save))))
 
 
+;;; lusty-explorer
+(when (require 'lusty-explorer nil 'noerror)
+  ;; overrride the normal file-opening, buffer switching
+  (global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
+  (global-set-key (kbd "C-x b")   'lusty-buffer-explorer))
+
 
 
 ;;; This was installed by package-install.el.
@@ -125,11 +136,4 @@
   (package-initialize))
 
 
-;;; haskell-mode
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-;(add-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
-;(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
-;(add-hook 'haskell-mode-hook 'turn-on-haskell-simple-indent)
-
-(require 'inf-haskell)
-(setq haskell-program-name "/home/adaltan/local/ghc-6.12.3/bin/ghci")
+(setq slime-net-coding-system 'utf-8-unix)
