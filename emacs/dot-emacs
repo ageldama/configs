@@ -125,6 +125,19 @@
 
 
 
+;;; slime
+;(add-to-list 'load-path (expand-file-name "~/local/slime-2010-08-22/"))
+;(require 'slime)
+
+(setq slime-net-coding-system 'utf-8-unix)
+
+(defadvice slime-read-interactive-args (before add-ccl64)
+  (require 'assoc)
+  (aput 'slime-lisp-implementations 'ccl64
+    (list (list "/home/adaltan/local/ccl/lx86cl64"))))
+
+
+
 ;;; This was installed by package-install.el.
 ;;; This provides support for the package system and
 ;;; interfacing with ELPA, the package archive.
@@ -136,4 +149,8 @@
   (package-initialize))
 
 
-(setq slime-net-coding-system 'utf-8-unix)
+
+
+
+
+;;; EOF
