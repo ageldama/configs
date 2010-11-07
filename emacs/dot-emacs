@@ -14,7 +14,7 @@
 
 
 ;;; tabs & indents
-(setq tab-width 2
+(setq tab-width 4
     indent-tabs-mode nil)
 
 ;;; default font
@@ -73,10 +73,10 @@
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 2)
+(setq-default tab-width 4)
 
 ;;; fill
-(setq-default fill-column 80)
+(setq-default fill-column 72)
 
 ;;; user?
 (setq-default user-full-name "Jonghyouk Yun")
