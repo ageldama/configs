@@ -6,28 +6,19 @@
 ;;; l10n, i18n...
 ;(set-language-environment 'Korean)
 ;(set-language-environment "UTF-8")
-;(setq default-input-method "korean-hangul3")
+(setq default-input-method "korean-hangul")
 ;(set-input-method "korean-hangul")
-;(prefer-coding-system 'utf-8-unix)
+(prefer-coding-system 'utf-8-unix)
 ;(utf-translate-cjk-load-tables)
 ;; (global-set-key [?\S- ] 'toggle-input-method)
 
 
 ;;; tabs & indents
 (setq tab-width 4
-    indent-tabs-mode nil)
-
-;;; default font
-;(set-frame-font "Terminus-16")
-
-
-(set-fontset-font "fontset-default" '(#x1100 . #xffdc)  '("NanumGothicCoding" . "unicode-bmp")) ;;; 유니코드 한글영역...NanumGothicCoding에다가 원하는폰트를 적는다
-(set-fontset-font "fontset-default" '(#xe0bc . #xf66e)  '("NanumGothicCoding" . "unicode-bmp")) ;;;유니코드 사용자 영역
-(set-fontset-font "fontset-default" 'kana '("Meiryo" . "unicode-bmp"))
-(set-fontset-font "fontset-default" 'han '("Microsoft YaHei" . "unicode-bmp"))
+  indent-tabs-mode nil)
 
 ;;; global-font-lock-mode
-(global-font-lock-mode 1)
+;(global-font-lock-mode 1)
 
 ;;; ding-dang!
 (setq visible-bell t)
@@ -42,7 +33,7 @@
 (show-paren-mode t)
 
 ;;; font-lock always
-(global-font-lock-mode t)
+;(global-font-lock-mode t)
 
 ;;; visible mark region
 (transient-mark-mode t)
@@ -66,17 +57,18 @@
 
 ;;; menu-bar -- turn-off when '-nw'
 ;(unless window-system (menu-bar-mode -1))
-;; (if window-system
-;;   (progn
-     (tool-bar-mode -1)
-     (scroll-bar-mode -1)
+(if window-system
+    (progn
+      (tabbar-mode -1)
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1)))
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
 ;;; fill
-(setq-default fill-column 72)
+;(setq-default fill-column 72)
 
 ;;; user?
 (setq-default user-full-name "Jonghyouk Yun")
@@ -88,18 +80,13 @@
 
 
 ;;; color-theme
-(add-to-list 'load-path (expand-file-name "~/local/color-theme-6.6.0/"))
-(require 'color-theme)
-(color-theme-initialize)
-(setq color-theme-is-global t)
-;(color-theme-simple-1)
-(when window-system
-  (color-theme-euphoria))
+(require 'color-theme nil t)
 
-(unless window-system
-  (menu-bar-mode -1))
-
-
+(when (fboundp 'color-theme-initialize)
+  (progn
+    (color-theme-initialize)
+    (setq color-theme-is-global t)
+    (color-theme-calm-forest)))
 
 ;;; TODO: browse-url
 
@@ -126,16 +113,21 @@
 
 
 ;;; slime
-;(add-to-list 'load-path (expand-file-name "~/local/slime-2010-08-22/"))
-;(require 'slime)
+(add-to-list 'load-path (expand-file-name "~/lisp/slime-2010-12-16/"))
+(require 'slime)
 
 (setq slime-net-coding-system 'utf-8-unix)
 
-(defadvice slime-read-interactive-args (before add-ccl64)
-  (require 'assoc)
-  (aput 'slime-lisp-implementations 'ccl64
-    (list (list "/home/adaltan/local/ccl/lx86cl64"))))
+(setq inferior-lisp-program "~/lisp/ccl/dx86cl64")
 
+;(setq inferior-lisp-program "~/lisp/sbcl-1.0.22-x86-64-darwin/run-sbcl.sh")
+
+(slime-setup '(slime-fancy))
+
+
+
+
+;;; EOF
 
 
 ;;; This was installed by package-install.el.
@@ -153,4 +145,5 @@
 
 
 
-;;; EOF
+(when (boundp 'aquamacs-autoface-mode)
+  (aquamacs-autoface-mode -1)) 
