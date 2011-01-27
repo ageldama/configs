@@ -109,9 +109,13 @@
   (add-hook 'term-setup-hook
 	    (lambda () (define-key input-decode-map "\e[Z" [backtab]))))
 
+
+;;; org-mode
 (add-hook 'org-mode-hook
   (function (lambda ()
               (local-set-key [backtab] 'org-shifttab))))
+
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
   
 
 
