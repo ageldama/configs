@@ -100,8 +100,20 @@
 ;;; view-mode + bookmark
 (add-hook 'view-mode-hook 
   (function (lambda ()
-     (local-set-key "\S-m" 'bookmark-set)
-     (local-set-key "\S-s" 'bookmark-save))))
+              (local-set-key "\S-m" 'bookmark-set)
+              (local-set-key "\S-s" 'bookmark-save))))
+
+;;; osx terms: backtab -> S-tab
+(if (string-match "^22" emacs-version)
+    (define-key function-key-map "\e[Z" [backtab])
+  (add-hook 'term-setup-hook
+	    (lambda () (define-key input-decode-map "\e[Z" [backtab]))))
+
+(add-hook 'org-mode-hook
+  (function (lambda ()
+              (local-set-key [backtab] 'org-shifttab))))
+  
+
 
 
 ;;; lusty-explorer
