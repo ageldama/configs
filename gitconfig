@@ -1,0 +1,10 @@
+[color]
+	ui = 1
+[user]
+	name = jonghyouk yun
+    email = ageldama@gmail.com
+[alias]
+    st = status
+    stat = status
+    addi = add -i
+    co = checkout
