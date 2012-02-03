@@ -32,3 +32,9 @@ export PATH=$PATH:~/local/bin
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
+
+
+
+
+ssh-agent /bin/zsh
+
