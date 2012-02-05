@@ -29,6 +29,11 @@ export PATH=$PATH:~/local/bin
 
 
 
+function run-ssh-agent
+{
+    eval `ssh-agent -s`
+}
+
 
 
 [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
