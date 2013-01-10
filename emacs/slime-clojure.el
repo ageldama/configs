@@ -12,5 +12,6 @@
 
 (add-to-list 'load-path "~/local/clojure-mode/")
 (require 'clojure-mode)
+(setq slime-net-coding-system 'utf-8-unix)
 
 ;(slime-setup '(slime-fancy))
