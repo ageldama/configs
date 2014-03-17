@@ -1,0 +1,8 @@
+alias ls='ls -F --color'
+
+export PAGER=most
+export EDITOR=vim
+
+export PATH=~/.cabal/bin:$PATH:~/local/bin
+
+
