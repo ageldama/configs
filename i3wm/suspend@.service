@@ -1,0 +1,14 @@
+#/etc/systemd/system/suspend@.service
+[Unit]
+Description=Starts i3lock at suspend time
+Before=sleep.target
+
+[Service]
+User=%I
+Type=forking
+Environment=DISPLAY=:0
+ExecStartPre= 
+ExecStart=/usr/bin/i3lock -c 000500
+
+[Install]
+WantedBy=sleep.target
