@@ -11,6 +11,7 @@ nabi&
 #exec gnome-session
 
 
+dropboxd &
 
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
