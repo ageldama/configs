@@ -1,0 +1,17 @@
+export TERMINAL=gnome-terminal
+
+export XMODIFIERS="@im=nabi"
+export QT_IM_MODULE=xim
+export GTK_IM_MODULE=xim
+
+nabi&
+
+#fcitx &
+
+#exec gnome-session
+
+
+
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
+export SSH_AGENT_PID=$GNOME_KEYRING_PID
