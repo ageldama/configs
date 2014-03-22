@@ -1,1 +1,0 @@
-rsync -avz 4chan -e ssh ageldama@file.jewelria.net:/home/ageldama/htdocs/
