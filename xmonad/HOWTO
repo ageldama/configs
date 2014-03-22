@@ -1,8 +1,0 @@
-
-
-* gconf-editor 를 사용해서, /desktop/gnome/session/required_components/windowmanager 의 값을 metacity 에서 gnome-wm 으로 바꾼다.
-
-* $HOME/.xprofile 이라는 파일을 만들고 그 안에 export WINDOW_MANAGER=xmonad 라고 넣는다.
-
-http://gaemon.wordpress.com/2009/12/04/karmic-xmonad/
-
