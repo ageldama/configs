@@ -16,3 +16,13 @@ dropboxd &
 eval $(gnome-keyring-daemon --start)
 export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
 export SSH_AGENT_PID=$GNOME_KEYRING_PID
+
+
+
+xmodmap -e 'keycode 66 = Control_L'
+xmodmap -e 'clear Lock'
+xmodmap -e 'add Control = Control_L'
+
+
+
+###EOF
