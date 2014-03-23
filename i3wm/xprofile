@@ -24,6 +24,6 @@ xmodmap -e 'clear Lock'
 xmodmap -e 'add Control = Control_L'
 
 
-xgamma -gamma 0.5
+xgamma -gamma 0.6
 
 ###EOF
