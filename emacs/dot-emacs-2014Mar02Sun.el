@@ -83,7 +83,7 @@
 
 ;;; fill, wrap, truncates
 ;;(setq-default fill-column 72)
-(setq default-truncate-lines nil)
+(setq truncate-lines nil)
 ;(setq truncate-partial-width-windows nil)
 
 
@@ -97,15 +97,6 @@
 ;;(setq find-program "c:/cygwin/bin/find.exe")
 
 
-;;; color-theme
-(require 'color-theme nil t)
-
-(when (fboundp 'color-theme-initialize)
-  (progn
-    (color-theme-initialize)
-    (setq color-theme-is-global t)
-    (color-theme-calm-forest)
-  ))
 
 
 ;;; TODO: browse-url
@@ -173,5 +164,23 @@
 
 
 
+
+
 ;;; EOF
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
+ '(haskell-mode-hook (quote (turn-on-haskell-indentation))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+(load-theme 'tango-dark)
