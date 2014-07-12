@@ -1,3 +1,5 @@
+export PATH=$PATH:/home/jhyun/local/bin
+
 export TERMINAL=gnome-terminal
 
 export XMODIFIERS="@im=nabi"
@@ -25,5 +27,13 @@ xmodmap -e 'add Control = Control_L'
 
 
 xgamma -gamma 0.6
+
+
+xset s on
+xset s 600
+
+xautolock -time 1 -locker 'i3lock ' &
+
+
 
 ###EOF
