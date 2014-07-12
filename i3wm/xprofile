@@ -32,7 +32,7 @@ xgamma -gamma 0.6
 xset s on
 xset s 600
 
-xautolock -time 1 -locker 'i3lock ' &
+xautolock -time 1 -locker 'i3lock -c 000000 ' &
 
 
 
