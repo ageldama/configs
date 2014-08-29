@@ -1,10 +1,10 @@
 export PATH=$PATH:/home/jhyun/local/bin
 
-export TERMINAL=gnome-terminal
+export TERMINAL=konsole
 
 export XMODIFIERS="@im=SCIM"
-export QT_IM_MODULE=scim
-export GTK_IM_MODULE=scim
+export QT_IM_MODULE=xim
+export GTK_IM_MODULE=xim
 
 scim -d 
 
@@ -30,7 +30,7 @@ xgamma -gamma 0.6
 
 
 xset s on
-xset s 600
+xset s 60
 
 xautolock -time 1 -locker 'i3lock -c 000000 ' &
 
