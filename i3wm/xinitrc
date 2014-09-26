@@ -26,13 +26,16 @@ xmodmap -e 'clear Lock'
 xmodmap -e 'add Control = Control_L'
 
 
+synclient TapButton2=3
+
+
 xgamma -gamma 0.6
 
 
 xset s on
-xset s 60
+xset s 300
 
-xautolock -time 1 -locker 'i3lock -c 000000 ' &
+xautolock -time 5 -locker 'i3lock -c 000000 ' &
 
 
 exec i3
