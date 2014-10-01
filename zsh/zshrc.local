@@ -1,8 +1,20 @@
+
+
 alias ls='ls -F --color'
 
 export PAGER=most
 export EDITOR=vim
 
-export PATH=~/.cabal/bin:$PATH:~/local/bin
+export PATH=$PATH:~/local/bin
 
+export GOPATH=/home/jhyun/local/go-my
+export GOROOT=/home/jhyun/local/go
+export PATH=$PATH:~/local/go/bin
+
+
+export NVM_DIR="/home/jhyun/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+
+
+export PATH=$PATH:/home/jhyun/.gem/ruby/2.1.0/bin
 
