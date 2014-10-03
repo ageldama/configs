@@ -2,11 +2,18 @@ export PATH=$PATH:/home/jhyun/local/bin
 
 export TERMINAL=konsole
 
-export XMODIFIERS="@im=SCIM"
-export QT_IM_MODULE=xim
-export GTK_IM_MODULE=xim
+#export XMODIFIERS="@im=SCIM"
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
 
-scim -d 
+#scim -d 
+#fcitx -d
+#nabi&
+
+# $ sudo pacman -S ibus ibus-qt ibus-hangul
+#
+ibus-daemon&
 
 #fcitx &
 
