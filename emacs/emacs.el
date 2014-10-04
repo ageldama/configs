@@ -132,10 +132,7 @@
 ;;; gui-fonts
 (when window-system
   (cond ((string-equal system-type "gnu/linux") 
-         ;; (set-fontset-font "fontset-default" (cons "Inconsolata Medium" "unicode-bmp") nil)
-         (let ((font-name "나눔고딕코딩"))
-           (set-fontset-font "fontset-default" '(#x1100 . #xffdc)  (cons font-name "unicode-bmp"))
-           (set-fontset-font "fontset-default" '(#xe0bc . #xf66e)  (cons font-name "unicode-bmp"))))
+         (set-face-attribute 'default nil :font "Inconsolata-11"))         
         ((string-equal system-type "windows-nt" system-type)
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
