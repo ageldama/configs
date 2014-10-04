@@ -133,6 +133,8 @@
 (when window-system
   (cond ((string-equal system-type "gnu/linux") 
          (set-face-attribute 'default nil :font "Inconsolata-11"))         
+        ((string-equal system-type "darwin")
+         (set-face-attribute 'default nil :family "Andale Mono" :height 135 :weight 'normal))
         ((string-equal system-type "windows-nt" system-type)
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
