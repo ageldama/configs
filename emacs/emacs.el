@@ -89,7 +89,7 @@
 
 
 ;;; user?
-(setq-default user-full-name "Jonghyouk Yun")
+(setq-default user-full-name "John, Jonghyouk Yun")
 (setq-default user-mail-address "ageldama@gmail.com")
 
 
@@ -125,24 +125,23 @@
 
 ;;; for Netbooks
 (display-time)
-;(display-battery-mode)
+(display-battery-mode)
 
 
 
 ;;; gui-fonts
 (when window-system
-  (progn
-    ;(set-fontset-font "fontset-default" (cons "Inconsolata Medium" "unicode-bmp") nil)
-    (let ((font-name "나눔고딕코딩"))
-      (set-fontset-font "fontset-default" '(#x1100 . #xffdc)  (cons font-name "unicode-bmp"))
-      (set-fontset-font "fontset-default" '(#xe0bc . #xf66e)  (cons font-name "unicode-bmp")))))
+  (cond ((string-equal system-type "gnu/linux") 
+         ;; (set-fontset-font "fontset-default" (cons "Inconsolata Medium" "unicode-bmp") nil)
+         (let ((font-name "나눔고딕코딩"))
+           (set-fontset-font "fontset-default" '(#x1100 . #xffdc)  (cons font-name "unicode-bmp"))
+           (set-fontset-font "fontset-default" '(#xe0bc . #xf66e)  (cons font-name "unicode-bmp"))))
+        ((string-equal system-type "windows-nt" system-type)
+         (set-face-attribute 'default nil :font "Consolas-11"))
+        (t :unknown)))
 
-;;;
-;;(load-file "~/local/slime-sbcl.el")
 
 
-;;;
-;;(setq-default haskell-doc-mode t)
 
 
 
@@ -155,41 +154,31 @@
 
 
 
-(when (require 'haskell-mode nil 'noerror)
-  (progn
-    (message "foobar")
-    (custom-set-variables
-     '(haskell-mode-hook '(turn-on-haskell-indentation)))))
-
-
-
-
-
-;;; EOF
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(custom-safe-themes (quote ("8aebf25556399b58091e533e455dd50a6a9cba958cc4ebb0aab175863c25b9a4" "dd4db38519d2ad7eb9e2f30bc03fba61a7af49a185edfd44e020aa5345e3dca7" default)))
- '(haskell-mode-hook (quote (turn-on-haskell-indentation))))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
-
-
 (load-theme 'tango-dark)
 
 
 
-(require 'ac-geiser)
-(add-hook 'geiser-mode-hook 'ac-geiser-setup)
-(add-hook 'geiser-repl-mode-hook 'ac-geiser-setup)
-(eval-after-load "auto-complete-mode"
-  '(add-to-list 'ac-modes 'geiser-repl-mode))
 
-(ac-set-trigger-key "TAB")
+;; setup load-path and autoloads
+(add-to-list 'load-path "/home/jhyun/local/slime-2.9")
+(require 'slime-autoloads)
+
+;; Set your lisp system and, optionally, some contribs
+(setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.3-x86-64-linux/run-sbcl.sh")
+;;(setq inferior-lisp-program "/home/jhyun/local/acl90express/alisp")
+;;(setq inferior-lisp-program "/usr/bin/ecl")
+;;(setq inferior-lisp-program "/usr/bin/clisp")
+;;(setq inferior-lisp-program "/usr/bin/mkcl")
+(setq slime-contribs '(slime-fancy))
+
+(setq common-lisp-hyperspec-root "file:///home/jhyun/local/HyperSpec/")
+
+
+
+
+
+
+
+
+
+;;;EOF
