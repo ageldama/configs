@@ -137,6 +137,11 @@
       (set-fontset-font "fontset-default" '(#x1100 . #xffdc)  (cons font-name "unicode-bmp"))
       (set-fontset-font "fontset-default" '(#xe0bc . #xf66e)  (cons font-name "unicode-bmp")))))
 
+;;; for Windows.
+(when (and window-system (string-equal "windows-nt" system-type))
+  (set-face-attribute 'default nil :font "Consolas-11"))
+
+
 
 
 
