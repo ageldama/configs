@@ -132,7 +132,11 @@
 ;;; gui-fonts
 (when window-system
   (cond ((string-equal system-type "gnu/linux") 
-         (set-face-attribute 'default nil :font "Inconsolata-11"))         
+         (progn
+           (set-face-attribute 'default nil :font "Inconsolata-11")
+           (let ((font-name "나눔고딕코딩"))
+             (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
+             (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
          (set-face-attribute 'default nil :family "Andale Mono" :height 135 :weight 'normal))
         ((string-equal system-type "windows-nt" system-type)
