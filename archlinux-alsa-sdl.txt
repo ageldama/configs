@@ -1,0 +1,62 @@
+
+archlinux alsa / sdl
+
+
+
+https://bbs.archlinux.org/viewtopic.php?id=122621
+
+
+
+
+In KDE multimedia settings I'm using phonon-gstreamer and I have also tried changing to phono-vlc. Sound in the application 'Clementine' doesn't work either. Sound is working fine for KDE desktop effects, amarok, juk, and dragonplayer, and Flash.
+
+Using smplayer audio options I have set to alsa, and have tried all the alsa 0.1 etc options -- none work. I have also tried mplayer -vo alsa
+
+mplayer ran from shell:
+
+[AO_ALSA] alsa-lib: pcm_hw.c:1293:(snd_pcm_hw_open) open '/dev/snd/pcmC1D0p' failed (-2): No such file or directory
+[AO_ALSA] Playback open error: No such file or directory
+[AO_ALSA] alsa-lib: pcm_hw.c:1293:(snd_pcm_hw_open) open '/dev/snd/pcmC1D0p' failed (-2): No such file or directory
+
+Could this issue be because for alsa I have  set my default sound card in user space (because I have USB mic)?
+
+    ~/.asoundrc:
+
+    # Setting default device
+    pcm.!default {
+    type hw
+    card 1
+    device 0
+    }
+    ctl.!default {
+    type hw
+    card 1
+    device 0
+    }
+    # Enable mixing
+    pcm.dsp {
+        type plug
+        slave.pcm "dmix"
+    }
+
+Last edited by ScannerDarkly (2011-07-16 20:30:29)
+
+
+
+
+
+$ lspci -nn|grep -i audio
+    00:01.1 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] Wrestler HDMI Audio [1002:1314]
+    00:14.2 Audio device [0403]: Advanced Micro Devices, Inc. [AMD/ATI] SBx00 Azalia (Intel HDA) [1002:4383] (rev 40)
+
+$ sudo lspci -vs00:14.2
+[sudo] password for jhyun: 
+00:14.2 Audio device: Advanced Micro Devices, Inc. [AMD/ATI] SBx00 Azalia (Intel HDA) (rev 40)
+        Subsystem: ASUSTeK Computer Inc. Device 841c
+        Flags: bus master, slow devsel, latency 32, IRQ 16
+        Memory at feb40000 (64-bit, non-prefetchable) [size=16K]
+        Capabilities: [50] Power Management version 2
+        Kernel driver in use: snd_hda_intel
+        Kernel modules: snd_hda_intel
+
+
