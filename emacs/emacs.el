@@ -99,7 +99,7 @@
 
 
 
-;;; TODO: browse-url
+
 
 ;; cc-mode
 (setq c-default-style "java")
@@ -157,7 +157,19 @@
 
 
 
-(load-theme 'tango-dark)
+
+
+(when window-system
+    (load-theme 'tango-dark))
+
+(unless window-system
+  (progn
+    (require 'w3m-load nil t)
+    (when (fboundp 'w3m-browse-url)
+      (setq browse-url-browser-function #'w3m-browse-url))))
+
+
+
 
 
 
