@@ -173,6 +173,37 @@
 
 
 
+(require 'cl)
+
+(defun insert-journal-header ()
+  (interactive)
+  (cl-flet ((en-week-day-name (n)
+                              (let* ((a '((0 . "Sun") (1 . "Mon") 
+                                          (2 . "Tue") (3 . "Wed")
+                                          (4 . "Thu") (5 . "Fri") 
+                                          (6 . "Sat")))
+                                     (i (assoc n a)))
+                                (cdr i)))
+            (en-month-name (n)
+                           (let* ((a '((1 . "Jan") (2 . "Feb") 
+                                       (3 . "Mar") (4 . "Apr")
+                                       (5 . "May") (6 . "Jun") 
+                                       (7 . "Jul") (8 . "Aug")
+                                       (9 . "Sep") (10 . "Oct") 
+                                       (11 . "Nov") (12 . "Dec")))
+                                  (i (assoc n a)))
+                             (cdr i))))
+    (let* ((year (format-time-string "%Y"))
+           (month-num (string-to-number (format-time-string "%m")))
+           (month-name (en-month-name month-num))
+           (day (format-time-string "%d"))
+           (day-of-week-num (string-to-number (format-time-string "%w")))
+           (day-of-week-name (en-week-day-name day-of-week-num))
+           (date-str (format "%s/%s/%s/%s" year month-name day day-of-week-name)))
+      (insert (format "-*- mode: markdown; coding: utf-8; -*-\n\n# %s" date-str)))))
+
+
+
 
 ;; setup load-path and autoloads
 (add-to-list 'load-path "/home/jhyun/local/slime-2.9")
