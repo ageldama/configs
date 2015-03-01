@@ -1,19 +1,30 @@
+#!/bin/sh
+
 export PATH=$PATH:/home/jhyun/local/bin
 
-export TERMINAL=konsole
+#export TERMINAL=konsole
+export TERMINAL=gnome-terminal
 
 #export XMODIFIERS="@im=SCIM"
-export XMODIFIERS="@im=ibus"
-export QT_IM_MODULE=ibus
-export GTK_IM_MODULE=ibus
+#export QT_IM_MODULE=scim
+#export GTK_IM_MODULE=scim
+
+#export XMODIFIERS="@im=ibus"
+#export QT_IM_MODULE=ibus
+#export GTK_IM_MODULE=ibus
+
+export XMODIFIERS="@im=nabi"
+export QT_IM_MODULE=xim
+export GTK_IM_MODULE=xim
 
 #scim -d 
 #fcitx -d
-#nabi&
+nabi&
+#ibus-daemon -d -x
 
 # $ sudo pacman -S ibus ibus-qt ibus-hangul
 #
-ibus-daemon&
+#ibus-daemon&
 
 #fcitx &
 
@@ -46,7 +57,9 @@ xset s on
 xset s 300
 
 xautolock -time 5 -locker 'i3lock -c 000000 ' &
+#xscreensaver &
 
+pulseaudio --start &
 
 exec i3
 
