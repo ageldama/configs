@@ -125,7 +125,7 @@
 
 ;;; for Netbooks
 (display-time)
-(display-battery-mode)
+;(display-battery-mode)
 
 
 
@@ -139,7 +139,7 @@
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
          (set-face-attribute 'default nil :family "Andale Mono" :height 135 :weight 'normal))
-        ((string-equal system-type "windows-nt" system-type)
+        ((string-equal system-type "windows-nt")
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
 
@@ -206,18 +206,17 @@
 
 
 ;; setup load-path and autoloads
-(add-to-list 'load-path "/home/jhyun/local/slime-2.9")
-(require 'slime-autoloads)
+;(add-to-list 'load-path "/home/jhyun/local/slime-2.9")
+;(require 'slime-autoloads)
 
 ;; Set your lisp system and, optionally, some contribs
-(setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.3-x86-64-linux/run-sbcl.sh")
+;(setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.3-x86-64-linux/run-sbcl.sh")
 ;;(setq inferior-lisp-program "/home/jhyun/local/acl90express/alisp")
 ;;(setq inferior-lisp-program "/usr/bin/ecl")
 ;;(setq inferior-lisp-program "/usr/bin/clisp")
 ;;(setq inferior-lisp-program "/usr/bin/mkcl")
-(setq slime-contribs '(slime-fancy))
-
-(setq common-lisp-hyperspec-root "file:///home/jhyun/local/HyperSpec/")
+;(setq slime-contribs '(slime-fancy))
+;(setq common-lisp-hyperspec-root "file:///home/jhyun/local/HyperSpec/")
 
 
 
