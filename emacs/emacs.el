@@ -3,7 +3,7 @@
 (setq inhibit-startup-screen t)
 
 ;;; load-path
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
+;(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 
 
 ;;; l10n, i18n...
@@ -48,7 +48,7 @@
 (icomplete-mode t)
 
 ;;; interactive-switch-buffer
-(iswitchb-mode t)
+;(iswitchb-mode t)
 
 ;;; ido-mode
 (require 'ido)
@@ -125,7 +125,8 @@
 
 ;;; for Netbooks
 (display-time)
-;(display-battery-mode)
+(display-battery-mode)
+
 
 
 
@@ -133,13 +134,13 @@
 (when window-system
   (cond ((string-equal system-type "gnu/linux") 
          (progn
-           (set-face-attribute 'default nil :font "Inconsolata-11")
+           (set-face-attribute 'default nil :font "Inconsolata-13")
            (let ((font-name "나눔고딕코딩"))
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
          (set-face-attribute 'default nil :family "Andale Mono" :height 135 :weight 'normal))
-        ((string-equal system-type "windows-nt")
+        ((string-equal system-type "windows-nt" system-type)
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
 
@@ -150,17 +151,20 @@
 
 
 (require 'package)
-(add-to-list 'package-archives 
-    '("marmalade" .
-      "http://marmalade-repo.org/packages/"))
+(add-to-list 'package-archives '("elpa" . "http://elpa.gnu.org/packages/"))
+(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
+(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
 (package-initialize)
 
 
 
-
+;; (when window-system
+;;     (load-theme 'light-blue))
+;; (when window-system
+;;   (load-theme 'tronesque))
 
 (when window-system
-    (load-theme 'tango-dark))
+  (load-theme 'misterioso))
 
 (unless window-system
   (progn
@@ -170,6 +174,36 @@
 
 
 
+
+
+
+
+
+
+
+
+
+
+;;;EOF
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("869b11b64da20b6b04e9b18721e03a58e5d9f0ee3a7a91bfe7cdc2b24a828109" "e890fd7b5137356ef5b88be1350acf94af90d9d6dd5c234978cd59a6b873ea94" default))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
+
+
+;(load-theme 'deeper-blue)
+
+;(load "~/local/io-mode/io-mode.el")
 
 
 
@@ -200,23 +234,32 @@
            (day-of-week-num (string-to-number (format-time-string "%w")))
            (day-of-week-name (en-week-day-name day-of-week-num))
            (date-str (format "%s/%s/%s/%s" year month-name day day-of-week-name)))
-      (insert (format "-*- mode: markdown; coding: utf-8; -*-\n\n# %s" date-str)))))
+      (progn
+        (markdown-mode)
+        (insert (format "-*- mode: markdown; coding: utf-8; -*-\n\n# %s" date-str))))))
 
 
 
 
-;; setup load-path and autoloads
-;(add-to-list 'load-path "/home/jhyun/local/slime-2.9")
-;(require 'slime-autoloads)
+
+
+(add-hook 'after-init-hook 'global-company-mode)
+
+
+(global-set-key "\t" 'company-complete-common)
+
+
+
+(add-to-list 'load-path "/home/jhyun/local/slime-2.14/")
+(require 'slime-autoloads)
+
+;(add-to-list 'load-path "/home/jhyun/local/slime-company/")
 
 ;; Set your lisp system and, optionally, some contribs
-;(setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.3-x86-64-linux/run-sbcl.sh")
-;;(setq inferior-lisp-program "/home/jhyun/local/acl90express/alisp")
-;;(setq inferior-lisp-program "/usr/bin/ecl")
-;;(setq inferior-lisp-program "/usr/bin/clisp")
-;;(setq inferior-lisp-program "/usr/bin/mkcl")
-;(setq slime-contribs '(slime-fancy))
-;(setq common-lisp-hyperspec-root "file:///home/jhyun/local/HyperSpec/")
+(setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
+;(setq inferior-lisp-program "/usr/bin/ecl")
+;(setq inferior-lisp-program "/usr/bin/clisp")
+(setq slime-contribs '(slime-fancy ))
 
 
 
@@ -224,6 +267,4 @@
 
 
 
-
-
-;;;EOF
+;;;EOF.
