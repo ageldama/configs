@@ -1,0 +1,6 @@
+#!/bin/sh
+/usr/bin/modprobe snd_pcm_oss
+/bin/ln -s /dev/dsp1 /dev/dsp
+echo "quake3.x86 0 0 direct" > /proc/asound/card1/pcm0p/oss
+
+
