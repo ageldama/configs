@@ -2,8 +2,25 @@
 "
 "  ageldama@gmail.com : 2006-11-16 12:36
 "
-"  plugin: vcscommand taglist bufexplorer
 "
+
+" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+" let Vundle manage Vundle
+" required! 
+Bundle 'gmarik/vundle'
+"
+" The bundles you install will be listed here
+"
+filetype plugin indent on
+"
+"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+"------------------------------------------------------------------------------
 
 " use only Vim settings (instead of vi)
 set nocompatible
@@ -51,7 +68,7 @@ set backspace=2
 
 " 폰트
 "set guifont=Consolas:h14:cANSI
-set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
+"set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
 
 " 메뉴&툴바
 set guioptions=m
@@ -68,27 +85,36 @@ filetype on
 filetype indent on
 filetype plugin on
 
-" taglist
-"let Tlist_Ctags_Cmd="ctags.exe"
-nmap <F12> :TlistToggle<CR>
-
-nmap <F10> :FuzzyFinderFile<CR>
-
-" abbrevs
-"abbr #b /************************************************************************
-"abbr #e  ************************************************************************/
-
-"abbr hosts C:\windows\system32\drivers\etc\hosts
-
-"iab AGDTTM <c-r>=strftime("%Y-%m-%d %H:%M")<cr>
-iab @TIME@ <c-r>=strftime("%Y-%m-%d %H:%M:%S")<cr>
+"
 
 
-iab @PY@ # vim: fileencoding=utf-8 autoindent expandtab sw=4 ts=4 :<cr>
+" Add the virtualenv's site-packages to vim path
+python3 << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
 
-"" io-language
-" ~/.vim/syntax/io.vim이 있을때...
-au BufNewFile,BufRead *.io setf io 
+" vim-jedi
+" vim-fugitive
+" vim-bufexplorer
+" vim-airline
+" vim-nerdtree
+" vim-ctrlp
+" vim-ultisnips
+"
+" http://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
+" http://www.sontek.net/blog/2011/05/07/turning_vim_into_a_modern_python_ide.html#virtualenv
+"
+
+
+" airline
+set laststatus=2
 
 
 "EOF
