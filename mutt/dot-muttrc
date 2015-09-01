@@ -26,6 +26,9 @@ set imap_keepalive = 900
 set sort = threads
 set editor = "vim"
 
+set date_format="%y-%m-%d %T"
+set index_format="%2C | %Z [%d] %-30.30F (%-4.4c) %s"
+
 # GnuPG bootstrap
 # source ~/.mutt/gpg.rc
 
