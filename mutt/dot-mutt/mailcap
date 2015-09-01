@@ -1,0 +1,11 @@
+
+
+#text/html; firefox %s ;
+#text/html; w3m -T text/html -dump %s; copiousoutput
+
+
+text/html; mkdir -p /tmp/mutt \; cp %s /tmp/mutt \; firefox /tmp/mutt/$(basename %s) &
+
+image/*; mkdir -p /tmp/mutt \; cp %s /tmp/mutt \; firefox /tmp/mutt/$(basename %s) &
+
+

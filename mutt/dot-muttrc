@@ -1,0 +1,48 @@
+
+# Me
+set from = "ageldama@gmail.com"
+set realname = "John JH Yun"
+
+# My credentials
+set smtp_url = "smtp://ageldama@smtp.gmail.com:587/"
+#set smtp_pass = "password"
+set imap_user = "ageldama@gmail.com"
+#set imap_pass = "password"
+
+# My mailboxes
+set folder = "imaps://imap.gmail.com:993"
+set spoolfile = "+INBOX"
+set postponed = "+[Gmail]/Drafts"
+
+# Where to put the stuff
+set header_cache = "~/.mutt/cache/headers"
+set message_cachedir = "~/.mutt/cache/bodies"
+set certificate_file = "~/.mutt/certificates"
+
+# Etc
+set mail_check = 30
+set move = no
+set imap_keepalive = 900
+set sort = threads
+set editor = "vim"
+
+# GnuPG bootstrap
+# source ~/.mutt/gpg.rc
+
+#
+source ~/.mutt/colors
+
+# 
+set mailcap_path    = ~/.mutt/mailcap
+alternative_order text/plain text/html
+
+folder-hook . `rm -f /tmp/mutt/*`
+
+
+
+
+
+
+
+
+###EOF.
