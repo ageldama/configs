@@ -39,7 +39,10 @@ alternative_order text/plain text/html
 folder-hook . `rm -f /tmp/mutt/*`
 
 
-
+# passwords
+source "gpg -d ~/.mutt/passwords.gpg |"
+# $ gpg -r your.email@example.com -e ~/.mutt/passwords
+# $ shred ~/.mutt/passwords && rm ~/.mutt/passwords
 
 
 
