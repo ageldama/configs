@@ -76,6 +76,7 @@ set guioptions=m
 " 색상설정
 "color koehler
 if has('gui_running')
+    set guifont="Oxygen Mono 12"
     colorscheme koehler
 else
     set bg=dark
@@ -89,7 +90,8 @@ filetype on
 filetype indent on
 filetype plugin on
 
-"
+" vim-jedi
+let g:jedi#popup_on_dot=0   " it's faster. just use <C>-<SPACE> for the completion popup.
 
 
 " Add the virtualenv's site-packages to vim path

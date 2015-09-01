@@ -1,0 +1,18 @@
+# Use PulseAudio by default
+pcm.!default {
+  type pulse
+  card 1
+  fallback "sysdefault"
+  hint {
+    show on
+    description "Default ALSA Output (currently PulseAudio Sound Server)"
+  }
+}
+
+ctl.!default {
+  type pulse
+  card 1
+  fallback "sysdefault"
+}
+
+
