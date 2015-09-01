@@ -75,7 +75,11 @@ set guioptions=m
 
 " 색상설정
 "color koehler
-set bg=dark
+if has('gui_running')
+    colorscheme koehler
+else
+    set bg=dark
+endif
 
 " 파일인코딩
 set fencs=utf8,euc-kr
