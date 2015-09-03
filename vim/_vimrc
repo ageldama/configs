@@ -21,11 +21,12 @@ filetype plugin indent on
 "
 Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-fugitive'
-Bundle 'fholgado/minibufexpl.vim'
+"Bundle 'fholgado/minibufexpl.vim'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
+Bundle 'honza/vim-snippets'
 "------------------------------------------------------------------------------
 
 " use only Vim settings (instead of vi)
@@ -123,9 +124,9 @@ EOF
 set laststatus=2
 
 " minibufexplorer
-map <Leader>mbe :MBEOpen<cr>
-map <Leader>mbc :MBEClose<cr>
-map <Leader>mbt :MBEToggle<cr>
+"map <Leader>mbe :MBEOpen<cr>
+"map <Leader>mbc :MBEClose<cr>
+"map <Leader>mbt :MBEToggle<cr>
 
 
 
