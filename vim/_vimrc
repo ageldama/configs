@@ -19,7 +19,13 @@ Bundle 'gmarik/vundle'
 "
 filetype plugin indent on
 "
-"Bundle 'Lokaltog/powerline', {'rtp': 'powerline/bindings/vim/'}
+Bundle 'davidhalter/jedi-vim'
+Bundle 'tpope/vim-fugitive'
+Bundle 'fholgado/minibufexpl.vim'
+Bundle 'bling/vim-airline'
+Bundle 'scrooloose/nerdtree'
+Bundle 'kien/ctrlp.vim'
+Bundle 'SirVer/ultisnips'
 "------------------------------------------------------------------------------
 
 " use only Vim settings (instead of vi)
@@ -106,13 +112,7 @@ if 'VIRTUAL_ENV' in os.environ:
     execfile(activate_this, dict(__file__=activate_this))
 EOF
 
-" vim-jedi
-" vim-fugitive
-" vim-bufexplorer
-" vim-airline
-" vim-nerdtree
-" vim-ctrlp
-" vim-ultisnips
+
 "
 " http://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
 " http://www.sontek.net/blog/2011/05/07/turning_vim_into_a_modern_python_ide.html#virtualenv
@@ -121,6 +121,13 @@ EOF
 
 " airline
 set laststatus=2
+
+" minibufexplorer
+map <Leader>mbe :MBEOpen<cr>
+map <Leader>mbc :MBEClose<cr>
+map <Leader>mbt :MBEToggle<cr>
+
+
 
 
 "EOF
