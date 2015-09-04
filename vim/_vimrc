@@ -22,6 +22,7 @@ filetype plugin indent on
 Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-fugitive'
 "Bundle 'fholgado/minibufexpl.vim'
+Bundle 'jlanzarotta/bufexplorer'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
