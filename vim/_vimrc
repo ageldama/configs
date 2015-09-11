@@ -28,6 +28,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'SirVer/ultisnips'
 Bundle 'honza/vim-snippets'
+Bundle 'ageldama/vim-ttfzoom'
 "------------------------------------------------------------------------------
 
 " use only Vim settings (instead of vi)
@@ -84,8 +85,8 @@ set guioptions=m
 " 색상설정
 "color koehler
 if has('gui_running')
-    set guifont="Oxygen Mono 12"
     colorscheme koehler
+    set guifont=Monospace\ 11
 else
     set bg=dark
 endif
