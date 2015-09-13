@@ -243,23 +243,21 @@
 
 
 
-(add-hook 'after-init-hook 'global-company-mode)
-
-
-(global-set-key "\t" 'company-complete-common)
+;; (add-hook 'after-init-hook 'global-company-mode)
+;; (global-set-key "\t" 'company-complete-common) 
 
 
 
-(add-to-list 'load-path "/home/jhyun/local/slime-2.14/")
-(require 'slime-autoloads)
+;; (add-to-list 'load-path "/home/jhyun/local/slime-2.14/")
+;; (require 'slime-autoloads)
 
-;(add-to-list 'load-path "/home/jhyun/local/slime-company/")
+;; ;(add-to-list 'load-path "/home/jhyun/local/slime-company/")
 
-;; Set your lisp system and, optionally, some contribs
-(setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
-;(setq inferior-lisp-program "/usr/bin/ecl")
-;(setq inferior-lisp-program "/usr/bin/clisp")
-(setq slime-contribs '(slime-fancy ))
+;; ;; Set your lisp system and, optionally, some contribs
+;; (setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
+;; ;(setq inferior-lisp-program "/usr/bin/ecl")
+;; ;(setq inferior-lisp-program "/usr/bin/clisp")
+;; (setq slime-contribs '(slime-fancy ))
 
 
 
@@ -268,3 +266,4 @@
 
 
 ;;;EOF.
+

@@ -19,7 +19,7 @@ Bundle 'gmarik/vundle'
 "
 filetype plugin indent on
 "
-Bundle 'davidhalter/jedi-vim'
+"Bundle 'davidhalter/jedi-vim'
 Bundle 'tpope/vim-fugitive'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'jlanzarotta/bufexplorer'
@@ -60,7 +60,7 @@ set expandtab	" tab대신 스페이스!
 set wrap
 
 " textwidth : 자동으로 행을 자르기. 0이면 끄기.
-set textwidth=999999
+set textwidth=80
 
 " modeline 향수
 set showmode
@@ -100,20 +100,20 @@ filetype indent on
 filetype plugin on
 
 " vim-jedi
-let g:jedi#popup_on_dot=0   " it's faster. just use <C>-<SPACE> for the completion popup.
+"let g:jedi#popup_on_dot=0   " it's faster. just use <C>-<SPACE> for the completion popup.
 
 
 " Add the virtualenv's site-packages to vim path
-python3 << EOF
-import os.path
-import sys
-import vim
-if 'VIRTUAL_ENV' in os.environ:
-    project_base_dir = os.environ['VIRTUAL_ENV']
-    sys.path.insert(0, project_base_dir)
-    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-    execfile(activate_this, dict(__file__=activate_this))
-EOF
+"python3 << EOF
+"import os.path
+"import sys
+"import vim
+"if 'VIRTUAL_ENV' in os.environ:
+"    project_base_dir = os.environ['VIRTUAL_ENV']
+"    sys.path.insert(0, project_base_dir)
+"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+"    execfile(activate_this, dict(__file__=activate_this))
+"EOF
 
 
 "
