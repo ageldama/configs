@@ -35,7 +35,7 @@ if __name__ == '__main__':
     fn = tmpf.name
     chdir('/')
     NOW_STR = datetime.now().strftime('%Y%m%d_%H%M')
-    BACKUP_FN = "/media/NAS1/archeee-backup/BACKUP-%s.tgz" % (NOW_STR)
+    BACKUP_FN = "/media/NAS1-HDD/archeee-backup/BACKUP-%s.tgz" % (NOW_STR)
     print(fn)
     system("tar --exclude-ignore-recursive=%s -cvf %s ." % (fn, BACKUP_FN))
 
