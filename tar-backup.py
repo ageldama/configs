@@ -14,7 +14,10 @@ def make_exclude_dirs_file(L, encoding='utf8'):
 EXCLUDE_DIRS = """
 ./dev
 ./lost+found
+./misc
 ./media
+./cifs
+./net
 ./mnt
 ./proc
 ./run
@@ -24,9 +27,6 @@ EXCLUDE_DIRS = """
 ./var/lib/transmission/dn
 ./home/jhyun/Dropbox
 ./home/jhyun/Funs
-./home/jhyun/Downloads/dn
-./home/jhyun/Downloads/NAS-Torrents
-./home/jhyun/NAS1-Data
 """
 
 
