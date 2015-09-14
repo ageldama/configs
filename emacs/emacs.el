@@ -125,7 +125,8 @@
 
 ;;; for Netbooks
 (display-time)
-(display-battery-mode)
+(unless (string-equal system-type "darwin")
+  (display-battery-mode))
 
 
 
@@ -263,9 +264,10 @@
 
 
 
-
+(setq elpy-rpc-python-command "/usr/local/bin/python3")
+(setq python-check-command "/usr/local/bin/flake8")
+(elpy-use-ipython "/usr/local/bin/ipython3")
 (elpy-enable)
-(elpy-use-ipython)
 
 (server-mode 1)
 
