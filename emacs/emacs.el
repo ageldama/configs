@@ -166,8 +166,9 @@
 ;; (when window-system
 ;;   (load-theme 'tronesque))
 
-;; (when window-system
-;;   (load-theme 'misterioso))
+(when (and window-system
+           (not (string-equal system-type "darwin")))
+  (load-theme 'misterioso))
 
 (unless window-system
   (progn
@@ -262,17 +263,31 @@
 ;; ;(setq inferior-lisp-program "/usr/bin/clisp")
 ;; (setq slime-contribs '(slime-fancy ))
 
-
-
-(setq elpy-rpc-python-command "/usr/local/bin/python3")
-(setq python-check-command "/usr/local/bin/flake8")
-(elpy-use-ipython "/usr/local/bin/ipython3")
 (elpy-enable)
+(if (string-equal system-type "darwin")
+    (progn
+      (setq elpy-rpc-python-command "/usr/local/bin/python3")
+      (setq python-check-command "/usr/local/bin/flake8")
+      (elpy-use-ipython "/usr/local/bin/ipython3"))
+  (progn
+    (elpy-use-ipython)))
+
+
 
 (server-mode 1)
 
 
 
+;; (setq twittering-icon-mode t)
+
+
+;; (package-install 'magit)
+;; (package-install 'markdown-mode)
+;; (package-install 'elpy)
+;; (package-install 'helm)
+
+(require 'helm-config)
+(helm-mode 1)
 
 ;;;EOF.
 
