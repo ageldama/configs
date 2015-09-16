@@ -281,6 +281,7 @@
 ;; (setq twittering-icon-mode t)
 
 
+;; (package-install 'ag)
 ;; (package-install 'magit)
 ;; (package-install 'markdown-mode)
 ;; (package-install 'elpy)
