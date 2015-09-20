@@ -289,5 +289,8 @@
 (require 'helm-config)
 (helm-mode 1)
 
+
+(find-file (expand-file-name "~/Dropbox/w/Scratch.txt"))
+
 ;;;EOF.
 
