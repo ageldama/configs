@@ -286,6 +286,7 @@
 ;; (package-install 'markdown-mode)
 ;; (package-install 'elpy)
 ;; (package-install 'helm)
+;; (package-install 'unfill)
 
 (require 'helm-config)
 (helm-mode 1)
