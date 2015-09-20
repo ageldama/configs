@@ -291,6 +291,11 @@
 (helm-mode 1)
 
 
+;;; for magit, ...
+(setenv "EDITOR" "emacsclient")
+
+
+
 (find-file (expand-file-name "~/Dropbox/w/Scratch.txt"))
 
 ;;;EOF.
