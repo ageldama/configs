@@ -166,9 +166,9 @@
 ;; (when window-system
 ;;   (load-theme 'tronesque))
 
-(when (and window-system
-           (not (string-equal system-type "darwin")))
-  (load-theme 'misterioso))
+;; (when (and window-system
+;;            (not (string-equal system-type "darwin")))
+;;   (load-theme 'misterioso))
 
 (unless window-system
   (progn
@@ -290,6 +290,9 @@
 
 (require 'helm-config)
 (helm-mode 1)
+
+(global-set-key (kbd "M-x") 'helm-M-x)
+(global-set-key (kbd "C-x C-f") 'helm-find-files)
 
 
 ;;; for magit, ...
