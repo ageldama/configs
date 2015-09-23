@@ -135,7 +135,8 @@
 (when window-system
   (cond ((string-equal system-type "gnu/linux") 
          (progn
-           (set-face-attribute 'default nil :font "Inconsolata-13")
+           (set-face-attribute 'default nil :font "EnvyCodeR-13")
+           ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let ((font-name "나눔고딕코딩"))
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
@@ -293,6 +294,8 @@
 
 (global-set-key (kbd "M-x") 'helm-M-x)
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+
+(centered-window-mode 1)
 
 
 ;;; for magit, ...
