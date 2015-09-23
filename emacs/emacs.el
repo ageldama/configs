@@ -1,4 +1,4 @@
-;;;; -*- mode: elisp; coding: utf-8; -*-
+;;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
 (setq inhibit-startup-screen t)
 
@@ -288,6 +288,7 @@
 ;; (package-install 'elpy)
 ;; (package-install 'helm)
 ;; (package-install 'unfill)
+;; (package-install 'centered-window-mode)
 
 (require 'helm-config)
 (helm-mode 1)
