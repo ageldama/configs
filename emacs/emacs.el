@@ -287,6 +287,7 @@
 ;; (package-install 'elpy)
 ;; (package-install 'helm)
 ;; (package-install 'unfill)
+;; (package-install 'centered-window-mode)
 
 (require 'helm-config)
 (helm-mode 1)
