@@ -1,4 +1,4 @@
-;;;; -*- mode: elisp; coding: utf-8; -*-
+;;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
 (setq inhibit-startup-screen t)
 
