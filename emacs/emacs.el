@@ -165,7 +165,7 @@
 (when (and window-system
            (string-equal system-type "gnu/linux"))
   ;;(load-theme 'alect-light)
-  (load-theme 'solarized)
+  (load-theme 'solarized 1)
   ;;(load-theme 'leuven)
   )
 
@@ -211,8 +211,7 @@
 
 (require 'cl)
 
-(defun insert-journal-header ()
-  (interactive)
+(defun en-date-time ()
   (cl-flet ((en-week-day-name (n)
                               (let* ((a '((0 . "Sun") (1 . "Mon") 
                                           (2 . "Tue") (3 . "Wed")
@@ -236,10 +235,20 @@
            (day-of-week-num (string-to-number (format-time-string "%w")))
            (day-of-week-name (en-week-day-name day-of-week-num))
            (date-str (format "%s/%s/%s/%s" year month-name day day-of-week-name)))
-      (progn
-        (markdown-mode)
-        (insert (format "-*- mode: markdown; coding: utf-8; -*-\n\n# %s" date-str))))))
+      date-str)))
 
+
+(defun insert-markdown-journal-header ()
+  (interactive)
+  (progn
+    (markdown-mode)
+    (insert (format "-*- mode: markdown; coding: utf-8; -*-\n\n# %s" (en-date-time)))))
+
+(defun insert-org-journal-header ()
+  (interactive)
+  (progn
+    (org-mode)
+    (insert (format "# -*- mode: org; coding: utf-8; -*-\n\n#+TITLE: %s" (en-date-time)))))
 
 
 
