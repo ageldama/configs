@@ -205,7 +205,9 @@
  ;; If there is more than one, they won't work right.
  '(fringe ((t (:background "white")))))
 
+;(load-theme 'deeper-blue)
 
+;(load "~/local/io-mode/io-mode.el")
 
 
 
@@ -259,16 +261,20 @@
 
 
 
-;; (add-to-list 'load-path "/home/jhyun/local/slime-2.14/")
-;; (require 'slime-autoloads)
+(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
+(require 'slime-autoloads)
 
 ;; ;(add-to-list 'load-path "/home/jhyun/local/slime-company/")
 
-;; ;; Set your lisp system and, optionally, some contribs
+;; Set your lisp system and, optionally, some contribs
 ;; (setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
+(setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
 ;; ;(setq inferior-lisp-program "/usr/bin/ecl")
 ;; ;(setq inferior-lisp-program "/usr/bin/clisp")
-;; (setq slime-contribs '(slime-fancy ))
+(setq slime-contribs '(slime-fancy ))
+
+(setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec"))
+
 
 (elpy-enable)
 (if (string-equal system-type "darwin")
