@@ -254,7 +254,26 @@
 
 
 
+(require 'ob-emacs-lisp)
 
+
+
+
+(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
+(require 'slime-autoloads)
+
+;; ;(add-to-list 'load-path "/home/jhyun/local/slime-company/")
+
+;; Set your lisp system and, optionally, some contribs
+(setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.16-x86-64-linux/run-sbcl.sh")
+;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
+;; (setq inferior-lisp-program "/usr/bin/ecl")
+;; (setq inferior-lisp-program "/usr/bin/clisp")
+(setq slime-contribs '(slime-fancy ))
+
+(setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
+
+(require 'ob-lisp) ;; org-babel lisp support.
 
 
 
@@ -268,6 +287,7 @@
   (progn
     (elpy-use-ipython)))
 
+(require 'ob-python)
 
 
 (server-mode 1)
