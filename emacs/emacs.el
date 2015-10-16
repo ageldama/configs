@@ -257,33 +257,35 @@
 
 
 ;; (add-hook 'after-init-hook 'global-company-mode)
-;; (global-set-key "\t" 'company-complete-common) 
+;; (global-set-key "\t" 'company-complete-common)
 
 
 
 (add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
 (require 'slime-autoloads)
-
-;; ;(add-to-list 'load-path "/home/jhyun/local/slime-company/")
-
+ 
 ;; Set your lisp system and, optionally, some contribs
 ;; (setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
-(setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
-;; ;(setq inferior-lisp-program "/usr/bin/ecl")
-;; ;(setq inferior-lisp-program "/usr/bin/clisp")
+;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
+;; (setq inferior-lisp-program "/usr/bin/ecl")
+;; (setq inferior-lisp-program "/usr/bin/clisp")
+(setq inferior-lisp-program (expand-file-name "~/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh"))
+;; (setq slime-contribs '(slime-fancy ))
 (setq slime-contribs '(slime-fancy ))
 
-(setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec"))
+(setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
 
 
-(elpy-enable)
-(if (string-equal system-type "darwin")
-    (progn
-      (setq elpy-rpc-python-command "/usr/local/bin/python3")
-      (setq python-check-command "/usr/local/bin/flake8")
-      (elpy-use-ipython "/usr/local/bin/ipython3"))
-  (progn
-    (elpy-use-ipython)))
+
+
+;; (elpy-enable)
+;; (if (string-equal system-type "darwin")
+;;     (progn
+;;       (setq elpy-rpc-python-command "/usr/local/bin/python3")
+;;       (setq python-check-command "/usr/local/bin/flake8")
+;;       (elpy-use-ipython "/usr/local/bin/ipython3"))
+;;   (progn
+;;     (elpy-use-ipython)))
 
 
 
