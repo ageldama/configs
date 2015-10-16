@@ -254,6 +254,7 @@
 
 
 
+(require 'ob-emacs-lisp)
 
 
 ;; (add-hook 'after-init-hook 'global-company-mode)
@@ -275,6 +276,10 @@
 
 (setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
 
+(require 'ob-lisp) ;; org-babel lisp support.
+
+
+
 
 
 
@@ -287,6 +292,7 @@
 ;;   (progn
 ;;     (elpy-use-ipython)))
 
+(require 'ob-python)
 
 
 (server-mode 1)
