@@ -231,12 +231,11 @@
 
 
 
-;; (add-hook 'after-init-hook 'global-company-mode)
-;; (global-set-key "\t" 'company-complete-common)
 
 
 
-(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
+
+;;(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
 (require 'slime-autoloads)
  
 ;; Set your lisp system and, optionally, some contribs
@@ -245,10 +244,12 @@
 ;; (setq inferior-lisp-program "/usr/bin/ecl")
 ;; (setq inferior-lisp-program "/usr/bin/clisp")
 (setq inferior-lisp-program (expand-file-name "~/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh"))
-;; (setq slime-contribs '(slime-fancy ))
-(setq slime-contribs '(slime-fancy ))
+
+(setq slime-contribs '(slime-fancy))
 
 (setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
+
+
 
 
 
@@ -274,11 +275,13 @@
 ;; (package-install 'ag)
 ;; (package-install 'magit)
 ;; (package-install 'markdown-mode)
-;; (package-install 'elpy)
+;; STOP: (package-install 'elpy)
 ;; (package-install 'helm)
 ;; (package-install 'unfill)
 ;; (package-install 'centered-window-mode)
 ;; (package-install 'color-theme-solarized)
+;; (package-install 'slime)
+
 
 (require 'helm-config)
 (helm-mode 1)
@@ -294,7 +297,7 @@
 (setenv "EDITOR" "emacsclient")
 
 
-
-(find-file (expand-file-name "~/Dropbox/w/Scratch.txt"))
+(defun open-my-scratch-org-file ()
+  (find-file (expand-file-name "~/Dropbox/w/Scratch.txt")))
 
 ;;;EOF.
