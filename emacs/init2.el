@@ -298,6 +298,7 @@
 
 
 (defun open-my-scratch-org-file ()
+  (interactive)
   (find-file (expand-file-name "~/Dropbox/w/Scratch.txt")))
 
 ;;;EOF.
