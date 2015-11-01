@@ -162,12 +162,12 @@
 
 
 
-(when (and window-system
-           (string-equal system-type "gnu/linux"))
-  ;;(load-theme 'alect-light)
-  (load-theme 'solarized 1)
-  ;;(load-theme 'leuven)
-  )
+;; (when (and window-system
+;;            (string-equal system-type "gnu/linux"))
+;;   ;;(load-theme 'alect-light)
+;;   ;;(load-theme 'solarized 1)
+;;   ;;(load-theme 'leuven)
+;;   )
 
 
 (unless window-system
@@ -243,7 +243,12 @@
 ;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
 ;; (setq inferior-lisp-program "/usr/bin/ecl")
 ;; (setq inferior-lisp-program "/usr/bin/clisp")
-(setq inferior-lisp-program (expand-file-name "~/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh"))
+(cond ((string-equal system-type "gnu/linux") 
+       (setq inferior-lisp-program (expand-file-name "~/local/sbcl-1.2.16-x86-64-linux/run-sbcl.sh")))
+      ((string-equal system-type "darwin")
+       (setq inferior-lisp-program (expand-file-name "~/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh"))))
+  
+
 
 (setq slime-contribs '(slime-fancy))
 
