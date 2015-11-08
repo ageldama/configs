@@ -280,12 +280,11 @@
 ;; (package-install 'ag)
 ;; (package-install 'magit)
 ;; (package-install 'markdown-mode)
-;; STOP: (package-install 'elpy)
 ;; (package-install 'helm)
 ;; (package-install 'unfill)
 ;; (package-install 'centered-window-mode)
-;; (package-install 'color-theme-solarized)
 ;; (package-install 'slime)
+;; (package-install 'paredit)
 
 
 (require 'helm-config)
