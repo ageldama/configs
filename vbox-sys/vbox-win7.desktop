@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Hidden=false
+Name=VM Session
+Comment=Custom ~/.xsession script (place at ~/.config/autostart)
+Exec=xterm -e /home/nova/vbox.tcl
+X-GNOME-Autostart-enabled=true

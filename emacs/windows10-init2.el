@@ -125,7 +125,8 @@
 
 ;;; for Netbooks
 (display-time)
-(unless (string-equal system-type "darwin")
+(when (and (not (string-equal system-type "darwin"))
+           (not (string-equal system-type "windows-nt")))
   (display-battery-mode))
 
 
@@ -135,9 +136,9 @@
 (when window-system
   (cond ((string-equal system-type "gnu/linux") 
          (progn
-           (set-face-attribute 'default nil :font "Consolas")
+           (set-face-attribute 'default nil :font "EnvyCodeR-13")
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
-           (let ((font-name "나눔고딕코딩"))
+           (let ((font-name "�굹�닎怨좊뵓肄붾뵫"))
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
@@ -145,6 +146,7 @@
         ((string-equal system-type "windows-nt")
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
+
 
 
 
@@ -242,14 +244,8 @@
 ;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
 ;; (setq inferior-lisp-program "/usr/bin/ecl")
 ;; (setq inferior-lisp-program "/usr/bin/clisp")
-
 (setq inferior-lisp-program (expand-file-name "~/local/sbcl/run-sbcl.sh"))
-
-  
-
-
 (setq slime-contribs '(slime-fancy))
-
 (setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
 
 
@@ -299,8 +295,23 @@
 (setenv "EDITOR" "emacsclient")
 
 
-(defun open-my-scratch-org-file ()
-  (interactive)
-  (find-file (expand-file-name "~/Dropbox/w/Scratch.txt")))
+(if (string-equal system-type "windows-nt")
+    (defun open-my-scratch-org-file ()
+      (interactive)
+      (find-file (expand-file-name "C:/Users/yun/Dropbox/w/Scratch.txt")))
+  ;; else
+  (defun open-my-scratch-org-file ()
+    (interactive)
+    (find-file (expand-file-name "~/Dropbox/w/Scratch.txt"))))
+
+
+
+
+(when (string-equal system-type "windows-nt")  
+  (add-hook 'dired-mode-hook
+            (lambda ()
+              (make-local-variable 'coding-system-for-read)
+              (setq coding-system-for-read 'cp949))))
+
 
 ;;;EOF.
