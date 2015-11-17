@@ -135,14 +135,14 @@
 (when window-system
   (cond ((string-equal system-type "gnu/linux") 
          (progn
-           (set-face-attribute 'default nil :font "EnvyCodeR-13")
+           (set-face-attribute 'default nil :font "Consolas")
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let ((font-name "나눔고딕코딩"))
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
          (set-face-attribute 'default nil :family "Andale Mono" :height 135 :weight 'normal))
-        ((string-equal system-type "windows-nt" system-type)
+        ((string-equal system-type "windows-nt")
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
 
@@ -153,11 +153,10 @@
 
 
 (require 'package)
-(add-to-list 'package-archives '("elpa" . "http://elpa.gnu.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.milkbox.net/packages/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("elpy" . "https://jorgenschaefer.github.io/packages/"))
+(dolist (i '(("elpa" . "http://elpa.gnu.org/packages/")
+             ("melpa" . "http://melpa.milkbox.net/packages/")
+             ("marmalade" . "http://marmalade-repo.org/packages/")))
+  (add-to-list 'package-archives i))
 (package-initialize)
 
 
@@ -243,10 +242,9 @@
 ;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
 ;; (setq inferior-lisp-program "/usr/bin/ecl")
 ;; (setq inferior-lisp-program "/usr/bin/clisp")
-(cond ((string-equal system-type "gnu/linux") 
-       (setq inferior-lisp-program (expand-file-name "~/local/sbcl-1.2.16-x86-64-linux/run-sbcl.sh")))
-      ((string-equal system-type "darwin")
-       (setq inferior-lisp-program (expand-file-name "~/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh"))))
+
+(setq inferior-lisp-program (expand-file-name "~/local/sbcl/run-sbcl.sh"))
+
   
 
 
