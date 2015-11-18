@@ -1,0 +1,3 @@
+<!-- VBoxManage setextradata global GUI/UpdateDate never -->
+<!-- ~/.config/VirtualBox/VirtualBox.xml -->
+<ExtraDataItem name="GUI/UpdateDate" value="1 d, 2015-11-17, stable, 5.0.8"/>
