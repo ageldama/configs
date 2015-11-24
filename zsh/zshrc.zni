@@ -1,9 +1,0 @@
-# The following lines were added by compinstall
-
-zstyle ':completion:*' completer _expand _complete _ignored _correct _approximate
-zstyle ':completion:*' list-colors ''
-zstyle :compinstall filename '/home/adaltan/.zshrc'
-
-autoload -Uz compinit
-compinit
-# End of lines added by compinstall
