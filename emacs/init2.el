@@ -139,7 +139,7 @@
          (progn
            (set-face-attribute 'default nil :font "Consolas")
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
-           (let ((font-name "나눔고딕코딩"))
+           (let ((font-name "맑은 고딕"))
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
@@ -147,6 +147,7 @@
         ((string-equal system-type "windows-nt")
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
+
 
 
 
