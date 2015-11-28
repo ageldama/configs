@@ -60,7 +60,9 @@
 
 
 ;;; auto-revert
-(global-auto-revert-mode t)
+;; STOP: (global-auto-revert-mode t)
+;;  -- Symbol's value as variable is void: \300
+
 
 
 ;;; 
@@ -302,5 +304,14 @@
 (defun open-my-scratch-org-file ()
   (interactive)
   (find-file (expand-file-name "~/Dropbox/w/Scratch.txt")))
+
+
+
+
+
+(setq load-path (cons "/usr/share/emacs/site-lisp/ess" load-path))
+(require 'ess-site)
+
+
 
 ;;;EOF.
