@@ -1,23 +1,23 @@
 #!/bin/sh
 
-LOG_FILE=~/xinitrc.log
+#LOG_FILE=~/xinitrc.log
 # Close STDOUT file descriptor
-exec 1<&-
+#exec 1<&-
 # Close STDERR FD
-exec 2<&-
+#exec 2<&-
 
 # Open STDOUT as $LOG_FILE file for read and write.
-exec 1<>$LOG_FILE
+#exec 1<>$LOG_FILE
 
 # Redirect STDERR to STDOUT
-exec 2>&1
+#exec 2>&1
 
 #export LANG=ko_KR.UTF-8
 
 export PATH=$PATH:/home/jhyun/local/bin
 
 #export TERMINAL=konsole
-export TERMINAL=gnome-terminal
+export TERMINAL=roxterm
 
 #export XMODIFIERS="@im=SCIM"
 #export QT_IM_MODULE=scim
@@ -45,13 +45,18 @@ nabi&
 #exec gnome-session
 
 
-~/.dropbox-dist/dropboxd &
+#~/.dropbox-dist/dropboxd &
+dropbox &
 
-eval $(gnome-keyring-daemon --start)
-export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
-export SSH_AGENT_PID=$GNOME_KEYRING_PID
+#eval $(gnome-keyring-daemon --start)
+#export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
+#export SSH_AGENT_PID=$GNOME_KEYRING_PID
 
+#keychain ~/.ssh/id_rsa
+#[ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
+#[ -f ~/.keychain/$HOSTNAME-sh-gpg ] && . ~/.keychain/$HOSTNAME-sh-gpg 2>/dev/null
 
+eval $(ssh-agent)
 
 xmodmap -e 'keycode 66 = Control_L'
 xmodmap -e 'clear Lock'
