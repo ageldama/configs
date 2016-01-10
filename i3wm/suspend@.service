@@ -12,3 +12,6 @@ ExecStart=/usr/bin/i3lock -c 000500
 
 [Install]
 WantedBy=sleep.target
+
+
+# systemctl enable suspend@USERNAME.service
