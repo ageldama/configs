@@ -23,18 +23,18 @@ export TERMINAL=roxterm
 #export QT_IM_MODULE=scim
 #export GTK_IM_MODULE=scim
 
-#export XMODIFIERS="@im=ibus"
-#export QT_IM_MODULE=ibus
-#export GTK_IM_MODULE=ibus
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
 
-export XMODIFIERS="@im=nabi"
-export QT_IM_MODULE=xim
-export GTK_IM_MODULE=xim
+#export XMODIFIERS="@im=nabi"
+#export QT_IM_MODULE=xim
+#export GTK_IM_MODULE=xim
 
 #scim -d 
 #fcitx -d
-nabi&
-#ibus-daemon -d -x
+#nabi&
+ibus-daemon -d -x
 
 # $ sudo pacman -S ibus ibus-qt ibus-hangul
 #
@@ -58,9 +58,9 @@ dropbox &
 
 eval $(ssh-agent)
 
-xmodmap -e 'keycode 66 = Control_L'
-xmodmap -e 'clear Lock'
-xmodmap -e 'add Control = Control_L'
+
+~/local/bin/caps-to-ctrl.sh
+
 
 # "xev" first.
 xmodmap -e 'keycode 108 = Hangul'
@@ -83,6 +83,9 @@ pulseaudio --start &
 # `systemd-journal` group
 #journalctl --no-pager -f --system --user | osd_cat -d 5 -s 3 -O 5 -l 20 -c green -A right -o 200 -f 7x13 &
 
+
+
+nm-applet &
 
 
 exec i3
