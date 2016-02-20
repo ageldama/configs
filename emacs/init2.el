@@ -237,23 +237,23 @@
 
 
 
-;;(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
-(require 'slime-autoloads)
+;; ;;(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
+;; (require 'slime-autoloads)
  
-;; Set your lisp system and, optionally, some contribs
-;; (setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
-;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
-;; (setq inferior-lisp-program "/usr/bin/ecl")
-;; (setq inferior-lisp-program "/usr/bin/clisp")
+;; ;; Set your lisp system and, optionally, some contribs
+;; ;; (setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
+;; ;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
+;; ;; (setq inferior-lisp-program "/usr/bin/ecl")
+;; ;; (setq inferior-lisp-program "/usr/bin/clisp")
 
-(setq inferior-lisp-program (expand-file-name "~/local/sbcl/run-sbcl.sh"))
+;; (setq inferior-lisp-program (expand-file-name "~/local/sbcl/run-sbcl.sh"))
 
   
 
 
-(setq slime-contribs '(slime-fancy))
+;; (setq slime-contribs '(slime-fancy))
 
-(setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
+;; (setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
 
 
 
@@ -276,6 +276,18 @@
 
 
 ;; (setq twittering-icon-mode t)
+
+
+;;; https://github.com/jwiegley/use-package
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/use-package"))
+(load-library "use-package")
+
+(use-package magit :ensure t)
+(use-package markdown-mode :ensure t :pin melpa)
+(use-package helm :ensure t :pin melpa)
+(use-package unfill :ensure t :pin melpa)
+(use-package centered-window-mode :ensure t :pin melpa)
+
 
 
 ;; (package-install 'ag)
@@ -310,8 +322,8 @@
 
 
 
-(setq load-path (cons "/usr/share/emacs/site-lisp/ess" load-path))
-(require 'ess-site)
+;; (setq load-path (cons "/usr/share/emacs/site-lisp/ess" load-path))
+;; (require 'ess-site)
 
 
 
