@@ -287,6 +287,8 @@
 (use-package helm :ensure t :pin melpa)
 (use-package unfill :ensure t :pin melpa)
 (use-package centered-window-mode :ensure t :pin melpa)
+(use-package helm-projectile :pin melpa)
+(use-package helm-ag :pin melpa)
 
 
 ;; eruby-mode
