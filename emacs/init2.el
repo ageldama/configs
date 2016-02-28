@@ -289,15 +289,13 @@
 (use-package centered-window-mode :ensure t :pin melpa)
 
 
+;; eruby-mode
+;; yaml-mode melpa
 
-;; (package-install 'ag)
-;; (package-install 'magit)
-;; (package-install 'markdown-mode)
-;; (package-install 'helm)
-;; (package-install 'unfill)
-;; (package-install 'centered-window-mode)
-;; (package-install 'slime)
-;; (package-install 'paredit)
+(use-package helm-projectile :ensure t :pin melpa)
+(use-package helm-ag :ensure t :pin melpa)
+
+
 
 
 (require 'helm-config)
@@ -308,6 +306,13 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 
 (centered-window-mode 1)
+
+
+
+;;; helm-projectile.
+(projectile-global-mode)
+(setq projectile-completion-system 'helm)
+(helm-projectile-on)
 
 
 ;;; for magit, ...
