@@ -237,7 +237,7 @@
 
 
 
-;; ;;(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
+;;(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
 ;; (require 'slime-autoloads)
  
 ;; ;; Set your lisp system and, optionally, some contribs
@@ -287,6 +287,7 @@
 (use-package helm :ensure t :pin melpa)
 (use-package unfill :ensure t :pin melpa)
 (use-package centered-window-mode :ensure t :pin melpa)
+(use-package projectile :pin melpa)
 (use-package helm-projectile :pin melpa)
 (use-package helm-ag :pin melpa)
 
