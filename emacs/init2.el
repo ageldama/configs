@@ -290,6 +290,10 @@
 (use-package projectile :pin melpa)
 (use-package helm-projectile :pin melpa)
 (use-package helm-ag :pin melpa)
+(use-package ox-gfm :ensure t )
+
+(eval-after-load "org"
+  '(require 'ox-md nil t))
 
 
 ;; eruby-mode
