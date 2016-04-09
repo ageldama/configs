@@ -288,16 +288,15 @@
 (use-package unfill :ensure t :pin melpa)
 (use-package centered-window-mode :ensure t :pin melpa)
 (use-package projectile :pin melpa)
-(use-package helm-projectile :pin melpa)
-(use-package helm-ag :pin melpa)
+(use-package helm-projectile :ensure t :pin melpa)
+(use-package helm-ag :ensure t :pin melpa)
 (use-package ox-gfm :ensure t )
+
 
 (eval-after-load "org"
   '(require 'ox-md nil t))
 
 
-;; eruby-mode
-;; yaml-mode melpa
 
 (use-package helm-projectile :ensure t :pin melpa)
 (use-package helm-ag :ensure t :pin melpa)
