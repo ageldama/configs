@@ -56,10 +56,6 @@ dropbox &
 #[ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
 #[ -f ~/.keychain/$HOSTNAME-sh-gpg ] && . ~/.keychain/$HOSTNAME-sh-gpg 2>/dev/null
 
-eval $(ssh-agent)
-
-
-~/local/bin/caps-to-ctrl.sh
 
 
 # "xev" first.
