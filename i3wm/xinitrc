@@ -23,18 +23,18 @@ export TERMINAL=roxterm
 #export QT_IM_MODULE=scim
 #export GTK_IM_MODULE=scim
 
-#export XMODIFIERS="@im=ibus"
-#export QT_IM_MODULE=ibus
-#export GTK_IM_MODULE=ibus
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
 
-export XMODIFIERS="@im=nabi"
-export QT_IM_MODULE=xim
-export GTK_IM_MODULE=xim
+#export XMODIFIERS="@im=nabi"
+#export QT_IM_MODULE=xim
+#export GTK_IM_MODULE=xim
 
 #scim -d 
 #fcitx -d
 nabi&
-#ibus-daemon -d -x
+ibus-daemon -d -x
 
 # $ sudo pacman -S ibus ibus-qt ibus-hangul
 #
