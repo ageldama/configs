@@ -23,18 +23,18 @@ export TERMINAL=roxterm
 #export QT_IM_MODULE=scim
 #export GTK_IM_MODULE=scim
 
-export XMODIFIERS="@im=ibus"
-export QT_IM_MODULE=ibus
-export GTK_IM_MODULE=ibus
+#export XMODIFIERS="@im=ibus"
+#export QT_IM_MODULE=ibus
+#export GTK_IM_MODULE=ibus
 
-#export XMODIFIERS="@im=nabi"
-#export QT_IM_MODULE=xim
-#export GTK_IM_MODULE=xim
+export XMODIFIERS="@im=nabi"
+export QT_IM_MODULE=xim
+export GTK_IM_MODULE=xim
 
 #scim -d 
 #fcitx -d
-#nabi&
-ibus-daemon -d -x
+nabi&
+#ibus-daemon -d -x
 
 # $ sudo pacman -S ibus ibus-qt ibus-hangul
 #
@@ -56,6 +56,10 @@ dropbox &
 #[ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
 #[ -f ~/.keychain/$HOSTNAME-sh-gpg ] && . ~/.keychain/$HOSTNAME-sh-gpg 2>/dev/null
 
+#eval $(ssh-agent)
+
+
+#~/local/bin/caps-to-ctrl.sh
 
 
 # "xev" first.
@@ -71,7 +75,7 @@ xgamma -gamma 0.6
 xset s on
 xset s 300
 
-#xautolock -time 5 -locker 'i3lock -c 000000 ' &
+xautolock -time 5 -locker 'i3lock -c 000077 ' &
 #xscreensaver &
 
 pulseaudio --start &

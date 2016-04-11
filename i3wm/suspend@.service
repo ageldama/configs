@@ -1,3 +1,4 @@
+# DEPRECATED!!!
 #/etc/systemd/system/suspend@.service
 [Unit]
 Description=Starts i3lock at suspend time
@@ -15,3 +16,4 @@ WantedBy=sleep.target
 
 
 # systemctl enable suspend@USERNAME.service
+#

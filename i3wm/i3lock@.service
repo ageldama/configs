@@ -1,0 +1,16 @@
+[Unit]
+Description=i3lock for %I
+Before=sleep.target
+
+[Service]
+Type=forking
+User=%I
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/i3lock -c 003700
+
+[Install]
+WantedBy=sleep.target
+
+# 1. place this at: /etc/systemd/system/i3lock@.service
+# 2. `sudo systemctl daemon-reload`
+# 3. `sudo systemctl enable i3lock@USERNAME`
