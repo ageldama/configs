@@ -6,7 +6,7 @@ Before=sleep.target
 Type=forking
 User=%I
 Environment=DISPLAY=:0
-ExecStart=/usr/bin/i3lock -c 003700
+ExecStart=/usr/bin/i3lock -c 006700
 
 [Install]
 WantedBy=sleep.target
