@@ -75,7 +75,7 @@ xgamma -gamma 0.6
 xset s on
 xset s 300
 
-xautolock -time 5 -locker 'i3lock -c 000077 ' &
+xautolock -time 5 -locker 'i3lock -c 000000 ' &
 #xscreensaver &
 
 pulseaudio --start &
