@@ -139,7 +139,7 @@
          (progn
            (set-face-attribute 'default nil :font "Ubuntu Mono")
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
-           (let ((font-name "D2Coding"))
+           (let ((font-name "Noto Sans Mono CJK KR"))
              ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
