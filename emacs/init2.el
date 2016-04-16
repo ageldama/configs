@@ -134,12 +134,12 @@
 
 
 ;;; gui-fonts
-(when window-system
+(when (and t window-system)
   (cond ((string-equal system-type "gnu/linux") 
          (progn
-           (set-face-attribute 'default nil :font "Consolas")
+           (set-face-attribute 'default nil :font "Ubuntu Mono")
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
-           (let ((font-name "맑은 고딕"))
+           (let ((font-name "Noto Sans Mono CJK"))
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
@@ -147,6 +147,7 @@
         ((string-equal system-type "windows-nt")
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
+;;; 한글 예시. Ll1| 0Oo@ [] {}
 
 
 
@@ -311,7 +312,7 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-mini)
 
-(centered-window-mode 1)
+;(centered-window-mode 1)
 
 
 
