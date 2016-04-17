@@ -140,8 +140,10 @@
            (set-face-attribute 'default nil :font "Ubuntu Mono")
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let (
-                 (font-name "Noto Sans Mono CJK KR"))
-                 ;;(font-name "D2Coding"))
+                 (font-name "08SeoulNamsan L")
+                 ;;(font-name "Noto Sans Mono CJK KR")
+                 ;;(font-name "D2Coding")
+                 )
              ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
              ;; NOTE: 그런데 확실히, Noto Sans Mono CJK이 훨씬 깔끔하게 렌더링된다.
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
