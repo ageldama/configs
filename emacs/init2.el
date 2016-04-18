@@ -17,8 +17,7 @@
 
 
 ;;; tabs & indents
-(setq tab-width 4
-  indent-tabs-mode nil)
+;;(setq tab-width 4 indent-tabs-mode nil)
 
 
 ;;; global-font-lock-mode
@@ -81,7 +80,7 @@
 
 ;;; indents, spaces, tabs...
 (setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
+;;(setq-default tab-width 4)
 
 ;;; fill, wrap, truncates
 ;;(setq-default fill-column 72)
@@ -114,6 +113,11 @@
 
 ;;; org-mode
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+
+(add-hook 'org-mode-hook (lambda ()
+                           (set-face-attribute 'italic nil
+                                               :inherit 'underline)))
+
 
 
 
@@ -293,7 +297,7 @@
 (use-package markdown-mode :ensure t :pin melpa)
 (use-package helm :ensure t :pin melpa)
 (use-package unfill :ensure t :pin melpa)
-(use-package centered-window-mode :ensure t :pin melpa)
+;; (use-package centered-window-mode :ensure t :pin melpa)
 (use-package projectile :pin melpa)
 (use-package helm-projectile :ensure t :pin melpa)
 (use-package helm-ag :ensure t :pin melpa)
@@ -305,8 +309,6 @@
 
 
 
-(use-package helm-projectile :ensure t :pin melpa)
-(use-package helm-ag :ensure t :pin melpa)
 
 
 
@@ -318,7 +320,7 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-mini)
 
-;(centered-window-mode 1)
+;;(centered-window-mode 1)
 
 
 
