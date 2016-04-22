@@ -144,12 +144,15 @@
            (set-face-attribute 'default nil :font "Ubuntu Mono")
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let (
-                 (font-name "08SeoulNamsan L")
+                 ;;(font-name "LexiSaebomR")
+                 ;; (font-name "NanumBarunGothic")
                  ;;(font-name "Noto Sans Mono CJK KR")
+                 ;;(font-name "JejuMyeongjo")
                  ;;(font-name "D2Coding")
+                 ;;(font-name "나눔명조")
+                 ;;(font-name "Noto Sans Mono CJK KR")
+                 (font-name "본고딕 Normal")
                  )
-             ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
-             ;; NOTE: 그런데 확실히, Noto Sans Mono CJK이 훨씬 깔끔하게 렌더링된다.
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
@@ -157,8 +160,9 @@
         ((string-equal system-type "windows-nt")
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
-;;; 한글 예시. Ll1| 0Oo@ [] {}
 
+;;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
+;;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
 
 
 
@@ -309,6 +313,8 @@
 
 
 
+(use-package helm-projectile :ensure t :pin melpa)
+(use-package helm-ag :ensure t :pin melpa)
 
 
 
