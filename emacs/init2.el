@@ -103,8 +103,8 @@
 
 
 ;; cc-mode
-(setq c-default-style "java")
-(setq c-basic-offset 4)
+;; (setq c-default-style "java")
+;; (setq c-basic-offset 4)
 
 
 ;;; emacs-lisp-mode
@@ -305,16 +305,34 @@
 (use-package projectile :pin melpa)
 (use-package helm-projectile :ensure t :pin melpa)
 (use-package helm-ag :ensure t :pin melpa)
-(use-package ox-gfm :ensure t )
+
+;;(use-package jedi :ensure t :pin melpa)
+;;(add-hook 'python-mode-hook 'jedi:setup)
+
+(use-package elpy :ensure t :pin melpa)
+(elpy-enable)
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq tab-width 4)
+            (setq python-indent 4)))
 
 
-(eval-after-load "org"
-  '(require 'ox-md nil t))
+(use-package rust-mode :ensure t :pin melpa)
+(use-package toml-mode :ensure t :pin melpa)
 
 
+;; (use-package ox-gfm :ensure t )
+;; (eval-after-load "org"
+;;  '(require 'ox-md nil t))
 
-(use-package helm-projectile :ensure t :pin melpa)
-(use-package helm-ag :ensure t :pin melpa)
+
+;; (use-package adoc-mode :ensure t :pin melpa)
+;; (use-package ox-asciidoc :ensure t :pin melpa)
+;; (eval-after-load "org"
+;;  '(require 'ox-asciidoc nil t))
+;; (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
 
 
 
