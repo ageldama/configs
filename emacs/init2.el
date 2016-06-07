@@ -286,7 +286,7 @@
 
 
 
-(server-mode 1)
+;; (server-mode 1)
 
 
 
@@ -318,6 +318,7 @@
             (setq tab-width 4)
             (setq python-indent 4)))
 
+(require 'ob-python)
 
 (use-package rust-mode :ensure t :pin melpa)
 (use-package toml-mode :ensure t :pin melpa)
