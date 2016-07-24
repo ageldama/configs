@@ -320,8 +320,68 @@
 
 (require 'ob-python)
 
-(use-package rust-mode :ensure t :pin melpa)
-(use-package toml-mode :ensure t :pin melpa)
+;; (use-package rust-mode :ensure t :pin melpa)
+;; (use-package toml-mode :ensure t :pin melpa)
+
+
+
+
+(use-package cmake-mode :ensure t :pin melpa)
+
+(use-package rtags :ensure t :pin melpa)
+(use-package cmake-ide :ensure t :pin melpa)
+
+(when (string-equal system-type "darwin")
+  (setq rtags-path "/usr/local/bin/"))
+
+(require 'rtags) ;; optional, must have rtags installed
+
+;;(add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
+;;(add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
+
+(when (string-equal system-type "darwin")
+  (progn
+    (setq cmake-ide-rdm-executable "/usr/local/bin/rdm")
+    (setq cmake-ide-rc-executable "/usr/local/bin/rc")
+    (setq cmake-ide-cmake-command "/usr/local/bin/cmake")))
+
+(cmake-ide-setup)
+
+
+(use-package flycheck :ensure t :pin melpa)
+(global-flycheck-mode)
+
+(use-package company :ensure t :pin melpa)
+(when (string-equal system-type "darwin")
+  (setq company-clang-executable "/usr/bin/clang"))
+(require 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+(add-hook 'c++-mode-hook 'company-mode)
+(add-hook 'c-mode-hook 'company-mode)
+(setq company-backends (delete 'company-semantic company-backends))
+(define-key c-mode-map  [(tab)] 'company-complete)
+(define-key c++-mode-map  [(tab)] 'company-complete)
+
+
+
+;; (use-package ac-clang :ensure t :pin melpa)
+;; (require 'ac-clang)
+;; (setq ac-clang--server-executable "/Users/jhyun/local/bin/clang-server")
+;; (ac-clang-initialize)
+
+;; (require 'auto-complete-config)
+;; ;; (require 'auto-complete-clang)
+;; (setq ac-auto-start t)
+;; (setq ac-quick-help-delay 0.5)
+;; ;; (ac-set-trigger-key "TAB")
+;; ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
+;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
+
+
+
+
+
+
 
 
 ;; (use-package ox-gfm :ensure t )
@@ -357,6 +417,18 @@
 
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
+
+
+
+
+;;; slime.
+;; (use-package slime :ensure t :pin melpa)
+
+;; (setq inferior-lisp-program "/Users/jhyun/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh")
+;; (setq slime-contribs '(slime-fancy))
+;; (setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
+
+
 
 
 (defun open-my-scratch-org-file ()
