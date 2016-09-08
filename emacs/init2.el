@@ -320,33 +320,31 @@
 
 (require 'ob-python)
 
-;; (use-package rust-mode :ensure t :pin melpa)
-;; (use-package toml-mode :ensure t :pin melpa)
 
 
 
+(when nil
+  (use-package cmake-mode :ensure t :pin melpa)
+  
+  (use-package rtags :ensure t :pin melpa)
+  (use-package cmake-ide :ensure t :pin melpa)
 
-(use-package cmake-mode :ensure t :pin melpa)
+  (when (string-equal system-type "darwin")
+    (setq rtags-path "/usr/local/bin/"))
 
-(use-package rtags :ensure t :pin melpa)
-(use-package cmake-ide :ensure t :pin melpa)
+  (require 'rtags) ;; optional, must have rtags installed
 
-(when (string-equal system-type "darwin")
-  (setq rtags-path "/usr/local/bin/"))
+  ;;(add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
+  ;;(add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
 
-(require 'rtags) ;; optional, must have rtags installed
+  (when (string-equal system-type "darwin")
+    (progn
+      (setq cmake-ide-rdm-executable "/usr/local/bin/rdm")
+      (setq cmake-ide-rc-executable "/usr/local/bin/rc")
+      (setq cmake-ide-cmake-command "/usr/local/bin/cmake")))
 
-;;(add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
-;;(add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
-
-(when (string-equal system-type "darwin")
-  (progn
-    (setq cmake-ide-rdm-executable "/usr/local/bin/rdm")
-    (setq cmake-ide-rc-executable "/usr/local/bin/rc")
-    (setq cmake-ide-cmake-command "/usr/local/bin/cmake")))
-
-(cmake-ide-setup)
-
+  (cmake-ide-setup)
+)
 
 (use-package flycheck :ensure t :pin melpa)
 (global-flycheck-mode)
@@ -359,8 +357,10 @@
 (add-hook 'c++-mode-hook 'company-mode)
 (add-hook 'c-mode-hook 'company-mode)
 (setq company-backends (delete 'company-semantic company-backends))
-(define-key c-mode-map  [(tab)] 'company-complete)
-(define-key c++-mode-map  [(tab)] 'company-complete)
+
+(when (boundp 'c-mode-map)
+  (define-key c-mode-map  [(tab)] 'company-complete)
+  (define-key c++-mode-map  [(tab)] 'company-complete))
 
 
 
@@ -379,8 +379,30 @@
 
 
 
+(when (memq window-system '(mac ns))
+  (use-package exec-path-from-shell :ensure t :pin melpa)
+  (exec-path-from-shell-initialize))
 
 
+;; NOTE: cargo install {rustfmt/cargo-check}.
+(use-package rust-mode :ensure t :pin melpa)
+(use-package toml-mode :ensure t :pin melpa)
+;;(use-package flycheck-rust :ensure t :pin melpa)
+(use-package cargo :ensure t :pin melpa)
+
+(use-package racer :ensure t :pin melpa)
+(use-package company-racer :ensure t :pin melpa)
+
+
+;;(setq flycheck-rust-cargo-executable "/usr/local/bin/cargo")
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+
+(defun disable-flycheck-mode ()
+  (flycheck-mode -1))
+
+(add-hook 'rust-mode-hook #'disable-flycheck-mode)
+
+(define-key rust-mode-map  [(tab)] 'company-complete)
 
 
 
@@ -422,10 +444,11 @@
 
 
 ;;; slime.
-;; (use-package slime :ensure t :pin melpa)
+(use-package slime :ensure t :pin melpa)
 
-;; (setq inferior-lisp-program "/Users/jhyun/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh")
-;; (setq slime-contribs '(slime-fancy))
+(setq inferior-lisp-program "/Users/jhyun/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh")
+;;(setq inferior-lisp-program "/usr/local/bin/ecl")
+(setq slime-contribs '(slime-fancy))
 ;; (setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
 
 
