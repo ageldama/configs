@@ -18,3 +18,12 @@ export PATH=$PATH:~/local/bin
 if [ "$TERM" = "xterm-termite" ]; then
     export TERM=xterm-256color
 fi
+
+
+source "/Users/jhyun/.sdkman/bin/sdkman-init.sh"
+
+
+export PATH=$PATH:/Users/jhyun/mylib/bin
+
+
+export PATH=$PATH:~/.cargo/bin
