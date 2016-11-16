@@ -1,0 +1,19 @@
+# -*- mode: org; coding: utf-8; -*-
+
+
+     - 다른 유용한 플러그인이나 그런것들 :: http://farazdagi.com/blog/2015/vim-as-golang-ide/
+       - *그나저나 이거 정말 유용한 vim 플러그인들 많이 있다* !!!
+     - 이게 주요한 플러그인인듯 :: https://github.com/fatih/vim-go
+  
+# homebrew으로 vim 설치할때, lua 지원 추가해서 설치.
+
+
+# Powerline 같은거 좀 제대로 표현되도록,
+     https://github.com/powerline/fonts.git 이거 설치해보기로.
+     - iTerm2 설정을 바꾸고 그랬는데, 결국 진짜 문제는 Font도
+       있겠지만, tmux 세션 안에서 그러면 씹어버리는거였음.
+       - tmux을 시작하면 TERM=screen으로 설정하는데, 이게 문제, 그냥
+         TERM=xterm-256color으로 하도록 하면 정상적으로 동작한다.
+       - ~set -g default-terminal "screen-256color"~ 이걸 그냥
+         ~/.tmux.conf에 추가.
+
