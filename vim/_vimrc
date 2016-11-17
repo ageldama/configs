@@ -26,10 +26,23 @@ Bundle 'jlanzarotta/bufexplorer'
 Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
-Bundle 'SirVer/ultisnips'
-Bundle 'honza/vim-snippets'
-Bundle 'ageldama/vim-ttfzoom'
+Bundle 'rbgrouleff/bclose.vim'
+
+Bundle 'fatih/vim-go'
+
+"Bundle 'SirVer/ultisnips'
+"Bundle 'honza/vim-snippets'
+"Bundle 'ageldama/vim-ttfzoom'
+
+
+
+Bundle 'mileszs/ack.vim'
+
+
 "------------------------------------------------------------------------------
+
+
+let g:ackprg = 'ag --vimgrep'
 
 " use only Vim settings (instead of vi)
 set nocompatible
