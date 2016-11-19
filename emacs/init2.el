@@ -443,6 +443,8 @@
 (require 'auto-complete-config)
 (ac-config-default)
 
+(use-package golint :ensure t :pin melpa)
+
 
 
 ;;; for magit, ...
