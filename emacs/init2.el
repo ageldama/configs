@@ -197,7 +197,7 @@
 
 
 
-;(load-theme 'deeper-blue)
+(load-theme 'deeper-blue)
 
 ;(load "~/local/io-mode/io-mode.el")
 
@@ -418,12 +418,14 @@
 
 
 ;;; powerline.
-(use-package powerline :ensure t :pin melpa)
-(use-package airline-themes :ensure t :pin melpa)
-(require 'powerline)
-(require 'airline-themes)
-;;(airline-themes-solarized-gui)
-(load-theme 'airline-light)
+(when nil
+  (use-package powerline :ensure t :pin melpa)
+  (use-package airline-themes :ensure t :pin melpa)
+  (require 'powerline)
+  (require 'airline-themes)
+  ;;(airline-themes-solarized-gui)
+  (load-theme 'airline-light)
+  )
 
 
 
@@ -444,6 +446,7 @@
 (ac-config-default)
 
 (use-package golint :ensure t :pin melpa)
+(use-package go-projectile :ensure t :pin melpa)
 
 
 
