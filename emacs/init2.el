@@ -450,6 +450,9 @@
 
 
 
+;;;
+(use-package evil :ensure t :pin melpa)
+
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
 
