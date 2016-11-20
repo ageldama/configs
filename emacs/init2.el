@@ -430,23 +430,24 @@
 
 
 ;;; go-lang.
-(use-package go-mode :ensure t :pin melpa)
+;;(use-package go-mode :ensure t :pin melpa)
 
 (when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
   (use-package exec-path-from-shell :ensure t :pin melpa)
   (exec-path-from-shell-copy-env "GOROOT")
   (exec-path-from-shell-copy-env "GOPATH"))
 
-(use-package go-eldoc :ensure t :pin melpa)
-(add-hook 'go-mode-hook 'go-eldoc-setup)
+(when (fboundp 'go-mode) 
+    (use-package go-eldoc :ensure t :pin melpa)
+    (add-hook 'go-mode-hook 'go-eldoc-setup)
 
-(use-package go-autocomplete :ensure t :pin melpa)
-(require 'go-autocomplete)
-(require 'auto-complete-config)
-(ac-config-default)
+    (use-package go-autocomplete :ensure t :pin melpa)
+    (require 'go-autocomplete)
+    (require 'auto-complete-config)
+    (ac-config-default)
 
-(use-package golint :ensure t :pin melpa)
-(use-package go-projectile :ensure t :pin melpa)
+    (use-package golint :ensure t :pin melpa)
+    (use-package go-projectile :ensure t :pin melpa))
 
 
 
