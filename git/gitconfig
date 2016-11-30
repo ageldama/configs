@@ -15,3 +15,5 @@
 	tool = vimdiff
 [merge]
 	tool = vimdiff
+[core]
+    excludesfile = /Users/jyun/.gitignore_global

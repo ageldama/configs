@@ -197,7 +197,7 @@
 
 
 
-(load-theme 'deeper-blue)
+;(load-theme 'deeper-blue)
 
 ;(load "~/local/io-mode/io-mode.el")
 
@@ -447,6 +447,24 @@
 
 (use-package golint :ensure t :pin melpa)
 (use-package go-projectile :ensure t :pin melpa)
+
+
+
+
+
+;;; TODO: the-silver-searcher? helm -or- projectile?
+;;(use-package ensime :ensure t :pin melpa)
+
+
+;;; Clojure.
+(when t
+  (use-package cider :ensure t :pin melpa)
+  (use-package helm-cider :ensure t :pin melpa)
+  (helm-cider-mode 1)
+  (use-package rainbow-delimiters  :ensure t :pin melpa)
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  )
+
 
 
 
