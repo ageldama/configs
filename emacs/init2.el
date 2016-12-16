@@ -3,7 +3,7 @@
 (setq inhibit-startup-screen t)
 
 ;;; load-path
-;(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
+                                        ;(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 
 
 ;;; l10n, i18n...
@@ -41,13 +41,13 @@
 (transient-mark-mode t)
 
 ;;; interactive-search
-;(isearch-mode 1)
+                                        ;(isearch-mode 1)
 
 ;;; interactive-completion
 (icomplete-mode t)
 
 ;;; interactive-switch-buffer
-;(iswitchb-mode t)
+                                        ;(iswitchb-mode t)
 
 ;;; ido-mode
 (require 'ido)
@@ -70,10 +70,10 @@
 
 ;;; menu-bar -- turn-off when '-nw'
 (if window-system
-  (progn
-    ;(tabbar-mode -1)
-    (tool-bar-mode -1)
-    (scroll-bar-mode -1))
+    (progn
+                                        ;(tabbar-mode -1)
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1))
   (progn
     (menu-bar-mode -1)))
 
@@ -85,7 +85,7 @@
 ;;; fill, wrap, truncates
 ;;(setq-default fill-column 72)
 (setq truncate-lines nil)
-;(setq truncate-partial-width-windows nil)
+                                        ;(setq truncate-partial-width-windows nil)
 
 
 
@@ -108,7 +108,7 @@
 
 
 ;;; emacs-lisp-mode
-;(setq lisp-indent-offset 2)
+                                        ;(setq lisp-indent-offset 2)
 
 
 ;;; org-mode
@@ -197,9 +197,9 @@
 
 
 
-;(load-theme 'deeper-blue)
+(load-theme 'deeper-blue)
 
-;(load "~/local/io-mode/io-mode.el")
+                                        ;(load "~/local/io-mode/io-mode.el")
 
 
 
@@ -254,7 +254,7 @@
 
 ;;(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
 ;; (require 'slime-autoloads)
- 
+
 ;; ;; Set your lisp system and, optionally, some contribs
 ;; ;; (setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
 ;; ;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
@@ -263,7 +263,7 @@
 
 ;; (setq inferior-lisp-program (expand-file-name "~/local/sbcl/run-sbcl.sh"))
 
-  
+
 
 
 ;; (setq slime-contribs '(slime-fancy))
@@ -306,19 +306,34 @@
 (use-package helm-projectile :ensure t :pin melpa)
 (use-package helm-ag :ensure t :pin melpa)
 
-;;(use-package jedi :ensure t :pin melpa)
-;;(add-hook 'python-mode-hook 'jedi:setup)
 
-(use-package elpy :ensure t :pin melpa)
-(elpy-enable)
+(when t
+  (use-package elpy :ensure t :pin melpa)
+  
+  (use-package jedi :ensure t :pin melpa)
+  (when (= 0 (shell-command "/usr/local/bin/python3 -m jedi"))
+    (jedi:install-server))
+  (add-hook 'python-mode-hook 'jedi:setup)
+  (setq jedi:complete-on-dot t)                 ; optional
 
-(add-hook 'python-mode-hook
-          (lambda ()
-            (setq indent-tabs-mode nil)
-            (setq tab-width 4)
-            (setq python-indent 4)))
+  (if (string-equal system-type "darwin")
+      (progn
+        (setq elpy-rpc-backend "/usr/local/bin/jedi")
+        (setq elpy-rpc-python-command "/usr/local/bin/python3")
+        (setq python-check-command "/usr/local/bin/flake8")
+        (elpy-use-ipython "/usr/local/bin/ipython3"))
+    (progn
+      (elpy-use-ipython)))
 
-(require 'ob-python)
+  (elpy-enable)
+
+  (add-hook 'python-mode-hook
+            (lambda ()
+              (setq indent-tabs-mode nil)
+              (setq tab-width 4)
+              (setq python-indent 4)))
+
+  (require 'ob-python))
 
 
 
@@ -430,25 +445,25 @@
 
 
 ;;; go-lang.
-;;(use-package go-mode :ensure t :pin melpa)
+(when nil
+  (use-package go-mode :ensure t :pin melpa)
 
-(when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
-  (use-package exec-path-from-shell :ensure t :pin melpa)
-  (exec-path-from-shell-copy-env "GOROOT")
-  (exec-path-from-shell-copy-env "GOPATH"))
+  (when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
+    (use-package exec-path-from-shell :ensure t :pin melpa)
+    (exec-path-from-shell-copy-env "GOROOT")
+    (exec-path-from-shell-copy-env "GOPATH"))
 
-(when (fboundp 'go-mode) 
-    (use-package go-eldoc :ensure t :pin melpa)
-    (add-hook 'go-mode-hook 'go-eldoc-setup)
+  (use-package go-eldoc :ensure t :pin melpa)
+  (add-hook 'go-mode-hook 'go-eldoc-setup)
 
-    (use-package go-autocomplete :ensure t :pin melpa)
-    (require 'go-autocomplete)
-    (require 'auto-complete-config)
-    (ac-config-default)
+  (use-package go-autocomplete :ensure t :pin melpa)
+  (require 'go-autocomplete)
+  (require 'auto-complete-config)
+  (ac-config-default)
 
-    (use-package golint :ensure t :pin melpa)
-    (use-package go-projectile :ensure t :pin melpa))
-
+  (use-package golint :ensure t :pin melpa)
+  (use-package go-projectile :ensure t :pin melpa)
+  )
 
 
 
@@ -458,14 +473,16 @@
 
 
 ;;; Clojure.
-(when t
+(when nil
   (use-package cider :ensure t :pin melpa)
   (use-package helm-cider :ensure t :pin melpa)
   (helm-cider-mode 1)
-  (use-package rainbow-delimiters  :ensure t :pin melpa)
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
+  (use-package yaml-mode  :ensure t :pin melpa)
   )
 
+
+(use-package rainbow-delimiters  :ensure t :pin melpa)
+(add-hook 'prog-mode-hook 'rainbow-delimiters-mode)
 
 
 
