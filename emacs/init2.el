@@ -1,9 +1,9 @@
-;;;; -*- mode: emacs-lisp; coding: utf-8; -*-
+;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
 (setq inhibit-startup-screen t)
 
 ;;; load-path
-                                        ;(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
+;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/"))
 
 
 ;;; l10n, i18n...
@@ -41,13 +41,13 @@
 (transient-mark-mode t)
 
 ;;; interactive-search
-                                        ;(isearch-mode 1)
+;;(isearch-mode 1)
 
 ;;; interactive-completion
 (icomplete-mode t)
 
 ;;; interactive-switch-buffer
-                                        ;(iswitchb-mode t)
+;;(iswitchb-mode t)
 
 ;;; ido-mode
 (require 'ido)
@@ -71,7 +71,7 @@
 ;;; menu-bar -- turn-off when '-nw'
 (if window-system
     (progn
-                                        ;(tabbar-mode -1)
+      ;;(tabbar-mode -1)
       (tool-bar-mode -1)
       (scroll-bar-mode -1))
   (progn
@@ -85,7 +85,7 @@
 ;;; fill, wrap, truncates
 ;;(setq-default fill-column 72)
 (setq truncate-lines nil)
-                                        ;(setq truncate-partial-width-windows nil)
+;;(setq truncate-partial-width-windows nil)
 
 
 
@@ -108,15 +108,16 @@
 
 
 ;;; emacs-lisp-mode
-                                        ;(setq lisp-indent-offset 2)
+;;(setq lisp-indent-offset 2)
 
 
 ;;; org-mode
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 
-(add-hook 'org-mode-hook (lambda ()
-                           (set-face-attribute 'italic nil
-                                               :inherit 'underline)))
+(add-hook 'org-mode-hook
+          (lambda ()
+            (set-face-attribute 'italic nil
+                                :inherit 'underline)))
 
 
 
@@ -199,7 +200,7 @@
 
 (load-theme 'deeper-blue)
 
-                                        ;(load "~/local/io-mode/io-mode.el")
+;;(load "~/local/io-mode/io-mode.el")
 
 
 
@@ -252,46 +253,6 @@
 
 
 
-;;(add-to-list 'load-path (expand-file-name "~/local/slime-2.15/"))
-;; (require 'slime-autoloads)
-
-;; ;; Set your lisp system and, optionally, some contribs
-;; ;; (setq inferior-lisp-program "/home/jhyun/local/sbcl-1.2.14-x86-64-linux/run-sbcl.sh")
-;; ;; (setq inferior-lisp-program (expand-file-name "~/local/ccl/dx86cl64"))
-;; ;; (setq inferior-lisp-program "/usr/bin/ecl")
-;; ;; (setq inferior-lisp-program "/usr/bin/clisp")
-
-;; (setq inferior-lisp-program (expand-file-name "~/local/sbcl/run-sbcl.sh"))
-
-
-
-
-;; (setq slime-contribs '(slime-fancy))
-
-;; (setq common-lisp-hyperspec-root (expand-file-name "~/local/HyperSpec/"))
-
-
-
-
-
-
-;; (elpy-enable)
-;; (if (string-equal system-type "darwin")
-;;     (progn
-;;       (setq elpy-rpc-python-command "/usr/local/bin/python3")
-;;       (setq python-check-command "/usr/local/bin/flake8")
-;;       (elpy-use-ipython "/usr/local/bin/ipython3"))
-;;   (progn
-;;     (elpy-use-ipython)))
-
-
-
-;; (server-mode 1)
-
-
-
-;; (setq twittering-icon-mode t)
-
 
 ;;; https://github.com/jwiegley/use-package
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/use-package"))
@@ -311,14 +272,12 @@
 
 
 (when t
-  (use-package elpy :ensure t :pin melpa)
-  
+  (use-package elpy :ensure t :pin melpa)  
   (use-package jedi :ensure t :pin melpa)
-  (when (= 0 (shell-command "/usr/local/bin/python3 -m jedi"))
-    (jedi:install-server))
+  ;; (when (= 0 (shell-command "/usr/local/bin/python3 -m jedi"))
+  ;;   (jedi:install-server))
   (add-hook 'python-mode-hook 'jedi:setup)
   (setq jedi:complete-on-dot t)                 ; optional
-
   (if (string-equal system-type "darwin")
       (progn
         (setq elpy-rpc-backend "jedi")
@@ -332,38 +291,30 @@
   (setq python-shell-interpreter "ipython3"
         python-shell-interpreter-args "--simple-prompt --pprint")  
   (elpy-enable)
-
   (add-hook 'python-mode-hook
             (lambda ()
               (setq indent-tabs-mode nil)
               (setq tab-width 4)
               (setq python-indent 4)))
-
   (require 'ob-python))
 
 
 
 
 (when nil
-  (use-package cmake-mode :ensure t :pin melpa)
-  
+  (use-package cmake-mode :ensure t :pin melpa)  
   (use-package rtags :ensure t :pin melpa)
   (use-package cmake-ide :ensure t :pin melpa)
-
   (when (string-equal system-type "darwin")
     (setq rtags-path "/usr/local/bin/"))
-
   (require 'rtags) ;; optional, must have rtags installed
-
   ;;(add-hook 'c-mode-common-hook 'rtags-start-process-unless-running)
   ;;(add-hook 'c++-mode-common-hook 'rtags-start-process-unless-running)
-
   (when (string-equal system-type "darwin")
     (progn
       (setq cmake-ide-rdm-executable "/usr/local/bin/rdm")
       (setq cmake-ide-rc-executable "/usr/local/bin/rc")
       (setq cmake-ide-cmake-command "/usr/local/bin/cmake")))
-
   (cmake-ide-setup)
 )
 
@@ -385,38 +336,11 @@
 
 
 
-;; (use-package ac-clang :ensure t :pin melpa)
-;; (require 'ac-clang)
-;; (setq ac-clang--server-executable "/Users/jhyun/local/bin/clang-server")
-;; (ac-clang-initialize)
-
-;; (require 'auto-complete-config)
-;; ;; (require 'auto-complete-clang)
-;; (setq ac-auto-start t)
-;; (setq ac-quick-help-delay 0.5)
-;; ;; (ac-set-trigger-key "TAB")
-;; ;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
-;; (define-key ac-mode-map  [(control tab)] 'auto-complete)
-
 
 
 (when (memq window-system '(mac ns))
   (use-package exec-path-from-shell :ensure t :pin melpa)
   (exec-path-from-shell-initialize))
-
-
-
-;; (use-package ox-gfm :ensure t )
-;; (eval-after-load "org"
-;;  '(require 'ox-md nil t))
-
-
-;; (use-package adoc-mode :ensure t :pin melpa)
-;; (use-package ox-asciidoc :ensure t :pin melpa)
-;; (eval-after-load "org"
-;;  '(require 'ox-asciidoc nil t))
-;; (add-to-list 'auto-mode-alist '("\\.adoc\\'" . adoc-mode))
-
 
 
 
@@ -427,7 +351,7 @@
 (global-set-key (kbd "C-x C-f") 'helm-find-files)
 (global-set-key (kbd "C-x b") 'helm-mini)
 
-;;(centered-window-mode 1)
+
 
 
 
@@ -453,29 +377,20 @@
 ;;; go-lang.
 (when nil
   (use-package go-mode :ensure t :pin melpa)
-
   (when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
     (use-package exec-path-from-shell :ensure t :pin melpa)
     (exec-path-from-shell-copy-env "GOROOT")
     (exec-path-from-shell-copy-env "GOPATH"))
-
   (use-package go-eldoc :ensure t :pin melpa)
   (add-hook 'go-mode-hook 'go-eldoc-setup)
-
   (use-package go-autocomplete :ensure t :pin melpa)
   (require 'go-autocomplete)
   (require 'auto-complete-config)
   (ac-config-default)
-
   (use-package golint :ensure t :pin melpa)
   (use-package go-projectile :ensure t :pin melpa)
   )
 
-
-
-
-;;; TODO: the-silver-searcher? helm -or- projectile?
-;;(use-package ensime :ensure t :pin melpa)
 
 
 ;;; Clojure.
@@ -506,10 +421,6 @@
 
 
 
-
-
-;; (setq load-path (cons "/usr/share/emacs/site-lisp/ess" load-path))
-;; (require 'ess-site)
 
 
 
