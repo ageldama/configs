@@ -306,6 +306,9 @@
 (use-package helm-projectile :ensure t :pin melpa)
 (use-package helm-ag :ensure t :pin melpa)
 
+(use-package ace-window :ensure t :pin melpa)
+(global-set-key (kbd "M-p") 'ace-window)
+
 
 (when t
   (use-package elpy :ensure t :pin melpa)
@@ -318,13 +321,16 @@
 
   (if (string-equal system-type "darwin")
       (progn
-        (setq elpy-rpc-backend "/usr/local/bin/jedi")
+        (setq elpy-rpc-backend "jedi")
         (setq elpy-rpc-python-command "/usr/local/bin/python3")
         (setq python-check-command "/usr/local/bin/flake8")
-        (elpy-use-ipython "/usr/local/bin/ipython3"))
+        (elpy-use-ipython "/usr/local/bin/ipython3")
+        )
     (progn
-      (elpy-use-ipython)))
-
+      (elpy-use-ipython)
+      ))
+  (setq python-shell-interpreter "ipython3"
+        python-shell-interpreter-args "--simple-prompt --pprint")  
   (elpy-enable)
 
   (add-hook 'python-mode-hook
