@@ -269,6 +269,9 @@
 
 (use-package ace-window :ensure t :pin melpa)
 (global-set-key (kbd "M-p") 'ace-window)
+(add-hook 'markdown-mode-hook
+          (lambda ()
+            (local-set-key (kbd "C-x o") 'ace-window)))
 
 
 (when t
