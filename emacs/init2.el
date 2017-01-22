@@ -412,6 +412,7 @@
 
 ;;;
 (use-package evil :ensure t :pin melpa)
+(evil-mode 1)
 
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
