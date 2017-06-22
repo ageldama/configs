@@ -198,7 +198,7 @@
 
 
 
-(load-theme 'deeper-blue)
+;;(load-theme 'deeper-blue)
 
 ;;(load "~/local/io-mode/io-mode.el")
 
@@ -258,6 +258,7 @@
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/use-package"))
 (load-library "use-package")
 
+(use-package neotree :ensure t :pin melpa)
 (use-package magit :ensure t)
 (use-package markdown-mode :ensure t :pin melpa)
 (use-package helm :ensure t :pin melpa)
@@ -291,7 +292,7 @@
     (progn
       (elpy-use-ipython)
       ))
-  (setq python-shell-interpreter "ipython3"
+  (setq python-shell-interpreter "ipython"
         python-shell-interpreter-args "--simple-prompt --pprint")  
   (elpy-enable)
   (add-hook 'python-mode-hook
@@ -412,7 +413,7 @@
 
 ;;;
 (use-package evil :ensure t :pin melpa)
-(evil-mode 1)
+;;(evil-mode 1)
 
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
