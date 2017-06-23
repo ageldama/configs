@@ -197,8 +197,8 @@
 
 
 
-
-;;(load-theme 'deeper-blue)
+(when (and t window-system)
+  (load-theme 'deeper-blue))
 
 ;;(load "~/local/io-mode/io-mode.el")
 
@@ -373,7 +373,7 @@
   (require 'powerline)
   (require 'airline-themes)
   ;;(airline-themes-solarized-gui)
-  (load-theme 'airline-light)
+  (load-theme 'airline-dark t)
   )
 
 
@@ -413,7 +413,11 @@
 
 ;;;
 (use-package evil :ensure t :pin melpa)
-;;(evil-mode 1)
+(use-package evil-vimish-fold :ensure t :pin melpa)
+
+(evil-mode 1)
+(global-set-key (kbd "C-<f12>") 'evil-local-mode)
+(evil-vimish-fold-mode 1)
 
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
