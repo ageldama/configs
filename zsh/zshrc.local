@@ -13,10 +13,13 @@ fi
 
 alias ls='ls -F --color'
 
-export PAGER=most
+export PAGER=less
 export EDITOR=vim
 
 export PATH=$PATH:~/local/bin
+
+# https://github.com/kennethreitz/autoenv/
+source ~/.autoenv/activate.sh
 
 if [ "$TERM" = "xterm-termite" ]; then
     export TERM=xterm-256color
