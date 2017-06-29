@@ -142,7 +142,13 @@
 (when (and t window-system)
   (cond ((string-equal system-type "gnu/linux") 
          (progn
-           (set-face-attribute 'default nil :font "Ubuntu Mono")
+           (set-face-attribute 'default nil
+                               ;; :font "Noto Sans Mono CJK KR"
+                               ;; :font "Inconsolata"
+                               :font "MMCedar"
+                               ;; :font "Fantasque Sans Mono"
+                               ;; :font "Hack"
+                               )
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let (
                  ;;(font-name "LexiSaebomR")
