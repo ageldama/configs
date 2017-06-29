@@ -425,6 +425,8 @@
 (global-set-key (kbd "C-<f12>") 'evil-local-mode)
 (evil-vimish-fold-mode 1)
 
+(global-linum-mode 1)
+
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
 
