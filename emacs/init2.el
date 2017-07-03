@@ -131,7 +131,6 @@
 
 
 ;;; for Netbooks
-(display-time)
 (unless (string-equal system-type "darwin")
   (display-battery-mode))
 
@@ -172,7 +171,8 @@
 ;;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
 
 
-
+(menu-bar-mode -1)
+(display-time-mode -1)
 
 
 
@@ -421,8 +421,9 @@
 (use-package evil :ensure t :pin melpa)
 (use-package evil-vimish-fold :ensure t :pin melpa)
 
-(evil-mode 1)
+(evil-mode -1)
 (global-set-key (kbd "C-<f12>") 'evil-local-mode)
+(add-to-list 'evil-emacs-state-modes 'neotree-mode)
 (evil-vimish-fold-mode 1)
 
 (global-linum-mode 1)
