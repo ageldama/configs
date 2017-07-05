@@ -152,12 +152,13 @@
            (let (
                  ;;(font-name "LexiSaebomR")
                  ;; (font-name "NanumBarunGothic")
-                 ;;(font-name "Noto Sans Mono CJK KR")
+                 (font-name "Noto Sans Mono CJK KR")
+                 ;;(font-name "Consolas")
                  ;;(font-name "JejuMyeongjo")
                  ;;(font-name "D2Coding")
                  ;;(font-name "나눔명조")
                  ;;(font-name "Noto Sans Mono CJK KR")
-                 (font-name "본고딕 Normal")
+                 ;;(font-name "본고딕 Normal")
                  )
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
@@ -202,9 +203,6 @@
 
 
 
-
-(when (and t window-system)
-  (load-theme 'deeper-blue))
 
 ;;(load "~/local/io-mode/io-mode.el")
 
@@ -296,10 +294,10 @@
         (elpy-use-ipython "/usr/local/bin/ipython3")
         )
     (progn
-      (elpy-use-ipython)
+      ;(elpy-use-ipython)
       ))
-  (setq python-shell-interpreter "ipython"
-        python-shell-interpreter-args "--simple-prompt --pprint")  
+  ;;(setq python-shell-interpreter "ipython"
+  ;;      python-shell-interpreter-args "--simple-prompt --pprint")  
   (elpy-enable)
   (add-hook 'python-mode-hook
             (lambda ()
@@ -373,14 +371,23 @@
 
 
 ;;; powerline.
-(when nil
+(when t
   (use-package powerline :ensure t :pin melpa)
   (use-package airline-themes :ensure t :pin melpa)
   (require 'powerline)
   (require 'airline-themes)
   ;;(airline-themes-solarized-gui)
-  (load-theme 'airline-dark t)
+  ;;(load-theme 'airline-light t)
   )
+
+
+
+(when (and t window-system)
+  (use-package rebecca-theme :ensure t :pin melpa)
+  (load-theme #'rebecca t)
+  ;;(load-theme 'deeper-blue)
+  )
+
 
 
 
