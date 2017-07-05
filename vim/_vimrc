@@ -28,7 +28,7 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
 
-Bundle 'fatih/vim-go'
+"Bundle 'fatih/vim-go'
 
 "Bundle 'SirVer/ultisnips'
 "Bundle 'honza/vim-snippets'

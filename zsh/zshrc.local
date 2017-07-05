@@ -9,9 +9,15 @@ if test -d /etc/profile.d/; then
 	unset profile
 fi
 
-
-
-alias ls='ls -F --color'
+case `uname` in
+  Darwin)
+	alias ls='ls -F -G'
+	export PATH=/usr/local/bin:$PATH  # Homebrew.
+  ;;
+  Linux)
+	alias ls='ls -F --color'
+  ;;
+esac
 
 export PAGER=less
 export EDITOR=vim
@@ -19,17 +25,19 @@ export EDITOR=vim
 export PATH=$PATH:~/local/bin
 
 # https://github.com/kennethreitz/autoenv/
+if [ ! -d "~/.autoenv" ]; then
+	# git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
+fi
 source ~/.autoenv/activate.sh
 
+# ~/.tmux.conf
+if [[ ! -a "~/.tmux.conf" ]]; then
+	# echo set -g default-terminal "screen-256color" >> ~/.tmux.conf
+fi
+
+#
 if [ "$TERM" = "xterm-termite" ]; then
-    export TERM=xterm-256color
+	export TERM=xterm-256color
 fi
 
 
-source "/Users/jhyun/.sdkman/bin/sdkman-init.sh"
-
-
-export PATH=$PATH:/Users/jhyun/mylib/bin
-
-
-export PATH=$PATH:~/.cargo/bin
