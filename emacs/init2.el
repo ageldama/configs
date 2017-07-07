@@ -288,10 +288,11 @@
   (setq jedi:complete-on-dot t)                 ; optional
   (if (string-equal system-type "darwin")
       (progn
-        (setq elpy-rpc-backend "jedi")
-        (setq elpy-rpc-python-command "/usr/local/bin/python3")
-        (setq python-check-command "/usr/local/bin/flake8")
-        (elpy-use-ipython "/usr/local/bin/ipython3")
+        ;;(setq elpy-rpc-backend "jedi")
+        ;;(setq elpy-rpc-python-command "/usr/local/bin/python3")
+        ;;(setq python-check-command "/usr/local/bin/flake8")
+        ;;(elpy-use-ipython "/usr/local/bin/ipython3")
+        ;(elpy-use-ipython)
         )
     (progn
       ;(elpy-use-ipython)
