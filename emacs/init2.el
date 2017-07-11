@@ -434,7 +434,7 @@
 (add-to-list 'evil-emacs-state-modes 'neotree-mode)
 (evil-vimish-fold-mode 1)
 
-(global-linum-mode 1)
+(global-linum-mode -1)
 
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
