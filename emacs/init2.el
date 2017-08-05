@@ -139,26 +139,28 @@
 
 ;;; gui-fonts
 (when (and t window-system)
-  (cond ((string-equal system-type "gnu/linux") 
+  (cond ((or (string-equal system-type "gnu/linux")
+             (string-equal system-type "darwin"))
          (progn
            (set-face-attribute 'default nil
-                               ;; :font "Noto Sans Mono CJK KR"
+                               ;; :font "Noto Sans Mono CJK KR" 
                                ;; :font "Inconsolata"
-                               :font "MMCedar"
+                               ;; :font "MMCedar"
                                ;; :font "Fantasque Sans Mono"
                                ;; :font "Hack"
+                               :font "Fira Code Light"                               
                                )
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let (
                  ;;(font-name "LexiSaebomR")
                  ;; (font-name "NanumBarunGothic")
-                 (font-name "Noto Sans Mono CJK KR")
-                 ;;(font-name "Consolas")
+                 ;;(font-name "Noto Sans Mono CJK KR")
                  ;;(font-name "JejuMyeongjo")
                  ;;(font-name "D2Coding")
                  ;;(font-name "나눔명조")
                  ;;(font-name "Noto Sans Mono CJK KR")
                  ;;(font-name "본고딕 Normal")
+                 (font-name "아리따L")
                  )
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
@@ -184,6 +186,10 @@
              ("marmalade" . "http://marmalade-repo.org/packages/")))
   (add-to-list 'package-archives i))
 (package-initialize)
+
+(unless (package-installed-p 'use-package)
+	(package-refresh-contents)
+	(package-install 'use-package))
 
 
 
@@ -259,8 +265,9 @@
 
 
 ;;; https://github.com/jwiegley/use-package
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/use-package"))
-(load-library "use-package")
+;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/use-package"))
+;;(load-library "use-package")
+
 
 (use-package neotree :ensure t :pin melpa)
 (use-package magit :ensure t)
@@ -384,9 +391,11 @@
 
 
 (when (and t window-system)
-  (use-package rebecca-theme :ensure t :pin melpa)
-  (load-theme #'rebecca t)
+  ;;(use-package rebecca-theme :ensure t :pin melpa)
+  ;;(load-theme #'rebecca t)
   ;;(load-theme 'deeper-blue)
+  (use-package leuven-theme :ensure t :pin melpa)
+  (load-theme #'leuven t)
   )
 
 
@@ -426,6 +435,13 @@
 
 
 ;;;
+(use-package which-key
+	:ensure t 
+	:config
+	(which-key-mode))
+
+
+;;;
 (use-package evil :ensure t :pin melpa)
 (use-package evil-vimish-fold :ensure t :pin melpa)
 
@@ -434,7 +450,7 @@
 (add-to-list 'evil-emacs-state-modes 'neotree-mode)
 (evil-vimish-fold-mode 1)
 
-(global-linum-mode 1)
+(global-linum-mode -1)
 
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
