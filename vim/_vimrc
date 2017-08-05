@@ -28,19 +28,37 @@ Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
 
-"Bundle 'fatih/vim-go'
-
-"Bundle 'SirVer/ultisnips'
-"Bundle 'honza/vim-snippets'
-"Bundle 'ageldama/vim-ttfzoom'
-
+""Bundle 'fatih/vim-go'
 
 
 Bundle 'mileszs/ack.vim'
 
 
+
+if 0
+
+" Track the engine.
+Plugin 'SirVer/ultisnips'
+
+" Snippets are separated from the engine. Add this if you want them:
+Plugin 'honza/vim-snippets'
+
+" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
+let g:UltiSnipsExpandTrigger="<c-tab>"
+let g:UltiSnipsJumpForwardTrigger="<c-b>"
+let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+
+" If you want :UltiSnipsEdit to split your window.
+let g:UltiSnipsEditSplit="vertical"
+
+endif
+
+
+
+
 "------------------------------------------------------------------------------
 
+set paste
 
 let g:ackprg = 'ag --vimgrep'
 
@@ -60,10 +78,8 @@ set ruler
 set visualbell
 
 " 자동들여쓰기 및 탭크기랑 <<, >> 크기조절.
-"set autoindent
-set noautoindent
-"set smartindent
-set nosmartindent
+set autoindent
+set smartindent
 set shiftwidth=4
 set tabstop=4
 set softtabstop=4
@@ -73,9 +89,11 @@ set expandtab	" tab대신 스페이스!
 set wrap
 
 " textwidth : 자동으로 행을 자르기. 0이면 끄기.
-set textwidth=80
+set textwidth=250
 
 " modeline 향수
+set modeline
+
 set showmode
 set showcmd
 
@@ -86,7 +104,8 @@ set ignorecase	" 대소문자무시
 set scs	" smart-search
 
 " 백스페이스 : 언제나, 심지어 내가 방금 입력한게 아닌 것도 지우도록-_-
-set backspace=2
+set backspace=indent,eol,start
+
 
 " 폰트
 "set guifont=Consolas:h14:cANSI
@@ -103,6 +122,13 @@ if has('gui_running')
 else
     set bg=dark
 endif
+
+
+if 0 
+    Plugin 'bluz71/vim-moonfly-colors' 
+    colorscheme moonfly
+    endif
+
 
 " 파일인코딩
 set fencs=utf8,euc-kr
