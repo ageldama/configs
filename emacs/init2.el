@@ -289,6 +289,7 @@
 (when t
   (use-package elpy :ensure t :pin melpa)  
   (use-package jedi :ensure t :pin melpa)
+  (use-package pylint :ensure t :pin melpa)
   ;; (when (= 0 (shell-command "/usr/local/bin/python3 -m jedi"))
   ;;   (jedi:install-server))
   (add-hook 'python-mode-hook 'jedi:setup)
