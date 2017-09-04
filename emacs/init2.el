@@ -44,14 +44,14 @@
 ;;(isearch-mode 1)
 
 ;;; interactive-completion
-(icomplete-mode t)
+;;(icomplete-mode t)
 
 ;;; interactive-switch-buffer
 ;;(iswitchb-mode t)
 
 ;;; ido-mode
-(require 'ido)
-(ido-mode t)
+;;(require 'ido)
+;;(ido-mode t)
 
 ;;; no backup files
 (setq-default make-backup-files nil)
@@ -91,7 +91,7 @@
 
 ;;; user?
 (setq-default user-full-name "Jong-Hyouk Yun")
-(setq-default user-mail-address "jong-hyouk.yun@zalando.de")
+(setq-default user-mail-address "ageldama@gmail.com")
 
 
 ;;; grep-find, rgrep, find-grep-dired
@@ -124,10 +124,11 @@
 
 
 ;;; lusty-explorer
-(when (require 'lusty-explorer nil 'noerror)
-  ;; overrride the normal file-opening, buffer switching
-  (global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
-  (global-set-key (kbd "C-x b")   'lusty-buffer-explorer))
+(when nil
+  (when (require 'lusty-explorer nil 'noerror)
+    ;; overrride the normal file-opening, buffer switching
+    (global-set-key (kbd "C-x C-f") 'lusty-file-explorer)
+    (global-set-key (kbd "C-x b")   'lusty-buffer-explorer)))
 
 
 ;;; for Netbooks
@@ -143,12 +144,12 @@
              (string-equal system-type "darwin"))
          (progn
            (set-face-attribute 'default nil
-                               ;; :font "Noto Sans Mono CJK KR" 
+                               :font "Noto Sans Mono CJK KR" 
                                ;; :font "Inconsolata"
                                ;; :font "MMCedar"
                                ;; :font "Fantasque Sans Mono"
                                ;; :font "Hack"
-                               :font "Fira Code Light"                               
+                               ;; :font "Fira Code Light"                               
                                )
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let (
@@ -158,7 +159,7 @@
                  ;;(font-name "JejuMyeongjo")
                  ;;(font-name "D2Coding")
                  ;;(font-name "나눔명조")
-                 ;;(font-name "Noto Sans Mono CJK KR")
+                 (font-name "Noto Sans Mono CJK KR")
                  ;;(font-name "본고딕 Normal")
                  (font-name "아리따L")
                  )
@@ -383,10 +384,11 @@
 (when t
   (use-package powerline :ensure t :pin melpa)
   (use-package airline-themes :ensure t :pin melpa)
-  (require 'powerline)
-  (require 'airline-themes)
+  ;;(require 'powerline)
+  ;;(require 'airline-themes)
   ;;(airline-themes-solarized-gui)
   ;;(load-theme 'airline-light t)
+  ;;(load-theme 'airline-distinguished t)
   )
 
 
