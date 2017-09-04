@@ -461,6 +461,12 @@
 
 (global-linum-mode -1)
 
+
+
+;;;
+(use-package darkroom :ensure t :pin melpa)
+
+
 ;;; for magit, ...
 (setenv "EDITOR" "emacsclient")
 
