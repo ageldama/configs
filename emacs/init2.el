@@ -187,7 +187,7 @@
   :config (evil-vimish-fold-mode 1))
 
 ;;; darkroom
-(use-package darkroom :ensure t :pin melpa)
+(use-package writeroom-mode :ensure t :pin melpa)
 
 
 ;;; elpy, jedi.
