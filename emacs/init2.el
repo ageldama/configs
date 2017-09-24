@@ -62,7 +62,8 @@
              (string-equal system-type "darwin"))
          (progn
            (set-face-attribute 'default nil
-                               :font "Noto Sans Mono CJK KR" 
+                               :font "Noto Sans Mono CJK KR"
+                               ;; :font "SpoqaHanSans"
                                ;; :font "Inconsolata"
                                ;; :font "MMCedar"
                                ;; :font "Fantasque Sans Mono"
@@ -72,13 +73,13 @@
            ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let (
                  ;;(font-name "LexiSaebomR")
-                 ;; (font-name "NanumBarunGothic")
+                 ;;(font-name "NanumBarunGothic")
                  ;;(font-name "Noto Sans Mono CJK KR")
                  ;;(font-name "JejuMyeongjo")
                  ;;(font-name "D2Coding")
-                 ;;(font-name "나눔명조")
+                 ;;(font-name "나눔바른고딕")
                  (font-name "Noto Sans Mono CJK KR")
-                 ;;(font-name "본고딕 Normal")
+                 ;;(font-name "SpoqaHanSans")
                  ;;(font-name "아리따L")
                  )
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
@@ -123,6 +124,17 @@
 (use-package helm :ensure t :pin melpa
   :config (progn (require 'helm-config)
                  (helm-mode +1)
+                 (setq helm-mode-fuzzy-match t                       
+                       helm-recentf-fuzzy-match t
+                       helm-buffers-fuzzy-matching t
+                       helm-recentf-fuzzy-match t
+                       helm-buffers-fuzzy-matching t
+                       helm-locate-fuzzy-match t
+                       helm-M-x-fuzzy-match t
+                       helm-semantic-fuzzy-match t
+                       helm-imenu-fuzzy-match t
+                       helm-apropos-fuzzy-match t
+                       helm-lisp-completion-at-point t)
                  (global-set-key (kbd "M-x") 'helm-M-x)
                  (global-set-key (kbd "C-x C-f") 'helm-find-files)
                  (global-set-key (kbd "C-x b") 'helm-mini)))
