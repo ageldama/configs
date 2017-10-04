@@ -1,0 +1,28 @@
+[Desktop Entry]
+Version=1.0
+Name=Nightly
+Comment=Browse the World Wide Web
+Icon=/home/jyun/local/firefox/browser/icons/mozicon128.png
+Exec=/home/jyun/local/firefox/firefox %u
+Terminal=false
+Type=Application
+Categories=Network;WebBrowser;
+Actions=Default;Mozilla;ProfileManager;
+
+[Desktop Action Default]
+Name=Default Profile
+Exec=/home/jyun/local/firefox/firefox --no-remote -P minefield-default
+
+[Desktop Action Mozilla]
+Name=Mozilla Profile
+Exec=/home/jyun/local/firefox/firefox --no-remote -P minefield-mozilla
+
+[Desktop Action ProfileManager]
+Name=Profile Manager
+Exec=/home/jyun/local/firefox/firefox --no-remote --profile-manager
+
+# https://blog.nightly.mozilla.org/2016/09/19/getting-firefox-nightly-to-stick-to-ubuntus-unity-dock/
+# $ desktop-file-validate nightly.desktop
+# $ desktop-file-install --dir=.local/share/applications nightly.desktop
+
+
