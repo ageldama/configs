@@ -19,7 +19,7 @@ case `uname` in
   ;;
 esac
 
-export PAGER=less
+export PAGER=most
 export EDITOR=vim
 
 export PATH=$PATH:~/local/bin
@@ -28,7 +28,7 @@ export PATH=$PATH:~/local/bin
 if [ ! -d "~/.autoenv" ]; then
 	# git clone git://github.com/kennethreitz/autoenv.git ~/.autoenv
 fi
-source ~/.autoenv/activate.sh
+#source ~/.autoenv/activate.sh
 
 # ~/.tmux.conf
 if [[ ! -a "~/.tmux.conf" ]]; then
@@ -40,4 +40,11 @@ if [ "$TERM" = "xterm-termite" ]; then
 	export TERM=xterm-256color
 fi
 
+# Perl5 + local::lib
+eval `perl -Mlocal::lib`  
+
+
+
+# zsh-syntax-highlighting
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh 
 
