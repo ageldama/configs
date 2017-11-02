@@ -267,7 +267,31 @@
 
 
 
+;;; Rust
+(when t
+  ;; http://julienblanchard.com/2016/fancy-rust-development-with-emacs/
+  ;; NOTE: cargo install rustfmt
+  ;; NOTE: cargo install racer
+  ;; NOTE: git clone git@github.com:rust-lang/rust.git
+  (use-package toml-mode :ensure t :pin melpa)
+  (use-package rust-mode :ensure t :pin melpa
+    :config (add-hook 'rust-mode-hook
+                      (lambda ()
+                        (local-set-key (kbd "C-c <tab>") #'rust-format-buffer))))
+  (use-package cargo :ensure t :pin melpa
+    :config (add-hook 'rust-mode-hook 'cargo-minor-mode))
+  (use-package racer :ensure t :pin melpa
+    :config (progn
+              ;; Rustup binaries PATH
+              (setq racer-cmd "~/.cargo/bin/racer")
+              ;; Rust source code PATH
+              (setq racer-rust-src-path "/home/jyun/local/rust/src")
+              ;;
+              (add-hook 'rust-mode-hook #'racer-mode)
+              (add-hook 'racer-mode-hook #'eldoc-mode)
+              (add-hook 'racer-mode-hook #'company-mode)))
+  (use-package flycheck-rust :ensure t :pin melpa
+    :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
 
-
-;;;EOF.
+;;; EOF.
