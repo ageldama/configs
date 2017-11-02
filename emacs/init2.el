@@ -277,7 +277,7 @@
   (use-package rust-mode :ensure t :pin melpa
     :config (add-hook 'rust-mode-hook
                       (lambda ()
-                        (local-set-key (kbd "C-c <tab>") #'rust-format-buffer))))
+                        (local-set-key (kbd "C-c C-c \\") #'rust-format-buffer))))
   (use-package cargo :ensure t :pin melpa
     :config (add-hook 'rust-mode-hook 'cargo-minor-mode))
   (use-package racer :ensure t :pin melpa
