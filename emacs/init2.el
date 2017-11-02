@@ -285,6 +285,8 @@
               ;; Rustup binaries PATH
               (setq racer-cmd "~/.cargo/bin/racer")
               ;; Rust source code PATH
+              ;; OR rustup component add rust-src
+              ;; `rustc --print sysroot`/lib/rustlib/src/rust/src/
               (setq racer-rust-src-path "/home/jyun/local/rust/src")
               ;;
               (add-hook 'rust-mode-hook #'racer-mode)
