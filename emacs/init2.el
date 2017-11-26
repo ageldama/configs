@@ -155,7 +155,7 @@
 ;;; company.
 (use-package company :ensure t :pin melpa
   :config (progn (require 'company)
-                 (global-set-key (kbd "C-c TAB") 'company-complete)                 
+                 (global-set-key (kbd "C-c \\") 'company-complete)                 
                  (add-hook 'after-init-hook 'global-company-mode)
                  ;; NOT-SURE: (setq company-backends (delete 'company-semantic company-backends))
                  ))
