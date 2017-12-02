@@ -30,6 +30,7 @@ export SDKMAN_DIR="/Users/jhyun/.sdkman"
 
 
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
+export PATH=~/perl5/bin:$PATH
 
 source $HOME/.cargo/env
 
