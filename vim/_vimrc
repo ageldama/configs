@@ -51,12 +51,9 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
-
 ""Bundle 'fatih/vim-go'
-
-
 Bundle 'mileszs/ack.vim'
-
+Bundle 'godlygeek/tabular'
 
 
 if 0
