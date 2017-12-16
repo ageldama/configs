@@ -1,0 +1,27 @@
+# ~/.replyrc
+script_line1 = use Modern::Perl
+
+[Interrupt]
+[FancyPrompt]
+[DataPrinter]
+[Colors]
+[Hints]
+[Packages]
+[LexicalPersistence]
+[ResultCache]
+[Editor]
+[Autocomplete::Packages]
+[Autocomplete::Lexicals]
+[Autocomplete::Functions]
+[Autocomplete::Globals]
+[Autocomplete::Methods]
+[Autocomplete::Commands]
+[Autocomplete::Keywords]
+
+[Timer]
+mintime = 0.01
+
+[ReadLine]
+history_file = '.reply_hist'
+history_length = 1000
+
