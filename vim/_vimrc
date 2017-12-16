@@ -54,6 +54,8 @@ Bundle 'rbgrouleff/bclose.vim'
 ""Bundle 'fatih/vim-go'
 Bundle 'mileszs/ack.vim'
 Bundle 'godlygeek/tabular'
+"Bundle 'vim-syntastic/syntastic.git'
+Bundle 'w0rp/ale'
 
 
 if 0
@@ -148,7 +150,7 @@ endif
 if 0 
     Plugin 'bluz71/vim-moonfly-colors' 
     colorscheme moonfly
-    endif
+endif
 
 
 " 파일인코딩
@@ -190,7 +192,30 @@ set laststatus=2
 "map <Leader>mbc :MBEClose<cr>
 "map <Leader>mbt :MBEToggle<cr>
 
+" Syntastic
+if 0
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+endif
 
+" ALE 
+let g:ale_sign_error = '>>'
+let g:ale_sign_warning = '--'
+let g:airline#extensions#ale#enabled = 1
 
+" PerlTidy
+"define :Tidy command to run perltidy on visual selection || entire buffer"
+command -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy
+"run :Tidy on entire buffer and return cursor to (approximate) original position"
+fun DoPerlTidy()
+    let Pos = line2byte( line( "." ) )
+     :PerlTidy
+    exe "goto " . Pos
+endfun
 
 "EOF

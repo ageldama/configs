@@ -184,9 +184,9 @@
 
 ;;; which-key
 (use-package which-key
-	:ensure t 
-	:config
-	(which-key-mode))
+  :ensure t 
+  :config
+  (which-key-mode))
 
 ;;; evil!
 (use-package evil :ensure t :pin melpa
@@ -287,7 +287,10 @@
               ;; Rust source code PATH
               ;; OR rustup component add rust-src
               ;; `rustc --print sysroot`/lib/rustlib/src/rust/src/
-              (setq racer-rust-src-path "/home/jyun/local/rust/src")
+              (setq racer-rust-src-path
+                    "/Users/jhyun/.rustup/toolchains/stable-x86_64-apple-darwin/lib/rustlib/src/rust/src"
+                    ;;"/home/jyun/local/rust/src"
+                    )
               ;;
               (add-hook 'rust-mode-hook #'racer-mode)
               (add-hook 'racer-mode-hook #'eldoc-mode)
@@ -295,5 +298,43 @@
   (use-package flycheck-rust :ensure t :pin melpa
     :config (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
 
+
+;;; Haskell
+(when nil
+  (use-package intero :ensure t :pin melpa
+    :config (progn (add-hook 'haskell-mode-hook 'intero-mode)
+                   ;; cabal install stylish-haskell
+                   (custom-set-variables '(haskell-stylish-on-save t)))))
+
+;;; Perl 5
+(when t
+  (defalias 'perl-mode 'cperl-mode)
+  (setq cperl-indent-level 4)
+  ;;
+  (defun perltidy-command(start end)
+  "The perltidy command we pass markers to."
+  (shell-command-on-region start 
+                           end 
+                           "perltidy" 
+                           t
+                           t
+                           (get-buffer-create "*Perltidy Output*")))
+
+;; Updated as a dwim.  I like using the existing buffer rather than creating a new buffer.
+(defun perltidy-dwim (arg)
+  "Perltidy a region of the entire buffer"
+  (interactive "P")
+  (let ((point (point)) (start) (end))
+	(if (and mark-active transient-mark-mode)
+		(setq start (region-beginning)
+			  end (region-end))
+	  (setq start (point-min)
+			end (point-max)))
+	(perltidy-command start end)
+	(goto-char point)))
+(add-hook 'cperl-mode-hook
+	  (lambda ()
+	    (local-set-key (kbd "C-c t") 'perltidy-dwim)))
+  )
 
 ;;; EOF.
