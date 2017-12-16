@@ -335,6 +335,11 @@
 (add-hook 'cperl-mode-hook
 	  (lambda ()
 	    (local-set-key (kbd "C-c t") 'perltidy-dwim)))
-  )
+)
+
+;;;
+(when nil
+  (use-package regex-tool :ensure t :pin melpa))
+
 
 ;;; EOF.
