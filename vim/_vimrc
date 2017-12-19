@@ -141,7 +141,8 @@ set guioptions=m
 "color koehler
 if has('gui_running')
     colorscheme koehler
-    set guifont=Monospace\ 11
+    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 12
+	"set guifont="Noto Sans Mono CJK KR 14"
 else
     set bg=dark
 endif
