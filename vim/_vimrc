@@ -54,8 +54,8 @@ Bundle 'rbgrouleff/bclose.vim'
 ""Bundle 'fatih/vim-go'
 Bundle 'mileszs/ack.vim'
 Bundle 'godlygeek/tabular'
-"Bundle 'vim-syntastic/syntastic.git'
-Bundle 'w0rp/ale'
+Bundle 'vim-syntastic/syntastic.git'
+"Bundle 'w0rp/ale'
 
 
 if 0
@@ -194,7 +194,7 @@ set laststatus=2
 "map <Leader>mbt :MBEToggle<cr>
 
 " Syntastic
-if 0
+if 1
     set statusline+=%#warningmsg#
     set statusline+=%{SyntasticStatuslineFlag()}
     set statusline+=%*
@@ -205,9 +205,11 @@ if 0
 endif
 
 " ALE 
-let g:ale_sign_error = '>>'
-let g:ale_sign_warning = '--'
-let g:airline#extensions#ale#enabled = 1
+if 0
+    let g:ale_sign_error = '>>'
+    let g:ale_sign_warning = '--'
+    let g:airline#extensions#ale#enabled = 1
+endif
 
 " PerlTidy
 "define :Tidy command to run perltidy on visual selection || entire buffer"
