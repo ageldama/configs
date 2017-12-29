@@ -306,6 +306,10 @@
                    ;; cabal install stylish-haskell
                    (custom-set-variables '(haskell-stylish-on-save t)))))
 
+;;; Groovy
+(when t
+  (use-package groovy-mode :ensure t :pin melpa))
+
 ;;; Perl 5
 (when t
   (defalias 'perl-mode 'cperl-mode)
@@ -336,6 +340,11 @@
 	  (lambda ()
 	    (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 )
+
+(defun dos2unix* ()
+  "Not exactly but it's easier to remember"
+  (interactive)
+  (set-buffer-file-coding-system 'unix 't))
 
 ;;;
 (when nil
