@@ -301,7 +301,7 @@
 
 
 ;;; Haskell
-(when t
+(when nil
   (use-package intero :ensure t :pin melpa
     :config (progn (add-hook 'haskell-mode-hook 'intero-mode)
                    ;; cabal install stylish-haskell
