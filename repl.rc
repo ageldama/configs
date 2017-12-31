@@ -14,4 +14,10 @@ load_plugin qw(
         History
         LexEnv
         ReadLineHistory
+        MultiLine::PPI
+        Packages
+        FancyPrompt
+        FindVariable
+        Peek
         );
+
