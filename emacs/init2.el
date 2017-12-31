@@ -265,7 +265,8 @@
   (interactive)
   (find-file (expand-file-name "~/Dropbox/w/Scratch.txt")))
 
-
+;;; YAML
+(use-package yaml-mode :ensure t :pin melpa)
 
 ;;; Rust
 (when t
@@ -300,7 +301,7 @@
 
 
 ;;; Haskell
-(when nil
+(when t
   (use-package intero :ensure t :pin melpa
     :config (progn (add-hook 'haskell-mode-hook 'intero-mode)
                    ;; cabal install stylish-haskell
