@@ -21,3 +21,4 @@ load_plugin qw(
         Peek
         );
 
+package main;
