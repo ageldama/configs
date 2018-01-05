@@ -139,6 +139,9 @@ set guioptions=m
 
 " 색상설정
 "color koehler
+set t_Co=256
+"set t_AB=^[[48;5;%dm
+"set t_AF=^[[38;5;%dm
 if has('gui_running')
     colorscheme koehler
     set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 12
@@ -146,6 +149,7 @@ if has('gui_running')
 else
     set bg=dark
 endif
+color angr
 
 
 if 0 
