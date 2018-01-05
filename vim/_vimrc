@@ -56,6 +56,7 @@ Bundle 'mileszs/ack.vim'
 Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
 Bundle 'w0rp/ale'
+Bundle 'junegunn/seoul256.vim'
 
 
 if 0
@@ -143,13 +144,12 @@ set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
 if has('gui_running')
-    colorscheme koehler
-    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 12
+    "set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 12
+    set guifont=Inconsolata\ Medium\ 12
 	"set guifont="Noto Sans Mono CJK KR 14"
-else
-    set bg=dark
 endif
-color angr
+set bg=dark
+color seoul256
 
 
 if 0 
