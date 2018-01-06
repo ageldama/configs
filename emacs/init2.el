@@ -166,9 +166,12 @@
   (use-package airline-themes :ensure t :pin melpa))
 
 ;;; colortheme.
-(when window-system
-  (use-package leuven-theme :ensure t :pin melpa
-    :config (load-theme #'leuven t)))
+(when nil
+  (when window-system
+    (use-package seoul256-theme :ensure t :pin melpa
+      :config (progn
+                (setq seoul256-background 255)
+                (load-theme 'seoul256 t)))))
 
 ;;; windmove
 (when (package-installed-p 'windmove)
@@ -313,34 +316,36 @@
 
 ;;; Perl 5
 (when t
+  (use-package helm-perldoc :ensure t :pin melpa
+    :config (helm-perldoc:setup))
   (defalias 'perl-mode 'cperl-mode)
   (setq cperl-indent-level 4)
   ;;
   (defun perltidy-command(start end)
-  "The perltidy command we pass markers to."
-  (shell-command-on-region start 
-                           end 
-                           "perltidy" 
-                           t
-                           t
-                           (get-buffer-create "*Perltidy Output*")))
+    "The perltidy command we pass markers to."
+    (shell-command-on-region start 
+                             end 
+                             "perltidy" 
+                             t
+                             t
+                             (get-buffer-create "*Perltidy Output*")))
 
-;; Updated as a dwim.  I like using the existing buffer rather than creating a new buffer.
-(defun perltidy-dwim (arg)
-  "Perltidy a region of the entire buffer"
-  (interactive "P")
-  (let ((point (point)) (start) (end))
-	(if (and mark-active transient-mark-mode)
-		(setq start (region-beginning)
-			  end (region-end))
-	  (setq start (point-min)
-			end (point-max)))
-	(perltidy-command start end)
-	(goto-char point)))
-(add-hook 'cperl-mode-hook
-	  (lambda ()
-	    (local-set-key (kbd "C-c t") 'perltidy-dwim)))
-)
+  ;; Updated as a dwim.  I like using the existing buffer rather than creating a new buffer.
+  (defun perltidy-dwim (arg)
+    "Perltidy a region of the entire buffer"
+    (interactive "P")
+    (let ((point (point)) (start) (end))
+      (if (and mark-active transient-mark-mode)
+          (setq start (region-beginning)
+                end (region-end))
+        (setq start (point-min)
+              end (point-max)))
+      (perltidy-command start end)
+      (goto-char point)))
+  (add-hook 'cperl-mode-hook
+            (lambda ()
+              (local-set-key (kbd "C-c t") 'perltidy-dwim)))
+  )
 
 (defun dos2unix* ()
   "Not exactly but it's easier to remember"
