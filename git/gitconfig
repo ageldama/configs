@@ -16,4 +16,6 @@
 [merge]
 	tool = vimdiff
 [core]
-    excludesfile = /Users/jyun/.gitignore_global
+	excludesfile = ~/.gitignore
+#[credential]
+	#helper = osxkeychain
