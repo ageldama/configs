@@ -411,7 +411,8 @@
       ;;
       (setq rtags-use-helm t)
       ;; Shutdown rdm when leaving emacs.
-      (add-hook 'kill-emacs-hook 'rtags-quit-rdm)))
+      ;;(add-hook 'kill-emacs-hook 'rtags-quit-rdm)
+      ))
   ;; TODO: Has no coloring! How can I get coloring?
   (use-package helm-rtags :ensure t :pin melpa
     :config
