@@ -272,7 +272,7 @@
 (use-package yaml-mode :ensure t :pin melpa)
 
 ;;; Rust
-(when t
+(when nil
   ;; http://julienblanchard.com/2016/fancy-rust-development-with-emacs/
   ;; NOTE: cargo install rustfmt
   ;; NOTE: cargo install racer
@@ -311,13 +311,14 @@
                    (custom-set-variables '(haskell-stylish-on-save t)))))
 
 ;;; Groovy
-(when t
+(when nil
   (use-package groovy-mode :ensure t :pin melpa))
 
 ;;; Perl 5
 (when t
   (use-package helm-perldoc :ensure t :pin melpa
     :config (helm-perldoc:setup))
+  (use-package cpanfile-mode :ensure t :pin melpa)
   (defalias 'perl-mode 'cperl-mode)
   (setq cperl-indent-level 4)
   ;;
@@ -347,14 +348,28 @@
               (local-set-key (kbd "C-c t") 'perltidy-dwim)))
   )
 
+;;; CMake
+(when t
+  (use-package cmake-mode :ensure t :pin melpa))
+
+;;; crlf
 (defun dos2unix* ()
   "Not exactly but it's easier to remember"
   (interactive)
   (set-buffer-file-coding-system 'unix 't))
 
-;;;
+;;; regex
 (when nil
   (use-package regex-tool :ensure t :pin melpa))
+
+;;; slime
+(when nil
+  (use-package slime :ensure t :pin melpa
+    :config (progn
+              (setq inferior-lisp-program "/Users/jhyun/local/sbcl-1.2.11-x86-64-darwin/run-sbcl.sh")
+              (require 'slime)
+              (slime-setup '(slime-fancy)))))
+
 
 
 ;;; EOF.
