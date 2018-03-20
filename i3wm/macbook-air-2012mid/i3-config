@@ -139,6 +139,7 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 exec --no-startup-id /usr/bin/redshift-gtk
 exec --no-startup-id /home/jhyun/local/bin/caps-to-ctrl.sh 2
 exec --no-startup-id dropbox-cli start
+exec --no-startup-id blueman-applet
 exec --no-startup-id xsetroot
 exec --no-startup-id xautolock -time 5 -locker 'i3lock -c 000000 '
 
