@@ -145,10 +145,8 @@ exec --no-startup-id xautolock -time 5 -locker 'i3lock -c 006700 '
 
 bindsym $mod+Escape exec i3lock -c 006700
 bindsym Shift+$mod+d exec gmrun
-bindsym Print exec gnome-screenshot
-bindsym Shift+Print exec gnome-screenshot -i
-bindsym $mod+F12 exec gnome-screenshot
-bindsym Shift+$mod+F12 exec gnome-screenshot -i
+bindsym $mod+p exec gnome-screenshot
+bindsym Shift+$mod+p exec gnome-screenshot -i
 bindsym $mod+F10 exec sh -c 'pavucontrol'
 
 bindsym XF86AudioMute exec pamixer -t
