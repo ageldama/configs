@@ -151,6 +151,7 @@ bindsym $mod+F12 exec gnome-screenshot
 bindsym Shift+$mod+F12 exec gnome-screenshot -i
 bindsym $mod+F10 exec sh -c 'pavucontrol'
 
+bindsym XF86AudioMute exec pamixer -t
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
