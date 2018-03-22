@@ -63,6 +63,7 @@
          (progn
            (set-face-attribute 'default nil
                                :font "Noto Sans Mono CJK KR"
+                               ;;:font "Ubuntu Mono"
                                ;; :font "SpoqaHanSans"
                                ;; :font "Inconsolata"
                                ;; :font "MMCedar"
@@ -79,6 +80,7 @@
                  ;;(font-name "D2Coding")
                  ;;(font-name "나눔바른고딕")
                  (font-name "Noto Sans Mono CJK KR")
+                 ;;(font-name "Ubuntu Mono")
                  ;;(font-name "SpoqaHanSans")
                  ;;(font-name "아리따L")
                  )
@@ -441,5 +443,38 @@
       (add-hook 'c-mode-hook #'setup-flycheck-rtags)
       (add-hook 'c++-mode-hook #'setup-flycheck-rtags))))
 
+;;; protobuf
+(when t
+  (use-package protobuf-mode :ensure t :pin melpa))
+
+;;; golang
+(when t
+  (use-package go-mode :ensure t :pin melpa
+    :config (progn
+              (defun go-mode-before-save-hook ()
+                (when (eq major-mode 'go-mode)
+                  (progn (gofmt)
+                         (go-remove-unused-imports))))
+              (add-hook 'before-save-hook 'go-mode-before-save-hook)))
+  (use-package company-go :ensure t :pin melpa
+    :config (progn (add-hook 'go-mode-hook
+                             (lambda ()
+                               (set (make-local-variable 'company-backends) '(company-go))
+                               (company-mode)))
+                   (local-set-key (kbd "C-c \\") #'company-go))
+    ;;(use-package go-autocomplete :ensure t :pin melpa)
+    )
+  (use-package gotest :ensure t :pin melpa
+    :config (dolist (i '(("T" . go-test-current-file)
+                         ("t" . go-test-current-test)
+                         ("p" . go-test-current-project)
+                         ("b" . go-test-current-benchmark)
+                         ("r" . go-run)))
+              (let ((k (first i))
+                    (f (last i)))
+                (define-key go-mode-map (kbd (format "C-c t %s" k)) f))))
+  )
+
+                   
 
 ;;; EOF.
