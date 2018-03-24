@@ -87,40 +87,6 @@
   (use-package regex-tool :ensure t :pin melpa))
 
 
-;;; protobuf
-(when t
-  (use-package protobuf-mode :ensure t :pin melpa))
-
-;;; golang
-(when t
-  (use-package go-mode :ensure t :pin melpa
-    :config (progn
-              (defun go-mode-before-save-hook ()
-                (when (eq major-mode 'go-mode)
-                  (progn (gofmt)
-                         (go-remove-unused-imports))))
-              (add-hook 'before-save-hook 'go-mode-before-save-hook)))
-  (use-package company-go :ensure t :pin melpa
-    :config (progn (add-hook 'go-mode-hook
-                             (lambda ()
-                               (set (make-local-variable 'company-backends) '(company-go))
-                               (company-mode)))
-                   (local-set-key (kbd "C-c \\") #'company-go))
-    ;;(use-package go-autocomplete :ensure t :pin melpa)
-    )
-  (use-package gotest :ensure t :pin melpa
-    :config (dolist (i '(("T" . go-test-current-file)
-                         ("t" . go-test-current-test)
-                         ("p" . go-test-current-project)
-                         ("b" . go-test-current-benchmark)
-                         ("r" . go-run)))
-              (let ((k (first i))
-                    (f (last i)))
-                (define-key go-mode-map (kbd (format "C-c t %s" k)) f))))
-  )
-
-;;; YAML
-(use-package yaml-mode :ensure t :pin melpa)
 
 ;;; Rust
 (when nil
@@ -199,21 +165,6 @@
               (local-set-key (kbd "C-c t") 'perltidy-dwim)))
   )
 
-;;; elpy, jedi.
-(when t
-  (use-package elpy :ensure t :pin melpa)  
-  (use-package jedi :ensure t :pin melpa)
-  (use-package pylint :ensure t :pin melpa)
-  ;;
-  (add-hook 'python-mode-hook 'jedi:setup)
-  (setq jedi:complete-on-dot t)
-  (elpy-enable)
-  (add-hook 'python-mode-hook
-            (lambda ()
-              (setq indent-tabs-mode nil)
-              (setq tab-width 4)
-              (setq python-indent 4)))
-  (require 'ob-python))
 
 
 

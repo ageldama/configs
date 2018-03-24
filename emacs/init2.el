@@ -155,17 +155,26 @@
   :config (global-flycheck-mode +1))
 
 ;;; company.
-(use-package company :ensure t :pin melpa
-  :config (progn (require 'company)
-                 (global-set-key (kbd "C-c \\") 'company-complete)                 
-                 (add-hook 'after-init-hook 'global-company-mode)
-                 ;; NOT-SURE: (setq company-backends (delete 'company-semantic company-backends))
-                 ))
+(when nil
+  (use-package company :ensure t :pin melpa
+    :config (progn (require 'company)
+                   (global-auto-complete-mode t)
+                   (global-set-key (kbd "C-c \\") 'company-complete)                 
+                   (add-hook 'after-init-hook 'global-company-mode)
+                   ;; NOT-SURE: (setq company-backends (delete 'company-semantic company-backends))
+                   )))
+
+;;; auto-complete
+(when t
+  (use-package auto-complete :ensure t :pin melpa
+    :config (progn (ac-config-default)
+                   (global-set-key (kbd "C-c \\") 'ac-start))))
 
 ;;; powerline.
-(when nil
-  (use-package powerline :ensure t :pin melpa)
-  (use-package airline-themes :ensure t :pin melpa))
+(when t
+  (use-package powerline :ensure t :pin melpa
+    :config (powerline-center-theme)))
+ 
 
 ;;; colortheme.
 (when nil
@@ -260,6 +269,119 @@
   (interactive)
   (set-buffer-file-coding-system 'unix 't))
 
+
+;;; golang
+(when t
+  (use-package go-mode :ensure t :pin melpa
+    :config (progn
+              (defun go-mode-before-save-hook ()
+                (when (eq major-mode 'go-mode)
+                  (progn (gofmt)
+                         (go-remove-unused-imports))))
+              (add-hook 'before-save-hook 'go-mode-before-save-hook)))
+  (when nil
+    (use-package company-go :ensure t :pin melpa
+      :config (progn (add-hook 'go-mode-hook
+                               (lambda ()
+                                 (set (make-local-variable 'company-backends) '(company-go))
+                                 (company-mode)))
+                     (local-set-key (kbd "C-c \\") #'company-go))))
+  (use-package go-autocomplete :ensure t :pin melpa)
+  (use-package gotest :ensure t :pin melpa
+    :config (dolist (i '(("T" . go-test-current-file)
+                         ("t" . go-test-current-test)
+                         ("p" . go-test-current-project)
+                         ("b" . go-test-current-benchmark)
+                         ("r" . go-run)))
+              (let ((k (first i))
+                    (f (last i)))
+                (define-key go-mode-map (kbd (format "C-c t %s" k)) f))))
+  )
+
+;;; protobuf
+(when t
+  (use-package protobuf-mode :ensure t :pin melpa))
+
+;;; YAML
+(use-package yaml-mode :ensure t :pin melpa)
+
+;;; elpy, jedi.
+(when t
+  (use-package elpy :ensure t :pin melpa)  
+  (use-package jedi :ensure t :pin melpa
+    :config (progn   (add-hook 'python-mode-hook 'jedi:setup)
+                     (jedi:ac-setup)
+                     (setq jedi:complete-on-dot t)
+                     (elpy-enable)))
+  (use-package pylint :ensure t :pin melpa))
+
+(add-hook 'python-mode-hook
+          (lambda ()
+            (setq indent-tabs-mode nil)
+            (setq tab-width 4)
+            (setq python-indent 4)))
+
+(require 'ob-python)
+
+(when nil
+  (use-package anaconda-mode :ensure t :pin melpa
+    :config (progn (add-hook 'python-mode-hook 'anaconda-mode)
+                   (add-hook 'python-mode-hook 'anaconda-eldoc-mode))))
+
+
+;;; rdm
+;;; http://martinsosic.com/development/emacs/2017/12/09/emacs-cpp-ide.html
+(when t
+  (use-package rtags :ensure t :pin melpa
+    :config
+    (progn
+      (unless (rtags-executable-find "rc") (error "Binary rc is not installed!"))
+      (unless (rtags-executable-find "rdm") (error "Binary rdm is not installed!"))
+      ;;
+      (define-key c-mode-base-map (kbd "M-.") 'rtags-find-symbol-at-point)
+      (define-key c-mode-base-map (kbd "M-,") 'rtags-find-references-at-point)
+      (define-key c-mode-base-map (kbd "M-?") 'rtags-display-summary)
+      (rtags-enable-standard-keybindings)
+      ;;
+      (setq rtags-use-helm t)
+      ;; Shutdown rdm when leaving emacs.
+      ;;(add-hook 'kill-emacs-hook 'rtags-quit-rdm)
+      ))
+  ;; TODO: Has no coloring! How can I get coloring?
+  (use-package helm-rtags :ensure t :pin melpa
+    :config
+    (progn
+      (setq rtags-display-result-backend 'helm)))
+  ;; Use rtags for auto-completion.
+  (when t
+    (use-package company-rtags :ensure t :pin melpa
+      :config (progn (setq rtags-autostart-diagnostics t)
+                     (rtags-diagnostics)
+                     (setq rtags-completions-enabled t)
+                     (push 'company-rtags company-backends)
+                     (add-hook 'c-mode-hook #'company-mode)
+                     (add-hook 'c++-mode-hook #'company-mode))
+                     (define-key c++-mode-map (kbd "C-c \\") 'company-complete)))
+  (when nil
+    (use-package ac-rtags :ensure t :pin melpa))
+  ;; Live code checking.
+  (use-package flycheck-rtags :ensure t :pin melpa
+    :config
+    (progn
+      ;; ensure that we use only rtags checking
+      ;; https://github.com/Andersbakken/rtags#optional-1
+      (defun setup-flycheck-rtags ()
+        (flycheck-select-checker 'rtags)
+        (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+        (setq-local flycheck-check-syntax-automatically nil)
+        (rtags-set-periodic-reparse-timeout 2.0)  ;; Run flycheck 2 seconds after being idle.
+        )
+      (add-hook 'c-mode-hook #'setup-flycheck-rtags)
+      (add-hook 'c++-mode-hook #'setup-flycheck-rtags))))
+
+;;; CMake
+(when t
+  (use-package cmake-mode :ensure t :pin melpa))
 
 
 ;;; EOF.
