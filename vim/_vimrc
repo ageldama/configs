@@ -1,8 +1,8 @@
 " ~/.vimrc
 "
-"  ageldama@gmail.com : 2006-11-16 12:36
-"  ageldama@gmail.com : 2017-08-05 20:10
-"
+"  ageldama@gmail.com : 2006-11-16
+"  ageldama@gmail.com : 2017-08-05
+"  ageldama@gmail.com : 2018-03-24 
 "
 
 " https://github.com/VundleVim/Vundle.vim/issues/769#issue-188457119
@@ -51,12 +51,20 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'kien/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
-""Bundle 'fatih/vim-go'
 Bundle 'mileszs/ack.vim'
 Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
 Bundle 'w0rp/ale'
 Bundle 'junegunn/seoul256.vim'
+" Golang
+"Bundle 'fatih/vim-go'
+Bundle 'majutsushi/tagbar'
+" YCM
+if 0
+    Bundle 'Valloric/YouCompleteMe'
+    let g:ycm_autoclose_preview_window_after_completion=1
+    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
+endif
 
 
 if 0
@@ -144,12 +152,15 @@ set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
 if has('gui_running')
-    "set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 12
-    set guifont=Inconsolata\ Medium\ 12
+    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
+    "set guifont=Inconsolata\ Medium\ 12
 	"set guifont="Noto Sans Mono CJK KR 14"
+    color darkblue
+    set bg=light
+else
+    color default
+    set bg=dark
 endif
-set bg=dark
-color seoul256
 
 
 if 0 
@@ -227,5 +238,9 @@ fun DoPerlTidy()
      :PerlTidy
     exe "goto " . Pos
 endfun
+
+" Clipboard
+set clipboard=unnamed
+
 
 "EOF
