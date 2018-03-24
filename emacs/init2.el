@@ -296,6 +296,8 @@
               (let ((k (first i))
                     (f (last i)))
                 (define-key go-mode-map (kbd (format "C-c t %s" k)) f))))
+  (use-package go-eldoc :ensure t :pin melpa
+    :config (add-hook 'go-mode-hook 'go-eldoc-setup))
   )
 
 ;;; protobuf
@@ -382,6 +384,5 @@
 ;;; CMake
 (when t
   (use-package cmake-mode :ensure t :pin melpa))
-
 
 ;;; EOF.
