@@ -298,6 +298,7 @@
                 (define-key go-mode-map (kbd (format "C-c t %s" k)) f))))
   (use-package go-eldoc :ensure t :pin melpa
     :config (add-hook 'go-mode-hook 'go-eldoc-setup))
+  (define-key go-mode-map (kbd "C-c d") 'godoc-at-point)
   )
 
 ;;; protobuf
@@ -384,5 +385,9 @@
 ;;; CMake
 (when t
   (use-package cmake-mode :ensure t :pin melpa))
+
+;;; realgud
+(when t
+  (use-package realgud :ensure t :pin melpa))
 
 ;;; EOF.
