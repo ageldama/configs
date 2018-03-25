@@ -55,6 +55,7 @@
 
 ;;; org-mode
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
+(setq org-log-done 'time)
 
 ;;; gui-fonts
 (when (and t window-system)
