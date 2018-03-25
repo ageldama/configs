@@ -62,27 +62,15 @@
              (string-equal system-type "darwin"))
          (progn
            (set-face-attribute 'default nil
-                               :font "Noto Sans Mono CJK KR"
-                               ;;:font "Ubuntu Mono"
-                               ;; :font "SpoqaHanSans"
-                               ;; :font "Inconsolata"
-                               ;; :font "MMCedar"
-                               ;; :font "Fantasque Sans Mono"
-                               ;; :font "Hack"
-                               ;; :font "Fira Code Light"                               
+                               :font "Envy Code R"
+                               ;; :font "Noto Sans Mono CJK KR"
                                )
-           ;; Inconsolata, EnvyCodeR, Consolas, Inconsolatazi4
            (let (
                  ;;(font-name "LexiSaebomR")
-                 ;;(font-name "NanumBarunGothic")
-                 ;;(font-name "Noto Sans Mono CJK KR")
-                 ;;(font-name "JejuMyeongjo")
+                 (font-name "NanumSquareRound")
                  ;;(font-name "D2Coding")
-                 ;;(font-name "나눔바른고딕")
-                 (font-name "Noto Sans Mono CJK KR")
-                 ;;(font-name "Ubuntu Mono")
+                 ;;(font-name "Noto Sans Mono CJK KR")
                  ;;(font-name "SpoqaHanSans")
-                 ;;(font-name "아리따L")
                  )
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
