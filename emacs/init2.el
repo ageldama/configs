@@ -67,9 +67,10 @@
                                )
            (let (
                  ;;(font-name "LexiSaebomR")
-                 (font-name "NanumSquareRound")
+                 ;;(font-name "NanumSquareRound")
+                 ;;(font-name "KoPubBatang Medium")
                  ;;(font-name "D2Coding")
-                 ;;(font-name "Noto Sans Mono CJK KR")
+                 (font-name "Noto Serif CJK KR")
                  ;;(font-name "SpoqaHanSans")
                  )
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
