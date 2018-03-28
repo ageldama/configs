@@ -37,7 +37,7 @@ bindsym $mod+Shift+q kill
 
 # DMENU2!!!
 # start dmenu (a program launcher)
-bindsym $mod+d exec dmenu_run
+bindsym $mod+d exec rofi -show drun
 # There also is the (new) i3-dmenu-desktop which only displays applications
 # shipping a .desktop file. It is a wrapper around dmenu, so you need that
 # installed.
@@ -145,7 +145,7 @@ exec --no-startup-id hsetroot -solid "#ccaacc"
 exec --no-startup-id xautolock -time 5 -locker 'i3lock-fancy'
 
 bindsym $mod+Escape exec i3lock-fancy
-bindsym Shift+$mod+d exec gmrun
+#bindsym Shift+$mod+d exec gmrun
 bindsym $mod+p exec gnome-screenshot
 bindsym Shift+$mod+p exec gnome-screenshot -i
 bindsym $mod+F10 exec sh -c 'pavucontrol'
