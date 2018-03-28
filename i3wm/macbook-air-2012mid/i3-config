@@ -35,6 +35,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
+# DMENU2!!!
 # start dmenu (a program launcher)
 bindsym $mod+d exec dmenu_run
 # There also is the (new) i3-dmenu-desktop which only displays applications
@@ -140,10 +141,10 @@ exec --no-startup-id /usr/bin/redshift-gtk
 exec --no-startup-id /home/jhyun/local/bin/caps-to-ctrl.sh 2
 exec --no-startup-id dropbox-cli start
 exec --no-startup-id blueman-applet
-exec --no-startup-id xsetroot -solid "#ccaacc"
-exec --no-startup-id xautolock -time 5 -locker 'i3lock -c 006700 '
+exec --no-startup-id hsetroot -solid "#ccaacc"
+exec --no-startup-id xautolock -time 5 -locker 'i3lock-fancy'
 
-bindsym $mod+Escape exec i3lock -c 006700
+bindsym $mod+Escape exec i3lock-fancy
 bindsym Shift+$mod+d exec gmrun
 bindsym $mod+p exec gnome-screenshot
 bindsym Shift+$mod+p exec gnome-screenshot -i

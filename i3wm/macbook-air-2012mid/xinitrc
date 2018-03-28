@@ -17,7 +17,7 @@
 export PATH=$PATH:/home/jhyun/local/bin
 
 #export TERMINAL=konsole
-export TERMINAL=lxterminal
+export TERMINAL=urxvt
 
 #export XMODIFIERS="@im=SCIM"
 #export QT_IM_MODULE=scim
@@ -84,6 +84,10 @@ pulseaudio --start &
 # TODO nm-applet &
 
 # redshift-gtk &
+
+xrdb -load ~/.Xresources
+
+compton -b &
 
 exec i3
 
