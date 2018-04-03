@@ -309,6 +309,7 @@ executes.
  This function is mostly useful for variables that need to be set
 before packages are loaded. If you are unsure, you should try in setting them in
 `dotspacemacs/user-config' first."
+  (prefer-coding-system 'utf-8-unix) 
   (setq default-input-method "korean-hangul")
   (setq-default user-full-name "Jong-Hyouk Yun")
   (setq-default user-mail-address "ageldama@gmail.com")
