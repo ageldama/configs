@@ -101,15 +101,13 @@
          (progn
            (set-face-attribute 'default nil :font "Consolas")
            (let (
-                 (font-name "D2Coding")
+                 (font-name "제주명조")
                  ;;(font-name "나눔명조")
                  )
              (set-fontset-font "fontset-default" '(#x1100 . #xffdc) (cons font-name "unicode-bmp"))
              (set-fontset-font "fontset-default" '(#xe0bc . #xf66e) (cons font-name "unicode-bmp")))))
         ((string-equal system-type "darwin")
          (set-face-attribute 'default nil :family "Andale Mono" :height 135 :weight 'normal))
-        ((string-equal system-type "windows-nt")
-         (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
 
 
@@ -191,6 +189,8 @@
 (global-set-key (kbd "C-x b") 'helm-mini)
 
 
+(use-package evil :ensure t :pin melpa
+  :config (evil-mode 1))
 
 
 (defun open-my-scratch-org-file ()
