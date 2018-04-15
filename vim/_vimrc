@@ -55,37 +55,10 @@ Bundle 'mileszs/ack.vim'
 Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
 Bundle 'w0rp/ale'
-Bundle 'junegunn/seoul256.vim'
+
 " Golang
 "Bundle 'fatih/vim-go'
 Bundle 'majutsushi/tagbar'
-" YCM
-if 0
-    Bundle 'Valloric/YouCompleteMe'
-    let g:ycm_autoclose_preview_window_after_completion=1
-    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR>
-endif
-
-
-if 0
-
-" Track the engine.
-Plugin 'SirVer/ultisnips'
-
-" Snippets are separated from the engine. Add this if you want them:
-Plugin 'honza/vim-snippets'
-
-" Trigger configuration. Do not use <tab> if you use https://github.com/Valloric/YouCompleteMe.
-let g:UltiSnipsExpandTrigger="<c-tab>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
-
-" If you want :UltiSnipsEdit to split your window.
-let g:UltiSnipsEditSplit="vertical"
-
-endif
-
-
 
 
 "------------------------------------------------------------------------------
@@ -163,12 +136,6 @@ else
 endif
 
 
-if 0 
-    Plugin 'bluz71/vim-moonfly-colors' 
-    colorscheme moonfly
-endif
-
-
 " 파일인코딩
 set fencs=utf8,euc-kr
 
@@ -177,29 +144,6 @@ filetype on
 filetype indent on
 filetype plugin on
 
-" vim-jedi
-"let g:jedi#popup_on_dot=0   " it's faster. just use <C>-<SPACE> for the completion popup.
-
-
-" Add the virtualenv's site-packages to vim path
-"python3 << EOF
-"import os.path
-"import sys
-"import vim
-"if 'VIRTUAL_ENV' in os.environ:
-"    project_base_dir = os.environ['VIRTUAL_ENV']
-"    sys.path.insert(0, project_base_dir)
-"    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
-"    execfile(activate_this, dict(__file__=activate_this))
-"EOF
-
-
-"
-" http://unlogic.co.uk/2013/02/08/vim-as-a-python-ide/
-" http://www.sontek.net/blog/2011/05/07/turning_vim_into_a_modern_python_ide.html#virtualenv
-"
-
-
 " airline
 set laststatus=2
 
@@ -207,17 +151,6 @@ set laststatus=2
 "map <Leader>mbe :MBEOpen<cr>
 "map <Leader>mbc :MBEClose<cr>
 "map <Leader>mbt :MBEToggle<cr>
-
-" Syntastic
-if 0
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-endif
 
 " ALE 
 if 1
