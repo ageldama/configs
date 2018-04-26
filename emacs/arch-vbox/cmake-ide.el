@@ -1,12 +1,14 @@
 ;;; cmake-ide
+(when (boundp 'spacemacs-version)
+  (dolist (i '(flycheck-clang-tidy rtags cmake-ide clang-format))
+    (add-to-list 'dotspacemacs-additional-packages i)))
+
 (unless (boundp 'spacemacs-version)
   (use-package flycheck :ensure t :pin melpa
-    :config (global-flycheck-mode))  ;; 이것만 설치해도, cmake-ide에서 자동으로 체크되는듯.
-  )
+    :config (global-flycheck-mode)))
 (progn
   (add-hook 'c-mode-hook 'flycheck-mode)
-  (add-hook 'c++-mode-hook 'flycheck-mode)
-  )
+  (add-hook 'c++-mode-hook 'flycheck-mode))
 
 (use-package flycheck-clang-tidy :ensure t :pin melpa
   :config  (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
@@ -17,11 +19,7 @@
                    (setq company-idle-delay 0)))
 (progn
   (add-hook 'c-mode-hook 'company-mode)
-  (add-hook 'c++-mode-hook 'company-mode)
-  )
-
-(use-package eldoc :ensure t :pin melpa
-  :diminish eldoc-mode)
+  (add-hook 'c++-mode-hook 'company-mode))
 
 ;; (use-package irony :ensure t :pin melpa
 ;;   :config (progn (add-hook 'c++-mode-hook 'irony-mode)
@@ -50,6 +48,9 @@
                  (define-key c-mode-base-map (kbd "M-i") (function rtags-imenu))
                  (define-key c-mode-base-map (kbd "C-c <") (function rtags-location-stack-back))
                  ))
+
+(use-package eldoc :ensure t :pin melpa
+  :diminish eldoc-mode)
 
 ;;; Rtags + Eldoc:
 ;;; https://github.com/Andersbakken/rtags/issues/987
@@ -121,6 +122,37 @@
       (clang-format-buffer)))
   (define-key c-mode-base-map (kbd "C-c C-f") (function clang-format))
   (define-key c-mode-base-map (kbd "C-c f") (function clang-format-auto)))
+
+;; major-mode keys
+(when (boundp 'spacemacs-version)
+  (dolist (mode-name '(c-mode c++-mode))
+    (spacemacs/declare-prefix-for-mode mode-name "mb" "build&cmake")
+    (spacemacs/declare-prefix-for-mode mode-name "mr" "rtags")
+    (spacemacs/declare-prefix-for-mode mode-name "mf" "formatting")
+    (spacemacs/set-leader-keys-for-major-mode mode-name
+      ;; Compile, CMake
+      "bc" 'cmake-ide-run-cmake
+      "bb" 'cmake-ide-compile
+      "bB" 'cmake-ide-compile*
+      ;; RTags
+      "r." 'rtags-find-symbol-at-point
+      "r," 'rtags-find-references-at-point
+      "r;" 'rtags-find-file
+      "rs" 'rtags-find-symbol
+      "rr" 'rtags-find-references
+      "rv" 'rtags-find-virtuals-at-point
+      "ri" 'rtags-imenu
+      "r<" 'rtags-location-stack-back
+      "rD" 'rtags-dependency-tree
+      "rR" 'rtags-references-tree
+      "r!" 'rtags-fix-fixit-at-point
+      ;; Debugger
+      "d" 'cmake-ide-helm-run-gdb
+      ;; Formatting
+      "ff" 'clang-format-auto
+      "fF" 'clang-format
+      )))
+
 
 ;; DONE: clang-tidy
 ;; DONE: run-tests
