@@ -6,12 +6,18 @@
 (unless (boundp 'spacemacs-version)
   (use-package flycheck :ensure t :pin melpa
     :config (global-flycheck-mode)))
+
+(defun my-c-c++-mode-flycheck-hook ()
+  (interactive)
+  (flycheck-select-checker 'c/c++-clang)
+  (flycheck-mode))
 (progn
-  (add-hook 'c-mode-hook 'flycheck-mode)
-  (add-hook 'c++-mode-hook 'flycheck-mode))
+  (add-hook 'c-mode-hook 'my-c-c++-mode-flycheck-hook)
+  (add-hook 'c++-mode-hook 'my-c-c++-mode-flycheck-hook))
 
 (use-package flycheck-clang-tidy :ensure t :pin melpa
-  :config  (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup))
+  ;; :config  (add-hook 'flycheck-mode-hook #'flycheck-clang-tidy-setup)
+  )
 
 (use-package company :ensure t :pin melpa
   :config   (progn (add-hook 'after-init-hook 'global-company-mode)
@@ -31,7 +37,7 @@
 ;;   :config (add-hook 'irony-mode-hook #'irony-eldoc))
 
 (use-package rtags :ensure t :pin melpa
-  :config (progn (setq rtags-autostart-diagnostics t)
+  :config (progn (setq rtags-autostart-diagnostics nil)
                  (setq rtags-completions-enabled t)
                  (require 'company)
                  (push 'company-rtags company-backends)
@@ -83,6 +89,15 @@
 
 (add-hook 'c-mode-hook 'rtags-eldoc-mode)
 (add-hook 'c++-mode-hook 'rtags-eldoc-mode)
+
+;; (defun my-flycheck-rtags-setup ()
+;;   "Configure flycheck-rtags for better experience."
+;;   (flycheck-select-checker 'rtags)
+;;   (setq-local flycheck-check-syntax-automatically nil)
+;;   (setq-local flycheck-highlighting-mode nil))
+;; (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+;; (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+;; (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
 
 (use-package cmake-ide :ensure t :pin melpa
   :config (progn (require 'rtags) ;; optional, must have rtags installed
@@ -143,6 +158,7 @@
       "rv" 'rtags-find-virtuals-at-point
       "ri" 'rtags-imenu
       "r<" 'rtags-location-stack-back
+      "rd" 'rtags-diagnostics
       "rD" 'rtags-dependency-tree
       "rR" 'rtags-references-tree
       "r!" 'rtags-fix-fixit-at-point
