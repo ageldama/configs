@@ -59,8 +59,6 @@ values."
    dotspacemacs-additional-packages '(
                                       ;; CMake-IDE
                                       flycheck-clang-tidy
-                                      irony
-                                      irony-eldoc
                                       rtags
                                       cmake-ide
                                       clang-format

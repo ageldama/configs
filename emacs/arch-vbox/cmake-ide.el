@@ -23,14 +23,14 @@
 (use-package eldoc :ensure t :pin melpa
   :diminish eldoc-mode)
 
-(use-package irony :ensure t :pin melpa
-  :config (progn (add-hook 'c++-mode-hook 'irony-mode)
-		 (add-hook 'c-mode-hook 'irony-mode)
-		 (add-hook 'objc-mode-hook 'irony-mode)
-		 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
+;; (use-package irony :ensure t :pin melpa
+;;   :config (progn (add-hook 'c++-mode-hook 'irony-mode)
+;; 		 (add-hook 'c-mode-hook 'irony-mode)
+;; 		 (add-hook 'objc-mode-hook 'irony-mode)
+;; 		 (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)))
 
-(use-package irony-eldoc :ensure t :pin melpa  ; 이걸로 eldoc.
-  :config (add-hook 'irony-mode-hook #'irony-eldoc))
+;; (use-package irony-eldoc :ensure t :pin melpa  ; 이걸로 eldoc.
+;;   :config (add-hook 'irony-mode-hook #'irony-eldoc))
 
 (use-package rtags :ensure t :pin melpa
   :config (progn (setq rtags-autostart-diagnostics t)
@@ -50,6 +50,38 @@
                  (define-key c-mode-base-map (kbd "M-i") (function rtags-imenu))
                  (define-key c-mode-base-map (kbd "C-c <") (function rtags-location-stack-back))
                  ))
+
+;;; Rtags + Eldoc:
+;;; https://github.com/Andersbakken/rtags/issues/987
+(defun fontify-string (str mode)
+  "Return STR fontified according to MODE."
+  (with-temp-buffer
+    (insert str)
+    (delay-mode-hooks (funcall mode))
+    (font-lock-default-function mode)
+    (font-lock-default-fontify-region
+     (point-min) (point-max) nil)
+    (buffer-string)))
+
+(defun rtags-eldoc-function ()
+  (let ((summary (rtags-get-summary-text)))
+    (and summary
+         (fontify-string
+          (replace-regexp-in-string
+           "{[^}]*$" ""
+           (mapconcat
+            (lambda (str) (if (= 0 (length str)) "//" (string-trim str)))
+            (split-string summary "\r?\n")
+            " "))
+          major-mode))))
+
+(defun rtags-eldoc-mode ()
+  (interactive)
+  (setq-local eldoc-documentation-function #'rtags-eldoc-function)
+  (eldoc-mode 1))
+
+(add-hook 'c-mode-hook 'rtags-eldoc-mode)
+(add-hook 'c++-mode-hook 'rtags-eldoc-mode)
 
 (use-package cmake-ide :ensure t :pin melpa
   :config (progn (require 'rtags) ;; optional, must have rtags installed
