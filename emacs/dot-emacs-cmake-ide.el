@@ -124,10 +124,18 @@
 ;; DONE: cmake-ide / debug-flag?
 ;; DONE: cmake-ide / use ninja instead of make?
 ;; (setq cmake-ide-cmake-opts "-DCMAKE_BUILD_TYPE=Debug -GNinja")
+
 ;; DONE: ".dir-locals.el"
 ;; ((nil . ((cmake-ide-build-dir . "./_build")
 ;;	 (flycheck-clang-tidy-build-path . "_build")
 ;; 	 (cmake-ide-cmake-opts . "-DCMAKE_BUILD_TYPE=Debug -GNinja"))))
+
+;; INSTALL: rtags, clang-tidy, clang-format
+;; M-x irony-server-install
+
+;; DONE: ".clang-tidy"
+;;Checks: '-*,clang-diagnostic-*,llvm-*,misc-*'
+
 
 ;;;
 (custom-set-variables
