@@ -2,7 +2,7 @@
 
 ;;; spacemacs additional packages whitelist
 (when (boundp 'spacemacs-version)
-  (dolist (i '(flycheck-clang-tidy rtags cmake-ide clang-format))
+  (dolist (i '(flycheck-clang-tidy rtags cmake-ide clang-format disaster))
     (add-to-list 'dotspacemacs-additional-packages i)))
 
 ;;; flycheck
@@ -211,11 +211,51 @@
   (define-key c-mode-base-map (kbd "C-c C-f") (function clang-format))
   (define-key c-mode-base-map (kbd "C-c f") (function clang-format-auto)))
 
+
+;;; disaster
+(use-package disaster :ensure t :pin melpa)
+
+(defun cmake-ide-objdump-disaster (file-name)
+  (let* ((objdump-cmd (format "%s %s" disaster-objdump (shell-quote-argument file-name)))
+         (buf (set-buffer (generate-new-buffer objdump-cmd))))
+    (shell-command objdump-cmd buf)
+    (read-only-mode)
+    (asm-mode)
+    (disaster--shadow-non-assembly-code)
+    (switch-to-buffer-other-window buf)))
+
+(defun cmake-ide-find-obj-files ()
+  (interactive)
+  (let* ((exec-files (seq-filter 'file-readable-p
+                                 (directory-files-recursively
+                                  (cide--build-dir) ".+\.o[bj]?$")))
+         (base-buffer-name (file-name-base (buffer-name)))
+         (calc-dist (lambda (fn) (cons fn
+                                       (levenshtein-distance
+                                        base-buffer-name
+                                        (file-name-base fn)))))
+         (cdr-< (lambda (a b) (< (cdr a) (cdr b))))
+         (distances (sort (mapcar calc-dist exec-files) cdr-<)))
+    (mapcar 'car distances)))
+
+(defun cmake-ide-obj-files-source ()
+  (interactive)
+  (require 'seq)
+  `((name . "Object file to objdump")
+    (candidates . ,(cmake-ide-find-obj-files))
+    (action . (lambda (sel) (cmake-ide-objdump-disaster sel)))))
+
+(defun cmake-ide-objdump ()
+  (interactive)
+  (helm :sources (cmake-ide-obj-files-source)))
+
+
 ;;; spacemacs major-mode keys
 (when (boundp 'spacemacs-version)
   (dolist (mode-name '(c-mode c++-mode))
     (spacemacs/declare-prefix-for-mode mode-name "mb" "build&cmake")
     (spacemacs/declare-prefix-for-mode mode-name "mr" "rtags")
+    (spacemacs/declare-prefix-for-mode mode-name "m`" "misc")
     (spacemacs/set-leader-keys-for-major-mode mode-name
       ;; Compile, CMake
       "bc" 'cmake-ide-run-cmake
@@ -241,6 +281,8 @@
       "x" 'cmake-ide-helm-run-exe
       ;; Formatting
       "f" 'clang-format-auto
+      ;; Disassemble
+      "`d" 'cmake-ide-objdump
       )))
 
 
