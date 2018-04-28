@@ -126,6 +126,13 @@
 		     (cd old-pw)))
 		 (define-key c-mode-base-map (kbd "C-c b") (function cmake-ide-compile*))))
 
+(defun cmake-ide-delete-build-dir ()
+  (interactive)
+  (let ((dir-name (cide--build-dir)))
+    (when (yes-or-no-p (format "Delete directory %s ?" dir-name))
+      (delete-directory dir-name t)
+      (message (format "DELETED %s" dir-name)))))
+
 ;;; cmake-ide + gdb/exec.
 (defun run-process-in-comint (cmd-and-args)
   (let* ((name (format "Process: %s" (string-join cmd-and-args " ")))
@@ -261,6 +268,7 @@
       "bc" 'cmake-ide-run-cmake
       "bb" 'cmake-ide-compile
       "bB" 'cmake-ide-compile*
+      "bD" 'cmake-ide-delete-build-dir
       ;; RTags
       "." 'rtags-find-symbol-at-point
       "," 'rtags-location-stack-back
