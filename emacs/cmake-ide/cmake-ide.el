@@ -134,8 +134,8 @@
       (message (format "DELETED %s" dir-name)))))
 
 ;;; cmake-ide + gdb/exec.
-(defun run-process-in-comint (cmd-and-args)
-  (let* ((name (format "Process: %s" (string-join cmd-and-args " ")))
+(defun run-process-in-comint (cmd)
+  (let* ((name (format "Process: %s" cmd))
          (buf (set-buffer (generate-new-buffer name)))
          (proc nil)
          (line-- (make-string 80 ?-))
@@ -146,8 +146,7 @@
     (switch-to-buffer-other-window buf)
     ;;
     (insert (format "Starting: %s\n%s\n" (current-time-string) line--))
-    (setq proc
-          (apply 'start-process (append (list name buf) cmd-and-args)))
+    (setq proc (start-process-shell-command name buf cmd))
     (set-process-sentinel proc (lambda (proc evt)
                                  (insert (format "==========\n%s -- (%s) %s\n"
                                                  evt
@@ -196,7 +195,7 @@
   `((name . "Executable file")
     (candidates . ,(cmake-ide-find-exe-file))
     (action . (lambda (sel)
-                (run-process-in-comint (list (read-from-minibuffer "Cmd: " sel)))))))
+                (run-process-in-comint (read-from-minibuffer "Cmd: " sel))))))
 
 (defun cmake-ide-helm-run-exe ()
   (interactive)
