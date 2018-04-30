@@ -269,6 +269,7 @@
       "bB" 'cmake-ide-compile*
       "bD" 'cmake-ide-delete-build-dir
       ;; RTags
+      "?" 'rtags-print-symbol-info
       "." 'rtags-find-symbol-at-point
       "," 'rtags-location-stack-back
       ">" 'rtags-find-references-at-point
