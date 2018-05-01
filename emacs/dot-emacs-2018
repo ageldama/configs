@@ -132,6 +132,10 @@
 (use-package doom-themes :ensure t :pin melpa)
 (load-theme 'doom-city-lights t)
 
+;;; Modeline
+(use-package telephone-line :ensure t :pin melpa
+  :config (telephone-line-mode +1))
+
 ;;; lacarte -- better F10 menu-bar.
 (use-package lacarte :ensure t :pin marmalade
   :config  
