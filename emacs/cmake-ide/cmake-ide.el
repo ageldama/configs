@@ -1,9 +1,11 @@
 ;;; cmake-ide and its deps.
 
+(require 'cl)
+
 ;;; spacemacs additional packages whitelist
-(when (boundp 'spacemacs-version)
-  (dolist (i '(flycheck-clang-tidy rtags cmake-ide clang-format disaster))
-    (add-to-list 'dotspacemacs-additional-packages i)))
+;; (when (boundp 'spacemacs-version)
+;;   (dolist (i '(flycheck-clang-tidy rtags cmake-ide clang-format disaster))
+;;     (add-to-list 'dotspacemacs-additional-packages i)))
 
 ;;; flycheck
 (unless (boundp 'spacemacs-version)
@@ -292,6 +294,40 @@
       ;; Disassemble
       "`d" 'cmake-ide-objdump
       )))
+
+(when (fboundp 'general-create-definer)
+  (general-define-key
+   :keymaps 'c-mode-base-map
+   :prefix "C-c m"
+      ;; Compile, CMake
+      "b c" 'cmake-ide-run-cmake
+      "b b" 'cmake-ide-compile
+      "b B" 'cmake-ide-compile*
+      "b D" 'cmake-ide-delete-build-dir
+      ;; RTags
+      "?" 'rtags-print-symbol-info
+      "." 'rtags-find-symbol-at-point
+      "," 'rtags-location-stack-back
+      ">" 'rtags-find-references-at-point
+      ";" 'rtags-find-file
+      "v" 'rtags-find-virtuals-at-point
+      "[" 'rtags-previous-match
+      "]" 'rtags-next-match
+      "!" 'rtags-fix-fixit-at-point
+      "r s" 'rtags-find-symbol
+      "r r" 'rtags-find-references
+      "r i" 'rtags-imenu
+      "r d" 'rtags-diagnostics
+      "r D" 'rtags-dependency-tree
+      "r R" 'rtags-references-tree
+      ;; Debugger
+      "d" 'cmake-ide-helm-run-gdb
+      "x" 'cmake-ide-helm-run-exe
+      ;; Formatting
+      "f" 'clang-format-auto
+      ;; Disassemble
+      "` d" 'cmake-ide-objdump
+      ))
 
 
 ;; FILE ".dir-locals.el"
