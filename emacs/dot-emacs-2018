@@ -120,6 +120,11 @@
 
 (use-package unfill :ensure t :pin melpa)
 
+(use-package hl-todo :ensure t :pin melpa
+  :config (global-hl-todo-mode +1))
+
+;; TODO: writeroom?
+
 ;; (use-package ace-popup-menu :ensure t :pin melpa
 ;;   :config (ace-popup-menu-mode -1))
 
@@ -133,17 +138,6 @@
    (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
    (global-set-key [?\M-`]     'lacarte-execute-menu-command)
    (global-set-key [f10]       'lacarte-execute-menu-command))
-
-
-;;; General -- Leading Keybinder
-(use-package general :ensure t :pin melpa)
-
-(general-create-definer my-spacemacs-leader-def :prefix "SPC")
-(my-spacemacs-leader-def 'normal
-			 "/" 'helm-ag
-)
-
-
 
 ;;; helm, ag
 (use-package helm :ensure t :pin melpa
@@ -193,7 +187,7 @@
 ;;; company.
 (use-package company :ensure t :pin melpa
   :config (progn (require 'company)
-		 (global-auto-complete-mode t)
+		 (global-company-mode t)
 		 (global-set-key (kbd "C-c \\") 'company-complete)                 
 		 (add-hook 'after-init-hook 'global-company-mode)))
 
@@ -204,5 +198,37 @@
 ;;; Org
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (setq org-log-done 'time)
+
+
+;;; General -- Leading Keybinder
+(use-package general :ensure t :pin melpa)
+
+(general-create-definer my-spacemacs-leader-def :prefix "SPC")
+(my-spacemacs-leader-def 'normal
+  "/" 'helm-ag
+  "SPC" 'helm-M-x
+  "TAB" 'helm-mini
+  "?" 'helm-descbinds
+  "G" 'magit-status
+  "f d" 'dired
+  "f r" 'helm-recentf
+  "f S" 'evil-write-all
+  )
+
+ ;; (thing-at-point 'word t)
+;; SPC /
+;;   (spacemacs/helm-project-smart-do-search &optional DEFAULT-INPUTP)
+;; SPC *
+;;   (spacemacs/helm-project-smart-do-search-region-or-symbol)
+;; SPC b
+;;     b helm-mini
+;;     / helm-swoop-all-buffer
+;;     * helm-swoop-all-buffer
+
+;; SPC s
+;;     w helm-swoop
+;;     W helm-swoop-current-buffer
+
+;; TODO: assign "C-c p" -> "SPC p" ???
 
 ;;; EOF.
