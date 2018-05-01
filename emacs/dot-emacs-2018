@@ -173,9 +173,8 @@
 ;;; Git
 (use-package magit :ensure t :pin melpa)
 
-(use-package git-gutter :ensure t :pin melpa
+(use-package git-gutter-fringe :ensure t :pin melpa
   :config (global-git-gutter-mode +1))
-
 
 
 ;;; Org
@@ -194,7 +193,7 @@
     ("a866134130e4393c0cad0b4f1a5b0dd580584d9cf921617eee3fd54b6f09ac37" "242ed4611e9e78142f160e9a54d7e108750e973064cee4505bfcfc22cc7c61b1" "c5d320f0b5b354b2be511882fc90def1d32ac5d38cccc8c68eab60a62d1621f2" "891debfe489c769383717cc7d0020244a8d62ce6f076b2c42dd1465b7c94204d" default)))
  '(package-selected-packages
    (quote
-    (git-gutter hlinum general evil-collection hydra lacarte helm-descbinds doom-themes evil-vimish-fold nlinum-hl nlinum vi-tilde-fringe evil ace-window rainbow-delimiters helm-ag unfill markdown-mode magit neotree helm which-key use-package))))
+    (git-gutter-fringe hlinum general evil-collection hydra lacarte helm-descbinds doom-themes evil-vimish-fold nlinum-hl nlinum vi-tilde-fringe evil ace-window rainbow-delimiters helm-ag unfill markdown-mode magit neotree helm which-key use-package))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
