@@ -203,32 +203,28 @@
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
-(general-create-definer my-spacemacs-leader-def :prefix "SPC")
-(my-spacemacs-leader-def 'normal
+(general-create-definer my-root-leader-def :prefix "SPC")
+(my-root-leader-def 'normal
   "/" 'helm-ag
+  "#" 'helm-swoop
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
   "?" 'helm-descbinds
   "G" 'magit-status
-  "f d" 'dired
-  "f r" 'helm-recentf
-  "f S" 'evil-write-all
+  "p" (general-simulate-key "C-c p" :name projectile)
+  "e" (general-simulate-key "C-c !" :name flycheck)
   )
 
- ;; (thing-at-point 'word t)
-;; SPC /
-;;   (spacemacs/helm-project-smart-do-search &optional DEFAULT-INPUTP)
-;; SPC *
-;;   (spacemacs/helm-project-smart-do-search-region-or-symbol)
-;; SPC b
-;;     b helm-mini
-;;     / helm-swoop-all-buffer
-;;     * helm-swoop-all-buffer
+(general-create-definer my-f-leader-def  :prefix "SPC f" )
+(my-f-leader-def 'normal 
+		 "d" 'dired
+		 "r" 'helm-recentf
+		 "S" 'evil-write-all)
 
-;; SPC s
-;;     w helm-swoop
-;;     W helm-swoop-current-buffer
-
-;; TODO: assign "C-c p" -> "SPC p" ???
+(general-create-definer my-b-leader-def  :prefix "SPC b" )
+(my-b-leader-def 'normal
+  "/" 'helm-ag-buffers
+  "#" 'helm-multi-swoop
+  )
 
 ;;; EOF.
