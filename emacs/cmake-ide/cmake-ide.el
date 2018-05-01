@@ -2,6 +2,8 @@
 
 (require 'cl)
 
+(use-package cmake-mode :ensure t :pin melpa)
+
 ;;; spacemacs additional packages whitelist
 ;; (when (boundp 'spacemacs-version)
 ;;   (dolist (i '(flycheck-clang-tidy rtags cmake-ide clang-format disaster))
