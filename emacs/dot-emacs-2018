@@ -1,0 +1,203 @@
+;;; -*- mode: emacs-lisp; coding: utf-8; -*-
+
+(setq inhibit-startup-screen t)
+(setq default-input-method "korean-hangul")
+(prefer-coding-system 'utf-8-unix)
+
+(setq-default user-full-name "Jong-Hyouk Yun")
+(setq-default user-mail-address "ageldama@gmail.com")
+
+(column-number-mode t)
+(display-time-mode -1)
+(show-paren-mode t)
+(transient-mark-mode t)
+
+(if window-system
+    (progn
+      (menu-bar-mode -1)
+      (tool-bar-mode -1)
+      (scroll-bar-mode -1))
+  (progn
+    (menu-bar-mode -1)))
+
+;;; package.el
+(require 'package)
+(dolist (i '(("org" . "http://orgmode.org/elpa/")
+	     ("gnu" . "http://elpa.gnu.org/packages/")
+	     ("elpa" . "http://elpa.gnu.org/packages/")
+	     ("melpa" . "http://melpa.milkbox.net/packages/")
+	     ("marmalade" . "http://marmalade-repo.org/packages/")))
+  (add-to-list 'package-archives i))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;;; GUI fonts
+(defun set-gui-font-for-korean (korean-font fallback-font)
+  (set-face-attribute 'default nil :font fallback-font)
+  ;; Korean ranges
+  (set-fontset-font "fontset-default" '(#x1100 . #xffdc)
+		    (cons korean-font "unicode-bmp"))
+  (set-fontset-font "fontset-default" '(#xe0bc . #xf66e)
+		    (cons korean-font "unicode-bmp")))
+  
+(when (and t window-system)
+  ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
+  ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
+  (cond ((or (string-equal system-type "gnu/linux")
+             (string-equal system-type "darwin"))
+	 (set-gui-font-for-korean "Noto Serif CJK KR" "Envy Code R"))
+	;; Windows
+        ((string-equal system-type "windows-nt")
+         (set-face-attribute 'default nil :font "Consolas-11"))
+        (t :unknown)))
+
+;;; which-key
+(use-package which-key :ensure t 
+  :config (which-key-mode))
+
+(use-package helm-descbinds     :ensure t :pin melpa
+  :config (global-set-key (kbd "C-h b") 'helm-descbinds))
+
+;;; Evil
+(use-package evil :ensure t :pin melpa
+  :init (setq evil-want-integration nil)
+  :config (evil-mode +1))
+
+(global-linum-mode +1)
+
+(use-package hlinum :ensure t :pin melpa
+  :config (hlinum-activate))
+
+(defun my-evil-visual-state-entry-hook ()
+  (when (and hl-line-mode (eq evil-visual-selection 'block))
+    (hl-line-mode -1)))
+(add-hook 'evil-visual-state-entry-hook 'my-evil-visual-state-entry-hook)
+
+(defun my-evil-visual-state-exit-hook ()
+  (when (and (not hl-line-mode) (eq evil-visual-selection 'block))
+    (hl-line-mode)))
+(add-hook 'evil-visual-state-exit-hook 'my-evil-visual-state-exit-hook)
+
+(use-package evil-collection :ensure t :after evil
+  :config (evil-collection-init))
+
+;; (use-package evil-easymotion :ensure t :pin melpa
+;;   :config (evilem-default-keybindings "SPC"))
+
+(use-package evil-goggles :ensure t :pin melpa
+  :config (evil-goggles-mode +1))
+
+(use-package vi-tilde-fringe :ensure t :pin melpa
+  :config (vi-tilde-fringe-mode +1))
+
+(use-package evil-vimish-fold :ensure t :pin melpa
+  :config (evil-vimish-fold-mode 1))
+
+;;; windmove
+;; (when (package-installed-p 'windmove)
+;;   (global-set-key (kbd "C-c <left>")  'windmove-left)
+;;   (global-set-key (kbd "C-c <right>") 'windmove-right)
+;;   (global-set-key (kbd "C-c <up>")    'windmove-up)
+;;   (global-set-key (kbd "C-c <down>")  'windmove-down))
+;; (use-package ace-window :pin melpa :ensure t)
+
+;;; rainbow-delimiters
+(use-package rainbow-delimiters  :ensure t :pin melpa
+  :config
+  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+;;; miscs
+(use-package neotree :ensure t :pin melpa)
+
+(use-package markdown-mode :ensure t :pin melpa)
+
+(use-package unfill :ensure t :pin melpa)
+
+;; (use-package ace-popup-menu :ensure t :pin melpa
+;;   :config (ace-popup-menu-mode -1))
+
+;;; Themes
+(use-package doom-themes :ensure t :pin melpa)
+(load-theme 'doom-city-lights t)
+
+;;; lacarte -- better F10 menu-bar.
+(use-package lacarte :ensure t :pin marmalade
+  :config  
+   (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
+   (global-set-key [?\M-`]     'lacarte-execute-menu-command)
+   (global-set-key [f10]       'lacarte-execute-menu-command))
+
+
+;;; General -- Leading Keybinder
+(use-package general :ensure t :pin melpa)
+
+(general-create-definer my-spacemacs-leader-def :prefix "SPC")
+
+(my-spacemacs-leader-def 'normal
+  "/" 'helm-ag
+  )
+
+
+;;; helm, ag
+(use-package helm :ensure t :pin melpa
+  :config (progn (require 'helm-config)
+                 (helm-mode +1)
+                 (setq helm-mode-fuzzy-match t                       
+                       helm-recentf-fuzzy-match t
+                       helm-buffers-fuzzy-matching t
+                       helm-recentf-fuzzy-match t
+                       helm-buffers-fuzzy-matching t
+                       helm-locate-fuzzy-match t
+                       helm-M-x-fuzzy-match t
+                       helm-semantic-fuzzy-match t
+                       helm-imenu-fuzzy-match t
+                       helm-apropos-fuzzy-match t
+                       helm-lisp-completion-at-point t)
+                 (global-set-key (kbd "M-x") 'helm-M-x)
+                 (global-set-key (kbd "C-x C-f") 'helm-find-files)
+                 (global-set-key (kbd "C-x b") 'helm-mini)))
+
+(use-package helm-ag :ensure t :pin melpa)
+
+;;; projectile + helm
+(use-package projectile :pin melpa
+  :config (projectile-global-mode))
+
+(use-package helm-projectile :ensure t :pin melpa
+  :config (progn (setq projectile-completion-system 'helm)
+                 (helm-projectile-on)))
+
+;;; Git
+(use-package magit :ensure t :pin melpa)
+
+(use-package git-gutter :ensure t :pin melpa
+  :config (global-git-gutter-mode +1))
+
+
+
+;;; Org
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(setq org-log-done 'time)
+
+
+
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(custom-safe-themes
+   (quote
+    ("a866134130e4393c0cad0b4f1a5b0dd580584d9cf921617eee3fd54b6f09ac37" "242ed4611e9e78142f160e9a54d7e108750e973064cee4505bfcfc22cc7c61b1" "c5d320f0b5b354b2be511882fc90def1d32ac5d38cccc8c68eab60a62d1621f2" "891debfe489c769383717cc7d0020244a8d62ce6f076b2c42dd1465b7c94204d" default)))
+ '(package-selected-packages
+   (quote
+    (git-gutter hlinum general evil-collection hydra lacarte helm-descbinds doom-themes evil-vimish-fold nlinum-hl nlinum vi-tilde-fringe evil ace-window rainbow-delimiters helm-ag unfill markdown-mode magit neotree helm which-key use-package))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
