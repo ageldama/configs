@@ -129,12 +129,14 @@
 ;;   :config (ace-popup-menu-mode -1))
 
 ;;; Themes
-(use-package doom-themes :ensure t :pin melpa)
-(load-theme 'doom-city-lights t)
+(when window-system
+  (use-package doom-themes :ensure t :pin melpa)
+  (load-theme 'doom-city-lights t))
 
 ;;; Modeline
-(use-package telephone-line :ensure t :pin melpa
-  :config (telephone-line-mode +1))
+(when window-system
+  (use-package telephone-line :ensure t :pin melpa
+    :config (telephone-line-mode +1)))
 
 ;;; lacarte -- better F10 menu-bar.
 (use-package lacarte :ensure t :pin marmalade
@@ -203,6 +205,16 @@
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (setq org-log-done 'time)
 
+;;; Multiterm
+(use-package multi-term :ensure t :pin melpa
+  :config (add-hook 'term-mode-hook (lambda()
+				      (turn-off-evil-mode)
+				      (linum-mode -1)
+				      (hl-line-mode -1)
+				      )
+		    (evil-set-initial-state 'term-mode 'emacs)
+		    ))
+
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
@@ -216,6 +228,7 @@
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
   "?" 'helm-descbinds
+  "'" 'multi-term
   "G" 'magit-status
   "p" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
