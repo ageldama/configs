@@ -129,7 +129,7 @@
 ;;   :config (ace-popup-menu-mode -1))
 
 ;;; Themes
-(when (and nil window-system)
+(when (and window-system)
   (use-package doom-themes :ensure t :pin melpa)
   (load-theme 'doom-city-lights t))
 
