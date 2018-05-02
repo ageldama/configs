@@ -123,8 +123,6 @@
 (use-package hl-todo :ensure t :pin melpa
   :config (global-hl-todo-mode +1))
 
-;; TODO: writeroom?
-
 ;; (use-package ace-popup-menu :ensure t :pin melpa
 ;;   :config (ace-popup-menu-mode -1))
 
@@ -162,7 +160,8 @@
                        helm-lisp-completion-at-point t)
                  (global-set-key (kbd "M-x") 'helm-M-x)
                  (global-set-key (kbd "C-x C-f") 'helm-find-files)
-                 (global-set-key (kbd "C-x b") 'helm-mini)))
+                 (global-set-key (kbd "C-x b") 'helm-mini)
+		 ))
 
 (use-package helm-ag :ensure t :pin melpa)
 
@@ -205,6 +204,10 @@
 (add-hook 'org-mode-hook 'turn-on-auto-fill)
 (setq org-log-done 'time)
 
+;; writeroom?
+(use-package writeroom-mode :ensure t :pin melpa)
+
+
 ;;; Multiterm
 (use-package multi-term :ensure t :pin melpa
   :config (add-hook 'term-mode-hook (lambda()
@@ -212,7 +215,6 @@
 				      (linum-mode -1)
 				      (hl-line-mode -1)
 				      )
-		    (evil-set-initial-state 'term-mode 'emacs)
 		    ))
 
 
@@ -223,7 +225,8 @@
 
 (general-create-definer my-root-leader-def :prefix "SPC")
 (my-root-leader-def 'normal
-  "/" 'helm-ag
+  "/" 'helm-occur
+  "C-/" 'helm-ag
   "#" 'helm-swoop
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
@@ -232,6 +235,7 @@
   "G" 'magit-status
   "p" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
+  "W" 'writeroom-mode
   )
 
 (general-create-definer my-f-leader-def  :prefix "SPC f" )
@@ -245,5 +249,19 @@
   "/" 'helm-ag-buffers
   "#" 'helm-multi-swoop
   )
+
+
+;;; Evil, no thanks here:
+(defun evil-nothanks-mode (mode)
+  (when (fboundp mode)
+    (evil-set-initial-state mode 'emacs)))
+
+(when (fboundp 'evil-set-initial-state)
+  (dolist (mode '(dired-mode
+		  helm-ag-mode
+		  helm-moccur-mode
+		  term-mode))
+    (evil-nothanks-mode mode)))
+
 
 ;;; EOF.
