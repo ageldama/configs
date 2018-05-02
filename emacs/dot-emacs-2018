@@ -129,14 +129,13 @@
 ;;   :config (ace-popup-menu-mode -1))
 
 ;;; Themes
-(when window-system
+(when (and nil window-system)
   (use-package doom-themes :ensure t :pin melpa)
   (load-theme 'doom-city-lights t))
 
 ;;; Modeline
-(when window-system
-  (use-package telephone-line :ensure t :pin melpa
-    :config (telephone-line-mode +1)))
+(use-package telephone-line :ensure t :pin melpa
+  :config (telephone-line-mode +1))
 
 ;;; lacarte -- better F10 menu-bar.
 (use-package lacarte :ensure t :pin marmalade
