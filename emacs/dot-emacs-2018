@@ -1,5 +1,6 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
+;;; Code:
 (setq inhibit-startup-screen t)
 (setq default-input-method "korean-hangul")
 (prefer-coding-system 'utf-8-unix)
@@ -40,6 +41,8 @@
 
 ;;; GUI fonts
 (defun set-gui-font-for-korean (korean-font fallback-font)
+  "Set the korean range (by 'KOREAN-FONT')
+and latin (as FALLBACK-FONT) separately."
   (set-face-attribute 'default nil :font fallback-font)
   ;; Korean ranges
   (set-fontset-font "fontset-default" '(#x1100 . #xffdc)
@@ -59,7 +62,7 @@
         (t :unknown)))
 
 ;;; which-key
-(use-package which-key :ensure t 
+(use-package which-key :ensure t
   :config (which-key-mode))
 
 (use-package helm-descbinds     :ensure t :pin melpa
@@ -72,8 +75,7 @@
 
 (global-linum-mode +1)
 
-(use-package hlinum :ensure t :pin melpa 
-  :config (hlinum-activate))
+(use-package hlinum :ensure t :pin melpa :config (hlinum-activate))
 
 (global-hl-line-mode +1)
 ;; (defun my-evil-visual-state-entry-hook ()
@@ -138,16 +140,16 @@
 
 ;;; lacarte -- better F10 menu-bar.
 (use-package lacarte :ensure t :pin marmalade
-  :config  
+  :config (progn
    (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
    (global-set-key [?\M-`]     'lacarte-execute-menu-command)
-   (global-set-key [f10]       'lacarte-execute-menu-command))
+   (global-set-key [f10]       'lacarte-execute-menu-command)))
 
 ;;; helm, ag
 (use-package helm :ensure t :pin melpa
   :config (progn (require 'helm-config)
                  (helm-mode +1)
-                 (setq helm-mode-fuzzy-match t                       
+                 (setq helm-mode-fuzzy-match t
                        helm-recentf-fuzzy-match t
                        helm-buffers-fuzzy-matching t
                        helm-recentf-fuzzy-match t
@@ -193,7 +195,7 @@
 (use-package company :ensure t :pin melpa
   :config (progn (require 'company)
 		 (global-company-mode t)
-		 (global-set-key (kbd "C-c \\") 'company-complete)                 
+		 (global-set-key (kbd "C-c \\") 'company-complete)
 		 (add-hook 'after-init-hook 'global-company-mode)))
 
 
@@ -239,7 +241,7 @@
   )
 
 (general-create-definer my-f-leader-def  :prefix "SPC f" )
-(my-f-leader-def 'normal 
+(my-f-leader-def 'normal
 		 "d" 'dired
 		 "r" 'helm-recentf
 		 "S" 'evil-write-all)
@@ -253,6 +255,7 @@
 
 ;;; Evil, no thanks here:
 (defun evil-nothanks-mode (mode)
+  "Apply evil-set-initial-state-mode as 'EMACS for given MODE is available."
   (when (fboundp mode)
     (evil-set-initial-state mode 'emacs)))
 
