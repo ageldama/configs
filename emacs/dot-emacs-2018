@@ -46,7 +46,7 @@
 		    (cons korean-font "unicode-bmp"))
   (set-fontset-font "fontset-default" '(#xe0bc . #xf66e)
 		    (cons korean-font "unicode-bmp")))
-  
+
 (when (and t window-system)
   ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
   ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
@@ -134,8 +134,9 @@
   (load-theme 'doom-city-lights t))
 
 ;;; Modeline
-(use-package telephone-line :ensure t :pin melpa
-  :config (telephone-line-mode +1))
+(when (and window-system)
+  (use-package telephone-line :ensure t :pin melpa
+    :config (telephone-line-mode +1)))
 
 ;;; lacarte -- better F10 menu-bar.
 (use-package lacarte :ensure t :pin marmalade
