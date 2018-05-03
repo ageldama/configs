@@ -263,7 +263,7 @@ and latin (as FALLBACK-FONT) separately."
   (dolist (mode '(dired-mode
 		  helm-ag-mode
 		  helm-moccur-mode
-		  info-mode
+		  Info-mode
 		  eww-mode
 		  term-mode))
     (evil-nothanks-mode mode)))
