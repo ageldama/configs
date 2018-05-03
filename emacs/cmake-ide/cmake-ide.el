@@ -2,6 +2,9 @@
 
 (require 'cl)
 
+(unless (fboundp 'levenshtein-distance)
+  (use-package levenshtein :ensure t :pin melpa))
+
 (use-package cmake-mode :ensure t :pin melpa)
 
 ;;; spacemacs additional packages whitelist
