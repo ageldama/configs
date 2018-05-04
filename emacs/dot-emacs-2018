@@ -129,7 +129,7 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (ace-popup-menu-mode -1))
 
 ;;; Themes
-(when (and window-system)
+(when (and nil window-system)
   (use-package doom-themes :ensure t :pin melpa)
   (load-theme 'doom-city-lights t))
 
