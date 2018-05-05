@@ -265,6 +265,7 @@ and latin (as FALLBACK-FONT) separately."
 		  helm-moccur-mode
 		  Info-mode
 		  eww-mode
+		  debugger-mode
 		  term-mode))
     (evil-nothanks-mode mode)))
 
