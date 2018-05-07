@@ -231,6 +231,19 @@ and latin (as FALLBACK-FONT) separately."
 				      )
 		    ))
 
+;;; Window selection.
+(defun helm-select-window ()
+  (interactive)
+  (when (< 1 (length (window-list)))
+    (let* ((names-wins
+	    (mapcar (lambda (w) (cons (prin1-to-string w) w)) (window-list)))
+	   (src `((name . "Window")
+		  (candidates . ,names-wins)
+		  (action . (lambda (sel) (select-window sel))))))
+      (helm :sources src))))
+
+(global-set-key (kbd "C-x w") 'helm-select-window)
+
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
@@ -249,6 +262,7 @@ and latin (as FALLBACK-FONT) separately."
   "G" 'magit-status
   "p" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
+  "w" 'helm-select-window
   "W" 'writeroom-mode
   )
 
