@@ -177,7 +177,21 @@ and latin (as FALLBACK-FONT) separately."
 
 
 ;;; Swoop
-(use-package helm-swoop :ensure t :pin melpa)
+(use-package helm-swoop :ensure t :pin melpa
+  :config (progn
+	    ;; If there is no symbol at the cursor, use the last used words instead.
+	    (setq helm-swoop-pre-input-function
+		  (lambda ()
+		    (let (($pre-input (thing-at-point 'symbol)))
+		      (if (eq (length $pre-input) 0)
+			  helm-swoop-pattern ;; this variable keeps the last used words
+			$pre-input))))
+;;;
+	    (global-set-key (kbd "C-s") 'helm-swoop)
+	    ;; When doing isearch, hand the word over to helm-swoop
+	    (define-key isearch-mode-map (kbd "M-i") 'helm-swoop-from-isearch)
+	    ;; From helm-swoop to helm-multi-swoop-all
+	    (define-key helm-swoop-map (kbd "M-i") 'helm-multi-swoop-all-from-helm-swoop)))
 
 
 ;;; Git
@@ -227,9 +241,9 @@ and latin (as FALLBACK-FONT) separately."
 
 (general-create-definer my-root-leader-def :prefix "SPC")
 (my-root-leader-def 'normal
-  "/" 'helm-occur
+  "/" 'helm-swoop
   "C-/" 'helm-ag
-  "#" 'helm-swoop
+  "#" 'helm-occur
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
   "?" 'helm-descbinds
@@ -248,8 +262,8 @@ and latin (as FALLBACK-FONT) separately."
 
 (general-create-definer my-b-leader-def  :prefix "SPC b" )
 (my-b-leader-def 'normal
-  "/" 'helm-ag-buffers
-  "#" 'helm-multi-swoop
+  "/" 'helm-multi-swoop
+  "C-/" 'helm-ag-buffers
   )
 
 
