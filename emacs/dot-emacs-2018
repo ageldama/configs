@@ -102,14 +102,6 @@ and latin (as FALLBACK-FONT) separately."
 (use-package evil-vimish-fold :ensure t :pin melpa
   :config (evil-vimish-fold-mode 1))
 
-;;; windmove
-;; (when (package-installed-p 'windmove)
-;;   (global-set-key (kbd "C-c <left>")  'windmove-left)
-;;   (global-set-key (kbd "C-c <right>") 'windmove-right)
-;;   (global-set-key (kbd "C-c <up>")    'windmove-up)
-;;   (global-set-key (kbd "C-c <down>")  'windmove-down))
-;; (use-package ace-window :pin melpa :ensure t)
-
 ;;; rainbow-delimiters
 (use-package rainbow-delimiters  :ensure t :pin melpa
   :config
@@ -231,18 +223,20 @@ and latin (as FALLBACK-FONT) separately."
 				      )
 		    ))
 
-;;; Window selection.
-(defun helm-select-window ()
-  (interactive)
-  (when (< 1 (length (window-list)))
-    (let* ((names-wins
-	    (mapcar (lambda (w) (cons (prin1-to-string w) w)) (window-list)))
-	   (src `((name . "Window")
-		  (candidates . ,names-wins)
-		  (action . (lambda (sel) (select-window sel))))))
-      (helm :sources src))))
+;;; Window move.
+;; (defun helm-select-window ()
+;;   (interactive)
+;;   (when (< 1 (length (window-list)))
+;;     (let* ((names-wins
+;; 	    (mapcar (lambda (w) (cons (prin1-to-string w) w)) (window-list)))
+;; 	   (src `((name . "Window")
+;; 		  (candidates . ,names-wins)
+;; 		  (action . (lambda (sel) (select-window sel))))))
+;;       (helm :sources src))))
+;; (global-set-key (kbd "C-x w") 'helm-select-window)
 
-(global-set-key (kbd "C-x w") 'helm-select-window)
+(use-package ace-window :ensure t :pin melpa
+  :config (global-set-key (kbd "C-x o") 'ace-window))
 
 
 ;;; General -- Leading Keybinder
