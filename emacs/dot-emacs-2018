@@ -256,7 +256,6 @@ and latin (as FALLBACK-FONT) separately."
   "G" 'magit-status
   "p" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
-  "w" 'helm-select-window
   "W" 'writeroom-mode
   )
 
