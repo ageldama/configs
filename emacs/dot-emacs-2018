@@ -167,6 +167,15 @@ and latin (as FALLBACK-FONT) separately."
   :config (progn (setq projectile-completion-system 'helm)
                  (helm-projectile-on)))
 
+;;; dashboard
+(use-package dashboard :ensure t :pin melpa
+  :after projectile
+  :config (progn (dashboard-setup-startup-hook)
+		 (setq dashboard-items '((recents  . 5)
+					 (projects . 5)
+					 (bookmarks . 5)
+					 (agenda . 5)
+					 (registers . 5)))))
 
 ;;; Swoop
 (use-package helm-swoop :ensure t :pin melpa
