@@ -247,6 +247,15 @@ and latin (as FALLBACK-FONT) separately."
 (use-package ace-window :ensure t :pin melpa
   :config (global-set-key (kbd "C-x o") 'ace-window))
 
+;;; Yasnippet
+(use-package yasnippet :ensure t :pin melpa
+  :config ;;(yas-global-mode +1)
+  (add-hook 'prog-mode-hook #'yas-minor-mode)
+  )
+
+(use-package yasnippet-snippets :ensure t :pin melpa
+  :after yasnippet)
+
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
@@ -266,6 +275,7 @@ and latin (as FALLBACK-FONT) separately."
   "p" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
   "W" 'writeroom-mode
+  "i" 'yas-insert-snippet
   )
 
 (general-create-definer my-f-leader-def  :prefix "SPC f" )
@@ -280,6 +290,12 @@ and latin (as FALLBACK-FONT) separately."
   "C-/" 'helm-ag-buffers
   )
 
+(general-create-definer my-y-leader-def  :prefix "SPC y" )
+(my-y-leader-def 'normal
+  "i" 'yas-insert-snippet
+  "e" 'yas-visit-snippet-file
+  "n" 'yas-new-snippet
+  )
 
 ;;; Evil, no thanks here:
 (defun evil-nothanks-mode (mode)
