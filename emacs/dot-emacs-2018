@@ -267,16 +267,17 @@ and latin (as FALLBACK-FONT) separately."
 (general-create-definer my-root-leader-def :prefix "SPC")
 (my-root-leader-def 'normal
   "/" 'helm-swoop
-  "C-/" 'helm-ag
+  "a" 'helm-projectile-ag
   "#" 'helm-occur
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
   "?" 'helm-descbinds
   "'" 'multi-term
-  "G" 'magit-status
-  "p" (general-simulate-key "C-c p" :name projectile)
+  "g" 'magit-status
+  "p" 'helm-projectile
+  "P" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
-  "W" 'writeroom-mode
+  "w" 'writeroom-mode
   "i" 'yas-insert-snippet
   )
 
