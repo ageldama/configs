@@ -76,10 +76,13 @@ and latin (as FALLBACK-FONT) separately."
   :config (evil-mode +1))
 
 (global-linum-mode +1)
-
-(use-package hlinum :ensure t :pin melpa :config (hlinum-activate))
-
 (global-hl-line-mode +1)
+
+;; (use-package hlinum :ensure t :pin melpa :config (hlinum-deactivate))
+
+;; (use-package vi-tilde-fringe :ensure t :pin melpa
+;;   :config (global-vi-tilde-fringe-mode -1))
+
 ;; (defun my-evil-visual-state-entry-hook ()
 ;;   (when (and hl-line-mode (eq evil-visual-selection 'block))
 ;;     (hl-line-mode -1)))
@@ -97,9 +100,6 @@ and latin (as FALLBACK-FONT) separately."
 
 (use-package evil-goggles :ensure t :pin melpa
   :config (evil-goggles-mode +1))
-
-(use-package vi-tilde-fringe :ensure t :pin melpa
-  :config (global-vi-tilde-fringe-mode +1))
 
 (use-package evil-vimish-fold :ensure t :pin melpa
   :config (evil-vimish-fold-mode 1))
