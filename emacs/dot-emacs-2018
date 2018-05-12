@@ -279,25 +279,20 @@ and latin (as FALLBACK-FONT) separately."
   "e" (general-simulate-key "C-c !" :name flycheck)
   "w" 'writeroom-mode
   "i" 'yas-insert-snippet
-  )
-
-(general-create-definer my-f-leader-def  :prefix "SPC f" )
-(my-f-leader-def 'normal
-		 "d" 'dired
-		 "r" 'helm-recentf
-		 "S" 'evil-write-all)
-
-(general-create-definer my-b-leader-def  :prefix "SPC b" )
-(my-b-leader-def 'normal
-  "/" 'helm-multi-swoop
-  "C-/" 'helm-ag-buffers
-  )
-
-(general-create-definer my-y-leader-def  :prefix "SPC y" )
-(my-y-leader-def 'normal
-  "i" 'yas-insert-snippet
-  "e" 'yas-visit-snippet-file
-  "n" 'yas-new-snippet
+  ;; "f" - files.
+  "f" '(:ignore t :which-key "file+dir")
+  "f d" 'dired
+  "f r" 'helm-recentf
+  "f S" 'evil-write-all
+  ;; "b" - buffers.
+  "b" '(:ignore t :which-key "buffers")
+  "b /" 'helm-multi-swoop
+  "b a" 'helm-ag-buffers
+  ;; "y" - yasnippet
+  "y" '(:ignore t :which-key "yasnippet")
+  "y i" 'yas-insert-snippet
+  "y e" 'yas-visit-snippet-file
+  "y n" 'yas-new-snippet
   )
 
 ;;; Evil, no thanks here:
