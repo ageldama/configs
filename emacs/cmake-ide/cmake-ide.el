@@ -1,6 +1,8 @@
 ;;; cmake-ide and its deps.
 
 (require 'cl)
+(require 'company)
+(require 'flycheck)
 
 (unless (fboundp 'levenshtein-distance)
   (use-package levenshtein :ensure t :pin melpa))
@@ -13,10 +15,6 @@
 ;;     (add-to-list 'dotspacemacs-additional-packages i)))
 
 ;;; flycheck
-(unless (boundp 'spacemacs-version)
-  (use-package flycheck :ensure t :pin melpa
-    :config (global-flycheck-mode)))
-
 (defun my-c-c++-mode-flycheck-hook ()
   (interactive)
   (flycheck-select-checker 'c/c++-clang)
@@ -32,10 +30,6 @@
   )
 
 ;;; company
-(use-package company :ensure t :pin melpa
-  :config   (progn (add-hook 'after-init-hook 'global-company-mode)
-                   (global-set-key (kbd "C-c \\") 'company-complete-common-or-cycle)
-                   (setq company-idle-delay 0)))
 (progn
   (add-hook 'c-mode-hook 'company-mode)
   (add-hook 'c++-mode-hook 'company-mode))

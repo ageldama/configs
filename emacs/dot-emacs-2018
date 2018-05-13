@@ -139,7 +139,7 @@ and latin (as FALLBACK-FONT) separately."
    (global-set-key [?\M-`]     'lacarte-execute-menu-command)
    (global-set-key [f10]       'lacarte-execute-menu-command)))
 
-;;; helm, ag
+;;; helm
 (use-package helm :ensure t :pin melpa
   :config (progn (require 'helm-config)
                  (helm-mode +1)
@@ -159,7 +159,15 @@ and latin (as FALLBACK-FONT) separately."
                  (global-set-key (kbd "C-x b") 'helm-mini)
 		 ))
 
+;;; helm-ag
 (use-package helm-ag :ensure t :pin melpa)
+
+(defun helm-ag-maybe-projectile ()
+  (interactive)
+  (if (projectile-project-p)
+      (helm-projectile-ag)
+    (helm-ag)))
+ 
 
 ;;; projectile + helm
 (use-package projectile :pin melpa
@@ -211,6 +219,9 @@ and latin (as FALLBACK-FONT) separately."
   :config (progn (require 'company)
 		 (global-company-mode t)
 		 (global-set-key (kbd "C-c \\") 'company-complete)
+		 (define-key company-active-map (kbd "RET") 'company-complete-selection)
+		 (define-key company-active-map (kbd "<prior>") 'company-previous-page)
+		 (define-key company-active-map (kbd "<next>") 'company-next-page)
 		 (add-hook 'after-init-hook 'global-company-mode)))
 
 
@@ -267,7 +278,7 @@ and latin (as FALLBACK-FONT) separately."
 (general-create-definer my-root-leader-def :prefix "SPC")
 (my-root-leader-def 'normal
   "/" 'helm-swoop
-  "a" 'helm-projectile-ag
+  "a" 'helm-ag-maybe-projectile
   "#" 'helm-occur
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
@@ -283,6 +294,7 @@ and latin (as FALLBACK-FONT) separately."
   ;; "f" - files.
   "f" '(:ignore t :which-key "file+dir")
   "f d" 'dired
+  "f f" 'helm-find
   "f r" 'helm-recentf
   "f S" 'evil-write-all
   ;; "b" - buffers.
