@@ -7,7 +7,10 @@
 (defun load-layer (layer-name)
   "Specify LAYER-NAME as elisp filename to load."
   (interactive "fFile to load:")
-  (load-file (format "%s%s" load-layer-base-path layer-name)))
+  (let ((fn (if (file-exists-p layer-name)
+		layer-name
+	      (format "%s%s" load-layer-base-path layer-name))))
+    (load-file fn)))
 
 (defun load-cmake-ide-layer ()
   "Just load cmake-ide layer."

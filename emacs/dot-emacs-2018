@@ -279,6 +279,7 @@ and latin (as FALLBACK-FONT) separately."
   "e" (general-simulate-key "C-c !" :name flycheck)
   "w" 'writeroom-mode
   "i" 'yas-insert-snippet
+  "k" 'helm-show-kill-ring
   ;; "f" - files.
   "f" '(:ignore t :which-key "file+dir")
   "f d" 'dired
