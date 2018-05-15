@@ -1,37 +1,35 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
-
-;;; Code:
-(setq inhibit-startup-screen t)
-(setq default-input-method "korean-hangul")
+(setq                 inhibit-startup-screen t)
+(setq                 default-input-method   "korean-hangul")
 (prefer-coding-system 'utf-8-unix)
 
-(setq-default user-full-name "Jong-Hyouk Yun")
-(setq-default user-mail-address "ageldama@gmail.com")
+(setq user-full-name    "Jong-Hyouk Yun")
+(setq user-mail-address "ageldama@gmail.com")
 
-(column-number-mode t)
-(display-time-mode -1)
-(show-paren-mode t)
+(column-number-mode  t)
+(display-time-mode   -1)
+(show-paren-mode     t)
 (transient-mark-mode t)
 
 ;;; no backup files
-(setq-default make-backup-files nil)
-(setq-default version-control nil) ; backup uses version numbers?
+(setq make-backup-files nil)
+(setq version-control   nil)   ; backup uses version numbers?
 
 (if window-system
     (progn
-      (menu-bar-mode -1)
-      (tool-bar-mode -1)
+      (menu-bar-mode   -1)
+      (tool-bar-mode   -1)
       (scroll-bar-mode -1))
   (progn
-    (menu-bar-mode -1)))
+    (menu-bar-mode   -1)))
 
 ;;; package.el
 (require 'package)
-(dolist (i '(("org" . "http://orgmode.org/elpa/")
-	     ("gnu" . "http://elpa.gnu.org/packages/")
-	     ("elpa" . "http://elpa.gnu.org/packages/")
-	     ("melpa" . "http://melpa.milkbox.net/packages/")
-	     ("marmalade" . "http://marmalade-repo.org/packages/")))
+(dolist (i '(("org"		.	"http://orgmode.org/elpa/")
+	     ("gnu"		.	"http://elpa.gnu.org/packages/")
+	     ("elpa"		.	"http://elpa.gnu.org/packages/")
+	     ("melpa"		.	"http://melpa.milkbox.net/packages/")
+	     ("marmalade"	.	"http://marmalade-repo.org/packages/")))
   (add-to-list 'package-archives i))
 (package-initialize)
 
@@ -75,7 +73,7 @@ and latin (as FALLBACK-FONT) separately."
   :init (setq evil-want-integration nil)
   :config (evil-mode +1))
 
-(global-linum-mode +1)
+(global-linum-mode   +1)
 (global-hl-line-mode +1)
 
 ;; (use-package hlinum :ensure t :pin melpa :config (hlinum-deactivate))
@@ -104,10 +102,15 @@ and latin (as FALLBACK-FONT) separately."
 (use-package evil-vimish-fold :ensure t :pin melpa
   :config (evil-vimish-fold-mode 1))
 
+;; (use-package evil-matchit :ensure t :pin melpa
+;;   :config (global-evil-matchit-mode +1))
+
+;; (use-package evil-lion :ensure t :pin melpa
+;;   :config (evil-lion-mode +1))
+
 ;;; rainbow-delimiters
 (use-package rainbow-delimiters  :ensure t :pin melpa
-  :config
-  (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 ;;; miscs
 (use-package neotree :ensure t :pin melpa)
@@ -269,8 +272,7 @@ and latin (as FALLBACK-FONT) separately."
 ;;; Yasnippet
 (use-package yasnippet :ensure t :pin melpa
   :config ;;(yas-global-mode +1)
-  (add-hook 'prog-mode-hook #'yas-minor-mode)
-  )
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 (use-package yasnippet-snippets :ensure t :pin melpa
   :after yasnippet)
