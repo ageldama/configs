@@ -17,6 +17,10 @@
   (interactive)
   (load-layer "cmake-ide/cmake-ide.el"))
 
+(defun load-python-ide-layer ()
+  "Just load python elpy/jedi layer."
+  (interactive)
+  (load-layer "python/python.el"))
 
 
 ;;;EOF.
