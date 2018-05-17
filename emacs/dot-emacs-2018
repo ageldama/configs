@@ -63,6 +63,7 @@ and latin (as FALLBACK-FONT) separately."
 
 ;;; which-key
 (use-package which-key :ensure t
+  :diminish which-key-mode
   :config (which-key-mode))
 
 (use-package helm-descbinds     :ensure t :pin melpa
@@ -144,6 +145,7 @@ and latin (as FALLBACK-FONT) separately."
 
 ;;; helm
 (use-package helm :ensure t :pin melpa
+  :diminish helm-mode
   :config (progn (require 'helm-config)
 		 (helm-mode +1)
 		 (setq helm-split-window-in-side-p           t
