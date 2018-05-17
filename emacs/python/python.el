@@ -75,6 +75,39 @@ pip install yapf
 (require 'ob-python)
 
 
+;;; General keymap.
+(when (fboundp 'general-create-definer)
+  (progn
+    (general-define-key
+     :keymaps 'python-mode-map
+     :prefix "C-c"
+     "m" '(:ignore t :which-key "python"))
+    (general-define-key
+     :keymaps 'python-mode-map
+     :prefix "C-c m"
+     ;; navs, docs
+     "." 'jedi:goto-definition
+     "," 'jedi:goto-definition-pop-marker
+     "/" 'helm-jedi-related-names
+     "?" 'jedi:show-doc
+     "D" 'elpy-doc
+     "S" 'elpy-rgrep-symbol
+     ;; yapf, isort, autopep8
+     "i" 'py-isort-buffer
+     "y" 'elpy-yapf-fix-code
+     "f" 'elpy-autopep8-fix-code
+     ;; venv
+     "v" '(:ignore t :which-key "pyvenv")
+     "v c" 'pyvenv-create
+     "v a" 'pyvenv-activate
+     "v w" 'pyvenv-workon
+     "v d" 'pyvenv-deactivate
+     ;; test
+     "t" 'elpy-test
+     )))
+
+;; TODO: debug?
+;; TODO: profile?
 ;; DONE: yapf?
 ;; DONE: eldoc? -- 그냥 쓰지마. 잘안됨. 모르겠답.
 ;; CANCEL: importmagic?
