@@ -285,6 +285,11 @@ and latin (as FALLBACK-FONT) separately."
 
 (define-key evil-normal-state-map "," (general-simulate-key "C-c m"))
 
+(define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
+(define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
+(define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
+
 (general-create-definer my-root-leader-def :prefix "SPC")
 (my-root-leader-def 'normal
   "/" 'helm-swoop
