@@ -61,6 +61,10 @@ and latin (as FALLBACK-FONT) separately."
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
 
+;;; cleaner modeline.
+(use-package diminish :ensure t :pin melpa
+  :config (diminish 'undo-tree-mode))
+
 ;;; which-key
 (use-package which-key :ensure t
   :diminish which-key-mode
@@ -98,9 +102,11 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (evilem-default-keybindings "SPC"))
 
 (use-package evil-goggles :ensure t :pin melpa
+  :diminish 'evil-goggles-mode
   :config (evil-goggles-mode +1))
 
 (use-package evil-vimish-fold :ensure t :pin melpa
+  :diminish 'evil-vimish-fold-mode
   :config (evil-vimish-fold-mode 1))
 
 ;; (use-package evil-matchit :ensure t :pin melpa
@@ -129,12 +135,12 @@ and latin (as FALLBACK-FONT) separately."
 ;;; Themes
 (when (and t window-system)
   (use-package doom-themes :ensure t :pin melpa)
-  (load-theme 'doom-city-lights t))
+  (load-theme 'doom-vibrant t))
 
 ;;; Modeline
-(when (and window-system)
-  (use-package telephone-line :ensure t :pin melpa
-    :config (telephone-line-mode +1)))
+;; (when (and window-system)
+;;   (use-package telephone-line :ensure t :pin melpa
+;;     :config (telephone-line-mode -1)))
 
 ;;; lacarte -- better F10 menu-bar.
 (use-package lacarte :ensure t :pin marmalade
@@ -145,7 +151,7 @@ and latin (as FALLBACK-FONT) separately."
 
 ;;; helm
 (use-package helm :ensure t :pin melpa
-  :diminish helm-mode
+  :diminish 'helm-mode
   :config (progn (require 'helm-config)
 		 (helm-mode +1)
 		 (setq helm-split-window-in-side-p           t
@@ -218,6 +224,7 @@ and latin (as FALLBACK-FONT) separately."
 (use-package magit :ensure t :pin melpa)
 
 (use-package git-gutter-fringe :ensure t :pin melpa
+  :diminish 'git-gutter-mode
   :config (global-git-gutter-mode +1))
 
 
