@@ -345,5 +345,6 @@
 ;; FILE ".clang-tidy"
 ;; Checks: '-*,clang-diagnostic-*,llvm-*,misc-*'
 
+(defconst agelmacs/layer/cmake-ide t)
 
 ;;; EOF.

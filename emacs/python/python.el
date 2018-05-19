@@ -145,3 +145,4 @@ helm-gtags
 ggtags
 "
 
+(defconst agelmacs/layer/python t)

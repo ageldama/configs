@@ -349,4 +349,43 @@ and latin (as FALLBACK-FONT) separately."
     (evil-nothanks-mode mode)))
 
 
+;;; Layers support.
+(defvar load-layer-base-path (expand-file-name "~/Projects/configs/emacs/"))
+
+(defun load-layer (layer-name)
+  "Specify LAYER-NAME as elisp filename to load."
+  (interactive "fFile to load:")
+  (let ((fn (if (file-exists-p layer-name)
+		layer-name
+	      (format "%s%s" load-layer-base-path layer-name))))
+    (load-file fn)))
+
+(defun load-cmake-ide-layer ()
+  (interactive)
+  (load-layer "cmake-ide/cmake-ide.el"))
+
+(defun load-python-ide-layer ()
+  (interactive)
+  (load-layer "python/python.el"))
+
+(defun load-layer-by-file-ext (file-name-p-fn loaded-flag-sym load-fn)
+  (unless (boundp loaded-flag-sym)
+    (let* ((file-name (buffer-file-name))
+	   (file-ext-match (funcall file-name-p-fn file-name)))
+      (funcall load-fn))))
+
+(defun my-find-file-load-layer-hook ()
+  (load-layer-by-file-ext (lambda (file-name) (s-ends-with? ".py" file-name))
+			  'agelmacs/layer/python
+			  'load-python-ide-layer)
+  (load-layer-by-file-ext (lambda (file-name)
+			    (some (lambda (suffix) (s-ends-with? suffix file-name))
+				  '(".c" ".h" ".cxx" ".cc" ".cpp" ".C" ".hxx" ".hpp" ".H")))
+			  'agelmacs/layer/cmake-ide
+			  'load-cmake-ide-layer))
+
+(add-hook 'find-file-hook 'my-find-file-load-layer-hook)
+
+  
+
 ;;; EOF.
