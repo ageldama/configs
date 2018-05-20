@@ -299,6 +299,10 @@ and latin (as FALLBACK-FONT) separately."
 
 (general-create-definer my-root-leader-def :prefix "SPC")
 (my-root-leader-def 'normal
+  "<left>" 'evil-window-left
+  "<right>" 'evil-window-right
+  "<up>" 'evil-window-up
+  "<down>" 'evil-window-down
   "/" 'helm-swoop
   "a" 'helm-ag-maybe-projectile
   "#" 'helm-occur
