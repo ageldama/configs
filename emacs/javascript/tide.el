@@ -7,9 +7,6 @@
 (use-package json-mode :ensure t :pin melpa
   :config (add-to-list 'auto-mode-alist '("\\.json" . json-mode)))
 
-;; TODO: KEYBIND -- jsons-print-path
-;; TODO: KEYBIND -- json-mode-beautify
-
 
 ;;; TIDE.
 
@@ -27,24 +24,19 @@
   ;; `M-x package-install [ret] company`
   (company-mode +1))
 
-;; aligns annotation to the right hand side
-;; (setq company-tooltip-align-annotations t)
-
 ;; formats the buffer before saving
-;; TODO: only with .js/.ts -- (add-hook 'before-save-hook 'tide-format-before-save)
+;; TODO: only with .js/.ts??? -- (add-hook 'before-save-hook 'tide-format-before-save)
 
 (add-hook 'js2-mode-hook #'setup-tide-mode)
 
 (flycheck-add-next-checker 'javascript-eslint 'javascript-tide 'append)
 
 
-;; DONE: ~require~ 이거 왜 에러로 체크? -- 그냥 두번째 불러오니까 괜춘한데?
-
 
 ;; TODO: 실행, 디버그, 테스트?
 
 
-;;; ~tidy-documentation~ 에서 evil끄기?
+;;; tide관련 버퍼들에서 evil 끄기.
 (defun tide-documentation-buffer-p (buf)
   (string-equal "*tide-documentation*" (buffer-name buf)))
 
@@ -62,6 +54,56 @@
 	      (run-at-time 0.2 nil
 			   #'evil-turn-off-tide-documentation-buffer)))
 
+(dolist (i '(
+	     tide-references-mode
+	     tide-project-errors-mode
+	     ))
+  (evil-nothanks-mode i))
 
+;;; General keymap.
+(when (fboundp 'general-create-definer)
+  (progn
+    ;; TIDE
+    (general-define-key
+     :keymaps 'tide-mode-map
+     :prefix "C-c"
+     "m" '(:ignore t :which-key "tide"))
+    (general-define-key
+     :keymaps 'tide-mode-map
+     :prefix "C-c m"
+     ;;;
+     "d" 'tide-documentation-at-point
+     "r" 'tide-references
+     "i" 'tide-organize-imports
+     "R" 'tide-rename-symbol
+     "f" 'tide-format
+     "1" 'tide-fix
+     "F" 'tide-refactor
+     "E" 'tide-project-errors
+     "T" 'tide-jsdoc-template
+     ;;;
+     "," 'tide-jump-back
+     "." 'tide-jump-to-definition
+     ">" 'tide-jump-to-implementation
+     ;;;
+     "` R" 'tide-restart-server
+     "` v" 'tide-verify-setup
+     )
+    ;; JSON
+    (general-define-key
+     :keymaps 'json-mode-map
+     :prefix "C-c"
+     "m" '(:ignore t :which-key "json"))
+    (general-define-key
+     :keymaps 'json-mode-map
+     :prefix "C-c m"
+     ;;;
+     "p" 'jsons-print-path
+     "f" 'json-mode-beautify
+    ))
+
+
+
+;;;
 (defconst agelmacs/layer/tide t)
 ;;; EOF.
