@@ -100,6 +100,7 @@
      ;;;
      "p" 'jsons-print-path
      "f" 'json-mode-beautify
+    )
     ))
 
 
