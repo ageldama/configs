@@ -240,6 +240,7 @@ and latin (as FALLBACK-FONT) separately."
 		 (define-key company-active-map (kbd "RET") 'company-complete-selection)
 		 (define-key company-active-map (kbd "<prior>") 'company-previous-page)
 		 (define-key company-active-map (kbd "<next>") 'company-next-page)
+		 (setq company-tooltip-align-annotations t)
 		 (add-hook 'after-init-hook 'global-company-mode)))
 
 
