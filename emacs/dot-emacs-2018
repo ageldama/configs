@@ -407,6 +407,11 @@ and latin (as FALLBACK-FONT) separately."
 
 (add-hook 'find-file-hook 'my-find-file-load-layer-hook)
 
+
+
+(load-layer "proto+grpc.el")
+(load-layer "groovy/groovy.el")
+
   
 
 ;;; EOF.
