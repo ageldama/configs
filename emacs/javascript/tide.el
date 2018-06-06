@@ -89,6 +89,8 @@
      ;;;
      "` R" 'tide-restart-server
      "` v" 'tide-verify-setup
+    ;; NPM
+    "n" (general-simulate-key "C-c n" :name npm)
      )
     ;; JSON
     (general-define-key
