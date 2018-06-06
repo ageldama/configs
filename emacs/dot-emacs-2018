@@ -359,6 +359,7 @@ and latin (as FALLBACK-FONT) separately."
 		  Info-mode
 		  eww-mode
 		  debugger-mode
+                  compilation-mode
 		  term-mode))
     (evil-nothanks-mode mode)))
 

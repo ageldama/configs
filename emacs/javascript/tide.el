@@ -33,7 +33,8 @@
 
 
 
-;; TODO: 실행, 디버그, 테스트?
+;; NPM integration
+(use-package npm-mode :ensure t :pin melpa)
 
 
 ;;; tide관련 버퍼들에서 evil 끄기.
