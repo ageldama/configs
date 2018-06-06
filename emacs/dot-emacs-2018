@@ -11,6 +11,8 @@
 (show-paren-mode     t)
 (transient-mark-mode t)
 
+(setq-default indent-tabs-mode nil)
+
 ;;; no backup files
 (setq make-backup-files nil)
 (setq version-control   nil)   ; backup uses version numbers?
