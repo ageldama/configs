@@ -397,9 +397,9 @@ and latin (as FALLBACK-FONT) separately."
   (interactive)
   (load-layer "python/python.el"))
 
-(defun load-tide-ide-layer ()
-  (interactive)
-  (load-layer "javascript/tide.el"))
+;; (defun load-tide-ide-layer ()
+;;   (interactive)
+;;   (load-layer "javascript/tide.el"))
 
 (defun load-layer-by-file-ext (file-name-p-fn loaded-flag-sym load-fn)
   (unless (boundp loaded-flag-sym)
@@ -411,11 +411,11 @@ and latin (as FALLBACK-FONT) separately."
   (load-layer-by-file-ext (lambda (file-name) (s-ends-with? ".py" file-name))
 			  'agelmacs/layer/python
 			  'load-python-ide-layer)
-  (load-layer-by-file-ext (lambda (file-name)
-			    (some (lambda (suffix) (s-ends-with? suffix file-name))
-				  '(".js" ".json" )))
-			  'agelmacs/layer/tide
-			  'load-tide-ide-layer)
+  ;; (load-layer-by-file-ext (lambda (file-name)
+  ;;       		    (some (lambda (suffix) (s-ends-with? suffix file-name))
+  ;;       			  '(".js" ".json" )))
+  ;;       		  'agelmacs/layer/tide
+  ;;       		  'load-tide-ide-layer)
   (load-layer-by-file-ext (lambda (file-name)
 			    (some (lambda (suffix) (s-ends-with? suffix file-name))
 				  '(".c" ".h" ".cxx" ".cc" ".cpp" ".C" ".hxx" ".hpp" ".H")))
@@ -428,6 +428,7 @@ and latin (as FALLBACK-FONT) separately."
 
 (load-layer "proto+grpc.el")
 (load-layer "groovy/groovy.el")
+(load-layer "javascript/js2.el")
 
   
 
