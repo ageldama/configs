@@ -408,19 +408,23 @@ and latin (as FALLBACK-FONT) separately."
       (funcall load-fn))))
 
 (defun my-find-file-load-layer-hook ()
-  (load-layer-by-file-ext (lambda (file-name) (s-ends-with? ".py" file-name))
-			  'agelmacs/layer/python
-			  'load-python-ide-layer)
+  ;; (load-layer-by-file-ext (lambda (file-name) (s-ends-with? ".py" file-name))
+  ;;       		  'agelmacs/layer/python
+  ;;       		  'load-python-ide-layer)
+
   ;; (load-layer-by-file-ext (lambda (file-name)
   ;;       		    (some (lambda (suffix) (s-ends-with? suffix file-name))
   ;;       			  '(".js" ".json" )))
   ;;       		  'agelmacs/layer/tide
   ;;       		  'load-tide-ide-layer)
+
   (load-layer-by-file-ext (lambda (file-name)
 			    (some (lambda (suffix) (s-ends-with? suffix file-name))
 				  '(".c" ".h" ".cxx" ".cc" ".cpp" ".C" ".hxx" ".hpp" ".H")))
 			  'agelmacs/layer/cmake-ide
-			  'load-cmake-ide-layer))
+			  'load-cmake-ide-layer)
+
+  )
 
 (add-hook 'find-file-hook 'my-find-file-load-layer-hook)
 
