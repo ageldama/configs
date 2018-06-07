@@ -1,7 +1,8 @@
 ;;; js2-mode.
 (use-package js2-mode :ensure t :pin melpa
-  :config (progn (add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
-		 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))))
+  :config (progn (setq js-indent-level 2)
+                 (add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
+                 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))))
 
 ;;; json-mode.
 (use-package json-mode :ensure t :pin melpa
