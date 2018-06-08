@@ -16,7 +16,7 @@
 (add-hook 'js2-mode-hook
           (lambda ()
             (set (make-local-variable 'compile-command)
-                 (concat "node " (shell-quote argument buffer-file-name)))))
+                 (concat "node " (shell-quote-argument buffer-file-name)))))
 
 ;;; General keymap.
 (when (fboundp 'general-create-definer)
@@ -29,8 +29,10 @@
     (general-define-key
      :keymaps 'js2-mode-map
      :prefix "C-c m"
-    ;; NPM
-    "n" (general-simulate-key "C-c n" :name npm)
+     ;; Run
+     "r" 'compile
+     ;; NPM
+     "n" (general-simulate-key "C-c n" :name npm)
      )
     ;; JSON
     (general-define-key
