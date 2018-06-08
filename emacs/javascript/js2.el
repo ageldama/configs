@@ -12,6 +12,12 @@
 ;; NPM integration
 (use-package npm-mode :ensure t :pin melpa)
 
+;; RUN!
+(add-hook 'js2-mode-hook
+          (lambda ()
+            (set (make-local-variable 'compile-command)
+                 (concat "node " (shell-quote argument buffer-file-name)))))
+
 ;;; General keymap.
 (when (fboundp 'general-create-definer)
   (progn
