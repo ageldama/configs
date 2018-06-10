@@ -18,6 +18,9 @@
             (set (make-local-variable 'compile-command)
                  (concat "node " (shell-quote-argument buffer-file-name)))))
 
+;; eslint
+(use-package eslint-fix :ensure t :pin melpa)
+
 ;;; General keymap.
 (when (fboundp 'general-create-definer)
   (progn
@@ -33,6 +36,8 @@
      "r" 'compile
      ;; NPM
      "n" (general-simulate-key "C-c n" :name npm)
+     ;; eslint
+     "f" 'eslint-fix
      )
     ;; JSON
     (general-define-key
