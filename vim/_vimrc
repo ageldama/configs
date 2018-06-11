@@ -53,8 +53,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'godlygeek/tabular'
-"Bundle 'vim-syntastic/syntastic.git'
+Bundle 'vim-syntastic/syntastic.git'
 Bundle 'w0rp/ale'
+"Bundle 'lokikl/vim-ctrlp-ag'
 
 " Golang
 "Bundle 'fatih/vim-go'
@@ -162,6 +163,18 @@ if 1
     autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
 endif
 
+" Syntastic
+if 0
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
+
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+endif
+
 " PerlTidy
 "define :Tidy command to run perltidy on visual selection || entire buffer"
 command -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy
@@ -174,6 +187,23 @@ endfun
 
 " Clipboard
 set clipboard=unnamed
+
+" vim-ctrlp-ag
+nnoremap <c-f> :CtrlPag<cr>
+vnoremap <c-f> :CtrlPagVisual<cr>
+nnoremap <leader>ca :CtrlPagLocate
+nnoremap <leader>cp :CtrlPagPrevious<cr>
+let g:ctrlp_ag_ignores = '--ignore .git
+    \ --ignore "deps/*"
+    \ --ignore "_build/*"
+    \ --ignore "node_modules/*"'
+" By default ag will search from PWD
+" But you may enable one of below line to use an arbitrary directory or,
+" Using the magic word 'current-file-dir' to use current file base directory
+" let g:ctrlp_ag_search_base = 'current-file-dir'
+" let g:ctrlp_ag_search_base = 'app/controllers' " both relative and absolute path supported
+
+
 
 
 "EOF
