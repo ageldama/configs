@@ -303,6 +303,8 @@ and latin (as FALLBACK-FONT) separately."
 (use-package yasnippet-snippets :ensure t :pin melpa
   :after yasnippet)
 
+;;; avy
+(use-package avy :ensure t :pin melpa)
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
@@ -349,6 +351,11 @@ and latin (as FALLBACK-FONT) separately."
   "y i" 'yas-insert-snippet
   "y e" 'yas-visit-snippet-file
   "y n" 'yas-new-snippet
+  ;; avy
+  "v" '(:ignore t :which-key "avy")
+  "v c" 'avy-goto-char
+  "v w" 'avy-goto-word-0
+  "v <" 'avy-pop-mark
   ;; "`" - misc
   "`" '(:ignore t :which-key "misc")
   "` r" 'helm-regexp
