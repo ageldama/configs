@@ -53,9 +53,9 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
 Bundle 'mileszs/ack.vim'
 Bundle 'godlygeek/tabular'
-Bundle 'vim-syntastic/syntastic.git'
+"Bundle 'vim-syntastic/syntastic.git'
 Bundle 'w0rp/ale'
-"Bundle 'lokikl/vim-ctrlp-ag'
+Bundle 'lokikl/vim-ctrlp-ag'
 
 " Golang
 "Bundle 'fatih/vim-go'
