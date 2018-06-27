@@ -137,7 +137,7 @@ and latin (as FALLBACK-FONT) separately."
 ;;; Themes
 (when (and t window-system)
   (use-package doom-themes :ensure t :pin melpa)
-  (load-theme 'doom-vibrant t))
+  (load-theme 'doom-one-light t))
 
 ;;; Modeline
 ;; (when (and window-system)
@@ -441,6 +441,9 @@ and latin (as FALLBACK-FONT) separately."
 (load-layer "proto+grpc.el")
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
+
+(dolist (i '(javascript-mode-hook js2-mode-hook))
+    (add-hook i (lambda () (electric-indent-local-mode -1))))
 
   
 
