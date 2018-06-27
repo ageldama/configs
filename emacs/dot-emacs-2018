@@ -442,9 +442,7 @@ and latin (as FALLBACK-FONT) separately."
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
 
-(dolist (i '(javascript-mode-hook js2-mode-hook))
-    (add-hook i (lambda () (electric-indent-local-mode -1))))
-
+(electric-indent-mode -1)
   
 
 ;;; EOF.
