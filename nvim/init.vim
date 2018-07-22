@@ -43,11 +43,23 @@ Bundle 'gmarik/vundle'
 "
 filetype plugin indent on
 "
-"Bundle 'davidhalter/jedi-vim'
+Bundle 'schickling/vim-bufonly'
+                              " <esc>:Bonly
+Bundle 'wesQ3/vim-windowswap'
+                              " <leader>ww
+
+Bundle 'junegunn/fzf.vim'
+Bundle 'junegunn/fzf'
+
 Bundle 'tpope/vim-fugitive'
-"Bundle 'fholgado/minibufexpl.vim'
+Bundle 'kablamo/vim-git-log'
+Bundle 'gregsexton/gitv'
+
 Bundle 'jlanzarotta/bufexplorer'
+                              " <leader>be
+
 Bundle 'bling/vim-airline'
+
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
@@ -56,14 +68,29 @@ Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
 Bundle 'w0rp/ale'
 
-" Golang
-"Bundle 'fatih/vim-go'
-"Bundle 'majutsushi/tagbar'
 
+"Bundle 'Shougo/neocomplete.vim'
+
+" Markdown / Writting
+Bundle 'reedes/vim-pencil'
+Bundle 'tpope/vim-markdown'
+Bundle 'jtratner/vim-flavored-markdown'
+
+" Color theme.
+"Bundle 'colepeters/spacemacs-theme.vim'
+
+set t_Co=256
+
+if (has("termguicolors"))
+  set termguicolors
+endif
+
+color default
+set bg=dark
 
 "------------------------------------------------------------------------------
 
-set paste
+set nopaste
 
 
 " The Silver Searcher
@@ -81,10 +108,14 @@ if executable('ag')
 endif
 
 " bind K to grep word under cursor
-nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <Leader>K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+nnoremap <Leader>k :grep! "\b<C-R><C-W>\b"
 
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+
+
+let g:ctrlp_mruf_case_sensitive = 0
 
 
 
@@ -111,11 +142,7 @@ set tabstop=2
 set softtabstop=2
 set expandtab	" tab대신 스페이스!
 
-" wrap? 그냥 보이는 것만 설정합니다.
-set wrap
-
-" textwidth : 자동으로 행을 자르기. 0이면 끄기.
-set textwidth=250
+set nowrap
 
 " modeline 향수
 set modeline
@@ -126,7 +153,10 @@ set showcmd
 " 검색
 set hls
 set incsearch
-set ignorecase	" 대소문자무시
+
+"set ignorecase	" 대소문자무시
+"set wildignorecase
+
 set scs	" smart-search
 
 " 백스페이스 : 언제나, 심지어 내가 방금 입력한게 아닌 것도 지우도록-_-
@@ -134,28 +164,12 @@ set backspace=indent,eol,start
 
 
 " 폰트
+"if has('gui_running')
 "set guifont=Consolas:h14:cANSI
 "set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
 
 " 메뉴&툴바
 set guioptions=m
-
-" 색상설정
-"color koehler
-set t_Co=256
-"set t_AB=^[[48;5;%dm
-"set t_AF=^[[38;5;%dm
-if has('gui_running')
-    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
-    "set guifont=Inconsolata\ Medium\ 12
-	"set guifont="Noto Sans Mono CJK KR 14"
-    color darkblue
-    set bg=light
-else
-    color default
-    set bg=dark
-endif
-
 
 " 파일인코딩
 set fencs=utf8,euc-kr
@@ -210,6 +224,34 @@ endfun
 set clipboard=unnamed
 
 
+" Settings for Writting
+let g:pencil#wrapModeDefault = 'soft'   " default is 'hard'
+
+" Vim-pencil Configuration
+augroup pencil
+  autocmd!
+  autocmd FileType markdown,md,mkd call pencil#init()
+  autocmd FileType text         call pencil#init()
+augroup END
+
+" NERDTree
+map <C-n> :NERDTreeToggle<CR>
+
+
+"
+fun ShowMap()
+  redir @" | silent map | redir END | new | put!
+endfun
+
+
+" fzf bindings
+noremap <leader>zf :Files<CR>
+noremap <leader>zg :GFiles<CR>
+noremap <leader>zG :GFiles?<CR>
+noremap <leader>zb :Buffers<CR>
+noremap <leader>za :Ag<space>
+noremap <leader>zm :Marks<CR>
+noremap <leader>zh :Helptags<CR>
 
 
 "EOF
