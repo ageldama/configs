@@ -63,7 +63,22 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
-Bundle 'mileszs/ack.vim'
+
+" grep, ag,...
+
+"Bundle 'mileszs/ack.vim'
+
+Bundle 'https://github.com/bronson/vim-visual-star-search'
+
+
+" use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
+Bundle 'https://github.com/rking/ag.vim'
+" use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
+nnoremap <leader>* :call ag#Ag('grep', '--literal ' . shellescape(expand("<cword>")))<CR>
+vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
+
+
+"
 Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
 Bundle 'w0rp/ale'
@@ -95,27 +110,22 @@ set nopaste
 
 " The Silver Searcher
 if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+  "let g:ack_prg = 'ag --vimgrep'
 
   " Use ag over grep
-  set grepprg=ag\ --nogroup\ --nocolor
+  let g:grep_prg="ag --vimgrep"
+
+  let g:ag_prg="ag --column --hidden"    " --hidden lets ag search hidden files but ignore ~/.agignore
 
   " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 
   " ag is fast enough that CtrlP doesn't need to cache
   let g:ctrlp_use_caching = 0
+
+  let g:ctrlp_mruf_case_sensitive = 0
+
 endif
-
-" bind K to grep word under cursor
-nnoremap <Leader>K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
-nnoremap <Leader>k :grep! "\b<C-R><C-W>\b"
-
-" bind \ (backward slash) to grep shortcut
-"command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
-
-let g:ctrlp_mruf_case_sensitive = 0
 
 
 
