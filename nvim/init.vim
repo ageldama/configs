@@ -103,6 +103,23 @@ endif
 color default
 set bg=dark
 
+"
+Bundle 'junegunn/vim-peekaboo'
+              " kill-rings, registers. @
+
+Bundle 'maxbrunsfeld/vim-yankstack'
+              " M-p, S-M-p, just like emacs.
+
+Bundle 'terryma/vim-multiple-cursors'
+              " C-n, C-x...
+
+Bundle 'urbainvaes/vim-remembrall'
+              " just like which-key in emacs.
+
+Bundle 'mhinz/vim-startify'
+
+
+
 "------------------------------------------------------------------------------
 
 set nopaste
@@ -252,6 +269,9 @@ map <C-n> :NERDTreeToggle<CR>
 fun ShowMap()
   redir @" | silent map | redir END | new | put!
 endfun
+
+"
+let mapleader = "\<Space>"
 
 
 " fzf bindings
