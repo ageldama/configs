@@ -118,6 +118,7 @@ Bundle 'urbainvaes/vim-remembrall'
 
 Bundle 'mhinz/vim-startify'
 
+Bundle 'pangloss/vim-javascript'
 
 
 "------------------------------------------------------------------------------
