@@ -280,6 +280,9 @@ endfun
 "
 let mapleader = "\<Space>"
 
+noremap <leader>B :BufExplorer<CR>
+noremap <leader><tab> :CtrlP<CR>
+noremap <leader>P :CtrlP<CR>
 
 " fzf bindings
 noremap <leader>zf :Files<CR>
