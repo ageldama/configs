@@ -61,7 +61,13 @@ Bundle 'jlanzarotta/bufexplorer'
 Bundle 'bling/vim-airline'
 
 Bundle 'scrooloose/nerdtree'
+
+
 Bundle 'ctrlpvim/ctrlp.vim'
+let g:ctrlp_map = '<leader>\'
+
+
+
 Bundle 'rbgrouleff/bclose.vim'
 
 " grep, ag,...
@@ -283,6 +289,11 @@ noremap <leader>zb :Buffers<CR>
 noremap <leader>za :Ag<space>
 noremap <leader>zm :Marks<CR>
 noremap <leader>zh :Helptags<CR>
+
+" autoread
+set autoread                                                                                                                                                                                    
+au CursorHold * checktime  
+set updatetime=300 " set updatetime to shorter value
 
 
 "EOF
