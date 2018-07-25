@@ -78,10 +78,13 @@ Bundle 'https://github.com/bronson/vim-visual-star-search'
 
 
 " use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
-Bundle 'https://github.com/rking/ag.vim'
-" use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
-nnoremap <leader>* :call ag#Ag('grep', '--literal ' . shellescape(expand("<cword>")))<CR>
-vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
+if 0
+  " NOT WORKING.
+  Bundle 'https://github.com/rking/ag.vim'
+
+  nnoremap <leader>* :call ag#Ag('grep', '--literal ' . shellescape(expand("<cword>")))<CR>
+  vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
+end
 
 
 "
@@ -283,6 +286,7 @@ let mapleader = "\<Space>"
 noremap <leader>B :BufExplorer<CR>
 noremap <leader><tab> :CtrlP<CR>
 noremap <leader>P :CtrlP<CR>
+noremap <leader>N :NERDTreeFind<CR>
 
 " fzf bindings
 noremap <leader>zf :Files<CR>
