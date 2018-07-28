@@ -143,9 +143,9 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (ace-popup-menu-mode -1))
 
 ;;; Themes
-(when (and nil window-system)
+(when (and t window-system)
   (use-package doom-themes :ensure t :pin melpa)
-  (load-theme 'doom-one-light t))
+  (load-theme 'doom-nord t))
 
 ;;; Modeline
 ;; (when (and window-system)
