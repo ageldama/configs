@@ -77,7 +77,16 @@ and latin (as FALLBACK-FONT) separately."
 ;;; Evil
 (use-package evil :ensure t :pin melpa
   :init (setq evil-want-integration nil)
-  :config (evil-mode +1))
+  :config (evil-mode -1))
+
+(defun toggle-evil-mode ()
+  (interactive)
+  (if (null evil-state)
+      (turn-on-evil-mode)
+    (turn-off-evil-mode)))
+
+(global-set-key (kbd "C-z") 'toggle-evil-mode)
+
 
 (global-linum-mode   +1)
 (global-hl-line-mode +1)
@@ -134,7 +143,7 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (ace-popup-menu-mode -1))
 
 ;;; Themes
-(when (and t window-system)
+(when (and nil window-system)
   (use-package doom-themes :ensure t :pin melpa)
   (load-theme 'doom-one-light t))
 
@@ -304,7 +313,43 @@ and latin (as FALLBACK-FONT) separately."
   :after yasnippet)
 
 ;;; avy
-(use-package avy :ensure t :pin melpa)
+;; (use-package avy :ensure t :pin melpa
+;;   :config (avy-setup-default)
+;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
+
+;;; My Monsterous Keybindings.
+(cl-flet ((with-prefix (s) (concat "C-` " s)))
+  (macrolet ((bind (s cmd)
+             `(global-set-key (kbd (with-prefix ,s)) ,cmd)))
+    ;;
+    (bind "/" 'helm-swoop)
+    (bind "#" 'helm-occur)
+    (bind "a" 'helm-ag-maybe-projectile)
+
+    (bind "T" 'multi-term)
+
+    (bind "TAB" 'helm-mini)
+
+    (bind "p" 'helm-projectile)
+
+    (bind "G" 'magit-status)
+    (bind "g" 'magit-file-popup)
+
+    (bind "k" 'helm-show-kill-ring)
+    (bind "r" 'helm-register)
+    (bind "m" 'helm-mark-ring)
+    (bind "M" 'helm-all-mark-rings)
+
+    (bind "b /" 'helm-multi-swoop)
+    (bind "b a" 'helm-ag-buffers)
+
+    (bind "` r" 'helm-regexp)
+    (bind "` t" 'helm-top)
+    (bind "` p" 'helm-list-emacs-process)
+    (bind "` b" 'helm-bookmarks)
+
+))
+
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
@@ -352,10 +397,10 @@ and latin (as FALLBACK-FONT) separately."
   "y e" 'yas-visit-snippet-file
   "y n" 'yas-new-snippet
   ;; avy
-  "v" '(:ignore t :which-key "avy")
-  "v c" 'avy-goto-char
-  "v w" 'avy-goto-word-0
-  "v <" 'avy-pop-mark
+  ;; "v" '(:ignore t :which-key "avy")
+  ;; "v c" 'avy-goto-char
+  ;; "v w" 'avy-goto-word-0
+  ;; "v <" 'avy-pop-mark
   ;; "`" - misc
   "`" '(:ignore t :which-key "misc")
   "` r" 'helm-regexp

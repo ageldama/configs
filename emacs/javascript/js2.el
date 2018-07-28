@@ -28,7 +28,7 @@
     (general-define-key
      :keymaps 'js2-mode-map
      :prefix "C-c"
-     "m" '(:ignore t :which-key "js2"))
+     "m" '(:ignore t :which-key "mode"))
     (general-define-key
      :keymaps 'js2-mode-map
      :prefix "C-c m"

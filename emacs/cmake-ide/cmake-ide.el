@@ -299,7 +299,7 @@
     (general-define-key
      :keymaps 'c-mode-base-map
      :prefix "C-c"
-     "m" '(:ignore t :which-key "c/c++"))
+     "m" '(:ignore t :which-key "mode"))
     (general-define-key
      :keymaps 'c-mode-base-map
      :prefix "C-c m"
