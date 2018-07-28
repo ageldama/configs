@@ -485,7 +485,7 @@ and latin (as FALLBACK-FONT) separately."
 (load-layer "proto+grpc.el")
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
-(load-layer "slime.lisp")
+;; (load-layer "slime.lisp")
 
 (electric-indent-mode -1)
   
