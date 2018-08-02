@@ -94,7 +94,7 @@ and latin (as FALLBACK-FONT) separately."
       (turn-on-evil-mode)
     (turn-off-evil-mode)))
 
-(global-set-key (kbd "C-z") 'toggle-evil-mode)
+;;(global-set-key (kbd "C-<f12>") 'toggle-evil-mode)
 
 
 (global-linum-mode   +1)
@@ -500,9 +500,6 @@ and latin (as FALLBACK-FONT) separately."
 ;; (load-layer "sly.el")
 
 (electric-indent-mode -1)
-
-(setq evil-search-wrap t)
-(evil-select-search-module 'evil-search-module 'isearch)
 
 
 ;;; EOF.
