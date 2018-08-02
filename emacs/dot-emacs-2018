@@ -34,6 +34,8 @@
   (add-to-list 'package-archives i))
 (package-initialize)
 
+(setq package-check-signature  nil)
+
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -317,7 +319,7 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (avy-setup-default)
 ;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
 
-(use-package highlight-symbol :ensure t :pin melpa)
+;;(use-package highlight-symbol :ensure t :pin melpa)
 
 ;;; My Monsterous Keybindings.
 (cl-flet ((with-prefix (s) (concat "C-` " s)))
@@ -488,7 +490,7 @@ and latin (as FALLBACK-FONT) separately."
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
 ;; (load-layer "slime.lisp")
-(load-layer "sly.el")
+;; (load-layer "sly.el")
 
 (electric-indent-mode -1)
   

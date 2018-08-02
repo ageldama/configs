@@ -74,7 +74,8 @@ Bundle 'rbgrouleff/bclose.vim'
 
 "Bundle 'mileszs/ack.vim'
 
-Bundle 'https://github.com/bronson/vim-visual-star-search'
+" FIXME: <leader>* conflicts
+"Bundle 'https://github.com/bronson/vim-visual-star-search'
 
 
 " use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
@@ -129,6 +130,7 @@ Bundle 'mhinz/vim-startify'
 
 Bundle 'pangloss/vim-javascript'
 
+Bundle 'vim-scripts/occur.vim'
 
 "------------------------------------------------------------------------------
 
