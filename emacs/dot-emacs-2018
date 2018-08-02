@@ -500,6 +500,9 @@ and latin (as FALLBACK-FONT) separately."
 ;; (load-layer "sly.el")
 
 (electric-indent-mode -1)
-  
+
+(setq evil-search-wrap t)
+(evil-select-search-module 'evil-search-module 'isearch)
+
 
 ;;; EOF.
