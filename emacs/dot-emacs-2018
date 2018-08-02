@@ -29,12 +29,19 @@
 (require 'package)
 (dolist (i '(("org"		.	"http://orgmode.org/elpa/")
 	     ("gnu"		.	"http://elpa.gnu.org/packages/")
-	     ("melpa"		.	"http://melpa.milkbox.net/packages/")
+	     ("melpa"		.	"http://melpa.org/packages/")
 	     ("marmalade"	.	"http://marmalade-repo.org/packages/")))
   (add-to-list 'package-archives i))
-(package-initialize)
 
-(setq package-check-signature  nil)
+(setq package-check-signature nil)
+
+(condition-case nil
+    (package-initialize)
+  (error nil))
+
+
+
+
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -482,7 +489,7 @@ and latin (as FALLBACK-FONT) separately."
 
   )
 
-(add-hook 'find-file-hook 'my-find-file-load-layer-hook)
+;; (add-hook 'find-file-hook 'my-find-file-load-layer-hook)
 
 
 

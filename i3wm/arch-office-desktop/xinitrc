@@ -92,7 +92,9 @@ pulseaudio --start &
 
 # nm-applet &
 
-redshift-gtk &
+# redshift-gtk &
+redshift-gtk -l 37.5665:126.9780 &
+
 compton -b &
 
 dunst -fn "Monospace 48" &
