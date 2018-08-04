@@ -79,12 +79,12 @@ Bundle 'rbgrouleff/bclose.vim'
 
 
 " use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
-if 0
+if 1
   " NOT WORKING.
   Bundle 'https://github.com/rking/ag.vim'
 
-  nnoremap <leader>* :call ag#Ag('grep', '--literal ' . shellescape(expand("<cword>")))<CR>
-  vnoremap <leader>* :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
+  nnoremap <leader>; :call ag#Ag('ag', '--literal ' . shellescape(expand("<cword>")))<CR>
+  "vnoremap <leader>! :<C-u>call VisualStarSearchSet('/', 'raw')<CR>:call ag#Ag('grep', '--literal ' . shellescape(@/))<CR>
 end
 
 
@@ -131,6 +131,14 @@ Bundle 'mhinz/vim-startify'
 Bundle 'pangloss/vim-javascript'
 
 Bundle 'vim-scripts/occur.vim'
+
+Bundle 'tpope/vim-surround'
+
+Bundle 'tpope/vim-abolish'
+
+Bundle 'https://github.com/RRethy/vim-illuminate'
+
+
 
 "------------------------------------------------------------------------------
 
@@ -218,8 +226,9 @@ filetype on
 filetype indent on
 filetype plugin on
 
-" airline
+" airline, lightline
 set laststatus=2
+
 
 " minibufexplorer
 "map <Leader>mbe :MBEOpen<cr>
@@ -285,24 +294,25 @@ endfun
 "
 let mapleader = "\<Space>"
 
-noremap <leader>B :BufExplorer<CR>
-noremap <leader><tab> :CtrlP<CR>
-noremap <leader>P :CtrlP<CR>
-noremap <leader>N :NERDTreeFind<CR>
+noremap <leader>b :BufExplorer<CR>
+noremap <leader>p :CtrlP<CR>
+noremap <leader>n :NERDTreeFind<CR>
 
 " fzf bindings
-noremap <leader>zf :Files<CR>
-noremap <leader>zg :GFiles<CR>
-noremap <leader>zG :GFiles?<CR>
+noremap <leader>f :Files<CR>
+noremap <leader>g :GFiles<CR>
+noremap <leader>G :GFiles?<CR>
 noremap <leader>zb :Buffers<CR>
 noremap <leader>za :Ag<space>
-noremap <leader>zm :Marks<CR>
-noremap <leader>zh :Helptags<CR>
+noremap <leader>m :Marks<CR>
+noremap <leader>h :Helptags<CR>
 
 " autoread
 set autoread                                                                                                                                                                                    
 au CursorHold * checktime  
 set updatetime=300 " set updatetime to shorter value
 
+" illuminate
+let g:Illuminate_delay = 250
 
 "EOF
