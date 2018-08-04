@@ -27,14 +27,14 @@
 
 ;;; package.el
 (require 'package)
-(dolist (i '(("org"		.	"http://orgmode.org/elpa/")
-	     ("gnu"		.	"http://elpa.gnu.org/packages/")
-	     ("melpa"		.	"http://melpa.org/packages/")
-	     ("marmalade"	.	"http://marmalade-repo.org/packages/")))
-  (add-to-list 'package-archives i))
-
-(setq package-check-signature nil)
-
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if nil "http" "https")))
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "marmalade" (concat proto "://marmalade-repo.org/packages/")) t)
+  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
+  (when (< emacs-major-version 24)
+    (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
