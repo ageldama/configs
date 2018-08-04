@@ -24,5 +24,20 @@
                     (lambda ()
                       (set (make-local-variable 'company-backends) '(company-go))
                       (company-mode))))
+;; gorun
+;; go-test-current-file
+;; go-test-current-test
+;; gofmt
+;; godoc
+(when (fboundp 'general-create-definer)
+  (general-define-key
+   :keymaps 'go-mode-map
+   :prefix "C-c m"
+   "r" 'go-run
+   "t" 'go-test-current-test
+   "T" 'go-test-current-test
+   "f" 'gofmt
+   "d" 'godoc
+   ))
 
 ;;; EOF.
