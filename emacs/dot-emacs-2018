@@ -324,9 +324,18 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (avy-setup-default)
 ;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
 
-;;(use-package highlight-symbol :ensure t :pin melpa)
+(use-package highlight-symbol :ensure t :pin melpa
+  :config (progn (global-set-key [(control f3)] 'highlight-symbol)
+                 (global-set-key [f3] 'highlight-symbol-next)
+                 (global-set-key [(shift f3)] 'highlight-symbol-prev)
+                 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)))
 
-(use-package multiple-cursors :ensure t :pin melpa)
+(use-package multiple-cursors :ensure t :pin melpa
+  :config (progn (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+                 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+                 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+                 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+
 
 ;;; My Monsterous Keybindings.
 (cl-flet ((with-prefix (s) (concat "C-` " s)))
