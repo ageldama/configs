@@ -328,6 +328,8 @@ and latin (as FALLBACK-FONT) separately."
 
 ;;(use-package highlight-symbol :ensure t :pin melpa)
 
+(use-package multiple-cursors :ensure t :pin melpa)
+
 ;;; My Monsterous Keybindings.
 (cl-flet ((with-prefix (s) (concat "C-` " s)))
   (macrolet ((bind (s cmd)
