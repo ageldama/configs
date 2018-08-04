@@ -90,11 +90,9 @@ and latin (as FALLBACK-FONT) separately."
 
 (defun toggle-evil-mode ()
   (interactive)
-  (if (null evil-state)
-      (turn-on-evil-mode)
-    (turn-off-evil-mode)))
+  (evil-mode (if (null evil-state) 1 -1)))
 
-;;(global-set-key (kbd "C-<f12>") 'toggle-evil-mode)
+(global-set-key (kbd "C-z") 'toggle-evil-mode)
 
 
 (global-linum-mode   +1)
