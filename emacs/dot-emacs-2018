@@ -91,7 +91,8 @@ and latin (as FALLBACK-FONT) separately."
 
 (when yes-frills
   (global-linum-mode   +1)
-  (global-hl-line-mode +1))
+  (global-hl-line-mode -1)
+  )
 
 ;; (use-package hlinum :ensure t :pin melpa :config (hlinum-deactivate))
 
@@ -318,7 +319,10 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (avy-setup-default)
 ;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
 
-(use-package highlight-symbol :ensure t :pin melpa)
+(use-package highlight-symbol :ensure t :pin melpa
+  :config (progn
+            (setq highlight-symbol-idle-delay 0.5)
+            (add-hook 'prog-mode-hook 'highlight-symbol-mode)))
 
 (use-package multiple-cursors :ensure t :pin melpa
   :config (progn (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
