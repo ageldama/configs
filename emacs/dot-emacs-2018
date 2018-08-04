@@ -1,6 +1,6 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
-(setq                 inhibit-startup-screen t)
-(setq                 default-input-method   "korean-hangul")
+(setq inhibit-startup-screen t)
+(setq default-input-method   "korean-hangul")
 (prefer-coding-system 'utf-8-unix)
 
 (setq user-full-name    "Jong-Hyouk Yun")
@@ -12,6 +12,8 @@
 (transient-mark-mode t)
 
 (setq-default indent-tabs-mode nil)
+
+(defvar yes-frills t)
 
 ;;; no backup files
 (setq make-backup-files nil)
@@ -35,13 +37,7 @@
 
 (setq package-check-signature nil)
 
-(condition-case nil
-    (package-initialize)
-  (error nil))
-
-
-
-
+(package-initialize)
 
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
@@ -63,8 +59,9 @@ and latin (as FALLBACK-FONT) separately."
   ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
   (cond ((or (string-equal system-type "gnu/linux")
              (string-equal system-type "darwin"))
-	 ;;(set-gui-font-for-korean "Noto Serif CJK KR" "Iosevka")
-         (set-face-attribute 'default nil :font "Noto Sans Mono CJK KR")
+	 (set-gui-font-for-korean "Noto Sans Mono CJK KR" 
+                                  "Noto Sans Mono CJK KR" )
+         ;;(set-face-attribute 'default nil :font "Noto Sans Mono CJK KR")
 	 )
 	;; Windows
         ((string-equal system-type "windows-nt")
@@ -94,9 +91,9 @@ and latin (as FALLBACK-FONT) separately."
 
 (global-set-key (kbd "C-z") 'toggle-evil-mode)
 
-
-(global-linum-mode   +1)
-(global-hl-line-mode +1)
+(when yes-frills
+  (global-linum-mode   +1)
+  (global-hl-line-mode +1))
 
 ;; (use-package hlinum :ensure t :pin melpa :config (hlinum-deactivate))
 
@@ -120,7 +117,7 @@ and latin (as FALLBACK-FONT) separately."
 
 (use-package evil-goggles :ensure t :pin melpa
   :diminish 'evil-goggles-mode
-  :config (evil-goggles-mode +1))
+  :config (when yes-frills (evil-goggles-mode -1)))
 
 (use-package evil-vimish-fold :ensure t :pin melpa
   :diminish 'evil-vimish-fold-mode
@@ -194,7 +191,8 @@ and latin (as FALLBACK-FONT) separately."
 		 ))
 
 ;;; helm-ag
-(use-package helm-ag :ensure t :pin melpa)
+(use-package helm-ag :ensure t :pin melpa
+  :config (setq helm-ag-insert-at-point 'symbol))
 
 (defun helm-ag-maybe-projectile ()
   (interactive)
@@ -215,10 +213,10 @@ and latin (as FALLBACK-FONT) separately."
 (use-package dashboard :ensure t :pin melpa
   :after projectile
   :config (progn (dashboard-setup-startup-hook)
-		 (setq dashboard-items '((recents  . 5)
-					 (projects . 5)
+		 (setq dashboard-items '((recents   . 5)
+					 (projects  . 5)
 					 (bookmarks . 5)
-					 (agenda . 5)
+					 (agenda    . 5)
 					 (registers . 5)))))
 
 ;;; Swoop
@@ -243,7 +241,7 @@ and latin (as FALLBACK-FONT) separately."
 
 (use-package git-gutter-fringe :ensure t :pin melpa
   :diminish 'git-gutter-mode
-  :config (global-git-gutter-mode +1))
+  :config (when yes-frills (global-git-gutter-mode +1)))
 
 
 ;;; flycheck.
@@ -289,12 +287,10 @@ and latin (as FALLBACK-FONT) separately."
 
 ;;; Multiterm
 (use-package multi-term :ensure t :pin melpa
-  :config (add-hook 'term-mode-hook (lambda()
-				      (turn-off-evil-mode)
-				      (linum-mode -1)
-				      (hl-line-mode -1)
-				      )
-		    ))
+  :config (add-hook 'term-mode-hook
+                    (lambda() (turn-off-evil-mode)
+                      (linum-mode -1)
+                      (hl-line-mode -1))))
 
 ;;; Window move.
 ;; (defun helm-select-window ()
@@ -324,11 +320,7 @@ and latin (as FALLBACK-FONT) separately."
 ;;   :config (avy-setup-default)
 ;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
 
-(use-package highlight-symbol :ensure t :pin melpa
-  :config (progn (global-set-key [(control f3)] 'highlight-symbol)
-                 (global-set-key [f3] 'highlight-symbol-next)
-                 (global-set-key [(shift f3)] 'highlight-symbol-prev)
-                 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)))
+(use-package highlight-symbol :ensure t :pin melpa)
 
 (use-package multiple-cursors :ensure t :pin melpa
   :config (progn (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
@@ -394,7 +386,8 @@ and latin (as FALLBACK-FONT) separately."
   "TAB" 'helm-mini
   "?" 'helm-descbinds
   "'" 'multi-term
-  "g" 'magit-status
+  "g" 'magit-file-popup
+  "G" 'magit-status
   "p" 'helm-projectile
   "P" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
