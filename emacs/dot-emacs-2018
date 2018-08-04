@@ -498,6 +498,7 @@ and latin (as FALLBACK-FONT) separately."
 (load-layer "javascript/js2.el")
 ;; (load-layer "slime.lisp")
 ;; (load-layer "sly.el")
+(load-layer "golang.el")
 
 (setq-default indent-tabs-mode nil)
 (setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
