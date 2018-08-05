@@ -58,7 +58,7 @@ and latin (as FALLBACK-FONT) separately."
   (cond ((or (string-equal system-type "gnu/linux")
              (string-equal system-type "darwin"))
 	 (set-gui-font-for-korean "Noto Sans Mono CJK KR" 
-                                  "Noto Sans Mono CJK KR" )
+                                  "Droid Sans Mono" )
          ;;(set-face-attribute 'default nil :font "Noto Sans Mono CJK KR")
 	 )
 	;; Windows
