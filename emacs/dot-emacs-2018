@@ -189,16 +189,6 @@ and latin (as FALLBACK-FONT) separately."
 		 (global-set-key (kbd "C-x b") 'helm-mini)
 		 ))
 
-;;; helm-ag
-(use-package helm-ag :ensure t :pin melpa
-  :config (setq helm-ag-insert-at-point 'symbol))
-
-(defun helm-ag-maybe-projectile ()
-  (interactive)
-  (if (projectile-project-p)
-      (helm-projectile-ag)
-    (helm-ag)))
- 
 
 ;;; projectile + helm
 (use-package projectile :pin melpa
@@ -207,6 +197,29 @@ and latin (as FALLBACK-FONT) separately."
 (use-package helm-projectile :ensure t :pin melpa
   :config (progn (setq projectile-completion-system 'helm)
                  (helm-projectile-on)))
+
+
+;;; helm-rg
+(use-package helm-rg :ensure t :pin melpa)
+
+(defun helm-rg-maybe-projectile ()
+  (interactive)
+  (if (projectile-project-p)
+      (helm-projectile-rg)
+    (helm-rg)))
+
+;;; helm-ag
+;; (use-package helm-ag :ensure t :pin melpa
+;;   :config (setq helm-ag-insert-at-point 'symbol
+;;                 ;; helm-ag-base-command "rg --vimgrep --no-heading --smart-case"
+;;                 ))
+
+;; (defun helm-ag-maybe-projectile ()
+;;   (interactive)
+;;   (if (projectile-project-p)
+;;       (helm-projectile-ag)
+;;     (helm-ag)))
+
 
 ;;; dashboard
 (use-package dashboard :ensure t :pin melpa
@@ -338,13 +351,14 @@ and latin (as FALLBACK-FONT) separately."
     ;;
     (bind "/" 'helm-swoop)
     (bind "#" 'helm-occur)
-    (bind "a" 'helm-ag-maybe-projectile)
 
     (bind "T" 'multi-term)
 
     (bind "TAB" 'helm-mini)
 
+    (bind "o" 'helm-rg-maybe-projectile)
     (bind "p" 'helm-projectile)
+    (bind "P" 'projectile)
 
     (bind "G" 'magit-status)
     (bind "g" 'magit-file-popup)
@@ -355,7 +369,7 @@ and latin (as FALLBACK-FONT) separately."
     (bind "M" 'helm-all-mark-rings)
 
     (bind "b /" 'helm-multi-swoop)
-    (bind "b a" 'helm-ag-buffers)
+    (bind "b #" 'helm-multi-occur-from-isearch)
 
     (bind "` r" 'helm-regexp)
     (bind "` t" 'helm-top)
@@ -382,7 +396,6 @@ and latin (as FALLBACK-FONT) separately."
   "<up>" 'evil-window-up
   "<down>" 'evil-window-down
   "/" 'helm-swoop
-  "a" 'helm-ag-maybe-projectile
   "#" 'helm-occur
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
@@ -390,6 +403,7 @@ and latin (as FALLBACK-FONT) separately."
   "'" 'multi-term
   "g" 'magit-file-popup
   "G" 'magit-status
+  "o" 'helm-rg-maybe-projectile
   "p" 'helm-projectile
   "P" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
@@ -405,7 +419,7 @@ and latin (as FALLBACK-FONT) separately."
   ;; "b" - buffers.
   "b" '(:ignore t :which-key "buffers")
   "b /" 'helm-multi-swoop
-  "b a" 'helm-ag-buffers
+  "b #" 'helm-multi-occur-from-isearch
   ;; "y" - yasnippet
   "y" '(:ignore t :which-key "yasnippet")
   "y i" 'yas-insert-snippet
