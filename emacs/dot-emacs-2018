@@ -156,11 +156,14 @@ and latin (as FALLBACK-FONT) separately."
 ;;     :config (telephone-line-mode -1)))
 
 ;;; lacarte -- better F10 menu-bar.
-(use-package lacarte :ensure t :pin marmalade
-  :config (progn
-   (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
-   (global-set-key [?\M-`]     'lacarte-execute-menu-command)
-   (global-set-key [f10]       'lacarte-execute-menu-command)))
+;; (use-package lacarte :ensure t :pin marmalade
+;;   :config (progn
+;;    (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
+;;    (global-set-key [?\M-`]     'lacarte-execute-menu-command)
+;;    (global-set-key [f10]       'lacarte-execute-menu-command)))
+(global-set-key (kbd "M-`")       'menu-bar-open)
+(global-set-key (kbd "<f10>")       'menu-bar-open)
+
 
 ;;; helm
 (use-package helm :ensure t :pin melpa
@@ -199,7 +202,7 @@ and latin (as FALLBACK-FONT) separately."
                  (helm-projectile-on)))
 
 
-;;; helm-rg
+;;; helm-rg -- ripgrep
 (use-package helm-rg :ensure t :pin melpa)
 
 (defun helm-rg-maybe-projectile ()
@@ -208,7 +211,7 @@ and latin (as FALLBACK-FONT) separately."
       (helm-projectile-rg)
     (helm-rg)))
 
-;;; helm-ag
+;;; helm-ag -- the-silver-searcher
 ;; (use-package helm-ag :ensure t :pin melpa
 ;;   :config (setq helm-ag-insert-at-point 'symbol
 ;;                 ;; helm-ag-base-command "rg --vimgrep --no-heading --smart-case"
