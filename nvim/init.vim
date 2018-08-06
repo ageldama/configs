@@ -79,7 +79,7 @@ Bundle 'rbgrouleff/bclose.vim'
 
 
 " use ag for recursive searching so we don't find 10,000 useless hits inside node_modules
-if 1
+if 0
   " NOT WORKING.
   Bundle 'https://github.com/rking/ag.vim'
 
@@ -138,6 +138,10 @@ Bundle 'tpope/vim-abolish'
 
 Bundle 'https://github.com/RRethy/vim-illuminate'
 
+Bundle 'eugen0329/vim-esearch'
+  " <leader>ff
+
+Bundle 'jremmen/vim-ripgrep'
 
 
 "------------------------------------------------------------------------------
@@ -163,6 +167,10 @@ if executable('ag')
   let g:ctrlp_mruf_case_sensitive = 0
 
 endif
+
+" Ripgrep
+if !exists('g:esearch') | let g:esearch = {} | endif
+let g:esearch.adapter = 'rg'
 
 
 
@@ -306,6 +314,34 @@ noremap <leader>zb :Buffers<CR>
 noremap <leader>za :Ag<space>
 noremap <leader>m :Marks<CR>
 noremap <leader>h :Helptags<CR>
+
+"
+    " Start esearch prompt autofilled with one of g:esearch.use initial patterns
+    call esearch#map('<leader>ff', 'esearch')
+    " Start esearch autofilled with a word under the cursor
+    call esearch#map('<leader>fw', 'esearch-word-under-cursor')
+
+    call esearch#out#win#map('t',       'tab')
+    call esearch#out#win#map('i',       'split')
+    call esearch#out#win#map('s',       'vsplit')
+    call esearch#out#win#map('<Enter>', 'open')
+    call esearch#out#win#map('o',       'open')
+
+    "    Open silently (keep focus on the results window)
+    call esearch#out#win#map('T', 'tab-silent')
+    call esearch#out#win#map('I', 'split-silent')
+    call esearch#out#win#map('S', 'vsplit-silent')
+
+    "    Move cursor with snapping
+    call esearch#out#win#map('<C-n>', 'next')
+    call esearch#out#win#map('<C-j>', 'next-file')
+    call esearch#out#win#map('<C-p>', 'prev')
+    call esearch#out#win#map('<C-k>', 'prev-file')
+
+    call esearch#cmdline#map('<C-o><C-r>', 'toggle-regex')
+    call esearch#cmdline#map('<C-o><C-s>', 'toggle-case')
+    call esearch#cmdline#map('<C-o><C-w>', 'toggle-word')
+    call esearch#cmdline#map('<C-o><C-h>', 'cmdline-help')
 
 " autoread
 set autoread                                                                                                                                                                                    
