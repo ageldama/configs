@@ -316,6 +316,7 @@ noremap <leader>m :Marks<CR>
 noremap <leader>h :Helptags<CR>
 
 "
+if exists('g:esearch') 
     " Start esearch prompt autofilled with one of g:esearch.use initial patterns
     call esearch#map('<leader>ff', 'esearch')
     " Start esearch autofilled with a word under the cursor
@@ -342,6 +343,7 @@ noremap <leader>h :Helptags<CR>
     call esearch#cmdline#map('<C-o><C-s>', 'toggle-case')
     call esearch#cmdline#map('<C-o><C-w>', 'toggle-word')
     call esearch#cmdline#map('<C-o><C-h>', 'cmdline-help')
+endif
 
 " autoread
 set autoread                                                                                                                                                                                    
