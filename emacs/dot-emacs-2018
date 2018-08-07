@@ -211,6 +211,15 @@ and latin (as FALLBACK-FONT) separately."
       (helm-projectile-rg)
     (helm-rg)))
 
+(defun my-helm-projectile-rg--region-selection (old-fn &rest arguments)
+  (let ((thing (thing-at-point 'symbol)))
+    (if (null thing)
+        (apply old-fn arguments)
+      thing)))
+
+(advice-add #'helm-projectile-rg--region-selection
+            :around #'my-helm-projectile-rg--region-selection)
+
 ;;; helm-ag -- the-silver-searcher
 ;; (use-package helm-ag :ensure t :pin melpa
 ;;   :config (setq helm-ag-insert-at-point 'symbol
