@@ -150,6 +150,12 @@
   :diminish 'evil-goggles-mode
   :config (when yes-frills (evil-goggles-mode -1)))
 
+(use-package vimish-fold :ensure t :pin melpa
+  :config (progn (vimish-fold-global-mode +1)
+                 (global-set-key (kbd "C-c @ t") 'vimish-fold-toggle)
+                 (global-set-key (kbd "C-c @ f") 'vimish-fold)
+                 (global-set-key (kbd "C-c @ d") 'vimish-fold-delete)))
+
 (use-package evil-vimish-fold :ensure t :pin melpa
   :diminish 'evil-vimish-fold-mode
   :config (evil-vimish-fold-mode 1))
@@ -382,14 +388,14 @@
             (add-hook 'prog-mode-hook 'highlight-symbol-mode)))
 
 (use-package multiple-cursors :ensure t :pin melpa
-  :config (progn (global-set-key (kbd "C-S-c C-S-c") 'mc/edit-lines)
+  :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
                  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
                  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
 
 ;;; My Monsterous Keybindings.
-(cl-flet ((with-prefix (s) (concat "C-` " s)))
+(cl-flet ((with-prefix (s) (concat "C-' " s)))
   (macrolet ((bind (s cmd)
              `(global-set-key (kbd (with-prefix ,s)) ,cmd)))
     ;;
@@ -420,6 +426,9 @@
     (bind "` p" 'helm-list-emacs-process)
     (bind "` b" 'helm-bookmarks)
 
+    (bind "f t" 'vimish-fold-toggle)
+    (bind "f f" 'vimish-fold)
+    (bind "f d" 'vimish-fold-delete)
 ))
 
 
