@@ -568,7 +568,7 @@
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
 ;; (load-layer "slime.lisp")
-;; (load-layer "sly.el")
+(load-layer "sly.el")
 (load-layer "golang.el")
 
 ;;; org-tree-slide
