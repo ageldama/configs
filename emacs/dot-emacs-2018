@@ -42,26 +42,58 @@
   (package-install 'use-package))
 
 ;;; GUI fonts
-(defun set-gui-font-for-korean (korean-font fallback-font)
-  "Set the korean range (by 'KOREAN-FONT')
-and latin (as FALLBACK-FONT) separately."
-  (set-face-attribute 'default nil :font fallback-font)
-  ;; Korean ranges
-  (set-fontset-font "fontset-default" '(#x1100 . #xffdc)
-		    (cons korean-font "unicode-bmp"))
-  (set-fontset-font "fontset-default" '(#xe0bc . #xf66e)
-		    (cons korean-font "unicode-bmp")))
+;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
+;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
+
+(defun my-set-fixed-fonts ()
+  (interactive)
+  (let ((en-fn "Input Mono Compressed Medium")
+        (ko-fn "Noto Sans Mono CJK KR"))
+    ;; default Latin font (e.g. Consolas)
+    ;; but I use Monaco
+    (set-frame-font en-fn t)
+    (set-face-attribute 'default nil :family en-fn)
+    ;; default font size (point * 10)
+    ;; WARNING!  Depending on the default font,
+    ;; if the size is not supported very well, the frame will be clipped
+    ;; so that the beginning of the buffer may not be visible correctly. 
+    (set-face-attribute 'default nil :height 130)
+    ;; use specific font for Korean charset.
+    ;; if you want to use different font size for specific charset,
+    ;; add :size POINT-SIZE in the font-spec.
+    (set-fontset-font t 'hangul (font-spec :name ko-fn))))
+
+(defun my-set-variable-fonts ()
+  (interactive)
+  (set-frame-font "Noto Serif CJK KR" t)
+  (set-fontset-font t 'hangul (font-spec :name "Noto Serif CJK KR")))
+
+(defun which-active-modes ()
+  "Give a message of which minor modes are enabled in the current buffer."
+  (interactive)
+  (let ((active-modes))
+    (mapc (lambda (mode) (condition-case nil
+                             (if (and (symbolp mode) (symbol-value mode))
+                                 (add-to-list 'active-modes mode))
+                           (error nil) ))
+          minor-mode-list)
+    (message "Active modes are %s" active-modes)
+    active-modes))
+
+(defun my-auto-set-font-fixed-or-variable (&rest arguments)
+  (if (memq 'buffer-face-mode (which-active-modes))
+      (my-set-variable-fonts)
+    (my-set-fixed-fonts)))
+
+(advice-add #'variable-pitch-mode
+            :after #'my-auto-set-font-fixed-or-variable)
+
 
 (when (and t window-system)
-  ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
-  ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
   (cond ((or (string-equal system-type "gnu/linux")
              (string-equal system-type "darwin"))
-	 (set-gui-font-for-korean "Noto Sans Mono CJK KR" 
-                                  "Droid Sans Mono" )
-         ;;(set-face-attribute 'default nil :font "Noto Sans Mono CJK KR")
-	 )
-	;; Windows
+         (my-set-fixed-fonts))
+  	;; Windows
         ((string-equal system-type "windows-nt")
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
@@ -148,7 +180,7 @@ and latin (as FALLBACK-FONT) separately."
 ;;; Themes
 (when (and t window-system)
   (use-package doom-themes :ensure t :pin melpa)
-  (load-theme 'doom-nord t))
+  (load-theme 'doom-opera t))
 
 ;;; Modeline
 ;; (when (and window-system)
