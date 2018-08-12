@@ -570,6 +570,7 @@
 ;; (load-layer "slime.lisp")
 ;; (load-layer "sly.el")
 (load-layer "golang.el")
+(load-layer "perl5.el")
 
 ;;; org-tree-slide
 (use-package org-tree-slide :ensure t :pin melpa)

@@ -25,7 +25,7 @@
 ;;; General keymap.
 (when (fboundp 'general-create-definer)
   (progn
-    ;; TIDE
+    ;; js2
     (general-define-key
      :keymaps 'js2-mode-map
      :prefix "C-c"
@@ -44,7 +44,7 @@
     (general-define-key
      :keymaps 'json-mode-map
      :prefix "C-c"
-     "m" '(:ignore t :which-key "json"))
+     "m" '(:ignore t :which-key "mode"))
     (general-define-key
      :keymaps 'json-mode-map
      :prefix "C-c m"
