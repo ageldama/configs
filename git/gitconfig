@@ -19,3 +19,7 @@
 	excludesfile = ~/.gitignore
 #[credential]
 	#helper = osxkeychain
+
+[credential "https://github.com"]
+  username = ageldama
+  helper = cache --timeout=3600
