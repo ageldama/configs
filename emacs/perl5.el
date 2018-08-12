@@ -36,14 +36,18 @@
 
 
 ;;;
+(require 'f)
+
 (defun run-perl-prove ()
   "from https://github.com/hitode909/emacs-config/blob/master/inits/50-perl-config.el#L11"
   (interactive)
-  (compile
-   (read-from-minibuffer "CMD: "
-                         (format "cd %s; carton exec prove --nocolor %s"
-                                 (vc-git-root default-directory)
-                                 (buffer-file-name (current-buffer))))))
+  (let* ((dir (vc-git-root default-directory))
+         (inc-opt (if (f-dir-p (concat dir "/lib")) "-Ilib" ""))
+         (fn (buffer-file-name (current-buffer))))
+    (compile
+     (read-from-minibuffer
+      "CMD: "
+      (format "cd %s; carton exec prove --nocolor %s %s" dir fn inc-opt)))))
 
 (define-key cperl-mode-map (kbd "C-c e") 'run-perl-prove)
 
