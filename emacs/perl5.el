@@ -22,8 +22,10 @@
 (add-hook 'cperl-mode-hook
  	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 
-(let ((fn  (concat load-layer-base-path "perl/perltidy.el")))
-  (byte-compile-file fn t))
+(let ((base-fn  (concat load-layer-base-path "perl/perltidy")))
+  (if (file-exists-p (concat base-fn ".elc"))
+      (load base-fn)
+    (byte-compile-file fn t)))
 
 
 (require 'cperl-mode)
