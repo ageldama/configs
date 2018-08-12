@@ -14,6 +14,10 @@
       cperl-indent-parens-as-block t
       cperl-tab-always-indent t)
 
+;;; helm-perldoc
+(use-package helm-perldoc :ensure t :pin melpa
+  :config (helm-perldoc:setup))
+
 ;;;
 (add-hook 'cperl-mode-hook
  	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
@@ -23,6 +27,7 @@
 
 
 (define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
+(define-key cperl-mode-map (kbd "C-c d") 'helm-perldoc)
 
 
 ;;; EOF.
