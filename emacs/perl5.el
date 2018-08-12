@@ -22,7 +22,7 @@
   (byte-compile-file fn t))
 
 
-
+(define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
 
 
 ;;; EOF.
