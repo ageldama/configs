@@ -26,6 +26,7 @@
   (byte-compile-file fn t))
 
 
+(require 'cperl-mode)
 (define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
 (define-key cperl-mode-map (kbd "C-c d") 'helm-perldoc)
 
