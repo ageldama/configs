@@ -288,7 +288,7 @@
 ;;; Multiterm
 (use-package multi-term :ensure t :pin melpa
   :config (add-hook 'term-mode-hook
-                    (lambda() (turn-off-evil-mode)
+                    (lambda() 
                       (linum-mode -1)
                       (hl-line-mode -1))))
 
