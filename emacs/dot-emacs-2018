@@ -104,7 +104,13 @@
 
 ;;; cleaner modeline.
 (use-package diminish :ensure t :pin melpa
-  :config (diminish 'undo-tree-mode))
+  :config (progn (diminish 'undo-tree-mode)
+                 (diminish 'auto-revert-mode)))
+
+(use-package delight :ensure t
+  :config (delight '((js2-mode "js2")
+                     (emacs-lisp-mode "elisp"))))
+  
 
 ;;; which-key
 (use-package which-key :ensure t
@@ -183,7 +189,11 @@
 
 ;;; projectile + helm
 (use-package projectile :pin melpa
-  :config (projectile-global-mode))
+  :config
+  (progn (projectile-global-mode)
+         (setq projectile-mode-line
+               '(:eval (format " Prj[%s]" (projectile-project-name))))))
+
 
 (use-package helm-projectile :ensure t :pin melpa
   :config (progn (setq projectile-completion-system 'helm)
@@ -264,6 +274,7 @@
 
 ;;; company.
 (use-package company :ensure t :pin melpa
+  :diminish 'company-mode
   :config (progn (require 'company)
 		 (global-company-mode t)
 		 (global-set-key (kbd "C-c \\") 'company-complete)
@@ -339,6 +350,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;; Yasnippet
 (use-package yasnippet :ensure t :pin melpa
+  :diminish yas-minor-mode
   :config ;;(yas-global-mode +1)
   (add-hook 'prog-mode-hook #'yas-minor-mode))
 
@@ -351,6 +363,7 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
 
 (use-package highlight-symbol :ensure t :pin melpa
+  :diminish 'highlight-symbol-mode
   :config (progn
             (setq highlight-symbol-idle-delay 0.5)
             (add-hook 'prog-mode-hook 'highlight-symbol-mode)))
