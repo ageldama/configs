@@ -377,9 +377,9 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
-(general-create-definer my-local-leader-def :prefix "C-c c")
+(general-create-definer my-local-leader-def :prefix "C-'")
 
-(general-create-definer my-global-leader-def :prefix "C-c C-c")
+(general-create-definer my-global-leader-def :prefix "C-;")
 (my-global-leader-def 
   "/" 'helm-swoop
   "#" 'helm-occur
