@@ -104,13 +104,11 @@
 
 ;;; cleaner modeline.
 (use-package diminish :ensure t :pin melpa
-  :config (progn (diminish 'undo-tree-mode)
-                 (diminish 'auto-revert-mode)))
-
-(use-package delight :ensure t
-  :config (delight '((js2-mode "js2")
-                     (emacs-lisp-mode "elisp"))))
-  
+  :config
+  (progn
+    (add-hook 'auto-revert-mode-hook
+      (lambda () (diminish 'auto-revert-mode)))
+    (diminish 'undo-tree-mode)))
 
 ;;; which-key
 (use-package which-key :ensure t
@@ -373,7 +371,6 @@ i.e. change right window to bottom, or change bottom window to right."
                  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
                  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
-
 
 
 
