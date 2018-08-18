@@ -377,7 +377,7 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
-(general-create-definer my-local-leader-def :prefix "C-c j")
+(general-create-definer my-local-leader-def :prefix "C-c c")
 
 (general-create-definer my-global-leader-def :prefix "C-c C-c")
 (my-global-leader-def 
@@ -398,8 +398,6 @@ i.e. change right window to bottom, or change bottom window to right."
 
   "P" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
-
-  "j" (general-simulate-key "C-c j" :name major-mode)
 
   "k" 'helm-show-kill-ring
   "r" 'helm-register

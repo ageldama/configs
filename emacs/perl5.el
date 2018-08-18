@@ -32,6 +32,7 @@
 
 ;;;
 (require 'f)
+(require 'tramp)
 
 (defun run-perl-prove ()
   "from https://github.com/hitode909/emacs-config/blob/master/inits/50-perl-config.el#L11"
