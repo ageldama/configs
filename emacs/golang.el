@@ -30,9 +30,8 @@
 ;; gofmt
 ;; godoc
 (when (fboundp 'general-create-definer)
-  (general-define-key
+  (my-local-leader-def
    :keymaps 'go-mode-map
-   :prefix "C-c m"
    "r" 'go-run
    "t" 'go-test-current-test
    "T" 'go-test-current-test

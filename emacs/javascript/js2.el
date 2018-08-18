@@ -26,35 +26,16 @@
 (when (fboundp 'general-create-definer)
   (progn
     ;; js2
-    (general-define-key
-     :keymaps 'js2-mode-map
-     :prefix "C-c"
-     "m" '(:ignore t :which-key "mode"))
-    (general-define-key
-     :keymaps 'js2-mode-map
-     :prefix "C-c m"
-     ;; Run
+    (my-local-leader-def :keymaps 'js2-mode-map
      "r" 'compile
-     ;; NPM
      "n" (general-simulate-key "C-c n" :name npm)
-     ;; eslint
      "f" 'eslint-fix
      )
     ;; JSON
-    (general-define-key
-     :keymaps 'json-mode-map
-     :prefix "C-c"
-     "m" '(:ignore t :which-key "mode"))
-    (general-define-key
-     :keymaps 'json-mode-map
-     :prefix "C-c m"
-     ;;;
+    (my-local-leader-def :keymaps 'json-mode-map
      "p" 'jsons-print-path
      "f" 'json-mode-beautify
-    )
-    ))
-
-
+    )))
 
 ;;;
 (defconst agelmacs/layer/js2 t)

@@ -20,10 +20,6 @@
 (use-package helm-perldoc :ensure t :pin melpa
   :config (helm-perldoc:setup))
 
-;;;
-(add-hook 'cperl-mode-hook
- 	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
-
 (load (concat load-layer-base-path "perl/perltidy"))
 ;; (let ((base-fn  (concat load-layer-base-path "perl/perltidy")))
 ;;   (if (file-exists-p (concat base-fn ".elc"))
@@ -32,8 +28,6 @@
 
 
 (require 'cperl-mode)
-(define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
-(define-key cperl-mode-map (kbd "C-c d") 'helm-perldoc)
 
 
 ;;;
@@ -50,7 +44,22 @@
       "CMD: "
       (format "cd %s; carton exec prove --nocolor %s %s" dir fn inc-opt)))))
 
+;;;
 (define-key cperl-mode-map (kbd "C-c e") 'run-perl-prove)
+(define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
+(define-key cperl-mode-map (kbd "C-c d") 'helm-perldoc)
+(add-hook 'cperl-mode-hook
+ 	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
+
+(when (fboundp 'general-create-definer)
+  (progn
+    ;; cperl
+    (my-local-leader-def :keymaps 'cperl-mode-map
+      "r" 'cperl-db
+      "t" 'run-perl-prove
+      "d" 'helm-perldoc
+      "f" 'perltidy-dwim
+      )))
 
 
 ;;; EOF.

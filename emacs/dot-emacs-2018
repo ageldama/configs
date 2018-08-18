@@ -11,7 +11,11 @@
 (show-paren-mode     t)
 (transient-mark-mode t)
 
-(defvar yes-frills t)
+
+(add-hook 'kill-emacs-query-functions
+          (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
+          'append)
+
 
 ;;; no backup files
 (setq make-backup-files nil)
@@ -105,66 +109,20 @@
 ;;; which-key
 (use-package which-key :ensure t
   :diminish which-key-mode
-  :config (which-key-mode))
+  :config (progn (which-key-mode)
+                 (which-key-setup-side-window-bottom)))
 
 (use-package helm-descbinds     :ensure t :pin melpa
   :config (global-set-key (kbd "C-h b") 'helm-descbinds))
 
-;;; Evil
-(use-package evil :ensure t :pin melpa
-  :init (setq evil-want-integration nil)
-  :config (evil-mode -1))
-
-(defun toggle-evil-mode ()
-  (interactive)
-  (evil-mode (if (null evil-state) 1 -1)))
-
-(global-set-key (kbd "C-z") 'toggle-evil-mode)
-
-(when yes-frills
-  (global-linum-mode   +1)
-  (global-hl-line-mode -1)
-  )
-
-;; (use-package hlinum :ensure t :pin melpa :config (hlinum-deactivate))
-
-;; (use-package vi-tilde-fringe :ensure t :pin melpa
-;;   :config (global-vi-tilde-fringe-mode -1))
-
-;; (defun my-evil-visual-state-entry-hook ()
-;;   (when (and hl-line-mode (eq evil-visual-selection 'block))
-;;     (hl-line-mode -1)))
-;; (add-hook 'evil-visual-state-entry-hook 'my-evil-visual-state-entry-hook)
-;; (defun my-evil-visual-state-exit-hook ()
-;;   (when (and (not hl-line-mode) (eq evil-visual-selection 'block))
-;;     (hl-line-mode)))
-;; (add-hook 'evil-visual-state-exit-hook 'my-evil-visual-state-exit-hook)
-
-(use-package evil-collection :ensure t :after evil
-  :config (evil-collection-init))
-
-;; (use-package evil-easymotion :ensure t :pin melpa
-;;   :config (evilem-default-keybindings "SPC"))
-
-(use-package evil-goggles :ensure t :pin melpa
-  :diminish 'evil-goggles-mode
-  :config (when yes-frills (evil-goggles-mode -1)))
+(global-linum-mode   +1)
+(global-hl-line-mode -1)
 
 (use-package vimish-fold :ensure t :pin melpa
   :config (progn (vimish-fold-global-mode +1)
                  (global-set-key (kbd "C-c @ t") 'vimish-fold-toggle)
                  (global-set-key (kbd "C-c @ f") 'vimish-fold)
                  (global-set-key (kbd "C-c @ d") 'vimish-fold-delete)))
-
-(use-package evil-vimish-fold :ensure t :pin melpa
-  :diminish 'evil-vimish-fold-mode
-  :config (evil-vimish-fold-mode 1))
-
-;; (use-package evil-matchit :ensure t :pin melpa
-;;   :config (global-evil-matchit-mode +1))
-
-;; (use-package evil-lion :ensure t :pin melpa
-;;   :config (evil-lion-mode +1))
 
 ;;; rainbow-delimiters
 (use-package rainbow-delimiters  :ensure t :pin melpa
@@ -180,20 +138,12 @@
 (use-package hl-todo :ensure t :pin melpa
   :config (global-hl-todo-mode +1))
 
-;; (use-package ace-popup-menu :ensure t :pin melpa
-;;   :config (ace-popup-menu-mode -1))
-
 ;;; Themes
 (when (and t window-system)
   (use-package doom-themes :ensure t :pin melpa)
   (load-theme 'doom-opera t))
 
-;;; Modeline
-;; (when (and window-system)
-;;   (use-package telephone-line :ensure t :pin melpa
-;;     :config (telephone-line-mode -1)))
-
-;;; lacarte -- better F10 menu-bar.
+;; lacarte -- better F10 menu-bar.
 ;; (use-package lacarte :ensure t :pin marmalade
 ;;   :config (progn
 ;;    (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
@@ -258,18 +208,6 @@
 (advice-add #'helm-projectile-rg--region-selection
             :around #'my-helm-projectile-rg--region-selection)
 
-;;; helm-ag -- the-silver-searcher
-;; (use-package helm-ag :ensure t :pin melpa
-;;   :config (setq helm-ag-insert-at-point 'symbol
-;;                 ;; helm-ag-base-command "rg --vimgrep --no-heading --smart-case"
-;;                 ))
-
-;; (defun helm-ag-maybe-projectile ()
-;;   (interactive)
-;;   (if (projectile-project-p)
-;;       (helm-projectile-ag)
-;;     (helm-ag)))
-
 
 ;;; dashboard
 (use-package dashboard :ensure t :pin melpa
@@ -303,7 +241,7 @@
 
 (use-package git-gutter-fringe :ensure t :pin melpa
   :diminish 'git-gutter-mode
-  :config (when yes-frills (global-git-gutter-mode +1)))
+  :config (global-git-gutter-mode +1))
 
 
 ;;; flycheck.
@@ -369,6 +307,36 @@
 (use-package ace-window :ensure t :pin melpa
   :config (global-set-key (kbd "C-x o") 'ace-window))
 
+;;;
+(defun window-toggle-split-direction ()
+  "Switch window split from horizontally to vertically, or vice versa.
+i.e. change right window to bottom, or change bottom window to right."
+  (interactive)
+  (require 'windmove)
+  (let ((done))
+    (dolist (dirs '((right . down) (down . right)))
+      (unless done
+        (let* ((win (selected-window))
+               (nextdir (car dirs))
+               (neighbour-dir (cdr dirs))
+               (next-win (windmove-find-other-window nextdir win))
+               (neighbour1 (windmove-find-other-window neighbour-dir win))
+               (neighbour2 (if next-win (with-selected-window next-win
+                                          (windmove-find-other-window neighbour-dir next-win)))))
+          ;;(message "win: %s\nnext-win: %s\nneighbour1: %s\nneighbour2:%s" win next-win neighbour1 neighbour2)
+          (setq done (and (eq neighbour1 neighbour2)
+                          (not (eq (minibuffer-window) next-win))))
+          (if done
+              (let* ((other-buf (window-buffer next-win)))
+                (delete-window next-win)
+                (if (eq nextdir 'right)
+                    (split-window-vertically)
+                  (split-window-horizontally))
+                (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
+
+(global-set-key (kbd "C-x |") 'window-toggle-split-direction)
+
+
 ;;; Yasnippet
 (use-package yasnippet :ensure t :pin melpa
   :config ;;(yas-global-mode +1)
@@ -394,122 +362,69 @@
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
 
-;;; My Monsterous Keybindings.
-(cl-flet ((with-prefix (s) (concat "C-' " s)))
-  (macrolet ((bind (s cmd)
-             `(global-set-key (kbd (with-prefix ,s)) ,cmd)))
-    ;;
-    (bind "/" 'helm-swoop)
-    (bind "#" 'helm-occur)
-
-    (bind "T" 'multi-term)
-
-    (bind "TAB" 'helm-mini)
-
-    (bind "o" 'helm-rg-maybe-projectile)
-    (bind "p" 'helm-projectile)
-    (bind "P" 'projectile)
-
-    (bind "G" 'magit-status)
-    (bind "g" 'magit-file-popup)
-
-    (bind "k" 'helm-show-kill-ring)
-    (bind "r" 'helm-register)
-    (bind "m" 'helm-mark-ring)
-    (bind "M" 'helm-all-mark-rings)
-
-    (bind "b /" 'helm-multi-swoop)
-    (bind "b #" 'helm-multi-occur-from-isearch)
-
-    (bind "` r" 'helm-regexp)
-    (bind "` t" 'helm-top)
-    (bind "` p" 'helm-list-emacs-process)
-    (bind "` b" 'helm-bookmarks)
-
-    (bind "f t" 'vimish-fold-toggle)
-    (bind "f f" 'vimish-fold)
-    (bind "f d" 'vimish-fold-delete)
-))
 
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
-(define-key evil-normal-state-map "," (general-simulate-key "C-c m"))
+(general-create-definer my-local-leader-def :prefix "C-c j")
 
-(define-key evil-normal-state-map (kbd "C-w <left>") 'evil-window-left)
-(define-key evil-normal-state-map (kbd "C-w <right>") 'evil-window-right)
-(define-key evil-normal-state-map (kbd "C-w <up>") 'evil-window-up)
-(define-key evil-normal-state-map (kbd "C-w <down>") 'evil-window-down)
-
-(general-create-definer my-root-leader-def :prefix "SPC")
-(my-root-leader-def 'normal
-  "<left>" 'evil-window-left
-  "<right>" 'evil-window-right
-  "<up>" 'evil-window-up
-  "<down>" 'evil-window-down
+(general-create-definer my-global-leader-def :prefix "C-c C-c")
+(my-global-leader-def 
   "/" 'helm-swoop
   "#" 'helm-occur
+  
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
+  
   "?" 'helm-descbinds
+  
   "'" 'multi-term
+  
   "g" 'magit-file-popup
   "G" 'magit-status
   "o" 'helm-rg-maybe-projectile
   "p" 'helm-projectile
+
   "P" (general-simulate-key "C-c p" :name projectile)
   "e" (general-simulate-key "C-c !" :name flycheck)
-  "w" 'writeroom-mode
-  "i" 'yas-insert-snippet
+
+  "j" (general-simulate-key "C-c j" :name major-mode)
+
   "k" 'helm-show-kill-ring
-  ;; "f" - files.
-  "f" '(:ignore t :which-key "file+dir")
-  "f d" 'dired
-  "f f" 'helm-find
-  "f r" 'helm-recentf
-  "f S" 'evil-write-all
-  ;; "b" - buffers.
-  "b" '(:ignore t :which-key "buffers")
+  "r" 'helm-register
+  "m" 'helm-mark-ring
+  "M" 'helm-all-mark-rings
+
+  "w" 'writeroom-mode
+  
+  "b" '(:ignore t :which-key "buf")
   "b /" 'helm-multi-swoop
   "b #" 'helm-multi-occur-from-isearch
-  ;; "y" - yasnippet
-  "y" '(:ignore t :which-key "yasnippet")
-  "y i" 'yas-insert-snippet
-  "y e" 'yas-visit-snippet-file
-  "y n" 'yas-new-snippet
-  ;; avy
-  ;; "v" '(:ignore t :which-key "avy")
-  ;; "v c" 'avy-goto-char
-  ;; "v w" 'avy-goto-word-0
-  ;; "v <" 'avy-pop-mark
-  ;; "`" - misc
+
   "`" '(:ignore t :which-key "misc")
   "` r" 'helm-regexp
   "` t" 'helm-top
   "` p" 'helm-list-emacs-process
   "` b" 'helm-bookmarks
-  "` r" 'helm-register
-  "` m" 'helm-mark-ring
-  "` M" 'helm-all-mark-rings
+
+  "f" '(:ignore t :which-key "fold")
+  "f t" 'vimish-fold-toggle
+  "f f" 'vimish-fold
+  "f d" 'vimish-fold-delete
+
+  ;; "y" - yasnippet
+  "y" '(:ignore t :which-key "yasnippet")
+  "y i" 'yas-insert-snippet
+  "y e" 'yas-visit-snippet-file
+  "y n" 'yas-new-snippet
+
+  "`" '(:ignore t :which-key "misc")
+  "` r" 'helm-regexp
+  "` t" 'helm-top
+  "` p" 'helm-list-emacs-process
+  "` b" 'helm-bookmarks
   )
-
-;;; Evil, no thanks here:
-(defun evil-nothanks-mode (mode)
-  "Apply evil-set-initial-state-mode as 'EMACS for given MODE is available."
-  (when (fboundp mode)
-    (evil-set-initial-state mode 'emacs)))
-
-(when (fboundp 'evil-set-initial-state)
-  (dolist (mode '(dired-mode
-		  helm-ag-mode
-		  helm-moccur-mode
-		  Info-mode
-		  eww-mode
-		  debugger-mode
-                  compilation-mode
-		  term-mode))
-    (evil-nothanks-mode mode)))
 
 
 ;;; Layers support.
@@ -523,46 +438,11 @@
 	      (format "%s%s" load-layer-base-path layer-name))))
     (load-file fn)))
 
-(defun load-cmake-ide-layer ()
-  (interactive)
-  (load-layer "cmake-ide/cmake-ide.el"))
-
-(defun load-python-ide-layer ()
-  (interactive)
-  (load-layer "python/python.el"))
-
-;; (defun load-tide-ide-layer ()
-;;   (interactive)
-;;   (load-layer "javascript/tide.el"))
-
 (defun load-layer-by-file-ext (file-name-p-fn loaded-flag-sym load-fn)
   (unless (boundp loaded-flag-sym)
     (let* ((file-name (buffer-file-name))
 	   (file-ext-match (funcall file-name-p-fn file-name)))
       (funcall load-fn))))
-
-(defun my-find-file-load-layer-hook ()
-  ;; (load-layer-by-file-ext (lambda (file-name) (s-ends-with? ".py" file-name))
-  ;;       		  'agelmacs/layer/python
-  ;;       		  'load-python-ide-layer)
-
-  ;; (load-layer-by-file-ext (lambda (file-name)
-  ;;       		    (some (lambda (suffix) (s-ends-with? suffix file-name))
-  ;;       			  '(".js" ".json" )))
-  ;;       		  'agelmacs/layer/tide
-  ;;       		  'load-tide-ide-layer)
-
-  (load-layer-by-file-ext (lambda (file-name)
-			    (some (lambda (suffix) (s-ends-with? suffix file-name))
-				  '(".c" ".h" ".cxx" ".cc" ".cpp" ".C" ".hxx" ".hpp" ".H")))
-			  'agelmacs/layer/cmake-ide
-			  'load-cmake-ide-layer)
-
-  )
-
-;; (add-hook 'find-file-hook 'my-find-file-load-layer-hook)
-
-
 
 (load-layer "proto+grpc.el")
 (load-layer "groovy/groovy.el")
