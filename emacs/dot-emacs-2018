@@ -377,8 +377,6 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
-(general-create-definer my-local-leader-def :prefix "C-c z")
-
 (defalias 'ctl-z-keymap (make-sparse-keymap))
 (defvar ctl-z-map (symbol-function 'ctl-z-keymap)
   "Global keymap for characters following C-z.")
@@ -438,6 +436,8 @@ i.e. change right window to bottom, or change bottom window to right."
   "` p" 'helm-list-emacs-process
   "` b" 'helm-bookmarks
   )
+
+(general-create-definer my-local-leader-def :prefix "C-z z")
 
 
 ;;; Layers support.
