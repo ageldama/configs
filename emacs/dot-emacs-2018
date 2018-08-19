@@ -119,7 +119,7 @@
 (use-package helm-descbinds     :ensure t :pin melpa
   :config (global-set-key (kbd "C-h b") 'helm-descbinds))
 
-(global-linum-mode   +1)
+(global-linum-mode   -1)
 (global-hl-line-mode -1)
 
 (use-package vimish-fold :ensure t :pin melpa
@@ -377,9 +377,14 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
-(general-create-definer my-local-leader-def :prefix "C-'")
+(general-create-definer my-local-leader-def :prefix "C-c z")
 
-(general-create-definer my-global-leader-def :prefix "C-;")
+(defalias 'ctl-z-keymap (make-sparse-keymap))
+(defvar ctl-z-map (symbol-function 'ctl-z-keymap)
+  "Global keymap for characters following C-z.")
+(define-key global-map "\C-z" 'ctl-z-keymap)
+
+(general-create-definer my-global-leader-def :prefix "C-z")
 (my-global-leader-def 
   "/" 'helm-swoop
   "#" 'helm-occur
@@ -389,7 +394,7 @@ i.e. change right window to bottom, or change bottom window to right."
   
   "?" 'helm-descbinds
   
-  "'" 'multi-term
+  "T" 'multi-term
   
   "g" 'magit-file-popup
   "G" 'magit-status
@@ -455,6 +460,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (load-layer "proto+grpc.el")
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
+;; (load-layer "python/jedi.el")
 ;; (load-layer "slime.lisp")
 ;; (load-layer "sly.el")
 (load-layer "golang.el")

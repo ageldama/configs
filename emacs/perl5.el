@@ -53,14 +53,13 @@
  	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 
 (when (fboundp 'general-create-definer)
-  (progn
-    ;; cperl
-    (my-local-leader-def :keymaps 'cperl-mode-map
-      "r" 'cperl-db
-      "t" 'run-perl-prove
-      "d" 'helm-perldoc
-      "f" 'perltidy-dwim
-      )))
+  ;; cperl
+  (my-local-leader-def :keymaps 'cperl-mode-map
+    "r" 'cperl-db
+    "t" 'run-perl-prove
+    "d" 'helm-perldoc
+    "f" 'perltidy-dwim
+    ))
 
 
 ;;; EOF.
