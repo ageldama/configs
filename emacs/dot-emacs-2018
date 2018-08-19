@@ -460,7 +460,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (load-layer "proto+grpc.el")
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
-;; (load-layer "python/jedi.el")
+;; (load-layer "python/jedi.el") ; heavy-lifting
 ;; (load-layer "slime.lisp")
 ;; (load-layer "sly.el")
 (load-layer "golang.el")
