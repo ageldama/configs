@@ -1,0 +1,9 @@
+# ~/.config/systemd/user/xscreensaver.service
+[Unit]
+Description=XScreenSaver
+[Service]
+ExecStart=/usr/bin/xscreensaver
+[Install]
+WantedBy=default.target
+ 
+

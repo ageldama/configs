@@ -79,7 +79,7 @@ xmodmap ~/.my_super_keymap &
 xset s on
 xset s 300
 
-xautolock -time 5 -locker 'i3lock -c 000000 ' &
+#xautolock -time 5 -locker 'i3lock -c 000000 ' &
 #xscreensaver &
 
 pulseaudio --start &
