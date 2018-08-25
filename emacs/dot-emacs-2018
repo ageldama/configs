@@ -435,6 +435,23 @@ i.e. change right window to bottom, or change bottom window to right."
   "` t" 'helm-top
   "` p" 'helm-list-emacs-process
   "` b" 'helm-bookmarks
+
+  ;; windows
+  "C-z" 'other-window
+  "s" 'split-window-below
+  "v" 'split-window-right
+  "q" 'delete-window
+
+  "<left>" 'windmove-left
+  "<right>" 'windmove-right
+  "<up>" 'windmove-up
+  "<down>" 'windmove-down
+
+  "=" 'balance-windows
+  "+" 'enlarge-window
+  "-" 'shrink-window
+  ">" 'enlarge-window-horizontally
+  "<" 'shrink-window-horizontally 
   )
 
 (general-create-definer my-local-leader-def :prefix "C-z z")
