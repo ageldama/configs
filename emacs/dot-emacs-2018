@@ -407,6 +407,8 @@ i.e. change right window to bottom, or change bottom window to right."
   "m" 'helm-mark-ring
   "M" 'helm-all-mark-rings
 
+  "i" 'helm-imenu
+  
   "w" 'writeroom-mode
   
   "b" '(:ignore t :which-key "buf")
