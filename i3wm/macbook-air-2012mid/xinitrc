@@ -71,7 +71,7 @@ xset s on
 xset s 300
 
 # xautolock -time 5 -locker 'i3lock -c 000000 ' &
-#xscreensaver &
+xscreensaver -no-splash&
 
 pulseaudio --start &
 
@@ -86,6 +86,10 @@ pulseaudio --start &
 # redshift-gtk &
 
 xrdb -load ~/.Xresources
+
+#dunst -fn "Monospace 48" &
+twmnd &
+
 
 compton -b &
 
