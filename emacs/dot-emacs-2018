@@ -188,9 +188,7 @@
 ;;; projectile + helm
 (use-package projectile :pin melpa
   :config
-  (progn (projectile-global-mode)
-         (setq projectile-mode-line
-               '(:eval (format " Prj[%s]" (projectile-project-name))))))
+  (progn (projectile-global-mode)))
 
 
 (use-package helm-projectile :ensure t :pin melpa
@@ -379,6 +377,14 @@ i.e. change right window to bottom, or change bottom window to right."
                  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
+;;; Evil, my last resort. (sometimes)
+(use-package evil :ensure t :pin melpa
+  :init (setq evil-want-integration t)
+  :config (evil-mode -1))
+
+(defun toggle-evil-mode ()
+  (interactive)
+  (evil-mode (if (null evil-state) 1 -1)))
 
 
 ;;; General -- Leading Keybinder
@@ -389,7 +395,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "Global keymap for characters following C-z.")
 (define-key global-map "\C-z" 'ctl-z-keymap)
 
-(general-create-definer my-global-leader-def :prefix "C-z")
+(general-create-definer my-global-leader-def :prefix "C-'")
 (my-global-leader-def 
   "/" 'helm-swoop
   "#" 'helm-occur
@@ -416,6 +422,8 @@ i.e. change right window to bottom, or change bottom window to right."
   "M" 'helm-all-mark-rings
 
   "i" 'helm-imenu
+
+  ":" 'toggle-evil-mode
   
   "w" 'writeroom-mode
   
@@ -464,7 +472,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "<" 'shrink-window-horizontally 
   )
 
-(general-create-definer my-local-leader-def :prefix "C-z z")
+(general-create-definer my-local-leader-def :prefix "C-`")
 
 
 ;;; Layers support.
