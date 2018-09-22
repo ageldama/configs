@@ -380,7 +380,9 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; Evil, my last resort. (sometimes)
 (use-package evil :ensure t :pin melpa
   :init (setq evil-want-integration t)
-  :config (evil-mode -1))
+  :config (progn (evil-mode -1)
+                 ;; because I use 'C-z' as my leader key
+                 (define-key evil-motion-state-map (kbd "C-z") nil)))
 
 (defun toggle-evil-mode ()
   (interactive)
@@ -390,12 +392,12 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
-;; (defalias 'ctl-z-keymap (make-sparse-keymap))
-;; (defvar ctl-z-map (symbol-function 'ctl-z-keymap)
-;;   "Global keymap for characters following C-z.")
-;; (define-key global-map "\C-z" 'ctl-z-keymap)
+(defalias 'ctl-z-keymap (make-sparse-keymap))
+(defvar ctl-z-map (symbol-function 'ctl-z-keymap)
+  "Global keymap for characters following C-z.")
+(define-key global-map "\C-z" 'ctl-z-keymap)
 
-(general-create-definer my-global-leader-def :prefix "C-'")
+(general-create-definer my-global-leader-def :prefix "C-z")
 (my-global-leader-def 
   "/" 'helm-swoop
   "#" 'helm-occur
@@ -455,7 +457,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "` b" 'helm-bookmarks
 
   ;; windows
-  "C-'" 'other-window
+  "C-z" 'other-window
   "s" 'split-window-below
   "v" 'split-window-right
   "q" 'delete-window
@@ -472,7 +474,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "<" 'shrink-window-horizontally 
   )
 
-(general-create-definer my-local-leader-def :prefix "C-`")
+(general-create-definer my-local-leader-def :prefix "C-z z")
 
 
 ;;; Layers support.
