@@ -198,23 +198,30 @@
                  (helm-projectile-on)))
 
 
-;;; helm-rg -- ripgrep
-(use-package helm-rg :ensure t :pin melpa)
+;;; helm, projectile, ag-or-or
+(when nil
+  (use-package projectile-ripgrep :ensure t :pin melpa
+    :config (defun my-projectile-ripgrep ()
+              (interactive)
+              (call-interactively 'projectile-ripgrep)))
+  )
 
-(defun helm-rg-maybe-projectile ()
+(use-package helm-ag :ensure t :pin melpa
+  :config (setq helm-ag-fuzzy-match nil
+                helm-ag-insert-at-point 'symbol
+                ))
+
+(defun helm-ag-maybe-projectile ()
   (interactive)
   (if (projectile-project-p)
-      (helm-projectile-rg)
-    (helm-rg)))
+      (helm-projectile-ag)
+    (helm-ag)))
 
-(defun my-helm-projectile-rg--region-selection (old-fn &rest arguments)
-  (let ((thing (thing-at-point 'symbol)))
-    (if (null thing)
-        (apply old-fn arguments)
-      thing)))
+;; NOTE: currently (2018-Sep) helm-rg does not support saving search
+;; result as a buffer, not in helm. Thus, I had to change it helm-ag.
+;; and Ripgrep is faster but (IMHO) helm-rg needs to be developed
+;; more.
 
-(advice-add #'helm-projectile-rg--region-selection
-            :around #'my-helm-projectile-rg--region-selection)
 
 
 ;;; dashboard
@@ -396,10 +403,11 @@ i.e. change right window to bottom, or change bottom window to right."
   
   "g" 'magit-file-popup
   "G" 'magit-status
-  "o" 'helm-rg-maybe-projectile
+
+  "o" 'helm-ag-maybe-projectile
   "p" 'helm-projectile
 
-  "P" (general-simulate-key "C-c p" :name projectile)
+  "P" 'projectile-commander
   "e" (general-simulate-key "C-c !" :name flycheck)
 
   "k" 'helm-show-kill-ring
