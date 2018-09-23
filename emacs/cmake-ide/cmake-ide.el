@@ -256,85 +256,41 @@
   (interactive)
   (helm :sources (cmake-ide-obj-files-source)))
 
-
-;;; spacemacs major-mode keys
-(when (boundp 'spacemacs-version)
-  (dolist (mode-name '(c-mode c++-mode))
-    (spacemacs/declare-prefix-for-mode mode-name "mb" "build&cmake")
-    (spacemacs/declare-prefix-for-mode mode-name "mr" "rtags")
-    (spacemacs/declare-prefix-for-mode mode-name "m`" "misc")
-    (spacemacs/set-leader-keys-for-major-mode mode-name
-      ;; Compile, CMake
-      "bc" 'cmake-ide-run-cmake
-      "bb" 'cmake-ide-compile
-      "bB" 'cmake-ide-compile*
-      "bD" 'cmake-ide-delete-build-dir
-      ;; RTags
-      "?" 'rtags-print-symbol-info
-      "." 'rtags-find-symbol-at-point
-      "," 'rtags-location-stack-back
-      ">" 'rtags-find-references-at-point
-      ";" 'rtags-find-file
-      "v" 'rtags-find-virtuals-at-point
-      "[" 'rtags-previous-match
-      "]" 'rtags-next-match
-      "!" 'rtags-fix-fixit-at-point
-      "rs" 'rtags-find-symbol
-      "rr" 'rtags-find-references
-      "ri" 'rtags-imenu
-      "rd" 'rtags-diagnostics
-      "rD" 'rtags-dependency-tree
-      "rR" 'rtags-references-tree
-      ;; Debugger
-      "d" 'cmake-ide-helm-run-gdb
-      "x" 'cmake-ide-helm-run-exe
-      ;; Formatting
-      "f" 'clang-format-auto
-      ;; Disassemble
-      "`d" 'cmake-ide-objdump
-      )))
-
+;;;
 (when (fboundp 'general-create-definer)
-  (progn
-    (general-define-key
-     :keymaps 'c-mode-base-map
-     :prefix "C-c"
-     "m" '(:ignore t :which-key "mode"))
-    (general-define-key
-     :keymaps 'c-mode-base-map
-     :prefix "C-c m"
-     ;; Compile, CMake
-     "b" '(:ignore t :which-key "cmake+build")
-     "b c" 'cmake-ide-run-cmake
-     "b b" 'cmake-ide-compile
-     "b B" 'cmake-ide-compile*
-     "b D" 'cmake-ide-delete-build-dir
-     ;; RTags
-     "?" 'rtags-print-symbol-info
-     "." 'rtags-find-symbol-at-point
-     "," 'rtags-location-stack-back
-     ">" 'rtags-find-references-at-point
-     ";" 'rtags-find-file
-     "v" 'rtags-find-virtuals-at-point
-     "[" 'rtags-previous-match
-     "]" 'rtags-next-match
-     "!" 'rtags-fix-fixit-at-point
-     "r" '(:ignore t :which-key "more-rtags")
-     "r s" 'rtags-find-symbol
-     "r r" 'rtags-find-references
-     "r i" 'rtags-imenu
-     "r d" 'rtags-diagnostics
-     "r D" 'rtags-dependency-tree
-     "r R" 'rtags-references-tree
-     ;; Debugger
-     "d" 'cmake-ide-helm-run-gdb
-     "x" 'cmake-ide-helm-run-exe
-     ;; Formatting
-     "f" 'clang-format-auto
-     ;; Disassemble
-     "`" '(:ignore t :which-key "misc")
-     "` d" 'cmake-ide-objdump
-     )))
+  (my-local-leader-def :keymaps 'c-mode-base-map
+    ;; Compile, CMake
+    "b" '(:ignore t :which-key "cmake+build")
+    "b c" 'cmake-ide-run-cmake
+    "b b" 'cmake-ide-compile
+    "b B" 'cmake-ide-compile*
+    "b D" 'cmake-ide-delete-build-dir
+    ;; RTags
+    "?" 'rtags-print-symbol-info
+    "." 'rtags-find-symbol-at-point
+    "," 'rtags-location-stack-back
+    ">" 'rtags-find-references-at-point
+    ";" 'rtags-find-file
+    "v" 'rtags-find-virtuals-at-point
+    "[" 'rtags-previous-match
+    "]" 'rtags-next-match
+    "!" 'rtags-fix-fixit-at-point
+    "r" '(:ignore t :which-key "more-rtags")
+    "r s" 'rtags-find-symbol
+    "r r" 'rtags-find-references
+    "r i" 'rtags-imenu
+    "r d" 'rtags-diagnostics
+    "r D" 'rtags-dependency-tree
+    "r R" 'rtags-references-tree
+    ;; Debugger
+    "d" 'cmake-ide-helm-run-gdb
+    "x" 'cmake-ide-helm-run-exe
+    ;; Formatting
+    "f" 'clang-format-auto
+    ;; Disassemble
+    "`" '(:ignore t :which-key "misc")
+    "` d" 'cmake-ide-objdump
+    ))
 
 
 ;; FILE ".dir-locals.el"
