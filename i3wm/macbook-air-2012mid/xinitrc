@@ -73,7 +73,7 @@ xset s 300
 # xautolock -time 5 -locker 'i3lock -c 000000 ' &
 xscreensaver -no-splash&
 
-pulseaudio --start &
+#pulseaudio --start &
 
 # `systemd-journal` group
 #journalctl --no-pager -f --system --user | osd_cat -d 5 -s 3 -O 5 -l 20 -c green -A right -o 200 -f 7x13 &
@@ -90,8 +90,8 @@ redshift-gtk -l 37.566:126.977 & # Seoul
 
 xrdb -load ~/.Xresources
 
-#dunst -fn "Monospace 48" &
-twmnd &
+dunst &
+#twmnd &
 
 
 compton -b &
