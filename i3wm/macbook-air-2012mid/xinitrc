@@ -81,7 +81,10 @@ pulseaudio --start &
 
 # ~/local/bin/caps-to-ctrl.sh 2s &
 
-# TODO nm-applet &
+nm-applet &
+blueman-applet &
+
+redshift-gtk -l 37.566:126.977 & # Seoul
 
 # redshift-gtk &
 
