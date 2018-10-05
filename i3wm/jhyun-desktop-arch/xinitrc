@@ -1,0 +1,107 @@
+#!/bin/sh
+
+#LOG_FILE=~/xinitrc.log
+# Close STDOUT file descriptor
+#exec 1<&-
+# Close STDERR FD
+#exec 2<&-
+
+# Open STDOUT as $LOG_FILE file for read and write.
+#exec 1<>$LOG_FILE
+
+# Redirect STDERR to STDOUT
+#exec 2>&1
+
+#export LANG=ko_KR.UTF-8
+
+export PATH=$PATH:/home/jhyun/local/bin
+
+#export TERMINAL=konsole
+export TERMINAL=lxterminal
+
+#export XMODIFIERS="@im=SCIM"
+#export QT_IM_MODULE=scim
+#export GTK_IM_MODULE=scim
+
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
+
+#export XMODIFIERS="@im=nabi"
+#export QT_IM_MODULE=xim
+#export GTK_IM_MODULE=xim
+
+#scim -d 
+#fcitx -d
+#nabi&
+ibus-daemon -d -x
+
+# $ sudo pacman -S ibus ibus-qt ibus-hangul
+#
+#ibus-daemon&
+
+#fcitx &
+
+#exec gnome-session
+
+dbus-update-activation-environment --systemd DISPLAY
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
+#~/.dropbox-dist/dropboxd &
+dropbox &
+
+#eval $(gnome-keyring-daemon --start)
+#export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
+#export SSH_AGENT_PID=$GNOME_KEYRING_PID
+
+#keychain ~/.ssh/id_rsa
+#[ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
+#[ -f ~/.keychain/$HOSTNAME-sh-gpg ] && . ~/.keychain/$HOSTNAME-sh-gpg 2>/dev/null
+
+#eval $(ssh-agent)
+
+
+#~/local/bin/caps-to-ctrl.sh
+
+
+# "xev" first.
+xmodmap -e 'keycode 108 = Hangul'
+
+
+#synclient TapButton2=3
+
+
+#xgamma -gamma 0.6
+
+
+xset s on
+xset s 300
+
+xscreensaver -no-splash&
+
+#xautolock -time 5 -locker 'i3lock -c 000000 ' &
+#xscreensaver &
+
+#pulseaudio --start &
+
+# `systemd-journal` group
+#journalctl --no-pager -f --system --user | osd_cat -d 5 -s 3 -O 5 -l 20 -c green -A right -o 200 -f 7x13 &
+
+
+~/local/bin/caps-to-ctrl.sh 2s &
+
+#nm-applet &
+
+redshift-gtk -l 37.566:126.977 & # Seoul
+#redshift-gtk &
+
+compton -b &
+
+pacmd set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo    &
+
+
+exec i3
+
+
+###EOF
