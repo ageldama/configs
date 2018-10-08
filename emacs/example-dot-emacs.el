@@ -1,7 +1,4 @@
-;;;; Code:
-(load-file (expand-file-name "~/Projects/configs/emacs/dot-emacs-2018"))
-;;(setq load-layer-base-path (expand-file-name "~/Projects/configs/emacs/"))
-
-
+(setq load-layer-base-path (expand-file-name "~/P/configs/emacs/"))
+(load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2018"))
 
 ;;;EOF.

@@ -458,8 +458,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
   ;; windows
   "C-z" 'other-window
-  "v" 'split-window-below
-  "h" 'split-window-right
+  "s" 'split-window-below
+  "v" 'split-window-right
   "q" 'delete-window
 
   "<left>" 'windmove-left
