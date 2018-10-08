@@ -89,7 +89,6 @@ xscreensaver -no-splash&
 #journalctl --no-pager -f --system --user | osd_cat -d 5 -s 3 -O 5 -l 20 -c green -A right -o 200 -f 7x13 &
 
 
-~/local/bin/caps-to-ctrl.sh 2s &
 
 #nm-applet &
 
@@ -100,8 +99,10 @@ compton -b &
 
 pacmd set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo    &
 
+~/local/bin/caps-to-ctrl.sh 2s &
 
 exec i3
+#exec /home/jhyun/local/bin/2bwm 
 
 
 ###EOF
