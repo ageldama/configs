@@ -143,7 +143,8 @@ bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'You pressed the exit shortcu
 exec --no-startup-id /home/jhyun/local/bin/caps-to-ctrl.sh 2
 exec --no-startup-id dropbox-cli start
 exec --no-startup-id blueman-applet
-exec --no-startup-id hsetroot -solid "#ccaacc"
+exec --no-startup-id ~/local/bin/wg.sh
+#exec --no-startup-id hsetroot -solid "#ccaacc"
 #exec --no-startup-id xautolock -time 5 -locker 'i3lock'
 
 bindsym $mod+Escape exec xscreensaver-command -lock
@@ -154,6 +155,7 @@ bindsym $mod+F10 exec sh -c 'pavucontrol'
 
 bindsym XF86AudioMute exec pamixer -t
 #exec --no-startup-id xmodmap ~/.my_super_keymap
+bindsym Shift+$mod+w exec ~/local/bin/wg.sh
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
