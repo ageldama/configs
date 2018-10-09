@@ -1,0 +1,16 @@
+[Unit]
+Description=xscreensaver-lock for %I
+Before=sleep.target
+
+[Service]
+Type=forking
+User=%I
+Environment=DISPLAY=:0
+ExecStart=/usr/bin/xscreensaver-command -lock
+
+[Install]
+WantedBy=sleep.target
+
+# 1. place this at: /etc/systemd/system/xscreensaver-lock@.service
+# 2. `sudo systemctl daemon-reload`
+# 3. `sudo systemctl enable xscreensaver-lock@USERNAME`
