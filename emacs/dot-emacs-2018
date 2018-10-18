@@ -389,6 +389,22 @@ i.e. change right window to bottom, or change bottom window to right."
   (evil-mode (if (null evil-state) 1 -1)))
 
 
+;;; eshell is our frien
+(require 'f)
+
+(defun eshell-here ()
+  (interactive)
+  (let ((eshell-buf (get-buffer "*eshell*"))
+      (path (f-dirname (buffer-file-name))))
+  (if (null eshell-buf)
+      ;; just start new eshell
+      (eshell)
+    ;; else:
+    (with-current-buffer eshell-buf
+      (eshell/pushd (eshell/pwd))
+      (cd path)
+      (eshell-emit-prompt)))))
+
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
@@ -408,6 +424,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "?" 'helm-descbinds
   
   "T" 'multi-term
+  "$" 'eshell-here
   
   "g" 'magit-file-popup
   "G" 'magit-status
