@@ -209,6 +209,7 @@ bar {
 new_window normal
 hide_edge_borders vertical
 #bindsym Control+Shift+x [class="^.*"] border toggle
+for_window [class="^.*"] floating enable
 for_window [class="^.*"] border pixel 5
 for_window [class="URxvt"] border normal
 #for_window [class="Leafpad"] border normal
