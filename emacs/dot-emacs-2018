@@ -51,8 +51,9 @@
 
 (defun my-set-fixed-fonts ()
   (interactive)
-  (let ((en-fn ;;"Input Mono Compressed Medium"
-	 "Noto Sans Mono CJK KR"
+  (let ((en-fn
+         ;;"Input Mono Compressed Medium"
+	 "Ubuntu Mono"
 	       )
         (ko-fn "Noto Sans Mono CJK KR"))
     ;; default Latin font (e.g. Consolas)
