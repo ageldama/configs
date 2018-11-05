@@ -23,6 +23,9 @@
 ;; eslint
 (use-package eslint-fix :ensure t :pin melpa)
 
+;; prettier
+;; (use-package prettier-js        :ensure t :pin melpa)
+
 ;;; General keymap.
 (when (fboundp 'general-create-definer)
   (progn
