@@ -1,0 +1,27 @@
+# im-config(8) generated on Mon, 05 Nov 2018 01:09:05 +0900
+#run_im ibus
+
+ibus-daemon -d 
+export XMODIFIERS=@im=ibus
+export GTK_IM_MODULE=ibus
+export QT_IM_MODULE=ibus
+export QT4_IM_MODULE=ibus
+export CLUTTER_IM_MODULE=ibus
+
+#uim-xim &
+#export XMODIFIERS=@im=uim
+#export GTK_IM_MODULE=uim
+#export QT_IM_MODULE=uim
+#export QT4_IM_MODULE=uim
+#export CLUTTER_IM_MODULE=uim
+
+#nabi &
+#export XMODIFIERS=@im=nabi
+#export GTK_IM_MODULE=xim
+#export QT_IM_MODULE=xim
+#export QT4_IM_MODULE=xim
+#export CLUTTER_IM_MODULE=xim
+
+
+
+# im-config signature: 1e2d4b453f1cf9055c6e54fb761d977b  -
