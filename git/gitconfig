@@ -23,4 +23,10 @@
 [credential]
     helper = cache
     UseHttpPath = true
+#[credential "https://github.com"]
+#  username = ageldama
+#  helper = cache --timeout=3600
+#[credential]
+#	helper = "codecommit credential-helper "
+#	UseHttpPath = true
 
