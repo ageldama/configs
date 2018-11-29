@@ -20,6 +20,7 @@
 #[credential]
 	#helper = osxkeychain
 
-[credential "https://github.com"]
-  username = ageldama
-  helper = cache --timeout=3600
+[credential]
+    helper = cache
+    UseHttpPath = true
+
