@@ -275,9 +275,10 @@
 
 (use-package git-timemachine    :ensure t :pin  melpa)
 
-(use-package git-gutter-fringe :ensure t :pin melpa
-  :diminish 'git-gutter-mode
-  :config (global-git-gutter-mode +1))
+(when window-system
+  (use-package git-gutter-fringe :ensure t :pin melpa
+    :diminish 'git-gutter-mode
+    :config (global-git-gutter-mode +1)))
 
 
 ;;; flycheck.
