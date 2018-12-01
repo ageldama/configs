@@ -117,9 +117,9 @@ set visualbell
 " 자동들여쓰기 및 탭크기랑 <<, >> 크기조절.
 set autoindent
 set smartindent
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set expandtab	" tab대신 스페이스!
 
 " wrap? 그냥 보이는 것만 설정합니다.
