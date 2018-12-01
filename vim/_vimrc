@@ -78,6 +78,10 @@ nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 Bundle 'ntpeters/vim-better-whitespace'
 
+" Goyo
+Bundle 'junegunn/goyo.vim'
+
+
 " Golang
 "Bundle 'fatih/vim-go'
 "Bundle 'majutsushi/tagbar'
