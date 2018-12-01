@@ -2,8 +2,8 @@
 "
 "  ageldama@gmail.com : 2006-11-16
 "  ageldama@gmail.com : 2017-08-05
-"  ageldama@gmail.com : 2018-03-24 
-"  ageldama@gmail.com : 2018-12-02 
+"  ageldama@gmail.com : 2018-03-24
+"  ageldama@gmail.com : 2018-12-02
 "
 
 " https://github.com/VundleVim/Vundle.vim/issues/769#issue-188457119
@@ -36,8 +36,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
+" let Vundle manage Vundle required!
 Bundle 'gmarik/vundle'
 "
 " The bundles you install will be listed here
@@ -64,6 +63,20 @@ Bundle 'w0rp/ale'
 
 " #, / and :Occur and :Moccur
 Bundle 'vim-scripts/occur.vim'
+
+"    start: <C-n> start multicursor and add a virtual cursor + selection on the match
+"        next: <C-n> add a new virtual cursor + selection on the next match
+"        skip: <C-x> skip the next match
+"        prev: <C-p> remove current virtual cursor + selection and go back on previous match
+"    select all: <A-n> start muticursor and directly select all matches
+Bundle 'terryma/vim-multiple-cursors'
+
+" yankstack
+Bundle 'maxbrunsfeld/vim-yankstack'
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+Bundle 'ntpeters/vim-better-whitespace'
 
 " Golang
 "Bundle 'fatih/vim-go'
@@ -185,7 +198,7 @@ set laststatus=2
 "map <Leader>mbc :MBEClose<cr>
 "map <Leader>mbt :MBEToggle<cr>
 
-" ALE 
+" ALE
 if 1
   let g:ale_sign_error = '>>'
   let g:ale_sign_warning = '--'
