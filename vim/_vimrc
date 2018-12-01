@@ -158,14 +158,14 @@ set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
 if has('gui_running')
-    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
-    "set guifont=Inconsolata\ Medium\ 12
-	"set guifont="Noto Sans Mono CJK KR 14"
-    color darkblue
-    set bg=light
+  set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
+  "set guifont=Inconsolata\ Medium\ 12
+  "set guifont="Noto Sans Mono CJK KR 14"
+  color darkblue
+  set bg=light
 else
-    color default
-    set bg=dark
+  color default
+  set bg=dark
 endif
 
 
@@ -187,25 +187,25 @@ set laststatus=2
 
 " ALE 
 if 1
-    let g:ale_sign_error = '>>'
-    let g:ale_sign_warning = '--'
-    let g:airline#extensions#ale#enabled = 1
-    let g:ale_completion_enabled = 1
-    let g:ale_enabled = 1
-    let g:ale_open_list = 0
-    autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
+  let g:ale_sign_error = '>>'
+  let g:ale_sign_warning = '--'
+  let g:airline#extensions#ale#enabled = 1
+  let g:ale_completion_enabled = 1
+  let g:ale_enabled = 1
+  let g:ale_open_list = 0
+  autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
 endif
 
 " Syntastic
 if 0
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 endif
 
 " PerlTidy
@@ -213,9 +213,9 @@ endif
 command -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy
 "run :Tidy on entire buffer and return cursor to (approximate) original position"
 fun DoPerlTidy()
-    let Pos = line2byte( line( "." ) )
-     :PerlTidy
-    exe "goto " . Pos
+  let Pos = line2byte( line( "." ) )
+  :PerlTidy
+  exe "goto " . Pos
 endfun
 
 " Clipboard
