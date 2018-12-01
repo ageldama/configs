@@ -51,10 +51,17 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
+
+" :Ack and K
 Bundle 'mileszs/ack.vim'
+
 Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
+
+" :ALEInfo?
 Bundle 'w0rp/ale'
+
+" #, / and :Occur and :Moccur
 Bundle 'vim-scripts/occur.vim'
 
 " Golang
@@ -83,6 +90,9 @@ endif
 
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
+" xclip '\y'
+vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 
 " bind \ (backward slash) to grep shortcut
 " command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
