@@ -2,7 +2,8 @@
 "
 "  ageldama@gmail.com : 2006-11-16
 "  ageldama@gmail.com : 2017-08-05
-"  ageldama@gmail.com : 2018-03-24 
+"  ageldama@gmail.com : 2018-03-24
+"  ageldama@gmail.com : 2018-12-02
 "
 
 " https://github.com/VundleVim/Vundle.vim/issues/769#issue-188457119
@@ -35,8 +36,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
-" let Vundle manage Vundle
-" required! 
+" let Vundle manage Vundle required!
 Bundle 'gmarik/vundle'
 "
 " The bundles you install will be listed here
@@ -51,10 +51,36 @@ Bundle 'bling/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
+
+" :Ack and K
 Bundle 'mileszs/ack.vim'
+
 Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
+
+" :ALEInfo?
 Bundle 'w0rp/ale'
+
+" #, / and :Occur and :Moccur
+Bundle 'vim-scripts/occur.vim'
+
+"    start: <C-n> start multicursor and add a virtual cursor + selection on the match
+"        next: <C-n> add a new virtual cursor + selection on the next match
+"        skip: <C-x> skip the next match
+"        prev: <C-p> remove current virtual cursor + selection and go back on previous match
+"    select all: <A-n> start muticursor and directly select all matches
+Bundle 'terryma/vim-multiple-cursors'
+
+" yankstack
+Bundle 'maxbrunsfeld/vim-yankstack'
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
+
+Bundle 'ntpeters/vim-better-whitespace'
+
+" Goyo
+Bundle 'junegunn/goyo.vim'
+
 
 " Golang
 "Bundle 'fatih/vim-go'
@@ -83,8 +109,11 @@ endif
 " bind K to grep word under cursor
 nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
+" xclip '\y'
+vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
+
 " bind \ (backward slash) to grep shortcut
-command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
+" command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 
 
@@ -106,9 +135,9 @@ set visualbell
 " 자동들여쓰기 및 탭크기랑 <<, >> 크기조절.
 set autoindent
 set smartindent
-set shiftwidth=4
-set tabstop=4
-set softtabstop=4
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
 set expandtab	" tab대신 스페이스!
 
 " wrap? 그냥 보이는 것만 설정합니다.
@@ -146,14 +175,14 @@ set t_Co=256
 "set t_AB=^[[48;5;%dm
 "set t_AF=^[[38;5;%dm
 if has('gui_running')
-    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
-    "set guifont=Inconsolata\ Medium\ 12
-	"set guifont="Noto Sans Mono CJK KR 14"
-    color darkblue
-    set bg=light
+  set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
+  "set guifont=Inconsolata\ Medium\ 12
+  "set guifont="Noto Sans Mono CJK KR 14"
+  color darkblue
+  set bg=light
 else
-    color default
-    set bg=dark
+  color default
+  set bg=dark
 endif
 
 
@@ -173,27 +202,27 @@ set laststatus=2
 "map <Leader>mbc :MBEClose<cr>
 "map <Leader>mbt :MBEToggle<cr>
 
-" ALE 
+" ALE
 if 1
-    let g:ale_sign_error = '>>'
-    let g:ale_sign_warning = '--'
-    let g:airline#extensions#ale#enabled = 1
-    let g:ale_completion_enabled = 1
-    let g:ale_enabled = 1
-    let g:ale_open_list = 0
-    autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
+  let g:ale_sign_error = '>>'
+  let g:ale_sign_warning = '--'
+  let g:airline#extensions#ale#enabled = 1
+  let g:ale_completion_enabled = 1
+  let g:ale_enabled = 1
+  let g:ale_open_list = 0
+  autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
 endif
 
 " Syntastic
 if 0
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+  set statusline+=%#warningmsg#
+  set statusline+=%{SyntasticStatuslineFlag()}
+  set statusline+=%*
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
 endif
 
 " PerlTidy
@@ -201,9 +230,9 @@ endif
 command -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy
 "run :Tidy on entire buffer and return cursor to (approximate) original position"
 fun DoPerlTidy()
-    let Pos = line2byte( line( "." ) )
-     :PerlTidy
-    exe "goto " . Pos
+  let Pos = line2byte( line( "." ) )
+  :PerlTidy
+  exe "goto " . Pos
 endfun
 
 " Clipboard
