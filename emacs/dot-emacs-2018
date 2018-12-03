@@ -448,7 +448,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "?" 'helm-descbinds
   
   "T" 'multi-term
-  "$" 'eshell-here
+  ;; "$" 'eshell-here
   "." 'treemacs
   
   "g" 'magit-file-popup
