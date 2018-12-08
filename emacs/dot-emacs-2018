@@ -552,7 +552,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (load-layer "sly.el")
 (load-layer "golang.el")
 (load-layer "perl5.el")
-(load-layer "clojure.el")
+;; (load-layer "clojure.el")
 
 ;;; org-tree-slide
 (use-package org-tree-slide :ensure t :pin melpa)
