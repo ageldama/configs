@@ -11,6 +11,7 @@
 (show-paren-mode     t)
 (transient-mark-mode t)
 
+(global-auto-revert-mode t)
 
 (add-hook 'kill-emacs-query-functions
           (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
