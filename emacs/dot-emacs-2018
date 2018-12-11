@@ -12,7 +12,7 @@
 (transient-mark-mode t)
 
 (global-auto-revert-mode t)
-
+(global-whitespace-mode +1)
 (add-hook 'kill-emacs-query-functions
           (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
           'append)
@@ -548,13 +548,13 @@ i.e. change right window to bottom, or change bottom window to right."
 (load-layer "proto+grpc.el")
 (load-layer "groovy/groovy.el")
 (load-layer "javascript/js2.el")
-(load-layer "python/jedi.el") ; heavy-lifting
+;; (load-layer "python/jedi.el") ; heavy-lifting
 ;; (load-layer "slime.lisp")
 ;; (load-layer "sly.el")
 ;; (load-layer "golang.el")
 ;; (load-layer "perl5.el")
 ;; (load-layer "clojure.el")
-(load-layer "rust.el")
+;; (load-layer "rust.el")
 
 ;;; org-tree-slide
 (use-package org-tree-slide :ensure t :pin melpa)
