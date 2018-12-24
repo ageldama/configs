@@ -555,7 +555,7 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; (load-layer "golang.el")
 ;; (load-layer "perl5.el")
 ;; (load-layer "clojure.el")
-;; (load-layer "rust.el")
+(load-layer "rust.el")
 
 ;;; org-tree-slide
 (use-package org-tree-slide :ensure t :pin melpa)
