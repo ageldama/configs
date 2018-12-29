@@ -50,7 +50,7 @@ Bundle 'airblade/vim-gitgutter'
 Bundle 'jlanzarotta/bufexplorer'
 
 Bundle 'vim-airline/vim-airline'
-Bundle 'vim-airline/vim-airline-themes'
+"Bundle 'vim-airline/vim-airline-themes'
 
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
@@ -91,14 +91,16 @@ Bundle 'junegunn/goyo.vim'
 "Bundle 'majutsushi/tagbar'
 
 " colorscheme
-Bundle 'NLKNguyen/papercolor-theme'
+if 0
+  Bundle 'NLKNguyen/papercolor-theme'
 
-set t_Co=256   " This is may or may not needed.
+  set t_Co=256   " This is may or may not needed.
 
-set background=dark
-colorscheme PaperColor
+  set background=dark
+  colorscheme PaperColor
 
-let g:airline_theme='papercolor'
+  let g:airline_theme='papercolor'
+endif
 
 
 "------------------------------------------------------------------------------
@@ -184,7 +186,7 @@ set backspace=indent,eol,start
 set guioptions=m
 
 " 색상설정
-if 0
+if 1
   set t_Co=256
   "set t_AB=^[[48;5;%dm
   "set t_AF=^[[38;5;%dm
