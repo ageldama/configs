@@ -347,6 +347,9 @@
 (use-package ace-window :ensure t :pin melpa
   :config (global-set-key (kbd "C-x o") 'ace-window))
 
+;;; buf-move-*
+(use-package buffer-move :ensure t :pin melpa)
+
 ;;;
 (defun window-toggle-split-direction ()
   "Switch window split from horizontally to vertically, or vice versa.
@@ -502,14 +505,19 @@ i.e. change right window to bottom, or change bottom window to right."
 
   ;; windows
   "C-z" 'other-window
-  "s" 'split-window-below
-  "v" 'split-window-right
+  "_" 'split-window-below
+  "|" 'split-window-right
   "q" 'delete-window
 
   "<left>" 'windmove-left
   "<right>" 'windmove-right
   "<up>" 'windmove-up
   "<down>" 'windmove-down
+
+  "S-<left>" 'buf-move-up
+  "S-<right>" 'buf-move-right
+  "S-<up>" 'buf-move-up
+  "S-<down>" 'buf-move-down
 
   "=" 'balance-windows
   "+" 'enlarge-window
@@ -518,6 +526,8 @@ i.e. change right window to bottom, or change bottom window to right."
   "<" 'shrink-window-horizontally
 
   ;; avy
+  "A" 'avy-goto-char
+  "a" '(:ignore t :which-key "avy")
   "a c" 'avy-goto-char
   "a l" 'avy-goto-line
   "a r" 'avy-resume
@@ -546,16 +556,20 @@ i.e. change right window to bottom, or change bottom window to right."
 	   (file-ext-match (funcall file-name-p-fn file-name)))
       (funcall load-fn))))
 
-(load-layer "proto+grpc.el")
-(load-layer "groovy/groovy.el")
-(load-layer "javascript/js2.el")
+(require 'f)
+
+(when (f-exists? "~/.emacs.d/load-p/protobuf")
+  (load-layer "proto+grpc.el"))
+(when (f-exists? "~/.emacs.d/load-p/groovy")
+  (load-layer "groovy/groovy.el"))
+(when (f-exists? "~/.emacs.d/load-p/js2")
+  (load-layer "javascript/js2.el"))
 ;; (load-layer "python/jedi.el") ; heavy-lifting
 ;; (load-layer "slime.lisp")
 ;; (load-layer "sly.el")
 ;; (load-layer "golang.el")
 ;; (load-layer "perl5.el")
 ;; (load-layer "clojure.el")
-(require 'f)
 (when (f-exists? "~/.emacs.d/load-p/rust")
   (load-layer "rust.el"))
 
