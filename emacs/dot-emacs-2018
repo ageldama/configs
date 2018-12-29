@@ -244,14 +244,14 @@
 
 ;;; dashboard
 (when nil
-(use-package dashboard :ensure t :pin melpa
-  :after projectile
-  :config (progn (dashboard-setup-startup-hook)
-		 (setq dashboard-items '((recents   . 5)
-					 (projects  . 5)
-					 (bookmarks . 5)
-					 (agenda    . 5)
-					 (registers . 5))))))
+  (use-package dashboard :ensure t :pin melpa
+    :after projectile
+    :config (progn (dashboard-setup-startup-hook)
+		   (setq dashboard-items '((recents   . 5)
+					   (projects  . 5)
+					   (bookmarks . 5)
+					   (agenda    . 5)
+					   (registers . 5))))))
 
 ;;; undo-tree
 (use-package undo-tree
@@ -398,9 +398,20 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;   :config (avy-setup-default)
 ;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
 
-(unless t
-  (use-package highlight-thing :ensure t :pin melpa
-    :config (global-highlight-thing-mode +1)))
+(use-package hydra :ensure t :pin melpa)
+
+(when nil
+  (use-package highlight-symbol :ensure t :pin melpa)
+
+  (defhydra hydra-highlight-symbol
+    (:post (progn
+             (highlight-symbol-remove-all)))
+    "highlight-symbol"
+    ("." highlight-symbol-at-point "highlight")
+    ("n" highlight-symbol-next "next")
+    ("p" highlight-symbol-prev "prev")
+    ("N" highlight-symbol-next-in-defun "next in defun")
+    ("P" highlight-symbol-prev-in-defun "prev in defun")))
 
 (use-package multiple-cursors :ensure t :pin melpa
   :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
@@ -426,15 +437,15 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun eshell-here ()
   (interactive)
   (let ((eshell-buf (get-buffer "*eshell*"))
-      (path (f-dirname (buffer-file-name))))
-  (if (null eshell-buf)
-      ;; just start new eshell
-      (eshell)
-    ;; else:
-    (with-current-buffer eshell-buf
-      (eshell/pushd (eshell/pwd))
-      (cd path)
-      (eshell-emit-prompt)))))
+        (path (f-dirname (buffer-file-name))))
+    (if (null eshell-buf)
+        ;; just start new eshell
+        (eshell)
+      ;; else:
+      (with-current-buffer eshell-buf
+        (eshell/pushd (eshell/pwd))
+        (cd path)
+        (eshell-emit-prompt)))))
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
@@ -477,6 +488,8 @@ i.e. change right window to bottom, or change bottom window to right."
   ":" 'toggle-evil-mode
 
   "w" 'writeroom-mode
+
+  ;;"h" 'hydra-highlight-symbol/body
 
   "b" '(:ignore t :which-key "buf")
   "b /" 'helm-multi-swoop
@@ -587,12 +600,16 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;; Themes
 (when (and t window-system)
- (use-package doom-themes :ensure t :pin melpa)
- (load-theme 'doom-peacock t)
+  (use-package doom-themes :ensure t :pin melpa)
+  (load-theme 'doom-peacock t)
   ;; (use-package color-theme-sanityinc-tomorrow :pin melpa :ensure t
   ;;   :config (load-theme 'sanityinc-tomorrow-bright t ))
   ;; (load-theme 'misterioso t)
   )
 
+(use-package idle-highlight-mode
+  :ensure t :pin melpa
+  :config (add-hook 'prog-mode-hook
+                    (lambda () (idle-highlight-mode t))))
 
 ;;; EOF.
