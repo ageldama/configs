@@ -243,6 +243,7 @@
 
 
 ;;; dashboard
+(when nil
 (use-package dashboard :ensure t :pin melpa
   :after projectile
   :config (progn (dashboard-setup-startup-hook)
@@ -250,7 +251,7 @@
 					 (projects  . 5)
 					 (bookmarks . 5)
 					 (agenda    . 5)
-					 (registers . 5)))))
+					 (registers . 5))))))
 
 ;;; undo-tree
 (use-package undo-tree
