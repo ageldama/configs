@@ -87,6 +87,10 @@ Bundle 'junegunn/goyo.vim'
 "Bundle 'fatih/vim-go'
 "Bundle 'majutsushi/tagbar'
 
+" colorscheme
+Bundle 'cocopon/iceberg.vim'
+color iceberg
+
 
 "------------------------------------------------------------------------------
 
@@ -171,21 +175,21 @@ set backspace=indent,eol,start
 set guioptions=m
 
 " 색상설정
-"color koehler
-set t_Co=256
-"set t_AB=^[[48;5;%dm
-"set t_AF=^[[38;5;%dm
-if has('gui_running')
-  set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
-  "set guifont=Inconsolata\ Medium\ 12
-  "set guifont="Noto Sans Mono CJK KR 14"
-  color darkblue
-  set bg=light
-else
-  color default
-  set bg=dark
+if 0
+  set t_Co=256
+  "set t_AB=^[[48;5;%dm
+  "set t_AF=^[[38;5;%dm
+  if has('gui_running')
+    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
+    "set guifont=Inconsolata\ Medium\ 12
+    "set guifont="Noto Sans Mono CJK KR 14"
+    color darkblue
+    set bg=light
+  else
+    color default
+    set bg=dark
+  endif
 endif
-
 
 " 파일인코딩
 set fencs=utf8,euc-kr
