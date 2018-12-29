@@ -48,7 +48,10 @@ Bundle 'tpope/vim-fugitive'
 Bundle 'airblade/vim-gitgutter'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'jlanzarotta/bufexplorer'
-Bundle 'bling/vim-airline'
+
+Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline-themes'
+
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
@@ -88,8 +91,14 @@ Bundle 'junegunn/goyo.vim'
 "Bundle 'majutsushi/tagbar'
 
 " colorscheme
-Bundle 'cocopon/iceberg.vim'
-color iceberg
+Bundle 'NLKNguyen/papercolor-theme'
+
+set t_Co=256   " This is may or may not needed.
+
+set background=dark
+colorscheme PaperColor
+
+let g:airline_theme='papercolor'
 
 
 "------------------------------------------------------------------------------
