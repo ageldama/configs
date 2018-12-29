@@ -13,6 +13,13 @@
 
 (global-auto-revert-mode t)
 ;;(global-whitespace-mode +1)
+(setq-default show-trailing-whitespace t)
+
+(defun toggle-show-trailing-whitespace ()
+  "Toggle show-trailing-whitespace between t and nil"
+  (interactive)
+  (setq show-trailing-whitespace (not show-trailing-whitespace)))
+
 
 (add-hook 'kill-emacs-query-functions
           (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
@@ -65,7 +72,7 @@
     ;; default font size (point * 10)
     ;; WARNING!  Depending on the default font,
     ;; if the size is not supported very well, the frame will be clipped
-    ;; so that the beginning of the buffer may not be visible correctly. 
+    ;; so that the beginning of the buffer may not be visible correctly.
     (set-face-attribute 'default nil :height 130)
     ;; use specific font for Korean charset.
     ;; if you want to use different font size for specific charset,
@@ -143,7 +150,7 @@
 
 (use-package treemacs
   :ensure t)
-  
+
 (use-package treemacs-evil
   :after treemacs evil
   :ensure t)
@@ -328,7 +335,7 @@
 ;;; Multiterm
 (use-package multi-term :ensure t :pin melpa
   :config (add-hook 'term-mode-hook
-                    (lambda() 
+                    (lambda()
                       (linum-mode -1)
                       (hl-line-mode -1))))
 
@@ -443,19 +450,19 @@ i.e. change right window to bottom, or change bottom window to right."
 (define-key global-map "\C-z" 'ctl-z-keymap)
 
 (general-create-definer my-global-leader-def :prefix "C-z")
-(my-global-leader-def 
+(my-global-leader-def
   "/" 'helm-swoop
   "#" 'helm-occur
-  
+
   "SPC" 'helm-M-x
   "TAB" 'helm-mini
-  
+
   "?" 'helm-descbinds
-  
+
   "T" 'multi-term
   ;; "$" 'eshell-here
   "." 'treemacs
-  
+
   "g" 'magit-file-popup
   "G" 'magit-status
 
@@ -473,9 +480,9 @@ i.e. change right window to bottom, or change bottom window to right."
   "i" 'helm-imenu
 
   ":" 'toggle-evil-mode
-  
+
   "w" 'writeroom-mode
-  
+
   "b" '(:ignore t :which-key "buf")
   "b /" 'helm-multi-swoop
   "b #" 'helm-multi-occur-from-isearch
