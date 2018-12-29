@@ -601,7 +601,7 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; Themes
 (when (and t window-system)
   (use-package doom-themes :ensure t :pin melpa)
-  (load-theme 'doom-peacock t)
+  (load-theme 'doom-dracula t)
   ;; (use-package color-theme-sanityinc-tomorrow :pin melpa :ensure t
   ;;   :config (load-theme 'sanityinc-tomorrow-bright t ))
   ;; (load-theme 'misterioso t)
