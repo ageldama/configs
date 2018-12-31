@@ -40,7 +40,7 @@
    "t" 'go-test-current-test
    "T" 'go-test-current-test
    "f" 'gofmt
-   "d" 'godoc
+   "d" 'godoc-at-point
    "D" 'godef-describe
    "+" 'go-import-add
    ">" 'godef-jump
