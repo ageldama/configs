@@ -582,9 +582,10 @@ i.e. change right window to bottom, or change bottom window to right."
 ;; (load-layer "python/jedi.el") ; heavy-lifting
 ;; (load-layer "slime.lisp")
 ;; (load-layer "sly.el")
-;; (load-layer "golang.el")
 ;; (load-layer "perl5.el")
 ;; (load-layer "clojure.el")
+(when (f-exists? "~/.emacs.d/load-p/golang")
+  (load-layer "golang.el"))
 (when (f-exists? "~/.emacs.d/load-p/rust")
   (load-layer "rust.el"))
 
