@@ -47,7 +47,7 @@
    :keymaps 'go-mode-map
    "r" 'go-run
    "t" 'go-test-current-test
-   "T" 'go-test-current-test
+   "T" 'go-test-current-file
    "f" 'gofmt
    "d" 'godoc-at-point
    "D" 'godef-describe
