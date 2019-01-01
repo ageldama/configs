@@ -394,9 +394,10 @@ i.e. change right window to bottom, or change bottom window to right."
   :after yasnippet)
 
 ;;; avy
-(use-package avy :ensure t :pin melpa)
-;;   :config (avy-setup-default)
-;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
+(use-package avy :ensure t :pin melpa
+  :config
+  ;;(avy-setup-default)
+  (global-set-key (kbd "C-c /") 'avy-goto-char-timer))
 
 (use-package hydra :ensure t :pin melpa)
 
@@ -541,11 +542,11 @@ i.e. change right window to bottom, or change bottom window to right."
   "<" 'shrink-window-horizontally
 
   ;; avy
-  "A" 'avy-goto-char
-  "a" '(:ignore t :which-key "avy")
-  "a c" 'avy-goto-char
-  "a l" 'avy-goto-line
-  "a r" 'avy-resume
+  ;; "A" 'avy-goto-char
+  ;; "a" '(:ignore t :which-key "avy")
+  ;; "a c" 'avy-goto-char
+  ;; "a l" 'avy-goto-line
+  ;; "a r" 'avy-resume
 
   ;; undo-tree
   "u" 'undo-tree-visualize
