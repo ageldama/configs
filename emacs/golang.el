@@ -19,6 +19,8 @@
 
 (use-package gotest :ensure t :pin melpa)
 
+(use-package go-imports :ensure t :pin melpa)
+
 (use-package company-go :ensure t :pin melpa
   :config (add-hook 'go-mode-hook
                     (lambda ()
