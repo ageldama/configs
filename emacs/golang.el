@@ -29,6 +29,15 @@
   :ensure t
   :config
   (progn
+    ;; Only enable selected linters
+    (setq flycheck-gometalinter-disable-all t)
+    (setq flycheck-gometalinter-enable-linters '(
+                                                 "vet"
+                                                 ;;"vetshadow"
+                                                 ;;"varcheck"
+                                                 "golint" "gofmt" "gosec"
+                                                 "misspell" "gotype"))
+    ;;
     (flycheck-gometalinter-setup)))
 
 (use-package godoctor :ensure t :pin melpa)
