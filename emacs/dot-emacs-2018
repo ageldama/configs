@@ -608,10 +608,10 @@ i.e. change right window to bottom, or change bottom window to right."
   ;; (use-package color-theme-sanityinc-tomorrow :pin melpa :ensure t
   ;;   :config (load-theme 'sanityinc-tomorrow-bright t ))
   ;; (load-theme 'misterioso t)
-  (use-package doom-modeline :ensure t :pin melpa
-    :config
-    (setq doom-modeline-icon nil)
-    (doom-modeline-init))
+  ;; (use-package doom-modeline :ensure t :pin melpa
+  ;;   :config
+  ;;   (setq doom-modeline-icon nil)
+  ;;   (doom-modeline-init))
   )
 
 (use-package idle-highlight-mode
