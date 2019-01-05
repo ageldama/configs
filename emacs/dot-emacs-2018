@@ -603,8 +603,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;; Themes
 (when (and t window-system)
-  (use-package gruvbox-theme :ensure t :pin melpa)
-  ;;(load-theme 'gruvbox-light-soft t t)
+  (use-package gruvbox-theme :ensure t :pin melpa
+    :config (load-theme 'gruvbox-light-soft t))
   ;; (use-package doom-themes :ensure t :pin melpa)
   ;; (load-theme 'doom-dracula t)
   ;; (use-package color-theme-sanityinc-tomorrow :pin melpa :ensure t
