@@ -62,7 +62,8 @@
   (interactive)
   (let ((en-fn
          ;;"Input Mono Compressed Medium"
-	 "Ubuntu Mono"
+	 ;;"Ubuntu Mono"
+         "Noto Sans Mono CJK KR"
 	 )
         (ko-fn "Noto Sans Mono CJK KR"))
     ;; default Latin font (e.g. Consolas)
@@ -394,9 +395,10 @@ i.e. change right window to bottom, or change bottom window to right."
   :after yasnippet)
 
 ;;; avy
-(use-package avy :ensure t :pin melpa)
-;;   :config (avy-setup-default)
-;;   (global-set-key (kbd "C-c C-j") 'avy-resume))
+(use-package avy :ensure t :pin melpa
+  :config
+  ;;(avy-setup-default)
+  (global-set-key (kbd "C-c /") 'avy-goto-char-timer))
 
 (use-package hydra :ensure t :pin melpa)
 
@@ -541,11 +543,11 @@ i.e. change right window to bottom, or change bottom window to right."
   "<" 'shrink-window-horizontally
 
   ;; avy
-  "A" 'avy-goto-char
-  "a" '(:ignore t :which-key "avy")
-  "a c" 'avy-goto-char
-  "a l" 'avy-goto-line
-  "a r" 'avy-resume
+  ;; "A" 'avy-goto-char
+  ;; "a" '(:ignore t :which-key "avy")
+  ;; "a c" 'avy-goto-char
+  ;; "a l" 'avy-goto-line
+  ;; "a r" 'avy-resume
 
   ;; undo-tree
   "u" 'undo-tree-visualize
@@ -586,6 +588,8 @@ i.e. change right window to bottom, or change bottom window to right."
 (when (f-exists? "~/.emacs.d/load-p/perl5")
   (load-layer "perl5.el"))
 ;; (load-layer "clojure.el")
+(when (f-exists? "~/.emacs.d/load-p/golang")
+  (load-layer "golang.el"))
 (when (f-exists? "~/.emacs.d/load-p/rust")
   (load-layer "rust.el"))
 
@@ -601,11 +605,17 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;; Themes
 (when (and t window-system)
-  (use-package doom-themes :ensure t :pin melpa)
-  (load-theme 'doom-dracula t)
+  (use-package gruvbox-theme :ensure t :pin melpa
+    :config (load-theme 'gruvbox t))
+  ;; (use-package doom-themes :ensure t :pin melpa)
+  ;; (load-theme 'doom-dracula t)
   ;; (use-package color-theme-sanityinc-tomorrow :pin melpa :ensure t
   ;;   :config (load-theme 'sanityinc-tomorrow-bright t ))
   ;; (load-theme 'misterioso t)
+  ;; (use-package doom-modeline :ensure t :pin melpa
+  ;;   :config
+  ;;   (setq doom-modeline-icon nil)
+  ;;   (doom-modeline-init))
   )
 
 (use-package idle-highlight-mode

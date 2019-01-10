@@ -19,24 +19,64 @@
 
 (use-package gotest :ensure t :pin melpa)
 
+(use-package go-imports :ensure t :pin melpa)
+
+(use-package go-dlv :ensure t :pin melpa)
+
 (use-package company-go :ensure t :pin melpa
   :config (add-hook 'go-mode-hook
                     (lambda ()
                       (set (make-local-variable 'company-backends) '(company-go))
                       (company-mode))))
-;; gorun
-;; go-test-current-file
-;; go-test-current-test
-;; gofmt
-;; godoc
+
+(use-package flycheck-gometalinter
+  :ensure t
+  :config
+  (progn
+    ;; Only enable selected linters
+    (setq flycheck-gometalinter-disable-all t)
+    (setq flycheck-gometalinter-enable-linters '(
+                                                 "vet"
+                                                 ;;"vetshadow"
+                                                 ;;"varcheck"
+                                                 "golint" "gofmt" "gosec"
+                                                 "misspell" "gotype"))
+    ;;
+    (flycheck-gometalinter-setup)))
+
+(use-package godoctor :ensure t :pin melpa)
+
 (when (fboundp 'general-create-definer)
   (my-local-leader-def
    :keymaps 'go-mode-map
    "r" 'go-run
    "t" 'go-test-current-test
-   "T" 'go-test-current-test
+   "T" 'go-test-current-file
    "f" 'gofmt
-   "d" 'godoc
+   "d" 'godoc-at-point
+   "D" 'godef-describe
+   "+" 'go-import-add
+   ">" 'godef-jump
+   "g" 'go-goto-map
+   "u" 'go-guru-map
+   "R" '(:ignore t :which-key "godoctor")
+   "R d" 'godoctor-godoc
+   "R D" 'godoctor-godoc-dry-run
+   "R r" 'godoctor-rename
+   "R R" 'godoctor-rename-dry-run
+   "R e" 'godoctor-extract
+   "R E" 'godoctor-extract-dry-run
+   "R t" 'godoctor-toggle
+   "R T" 'godoctor-toggle-dry-run
    ))
+
+
+;; golang.org/x/tools/...
+;; github.com/rogpeppe/godef
+;; github.com/golang/lint/golint
+;; github.com/alecthomas/gometalinter
+;; github.com/mdempsky/gocode
+;; github.com/godoctor/godoctor
+
 
 ;;; EOF.
