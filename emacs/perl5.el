@@ -45,6 +45,12 @@
       "CMD: "
       (format "cd %s; carton exec prove --nocolor %s %s" dir fn inc-opt)))))
 
+(defun run-perl-prog ()
+  (interactive)
+  (compile
+   (read-from-minibuffer "CMD: "
+                         (concat "perl " (buffer-file-name)))))
+
 ;;;
 (define-key cperl-mode-map (kbd "C-c e") 'run-perl-prove)
 (define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
@@ -55,7 +61,8 @@
 (when (fboundp 'general-create-definer)
   ;; cperl
   (my-local-leader-def :keymaps 'cperl-mode-map
-    "r" 'cperl-db
+    "d" 'cperl-db
+    "r" 'run-perl-prog
     "t" 'run-perl-prove
     "d" 'helm-perldoc
     "f" 'perltidy-dwim
