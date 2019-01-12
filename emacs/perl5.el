@@ -17,8 +17,9 @@
       cperl-tab-always-indent t)
 
 ;;; helm-perldoc
-(use-package helm-perldoc :ensure t :pin melpa
-  :config (helm-perldoc:setup))
+(when nil
+  (use-package helm-perldoc :ensure t :pin melpa
+    :config (helm-perldoc:setup)))
 
 (load (concat load-layer-base-path "perl/perltidy"))
 ;; (let ((base-fn  (concat load-layer-base-path "perl/perltidy")))
@@ -64,7 +65,8 @@
     "d" 'cperl-db
     "r" 'run-perl-prog
     "t" 'run-perl-prove
-    "d" 'helm-perldoc
+    ;;"d" 'helm-perldoc
+    "?" 'cperl-perldoc-at-point
     "f" 'perltidy-dwim
     ))
 
