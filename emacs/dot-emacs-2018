@@ -263,7 +263,7 @@
 ;;; Swoop
 (use-package helm-swoop :ensure t :pin melpa
   :config (progn
-            (global-set-key (kbd "C-s") 'helm-swoop)
+            ;;(global-set-key (kbd "C-s") 'helm-swoop)
 	    ;; If there is no symbol at the cursor, use the last used words instead.
 	    (setq helm-swoop-pre-input-function
 		  (lambda ()
