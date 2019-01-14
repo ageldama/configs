@@ -49,7 +49,7 @@ Bundle 'airblade/vim-gitgutter'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'jlanzarotta/bufexplorer'
 
-"Bundle 'vim-airline/vim-airline'
+Bundle 'vim-airline/vim-airline'
 "Bundle 'vim-airline/vim-airline-themes'
 
 Bundle 'scrooloose/nerdtree'
