@@ -584,7 +584,8 @@ i.e. change right window to bottom, or change bottom window to right."
   (load-layer "javascript/js2.el"))
 ;; (load-layer "python/jedi.el") ; heavy-lifting
 ;; (load-layer "slime.lisp")
-;; (load-layer "sly.el")
+(when (f-exists? "~/.emacs.d/load-p/sly")
+  (load-layer "sly.el"))
 ;; (load-layer "golang.el")
 (when (f-exists? "~/.emacs.d/load-p/perl5")
   (load-layer "perl5.el"))
