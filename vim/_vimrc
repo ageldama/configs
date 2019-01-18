@@ -87,8 +87,8 @@ Bundle 'junegunn/goyo.vim'
 
 
 " Golang
-"Bundle 'fatih/vim-go'
-"Bundle 'majutsushi/tagbar'
+Bundle 'fatih/vim-go'
+Bundle 'majutsushi/tagbar'
 
 " colorscheme
 if 0
@@ -256,6 +256,8 @@ endfun
 " Clipboard
 set clipboard=unnamed
 
+" vim-go
+let g:go_auto_type_info = 1
 
 
 
