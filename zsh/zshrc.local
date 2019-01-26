@@ -10,12 +10,14 @@ if test -d /etc/profile.d/; then
 fi
 
 
-alias ls='ls -F -G'
+alias ls='ls -F -G --color'
 
 export PAGER=most
 export EDITOR=vim
 
-export PATH=$PATH:~/local/bin
+export PATH=$PATH:~/local/bin:~/.local/bin
+
+alias tmux='tmux -2'
 
 
 if [ "$TERM" = "xterm-termite" ]; then
@@ -24,21 +26,27 @@ fi
 
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/jhyun/.sdkman"
-[[ -s "/Users/jhyun/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jhyun/.sdkman/bin/sdkman-init.sh"
+#export SDKMAN_DIR="/Users/jhyun/.sdkman"
+#[[ -s "/Users/jhyun/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/jhyun/.sdkman/bin/sdkman-init.sh"
 
 
 
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 export PATH=~/perl5/bin:$PATH
 
-source $HOME/.cargo/env
+#source $HOME/.cargo/env
 
-
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
 export FZF_DEFAULT_OPTS='-i'
+
+
+export GOPATH=$HOME/go
+export PATH=$GOPATH/bin:$HOME/local/go/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
