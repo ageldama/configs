@@ -43,7 +43,9 @@
                                                  ;;"vetshadow"
                                                  ;;"varcheck"
                                                  "golint" "gofmt" "gosec"
-                                                 "misspell" "gotype"))
+                                                 "misspell"
+                                                 ;;"gotype"
+                                                 ))
     ;;
     (flycheck-gometalinter-setup)))
 
