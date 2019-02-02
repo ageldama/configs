@@ -1,4 +1,7 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
+
+;;; TODO: 2019-Feb-02: Reorg with Ivy/Counsel instead of Helm?
+
 (setq inhibit-startup-screen t)
 (setq default-input-method   "korean-hangul")
 (prefer-coding-system 'utf-8-unix)
@@ -22,7 +25,7 @@
 
 
 (add-hook 'kill-emacs-query-functions
-          (lambda () (y-or-n-p "Do you really want to exit Emacs? "))
+          (lambda () (y-or-n-p "Bye??? "))
           'append)
 
 
@@ -499,12 +502,6 @@ i.e. change right window to bottom, or change bottom window to right."
   "b /" 'helm-multi-swoop
   "b #" 'helm-multi-occur-from-isearch
 
-  "`" '(:ignore t :which-key "misc")
-  "` r" 'helm-regexp
-  "` t" 'helm-top
-  "` p" 'helm-list-emacs-process
-  "` b" 'helm-bookmarks
-
   "f" '(:ignore t :which-key "fold")
   "f t" 'vimish-fold-toggle
   "f f" 'vimish-fold
@@ -555,7 +552,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "u" 'undo-tree-visualize
   )
 
-(general-create-definer my-local-leader-def :prefix "C-z z")
+(general-create-definer my-local-leader-def :prefix "C-'")
 
 
 ;;; Layers support.
