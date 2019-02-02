@@ -17,9 +17,9 @@
       cperl-tab-always-indent t)
 
 ;;; helm-perldoc
-(when nil
-  (use-package helm-perldoc :ensure t :pin melpa
-    :config (helm-perldoc:setup)))
+;; (when nil
+;;   (use-package helm-perldoc :ensure t :pin melpa
+;;     :config (helm-perldoc:setup)))
 
 (load (concat load-layer-base-path "perl/perltidy"))
 ;; (let ((base-fn  (concat load-layer-base-path "perl/perltidy")))
@@ -55,7 +55,7 @@
 ;;;
 (define-key cperl-mode-map (kbd "C-c e") 'run-perl-prove)
 (define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
-(define-key cperl-mode-map (kbd "C-c d") 'helm-perldoc)
+;;(define-key cperl-mode-map (kbd "C-c d") 'helm-perldoc)
 (add-hook 'cperl-mode-hook
  	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 
