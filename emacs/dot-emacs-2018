@@ -65,9 +65,9 @@
   (interactive)
   (let ((en-fn
          ;;"Input Mono Compressed Medium"
-	 "Ubuntu Mono"
-         ;; "Noto Sans Mono CJK KR"
-         ;; "Terminus"
+	 ;; "Ubuntu Mono"
+         ;;"Noto Sans Mono CJK KR"
+         "xos4 Terminus"
 	 )
         (ko-fn "Noto Sans Mono CJK KR"))
     ;; default Latin font (e.g. Consolas)
