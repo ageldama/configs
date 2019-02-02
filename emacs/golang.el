@@ -1,5 +1,8 @@
+;;;
 
-(use-package go-mode :ensure t :pin melpa)
+(use-package go-mode :ensure t :pin melpa
+  :config (add-hook 'go-mode-hook (lambda ()
+                                    (add-hook 'before-save-hook 'gofmt-before-save))))
 
 (when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
   (use-package exec-path-from-shell :ensure t :pin melpa)
@@ -40,7 +43,9 @@
                                                  ;;"vetshadow"
                                                  ;;"varcheck"
                                                  "golint" "gofmt" "gosec"
-                                                 "misspell" "gotype"))
+                                                 "misspell"
+                                                 ;;"gotype"
+                                                 ))
     ;;
     (flycheck-gometalinter-setup)))
 
