@@ -69,7 +69,12 @@
          ;;"Noto Sans Mono CJK KR"
          "xos4 Terminus"
 	 )
-        (ko-fn "Noto Sans Mono CJK KR"))
+        (ko-fn
+         ;; "Noto Sans Mono CJK KR"
+         ;; "NeoDunggeunmo"
+         ;; "-daewoo-mincho-medium-*-*-*-*-*-*-*-*-*-*-*"
+         "NanumSquareRound"
+         ))
     ;; default Latin font (e.g. Consolas)
     ;; but I use Monaco
     (set-frame-font en-fn t)
