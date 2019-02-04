@@ -67,7 +67,8 @@
          ;;"Input Mono Compressed Medium"
 	 ;; "Ubuntu Mono"
          ;;"Noto Sans Mono CJK KR"
-         "xos4 Terminus"
+         ;; "xos4 Terminus"
+         "Consolas"
 	 )
         (ko-fn
          ;; "Noto Sans Mono CJK KR"
