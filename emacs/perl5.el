@@ -16,11 +16,6 @@
       cperl-indent-parens-as-block t
       cperl-tab-always-indent t)
 
-;;; helm-perldoc
-;; (when nil
-;;   (use-package helm-perldoc :ensure t :pin melpa
-;;     :config (helm-perldoc:setup)))
-
 (load (concat load-layer-base-path "perl/perltidy"))
 ;; (let ((base-fn  (concat load-layer-base-path "perl/perltidy")))
 ;;   (if (file-exists-p (concat base-fn ".elc"))
@@ -55,7 +50,6 @@
 ;;;
 (define-key cperl-mode-map (kbd "C-c e") 'run-perl-prove)
 (define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
-;;(define-key cperl-mode-map (kbd "C-c d") 'helm-perldoc)
 (add-hook 'cperl-mode-hook
  	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 
@@ -65,7 +59,6 @@
     "d" 'cperl-db
     "r" 'run-perl-prog
     "t" 'run-perl-prove
-    ;;"d" 'helm-perldoc
     "?" 'cperl-perldoc-at-point
     "f" 'perltidy-dwim
     ))

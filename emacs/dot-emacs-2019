@@ -1,0 +1,521 @@
+;;; -*- mode: emacs-lisp; coding: utf-8; -*-
+
+(setq inhibit-startup-screen t)
+(setq default-input-method   "korean-hangul")
+(prefer-coding-system 'utf-8-unix)
+
+(setq user-full-name    "Jong-Hyouk Yun")
+(setq user-mail-address "ageldama@gmail.com")
+
+(column-number-mode  t)
+(display-time-mode   -1)
+(show-paren-mode     t)
+(transient-mark-mode t)
+
+(global-auto-revert-mode t)
+;;(global-whitespace-mode +1)
+(setq-default show-trailing-whitespace t)
+
+(defun toggle-show-trailing-whitespace ()
+  "Toggle show-trailing-whitespace between t and nil"
+  (interactive)
+  (setq show-trailing-whitespace (not show-trailing-whitespace)))
+
+
+(add-hook 'kill-emacs-query-functions
+          (lambda () (y-or-n-p "Bye??? "))
+          'append)
+
+
+;;; no backup files
+(setq make-backup-files nil)
+(setq version-control   nil)   ; backup uses version numbers?
+
+(if window-system
+    (progn
+      (menu-bar-mode   -1)
+      (tool-bar-mode   -1)
+      (scroll-bar-mode -1))
+  (progn
+    (menu-bar-mode   -1)))
+
+;;; package.el
+(require 'package)
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if nil "http" "https")))
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "marmalade" (concat proto "://marmalade-repo.org/packages/")) t)
+  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
+  (when (< emacs-major-version 24)
+    (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/")))))
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+;;; GUI fonts
+;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
+;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
+
+(defun my-set-fixed-fonts ()
+  (interactive)
+  (let ((en-fn
+         ;;"Input Mono Compressed Medium"
+	 ;; "Ubuntu Mono"
+         ;;"Noto Sans Mono CJK KR"
+         ;; "xos4 Terminus"
+         "Consolas"
+	 )
+        (ko-fn
+         ;; "Noto Sans Mono CJK KR"
+         ;; "NeoDunggeunmo"
+         ;; "-daewoo-mincho-medium-*-*-*-*-*-*-*-*-*-*-*"
+         "NanumSquareRound"
+         ))
+    ;; default Latin font (e.g. Consolas)
+    ;; but I use Monaco
+    (set-frame-font en-fn t)
+    (set-face-attribute 'default nil :family en-fn)
+    ;; default font size (point * 10)
+    ;; WARNING!  Depending on the default font,
+    ;; if the size is not supported very well, the frame will be clipped
+    ;; so that the beginning of the buffer may not be visible correctly.
+    (set-face-attribute 'default nil :height 130)
+    ;; use specific font for Korean charset.
+    ;; if you want to use different font size for specific charset,
+    ;; add :size POINT-SIZE in the font-spec.
+    (set-fontset-font t 'hangul (font-spec :name ko-fn))))
+
+(defun my-set-variable-fonts ()
+  (interactive)
+  (set-frame-font "Noto Serif CJK KR" t)
+  (set-fontset-font t 'hangul (font-spec :name "Noto Serif CJK KR")))
+
+(defun which-active-modes ()
+  "Give a message of which minor modes are enabled in the current buffer."
+  (interactive)
+  (let ((active-modes))
+    (mapc (lambda (mode) (condition-case nil
+                             (if (and (symbolp mode) (symbol-value mode))
+                                 (add-to-list 'active-modes mode))
+                           (error nil) ))
+          minor-mode-list)
+    (message "Active modes are %s" active-modes)
+    active-modes))
+
+(defun my-auto-set-font-fixed-or-variable (&rest arguments)
+  (if (memq 'buffer-face-mode (which-active-modes))
+      (my-set-variable-fonts)
+    (my-set-fixed-fonts)))
+
+(advice-add #'variable-pitch-mode
+            :after #'my-auto-set-font-fixed-or-variable)
+
+
+(when (and t window-system)
+  (cond ((or (string-equal system-type "gnu/linux")
+             (string-equal system-type "darwin"))
+         (my-set-fixed-fonts))
+  	;; Windows
+        ((string-equal system-type "windows-nt")
+         (set-face-attribute 'default nil :font "Consolas-11"))
+        (t :unknown)))
+
+;;; cleaner modeline.
+(use-package diminish :ensure t :pin melpa
+  :config
+  (progn
+    (add-hook 'auto-revert-mode-hook
+              (lambda () (diminish 'auto-revert-mode)))
+    (diminish 'undo-tree-mode)))
+
+;;; which-key
+(use-package which-key :ensure t
+  :diminish which-key-mode
+  :config (progn (which-key-mode)
+                 (which-key-setup-side-window-bottom)))
+
+(global-linum-mode   -1)
+(global-hl-line-mode -1)
+
+(use-package vimish-fold :ensure t :pin melpa
+  :config (progn (vimish-fold-global-mode +1)
+                 (global-set-key (kbd "C-c @ t") 'vimish-fold-toggle)
+                 (global-set-key (kbd "C-c @ f") 'vimish-fold)
+                 (global-set-key (kbd "C-c @ d") 'vimish-fold-delete)))
+
+;;; rainbow-delimiters
+(use-package rainbow-delimiters  :ensure t :pin melpa
+  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
+;;; miscs
+
+(use-package neotree :ensure t :pin melpa)
+
+(when nil
+  (use-package treemacs
+    :ensure t)
+
+  (use-package treemacs-evil
+    :after treemacs evil
+    :ensure t)
+
+  (use-package treemacs-projectile
+    :after treemacs projectile
+    :ensure t))
+
+(use-package markdown-mode :ensure t :pin melpa)
+
+(use-package unfill :ensure t :pin melpa)
+
+(use-package hl-todo :ensure t :pin melpa
+  :config (global-hl-todo-mode +1))
+
+;; lacarte -- better F10 menu-bar.
+;; (use-package lacarte :ensure t :pin marmalade
+;;   :config (progn
+;;    (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
+;;    (global-set-key [?\M-`]     'lacarte-execute-menu-command)
+;;    (global-set-key [f10]       'lacarte-execute-menu-command)))
+(global-set-key (kbd "M-`")       'menu-bar-open)
+(global-set-key (kbd "<f10>")       'menu-bar-open)
+
+
+(use-package counsel :ensure t :pin melpa
+  :config (progn
+            (ivy-mode 1)
+            (setq ivy-use-virtual-buffers t)
+            (setq enable-recursive-minibuffers t)
+            (setq ivy-re-builders-alist '((t . ivy--regex-plus)))
+            (global-set-key "\C-s" 'swiper)
+            (global-set-key (kbd "C-c C-r") 'ivy-resume)
+            (global-set-key (kbd "<f6>") 'ivy-resume)
+            (global-set-key (kbd "M-x") 'counsel-M-x)
+            (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+            (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+            (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+            (global-set-key (kbd "<f1> l") 'counsel-find-library)
+            (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+            (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+            (global-set-key (kbd "C-c g") 'counsel-git)
+            (global-set-key (kbd "C-c j") 'counsel-git-grep)
+            (global-set-key (kbd "C-c k") 'counsel-rg)
+            ;; (global-set-key (kbd "C-x l") 'counsel-locate)
+            ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+            (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
+
+;;; projectile
+(use-package projectile :pin melpa
+  :config
+  (progn (projectile-global-mode)))
+
+(use-package counsel-projectile :ensure t :pin melpa)
+
+(defun counsel-rg-maybe-projectile ()
+  (interactive)
+  (if (projectile-project-p)
+      (counsel-projectile-rg)
+    (counsel-rg)))
+
+
+;;; undo-tree
+(use-package undo-tree
+  :ensure t
+  :init (global-undo-tree-mode))
+
+
+
+;;; Git
+(use-package magit :ensure t :pin melpa)
+
+(use-package git-timemachine    :ensure t :pin  melpa)
+
+(when window-system
+  (use-package git-gutter-fringe :ensure t :pin melpa
+    :diminish 'git-gutter-mode
+    :config (global-git-gutter-mode +1)))
+
+
+;;; flycheck.
+(use-package flycheck :ensure t :pin melpa
+  :config (global-flycheck-mode +1))
+
+
+;;; company.
+(use-package company :ensure t :pin melpa
+  :diminish 'company-mode
+  :config (progn (require 'company)
+		 (global-company-mode t)
+		 (global-set-key (kbd "C-c \\") 'company-complete)
+		 (define-key company-active-map (kbd "RET") 'company-complete-selection)
+		 (define-key company-active-map (kbd "<prior>") 'company-previous-page)
+		 (define-key company-active-map (kbd "<next>") 'company-next-page)
+		 (setq company-tooltip-align-annotations t)
+		 (add-hook 'after-init-hook 'global-company-mode)))
+
+
+;;; eldoc
+(use-package eldoc :ensure t :pin melpa :diminish eldoc-mode)
+
+;;; Org
+(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(setq org-log-done 'time)
+
+;; writeroom?
+(use-package writeroom-mode :ensure t :pin melpa)
+
+
+;;; Multiterm
+(use-package multi-term :ensure t :pin melpa
+  :config (add-hook 'term-mode-hook
+                    (lambda()
+                      (linum-mode -1)
+                      (hl-line-mode -1))))
+
+;;; Window move.
+
+(use-package ace-window :ensure t :pin melpa
+  :config (global-set-key (kbd "C-x o") 'ace-window))
+
+;;; buf-move-*
+(use-package buffer-move :ensure t :pin melpa)
+
+;;;
+(defun window-toggle-split-direction ()
+  "Switch window split from horizontally to vertically, or vice versa.
+i.e. change right window to bottom, or change bottom window to right."
+  (interactive)
+  (require 'windmove)
+  (let ((done))
+    (dolist (dirs '((right . down) (down . right)))
+      (unless done
+        (let* ((win (selected-window))
+               (nextdir (car dirs))
+               (neighbour-dir (cdr dirs))
+               (next-win (windmove-find-other-window nextdir win))
+               (neighbour1 (windmove-find-other-window neighbour-dir win))
+               (neighbour2 (if next-win (with-selected-window next-win
+                                          (windmove-find-other-window neighbour-dir next-win)))))
+          ;;(message "win: %s\nnext-win: %s\nneighbour1: %s\nneighbour2:%s" win next-win neighbour1 neighbour2)
+          (setq done (and (eq neighbour1 neighbour2)
+                          (not (eq (minibuffer-window) next-win))))
+          (if done
+              (let* ((other-buf (window-buffer next-win)))
+                (delete-window next-win)
+                (if (eq nextdir 'right)
+                    (split-window-vertically)
+                  (split-window-horizontally))
+                (set-window-buffer (windmove-find-other-window neighbour-dir) other-buf))))))))
+
+(global-set-key (kbd "C-x |") 'window-toggle-split-direction)
+
+
+;;; Yasnippet
+(use-package yasnippet :ensure t :pin melpa
+  :diminish yas-minor-mode
+  :config ;;(yas-global-mode +1)
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
+
+(use-package yasnippet-snippets :ensure t :pin melpa
+  :after yasnippet)
+
+;;; avy
+(use-package avy :ensure t :pin melpa
+  :config
+  ;;(avy-setup-default)
+  (global-set-key (kbd "C-c /") 'avy-goto-char-timer))
+
+(use-package multiple-cursors :ensure t :pin melpa
+  :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
+                 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+                 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+                 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+
+;;; Evil, my last resort. (sometimes)
+(use-package evil :ensure t :pin melpa
+  :init (setq evil-want-integration t)
+  :config (progn (evil-mode -1)
+                 ;; because I use 'C-z' as my leader key
+                 (define-key evil-motion-state-map (kbd "C-z") nil)))
+
+(defun toggle-evil-mode ()
+  (interactive)
+  (evil-mode (if (null evil-state) 1 -1)))
+
+
+;;; eshell is our frien
+(require 'f)
+
+(defun eshell-here ()
+  (interactive)
+  (let ((eshell-buf (get-buffer "*eshell*"))
+        (path (f-dirname (buffer-file-name))))
+    (if (null eshell-buf)
+        ;; just start new eshell
+        (eshell)
+      ;; else:
+      (with-current-buffer eshell-buf
+        (eshell/pushd (eshell/pwd))
+        (cd path)
+        (eshell-emit-prompt)))))
+
+;;; General -- Leading Keybinder
+(use-package general :ensure t :pin melpa)
+
+(defalias 'ctl-z-keymap (make-sparse-keymap))
+(defvar ctl-z-map (symbol-function 'ctl-z-keymap)
+  "Global keymap for characters following C-z.")
+(define-key global-map "\C-z" 'ctl-z-keymap)
+
+(general-create-definer my-global-leader-def :prefix "C-z")
+(my-global-leader-def
+  "/" 'swiper
+
+  "SPC" 'counsel-M-x
+  "TAB" 'ivy-switch-buffer
+
+  "?" 'counsel-descbinds
+
+  "T" 'multi-term
+  ;; "$" 'eshell-here
+  "." 'neotree
+
+  "g" 'magit-file-popup
+  "G" 'magit-status
+
+  "o" 'counsel-rg-maybe-projectile
+  "p" 'counsel-projectile
+
+  "P" 'projectile-commander
+  "e" (general-simulate-key "C-c !" :name flycheck)
+
+  "k" 'counsel-yank-pop
+
+  "m" 'counsel-mark-ring
+  "i" 'counsel-imenu
+  ":" 'toggle-evil-mode
+
+  "w" 'writeroom-mode
+
+  "f" '(:ignore t :which-key "fold")
+  "f t" 'vimish-fold-toggle
+  "f f" 'vimish-fold
+  "f d" 'vimish-fold-delete
+
+  ;; "y" - yasnippet
+  "y" '(:ignore t :which-key "yasnippet")
+  "y i" 'yas-insert-snippet
+  "y e" 'yas-visit-snippet-file
+  "y n" 'yas-new-snippet
+
+  "`" '(:ignore t :which-key "misc")
+  "` p" 'counsel-list-processes
+  "` b" 'counsel-bookmark
+
+  ;; windows
+  "C-z" 'other-window
+  "_" 'split-window-below
+  "|" 'split-window-right
+  "q" 'delete-window
+
+  "<left>" 'windmove-left
+  "<right>" 'windmove-right
+  "<up>" 'windmove-up
+  "<down>" 'windmove-down
+
+  "S-<left>" 'buf-move-up
+  "S-<right>" 'buf-move-right
+  "S-<up>" 'buf-move-up
+  "S-<down>" 'buf-move-down
+
+  "=" 'balance-windows
+  "+" 'enlarge-window
+  "-" 'shrink-window
+  ">" 'enlarge-window-horizontally
+  "<" 'shrink-window-horizontally
+
+  ;; avy
+  ;; "A" 'avy-goto-char
+  ;; "a" '(:ignore t :which-key "avy")
+  ;; "a c" 'avy-goto-char
+  ;; "a l" 'avy-goto-line
+  ;; "a r" 'avy-resume
+
+  ;; undo-tree
+  "u" 'undo-tree-visualize
+  )
+
+(general-create-definer my-local-leader-def :prefix "C-'")
+
+
+;;; Layers support.
+(defvar load-layer-base-path (expand-file-name "~/Projects/configs/emacs/"))
+
+(defun load-layer (layer-name)
+  "Specify LAYER-NAME as elisp filename to load."
+  (interactive "fFile to load:")
+  (let ((fn (if (file-exists-p layer-name)
+		layer-name
+	      (format "%s%s" load-layer-base-path layer-name))))
+    (load-file fn)))
+
+(defun load-layer-by-file-ext (file-name-p-fn loaded-flag-sym load-fn)
+  (unless (boundp loaded-flag-sym)
+    (let* ((file-name (buffer-file-name))
+	   (file-ext-match (funcall file-name-p-fn file-name)))
+      (funcall load-fn))))
+
+(require 'f)
+
+(when (f-exists? "~/.emacs.d/load-p/protobuf")
+  (load-layer "proto+grpc.el"))
+(when (f-exists? "~/.emacs.d/load-p/groovy")
+  (load-layer "groovy/groovy.el"))
+(when (f-exists? "~/.emacs.d/load-p/js2")
+  (load-layer "javascript/js2.el"))
+;; (load-layer "python/jedi.el") ; heavy-lifting
+;; (load-layer "slime.lisp")
+(when (f-exists? "~/.emacs.d/load-p/sly")
+  (load-layer "sly.el"))
+;; (load-layer "golang.el")
+(when (f-exists? "~/.emacs.d/load-p/perl5")
+  (load-layer "perl5.el"))
+;; (load-layer "clojure.el")
+(when (f-exists? "~/.emacs.d/load-p/golang")
+  (load-layer "golang.el"))
+(when (f-exists? "~/.emacs.d/load-p/rust")
+  (load-layer "rust.el"))
+
+;;; org-tree-slide
+(use-package org-tree-slide :ensure t :pin melpa)
+
+
+;;;
+(setq-default indent-tabs-mode nil)
+(setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
+;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
+(electric-indent-mode +1)
+
+;;; Themes
+(when (and t window-system)
+  (use-package gruvbox-theme :ensure t :pin melpa
+    :config (load-theme 'gruvbox t))
+  ;; (use-package doom-themes :ensure t :pin melpa)
+  ;; (load-theme 'doom-dracula t)
+  ;; (use-package color-theme-sanityinc-tomorrow :pin melpa :ensure t
+  ;;   :config (load-theme 'sanityinc-tomorrow-bright t ))
+  ;; (load-theme 'misterioso t)
+  ;; (use-package doom-modeline :ensure t :pin melpa
+  ;;   :config
+  ;;   (setq doom-modeline-icon nil)
+  ;;   (doom-modeline-init))
+  )
+
+(use-package idle-highlight-mode
+  :ensure t :pin melpa
+  :config (add-hook 'prog-mode-hook
+                    (lambda () (idle-highlight-mode t))))
+
+;;; EOF.
