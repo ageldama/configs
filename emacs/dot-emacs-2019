@@ -208,6 +208,9 @@
             ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
             (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
 
+;;; wgrep: writable grep
+(use-package wgrep :ensure t :pin melpa)
+
 ;;; projectile
 (use-package projectile :pin melpa
   :config
