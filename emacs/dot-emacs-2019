@@ -455,43 +455,36 @@ i.e. change right window to bottom, or change bottom window to right."
 (general-create-definer my-local-leader-def :prefix "C-'")
 
 
-;;; Layers support.
-(defvar load-layer-base-path (expand-file-name "~/Projects/configs/emacs/"))
+;;; Lang-support.
+(defvar langsup-loadp-path (expand-file-name "~/.emacs.d/load-p"))
+(defvar langsup-base-path (expand-file-name "~/P/configs/emacs/"))
 
-(defun load-layer (layer-name)
-  "Specify LAYER-NAME as elisp filename to load."
+(defun load-langsup (langsup-name)
+  "Specify LANGSUP-NAME as elisp filename to load."
   (interactive "fFile to load:")
   (let ((fn (if (file-exists-p layer-name)
-		layer-name
-	      (format "%s%s" load-layer-base-path layer-name))))
+		langsup-name
+	      (format "%s%s" langsup-base-path layer-name))))
     (load-file fn)))
 
-(defun load-layer-by-file-ext (file-name-p-fn loaded-flag-sym load-fn)
-  (unless (boundp loaded-flag-sym)
-    (let* ((file-name (buffer-file-name))
-	   (file-ext-match (funcall file-name-p-fn file-name)))
-      (funcall load-fn))))
+(defun load-langsup-or-not (loadp-name langsup-name)
+  (interactive)
+  (require 'f)
+  (when (f-exists? (format "%s%s" langsup-loadp-path loadp-name))
+    (load-layer langsup-name)))
 
-(require 'f)
 
-(when (f-exists? "~/.emacs.d/load-p/protobuf")
-  (load-layer "proto+grpc.el"))
-(when (f-exists? "~/.emacs.d/load-p/groovy")
-  (load-layer "groovy/groovy.el"))
-(when (f-exists? "~/.emacs.d/load-p/js2")
-  (load-layer "javascript/js2.el"))
-;; (load-layer "python/jedi.el") ; heavy-lifting
-;; (load-layer "slime.lisp")
-(when (f-exists? "~/.emacs.d/load-p/sly")
-  (load-layer "sly.el"))
-;; (load-layer "golang.el")
-(when (f-exists? "~/.emacs.d/load-p/perl5")
-  (load-layer "perl5.el"))
-;; (load-layer "clojure.el")
-(when (f-exists? "~/.emacs.d/load-p/golang")
-  (load-layer "golang.el"))
-(when (f-exists? "~/.emacs.d/load-p/rust")
-  (load-layer "rust.el"))
+(dolist (i '(
+             ('protobuf "proto+grpc.el")
+             ('groovy "groovy.el")
+             ('js2 "javascript/js2.el")
+             ('sly "sly.el")
+             ('perl5 "perl5.el")
+             ('golang "golang.el")
+             ('rust "rust.el")
+             ))
+  (load-langsup-or-not (first i) (second i)))
+
 
 ;;; org-tree-slide
 (use-package org-tree-slide :ensure t :pin melpa)
