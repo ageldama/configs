@@ -464,7 +464,7 @@ i.e. change right window to bottom, or change bottom window to right."
   (interactive "fFile to load:")
   (let ((fn (if (file-exists-p langsup-name)
 		langsup-name
-	      (format "%s/%s" langsup-base-path layer-name))))
+	      (format "%s/%s" langsup-base-path langsup-name))))
     (load-file fn)))
 
 (require 'f)
