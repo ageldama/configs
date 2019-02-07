@@ -456,34 +456,35 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; Lang-support.
-(defvar langsup-loadp-path (expand-file-name "~/.emacs.d/load-p"))
+(defvar langsup-loadp-path (expand-file-name "~/.emacs.d/load-p/"))
 (defvar langsup-base-path (expand-file-name "~/P/configs/emacs/"))
 
 (defun load-langsup (langsup-name)
   "Specify LANGSUP-NAME as elisp filename to load."
   (interactive "fFile to load:")
-  (let ((fn (if (file-exists-p layer-name)
+  (let ((fn (if (file-exists-p langsup-name)
 		langsup-name
-	      (format "%s%s" langsup-base-path layer-name))))
+	      (format "%s/%s" langsup-base-path layer-name))))
     (load-file fn)))
 
+(require 'f)
+
 (defun load-langsup-or-not (loadp-name langsup-name)
-  (interactive)
-  (require 'f)
-  (when (f-exists? (format "%s%s" langsup-loadp-path loadp-name))
-    (load-layer langsup-name)))
+  (let ((loadp-fn (format "%s/%s" langsup-loadp-path loadp-name)))
+    (when (f-exists? loadp-fn)
+      (load-langsup langsup-name))))
 
 
 (dolist (i '(
-             ('protobuf "proto+grpc.el")
-             ('groovy "groovy.el")
-             ('js2 "javascript/js2.el")
-             ('sly "sly.el")
-             ('perl5 "perl5.el")
-             ('golang "golang.el")
-             ('rust "rust.el")
+             (protobuf "proto+grpc.el")
+             (groovy "groovy.el")
+             (js2 "javascript/js2.el")
+             (sly "sly.el")
+             (perl5 "perl5.el")
+             (golang "golang.el")
+             (rust "rust.el")
              ))
-  (load-langsup-or-not (first i) (second i)))
+  (load-langsup-or-not (symbol-name (first i)) (second i)))
 
 
 ;;; org-tree-slide
