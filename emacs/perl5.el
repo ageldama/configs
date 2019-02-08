@@ -16,7 +16,7 @@
       cperl-indent-parens-as-block t
       cperl-tab-always-indent t)
 
-(load (concat load-layer-base-path "perl/perltidy"))
+(load (concat langsup-base-path "perl/perltidy"))
 ;; (let ((base-fn  (concat load-layer-base-path "perl/perltidy")))
 ;;   (if (file-exists-p (concat base-fn ".elc"))
 ;;       (load base-fn)
