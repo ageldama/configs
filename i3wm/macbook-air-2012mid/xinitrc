@@ -61,17 +61,18 @@ export SSH_AUTH_SOCK
 xmodmap -e 'keycode 108 = Hangul'
 
 
-synclient TapButton2=3
+#synclient TapButton2=3
 
 
 # xgamma -gamma 0.6
 
 
-xset s on
-xset s 300
+#xset s on
+#xset s 300
 
 # xautolock -time 5 -locker 'i3lock -c 000000 ' &
 xscreensaver -no-splash&
+xss-lock -- xscreensaver-command -lock &
 
 #pulseaudio --start &
 
