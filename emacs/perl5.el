@@ -31,15 +31,14 @@
 (require 'tramp)
 
 (defun run-perl-prove ()
-  "from https://github.com/hitode909/emacs-config/blob/master/inits/50-perl-config.el#L11"
   (interactive)
   (let* ((dir (vc-git-root default-directory))
-         (inc-opt (if (f-dir-p (concat dir "/lib")) "-Ilib" ""))
+         ;;(inc-opt (if (f-dir-p (concat dir "/lib")) "-Ilib" ""))
          (fn (buffer-file-name (current-buffer))))
     (compile
      (read-from-minibuffer
       "CMD: "
-      (format "cd %s; carton exec prove --nocolor %s %s" dir fn inc-opt)))))
+      (format "cd %s; prove --nocolor %s" dir fn)))))
 
 (defun run-perl-prog ()
   (interactive)
@@ -60,6 +59,7 @@
     "r" 'run-perl-prog
     "t" 'run-perl-prove
     "?" 'cperl-perldoc-at-point
+    "m" 'cperl-build-manpage
     "f" 'perltidy-dwim
     ))
 
