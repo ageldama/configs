@@ -47,6 +47,7 @@ ibus-daemon -d -x
 
 #~/.dropbox-dist/dropboxd &
 # TODO dropbox &
+rclone mount dropbox:/ ~/Dropbox &
 
 dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
