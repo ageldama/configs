@@ -65,7 +65,7 @@ Bundle 'godlygeek/tabular'
 " :ALEInfo?
 Bundle 'w0rp/ale'
 
-" #, / and :Occur and :Moccur
+" #, / and :Occur and :Moccur, <leader>oc and <leader>mo
 Bundle 'vim-scripts/occur.vim'
 
 "    start: <C-n> start multicursor and add a virtual cursor + selection on the match
@@ -77,8 +77,6 @@ Bundle 'terryma/vim-multiple-cursors'
 
 " yankstack
 Bundle 'maxbrunsfeld/vim-yankstack'
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 Bundle 'ntpeters/vim-better-whitespace'
 
@@ -104,6 +102,7 @@ endif
 
 
 "------------------------------------------------------------------------------
+let mapleader = "\\"
 
 set paste
 
@@ -124,6 +123,10 @@ if executable('ag')
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
 endif
+
+" yankstack
+nmap <leader>p <Plug>yankstack_substitute_older_paste
+nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " bind K to grep word under cursor
 nnoremap <Leader>/ :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
@@ -213,6 +216,47 @@ filetype on
 filetype indent on
 filetype plugin on
 
+""""""""""""""""""""""""""""""
+" => Visual mode related
+""""""""""""""""""""""""""""""
+" Visual mode pressing * or # searches for the current selection
+" Super useful! From an idea by Michael Naumann
+vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
+vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
+
+
+" Close the current buffer
+map <leader>bd :Bclose<cr>:tabclose<cr>gT
+
+" Close all the buffers
+map <leader>ba :bufdo bd<cr>
+
+map <leader>] :bnext<cr>
+map <leader>[ :bprevious<cr>
+
+" Useful mappings for managing tabs
+map <leader>tn :tabnew<cr>
+map <leader>to :tabonly<cr>
+map <leader>tc :tabclose<cr>
+map <leader>tm :tabmove
+map <leader>t<leader> :tabnext
+map <leader>t[ :tabprev<cr>
+map <leader>t] :tabnext<cr>
+
+" Let 'tl' toggle between this and the last accessed tab
+let g:lasttab = 1
+nmap <Leader>tl :exe "tabn ".g:lasttab<CR>
+au TabLeave * let g:lasttab = tabpagenr()
+
+
+" Opens a new tab with the current buffer's path
+" Super useful when editing files in the same directory
+map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
+
+" Switch CWD to the directory of the open buffer
+map <leader>cd :cd %:p:h<cr>:pwd<cr>
+
+
 " airline
 set laststatus=2
 
@@ -261,5 +305,30 @@ set clipboard=unnamed
 let g:go_auto_type_info = 1
 
 
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+
+
+function! VisualSelection(direction, extra_filter) range
+  let l:saved_reg = @"
+  execute "normal! vgvy"
+
+  let l:pattern = escape(@", "\\/.*'$^~[]")
+  let l:pattern = substitute(l:pattern, "\n$", "", "")
+
+  if a:direction == 'gv'
+    call CmdLine("Ack '" . l:pattern . "' " )
+  elseif a:direction == 'replace'
+    call CmdLine("%s" . '/'. l:pattern . '/')
+  endif
+
+  let @/ = l:pattern
+  let @" = l:saved_reg
+endfunction
 
 "EOF
