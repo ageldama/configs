@@ -88,6 +88,11 @@ Bundle 'junegunn/goyo.vim'
 Bundle 'fatih/vim-go'
 Bundle 'majutsushi/tagbar'
 
+
+Bundle "morhetz/gruvbox"
+color gruvbox
+set bg=dark
+
 " colorscheme
 if 0
   Bundle 'NLKNguyen/papercolor-theme'
@@ -200,11 +205,11 @@ if 1
     set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
     "set guifont=Inconsolata\ Medium\ 12
     "set guifont="Noto Sans Mono CJK KR 14"
-    color darkblue
-    set bg=light
+    "color darkblue
+    "set bg=light
   else
-    color default
-    set bg=dark
+    "color default
+    "set bg=dark
   endif
 endif
 
