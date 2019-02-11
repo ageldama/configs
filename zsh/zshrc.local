@@ -48,3 +48,20 @@ elif [ -d /usr/share/zsh-syntax-highlighting/ ]; then
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+if [ -d ~/local/go ]; then
+  export PATH=$PATH:$HOME/local/go/bin
+fi
+
+if [ -d ~/go ]; then
+  export GOPATH=$HOME/go
+  export PATH=$PATH:$GOPATH/bin
+fi
+
+export NVM_DIR="$HOME/.nvm"
+if [ -d $NVM_DIR ]; then
+  [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+  [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+fi
+
+
+
