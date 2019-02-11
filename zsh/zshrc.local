@@ -9,13 +9,20 @@ if test -d /etc/profile.d/; then
 	unset profile
 fi
 
+command_exists () {
+  type "$1" &> /dev/null ;
+}
 
-
-alias ls='exa'
-alias l='exa'
-alias ll='exa -l'
-alias lll='exa -Tl'
-
+if command_exists exa ; then
+  alias ls='exa'
+  alias l='exa'
+  alias ll='exa -l'
+  alias lll='exa -Tl'
+else
+  alias ls='ls -F -G -a --color'
+  alias l='ls'
+  alias ll='ls -lH'
+fi
 
 export PAGER=most
 export EDITOR=vim
