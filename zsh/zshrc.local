@@ -48,6 +48,8 @@ elif [ -d /usr/share/zsh-syntax-highlighting/ ]; then
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
 if [ -d ~/local/go ]; then
   export PATH=$PATH:$HOME/local/go/bin
 fi
