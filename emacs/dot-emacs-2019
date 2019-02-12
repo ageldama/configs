@@ -366,6 +366,9 @@ i.e. change right window to bottom, or change bottom window to right."
         (cd path)
         (eshell-emit-prompt)))))
 
+;;; stardict, sdcv
+(use-package sdcv :ensure t :pin melpa)
+
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
@@ -418,6 +421,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "`" '(:ignore t :which-key "misc")
   "` p" 'counsel-list-processes
   "` b" 'counsel-bookmark
+  "` D" 'sdcv-search-pointer
 
   ;; windows
   "C-z" 'other-window
