@@ -55,6 +55,7 @@ Bundle 'vim-airline/vim-airline'
 Bundle 'scrooloose/nerdtree'
 Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
+Bundle 't9md/vim-choosewin'
 
 " :Ack and K
 Bundle 'mileszs/ack.vim'
@@ -104,6 +105,10 @@ if 0
 
   "let g:airline_theme='papercolor'
 endif
+
+" vim-choosewin
+let g:choosewin_overlay_enable = 1
+nmap  <leader>-  <Plug>(choosewin)
 
 
 "------------------------------------------------------------------------------
