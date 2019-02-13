@@ -92,7 +92,7 @@ Bundle 'majutsushi/tagbar'
 
 "Bundle "morhetz/gruvbox"
 "color gruvbox
-"set bg=dark
+set bg=dark
 
 " colorscheme
 if 0
