@@ -14,8 +14,8 @@ command_exists () {
 }
 
 if command_exists exa ; then
-  alias ls='exa'
-  alias l='exa'
+  alias ls='exa -Fa'
+  alias l='exa -Fa'
   alias ll='exa -l'
   alias lll='exa -Tl'
 else
