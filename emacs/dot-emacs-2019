@@ -190,6 +190,7 @@
             (setq enable-recursive-minibuffers t)
             (setq ivy-re-builders-alist
                   '((swiper . ivy--regex-plus)
+                    (counsel-M-x . ivy--regex-fuzzy)
                     (t      . ivy--regex-plus)))
             (global-set-key "\C-s" 'swiper)
             (global-set-key (kbd "C-c C-r") 'ivy-resume)
