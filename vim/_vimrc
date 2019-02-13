@@ -90,9 +90,9 @@ Bundle 'fatih/vim-go'
 Bundle 'majutsushi/tagbar'
 
 
-Bundle "morhetz/gruvbox"
-color gruvbox
-set bg=dark
+"Bundle "morhetz/gruvbox"
+"color gruvbox
+"set bg=dark
 
 " colorscheme
 if 0
@@ -300,7 +300,7 @@ endif
 
 " PerlTidy
 "define :Tidy command to run perltidy on visual selection || entire buffer"
-command -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy
+command! -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy
 "run :Tidy on entire buffer and return cursor to (approximate) original position"
 fun DoPerlTidy()
   let Pos = line2byte( line( "." ) )
