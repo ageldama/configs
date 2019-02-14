@@ -1,3 +1,5 @@
+(use-package modern-cpp-font-lock :ensure t :pin melpa
+  :config (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode))
 
 (use-package counsel-gtags :ensure t :pin melpa
   :config
