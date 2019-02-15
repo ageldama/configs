@@ -209,6 +209,12 @@
             ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
             (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
 
+;; `C-o` in Ivy minibuf.
+(use-package ivy-hydra :ensure t :pin melpa)
+
+(use-package ivy-rich :ensure t :pin melpa
+  :config (ivy-rich-mode +1))
+
 ;;; wgrep: writable grep
 (use-package wgrep :ensure t :pin melpa)
 
@@ -435,6 +441,9 @@ i.e. change right window to bottom, or change bottom window to right."
   "C-c RET" 'org-capture
   "C-c l" 'org-capture-open
 
+  ;; registers
+  ;;"r" (general-simulate-key "C-x r" :name regs)
+
   ;; windows
   "C-z" 'other-window
   "_" 'split-window-below
@@ -499,6 +508,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (perl5 "perl5.el")
              (golang "golang.el")
              (rust "rust.el")
+             (c-c++-gtags "c-c++-gtags.el")
              ))
   (load-langsup-or-not (symbol-name (first i)) (second i)))
 
