@@ -370,6 +370,13 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; stardict, sdcv
 (use-package sdcv :ensure t :pin melpa)
 
+;;; org-capture
+(setq org-default-notes-file "~/Dropbox/c.org")
+
+(defun org-capture-open ()
+  (interactive)
+  (find-file org-default-notes-file))
+
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
@@ -423,6 +430,10 @@ i.e. change right window to bottom, or change bottom window to right."
   "` p" 'counsel-list-processes
   "` b" 'counsel-bookmark
   "` D" 'sdcv-search-pointer
+
+  "C-c" '(:ignore t :which-key "capture")
+  "C-c RET" 'org-capture
+  "C-c l" 'org-capture-open
 
   ;; windows
   "C-z" 'other-window
