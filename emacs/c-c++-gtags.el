@@ -24,10 +24,11 @@
   (interactive)
   (message "bound? %S -- %S" (boundp 'cmake-build-path) projectile-project-root)
   (when (boundp 'cmake-build-path)
+    (message "cmake-build-path -- %S" cmake-build-path)
     (let ((inc-dirs  (compile-commands-json/include-dirs cmake-build-path)))
       (message "%S" inc-dirs)
-      (setq flycheck-clang-include-path inc-dirs)
-      (setq flycheck-gcc-include-path inc-dir))))
+      (setq-local flycheck-clang-include-path inc-dirs)
+      (setq-local flycheck-gcc-include-path inc-dirs))))
 
 (add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
 (defun my-hack-local-vars-mode-hook ()
