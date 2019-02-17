@@ -22,7 +22,7 @@
 
 (defun flycheck-c/c++-clang-or-gcc-by-cmake-build-path ()
   (interactive)
-  (message "bound? %S -- %S" (boundp 'cmake-build-path) projectile-project-root)
+  (message "bound? %S" (boundp 'cmake-build-path))
   (when (boundp 'cmake-build-path)
     (message "cmake-build-path -- %S" cmake-build-path)
     (let ((inc-dirs  (compile-commands-json/include-dirs cmake-build-path)))
