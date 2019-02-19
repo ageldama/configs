@@ -50,6 +50,10 @@ elif [ -d /usr/share/zsh-syntax-highlighting/ ]; then
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 fi
 
+if [ -d /usr/local/share/examples/fzf/shell/key-bindings.zsh ]; then
+  # freebsd
+  source /usr/local/share/examples/fzf/shell/key-bindings.zsh
+fi
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ -d ~/local/go ]; then
