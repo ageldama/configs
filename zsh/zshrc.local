@@ -42,7 +42,9 @@ fi
 eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
 export PATH=~/perl5/bin:$PATH
 
-if [ -d /usr/share/zsh/plugins/zsh-syntax-highlighting/ ]; then
+if [ -d /usr/local/share/zsh-syntax-highlighting/ ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+elif [ -d /usr/share/zsh/plugins/zsh-syntax-highlighting/ ]; then
   source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [ -d /usr/share/zsh-syntax-highlighting/ ]; then
   source /usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
