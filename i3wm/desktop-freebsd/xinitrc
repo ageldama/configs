@@ -51,7 +51,7 @@ xset s on
 xset s 300
 
 xscreensaver -no-splash&
-xautolock -time 1 -locker 'xscreensaver-command -lock ' &
+xautolock -time 5 -locker 'xscreensaver-command -lock ' &
 
 pulseaudio --start &
 pacmd set-default-sink 7
