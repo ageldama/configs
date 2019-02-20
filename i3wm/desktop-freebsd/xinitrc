@@ -4,7 +4,8 @@ export LANG=en_US.UTF-8
 export PATH=$PATH:/home/jhyun/local/bin
 
 #export TERMINAL=konsole
-export TERMINAL=lxterminal
+#export TERMINAL=lxterminal
+export TERMINAL=alacritty
 
 #export XMODIFIERS="@im=SCIM"
 #export QT_IM_MODULE=scim
