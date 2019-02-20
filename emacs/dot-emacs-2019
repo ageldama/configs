@@ -115,7 +115,8 @@
 
 
 (when (and t window-system)
-  (cond ((or (string-equal system-type "gnu/linux")
+  (cond ((or (string-equal system-type "berkeley-unix")
+             (string-equal system-type "gnu/linux")
              (string-equal system-type "darwin"))
          (my-set-fixed-fonts))
   	;; Windows
