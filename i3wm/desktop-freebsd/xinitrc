@@ -36,7 +36,7 @@ export SSH_AUTH_SOCK
 
 #~/.dropbox-dist/dropboxd &
 # TODO: dropbox &
-rclone mount dropbox:/ ~/Dropbox --allow-non-empty --vfs-cache-mode writes &
+#rclone mount dropbox:/ ~/Dropbox --allow-non-empty --vfs-cache-mode writes &
 
 
 
