@@ -36,6 +36,9 @@ export SSH_AUTH_SOCK
 
 #~/.dropbox-dist/dropboxd &
 # TODO: dropbox &
+rclone mount dropbox:/ ~/Dropbox --allow-non-empty --vfs-cache-mode writes &
+
+
 
 ~/local/bin/caps-to-ctrl.sh
 
@@ -46,6 +49,8 @@ xmodmap -e 'keycode 108 = Hangul'
 
 #xgamma -gamma 0.6
 
+
+xset b off
 
 xset s on
 xset s 300
