@@ -2,7 +2,8 @@
 use strict;
 use warnings;
 use feature qw<say>;
-use String::ShellQuote;
+
+use Glib::Object::Introspection;
 
 {
   my @files = split /\n/, qx<find -L ~/P/wg/ -type f -not -path '*/\.git/*'>;
@@ -10,7 +11,14 @@ use String::ShellQuote;
   my $pick = $files[rand @files];
   say $pick;
   system("feh --bg-fill ${pick}");
-  my $quote = shell_quote(qx<fortune>);
-  system("notify-send ${quote}");
+  #
+  Glib::Object::Introspection->setup (
+    basename => 'Notify',
+    version => '0.7',
+    package => 'Notify');
+  Notify->init;
+  my $s = qx<fortune>;
+  my $n = Notify::Notification->new("", $s, "dialog-information");
+  $n->show;
 }
 #EOF
