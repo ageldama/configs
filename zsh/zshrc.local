@@ -54,6 +54,7 @@ if [ -f /usr/local/share/examples/fzf/shell/key-bindings.zsh ]; then
   # freebsd
   source /usr/local/share/examples/fzf/shell/key-bindings.zsh
 fi
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if [ -d ~/local/go ]; then
