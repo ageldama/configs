@@ -48,8 +48,7 @@ dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-#~/.dropbox-dist/dropboxd &
-# TODO: dropbox &
+~/.dropbox-dist/dropboxd &
 
 #eval $(gnome-keyring-daemon --start)
 #export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
