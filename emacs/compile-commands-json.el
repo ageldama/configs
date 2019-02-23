@@ -82,6 +82,28 @@ directory listing."
           (ht-set! result-ht inc-dir 1))))
     (ht-keys result-ht)))
 
+(defun compile-command-json/compile-command (build-dir file-name)
+  (interactive)
+  (let* ((fn (f-join build-dir "compile_commands.json"))
+         (file-check? (unless (f-exists? fn)
+                        (error "File not found: %s" fn)))
+         (rows (json-read-file fn))
+         (matching (seq-find (lambda (row) (equal (alist-get 'file row) file-name))
+                             rows)))
+    (alist-get 'command matching)))
+
+(defun compile-command-json/rmsbolt-command (dir-name file-name)
+  (let* ((cmd-parts (remove-if (lambda (s) (or (equal "-c" s)
+                                               (equal file-name s)))
+                               (compile-commands-json/split-shellwords
+                                (compile-command-json/compile-command dir-name file-name))))
+         (pos (seq-position cmd-parts "-o"))
+         (cmd-parts* (seq-partition cmd-parts pos))
+         (cmd-parts** (seq-concatenate 'vector
+                                       (first cmd-parts*)
+                                       (seq-drop (second cmd-parts*) 2))))
+    (s-join " " cmd-parts**)))
+
 
 (provide 'compile-commands-json)
 ;;; compile-commands-json.el ends here

@@ -14,6 +14,7 @@
     (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)))
 
 (use-package realgud :ensure t :pin melpa)
+(use-package rmsbolt :ensure t :pin melpa)
 
 ;;; flycheck + clang-tidy.
 (use-package flycheck-clang-tidy :ensure t :pin melpa)
@@ -40,6 +41,10 @@
   ;; TODO: (setq flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
   ;; TODO: (flycheck-select-checker 'c/c++-clang-tidy)
   (flycheck-c/c++-clang-or-gcc-by-project-build-path)
+  (when (boundp 'project-build-path)
+    (setq-local rmsbolt-command
+                (compile-command-json/rmsbolt-command
+                 project-build-path (buffer-file-name))))
   (flycheck-mode))
 
 (add-hook 'c-mode-local-vars-hook 'my-c-c++-mode-hook2)
@@ -113,6 +118,12 @@
                                           (format "gdb %s" cmd))
                                         #'realgud:gdb))))
 
+(defun c-c++-rmsbolt-this ()
+  (interactive)
+  (rmsbolt-mode)
+  (rmsbolt-compile))
+
+
 ;;;
 (when (fboundp 'general-create-definer)
   (my-local-leader-def :keymaps 'c-mode-base-map
@@ -131,6 +142,7 @@
     "r" '(:ignore t :which-key "run")
     "r r" 'run-executable-by-buffer-name
     "r d" 'debug-executable-by-buffer-name
+    "r b" 'c-c++-rmsbolt-this
     ))
 
 ;;;EOF.
