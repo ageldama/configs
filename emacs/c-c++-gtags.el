@@ -20,12 +20,12 @@
 
 (load-library (f-join langsup-base-path "compile-commands-json"))
 
-(defun flycheck-c/c++-clang-or-gcc-by-cmake-build-path ()
+(defun flycheck-c/c++-clang-or-gcc-by-project-build-path ()
   (interactive)
-  (message "bound? %S" (boundp 'cmake-build-path))
-  (when (boundp 'cmake-build-path)
-    (message "cmake-build-path -- %S" cmake-build-path)
-    (let ((inc-dirs  (compile-commands-json/include-dirs cmake-build-path)))
+  (message "bound? %S" (boundp 'project-build-path))
+  (when (boundp 'project-build-path)
+    (message "project-build-path -- %S" project-build-path)
+    (let ((inc-dirs  (compile-commands-json/include-dirs project-build-path)))
       (message "%S" inc-dirs)
       (setq-local flycheck-clang-include-path inc-dirs)
       (setq-local flycheck-gcc-include-path inc-dirs))))
@@ -39,7 +39,7 @@
   (interactive)
   ;; TODO: (setq flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
   ;; TODO: (flycheck-select-checker 'c/c++-clang-tidy)
-  (flycheck-c/c++-clang-or-gcc-by-cmake-build-path)
+  (flycheck-c/c++-clang-or-gcc-by-project-build-path)
   (flycheck-mode))
 
 (add-hook 'c-mode-local-vars-hook 'my-c-c++-mode-hook2)

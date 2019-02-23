@@ -36,7 +36,7 @@
 (require 'dash)
 (require 'cl)
 (require 'f)
-(require 'ht)
+(use-package ht :ensure t)
 
 ;;; Code:
 (defun compile-commands-json/split-shellwords (s)
