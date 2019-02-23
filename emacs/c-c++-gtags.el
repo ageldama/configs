@@ -58,6 +58,61 @@
         (call-interactively #'clang-format-region)
       (clang-format-buffer))))
 
+;;; find result executable and run/debug it
+(require 'seq)
+(use-package levenshtein :ensure t :pin melpa)
+(require 'cl)
+(use-package f :ensure t)
+
+(defun list-executable-files (dir)
+  (seq-filter 'file-executable-p
+              (directory-files-recursively
+               dir ".*")))
+
+(defun* file-list->distance-alist (fn file-names &key dist-fun)
+  (let ((fn* (f-filename fn)))
+    (mapcar (lambda (i)
+              (cons (funcall (or dist-fun #'levenshtein-distance)
+                             fn* (f-filename i))
+                    i))
+            file-names)))
+
+(defun list-executable-files-and-sort-by (dir file-name)
+  (mapcar #'cdr
+          (sort
+           (file-list->distance-alist
+            file-name
+            (list-executable-files dir))
+           (lambda (x y) (< (car x) (car y))))))
+
+(defun run-command-with (cmd mkcmd-fun run-fun)
+  (interactive)
+  (let* ((cmd*
+          (read-from-minibuffer "Cmd: " (funcall mkcmd-fun cmd))))
+    (funcall run-fun cmd*)))
+
+
+(require 'ivy)
+
+(defun run-executable-by-buffer-name ()
+  (interactive)
+  (ivy-read "Select executable to run: "
+            (list-executable-files-and-sort-by project-build-path (buffer-name))
+            :action (lambda (cmd)
+                      (run-command-with cmd
+                                        (lambda (cmd)
+                                          (format "cd '%s'; %s" (f-dirname cmd) cmd))
+                                        #'compile))))
+(defun debug-executable-by-buffer-name ()
+  (interactive)
+  (ivy-read "Select executable to debug: "
+            (list-executable-files-and-sort-by project-build-path (buffer-name))
+            :action (lambda (cmd)
+                      (run-command-with cmd
+                                        (lambda (cmd)
+                                          (format "gdb %s" cmd))
+                                        #'realgud:gdb))))
+
 ;;;
 (when (fboundp 'general-create-definer)
   (my-local-leader-def :keymaps 'c-mode-base-map
@@ -72,6 +127,10 @@
     "g u" 'counsel-gtags-update-tags
 
     "f" 'clang-format-dwim
+
+    "r" '(:ignore t :which-key "run")
+    "r r" 'run-executable-by-buffer-name
+    "r d" 'debug-executable-by-buffer-name
     ))
 
 ;;;EOF.
