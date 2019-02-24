@@ -15,6 +15,7 @@
 
 (use-package realgud :ensure t :pin melpa)
 (use-package rmsbolt :ensure t :pin melpa)
+(use-package cmake-mode :ensure t :pin melpa)
 
 ;;; flycheck + clang-tidy.
 (use-package flycheck-clang-tidy :ensure t :pin melpa)
