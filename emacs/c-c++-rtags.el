@@ -1,3 +1,11 @@
+(defcustom project-build-command "ninja"
+  "Default command to build project"
+  :type 'string);
+
+(defcustom read-project-compile-commands #'read-compile-commands-resolved-by-rtags
+  "compile-commands reader function"
+  :type 'function)
+
 (require 'flycheck)
 
 (load-library (f-join langsup-base-path "compile-commands-json"))
@@ -86,17 +94,13 @@
   (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
   )
 
-
 ;;; flycheck gcc/clang fixes
-(defun flycheck-c/c++-clang-or-gcc-by-project-build-path ()
+(defun flycheck-c/c++-clang-and-gcc-setup ()
   (interactive)
-  (message "bound? %S" (boundp 'project-build-path))
-  (when (boundp 'project-build-path)
-    (message "project-build-path -- %S" project-build-path)
-    (let ((inc-dirs  (compile-commands-json/include-dirs project-build-path)))
-      (message "%S" inc-dirs)
-      (setq-local flycheck-clang-include-path inc-dirs)
-      (setq-local flycheck-gcc-include-path inc-dirs))))
+  (let ((inc-dirs  (compile-commands-json/include-dirs read-project-compile-commands)))
+    (message "%S" inc-dirs)
+    (setq-local flycheck-clang-include-path inc-dirs)
+    (setq-local flycheck-gcc-include-path inc-dirs)))
 
 (add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
 
@@ -108,11 +112,10 @@
   (interactive)
   ;; TODO: (setq flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
   ;; TODO: (flycheck-select-checker 'c/c++-clang-tidy)
-  (flycheck-c/c++-clang-or-gcc-by-project-build-path)
-  (when (boundp 'project-build-path)
-    (setq-local rmsbolt-command
-                (compile-command-json/rmsbolt-command
-                 project-build-path (buffer-file-name))))
+  (flycheck-c/c++-clang-and-gcc-setup)
+  (setq-local rmsbolt-command
+              (compile-commands-json/rmsbolt-command
+               read-project-compile-commands (buffer-file-name)))
   (flycheck-mode))
 
 (add-hook 'c-mode-local-vars-hook 'my-c-c++-mode-hook2)
@@ -158,16 +161,23 @@
 (defun run-executable-by-buffer-name ()
   (interactive)
   (ivy-read "Select executable to run: "
-            (list-executable-files-and-sort-by project-build-path (buffer-name))
+            (list-executable-files-and-sort-by
+	     (compile-commands-json/build-dir read-project-compile-commands
+                                              (buffer-file-name))
+             (buffer-file-name))
             :action (lambda (cmd)
                       (run-command-with cmd
                                         (lambda (cmd)
                                           (format "cd '%s'; %s" (f-dirname cmd) cmd))
                                         #'compile))))
+
 (defun debug-executable-by-buffer-name ()
   (interactive)
   (ivy-read "Select executable to debug: "
-            (list-executable-files-and-sort-by project-build-path (buffer-name))
+            (list-executable-files-and-sort-by
+	     (compile-commands-json/build-dir read-project-compile-commands
+                                              (buffer-file-name))
+             (buffer-file-name))
             :action (lambda (cmd)
                       (run-command-with cmd
                                         (lambda (cmd)
@@ -180,19 +190,12 @@
   (rmsbolt-compile))
 
 
-(defcustom project-build-path nil
-  "Directory where your `compile_commands.json` is placed"
-  :type 'string)
-
-(defcustom project-build-command "ninja"
-  "Default command to build project"
-  :type 'string);
-
 (defun compile-in-project-build-path ()
   (interactive)
   (compile
    (read-from-minibuffer "Cmd: " (format "cd '%s'; %s"
-                                         (f-expand project-build-path)
+                                         (compile-commands-json/build-dir read-project-compile-commands
+                                                                          (buffer-file-name))
                                          project-build-command))))
 
 ;;;

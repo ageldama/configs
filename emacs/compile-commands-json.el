@@ -39,6 +39,26 @@
 (use-package ht :ensure t)
 
 ;;; Code:
+(defun read-compile-commands-from-project-build-path ()
+  (let* ((fn (f-join project-build-dir "compile_commands.json"))
+         (file-check? (unless (f-exists? fn)
+                        (error "File not found: %s" fn))))
+    (json-read-file fn)))
+
+(defun read-compile-commands-rtags ()
+  (with-temp-buffer
+    (rtags-call-rc "--dump-compile-commands")
+    (json-read-from-string (buffer-string))))
+
+(defun read-compile-commands-resolved-by-rtags ()
+  (let* ((row  (compile-commands-json/matching-row
+                                     #'read-compile-commands-rtags (buffer-file-name)))
+         (dir (alist-get 'directory row))
+         (fn (f-join dir "compile_commands.json"))
+         (file-check? (unless (f-exists? fn)
+                        (error "File not found: %s" fn))))
+    (json-read-file fn)))
+
 (defun compile-commands-json/split-shellwords (s)
   (let ((cmd "perl -MText::ParseWords -MJSON -e'@a=shellwords(<>); print(encode_json(\\@a));'")
         (out-buf nil)
@@ -65,16 +85,13 @@
        (--map (s-chop-prefix "-I" it))))
 
 
-(defun compile-commands-json/include-dirs (build-dir)
+(defun compile-commands-json/include-dirs (read-compile-commands-fun)
   "Read `compile_commands.json` in `BUILD-DIR`.
 Parse it and collect every `-I...`-occurences as include
 directory listing."
   (interactive "D")
-  (let* ((fn (f-join build-dir "compile_commands.json"))
-         (file-check? (unless (f-exists? fn)
-                        (error "File not found: %s" fn)))
-         (cmds (seq-map (lambda (i) (alist-get 'command i))
-                        (json-read-file fn)))
+  (let* ((cmds (seq-map (lambda (i) (alist-get 'command i))
+                        (funcall read-compile-commands-fun)))
          (result-ht (ht-create)))
     (seq-doseq (i cmds)
       (let ((inc-dirs (compile-commands-json/cmd->include-dirs i)))
@@ -82,27 +99,37 @@ directory listing."
           (ht-set! result-ht inc-dir 1))))
     (ht-keys result-ht)))
 
-(defun compile-command-json/compile-command (build-dir file-name)
-  (interactive)
-  (let* ((fn (f-join build-dir "compile_commands.json"))
-         (file-check? (unless (f-exists? fn)
-                        (error "File not found: %s" fn)))
-         (rows (json-read-file fn))
-         (matching (seq-find (lambda (row) (equal (alist-get 'file row) file-name))
-                             rows)))
-    (alist-get 'command matching)))
+(defun compile-commands-json/%matching-row (read-compile-commands-fun file-name)
+  (let* ((rows (funcall read-compile-commands-fun)))
+    (seq-find (lambda (row) (equal (alist-get 'file row) file-name))
+              rows)))
 
-(defun compile-command-json/rmsbolt-command (dir-name file-name)
+(defun compile-commands-json/matching-row (read-compile-commands-fun file-name)
+  (let ((rows (compile-commands-json/%matching-row read-compile-commands-fun file-name)))
+    (if (null rows)
+        (seq-elt (funcall #'read-compile-commands-rtags) 0) ;; fallback
+      rows)))
+
+(defun compile-commands-json/compile-command (read-compile-commands-fun file-name)
+  (interactive)
+  (alist-get 'command (compile-commands-json/matching-row read-compile-commands-fun file-name)))
+
+(defun compile-commands-json/rmsbolt-command (read-compile-commands-fun file-name)
   (let* ((cmd-parts (remove-if (lambda (s) (or (equal "-c" s)
                                                (equal file-name s)))
                                (compile-commands-json/split-shellwords
-                                (compile-command-json/compile-command dir-name file-name))))
+                                (compile-commands-json/compile-command read-compile-commands-fun file-name))))
          (pos (seq-position cmd-parts "-o"))
          (cmd-parts* (seq-partition cmd-parts pos))
          (cmd-parts** (seq-concatenate 'vector
                                        (first cmd-parts*)
                                        (seq-drop (second cmd-parts*) 2))))
     (s-join " " cmd-parts**)))
+
+(defun compile-commands-json/build-dir (read-compile-commands-fun file-name)
+  (interactive)
+  (alist-get 'directory (compile-commands-json/matching-row read-compile-commands-fun file-name)))
+
 
 
 (provide 'compile-commands-json)
