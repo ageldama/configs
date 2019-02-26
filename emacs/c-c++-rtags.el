@@ -98,15 +98,14 @@
 (defun flycheck-c/c++-clang-and-gcc-setup ()
   (interactive)
   (let ((inc-dirs  (compile-commands-json/include-dirs read-project-compile-commands)))
-    (message "%S" inc-dirs)
+    ;;(message "Include-Dirs: %S" inc-dirs)
     (setq-local flycheck-clang-include-path inc-dirs)
     (setq-local flycheck-gcc-include-path inc-dirs)))
 
-(add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
-
-(defun my-hack-local-vars-mode-hook ()
-  "Run a hook for the major-mode after the local variables have been processed."
-  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+;; (add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
+;; (defun my-hack-local-vars-mode-hook ()
+;;   "Run a hook for the major-mode after the local variables have been processed."
+;;   (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
 
 (defun my-c-c++-mode-hook2 ()
   (interactive)
@@ -118,8 +117,8 @@
                read-project-compile-commands (buffer-file-name)))
   (flycheck-mode))
 
-(add-hook 'c-mode-local-vars-hook 'my-c-c++-mode-hook2)
-(add-hook 'c++-mode-local-vars-hook 'my-c-c++-mode-hook2)
+(add-hook 'c-mode-hook 'my-c-c++-mode-hook2)
+(add-hook 'c++-mode-hook 'my-c-c++-mode-hook2)
 
 
 ;;; find result executable and run/debug it

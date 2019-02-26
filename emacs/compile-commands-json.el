@@ -59,7 +59,7 @@
                         (error "File not found: %s" fn))))
     (json-read-file fn)))
 
-(defun compile-commands-json/split-shellwords (s)
+(defun compile-commands-json/split-shellwords-verbose (s)
   (let ((cmd "perl -MText::ParseWords -MJSON -e'@a=shellwords(<>); print(encode_json(\\@a));'")
         (out-buf nil)
         (ret-val nil))
@@ -77,6 +77,24 @@
                ret-val cmd))
       (json-read-from-string (buffer-string)))))
 
+(defun compile-commands-json/split-shellwords (s)
+  (let* ((in-fn (make-temp-file "compile-commands-json"))
+         (wrote (f-write s 'utf-8-unix in-fn))
+         (out-fn (make-temp-file "splitted-compile-commands"))
+         (cmd (format
+               "cat %s | perl -MText::ParseWords -MJSON -e'@a=shellwords(<>); print(encode_json(\\@a));' > %s"
+               in-fn out-fn))
+         (result-json nil))
+    (unless (f-exists? in-fn)
+      (error "No file: %S" in-fn))
+    (unwind-protect
+        (progn
+          (shell-command cmd)
+          (setq result-json (json-read-file out-fn))
+          result-json)
+      (progn
+        (f-delete in-fn)
+        (f-delete out-fn)))))
 
 (defun compile-commands-json/cmd->include-dirs (s)
   "Extract include directories from shell command line string (`S`)."
