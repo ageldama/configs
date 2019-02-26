@@ -510,7 +510,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (golang "golang.el")
              (rust "rust.el")
              (c-c++-gtags "c-c++-gtags.el")
-             (cmake-ide "cmake-ide/cmake-ide.el")
+             (c-c++-rtags "c-c++-rtags.el")
              ))
   (load-langsup-or-not (symbol-name (first i)) (second i)))
 
