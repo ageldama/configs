@@ -139,12 +139,16 @@ directory listing."
                                                (equal file-name s)))
                                (compile-commands-json/split-shellwords
                                 (compile-commands-json/compile-command read-compile-commands-fun file-name))))
-         (pos (seq-position cmd-parts "-o"))
-         (cmd-parts* (seq-partition cmd-parts pos))
-         (cmd-parts** (seq-concatenate 'vector
-                                       (first cmd-parts*)
-                                       (seq-drop (second cmd-parts*) 2))))
-    (s-join " " cmd-parts**)))
+         (pos (seq-position cmd-parts "-o")))
+    (if (null pos)
+        ;; then
+        (s-join " " cmd-parts)
+      ;; else
+      (let* ((cmd-parts* (seq-partition cmd-parts pos))
+             (cmd-parts** (seq-concatenate 'vector
+                                           (first cmd-parts*)
+                                           (seq-drop (second cmd-parts*) 2))))
+        (s-join " " cmd-parts**)))))
 
 (defun compile-commands-json/build-dir (read-compile-commands-fun file-name)
   (interactive)
