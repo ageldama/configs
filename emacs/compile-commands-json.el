@@ -39,11 +39,13 @@
 (use-package ht :ensure t)
 
 ;;; Code:
-(defun read-compile-commands-from-project-build-path ()
-  (let* ((fn (f-join project-build-dir "compile_commands.json"))
-         (file-check? (unless (f-exists? fn)
-                        (error "File not found: %s" fn))))
-    (json-read-file fn)))
+(defun make-read-compile-commands-in-dir (dir)
+  (lexical-let ((dir-name dir))
+    #'(lambda ()
+        (let* ((fn (f-join dir-name "compile_commands.json"))
+               (file-check? (unless (f-exists? fn)
+                              (error "File not found: %s" fn))))
+          (json-read-file fn)))))
 
 (defun read-compile-commands-rtags ()
   (with-temp-buffer

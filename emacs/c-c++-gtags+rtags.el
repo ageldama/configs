@@ -1,14 +1,31 @@
+(defcustom project-build-path nil
+  "Project build directory"
+  :type 'string)
+
 (defcustom project-build-command "ninja"
   "Default command to build project"
   :type 'string)
 
-(defcustom read-project-compile-commands #'read-compile-commands-resolved-by-rtags
+(defcustom read-project-compile-commands nil
   "compile-commands reader function"
   :type 'function)
 
-(require 'flycheck)
-
 (load-library (f-join langsup-base-path "compile-commands-json"))
+
+(defun bind-read-project-compile-commands ()
+  (setq-local read-project-compile-commands
+              (if (and (boundp 'project-build-path)
+                       (not (null project-build-path)))
+                  (make-read-compile-commands-in-dir project-build-path)
+                #'read-compile-commands-resolved-by-rtags)))
+
+(defun project-rtags? ()
+  (or (not (boundp 'project-build-path))
+      (null project-build-path)))
+
+;;;
+
+(require 'flycheck)
 
 (use-package realgud :ensure t :pin melpa)
 (use-package rmsbolt :ensure t :pin melpa)
@@ -25,24 +42,13 @@
         (call-interactively #'clang-format-region)
       (clang-format-buffer))))
 
+(use-package counsel-gtags :ensure t :pin melpa)
+
 (use-package rtags :ensure t :pin melpa
-  :config (progn (setq rtags-autostart-diagnostics nil)
-                 (setq rtags-completions-enabled t)
-                 (require 'company)
-                 (push 'company-rtags company-backends)
-                 (add-hook 'c-mode-hook 'rtags-start-process-unless-running)
-                 (add-hook 'c++-mode-hook 'rtags-start-process-unless-running)
-                 (add-hook 'objc-mode-hook 'rtags-start-process-unless-running)
-                 ;;
-                 (define-key c-mode-base-map (kbd "M-.") #'rtags-find-symbol-at-point)
-                 (define-key c-mode-base-map (kbd "M-,") #'rtags-location-stack-back)
-                 ;; (define-key c-mode-base-map (kbd "M->") #'rtags-find-references-at-point)
-                 ;; (define-key c-mode-base-map (kbd "M-;") #'rtags-find-file)
-                 ;; (define-key c-mode-base-map (kbd "C-.") #'rtags-find-symbol)
-                 ;; (define-key c-mode-base-map (kbd "C-,") #'rtags-find-references)
-                 ;; (define-key c-mode-base-map (kbd "C-<") #'rtags-find-virtuals-at-point)
-                 ;; (define-key c-mode-base-map (kbd "M-i") #'rtags-imenu)
-                 ))
+  :config
+  (progn (setq rtags-autostart-diagnostics nil)
+         (setq rtags-completions-enabled t)))
+
 
 ;;; eldoc
 (use-package eldoc :ensure t :pin melpa :diminish eldoc-mode)
@@ -76,23 +82,25 @@
   (setq-local eldoc-documentation-function #'rtags-eldoc-function)
   (eldoc-mode 1))
 
-(add-hook 'c-mode-hook 'rtags-eldoc-mode)
-(add-hook 'c++-mode-hook 'rtags-eldoc-mode)
+(defun my-c-c++-eldoc ()
+  (interactive)
+  (when (project-rtags?)
+    (rtags-eldoc-mode)))
+
+(add-hook 'c-mode-hook 'my-c-c++-eldoc)
+(add-hook 'c++-mode-hook 'my-c-c++-eldoc)
 
 ;;; flycheck + rtags backend.
-(when nil ;; DISABLED -- not working as intended
-  (use-package flycheck-rtags :ensure t :pin melpa)
-
-  (defun my-flycheck-rtags-setup ()
-    "Configure flycheck-rtags for better experience."
-    (flycheck-select-checker 'rtags)
-    (setq-local flycheck-check-syntax-automatically t)
-    (setq-local flycheck-highlighting-mode t))
-
-  (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
-  (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
-  (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
-  )
+;; DISABLED -- not working as intended
+;; (use-package flycheck-rtags :ensure t :pin melpa)
+;; (defun my-flycheck-rtags-setup ()
+;;   "Configure flycheck-rtags for better experience."
+;;   (flycheck-select-checker 'rtags)
+;;   (setq-local flycheck-check-syntax-automatically t)
+;;   (setq-local flycheck-highlighting-mode t))
+;; (add-hook 'c-mode-hook #'my-flycheck-rtags-setup)
+;; (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
+;; (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
 
 ;;; flycheck gcc/clang fixes
 (defun flycheck-c/c++-clang-and-gcc-setup ()
@@ -102,23 +110,46 @@
     (setq-local flycheck-clang-include-path inc-dirs)
     (setq-local flycheck-gcc-include-path inc-dirs)))
 
-;; (add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
-;; (defun my-hack-local-vars-mode-hook ()
-;;   "Run a hook for the major-mode after the local variables have been processed."
-;;   (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+(add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
+
+(defun my-hack-local-vars-mode-hook ()
+  "Run a hook for the major-mode after the local variables have been processed."
+  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+
+(defun my-c-c++-rtags-hook ()
+  (require 'company)
+  (push 'company-rtags company-backends)
+  (rtags-start-process-unless-running))
+
+(defun my-c-c++-gtags-hook ()
+  (define-key counsel-gtags-mode-map (kbd "M-t") 'counsel-gtags-find-definition)
+  (define-key counsel-gtags-mode-map (kbd "M-r") 'counsel-gtags-find-reference)
+  (define-key counsel-gtags-mode-map (kbd "M-s") 'counsel-gtags-find-symbol)
+  (define-key counsel-gtags-mode-map (kbd "M-.") 'counsel-gtags-dwim)
+  (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)
+  ;;
+  (counsel-gtags-mode))
+
 
 (defun my-c-c++-mode-hook2 ()
   (interactive)
   ;; TODO: (setq flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
   ;; TODO: (flycheck-select-checker 'c/c++-clang-tidy)
+  (bind-read-project-compile-commands)
+  (if (project-rtags?)
+      (my-c-c++-rtags-hook)
+    (my-c-c++-gtags-hook))
   (flycheck-c/c++-clang-and-gcc-setup)
   (setq-local rmsbolt-command
               (compile-commands-json/rmsbolt-command
                read-project-compile-commands (buffer-file-name)))
-  (flycheck-mode))
+  (flycheck-mode)
+  ;;
+  (c-c++-bind-key-map)
+  )
 
-(add-hook 'c-mode-hook 'my-c-c++-mode-hook2)
-(add-hook 'c++-mode-hook 'my-c-c++-mode-hook2)
+(add-hook 'c-mode-local-vars-hook 'my-c-c++-mode-hook2)
+(add-hook 'c++-mode-local-vars-hook 'my-c-c++-mode-hook2)
 
 
 ;;; find result executable and run/debug it
@@ -198,9 +229,12 @@
                                          project-build-command))))
 
 ;;;
-(when (fboundp 'general-create-definer)
+(defun rtags-local-defs ()
+  (message "Using RTags")
+  (define-key c-mode-base-map (kbd "M-.") #'rtags-find-symbol-at-point)
+  (define-key c-mode-base-map (kbd "M-,") #'rtags-location-stack-back)
+  ;;
   (my-local-leader-def :keymaps 'c-mode-base-map
-    ;; RTags
     "?" 'rtags-print-symbol-info
     "." 'rtags-find-symbol-at-point
     "," 'rtags-location-stack-back
@@ -228,6 +262,37 @@
     "r d" 'debug-executable-by-buffer-name
     "r b" 'c-c++-rmsbolt-this
     ))
+
+(defun gtags-local-defs ()
+  (message "Using GNU Global")
+  (my-local-leader-def :keymaps 'c-mode-base-map
+    "," 'counsel-gtags-go-backward
+    "." 'counsel-gtags-dwim
+
+    "g" '(:ignore t :which-key "gtags")
+    "g d" 'counsel-gtags-find-definition
+    "g r" 'counsel-gtags-find-reference
+    "g s" 'counsel-gtags-find-symbol
+    "g c" 'counsel-gtags-create-tags
+    "g u" 'counsel-gtags-update-tags
+
+    "f" 'clang-format-dwim
+
+    "b" 'compile-in-project-build-path
+
+    "r" '(:ignore t :which-key "run")
+    "r r" 'run-executable-by-buffer-name
+    "r d" 'debug-executable-by-buffer-name
+    "r b" 'c-c++-rmsbolt-this
+    ))
+
+(defun c-c++-bind-key-map ()
+  (when (fboundp 'general-create-definer)
+    (if (project-rtags?)
+        ;; RTags
+        (rtags-local-defs)
+      ;; GNU Global
+      (gtags-local-defs))))
 
 
 ;; EOF
