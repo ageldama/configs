@@ -102,7 +102,14 @@ compton -b &
 
 ~/local/bin/caps-to-ctrl.sh 2s &
 
-exec i3
+blueman-applet &
+
+~/local/bin/wg.pl &
+
+
+sxhkd &
+
+exec 2bwm
 #exec /home/jhyun/local/bin/2bwm 
 
 
