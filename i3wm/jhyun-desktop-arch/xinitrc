@@ -106,11 +106,10 @@ blueman-applet &
 
 ~/local/bin/wg.pl &
 
-
+polybar -c ~/.config/polybar/config my &
 sxhkd &
 
 exec 2bwm
-#exec /home/jhyun/local/bin/2bwm 
 
 
 ###EOF
