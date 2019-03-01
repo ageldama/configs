@@ -86,7 +86,10 @@ Bundle 'junegunn/goyo.vim'
 
 
 " Golang
-Bundle 'fatih/vim-go'
+if filereadable("~/.vim/load-p/golang")
+  Bundle 'fatih/vim-go'
+  let g:go_auto_type_info = 1
+endif
 
 "
 Bundle 'majutsushi/tagbar'
@@ -305,9 +308,6 @@ endfun
 
 " Clipboard
 set clipboard=unnamed
-
-" vim-go
-let g:go_auto_type_info = 1
 
 
 
