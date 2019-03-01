@@ -87,6 +87,8 @@ Bundle 'junegunn/goyo.vim'
 
 " Golang
 Bundle 'fatih/vim-go'
+
+"
 Bundle 'majutsushi/tagbar'
 
 
@@ -116,19 +118,12 @@ nmap  <leader>-  <Plug>(choosewin)
 
 set paste
 
-"if executable('rg') && 0
-"  let g:ackprg = 'rg --vimgrep'
-"
-"  " Use ag over grep
-"  set grepprg=rg\ --vimgrep
-"
-"  " Use ag in CtrlP for listing files. Lightning fast and respects .gitignore
-"  let g:ctrlp_user_command = 'rg %s -l --vimgrep -g ""'
-"
-"  " ag is fast enough that CtrlP doesn't need to cache
-"  let g:ctrlp_use_caching = 0
-"else
-if executable('ag')
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading'
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
+elseif executable('ag')
   let g:ackprg = 'ag --vimgrep'
   set grepprg=ag\ --nogroup\ --nocolor
   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
