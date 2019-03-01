@@ -8,12 +8,13 @@ screenchange-reload = true
 
 [bar/my]
 ;monitor = ${env:MONITOR:HDMI-1}
-width = 100%
+width = 40%
 height = 27
 ;offset-x = 50%
-;offset-y = 1%
+offset-y = 0%
 radius = 6.0
 fixed-center = false
+bottom = true
 
 background = ${colors.background}
 foreground = ${colors.foreground}
@@ -64,8 +65,8 @@ margin-bottom = 5
 
 [colors]
 ;background = ${xrdb:color0:#222}
-background = #222
-background-alt = #444
+background = #000
+background-alt = #000
 ;foreground = ${xrdb:color7:#222}
 foreground = #dfdfdf
 foreground-alt = #555

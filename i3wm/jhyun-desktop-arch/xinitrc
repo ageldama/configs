@@ -106,10 +106,11 @@ blueman-applet &
 
 ~/local/bin/wg.pl &
 
-polybar -c ~/.config/polybar/config my &
 sxhkd &
 
-exec 2bwm
+tint2 &
+
+exec openbox
 
 
 ###EOF
