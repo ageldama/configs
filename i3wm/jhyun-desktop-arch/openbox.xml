@@ -42,7 +42,7 @@
                   'Active' - where the active window is -->
   </placement>
   <theme>
-    <name>Bear2</name>
+    <name>Fog</name>
     <titleLayout>DSLIMC</titleLayout>
     <!--
       available characters are NDSLIMC, each can occur at most once.
@@ -214,7 +214,6 @@
       </action>
     </keybind>
     -->
-
     <keybind key="S-W-Left">
       <action name="SendToDesktop">
         <to>left</to>
@@ -241,7 +240,6 @@
       </action>
     </keybind>
     -->
-
     <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
@@ -292,7 +290,6 @@
         <to>10</to>
       </action>
     </keybind>
-
     <keybind key="S-W-1">
       <action name="SendToDesktop">
         <to>1</to>
@@ -343,9 +340,6 @@
         <to>10</to>
       </action>
     </keybind>
-
-
-
     <!--
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
@@ -365,7 +359,6 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
-
     <!-- Keybindings for window switching -->
     <keybind key="W-Tab">
       <action name="NextWindow">
@@ -396,7 +389,6 @@
         </finalactions>
       </action>
     </keybind>
-
     <!-- Keybindings for window switching with the arrow keys -->
     <keybind key="C-W-Right">
       <action name="DirectionalCycleWindows">
@@ -418,15 +410,12 @@
         <direction>down</direction>
       </action>
     </keybind>
-
     <keybind key="W-F">
       <action name="ToggleFullscreen"/>
     </keybind>
-
     <keybind key="W-X">
       <action name="ToggleMaximize"/>
     </keybind>
-
     <keybind key="W-Up">
       <action name="ToggleMaximize">
         <direction>vertical</direction>
@@ -437,31 +426,35 @@
         <direction>horizontal</direction>
       </action>
     </keybind>
-
     <keybind key="W-A-Up">
-      <action name="MoveToEdge"><direction>north</direction></action>
+      <action name="MoveToEdge">
+        <direction>north</direction>
+      </action>
     </keybind>
     <keybind key="W-A-Down">
-      <action name="MoveToEdge"><direction>south</direction></action>
+      <action name="MoveToEdge">
+        <direction>south</direction>
+      </action>
     </keybind>
     <keybind key="W-A-Right">
-      <action name="MoveToEdge"><direction>east</direction></action>
+      <action name="MoveToEdge">
+        <direction>east</direction>
+      </action>
     </keybind>
     <keybind key="W-A-Left">
-      <action name="MoveToEdge"><direction>west</direction></action>
+      <action name="MoveToEdge">
+        <direction>west</direction>
+      </action>
     </keybind>
-
     <keybind key="W-M">
       <action name="Move"/>
     </keybind>
     <keybind key="W-R">
       <action name="Resize"/>
     </keybind>
-
     <keybind key="W-S-R">
       <action name="Reconfigure"/>
     </keybind>
-
     <!-- Keybindings for running applications -->
     <!--
     <keybind key="W-e">
