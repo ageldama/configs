@@ -104,13 +104,13 @@ compton -b &
 
 blueman-applet &
 
-~/local/bin/wg.pl &
+#~/local/bin/wg.pl &
 
-sxhkd &
+#sxhkd &
+#tint2 &
+#exec openbox
 
-tint2 &
-
-exec openbox
+exec awesome
 
 
 ###EOF
