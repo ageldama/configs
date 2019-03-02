@@ -84,7 +84,7 @@ awful.layout.layouts = {
 -- Create a launcher widget and a main menu
 myawesomemenu = {
    { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
-   { "manual", terminal .. " -e man awesome" },
+   --{ "manual", terminal .. " -e man awesome" },
    { "edit config", editor_cmd .. " " .. awesome.conffile },
    { "restart", awesome.restart },
    { "quit", function() awesome.quit() end },
@@ -305,7 +305,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey, "Shift"   }, "q",
               function ()
                   awful.prompt.run {
-                    prompt       = "Quit? (yes/no) ",
+                    prompt       = "Quit? (Type 'yes') ",
                     textbox      = awful.screen.focused().mypromptbox.widget,
                     exe_callback = function (answer)
                       if answer == 'yes' then
