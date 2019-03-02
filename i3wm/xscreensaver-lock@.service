@@ -5,8 +5,7 @@ Before=sleep.target
 [Service]
 Type=forking
 User=%I
-Environment=DISPLAY=:0
-ExecStart=/usr/bin/xscreensaver-command -lock
+ExecStart=/home/jhyun/P/configs/xscreensaver-lock-every-display.sh
 
 [Install]
 WantedBy=sleep.target

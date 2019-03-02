@@ -100,7 +100,7 @@ compton -b &
 
 #pacmd set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo    &
 
-~/local/bin/caps-to-ctrl.sh 2s &
+(sleep 2s && ~/local/bin/caps-to-ctrl.sh ) &
 
 blueman-applet &
 
