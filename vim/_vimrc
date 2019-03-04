@@ -146,6 +146,23 @@ vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 " bind \ (backward slash) to grep shortcut
 " command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
+" FZF
+nnoremap <C-p> :FZF<CR>
+nnoremap <Leader>zb :Buffers<CR>
+nnoremap <Leader>zc :Colors<CR>
+nnoremap <Leader>za :Ag 
+nnoremap <Leader>zr :Rg 
+nnoremap <Leader>zm :Marks<CR>
+nnoremap <Leader>zw :Windows<CR>
+nnoremap <Leader>zo :History<CR>
+nnoremap <Leader>z/ :History/<CR>
+nnoremap <Leader>zs :Snippets/<CR>
+nnoremap <Leader>zg :Commits<CR>
+nnoremap <Leader>z: :Commands<CR>
+nnoremap <Leader>z? :Maps<CR>
+"nnoremap <Leader>zf :Filetypes<CR>
+" NOTE: https://github.com/junegunn/fzf.vim#commands
+
 
 
 " use only Vim settings (instead of vi)
