@@ -86,10 +86,10 @@ Bundle 'junegunn/goyo.vim'
 
 
 " Golang
-if filereadable("~/.vim/load-p/golang")
+" FIXME: if filereadable("~/.vim/load-p/golang")
   Bundle 'fatih/vim-go'
   let g:go_auto_type_info = 1
-endif
+"endif
 
 "
 Bundle 'majutsushi/tagbar'
