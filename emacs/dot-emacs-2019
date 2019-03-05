@@ -506,6 +506,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (groovy "groovy/groovy.el")
              (js2 "javascript/js2.el")
              (sly "sly.el")
+             (slime "slime.el")
              (perl5 "perl5.el")
              (golang "golang.el")
              (rust "rust.el")
