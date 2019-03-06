@@ -1,3 +1,7 @@
+;;; Sly + Company integration is unstable,
+;;; (ex: C-g during company completion, Emacs hangs)
+;;;
+;;; Use C-M-i or M-Tab instead.
 (defun sly-no-company-mode ()
   (company-mode -1))
 
