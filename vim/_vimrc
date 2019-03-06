@@ -53,7 +53,7 @@ Bundle 'vim-airline/vim-airline'
 "Bundle 'vim-airline/vim-airline-themes'
 
 Bundle 'scrooloose/nerdtree'
-Bundle 'ctrlpvim/ctrlp.vim'
+"Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
 Bundle 't9md/vim-choosewin'
 
@@ -137,7 +137,7 @@ vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 " command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 " FZF
-if 0
+if 1
   nnoremap <C-p> :FZF<CR>
   nnoremap <Leader>zb :Buffers<CR>
   nnoremap <Leader>zc :Colors<CR>
