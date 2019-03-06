@@ -93,7 +93,8 @@ Bundle 'junegunn/goyo.vim'
 
 "
 Bundle 'majutsushi/tagbar'
-Bundle 'junegunn/fzf.vim'
+Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+
 
 
 "Bundle "morhetz/gruvbox"
@@ -122,17 +123,6 @@ nmap  <leader>-  <Plug>(choosewin)
 
 set paste
 
-if executable('rg')
-  let g:ackprg = 'rg --vimgrep --no-heading'
-  set grepprg=rg\ --vimgrep\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-  "let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
-elseif executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-  set grepprg=ag\ --nogroup\ --nocolor
-  "let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
-
 " yankstack
 nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
@@ -147,22 +137,23 @@ vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 " command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
 
 " FZF
-nnoremap <C-p> :FZF<CR>
-nnoremap <Leader>zb :Buffers<CR>
-nnoremap <Leader>zc :Colors<CR>
-nnoremap <Leader>za :Ag 
-nnoremap <Leader>zr :Rg 
-nnoremap <Leader>zm :Marks<CR>
-nnoremap <Leader>zw :Windows<CR>
-nnoremap <Leader>zo :History<CR>
-nnoremap <Leader>z/ :History/<CR>
-nnoremap <Leader>zs :Snippets/<CR>
-nnoremap <Leader>zg :Commits<CR>
-nnoremap <Leader>z: :Commands<CR>
-nnoremap <Leader>z? :Maps<CR>
-"nnoremap <Leader>zf :Filetypes<CR>
-" NOTE: https://github.com/junegunn/fzf.vim#commands
-
+if 1
+  nnoremap <C-p> :FZF<CR>
+  nnoremap <Leader>zb :Buffers<CR>
+  nnoremap <Leader>zc :Colors<CR>
+  nnoremap <Leader>za :Ag 
+  nnoremap <Leader>zr :Rg 
+  nnoremap <Leader>zm :Marks<CR>
+  nnoremap <Leader>zw :Windows<CR>
+  nnoremap <Leader>zo :History<CR>
+  nnoremap <Leader>z/ :History/<CR>
+  nnoremap <Leader>zs :Snippets/<CR>
+  nnoremap <Leader>zg :Commits<CR>
+  nnoremap <Leader>z: :Commands<CR>
+  nnoremap <Leader>z? :Maps<CR>
+  "nnoremap <Leader>zf :Filetypes<CR>
+  " NOTE: https://github.com/junegunn/fzf.vim#commands
+endif
 
 
 " use only Vim settings (instead of vi)
@@ -353,5 +344,14 @@ function! VisualSelection(direction, extra_filter) range
   let @/ = l:pattern
   let @" = l:saved_reg
 endfunction
+
+if executable('rg')
+  let g:ackprg = 'rg --vimgrep --no-heading'
+  set grepprg=rg\ --vimgrep\ --no-heading
+  set grepformat=%f:%l:%c:%m,%f:%l:%m
+elseif executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+  set grepprg=ag\ --nogroup\ --nocolor
+endif
 
 "EOF
