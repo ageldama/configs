@@ -97,7 +97,24 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 
 
+color default
 set bg=dark
+
+if 1
+  set t_Co=256
+  "set t_AB=^[[48;5;%dm
+  "set t_AF=^[[38;5;%dm
+  if has('gui_running')
+    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
+    "set guifont=Inconsolata\ Medium\ 12
+    "set guifont="Noto Sans Mono CJK KR 14"
+    "color darkblue
+    "set bg=light
+  else
+    "color default
+    "set bg=dark
+  endif
+endif
 
 " vim-choosewin
 let g:choosewin_overlay_enable = 1
