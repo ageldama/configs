@@ -87,8 +87,8 @@ Bundle 'junegunn/goyo.vim'
 
 " Golang
 " FIXME: if filereadable("~/.vim/load-p/golang")
-  Bundle 'fatih/vim-go'
-  let g:go_auto_type_info = 1
+Bundle 'fatih/vim-go'
+let g:go_auto_type_info = 1
 "endif
 
 "
@@ -97,21 +97,7 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 
 
-"Bundle "morhetz/gruvbox"
-"color gruvbox
 set bg=dark
-
-" colorscheme
-if 0
-  Bundle 'NLKNguyen/papercolor-theme'
-
-  set t_Co=256   " This is may or may not needed.
-
-  set background=dark
-  colorscheme PaperColor
-
-  "let g:airline_theme='papercolor'
-endif
 
 " vim-choosewin
 let g:choosewin_overlay_enable = 1
@@ -207,23 +193,6 @@ set backspace=indent,eol,start
 
 " 메뉴&툴바
 set guioptions=m
-
-" 색상설정
-if 1
-  set t_Co=256
-  "set t_AB=^[[48;5;%dm
-  "set t_AF=^[[38;5;%dm
-  if has('gui_running')
-    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
-    "set guifont=Inconsolata\ Medium\ 12
-    "set guifont="Noto Sans Mono CJK KR 14"
-    "color darkblue
-    "set bg=light
-  else
-    "color default
-    "set bg=dark
-  endif
-endif
 
 " 파일인코딩
 set fencs=utf8,euc-kr
