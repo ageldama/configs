@@ -405,6 +405,8 @@ i.e. change right window to bottom, or change bottom window to right."
   ;; "$" 'eshell-here
   "." 'neotree
 
+  "r" 'recentf-open-files
+
   "g" 'magit-file-popup
   "G" 'magit-status
 
