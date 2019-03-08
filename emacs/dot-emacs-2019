@@ -62,9 +62,9 @@
 (defun my-set-fixed-fonts ()
   (interactive)
   (let ((en-fn
-         ;;"Input Mono Compressed Medium"
+         ;; "Input Mono"
 	 ;; "Ubuntu Mono"
-         ;;"Noto Sans Mono CJK KR"
+         ;; "Noto Sans Mono CJK KR"
          ;; "xos4 Terminus"
          "Consolas"
 	 )
@@ -72,7 +72,10 @@
          ;; "Noto Sans Mono CJK KR"
          ;; "NeoDunggeunmo"
          ;; "-daewoo-mincho-medium-*-*-*-*-*-*-*-*-*-*-*"
-         "NanumSquareRound"
+         ;; "NanumSquareRound"
+         ;; "Malgun Gothic"
+         ;; "NanumBarunGothic"
+         "Source Han Sans K"
          ))
     ;; default Latin font (e.g. Consolas)
     ;; but I use Monaco
@@ -87,6 +90,8 @@
     ;; if you want to use different font size for specific charset,
     ;; add :size POINT-SIZE in the font-spec.
     (set-fontset-font t 'hangul (font-spec :name ko-fn))))
+
+;; (my-set-fixed-fonts)
 
 (defun my-set-variable-fonts ()
   (interactive)
