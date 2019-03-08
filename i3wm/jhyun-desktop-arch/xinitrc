@@ -100,7 +100,7 @@ compton -b &
 
 #pacmd set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo    &
 
-(sleep 2s && ~/local/bin/caps-to-ctrl.sh ) &
+(sleep 2 ; ~/local/bin/caps-to-ctrl.sh )
 
 blueman-applet &
 
@@ -110,7 +110,11 @@ blueman-applet &
 #tint2 &
 #exec openbox
 
+xrandr --output DVI-I-1 --right-of DVI-D-0
+
+
 exec awesome
+#exec i3
 
 
 ###EOF
