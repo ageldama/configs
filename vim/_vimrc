@@ -95,9 +95,9 @@ let g:go_auto_type_info = 1
 Bundle 'majutsushi/tagbar'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+Plugin 'dracula/vim'
 
-
-color default
+color dracula
 set bg=dark
 
 if 1
