@@ -49,6 +49,8 @@
   (progn (setq rtags-autostart-diagnostics nil)
          (setq rtags-completions-enabled t)))
 
+(use-package company-rtags :ensure t :pin melpa)
+
 
 ;;; eldoc
 (use-package eldoc :ensure t :pin melpa :diminish eldoc-mode)
