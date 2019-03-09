@@ -110,7 +110,7 @@ blueman-applet &
 #tint2 &
 #exec openbox
 
-xrandr --output DVI-I-1 --right-of DVI-D-0
+#xrandr --output DVI-I-1 --right-of DVI-D-0
 
 
 exec awesome
