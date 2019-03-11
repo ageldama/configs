@@ -111,6 +111,7 @@ blueman-applet &
 #exec openbox
 
 #xrandr --output DVI-I-1 --right-of DVI-D-0
+xrandr --output DVI-D-0 --right-of HDMI-0
 
 
 exec awesome
