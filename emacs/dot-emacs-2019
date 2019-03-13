@@ -191,6 +191,24 @@
 
 (use-package counsel :ensure t :pin melpa
   :config (progn
+            (defun ivy-with-thing-at-point (cmd)
+              (let ((ivy-initial-inputs-alist
+                     (list
+                      (cons cmd (thing-at-point 'symbol)))))
+                (funcall cmd)))
+
+            (defun counsel-rg-thing-at-point ()
+              (interactive)
+              (let  ((tap (thing-at-point 'symbol)))
+                (if (null tap)
+                    (counsel-rg)
+                  (counsel-rg tap))))
+
+            (defun swiper-thing-at-point ()
+              (interactive)
+              (ivy-with-thing-at-point 'swiper))
+
+            ;;
             (ivy-mode 1)
             (setq ivy-use-virtual-buffers t)
             (setq enable-recursive-minibuffers t)
@@ -198,7 +216,7 @@
                   '((swiper . ivy--regex-plus)
                     (counsel-M-x . ivy--regex-fuzzy)
                     (t      . ivy--regex-plus)))
-            (global-set-key "\C-s" 'swiper)
+            (global-set-key "\C-s" 'swiper-thing-at-point)
             (global-set-key (kbd "C-c C-r") 'ivy-resume)
             (global-set-key (kbd "<f6>") 'ivy-resume)
             (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -229,13 +247,16 @@
   :config
   (progn (projectile-global-mode)))
 
-(use-package counsel-projectile :ensure t :pin melpa)
+(use-package counsel-projectile :ensure t :pin melpa
+  :config
+  (setq counsel-projectile-rg-initial-input  '(projectile-symbol-or-selection-at-point)))
 
 (defun counsel-rg-maybe-projectile ()
   (interactive)
-  (if (projectile-project-p)
-      (counsel-projectile-rg)
-    (counsel-rg)))
+  (let ((tap (thing-at-point 'symbol)))
+    (if (projectile-project-p)
+        (counsel-projectile-rg)
+      (counsel-rg-thing-at-point))))
 
 
 ;;; undo-tree
@@ -399,7 +420,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (general-create-definer my-global-leader-def :prefix "C-z")
 (my-global-leader-def
-  "/" 'swiper
+  "/" 'swiper-thing-at-point
 
   "SPC" 'counsel-M-x
   "TAB" 'ivy-switch-buffer
