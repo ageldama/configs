@@ -504,6 +504,9 @@ i.e. change right window to bottom, or change bottom window to right."
 
   ;; undo-tree
   "u" 'undo-tree-visualize
+
+  ;;
+  "z" (general-simulate-key "C-'" :name mm)
   )
 
 (general-create-definer my-local-leader-def :prefix "C-'")

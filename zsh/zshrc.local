@@ -80,4 +80,7 @@ if [[ -d $NVM_DIR ]]; then
 fi
 
 
+if [[ -f ~/.zshrc.local2 ]]; then
+  source ~/.zshrc.local2
+fi
 
