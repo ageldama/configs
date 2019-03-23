@@ -80,7 +80,7 @@ xset s 300
 
 xscreensaver -no-splash &
 
-xautolock -time 5 -locker 'xscreensaver-command -lock' &
+#xautolock -time 5 -locker 'xscreensaver-command -lock' &
 #xscreensaver &
 
 # OR: systemctl --user enable pulseaudio
