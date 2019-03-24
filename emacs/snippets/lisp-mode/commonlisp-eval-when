@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: commonlisp-eval-when
+# key: commonlisp
+# --
+(eval-when (:compile-toplevel :load-toplevel :execute)
+)
