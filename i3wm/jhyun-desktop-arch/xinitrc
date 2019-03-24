@@ -65,7 +65,8 @@ export SSH_AUTH_SOCK
 
 
 # "xev" first.
-xmodmap -e 'keycode 108 = Hangul'
+# xmodmap -e 'keycode 108 = Hangul'
+[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 
 
 #synclient TapButton2=3
@@ -100,7 +101,7 @@ compton -b &
 
 #pacmd set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo    &
 
-(sleep 2 ; ~/local/bin/caps-to-ctrl.sh )
+# (sleep 2 ; ~/local/bin/caps-to-ctrl.sh )
 
 blueman-applet &
 
