@@ -6,3 +6,5 @@ Host freebsd-vbox
      Port 2223
      IdentityFile ~/.ssh/freebsd-vbox
      ForwardX11 yes
+     ForwardX11Trusted yes
+
