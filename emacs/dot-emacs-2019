@@ -577,4 +577,44 @@ i.e. change right window to bottom, or change bottom window to right."
   :config (add-hook 'prog-mode-hook
                     (lambda () (idle-highlight-mode t))))
 
+;;;
+(require 'cl-seq)
+
+(defun vimish-goto-char-current-line (ch backward)
+  (setq-local vimish-goto-char-current-line-last-ch ch)
+  (let* ((cur-col (current-column))
+         (cur-line (thing-at-point 'line t))
+         (bin-sep-line (if backward
+                           (substring cur-line 0 cur-col)
+                         ;; forward
+                         (substring cur-line (1+ cur-col))))
+         (idx (cl-search ch bin-sep-line :from-end backward)))
+    (unless (null idx)
+      (if backward
+          (move-to-column idx)
+        ;; forward
+        (move-to-column (+ cur-col idx 1))))))
+
+(defun vimish-goto-char-current-line-forward (ch)
+  (interactive "c")
+  (vimish-goto-char-current-line (format "%c" ch) nil))
+
+(defun vimish-goto-char-current-line-backward (ch)
+  (interactive "c")
+  (vimish-goto-char-current-line (format "%c" ch) t))
+
+(defun vimish-goto-char-current-line-forward* ()
+  (interactive)
+  (vimish-goto-char-current-line vimish-goto-char-current-line-last-ch nil))
+
+(defun vimish-goto-char-current-line-backward* ()
+  (interactive)
+  (vimish-goto-char-current-line vimish-goto-char-current-line-last-ch t))
+
+(global-set-key (kbd "<f5>") #'vimish-goto-char-current-line-backward*)
+(global-set-key (kbd "<f6>") #'vimish-goto-char-current-line-backward)
+(global-set-key (kbd "<f7>") #'vimish-goto-char-current-line-forward)
+(global-set-key (kbd "<f8>") #'vimish-goto-char-current-line-forward*)
+
+
 ;;; EOF.
