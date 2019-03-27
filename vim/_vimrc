@@ -97,6 +97,8 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 " Plugin 'dracula/vim'
 
+Plugin 'thinca/vim-fontzoom'
+
 color default
 set bg=dark
 
@@ -108,8 +110,15 @@ if 1
     set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
     "set guifont=Inconsolata\ Medium\ 12
     "set guifont="Noto Sans Mono CJK KR 14"
-    "color darkblue
-    "set bg=light
+    color darkblue
+    set bg=light
+    set guioptions-=m  "remove menu bar
+    set guioptions-=T  "remove toolbar
+    set guioptions-=r  "remove right-hand scroll bar
+    set guioptions-=L  "remove left-hand scroll bar
+    map <m-o> :Fontzoom!<cr>
+    map <m--> <Plug>(fontzoom-smaller)
+    map <m-=> <Plug>(fontzoom-larger)
   else
     "color default
     "set bg=dark
@@ -202,14 +211,6 @@ set scs	" smart-search
 
 " 백스페이스 : 언제나, 심지어 내가 방금 입력한게 아닌 것도 지우도록-_-
 set backspace=indent,eol,start
-
-
-" 폰트
-"set guifont=Consolas:h14:cANSI
-"set guifont=Bitstream_Vera_Sans_Mono:h14:cANSI
-
-" 메뉴&툴바
-set guioptions=m
 
 " 파일인코딩
 set fencs=utf8,euc-kr
