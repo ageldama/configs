@@ -110,8 +110,8 @@ if 1
     set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
     "set guifont=Inconsolata\ Medium\ 12
     "set guifont="Noto Sans Mono CJK KR 14"
-    color darkblue
-    set bg=light
+    color koehler
+    set bg=dark
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
