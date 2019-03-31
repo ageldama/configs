@@ -311,10 +311,10 @@
   :config
   (setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
   (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
-  
+
   (org-babel-do-load-languages
    'org-babel-load-languages
-   '((plantuml . t)))
+   (append org-babel-load-languages '((plantuml . t))))
 
   (setq org-confirm-babel-evaluate nil)
 
