@@ -645,4 +645,11 @@ i.e. change right window to bottom, or change bottom window to right."
 (global-set-key (kbd "<f8>") #'vimish-goto-char-current-line-forward*)
 
 
+(defadvice hippie-expand (around hippie-expand-case-fold)
+  "Try to do case-sensitive matching (not effective with all functions)."
+  (let ((case-fold-search nil))
+    ad-do-it))
+(ad-activate 'hippie-expand)
+
+
 ;;; EOF.
