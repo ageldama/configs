@@ -65,8 +65,8 @@
          ;; "Input Mono"
 	 ;; "Ubuntu Mono"
          ;; "Noto Sans Mono CJK KR"
-         "Terminus"
-         ;; "Consolas"
+         ;; "Terminus"
+         "Consolas"
 	 )
         (ko-fn
          ;; "Noto Sans Mono CJK KR"
