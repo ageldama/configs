@@ -510,6 +510,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "S-<right>" 'buf-move-right
   "S-<up>" 'buf-move-up
   "S-<down>" 'buf-move-down
+  "*" 'ace-swap-window
 
   "=" 'balance-windows
   "+" 'enlarge-window
