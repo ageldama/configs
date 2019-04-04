@@ -1,0 +1,7 @@
+export GDK_BACKEND=x11
+
+xscreensaver -no-splash &
+~/.dropbox-dist/dropboxd &
+
+exec gnome-session
+
