@@ -7,5 +7,9 @@ clear Lock
 add Control = Control_L
 
 ! F2 as Super_L
-keycode 68 = Super_L
+! keycode 68 = Super_L
+
+! Keypad ENTER as Super_L
+keycode 104 = Super_L
+
 
