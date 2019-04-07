@@ -6,6 +6,6 @@ keycode 66 = Control_L
 clear Lock
 add Control = Control_L
 
-! F1 as Super_L
-keycode 67 = Super_L
+! F5 as Super_L
+! keycode 71 = Super_L
 
