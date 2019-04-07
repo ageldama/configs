@@ -67,7 +67,7 @@ export SSH_AUTH_SOCK
 # "xev" first.
 # xmodmap -e 'keycode 108 = Hangul'
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
-setxkbmap -option caps:super
+# setxkbmap -option caps:super
 
 
 #synclient TapButton2=3
