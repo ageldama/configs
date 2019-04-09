@@ -61,7 +61,7 @@
    "d" 'godoc-at-point
    "D" 'godef-describe
    "+" 'go-import-add
-   ">" 'godef-jump
+   "." 'godef-jump
    "g" 'go-goto-map
    "u" 'go-guru-map
    "R" '(:ignore t :which-key "godoctor")
