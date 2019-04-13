@@ -91,6 +91,8 @@ myawesomemenu = {
 }
 
 mypowermenu = {
+  { "reboot", "reboot" },
+  { "poweroff", "poweroff" },
   { "suspend", "systemctl suspend" },
   { "hibernate", "systemctl hibernate" }
 }
@@ -100,6 +102,7 @@ mymainmenu = awful.menu({ items = { { "awesome", myawesomemenu, beautiful.awesom
                                     { "rofi", "rofi -show" },
                                     { "wg.pl", "wg.pl" },
                                     { "pavucontrol", "pavucontrol" },
+                                    { "xkill", "xkill" },
                                     { "power-mgmt", mypowermenu }
                                   }
                         })
@@ -313,6 +316,10 @@ globalkeys = gears.table.join(
               {description = "rofi", group = "launcher"}),
     awful.key({ modkey,           }, "Escape", function () awful.spawn('xscreensaver-command -lock') end,
               {description = "lock screen", group = "launcher"}),
+    awful.key({ modkey,           }, "F9", function () awful.spawn(terminal .. ' -e mc') end,
+              {description = "midnight commander", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "k", function () awful.spawn('xkill') end,
+              {description = "xkill", group = "launcher"}),
     awful.key({ modkey,           }, "F10", function () awful.spawn('pavucontrol') end,
               {description = "pulseaudio volume control", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "w", function () awful.spawn('wg.pl') end,
