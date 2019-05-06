@@ -280,19 +280,7 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
 
-    --[[
-    awful.key({ modkey,           }, "Tab",
-        function ()
-            awful.client.focus.history.previous()
-            if client.focus then
-                client.focus:raise()
-            end
-        end,
-        {description = "go back", group = "client"}),
-    --]]
-
-    awful.key({ modkey,           }, "Tab",
-    function ()
+    awful.key({ modkey,           }, "z", function ()
       -- awful.client.focus.history.previous()
       awful.client.focus.byidx(-1)
       if client.focus then
@@ -300,14 +288,11 @@ globalkeys = gears.table.join(
       end
     end),
 
-    awful.key({ modkey, "Shift"   }, "Tab",
-    function ()
-      -- awful.client.focus.history.previous()
-      awful.client.focus.byidx(1)
-      if client.focus then
-        client.focus:raise()
-      end
+    awful.key({ modkey,           }, "Tab", function ()
+			awful.spawn('rofi -show window')
     end),
+
+
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.spawn(terminal) end,
