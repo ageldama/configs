@@ -192,22 +192,16 @@
 
 (use-package counsel :ensure t :pin melpa
   :config (progn
-            (defun ivy-with-thing-at-point (cmd)
-              (let ((ivy-initial-inputs-alist
-                     (list
-                      (cons cmd (thing-at-point 'symbol)))))
-                (funcall cmd)))
-
-            (defun counsel-rg-thing-at-point ()
-              (interactive)
-              (let  ((tap (thing-at-point 'symbol)))
-                (if (null tap)
-                    (counsel-rg)
-                  (counsel-rg tap))))
-
             (defun swiper-thing-at-point ()
               (interactive)
-              (ivy-with-thing-at-point 'swiper))
+              (flet ((ivy-with-thing-at-point (cmd)
+                                              (let ((ivy-initial-inputs-alist
+                                                     (list
+                                                      (cons cmd (thing-at-point 'symbol)))))
+                                                (funcall cmd))))
+                (if current-prefix-arg
+                    (ivy-with-thing-at-point 'swiper)
+                  (swiper))))
 
             ;;
             (ivy-mode 1)
@@ -254,10 +248,16 @@
 
 (defun counsel-rg-maybe-projectile ()
   (interactive)
-  (let ((tap (thing-at-point 'symbol)))
-    (if (projectile-project-p)
-        (counsel-projectile-rg)
-      (counsel-rg-thing-at-point))))
+  (flet ((counsel-rg-thing-at-point ()
+                                    (interactive)
+                                    (let  ((tap (thing-at-point 'symbol)))
+                                      (if (null tap)
+                                          (counsel-rg)
+                                        (counsel-rg tap)))))
+    (let ((tap (thing-at-point 'symbol)))
+      (if (projectile-project-p)
+          (counsel-projectile-rg)
+        (counsel-rg-thing-at-point)))))
 
 
 ;;; undo-tree
@@ -594,7 +594,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
   (use-package alect-themes :ensure t
     :config (load-theme 'alect-black-alt t))
-  
+
   ;; (use-package gruvbox-theme :ensure t :pin melpa :config (load-theme 'gruvbox t))
   ;; (use-package   dracula-theme      :pin melpa :ensure t)
   ;; (use-package doom-themes :ensure t :pin melpa)
