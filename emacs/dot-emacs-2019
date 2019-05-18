@@ -427,7 +427,7 @@ i.e. change right window to bottom, or change bottom window to right."
 (use-package sdcv :ensure t :pin melpa)
 
 ;;; org-capture
-(setq org-default-notes-file "~/P/V/c.org")
+(setq org-default-notes-file "~/Vault2/c.org")
 
 (defun org-capture-open ()
   (interactive)
