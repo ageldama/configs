@@ -3,7 +3,7 @@ use strict;
 use warnings;
 use feature qw<say>;
 
-use Glib::Object::Introspection;
+#use Glib::Object::Introspection;
 
 {
   my @files = split /\n/, qx<find -L ~/P/wg/ -type f -not -path '*/\.git/*'>;
@@ -12,6 +12,7 @@ use Glib::Object::Introspection;
   say $pick;
   system("feh --bg-fill ${pick}");
   #
+=begin
   Glib::Object::Introspection->setup (
     basename => 'Notify',
     version => '0.7',
@@ -20,5 +21,6 @@ use Glib::Object::Introspection;
   my $s = qx<fortune>;
   my $n = Notify::Notification->new("", $s, "dialog-information");
   $n->show;
+=cut
 }
 #EOF
