@@ -173,7 +173,9 @@
     :after treemacs projectile
     :ensure t))
 
-(use-package markdown-mode :ensure t :pin melpa)
+(use-package markdown-mode :ensure t :pin melpa
+  :config (setq markdown-command "pandoc"))
+
 
 (use-package unfill :ensure t :pin melpa)
 
