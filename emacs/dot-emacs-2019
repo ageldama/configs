@@ -12,10 +12,8 @@
 (show-paren-mode     t)
 (transient-mark-mode t)
 
-
-(setq browse-url-browser-function
-      'browse-url-firefox)
-
+;; (setq browse-url-browser-function
+;;       'browse-url-firefox)
 
 (global-auto-revert-mode t)
 ;;(global-whitespace-mode +1)
