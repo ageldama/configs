@@ -69,6 +69,7 @@ export SSH_AUTH_SOCK
 [[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
 # setxkbmap -option caps:super
 
+xbindkeys &
 
 #synclient TapButton2=3
 
