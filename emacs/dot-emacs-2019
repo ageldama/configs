@@ -305,7 +305,11 @@
 (use-package eldoc :ensure t :pin melpa :diminish eldoc-mode)
 
 ;;; Org
-(add-hook 'org-mode-hook 'turn-on-auto-fill)
+(add-hook 'org-mode-hook
+          (lambda () (progn
+                       (local-set-key (kbd "C-c l")
+                                      'org-store-link)
+                       (turn-on-auto-fill))))
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
 
