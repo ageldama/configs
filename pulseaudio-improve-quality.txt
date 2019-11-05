@@ -1,0 +1,128 @@
+Improve sound quality by PulseAudio Configuration
+https://pacesettergraam.wordpress.com/2016/02/19/improve-sound-quality-by-pulseaudio-configuration/
+
+
+Feb 19
+
+Posted by pacesettergraam
+ 
+ 
+ 
+ 
+ 
+ 
+Rate This
+
+
+To improve audio quality with pulseaudio present: Everything in a code box is done in a terminal
+
+1) Make a backup of default settings:
+Code:
+
+    sudo cp /etc/pulse/daemon.conf /etc/pulse/daemon.conf.old
+
+2) edit the daemon.conf to use the best resampler and the highest quality sample format:
+Code:
+
+    sudo nano /etc/pulse/daemon.conf
+
+3) find the following:
+resample-method =
+default-sample-format =
+
+4) change both to: (make sure to remove the “;” before default-sample-format)
+Code:
+
+    resample-method = src-sinc-best-quality
+    default-sample-format = [S]float32ne[/S]
+
+Here you should put the results from running pacmd list-sinks and the information found on the line called sample spec. The first piece of information should be the sample format your card will work best with. For my case the output was
+
+Quote:
+sample spec: s32le 2ch 44100Hz
+
+thus my sample format is s32le. The float32ne is simply a generic method.
+
+SECOND ISSUE: If you know that you will be using audio of a higher frequency (AKA something above 48KHz such as a Bluray HD audio track). Then you will likely want to change this area.
+Code:
+
+    alternate-sample-rate = 48000
+
+to this
+Code:
+
+    alternate-sample-rate = 96000
+
+This will prevent resampling of audio that is @96KHz but it will create resampling of any audio @48KHz. As of right now I have no idea if more than 2 default sample frequencies/rates can be used. So you’re stuck with the choice of of which you want to avoid resampling. In my experience most sources even Bluray tracks seem to top out at 48kHz so I’d say leave it at 48000.
+
+5) FOR MORE THAN JUST 2 SPEAKERS
+change this accordingly (make sure to remove the “;” before each setting)
+3 for 2.1 aka 2 speakers and a sub and (While 3 for 2.1 is valid and supported most 2.1 speakers don’t work properly with such a setting so you should tinker with that to figure out what works best for you)so 6 would equal 5.1 and 8 would equal 7.1 (you’ll have to add the locational name of each speaker you have in the channel map to make it work properly)
+(a generic 5.1 setup edit to your needs)
+Code:
+
+    default-sample-channels = 6
+    default-channel-map = front-left,front-right,rear-left,rear-right,center,subwoofer
+
+SIDE NOTE: You might want to experiment with swapping subwoofer with lfe to see which one sounds best for you and your specific sound hardware. But make sure your hardware can handle the lfe as it is noted on occasion the lfe can destroy speakers or subwoofers.
+
+6) IF YOU WANT TO MESS WITH LATENCY
+Lower these numbers as much as you can (at 0 pulse will no longer work and ALSA will be used instead) but be careful they may introduce problems and flash will likely become a problem or may not work at all.
+Apparently I goofed up here…though this is purely subjective to each person; the recommended thing to do is set a higher fragment number and size. For me I personally have had better results (lower CPU usage) with as few fragments as pulse will allow me (in my case it was 2) and as large a fragment size as I felt necessary (I’m at 400 right now). The changes here are really up to you. This section has been a source of problems as there’s much misinformation out on the net. The safest bet outside of default is to use more fragments and a fragment size of 50 or greater. This however is a generic method. If you want to know how to figure out the specific for your configuration setup for this part of audio you’ll need to be ready to do some math and have a read from the steps laid out by these guys at the mint forum: http://forums.linuxmint.com/viewtopic.php?f=42&t=44862
+One note is that you should use your info from running pacmd list-sinks and then follow steps 2-3 in the mint guide.
+Code:
+
+    default-fragments = 1 (4 is default)
+    default-fragment-size-msec = 1 (25 is default)
+
+6.1) IF YOU WANT TO TWEAK THE PRIORITY TO INCREASE QUALITY
+Find “nice-level” and change it from the default -11 to a high negative (remember -20 is max and not recommended). Remember as usual to remove the ; before “nice-level”.
+Code:
+
+    nice-level = -15 #this setting increases the frequency/share of CPU time that Pulseaudio has access to
+
+SIDE NOTE: Not confirmed by anyone else yet but it seems changing the priority has a negative effect on KDE’s system sounds so they’ll cause a second or two of glitching/blocky/ugly sound if something else is using audio. No idea why but the priority change might negatively effect sounds from DEs such as Gnome, KDE. Doesn’t seem to cause problems with other applications using sound though. UPDATE: Skype is another thing that doesn’t like the nice level or latency changes. If you make changes similar to this then make sure not have anything trying to use the sound server at the same time as Skype as it’s again one program that just doesn’t play nice with others. It works perfectly fine if nothing else tries to use the sound card so don’t worry there.
+
+IF YOU WISH TO AVOID PULSEAUDIO AND INSTEAD USE ALSA ALONE Warning: Spoiler! (Click to show)
+
+Make the fragment section of the config look like this:
+Code:
+
+    default-fragments = 0
+    default-fragment-size-msec = 0
+
+It should be noted that this will negate any of the changes made prior to this point as this is a lazy way of getting rid of pulseaudio without having to actually uninstall pulse audio. It works by simply causing pulse not to load as this is an incorrect setting. Thus, pulse should no longer show up in your process list or return a follow from running
+Code:
+
+    ps -A | grep "pulse"
+
+. This means that ALSA will be in charge of everything and configuring it is a whole separate topic. However, it seems most people believe that one does not have to configure ALSA at all as it should “just work” by default so you shouldn’t need to do any config work with it.
+
+An alternative and likely better way to disable Pulseaudio is to change the following in the /etc/pulse/client.conf file:
+Code:
+
+    ; autospawn = yes
+
+to
+Code:
+
+ autospawn = no
+
+7) exit and save changes
+
+8) Next you need to kill pulse so the old config settings are no longer in effect
+Code:
+
+    pulseaudio --kill
+
+9) Then you should check that your config is valid
+Code:
+
+    pulseaudio --check
+
+10) If it returns nothing then your config is fine and you can restart pulse with your changes implemented
+Code:
+
+    pulseaudio --start
+
+NOTE: These changes may increase CPU load and the sample format may not be supported by the audio hardware on your mobo or card. Lower the number from 32 to 24 to 16 until it works. Otherwise use the original default setting. It should be noted that using a float setting will always result in lower CPU load and better sound quality.
