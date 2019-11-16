@@ -283,6 +283,26 @@ globalkeys = gears.table.join(
     awful.key({ modkey,           }, "u", awful.client.urgent.jumpto,
               {description = "jump to urgent client", group = "client"}),
 
+    awful.key({ modkey, "Shift", "Control" }, "q", function () awful.placement.top_left(client.focus) end,
+              {description = "top-left", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "w", function () awful.placement.maximize_vertically(client.focus) end,
+              {description = "maximize-vertically", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "e", function () awful.placement.top_right(client.focus) end,
+              {description = "top-right", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "a", function () awful.placement.left(client.focus) end,
+              {description = "left", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "s", function () awful.placement.centered(client.focus) end,
+              {description = "center", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "d", function () awful.placement.right(client.focus) end,
+              {description = "right", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "z", function () awful.placement.bottom_left(client.focus) end,
+              {description = "bottom-left", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "x", function () awful.placement.bottom(client.focus) end,
+              {description = "bottom", group = "placement"}),
+    awful.key({ modkey, "Shift", "Control" }, "c", function () awful.placement.bottom_right(client.focus) end,
+              {description = "right", group = "placement"}),
+
+
     awful.key({ modkey,           }, "z", function ()
       -- awful.client.focus.history.previous()
       awful.client.focus.byidx(-1)
