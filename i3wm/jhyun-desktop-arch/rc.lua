@@ -506,7 +506,7 @@ clientkeys = gears.table.join(
         end ,
         {description = "reisze window", group = "client"}),
 
-    awful.key({ modkey }, "/",
+    awful.key({ modkey }, "F1",
         function (c)
           awful.spawn('bash -c \'notify-send "<span font=\\"24\\">$(date)</span>"\'')
         end ,
