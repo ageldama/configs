@@ -288,7 +288,7 @@ globalkeys = gears.table.join(
 
     awful.key({ modkey, "Shift", "Control" }, "q", function () awful.placement.top_left(client.focus) end,
               {description = "top-left", group = "placement"}),
-    awful.key({ modkey, "Shift", "Control" }, "w", function () awful.placement.maximize_vertically(client.focus) end,
+    awful.key({ modkey, "Shift", "Control" }, "w", function () awful.placement.top(client.focus) end,
               {description = "maximize-vertically", group = "placement"}),
     awful.key({ modkey, "Shift", "Control" }, "e", function () awful.placement.top_right(client.focus) end,
               {description = "top-right", group = "placement"}),
@@ -504,7 +504,13 @@ clientkeys = gears.table.join(
           end
           c.height = c.height - inc
         end ,
-        {description = "reisze window", group = "client"})
+        {description = "reisze window", group = "client"}),
+
+    awful.key({ modkey }, "/",
+        function (c)
+          awful.spawn('bash -c \'notify-send "<span font=\\"24\\">$(date)</span>"\'')
+        end ,
+        {description = "time?", group = "launcher"})
 
 )
 
