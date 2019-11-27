@@ -12,4 +12,6 @@ add Control = Control_L
 ! Keypad ENTER as Super_L
 keycode 104 = Super_L
 
+! Control_R as Super_L
+keycode 105 = Super_L
 
