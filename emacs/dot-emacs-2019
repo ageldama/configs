@@ -79,7 +79,8 @@
          ;; "NanumSquareRound"
          ;; "Malgun Gothic"
          ;; "NanumBarunGothic"
-         "Source Han Sans K"
+         ;; "Source Han Sans K"
+         "Noto Serif Mono CJK KR"
          ))
     ;; default Latin font (e.g. Consolas)
     ;; but I use Monaco
