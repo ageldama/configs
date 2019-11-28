@@ -508,7 +508,7 @@ clientkeys = gears.table.join(
 
     awful.key({ modkey }, "F1",
         function (c)
-          awful.spawn('bash -c \'notify-send "<span font=\\"24\\">$(date)</span>"\'')
+          awful.spawn('bash -c \'notify-send "<span font=\\"24\\">$(uptime -p) // $(date)</span>"\'')
         end ,
         {description = "time?", group = "launcher"})
 
