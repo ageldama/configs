@@ -37,6 +37,8 @@
 (xbindkey '("b:10") "xdotool key Next")
 (xbindkey '("b:11") "xdotool key Prior")
 
+(xbindkey '("b:12") "xdotool key Next")
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;; End of xbindkeys guile configuration ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
