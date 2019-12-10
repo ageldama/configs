@@ -104,4 +104,7 @@
 ;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
 (electric-indent-mode +1)
 
+
+(load-theme 'deeper-blue t )
+
 ;;; EOF.
