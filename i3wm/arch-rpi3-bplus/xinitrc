@@ -8,9 +8,9 @@ export GTK_IM_MODULE=ibus
 
 ibus-daemon -d -x
 
-#eval $(gnome-keyring-daemon --start)
-#export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
-#export SSH_AGENT_PID=$GNOME_KEYRING_PID
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
+export SSH_AGENT_PID=$GNOME_KEYRING_PID
 
 #keychain ~/.ssh/id_rsa
 #[ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
