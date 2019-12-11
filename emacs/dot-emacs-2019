@@ -316,6 +316,15 @@
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
 
+
+;;; toc-org -- https://github.com/snosov1/toc-org
+(use-package toc-org :ensure t :pin melpa
+  :config 
+    (add-hook 'org-mode-hook 'toc-org-mode)
+    (add-hook 'markdown-mode-hook 'toc-org-mode)
+    ;(define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point)
+    )
+
 ;;; writeroom?
 (use-package writeroom-mode :ensure t :pin melpa)
 
