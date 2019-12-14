@@ -589,6 +589,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (c-c++-gtags+rtags "c-c++-gtags+rtags.el")
              (geiser "geiser.el")
              (auctex "auctex.el")
+             (tcl "tcl.el")
              ))
   (load-langsup-or-not (symbol-name (first i)) (second i)))
 
