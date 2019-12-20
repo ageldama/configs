@@ -24,7 +24,8 @@ else
   alias ll='ls -lH'
 fi
 
-export PAGER=most
+#export PAGER=most
+export PAGER=less
 export EDITOR=vim
 
 export PATH=$PATH:~/local/bin:~/.local/bin
@@ -61,6 +62,8 @@ elif [[ -f /usr/share/fzf/completion.zsh \
 elif [[ -f ~/.fzf.zsh ]]; then
   source ~/.fzf.zsh
 fi
+
+alias fzfpreview="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 
 
 
