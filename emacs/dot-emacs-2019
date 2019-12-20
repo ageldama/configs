@@ -614,8 +614,14 @@ i.e. change right window to bottom, or change bottom window to right."
 
   ;; (use-package anti-zenburn-theme :ensure t)
 
-  (use-package alect-themes :ensure t
-    :config (load-theme 'alect-black-alt t))
+  ;; (when nil
+  ;; (use-package alect-themes :ensure t
+  ;;   :config (load-theme 'alect-black-alt t))
+  ;; )
+
+  (use-package afternoon-theme :ensure t :pin melpa
+    :config
+    (load-theme 'afternoon t))
 
   ;; (use-package gruvbox-theme :ensure t :pin melpa :config (load-theme 'gruvbox t))
   ;; (use-package   dracula-theme      :pin melpa :ensure t)
