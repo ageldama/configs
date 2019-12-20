@@ -619,9 +619,11 @@ i.e. change right window to bottom, or change bottom window to right."
   ;;   :config (load-theme 'alect-black-alt t))
   ;; )
 
-  (use-package afternoon-theme :ensure t :pin melpa
-    :config
-    (load-theme 'afternoon t))
+  (load-theme 'tango-dark t)
+
+  ;; (use-package afternoon-theme :ensure t :pin melpa
+  ;;   :config
+  ;;   (load-theme 'afternoon t))
 
   ;; (use-package gruvbox-theme :ensure t :pin melpa :config (load-theme 'gruvbox t))
   ;; (use-package   dracula-theme      :pin melpa :ensure t)
