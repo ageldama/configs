@@ -581,6 +581,8 @@ i.e. change right window to bottom, or change bottom window to right."
              (protobuf "proto+grpc.el")
              (groovy "groovy/groovy.el")
              (js2 "javascript/js2.el")
+             (js+light "javascript/js+light.el")
+             (vue "javascript/vue.el")
              (sly "sly.el")
              (slime "slime.el")
              (perl5 "perl5.el")
