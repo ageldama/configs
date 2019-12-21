@@ -13,3 +13,4 @@
   (add-hook 'vue-mode-hook 'flycheck-mode))
 
 
+(add-hook 'vue-mode-hook 'prettier-js-mode)
