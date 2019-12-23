@@ -34,6 +34,9 @@
 ;; (xbindkey '(control shift q) "xbindkeys_show")
 
 
+(xbindkey '("b:6") "xdotool key Prior") ; wheel <-
+(xbindkey '("b:7") "xdotool key Next")  ; wheel ->
+
 (xbindkey '("b:10") "xdotool key Next")
 (xbindkey '("b:11") "xdotool key Prior")
 
