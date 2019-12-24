@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: eval-when
+# key: eval
+# --
+(eval-when (:compile-toplevel :load-toplevel :execute)

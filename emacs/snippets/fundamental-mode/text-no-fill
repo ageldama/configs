@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: text-no-fill
+# key: text-no-fill
+# --
+(* -*- mode: text; fill-column: nil; -*- *)
