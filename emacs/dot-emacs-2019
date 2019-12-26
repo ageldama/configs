@@ -57,14 +57,6 @@
 
 
 
-
-
-;; 기본은 꺼놓자. 조잡해.
-;; (if (version< emacs-version "26")
-;;    (global-linum-mode)
-;;  (add-hook 'text-mode-hook #'display-line-numbers-mode)
-;;  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
-
 ;; Display column numbers in modeline
 (column-number-mode  t)
 
@@ -84,13 +76,8 @@
 
 
 ;; cuz annoying
-(global-whitespace-mode -1) 
+(global-whitespace-mode -1)
 (setq-default show-trailing-whitespace nil)
-
-(defun toggle-show-trailing-whitespace ()
-  "Toggle show-trailing-whitespace between t and nil"
-  (interactive)
-  (setq show-trailing-whitespace (not show-trailing-whitespace)))
 
 
 ;;
@@ -237,6 +224,8 @@
   (progn
     (add-hook 'auto-revert-mode-hook
               (lambda () (diminish 'auto-revert-mode)))
+    (add-hook 'ivy-mode-hook (lambda ()
+                                   (diminish 'ivy-mode)))
     (diminish 'counsel-mode)
     (diminish 'ivy-mode)
     (diminish 'undo-tree-mode)))
@@ -269,7 +258,7 @@
   :config
   (setf
    ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
-   ;; 'fill 너무 촌스러워 보여서.   
+   ;; 'fill 너무 촌스러워 보여서.
    highlight-indent-guides-method 'column
    highlight-indent-guides-responsive 'top
    ;; (highlight-indent-guides-delay 0)
@@ -672,7 +661,10 @@ i.e. change right window to bottom, or change bottom window to right."
   "` p" 'counsel-list-processes
   "` b" 'counsel-bookmark
   "` D" 'sdcv-search-pointer
-  "` l" 'display-line-numbers-mode
+
+  "C-q" '(:ignore t :which-key "toggle")
+  "C-q l" 'display-line-numbers-mode
+  "C-q s" 'global-whitespace-mode
 
   "C-c" '(:ignore t :which-key "capture")
   "C-c RET" 'org-capture
