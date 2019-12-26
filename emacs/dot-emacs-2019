@@ -264,17 +264,18 @@
   :if +sys/gui?+
   :diminish
   :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
-  :custom
-  ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
-  ;; 'fill 너무 촌스러워 보여서.
-  (highlight-indent-guides-method 'column)
-  (highlight-indent-guides-responsive 'top)
-  ;; (highlight-indent-guides-delay 0)
-  ;; make it transparent (kinda)
-  (highlight-indent-guides-auto-odd-face-perc 3)
-  (highlight-indent-guides-auto-even-face-perc 7)
-  (highlight-indent-guides-auto-character-face-perc 7)
-  )
+  :config
+  (setf
+   ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
+   ;; 'fill 너무 촌스러워 보여서.   
+   highlight-indent-guides-method 'column
+   highlight-indent-guides-responsive 'top
+   ;; (highlight-indent-guides-delay 0)
+   ;; make it transparent (kinda)
+   highlight-indent-guides-auto-odd-face-perc 3
+   highlight-indent-guides-auto-even-face-perc 7
+   ;;(highlight-indent-guides-auto-character-face-perc 7)
+   ))
 
 ;;; trees, files, and directories!
 (use-package neotree :ensure t :pin melpa)
@@ -636,8 +637,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
   "r" 'counsel-recentf
 
-  "g" 'magit-file-popup
-  "G" 'magit-status
+  "g" 'magit-status
 
   "o" 'counsel-rg-maybe-projectile
   "p" 'counsel-projectile
