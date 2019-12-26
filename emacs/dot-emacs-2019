@@ -1,4 +1,6 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
+(require 'cl)
+
 
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
@@ -334,7 +336,7 @@
   :config (progn
             (defun swiper-thing-at-point ()
               (interactive)
-              (flet ((ivy-with-thing-at-point (cmd)
+              (cl-flet ((ivy-with-thing-at-point (cmd)
                                               (let ((ivy-initial-inputs-alist
                                                      (list
                                                       (cons cmd (thing-at-point 'symbol)))))
@@ -391,7 +393,7 @@
 
 (defun counsel-rg-maybe-projectile ()
   (interactive)
-  (flet ((counsel-rg-thing-at-point ()
+  (cl-flet ((counsel-rg-thing-at-point ()
                                     (interactive)
                                     (let  ((tap (thing-at-point 'symbol)))
                                       (if (null tap)
@@ -626,7 +628,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "$" 'eshell-here
   "." 'neotree
 
-  "r" 'recentf-open-files
+  "r" 'counsel-recentf
 
   "g" 'magit-file-popup
   "G" 'magit-status
@@ -726,22 +728,22 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 (dolist (i '(
-             (protobuf "proto+grpc.el")
-             (groovy "groovy/groovy.el")
-             (js2 "javascript/js2.el")
-             (js+light "javascript/js+light.el")
-             (vue "javascript/vue.el")
-             (sly "sly.el")
-             (slime "slime.el")
-             (perl5 "perl5.el")
-             (golang "golang.el")
-             (rust "rust.el")
-             (c-c++-gtags+rtags "c-c++-gtags+rtags.el")
-             (geiser "geiser.el")
-             (auctex "auctex.el")
-             (tcl "tcl.el")
+             (protobuf . "proto+grpc.el")
+             (groovy . "groovy/groovy.el")
+             (js2 . "javascript/js2.el")
+             (js+light . "javascript/js+light.el")
+             (vue . "javascript/vue.el")
+             (sly . "sly.el")
+             (slime . "slime.el")
+             (perl5 . "perl5.el")
+             (golang . "golang.el")
+             (rust . "rust.el")
+             (c-c++-gtags+rtags . "c-c++-gtags+rtags.el")
+             (geiser . "geiser.el")
+             (auctex . "auctex.el")
+             (tcl . "tcl.el")
              ))
-  (load-langsup-or-not (symbol-name (first i)) (second i)))
+  (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
 
 
