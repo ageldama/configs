@@ -59,10 +59,11 @@
 
 
 
-(if (version< emacs-version "26")
-    (global-linum-mode)
-  (add-hook 'text-mode-hook #'display-line-numbers-mode)
-  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
+;; 기본은 꺼놓자. 조잡해.
+;; (if (version< emacs-version "26")
+;;    (global-linum-mode)
+;;  (add-hook 'text-mode-hook #'display-line-numbers-mode)
+;;  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
 
 ;; Display column numbers in modeline
 (column-number-mode  t)
@@ -264,10 +265,15 @@
   :diminish
   :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
   :custom
-  (highlight-indent-guides-method 'character)
+  ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
+  ;; 'fill 너무 촌스러워 보여서.
+  (highlight-indent-guides-method 'column)
   (highlight-indent-guides-responsive 'top)
   ;; (highlight-indent-guides-delay 0)
-  (highlight-indent-guides-auto-character-face-perc 7) ; make it transparent (kinda)
+  ;; make it transparent (kinda)
+  (highlight-indent-guides-auto-odd-face-perc 3)
+  (highlight-indent-guides-auto-even-face-perc 7)
+  (highlight-indent-guides-auto-character-face-perc 7)
   )
 
 ;;; trees, files, and directories!
@@ -662,6 +668,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "` p" 'counsel-list-processes
   "` b" 'counsel-bookmark
   "` D" 'sdcv-search-pointer
+  "` l" 'display-line-numbers-mode
 
   "C-c" '(:ignore t :which-key "capture")
   "C-c RET" 'org-capture
