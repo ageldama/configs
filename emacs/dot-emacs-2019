@@ -257,8 +257,18 @@
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
 
 
-;;; miscs
+(use-package highlight-indent-guides  :ensure t :pin melpa
+  :if +sys/gui?+
+  :diminish
+  :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
+  :custom
+  (highlight-indent-guides-method 'character)
+  (highlight-indent-guides-responsive 'top)
+  ;; (highlight-indent-guides-delay 0)
+  (highlight-indent-guides-auto-character-face-perc 7) ; make it transparent (kinda)
+  )
 
+;;; trees, files, and directories!
 (use-package neotree :ensure t :pin melpa)
 
 (when nil
@@ -274,6 +284,8 @@
     :ensure t))
 
 
+
+;; highlight symbol under the point after an idle
 (use-package idle-highlight-mode
   :ensure t :pin melpa
   :config (add-hook 'prog-mode-hook
@@ -292,14 +304,20 @@
 
 
 
+;;; markdown syntax highlighting and exporting
 (use-package markdown-mode :ensure t :pin melpa
   :config (setq markdown-command "pandoc"))
 
 
+;;; inverse of `fill-text'
 (use-package unfill :ensure t :pin melpa)
 
+
+;;; highlights TODO, FIXME, DONT, FAIL, NOTE, TEMP, HACK, etc.
 (use-package hl-todo :ensure t :pin melpa
   :config (global-hl-todo-mode +1))
+
+
 
 ;; lacarte -- better F10 menu-bar.
 ;; (use-package lacarte :ensure t :pin marmalade
@@ -311,6 +329,7 @@
 (global-set-key (kbd "<f10>")       'menu-bar-open)
 
 
+;;;
 (use-package counsel :ensure t :pin melpa
   :config (progn
             (defun swiper-thing-at-point ()
@@ -481,12 +500,6 @@
 
 
 
-;;; Multiterm
-(use-package multi-term :ensure t :pin melpa
-  :config (add-hook 'term-mode-hook
-                    (lambda()
-                      (linum-mode -1)
-                      (hl-line-mode -1))))
 
 ;;; Window move.
 (use-package ace-window :ensure t :pin melpa
@@ -543,16 +556,16 @@ i.e. change right window to bottom, or change bottom window to right."
   ;; (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold))))
   )
 
-;;; multiple-cursors, iedit
+;;; multiple-cursors
 (use-package multiple-cursors :ensure t :pin melpa
   :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
                  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
                  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
-(use-package iedit :ensure t :pin melpa
-  ;;:bind ("C-z ," . iedit-mode)
-  :diminish)
+;;; iedit -- use `C-;'
+(use-package iedit :ensure t :pin melpa :diminish)
+
 
 ;;; Evil, my last resort. (sometimes)
 (use-package evil :ensure t :pin melpa
@@ -566,24 +579,28 @@ i.e. change right window to bottom, or change bottom window to right."
   (evil-mode (if (null evil-state) 1 -1)))
 
 
-;;; eshell is our frien
+;;; eshell is my fren
 (require 'f)
 
 (defun eshell-here ()
   (interactive)
-  (let ((eshell-buf (get-buffer "*eshell*"))
-        (path (f-dirname (buffer-file-name))))
+  (let ((eshell-buf (get-buffer "*eshell*")))
     (if (null eshell-buf)
         ;; just start new eshell
         (eshell)
       ;; else:
       (with-current-buffer eshell-buf
         (eshell/pushd (eshell/pwd))
-        (cd path)
+        (cd (pwd))
         (eshell-emit-prompt)))))
+
+
 
 ;;; stardict, sdcv
 (use-package sdcv :ensure t :pin melpa)
+
+
+
 
 
 ;;; General -- Leading Keybinder
@@ -606,7 +623,6 @@ i.e. change right window to bottom, or change bottom window to right."
 
   "?" 'counsel-descbinds
 
-  "T" 'multi-term
   "$" 'eshell-here
   "." 'neotree
 
@@ -681,9 +697,6 @@ i.e. change right window to bottom, or change bottom window to right."
 
   ;; undo-tree
   "u" 'undo-tree-visualize
-
-  ;; iedit
-  "," 'iedit-mode
 
   ;;
   "z" (general-simulate-key "C-'" :name mm)
