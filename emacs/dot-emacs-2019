@@ -237,6 +237,8 @@
   (progn
     (add-hook 'auto-revert-mode-hook
               (lambda () (diminish 'auto-revert-mode)))
+    (diminish 'counsel-mode)
+    (diminish 'ivy-mode)
     (diminish 'undo-tree-mode)))
 
 ;;; which-key
@@ -340,6 +342,7 @@
 
 ;;;
 (use-package counsel :ensure t :pin melpa
+  :diminish
   :config (progn
             (defun swiper-thing-at-point ()
               (interactive)
@@ -414,6 +417,7 @@
 
 ;;; undo-tree
 (use-package undo-tree
+  :diminish
   :ensure t
   :init (global-undo-tree-mode))
 
