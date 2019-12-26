@@ -661,6 +661,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "` p" 'counsel-list-processes
   "` b" 'counsel-bookmark
   "` D" 'sdcv-search-pointer
+  "` s" 'delete-trailing-whitespace
 
   "C-q" '(:ignore t :which-key "toggle")
   "C-q l" 'display-line-numbers-mode
