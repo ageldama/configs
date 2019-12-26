@@ -1,28 +1,109 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
-(setq inhibit-startup-screen t)
-(setq default-input-method   "korean-hangul")
-(prefer-coding-system 'utf-8-unix)
-
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
 
+
+
+
+(defconst +sys/gui?+
+  (display-graphic-p)
+  "Are we running on a GUI Emacs?")
+
+(defconst +sys/winnt?+
+  (eq system-type 'windows-nt)
+  "Are we running on a WinTel system?")
+
+(defconst +sys/linux?+
+  (eq system-type 'gnu/linux)
+  "Are we running on a GNU/Linux system?")
+
+(defconst +sys/bsd?+
+  (eq system-type 'berkeley-unix)
+  "BSD?")
+
+(defconst +sys/unix-like?+
+  (or +sys/linux?+ +sys/bsd?+))
+
+(defconst +sys/mac?+
+  (eq system-type 'darwin)
+  "Are we running on a Mac system?")
+
+
+
+(setq inhibit-startup-screen t)
+
+
+
+
+(prefer-coding-system 'utf-8)
+(set-language-environment "UTF-8")
+(set-selection-coding-system 'utf-8)
+(set-default-coding-systems 'utf-8)
+(set-terminal-coding-system 'utf-8)
+(set-keyboard-coding-system 'utf-8)
+(setq locale-coding-system 'utf-8)
+
+;; Treat clipboard input as UTF-8 string first; compound text next, etc.
+;; NOTE: the default is just fine.
+;; (when +sys/gui?+
+;;   (setq x-select-request-type '(UTF8_STRING COMPOUND_TEXT TEXT STRING)))
+
+
+(setq default-input-method   "korean-hangul") ; 인코딩, 언어환경 설정 이후에 적용해야함.
+
+
+
+
+
+
+(if (version< emacs-version "26")
+    (global-linum-mode)
+  (add-hook 'text-mode-hook #'display-line-numbers-mode)
+  (add-hook 'prog-mode-hook #'display-line-numbers-mode))
+
+;; Display column numbers in modeline
 (column-number-mode  t)
-(display-time-mode   -1)
-(show-paren-mode     t)
-(transient-mark-mode t)
+
+(global-hl-line-mode -1) ; no thx
+
+
+(show-paren-mode     t) ; show matching paren
+(transient-mark-mode t) ; make transient block visible
+
+
+
 
 ;; (setq browse-url-browser-function
 ;;       'browse-url-firefox)
 
 (global-auto-revert-mode t)
-;;(global-whitespace-mode +1)
-(setq-default show-trailing-whitespace t)
+
+
+;; cuz annoying
+(global-whitespace-mode -1) 
+(setq-default show-trailing-whitespace nil)
 
 (defun toggle-show-trailing-whitespace ()
   "Toggle show-trailing-whitespace between t and nil"
   (interactive)
   (setq show-trailing-whitespace (not show-trailing-whitespace)))
+
+
+;;
+(setq-default indent-tabs-mode nil) ; suppress put TAB chars for indentation.
+(setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
+;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
+(electric-indent-mode +1)
+
+
+;;; hippie-expand
+(defadvice hippie-expand (around hippie-expand-case-fold)
+  "Try to do case-sensitive matching (not effective with all functions)."
+  (let ((case-fold-search nil))
+    ad-do-it))
+(ad-activate 'hippie-expand)
+
 
 
 (add-hook 'kill-emacs-query-functions
@@ -34,13 +115,26 @@
 (setq make-backup-files nil)
 (setq version-control   nil)   ; backup uses version numbers?
 
-(if window-system
+(if +sys/gui?+
     (progn
       (menu-bar-mode   -1)
       (tool-bar-mode   -1)
       (scroll-bar-mode -1))
   (progn
     (menu-bar-mode   -1)))
+
+
+(display-time-mode   -1)
+(display-battery-mode -1)
+
+
+
+
+
+
+(global-set-key (kbd "C-x C-b") #'ibuffer)
+
+
 
 ;;; package.el
 (require 'package)
@@ -124,15 +218,15 @@
             :after #'my-auto-set-font-fixed-or-variable)
 
 
-(when (and t window-system)
-  (cond ((or (string-equal system-type "berkeley-unix")
-             (string-equal system-type "gnu/linux")
-             (string-equal system-type "darwin"))
+(when +sys/gui?+
+  (cond ((or +sys/unix-like?+ +sys/mac?+)
          (my-set-fixed-fonts))
   	;; Windows
-        ((string-equal system-type "windows-nt")
+        (+sys/winnt?+
          (set-face-attribute 'default nil :font "Consolas-11"))
         (t :unknown)))
+
+
 
 ;;; cleaner modeline.
 (use-package diminish :ensure t :pin melpa
@@ -148,18 +242,20 @@
   :config (progn (which-key-mode)
                  (which-key-setup-side-window-bottom)))
 
-(global-linum-mode   -1)
-(global-hl-line-mode -1)
 
+;;; vimish-fold
 (use-package vimish-fold :ensure t :pin melpa
   :config (progn (vimish-fold-global-mode +1)
                  (global-set-key (kbd "C-c @ t") 'vimish-fold-toggle)
                  (global-set-key (kbd "C-c @ f") 'vimish-fold)
                  (global-set-key (kbd "C-c @ d") 'vimish-fold-delete)))
 
+
+
 ;;; rainbow-delimiters
 (use-package rainbow-delimiters  :ensure t :pin melpa
   :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+
 
 ;;; miscs
 
@@ -176,6 +272,25 @@
   (use-package treemacs-projectile
     :after treemacs projectile
     :ensure t))
+
+
+(use-package idle-highlight-mode
+  :ensure t :pin melpa
+  :config (add-hook 'prog-mode-hook
+                    (lambda () (idle-highlight-mode t))))
+
+
+;;; helpful, discover-my-major
+(use-package helpful :pin melpa :ensure t
+  :config (progn
+            (setq counsel-describe-function-function #'helpful-callable)
+            (setq counsel-describe-variable-function #'helpful-variable)
+            (global-set-key (kbd "C-h f") #'helpful-callable)
+            (global-set-key (kbd "C-h v") #'helpful-variable)
+            (global-set-key (kbd "C-h k") #'helpful-key)
+            (global-set-key (kbd "C-h C-.") #'helpful-at-point)))
+
+
 
 (use-package markdown-mode :ensure t :pin melpa
   :config (setq markdown-command "pandoc"))
@@ -234,6 +349,7 @@
             (global-set-key (kbd "C-c k") 'counsel-rg)
             ;; (global-set-key (kbd "C-x l") 'counsel-locate)
             ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+            (global-set-key (kbd "M-y") 'counsel-yank-pop)
             (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
 
 ;; `C-o` in Ivy minibuf.
@@ -280,7 +396,7 @@
 
 (use-package git-timemachine    :ensure t :pin  melpa)
 
-(when window-system
+(when +sys/gui?+
   (use-package git-gutter-fringe :ensure t :pin melpa
     :diminish 'git-gutter-mode
     :config (global-git-gutter-mode +1)))
@@ -319,14 +435,22 @@
 
 ;;; toc-org -- https://github.com/snosov1/toc-org
 (use-package toc-org :ensure t :pin melpa
-  :config 
+  :config
     (add-hook 'org-mode-hook 'toc-org-mode)
     (add-hook 'markdown-mode-hook 'toc-org-mode)
     ;(define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point)
     )
 
-;;; writeroom?
-(use-package writeroom-mode :ensure t :pin melpa)
+;;; org-capture
+(setq org-default-notes-file "~/Vault2/c.org")
+
+(defun org-capture-open ()
+  (interactive)
+  (find-file org-default-notes-file))
+
+;;; org-tree-slide
+(use-package org-tree-slide :ensure t :pin melpa)
+
 
 ;;; PlantUML
 (use-package plantuml-mode :ensure t :pin melpa
@@ -350,6 +474,12 @@
                '("u" "#+BEGIN_SRC plantuml :file ?.png
                     \nskinparam monochrome true
                     \n#+END_SRC")))
+
+
+;;; writeroom?
+(use-package writeroom-mode :ensure t :pin melpa)
+
+
 
 ;;; Multiterm
 (use-package multi-term :ensure t :pin melpa
@@ -406,21 +536,29 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;; avy
 (use-package avy :ensure t :pin melpa
-  :config
-  ;;(avy-setup-default)
-  (global-set-key (kbd "C-c /") 'avy-goto-char-timer))
+  :custom
+  (avy-timeout-seconds 0.3)
+  (avy-style 'pre)
+  ;; :custom-face
+  ;; (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold))))
+  )
 
+;;; multiple-cursors, iedit
 (use-package multiple-cursors :ensure t :pin melpa
   :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
                  (global-set-key (kbd "C->") 'mc/mark-next-like-this)
                  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
+(use-package iedit :ensure t :pin melpa
+  ;;:bind ("C-z ," . iedit-mode)
+  :diminish)
+
 ;;; Evil, my last resort. (sometimes)
 (use-package evil :ensure t :pin melpa
   :init (setq evil-want-integration t)
   :config (progn (evil-mode -1)
-                 ;; because I use 'C-z' as my leader key
+                 ;; because I use `C-z' as my leader key
                  (define-key evil-motion-state-map (kbd "C-z") nil)))
 
 (defun toggle-evil-mode ()
@@ -447,14 +585,11 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; stardict, sdcv
 (use-package sdcv :ensure t :pin melpa)
 
-;;; org-capture
-(setq org-default-notes-file "~/Vault2/c.org")
-
-(defun org-capture-open ()
-  (interactive)
-  (find-file org-default-notes-file))
 
 ;;; General -- Leading Keybinder
+(global-set-key (kbd "C-z") nil)
+(global-set-key (kbd "C-x C-z") nil)
+
 (use-package general :ensure t :pin melpa)
 
 (defalias 'ctl-z-keymap (make-sparse-keymap))
@@ -472,7 +607,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "?" 'counsel-descbinds
 
   "T" 'multi-term
-  ;; "$" 'eshell-here
+  "$" 'eshell-here
   "." 'neotree
 
   "r" 'recentf-open-files
@@ -541,14 +676,14 @@ i.e. change right window to bottom, or change bottom window to right."
   "<" 'shrink-window-horizontally
 
   ;; avy
-  ;; "A" 'avy-goto-char
-  ;; "a" '(:ignore t :which-key "avy")
-  ;; "a c" 'avy-goto-char
-  ;; "a l" 'avy-goto-line
-  ;; "a r" 'avy-resume
+  "c"  'avy-goto-char-timer
+  "l" 'avy-goto-line
 
   ;; undo-tree
   "u" 'undo-tree-visualize
+
+  ;; iedit
+  "," 'iedit-mode
 
   ;;
   "z" (general-simulate-key "C-'" :name mm)
@@ -596,18 +731,11 @@ i.e. change right window to bottom, or change bottom window to right."
   (load-langsup-or-not (symbol-name (first i)) (second i)))
 
 
-;;; org-tree-slide
-(use-package org-tree-slide :ensure t :pin melpa)
 
 
-;;;
-(setq-default indent-tabs-mode nil)
-(setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
-;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
-(electric-indent-mode +1)
 
 ;;; Themes
-(when (and t window-system)
+(when +sys/gui?+
   ;; (use-package organic-green-theme :ensure t
   ;;   :config
   ;;   (load-theme 'organic-green t))
@@ -640,66 +768,5 @@ i.e. change right window to bottom, or change bottom window to right."
   ;;   (doom-modeline-init))
   )
 
-(use-package idle-highlight-mode
-  :ensure t :pin melpa
-  :config (add-hook 'prog-mode-hook
-                    (lambda () (idle-highlight-mode t))))
-
-;;;
-(require 'cl-seq)
-
-(defun vimish-goto-char-current-line (ch backward)
-  (setq-local vimish-goto-char-current-line-last-ch ch)
-  (let* ((cur-col (current-column))
-         (cur-line (thing-at-point 'line t))
-         (bin-sep-line (if backward
-                           (substring cur-line 0 cur-col)
-                         ;; forward
-                         (substring cur-line (1+ cur-col))))
-         (idx (cl-search ch bin-sep-line :from-end backward)))
-    (unless (null idx)
-      (if backward
-          (move-to-column idx)
-        ;; forward
-        (move-to-column (+ cur-col idx 1))))))
-
-(defun vimish-goto-char-current-line-forward (ch)
-  (interactive "c")
-  (vimish-goto-char-current-line (format "%c" ch) nil))
-
-(defun vimish-goto-char-current-line-backward (ch)
-  (interactive "c")
-  (vimish-goto-char-current-line (format "%c" ch) t))
-
-(defun vimish-goto-char-current-line-forward* ()
-  (interactive)
-  (vimish-goto-char-current-line vimish-goto-char-current-line-last-ch nil))
-
-(defun vimish-goto-char-current-line-backward* ()
-  (interactive)
-  (vimish-goto-char-current-line vimish-goto-char-current-line-last-ch t))
-
-(global-set-key (kbd "<f5>") #'vimish-goto-char-current-line-backward*)
-(global-set-key (kbd "<f6>") #'vimish-goto-char-current-line-backward)
-(global-set-key (kbd "<f7>") #'vimish-goto-char-current-line-forward)
-(global-set-key (kbd "<f8>") #'vimish-goto-char-current-line-forward*)
-
-
-(defadvice hippie-expand (around hippie-expand-case-fold)
-  "Try to do case-sensitive matching (not effective with all functions)."
-  (let ((case-fold-search nil))
-    ad-do-it))
-(ad-activate 'hippie-expand)
-
-
-;;; helpful
-(use-package helpful :pin melpa :ensure t
-  :config (progn
-            (setq counsel-describe-function-function #'helpful-callable)
-            (setq counsel-describe-variable-function #'helpful-variable)
-            (global-set-key (kbd "C-h f") #'helpful-callable)
-            (global-set-key (kbd "C-h v") #'helpful-variable)
-            (global-set-key (kbd "C-h k") #'helpful-key)
-            (global-set-key (kbd "C-h C-.") #'helpful-at-point)))
 
 ;;; EOF.
