@@ -384,7 +384,8 @@
 ;;; projectile
 (use-package projectile :pin melpa
   :config
-  (progn (projectile-global-mode)))
+  (progn (projectile-global-mode)
+         (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
 
 (use-package counsel-projectile :ensure t :pin melpa
   :config
@@ -635,7 +636,8 @@ i.e. change right window to bottom, or change bottom window to right."
   "o" 'counsel-rg-maybe-projectile
   "p" 'counsel-projectile
 
-  "P" 'projectile-commander
+  "P" (general-simulate-key "C-c p" :name projectile)
+  
   "e" (general-simulate-key "C-c !" :name flycheck)
 
   "k" 'counsel-yank-pop
