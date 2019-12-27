@@ -1,5 +1,7 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 (require 'cl)
+(require 'f)
+(require 's)
 
 
 (setq user-full-name    "Jong-Hyouk Yun")
@@ -583,8 +585,6 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; eshell is my fren
-(require 'f)
-
 (defun eshell-here ()
   (interactive)
   (let ((eshell-buf (get-buffer "*eshell*")))
@@ -726,8 +726,6 @@ i.e. change right window to bottom, or change bottom window to right."
 	      (format "%s/%s" langsup-base-path langsup-name))))
     (load-file fn)))
 
-(require 'f)
-
 (defun load-langsup-or-not (loadp-name langsup-name)
   (let ((loadp-fn (format "%s/%s" langsup-loadp-path loadp-name)))
     (when (f-exists? loadp-fn)
@@ -752,6 +750,47 @@ i.e. change right window to bottom, or change bottom window to right."
              ))
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
+
+
+
+;;; Launchers
+
+(defvar *project-build-dir* nil)
+
+
+(defun project-build-dir-by-value (val)
+  "Composes the build directory path string by `VAL'."
+  (cl-typecase val
+    (string (if (s-starts-with? "/" val)
+                val ; absolute-path
+              ;; relative-path
+              (when-let ((it buffer-file-name))
+                (s-concat (file-name-directory it) val))))
+    (t (eval val))))
+
+
+(defun project-build-dir ()
+  "Find the build directory by one of following methods sequentially:
+
+1) File local variable `*project-build-dir*', and if it is:
+  1) a string starts with `/', use it,
+  2) a string and does not starts with `/',
+     - Append it to the directory of current buffer.
+     - If the directory of current buffer is not available, it's nil.
+  3) a list, returns the value of `eval'-ed on it.
+  4) Implemented in `project-build-dir-by-value' function.
+
+2) Ask to Projectile
+
+3) Just the directory of current buffer
+
+Thus, can be evaluated as nil on some special buffers.
+For example, `*scratch*'-buffer"
+  (or (when-let ((it *project-build-dir*)) ; file local variable
+        (project-build-dir-by-value it))
+      (projectile-project-root)
+      (when-let ((it buffer-file-name))
+        (file-name-directory it))))
 
 
 
