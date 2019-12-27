@@ -254,7 +254,7 @@
 (use-package highlight-indent-guides  :ensure t :pin melpa
   :if +sys/gui?+
   :diminish
-  :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
+  ;; :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
   :config
   (setf
    ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
@@ -406,7 +406,7 @@
 
 ;;; undo-tree
 (use-package undo-tree
-  :diminish
+  :diminish 
   :ensure t
   :init (global-undo-tree-mode))
 
@@ -419,7 +419,7 @@
 
 (when +sys/gui?+
   (use-package git-gutter-fringe :ensure t :pin melpa
-    :diminish 'git-gutter-mode
+    :diminish git-gutter-mode
     :config (global-git-gutter-mode +1)))
 
 
@@ -430,7 +430,7 @@
 
 ;;; company.
 (use-package company :ensure t :pin melpa
-  :diminish 'company-mode
+  :diminish company-mode
   :config (progn (require 'company)
 		 (global-company-mode t)
 		 (global-set-key (kbd "C-c \\") 'company-complete)
@@ -566,7 +566,7 @@ i.e. change right window to bottom, or change bottom window to right."
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
 ;;; iedit -- use `C-;'
-(use-package iedit :ensure t :pin melpa :diminish)
+(use-package iedit :ensure t :pin melpa :diminish iedit)
 
 
 ;;; Evil, my last resort. (sometimes)
@@ -666,6 +666,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "C-q" '(:ignore t :which-key "toggle")
   "C-q l" 'display-line-numbers-mode
   "C-q s" 'global-whitespace-mode
+  "C-q i" 'highlight-indent-guides-mode
 
   "C-c" '(:ignore t :which-key "capture")
   "C-c RET" 'org-capture
