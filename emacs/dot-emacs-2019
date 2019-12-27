@@ -1,13 +1,12 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
-(require 'cl)
-(require 'f)
-(require 's)
-
-
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
+(setq inhibit-startup-screen t)
 
 
+
+
+(require 'cl)
 
 
 (defconst +sys/gui?+
@@ -32,11 +31,6 @@
 (defconst +sys/mac?+
   (eq system-type 'darwin)
   "Are we running on a Mac system?")
-
-
-
-(setq inhibit-startup-screen t)
-
 
 
 
@@ -143,6 +137,11 @@
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
+
+
+(use-package f :ensure t)
+(use-package s :ensure t)
+
 
 ;;; GUI fonts
 ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
@@ -751,14 +750,20 @@ i.e. change right window to bottom, or change bottom window to right."
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
 
+;;; realgud
+(use-package realgud :ensure t :pin melpa)
 
 
-;;; Launchers
-
-(defvar *project-build-dir* nil)
 
 
-(defun project-build-dir-by-value (val)
+;;; moonshot
+
+
+;;; moonshot - project-build-dir
+(defvar moonshot:project-build-dir nil)
+
+
+(defun moonshot:project-build-dir-by-value (val)
   "Composes the build directory path string by `VAL'."
   (cl-typecase val
     (string (if (s-starts-with? "/" val)
@@ -769,16 +774,16 @@ i.e. change right window to bottom, or change bottom window to right."
     (t (eval val))))
 
 
-(defun project-build-dir ()
+(defun moonshot:project-build-dir ()
   "Find the build directory by one of following methods sequentially:
 
-1) File local variable `*project-build-dir*', and if it is:
+1) File local variable `moonshot:project-build-dir', and if it is:
   1) a string starts with `/', use it,
   2) a string and does not starts with `/',
      - Append it to the directory of current buffer.
      - If the directory of current buffer is not available, it's nil.
   3) a list, returns the value of `eval'-ed on it.
-  4) Implemented in `project-build-dir-by-value' function.
+  4) Implemented in `moonshot:project-build-dir-by-value' function.
 
 2) Ask to Projectile
 
@@ -786,12 +791,116 @@ i.e. change right window to bottom, or change bottom window to right."
 
 Thus, can be evaluated as nil on some special buffers.
 For example, `*scratch*'-buffer"
-  (or (when-let ((it *project-build-dir*)) ; file local variable
-        (project-build-dir-by-value it))
+  (or (when-let ((it moonshot:project-build-dir)) ; file local variable
+        (moonshot:project-build-dir-by-value it))
       (projectile-project-root)
       (when-let ((it buffer-file-name))
         (file-name-directory it))))
 
+
+;;; moonshot - Run/Realgud
+(require 'seq)
+(require 'cl)
+(use-package f :ensure t)
+(use-package levenshtein :ensure t :pin melpa)
+
+
+(defun moonshot:list-executable-files (dir)
+  "Find every executable files under `DIR'."
+  (seq-filter 'file-executable-p
+              (directory-files-recursively
+               dir ".*")))
+
+(defun* moonshot:file-list->distance-alist (fn file-names &key dist-fun)
+  "Calculate string difference distances from `FN' of given `FILE-NAMES'
+using `DIST-FUN'"
+  (let ((fn* (f-filename fn)))
+    (mapcar (lambda (i)
+              (cons (funcall (or dist-fun #'levenshtein-distance)
+                             fn* (f-filename i))
+                    i))
+            file-names)))
+
+(defun moonshot:list-executable-files-and-sort-by (dir file-name)
+  "Find every executable file names under `DIR'.
+The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
+  (mapcar #'cdr
+          (sort
+           (moonshot:file-list->distance-alist
+            file-name
+            (moonshot:list-executable-files dir))
+           (lambda (x y) (< (car x) (car y))))))
+;; Try: (list-executable-files-and-sort-by "/bin" "sh")
+
+(defun moonshot:run-command-with (cmd mkcmd-fun run-fun)
+  (interactive)
+  (let* ((cmd*
+          (read-from-minibuffer "Cmd: " (funcall mkcmd-fun cmd))))
+    (funcall run-fun cmd*)))
+
+
+
+(require 'ivy)
+(require 'realgud)
+
+(defun moonshot:run-executable ()
+  (interactive)
+  (let ((fn (buffer-file-name)))
+    (ivy-read "Select an executable to run: "
+              (moonshot:list-executable-files-and-sort-by (moonshot:project-build-dir) fn)
+              :action (lambda (cmd)
+                        (moonshot:run-command-with cmd
+                                                   (lambda (cmd)
+                                                     (format "cd '%s'; '%s'" (f-dirname cmd) cmd))
+                                                   #'compile)))))
+
+(defvar moonshot:debuggers
+  '(
+    ;; `COMMAND' . `REALGUD-FN'
+    ("gdb" . realgud:gdb)
+    ("lldb" . realgud:lldb)
+    ("python -mpdb" . realgud:pdb)
+    ("perldb" . realgud:perldb)
+    ("pydb" . realgud:pydb)
+    ("gub" . realgud:gub)
+    ("jdb" . realgud:jdb)
+    ("bashdb" . realgud:bashdb)
+    ("remake" . realgud:remake)
+    ("zshdb" . realgud:zshdb)
+    ("kshdb" . realgud:kshdb)
+    ("dgawk" . realgud:dgawk)
+    ))
+
+
+(assoc "jdb" moonshot:debuggers)
+ 
+(defun moonshot:alist-keys (l)
+  (cl-loop for i in l collect (car i)))
+
+(defvar moonshot:realgud/history nil)
+
+(defun moonshot:realgud (debugger)
+  (interactive (list (ivy-read "Select debugger: "
+                               (moonshot:alist-keys moonshot:debuggers)
+                               :require-match t
+                               :history 'moonshot:realgud/history)))
+  (let ((fn (buffer-file-name))
+        (debugger-func (cdr (assoc debugger moonshot:debuggers))))
+    (ivy-read "Select an executable to debug: "
+              (moonshot:list-executable-files-and-sort-by (moonshot:project-build-dir) fn)
+              :action (lambda (cmd)
+                        (moonshot:run-command-with cmd
+                                                   (lambda (cmd)
+                                                     (format "\"%s\" \"%s\"" debugger cmd))
+                                                   debugger-func)))))
+
+
+;;; moonshot - compilations
+;; TODO
+
+
+
+;; EO - moonshot
 
 
 
