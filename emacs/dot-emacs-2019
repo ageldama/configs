@@ -897,19 +897,62 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
 ;; TODO runners-preset
 ;; TODO per-project-runners
 
-;; TODO variables interpolation on string
 
-"
-  %F  absolute pathname            ( /usr/local/bin/netscape.bin )
-  %f  file name without directory  ( netscape.bin )
-  %n  file name without extension  ( netscape )
-  %e  extension of file name       ( bin )
-  %P  project root directory
-  %B  project build directory
-  %D  directory
-"
+(defun moonshot:expand-path-vars (path-str)
+  "Expand `PATH-STR' with following format specifiers.
+
+%F  absolute pathname            ( /usr/local/bin/netscape.bin )
+%f  file name without directory  ( netscape.bin )
+%n  file name without extension  ( netscape )
+%e  extension of file name       ( bin )
+%D  directory                    ( /usr/local/bin/ )
+%P  project root directory       ( /home/who/blah/ ), using Projectile
+%B  project build directory      ( /home/who/blah/build/ ), using `moonshot:project-build-dir'"
+  (let* ((s path-str)
+         (abs-path (or (buffer-file-name) ""))
+         (file-name "")
+         (file-name-without-ext "")
+         (file-ext "")
+         (dir "")
+         (project-root-dir (projectile-project-root))
+         (project-build-dir (moonshot:project-build-dir)))
+    ;; fill in
+    (unless (s-blank-str? abs-path)
+      (setq file-name (or (f-filename abs-path) "")
+            file-ext (or (f-ext file-name) "")
+            dir (or (f-dirname abs-path) ""))
+      (unless (and (s-blank-str? dir)
+                   (s-suffix? "/" dir))
+        (setq dir (s-concat dir "/")))
+      (setq file-name-without-ext (s-chop-suffix (if (not (s-blank-str? file-ext))
+                                                     (s-concat "." file-ext)
+                                                   file-ext)
+                                                 file-name)))
+    ;; pattern -> replacement
+    (dolist (pattern->replacement `(("%a" . ,abs-path)
+                                    ("%f" . ,file-name)
+                                    ("%n" . ,file-name-without-ext)
+                                    ("%e" . ,file-ext)
+                                    ("%d" . ,dir)
+                                    ("%p" . ,project-root-dir)
+                                    ("%b" . ,project-build-dir)))
+      (let ((case-fold-search nil)
+            (pattern (car pattern->replacement))
+            (replacement (cdr pattern->replacement)))        
+        (setq s (replace-regexp-in-string pattern replacement s t t))))
+    ;;
+    s))
 
 
+
+
+
+
+
+
+
+
+                                      
 ;; EO - moonshot
 
 
