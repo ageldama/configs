@@ -591,6 +591,20 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 
+;;; realgud
+(use-package realgud :ensure t :pin melpa)
+
+
+;;; moonshot
+(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
+(require 'moonshot)
+
+;; (global-set-key (kbd "C-c x x") 'moonshot:run-executable)
+;; (global-set-key (kbd "C-c x d") 'moonshot:run-debugger)
+;; (global-set-key (kbd "C-c x c") 'moonshot:run-runner)
+
+
+
 
 ;;; General -- Leading Keybinder
 (global-set-key (kbd "C-z") nil)
@@ -690,6 +704,11 @@ i.e. change right window to bottom, or change bottom window to right."
   "c"  'avy-goto-char-timer
   "l" 'avy-goto-line
 
+  ;; moonshot
+  "x x" 'moonshot:run-executable
+  "x d" 'moonshot:run-debugger
+  "x c" 'moonshot:run-runner
+
   ;; undo-tree
   "u" 'undo-tree-visualize
 
@@ -737,13 +756,6 @@ i.e. change right window to bottom, or change bottom window to right."
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
 
-;;; realgud
-(use-package realgud :ensure t :pin melpa)
-
-
-;;; moonshot
-(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
-(require 'moonshot)
 
 
 ;;; Themes
