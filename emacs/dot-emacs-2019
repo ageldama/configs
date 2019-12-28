@@ -892,22 +892,27 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
 
 
 ;;; moonshot - runners
-;; TODO
 
-;; TODO runners-preset
-;; TODO per-project-runners
+(defvar moonshot:runners-preset
+  '("cmake -S\"%p\" -B\"%b\" -GNinja -DCMAKE_BUILD_TYPE=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS=on"
+    "cd \"%b\"; ninja"
+    ))
 
+(defvar moonshot:runners nil)
+
+(defun moonshot:all-runners ()
+  (append moonshot:runners moonshot:runners-preset))
 
 (defun moonshot:expand-path-vars (path-str)
   "Expand `PATH-STR' with following format specifiers.
 
-%F  absolute pathname            ( /usr/local/bin/netscape.bin )
+%a  absolute pathname            ( /usr/local/bin/netscape.bin )
 %f  file name without directory  ( netscape.bin )
 %n  file name without extension  ( netscape )
 %e  extension of file name       ( bin )
-%D  directory                    ( /usr/local/bin/ )
-%P  project root directory       ( /home/who/blah/ ), using Projectile
-%B  project build directory      ( /home/who/blah/build/ ), using `moonshot:project-build-dir'"
+%d  directory                    ( /usr/local/bin/ )
+%p  project root directory       ( /home/who/blah/ ), using Projectile
+%b  project build directory      ( /home/who/blah/build/ ), using `moonshot:project-build-dir'"
   (let* ((s path-str)
          (abs-path (or (buffer-file-name) ""))
          (file-name "")
@@ -942,6 +947,19 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
         (setq s (replace-regexp-in-string pattern replacement s t t))))
     ;;
     s))
+
+
+(defvar moonshot:run-runner/history nil)
+
+(defun moonshot:run-runner ()
+  (interactive)
+  (ivy-read "Command: "
+            (moonshot:all-runners)
+            :action (lambda (cmd)
+                      (moonshot:run-command-with cmd
+                                                 #'moonshot:expand-path-vars
+                                                 #'compile))
+            :history 'moonshot:run-runner/history))
 
 
 
