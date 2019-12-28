@@ -77,9 +77,9 @@
 
 
 ;;
-(setq-default indent-tabs-mode nil) ; suppress put TAB chars for indentation.
+(setq-default indent-tabs-mode nil) ; suppress using TAB chars for indentation.
 (setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
-;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
+;;(global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
 (electric-indent-mode +1)
 
 
@@ -150,38 +150,23 @@
 (defun my-set-fixed-fonts ()
   (interactive)
   (let ((en-fn
-         ;; "Input Mono"
-	 ;; "Ubuntu Mono"
-         ;; "Noto Sans Mono CJK KR"
-         ;; "Terminus"
-         ;; "Consolas"
          "Hack"
 	 )
         (ko-fn
-         ;; "Noto Sans Mono CJK KR"
-         ;; "NeoDunggeunmo"
-         ;; "-daewoo-mincho-medium-*-*-*-*-*-*-*-*-*-*-*"
-         ;; "NanumSquareRound"
-         ;; "Malgun Gothic"
-         ;; "NanumBarunGothic"
-         ;; "Source Han Sans K"
          "Noto Serif Mono CJK KR"
          ))
     ;; default Latin font (e.g. Consolas)
-    ;; but I use Monaco
     (set-frame-font en-fn t)
     (set-face-attribute 'default nil :family en-fn)
     ;; default font size (point * 10)
-    ;; WARNING!  Depending on the default font,
+    ;; NOTE depending on the default font,
     ;; if the size is not supported very well, the frame will be clipped
-    ;; so that the beginning of the buffer may not be visible correctly.
+    ;; thus the beginning of the buffer may not be visible correctly.
     (set-face-attribute 'default nil :height 130)
     ;; use specific font for Korean charset.
     ;; if you want to use different font size for specific charset,
-    ;; add :size POINT-SIZE in the font-spec.
+    ;; add :size `POINT-SIZE' in the font-spec.
     (set-fontset-font t 'hangul (font-spec :name ko-fn))))
-
-;; (my-set-fixed-fonts)
 
 (defun my-set-variable-fonts ()
   (interactive)
@@ -903,9 +888,13 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
                                                    debugger-func)))))
 
 
-;;; moonshot - compilations
+;;; moonshot - runners
 ;; TODO
 
+;; TODO runners-preset
+;; TODO per-project-runners
+
+;; TODO variables interpolation on string
 
 
 ;; EO - moonshot
@@ -914,36 +903,7 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
 
 ;;; Themes
 (when +sys/gui?+
-  ;; (use-package organic-green-theme :ensure t
-  ;;   :config
-  ;;   (load-theme 'organic-green t))
-
-  ;; (use-package darktooth-theme :ensure t)
-
-  ;; (use-package anti-zenburn-theme :ensure t)
-
-  ;; (when nil
-  ;; (use-package alect-themes :ensure t
-  ;;   :config (load-theme 'alect-black-alt t))
-  ;; )
-
   (load-theme 'tango-dark t)
-
-  ;; (use-package afternoon-theme :ensure t :pin melpa
-  ;;   :config
-  ;;   (load-theme 'afternoon t))
-
-  ;; (use-package gruvbox-theme :ensure t :pin melpa :config (load-theme 'gruvbox t))
-  ;; (use-package   dracula-theme      :pin melpa :ensure t)
-  ;; (use-package doom-themes :ensure t :pin melpa)
-  ;; (load-theme 'doom-dracula t)
-  ;; (use-package color-theme-sanityinc-tomorrow :pin melpa :ensure t
-  ;;   :config (load-theme 'sanityinc-tomorrow-bright t ))
-  ;; (load-theme 'misterioso t)
-  ;; (use-package doom-modeline :ensure t :pin melpa
-  ;;   :config
-  ;;   (setq doom-modeline-icon nil)
-  ;;   (doom-modeline-init))
   )
 
 
