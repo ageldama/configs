@@ -854,10 +854,13 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
                                                      (format "cd '%s'; '%s'" (f-dirname cmd) cmd))
                                                    #'compile)))))
 
+
+
 (defvar moonshot:debuggers
   '(
-    ;; `COMMAND' . `REALGUD-FN'
+    ;; `COMMAND' . `DEBUGGER-FN'
     ("gdb" . realgud:gdb)
+    ("gdb" . gud-gdb)
     ("lldb" . realgud:lldb)
     ("python -mpdb" . realgud:pdb)
     ("perldb" . realgud:perldb)
@@ -872,18 +875,17 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
     ))
 
 
-(assoc "jdb" moonshot:debuggers)
  
 (defun moonshot:alist-keys (l)
   (cl-loop for i in l collect (car i)))
 
-(defvar moonshot:realgud/history nil)
+(defvar moonshot:run-debugger/history nil)
 
-(defun moonshot:realgud (debugger)
+(defun moonshot:run-debugger (debugger)
   (interactive (list (ivy-read "Select debugger: "
                                (moonshot:alist-keys moonshot:debuggers)
                                :require-match t
-                               :history 'moonshot:realgud/history)))
+                               :history 'moonshot:run-debugger/history)))
   (let ((fn (buffer-file-name))
         (debugger-func (cdr (assoc debugger moonshot:debuggers))))
     (ivy-read "Select an executable to debug: "
