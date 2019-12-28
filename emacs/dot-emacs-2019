@@ -859,19 +859,19 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
 (defvar moonshot:debuggers
   '(
     ;; `COMMAND' . `DEBUGGER-FN'
-    ("gdb" . realgud:gdb)
-    ("gdb" . gud-gdb)
-    ("lldb" . realgud:lldb)
-    ("python -mpdb" . realgud:pdb)
-    ("perldb" . realgud:perldb)
-    ("pydb" . realgud:pydb)
-    ("gub" . realgud:gub)
-    ("jdb" . realgud:jdb)
-    ("bashdb" . realgud:bashdb)
-    ("remake" . realgud:remake)
-    ("zshdb" . realgud:zshdb)
-    ("kshdb" . realgud:kshdb)
-    ("dgawk" . realgud:dgawk)
+    ("gdb #realgud" . realgud:gdb)
+    ("gdb #gud" . gud-gdb)
+    ("lldb #realgud" . realgud:lldb)
+    ("python -mpdb #realgud" . realgud:pdb)
+    ("perldb #realgud" . realgud:perldb)
+    ("pydb #realgud" . realgud:pydb)
+    ("gub #realgud" . realgud:gub)
+    ("jdb #realgud" . realgud:jdb)
+    ("bashdb #realgud" . realgud:bashdb)
+    ("remake #realgud" . realgud:remake)
+    ("zshdb #realgud" . realgud:zshdb)
+    ("kshdb #realgud" . realgud:kshdb)
+    ("dgawk #realgud" . realgud:dgawk)
     ))
 
 
@@ -880,6 +880,11 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
   (cl-loop for i in l collect (car i)))
 
 (defvar moonshot:run-debugger/history nil)
+
+
+(defun moonshot:%remove-sharp-comment (s)
+  (s-trim (replace-regexp-in-string  "\\#.*$" "" s)))
+
 
 (defun moonshot:run-debugger (debugger)
   (interactive (list (ivy-read "Select debugger: "
@@ -893,7 +898,8 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
               :action (lambda (cmd)
                         (moonshot:run-command-with cmd
                                                    (lambda (cmd)
-                                                     (format "\"%s\" \"%s\"" debugger cmd))
+                                                     (format "\"%s\" \"%s\""
+                                                             (moonshot:%remove-sharp-comment debugger) cmd))
                                                    debugger-func)))))
 
 
