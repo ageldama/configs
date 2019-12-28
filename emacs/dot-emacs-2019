@@ -750,14 +750,17 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (defun moonshot:project-build-dir-by-value (val)
   "Composes the build directory path string by `VAL'."
-  (cl-typecase val
-    (string (if (s-starts-with? "/" val)
-                val ; absolute-path
-              ;; relative-path
-              (when-let ((it buffer-file-name))
-                (s-concat (file-name-directory it) val))))
-    (t (eval val))))
-
+  (let ((path (cl-typecase val
+                (string (if (s-starts-with? "/" val)
+                            val ; absolute-path
+                          ;; relative-path
+                          (when-let ((it buffer-file-name))
+                            (s-concat (file-name-directory it) val))))
+                (t (eval val)))))
+    (when-let ((it path))
+      (unless (f-exists? it)
+        (error "Invalid path or File/directory not found: %s" it)))
+    path))
 
 (defun moonshot:project-build-dir ()
   "Find the build directory by one of following methods sequentially:
@@ -895,6 +898,16 @@ The list is sorted by `file-list->distance-alist' with `FILE-NAME'."
 ;; TODO per-project-runners
 
 ;; TODO variables interpolation on string
+
+"
+  %F  absolute pathname            ( /usr/local/bin/netscape.bin )
+  %f  file name without directory  ( netscape.bin )
+  %n  file name without extension  ( netscape )
+  %e  extension of file name       ( bin )
+  %P  project root directory
+  %B  project build directory
+  %D  directory
+"
 
 
 ;; EO - moonshot
