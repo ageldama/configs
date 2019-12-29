@@ -15,6 +15,9 @@
   :after flycheck
   :hook
   (flycheck-mode . flycheck-clang-tidy-setup)
+  :config
+  (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clang)
+  (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-gcc)
   )
 
 
