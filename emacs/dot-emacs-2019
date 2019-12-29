@@ -605,7 +605,11 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; direnv
 (use-package direnv :ensure t :pin melpa
  :config
- (direnv-mode))
+ (direnv-mode)
+ :custom
+ (direnv-always-show-summary t)
+ (direnv-show-paths-in-summary t)
+ (direnv-use-faces-in-summary t))
 
 
 ;;; moonshot
