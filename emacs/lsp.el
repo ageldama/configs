@@ -104,3 +104,17 @@
 ;; TODO python + virtualenv
 ;; TODO C/C++ + (ccls -or- clangd)?
 ;; TODO Rust + (RLS -or- RustAnalyzer)?
+
+
+
+(use-package lsp-python-ms
+  :ensure t :pin melpa
+  :hook (python-mode . (lambda ()
+                         (require 'lsp-python-ms)
+                         (lsp))))
+
+
+
+(use-package direnv :ensure t :pin melpa
+ :config
+ (direnv-mode))

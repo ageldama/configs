@@ -83,6 +83,10 @@ if [[ -d "$HOME/.nvm" ]]; then
 fi
 
 
+
+(type -p dirname >& /dev/null) && eval "$(direnv hook zsh)"
+
+
 if [[ -f ~/.zshrc.local2 ]]; then
   source ~/.zshrc.local2
 fi

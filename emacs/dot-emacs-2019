@@ -594,6 +594,9 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 
+;;; elfeed
+(use-package elfeed :ensure t :pin melpa)
+
 
 ;;; realgud
 (use-package realgud :ensure t :pin melpa)
@@ -668,6 +671,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "` b" 'counsel-bookmark
   "` D" 'sdcv-search-pointer
   "` s" 'delete-trailing-whitespace
+  "` f" 'elfeed
 
   "C-q" '(:ignore t :which-key "toggle")
   "C-q l" 'display-line-numbers-mode
