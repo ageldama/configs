@@ -602,6 +602,12 @@ i.e. change right window to bottom, or change bottom window to right."
 (use-package realgud :ensure t :pin melpa)
 
 
+;;; direnv
+(use-package direnv :ensure t :pin melpa
+ :config
+ (direnv-mode))
+
+
 ;;; moonshot
 (quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
 (require 'moonshot)
@@ -760,6 +766,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (geiser . "geiser.el")
              (auctex . "auctex.el")
              (tcl . "tcl.el")
+             (elpy . "python/elpy.el")
              ))
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 

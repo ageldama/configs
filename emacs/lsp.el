@@ -107,6 +107,20 @@
 
 
 
+;;(flycheck-add-next-checker 'python-flake8 'python-pylint)
+;;(flycheck-add-next-checker 'python-flake8 'python-pycompile)
+;;(flycheck-add-next-checker 'python-pycompile 'python-mypy)
+
+
+(add-hook 'lsp-mode-hook (lambda ()
+                                 (when (derived-mode-p 'python-mode)
+                                   (message "python-mode flycheck checkers")
+                                   (flycheck-disable-checker 'lsp-ui)
+                                   (flycheck-select-checker 'python-flake8)
+                                   )))
+
+
+
 (use-package lsp-python-ms
   :ensure t :pin melpa
   :hook (python-mode . (lambda ()
