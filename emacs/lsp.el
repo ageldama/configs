@@ -88,7 +88,7 @@
 
 
 
-
+(unless t
 (use-package lsp-java :ensure t :pin melpa
   :after lsp-mode
   ;:if *mvn*
@@ -97,16 +97,16 @@
   :custom
   (lsp-java-server-install-dir (expand-file-name "~/.emacs.d/eclipse.jdt.ls/server/"))
   (lsp-java-workspace-dir (expand-file-name "~/.emacs.d/eclipse.jdt.ls/workspace/")))
+)
 
 
 
-;; TODO golang
-;; TODO python + virtualenv
-;; TODO C/C++ + (ccls -or- clangd)?
-;; TODO Rust + (RLS -or- RustAnalyzer)?
+
+;; DONE python + virtualenv
 
 
 
+(unless t
 ;;(flycheck-add-next-checker 'python-flake8 'python-pylint)
 ;;(flycheck-add-next-checker 'python-flake8 'python-pycompile)
 ;;(flycheck-add-next-checker 'python-pycompile 'python-mypy)
@@ -132,3 +132,11 @@
 (use-package direnv :ensure t :pin melpa
  :config
  (direnv-mode))
+)
+
+
+
+;; TODO golang
+;; TODO C/C++ + (ccls -or- clangd)?
+;; TODO Rust + (RLS -or- RustAnalyzer)?
+
