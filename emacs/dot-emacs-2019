@@ -557,6 +557,10 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; iedit -- use `C-;'
 (use-package iedit :ensure t :pin melpa :diminish iedit)
 
+;;; expand-region
+(use-package expand-region :ensure t :pin melpa
+  :config (global-set-key (kbd "C-=") 'er/expand-region))
+
 
 ;;; Evil, my last resort. (sometimes)
 (use-package evil :ensure t :pin melpa
