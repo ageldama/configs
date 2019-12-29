@@ -1,5 +1,3 @@
-;; TODO: clang-format?
-;; TODO: flycheck + clang-tidy
 
 (defun my-c-c++-rtags+gtags-get-build-dir () (getenv "BUILD_DIR"))
 
