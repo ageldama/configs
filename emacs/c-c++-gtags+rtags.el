@@ -1,46 +1,19 @@
-(defcustom project-build-path nil
-  "Project build directory"
-  :type 'string)
-
-(defcustom project-build-command "ninja"
-  "Default command to build project"
-  :type 'string)
-
-(defcustom read-project-compile-commands nil
-  "compile-commands reader function"
-  :type 'function)
-
-(load-library (f-join langsup-base-path "compile-commands-json"))
-
-(defun bind-read-project-compile-commands ()
-  (setq-local read-project-compile-commands
-              (if (and (boundp 'project-build-path)
-                       (not (null project-build-path)))
-                  (make-read-compile-commands-in-dir project-build-path)
-                #'read-compile-commands-resolved-by-rtags)))
+;; TODO: clang-format?
+;; TODO: flycheck + clang-tidy
 
 (defun project-rtags? ()
-  (or (not (boundp 'project-build-path))
-      (null project-build-path)))
+  (not (null (getenv "BUILD_DIR"))))
 
 ;;;
 
 (require 'flycheck)
 
 (use-package realgud :ensure t :pin melpa)
-(use-package rmsbolt :ensure t :pin melpa)
 (use-package cmake-mode :ensure t :pin melpa)
 
 (use-package modern-cpp-font-lock :ensure t :pin melpa
   :config (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode))
 
-(use-package clang-format :ensure t :pin melpa
-  :config
-  (defun clang-format-dwim ()
-    (interactive)
-    (if mark-active
-        (call-interactively #'clang-format-region)
-      (clang-format-buffer))))
 
 (use-package counsel-gtags :ensure t :pin melpa)
 
@@ -104,13 +77,19 @@
 ;; (add-hook 'c++-mode-hook #'my-flycheck-rtags-setup)
 ;; (add-hook 'objc-mode-hook #'my-flycheck-rtags-setup)
 
+(load-library (f-join langsup-base-path "compile-commands-json"))
+
+(defcustom read-project-compile-commands #'read-compile-commands-resolved-by-rtags
+  "compile-commands reader function"
+  :type 'function)
+
 ;;; flycheck gcc/clang fixes
 (defun flycheck-c/c++-clang-and-gcc-setup ()
   (interactive)
   (let ((inc-dirs  (compile-commands-json/include-dirs read-project-compile-commands)))
-    ;;(message "Include-Dirs: %S" inc-dirs)
-    (setq-local flycheck-clang-include-path inc-dirs)
-    (setq-local flycheck-gcc-include-path inc-dirs)))
+     ;;(message "Include-Dirs: %S" inc-dirs)
+     (setq-local flycheck-clang-include-path inc-dirs)
+     (setq-local flycheck-gcc-include-path inc-dirs)))
 
 (add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
 
@@ -137,14 +116,10 @@
   (interactive)
   ;; TODO: (setq flycheck-disabled-checkers '(c/c++-clang c/c++-gcc c/c++-cppcheck))
   ;; TODO: (flycheck-select-checker 'c/c++-clang-tidy)
-  (bind-read-project-compile-commands)
   (if (project-rtags?)
       (my-c-c++-rtags-hook)
     (my-c-c++-gtags-hook))
   (flycheck-c/c++-clang-and-gcc-setup)
-  (setq-local rmsbolt-command
-              (compile-commands-json/rmsbolt-command
-               read-project-compile-commands (buffer-file-name)))
   (flycheck-mode)
   ;;
   (c-c++-bind-key-map)
@@ -154,87 +129,12 @@
 (add-hook 'c++-mode-local-vars-hook 'my-c-c++-mode-hook2)
 
 
-;;; find result executable and run/debug it
-(require 'seq)
-(use-package levenshtein :ensure t :pin melpa)
-(require 'cl)
-(use-package f :ensure t)
-
-(defun list-executable-files (dir)
-  (seq-filter 'file-executable-p
-              (directory-files-recursively
-               dir ".*")))
-
-(defun* file-list->distance-alist (fn file-names &key dist-fun)
-  (let ((fn* (f-filename fn)))
-    (mapcar (lambda (i)
-              (cons (funcall (or dist-fun #'levenshtein-distance)
-                             fn* (f-filename i))
-                    i))
-            file-names)))
-
-(defun list-executable-files-and-sort-by (dir file-name)
-  (mapcar #'cdr
-          (sort
-           (file-list->distance-alist
-            file-name
-            (list-executable-files dir))
-           (lambda (x y) (< (car x) (car y))))))
-
-(defun run-command-with (cmd mkcmd-fun run-fun)
-  (interactive)
-  (let* ((cmd*
-          (read-from-minibuffer "Cmd: " (funcall mkcmd-fun cmd))))
-    (funcall run-fun cmd*)))
-
-
-(require 'ivy)
-
-(defun run-executable-by-buffer-name ()
-  (interactive)
-  (ivy-read "Select executable to run: "
-            (list-executable-files-and-sort-by
-	     (compile-commands-json/build-dir read-project-compile-commands
-                                              (buffer-file-name))
-             (buffer-file-name))
-            :action (lambda (cmd)
-                      (run-command-with cmd
-                                        (lambda (cmd)
-                                          (format "cd '%s'; %s" (f-dirname cmd) cmd))
-                                        #'compile))))
-
-(defun debug-executable-by-buffer-name ()
-  (interactive)
-  (ivy-read "Select executable to debug: "
-            (list-executable-files-and-sort-by
-	     (compile-commands-json/build-dir read-project-compile-commands
-                                              (buffer-file-name))
-             (buffer-file-name))
-            :action (lambda (cmd)
-                      (run-command-with cmd
-                                        (lambda (cmd)
-                                          (format "gdb %s" cmd))
-                                        #'realgud:gdb))))
-
-(defun c-c++-rmsbolt-this ()
-  (interactive)
-  (rmsbolt-mode)
-  (rmsbolt-compile))
-
-
-(defun compile-in-project-build-path ()
-  (interactive)
-  (compile
-   (read-from-minibuffer "Cmd: " (format "cd '%s'; %s"
-                                         (compile-commands-json/build-dir read-project-compile-commands
-                                                                          (buffer-file-name))
-                                         project-build-command))))
-
 ;;;
 (defun rtags-local-defs ()
   (message "Using RTags")
   (define-key c-mode-base-map (kbd "M-.") #'rtags-find-symbol-at-point)
   (define-key c-mode-base-map (kbd "M-,") #'rtags-location-stack-back)
+  (define-key c-mode-base-map (kbd "M-?") #'rtags-find-references-at-point)
   ;;
   (my-local-leader-def :keymaps 'c-mode-base-map
     "?" 'rtags-print-symbol-info
@@ -254,15 +154,6 @@
     "t s" 'rtags-find-symbol
     "t r" 'rtags-find-references
     "t R" 'rtags-references-tree
-
-    "f" 'clang-format-dwim
-
-    "b" 'compile-in-project-build-path
-
-    "r" '(:ignore t :which-key "run")
-    "r r" 'run-executable-by-buffer-name
-    "r d" 'debug-executable-by-buffer-name
-    "r b" 'c-c++-rmsbolt-this
     ))
 
 (defun gtags-local-defs ()
@@ -277,15 +168,6 @@
     "g s" 'counsel-gtags-find-symbol
     "g c" 'counsel-gtags-create-tags
     "g u" 'counsel-gtags-update-tags
-
-    "f" 'clang-format-dwim
-
-    "b" 'compile-in-project-build-path
-
-    "r" '(:ignore t :which-key "run")
-    "r r" 'run-executable-by-buffer-name
-    "r d" 'debug-executable-by-buffer-name
-    "r b" 'c-c++-rmsbolt-this
     ))
 
 (defun c-c++-bind-key-map ()
