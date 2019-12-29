@@ -1,12 +1,22 @@
 ;; TODO: clang-format?
 ;; TODO: flycheck + clang-tidy
 
+(defun my-c-c++-rtags+gtags-get-build-dir () (getenv "BUILD_DIR"))
+
 (defun project-rtags? ()
-  (not (null (getenv "BUILD_DIR"))))
+  (not (null (my-c-c++-rtags+gtags-get-build-dir))))
 
 ;;;
 
 (require 'flycheck)
+
+(use-package flycheck-clang-tidy
+  :pin melpa :ensure t
+  :after flycheck
+  :hook
+  (flycheck-mode . flycheck-clang-tidy-setup)
+  )
+
 
 (use-package realgud :ensure t :pin melpa)
 (use-package cmake-mode :ensure t :pin melpa)
@@ -65,6 +75,9 @@
 (add-hook 'c-mode-hook 'my-c-c++-eldoc)
 (add-hook 'c++-mode-hook 'my-c-c++-eldoc)
 
+
+
+
 ;;; flycheck + rtags backend.
 ;; DISABLED -- not working as intended
 ;; (use-package flycheck-rtags :ensure t :pin melpa)
@@ -100,7 +113,8 @@
 (defun my-c-c++-rtags-hook ()
   (require 'company)
   (push 'company-rtags company-backends)
-  (rtags-start-process-unless-running))
+  (rtags-start-process-unless-running)
+  (setq flycheck-clang-tidy-build-path (my-c-c++-rtags+gtags-get-build-dir)))
 
 (defun my-c-c++-gtags-hook ()
   (define-key counsel-gtags-mode-map (kbd "M-t") 'counsel-gtags-find-definition)
