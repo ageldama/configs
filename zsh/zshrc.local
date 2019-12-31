@@ -82,6 +82,10 @@ if [[ -d "$HOME/.nvm" ]]; then
   [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 fi
 
+if [[ -d "$HOME/.cargo" ]]; then
+  export PATH="$HOME/.cargo/bin:$PATH"
+fi
+
 
 
 (type -p dirname >& /dev/null) && eval "$(direnv hook zsh)"
