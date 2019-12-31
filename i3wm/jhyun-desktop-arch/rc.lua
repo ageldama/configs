@@ -315,7 +315,8 @@ globalkeys = gears.table.join(
     end),
 
     awful.key({ modkey,           }, "Tab", function ()
-			awful.spawn('rofi -show window')
+			-- awful.spawn('rofi -show window')
+			awful.spawn('skippy-xd')
     end),
 
 
