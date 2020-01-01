@@ -276,8 +276,9 @@
 ;; highlight symbol under the point after an idle
 (use-package idle-highlight-mode
   :ensure t :pin melpa
-  :config (add-hook 'prog-mode-hook
-                    (lambda () (idle-highlight-mode t))))
+  ;; :config (add-hook 'prog-mode-hook
+  ;;                   (lambda () (idle-highlight-mode t)))
+  )
 
 
 ;;; helpful, discover-my-major
@@ -687,6 +688,8 @@ i.e. change right window to bottom, or change bottom window to right."
   "C-q l" 'display-line-numbers-mode
   "C-q s" 'global-whitespace-mode
   "C-q i" 'highlight-indent-guides-mode
+  "C-q h" 'idle-highlight-mode
+  "C-q z" 'zone
 
   "C-c" '(:ignore t :which-key "capture")
   "C-c RET" 'org-capture
