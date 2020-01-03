@@ -139,7 +139,11 @@
   (package-install 'use-package))
 
 
-(use-package quelpa :ensure t :pin melpa)
+(use-package quelpa :ensure t :pin melpa
+  :config (setq ;; big startup/init speed boosts:
+           quelpa-checkout-melpa-p nil  ; don't use it
+           quelpa-update-melpa-p nil    ; and don't even update it
+           ))
 
 (use-package f :ensure t)
 (use-package s :ensure t)
@@ -422,13 +426,23 @@
 (use-package company :ensure t :pin melpa
   :diminish company-mode
   :config (progn (require 'company)
-		 (global-company-mode t)
-		 (global-set-key (kbd "C-c \\") 'company-complete)
+		 (global-company-mode +1)
+                 ;; (global-set-key (kbd "C-TAB") 'company-complete)
+		 ;; (global-set-key (kbd "C-c \\") 'company-complete)
+                 ;; (global-set-key (kbd "C-c \\") 'counsel-company)
 		 (define-key company-active-map (kbd "RET") 'company-complete-selection)
 		 (define-key company-active-map (kbd "<prior>") 'company-previous-page)
 		 (define-key company-active-map (kbd "<next>") 'company-next-page)
 		 (setq company-tooltip-align-annotations t)
 		 (add-hook 'after-init-hook 'global-company-mode)))
+
+(defmacro bind-company-local-key (hook key)
+  `(add-hook ,hook
+             (lambda () (local-set-key ,key
+                                       'company-complete))))
+
+(bind-company-local-key 'prog-mode-hook (kbd "<C-tab>"))
+(bind-company-local-key 'text-mode-hook (kbd "C-c \\"))
 
 
 ;;; eldoc
