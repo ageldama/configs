@@ -1,11 +1,15 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
+
 (setq inhibit-startup-screen t)
 
+;; Don't forget `M-x esup', profile your `.emacs'.
+(setq gc-cons-threshold (* 1024 1024 500))
 
 
 
+;;;
 (require 'cl)
 
 
