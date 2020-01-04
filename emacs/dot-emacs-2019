@@ -585,7 +585,8 @@ i.e. change right window to bottom, or change bottom window to right."
   (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 (use-package yasnippet-snippets :ensure t :pin melpa
-  :after yasnippet)
+  :after yasnippet
+  :config (yas-reload-all))
 
 ;;; avy
 (use-package avy :ensure t :pin melpa
