@@ -487,6 +487,11 @@
 (setq org-startup-with-inline-images t)
 
 
+;; https://emacs.stackexchange.com/a/45623/20004
+(require 'org-attach)
+(setq org-link-abbrev-alist '(("org-attach" . org-attach-expand-link)))
+
+
 ;;; toc-org -- https://github.com/snosov1/toc-org
 (use-package toc-org :ensure t :pin melpa
   :config
@@ -830,5 +835,8 @@ i.e. change right window to bottom, or change bottom window to right."
   (load-theme 'tango-dark t)
   )
 
+
+;;; Uptime, Startup Time
+(message "Startup time: %s" (emacs-uptime))
 
 ;;; EOF.
