@@ -582,7 +582,9 @@ i.e. change right window to bottom, or change bottom window to right."
 (use-package yasnippet :ensure t :pin melpa
   :diminish yas-minor-mode
   :config ;;(yas-global-mode +1)
-  (add-hook 'prog-mode-hook #'yas-minor-mode))
+  (progn
+    (add-hook 'prog-mode-hook #'yas-minor-mode)
+    (add-hook 'text-mode-hook #'yas-minor-mode)))
 
 (use-package yasnippet-snippets :ensure t :pin melpa
   :after yasnippet

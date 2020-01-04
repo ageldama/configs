@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: inline-image
+# key: inline-image
+# --
+#+CAPTION: $1
+#+NAME:   fig:$0
+[[file:$0]]
