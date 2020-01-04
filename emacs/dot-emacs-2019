@@ -776,9 +776,9 @@ i.e. change right window to bottom, or change bottom window to right."
   "l" 'avy-goto-line
 
   ;; moonshot
-  "x x" 'moonshot:run-executable
-  "x d" 'moonshot:run-debugger
-  "x c" 'moonshot:run-runner
+  "x x" 'moonshot-run-executable
+  "x d" 'moonshot-run-debugger
+  "x c" 'moonshot-run-runner
 
   ;; undo-tree
   "u" 'undo-tree-visualize
