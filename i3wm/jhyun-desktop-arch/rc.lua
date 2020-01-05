@@ -334,6 +334,8 @@ globalkeys = gears.table.join(
               {description = "xkill", group = "launcher"}),
     awful.key({ modkey,           }, "F10", function () awful.spawn('pavucontrol') end,
               {description = "pulseaudio volume control", group = "launcher"}),
+    awful.key({ modkey, "Shift"   }, "F10", function () awful.spawn('pactl-mute.pl sink toggle_default') end,
+              {description = "pulseaudio volume control", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "w", function () awful.spawn('wg.pl') end,
               {description = "wg", group = "launcher"}),
     awful.key({ modkey, "Control" }, "p", function () awful.spawn('gnome-screenshot') end,
