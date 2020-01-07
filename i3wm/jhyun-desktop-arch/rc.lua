@@ -408,6 +408,22 @@ globalkeys = gears.table.join(
               {description = "show the menubar", group = "launcher"})
 )
 
+function add_nums(a, b)
+  return a + b
+end
+
+function make_resize(key, bin_op, delta)
+  return function (c)
+    --[[
+    delta2 = delta
+    if c.size_hints[size_hint_key] then
+      delta2 = c.size_hints[size_hint_key]
+    end
+    --]]
+    c[key] = bin_op(c[key], delta)
+  end
+end
+
 clientkeys = gears.table.join(
     awful.key({ modkey,           }, "f",
         function (c)
@@ -474,42 +490,24 @@ clientkeys = gears.table.join(
         {description = "move window", group = "client"}),
 
     -- Resize window
-    awful.key({ modkey, "Control"   }, "Left",
-        function (c)
-          local inc = 10
-          if c.size_hints.width_inc then
-            inc = c.size_hints.width_inc
-          end
-          c.width = c.width - inc
-        end ,
+    awful.key({ modkey, "Control"   }, "Left", make_resize('width', add_nums, -10),
         {description = "reisze window", group = "client"}),
-    awful.key({ modkey, "Control"   }, "Right",
-        function (c)
-          local inc = 10
-          if c.size_hints.width_inc then
-            inc = c.size_hints.width_inc
-          end
-          c.width = c.width + inc
-        end ,
+    awful.key({ modkey, "Control"   }, "Right", make_resize('width', add_nums, 10),
         {description = "reisze window", group = "client"}),
-    awful.key({ modkey, "Control"   }, "Up",
-        function (c)
-          local inc = 10
-          if c.size_hints.height_inc then
-            inc = c.size_hints.height_inc
-          end
-          c.height = c.height + inc
-        end ,
+    awful.key({ modkey, "Control"   }, "Up", make_resize('height', add_nums, -10),
         {description = "reisze window", group = "client"}),
-    awful.key({ modkey, "Control"   }, "Down",
-        function (c)
-          local inc = 10
-          if c.size_hints.height_inc then
-            inc = c.size_hints.height_inc
-          end
-          c.height = c.height - inc
-        end ,
+    awful.key({ modkey, "Control"   }, "Down", make_resize('height', add_nums, 10),
         {description = "reisze window", group = "client"}),
+
+    awful.key({ modkey, "Shift", "Control"   }, "Left", make_resize('width', add_nums, -100),
+        {description = "reisze window", group = "client"}),
+    awful.key({ modkey, "Shift", "Control"   }, "Right", make_resize('width', add_nums, 100),
+        {description = "reisze window", group = "client"}),
+    awful.key({ modkey, "Shift", "Control"   }, "Up", make_resize('height', add_nums, -100),
+        {description = "reisze window", group = "client"}),
+    awful.key({ modkey, "Shift", "Control"   }, "Down", make_resize('height', add_nums, 100),
+        {description = "reisze window", group = "client"}),
+
 
     awful.key({ modkey }, "F1",
         function (c)
