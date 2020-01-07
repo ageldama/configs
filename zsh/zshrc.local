@@ -88,7 +88,7 @@ fi
 
 
 
-(type -p dirname >& /dev/null) && eval "$(direnv hook zsh)"
+(type -p direnv >& /dev/null) && eval "$(direnv hook zsh)"
 
 
 if [[ -f ~/.zshrc.local2 ]]; then
