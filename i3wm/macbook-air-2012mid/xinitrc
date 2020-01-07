@@ -45,9 +45,9 @@ ibus-daemon -d -x
 #exec gnome-session
 
 
-#~/.dropbox-dist/dropboxd &
+~/.dropbox-dist/dropboxd &
 # TODO dropbox &
-rclone mount dropbox:/ ~/Dropbox &
+# rclone mount dropbox:/ ~/Dropbox &
 
 dbus-update-activation-environment --systemd DISPLAY
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
@@ -76,6 +76,9 @@ xscreensaver -no-splash&
 xss-lock -- xscreensaver-command -lock &
 
 #pulseaudio --start &
+
+pactl-mute.pl source all &
+
 
 # `systemd-journal` group
 #journalctl --no-pager -f --system --user | osd_cat -d 5 -s 3 -O 5 -l 20 -c green -A right -o 200 -f 7x13 &

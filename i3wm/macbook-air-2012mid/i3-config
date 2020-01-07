@@ -150,8 +150,13 @@ bindsym $mod+Escape exec xscreensaver-command -lock
 bindsym $mod+p exec gnome-screenshot
 bindsym Shift+$mod+p exec gnome-screenshot -i
 bindsym $mod+F10 exec sh -c 'pavucontrol'
+bindsym Shift+$mod+F10 exec sh -c 'pactl-mute.pl sink toggle_default'
+bindsym $mod+F9 exec sh -c 'xscreensaver-toggle.pl'
 
 bindsym XF86AudioMute exec pamixer -t
+
+#bindsym Shift+$mod+w exec ~/local/bin/wg.sh
+
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
