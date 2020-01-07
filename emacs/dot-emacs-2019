@@ -5,7 +5,12 @@
 (setq inhibit-startup-screen t)
 
 ;; Don't forget `M-x esup', profile your `.emacs'.
-(setq gc-cons-threshold (* 1024 1024 500))
+(setq gc-cons-threshold
+      (if (> (car (memory-info))
+             (* 1024 1024 8))
+          (* 1024 1024 500) ; 500 MiB
+        ;; or, 100 MiB
+        (* 1024 1024)))
 
 (defvar *my-gc-timer* nil)
 
