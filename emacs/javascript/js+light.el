@@ -13,3 +13,6 @@
 
 (add-hook 'js-mode-hook 'prettier-js-mode)
 (add-hook 'web-mode-hook 'prettier-js-mode)
+
+
+(use-package json-mode :ensure t :pin melpa)
