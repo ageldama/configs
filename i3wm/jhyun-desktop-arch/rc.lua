@@ -338,7 +338,7 @@ globalkeys = gears.table.join(
               {description = "pulseaudio volume control", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "F10", function () awful.spawn('pactl-mute.pl sink toggle_default') end,
               {description = "toggle mute default pulseaudio sink", group = "launcher"}),
-    awful.key({ modkey, "Shift"   }, "w", function () awful.spawn('hsetroot-grads.pl') end,
+    awful.key({ modkey, "Shift"   }, "w", function () awful.spawn('hsetroot-solid.pl') end,
               {description = "wg", group = "launcher"}),
     awful.key({ modkey, "Control" }, "p", function () awful.spawn('gnome-screenshot') end,
               {description = "screenshot", group = "launcher"}),
@@ -709,7 +709,7 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 
 beautiful.font = 'sans 10'
 beautiful.notification_font = 'sans 24'
-awful.spawn('hsetroot-grads.pl')
+awful.spawn('hsetroot-solid.pl')
 -- awful.spawn('caps-to-ctrl.sh')
 
 
