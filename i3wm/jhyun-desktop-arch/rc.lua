@@ -420,13 +420,11 @@ end
 
 function make_resize(key, bin_op, delta)
   return function (c)
-    --[[
     delta2 = delta
     if c.size_hints[size_hint_key] then
       delta2 = c.size_hints[size_hint_key]
     end
-    --]]
-    c[key] = bin_op(c[key], delta)
+    c[key] = bin_op(c[key], delta2)
   end
 end
 
@@ -496,13 +494,13 @@ clientkeys = gears.table.join(
         {description = "move window", group = "client"}),
 
     -- Resize window
-    awful.key({ modkey, "Control"   }, "Left", make_resize('width', add_nums, -10),
+    awful.key({ modkey, "Control"   }, "Left", make_resize('width', add_nums, -20),
         {description = "reisze window", group = "client"}),
-    awful.key({ modkey, "Control"   }, "Right", make_resize('width', add_nums, 10),
+    awful.key({ modkey, "Control"   }, "Right", make_resize('width', add_nums, 20),
         {description = "reisze window", group = "client"}),
-    awful.key({ modkey, "Control"   }, "Up", make_resize('height', add_nums, -10),
+    awful.key({ modkey, "Control"   }, "Up", make_resize('height', add_nums, -20),
         {description = "reisze window", group = "client"}),
-    awful.key({ modkey, "Control"   }, "Down", make_resize('height', add_nums, 10),
+    awful.key({ modkey, "Control"   }, "Down", make_resize('height', add_nums, 20),
         {description = "reisze window", group = "client"}),
 
     awful.key({ modkey, "Shift", "Control"   }, "Left", make_resize('width', add_nums, -100),
