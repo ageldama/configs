@@ -710,6 +710,6 @@ client.connect_signal("unfocus", function(c) c.border_color = beautiful.border_n
 beautiful.font = 'sans 10'
 beautiful.notification_font = 'sans 24'
 awful.spawn('hsetroot-solid.pl')
--- awful.spawn('caps-to-ctrl.sh')
+awful.spawn('caps-to-ctrl.sh')
 
 
