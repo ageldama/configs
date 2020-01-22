@@ -320,6 +320,14 @@ globalkeys = gears.table.join(
       end
     end),
 
+    awful.key({ modkey, "Shift"   }, "z", function ()
+      -- awful.client.focus.history.previous()
+      awful.client.focus.byidx(1)
+      if client.focus then
+        client.focus:raise()
+      end
+    end),
+
     awful.key({ modkey,           }, "Tab", function ()
 			-- awful.spawn('rofi -show window')
 			awful.spawn('skippy-xd')
