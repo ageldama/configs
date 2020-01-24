@@ -47,14 +47,30 @@
                               (error "File not found: %s" fn))))
           (json-read-file fn)))))
 
+(defun compile-commands-json-build-path-env ()
+  (interactive)
+  (getenv "BUILD_DIR"))
+
+(defun read-compile-commands-build-path-env ()
+  (let* ((dir (compile-commands-json-build-path-env))
+         (dir-check?     (assert dir "Set `BUILD_DIR' env-var!"))
+         (fn (f-join dir "compile_commands.json"))
+         (file-check? (unless (f-exists? fn)
+                              (error "File not found: %s" fn))))
+    ;;(message "fn = %s" fn)
+    (json-read-file fn)))
+
 (defun read-compile-commands-rtags ()
   (with-temp-buffer
     (rtags-call-rc "--dump-compile-commands")
     (json-read-from-string (buffer-string))))
 
+(defcustom read-compile-commands #'read-compile-commands-build-path-env
+  "TODO")
+
 (defun read-compile-commands-resolved-by-rtags ()
   (let* ((row  (compile-commands-json/matching-row
-                                     #'read-compile-commands-rtags (buffer-file-name)))
+                                     #'read-compile-commands (buffer-file-name)))
          (dir (alist-get 'directory row))
          (fn (f-join dir "compile_commands.json"))
          (file-check? (unless (f-exists? fn)
@@ -127,7 +143,7 @@ directory listing."
 (defun compile-commands-json/matching-row (read-compile-commands-fun file-name)
   (let ((rows (compile-commands-json/%matching-row read-compile-commands-fun file-name)))
     (if (null rows)
-        (seq-elt (funcall #'read-compile-commands-rtags) 0) ;; fallback
+        (seq-elt (funcall #'read-compile-commands) 0) ;; fallback
       rows)))
 
 (defun compile-commands-json/compile-command (read-compile-commands-fun file-name)

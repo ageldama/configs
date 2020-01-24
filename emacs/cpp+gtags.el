@@ -18,7 +18,7 @@
   :hook
   (flycheck-mode . flycheck-clang-tidy-setup)
   :config
-  ;;(flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clang)
+  (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-clang)
   (flycheck-add-next-checker 'c/c++-clang-tidy 'c/c++-gcc)
   )
 
@@ -31,26 +31,21 @@
 
 (load-library (f-join langsup-base-path "compile-commands-json"))
 
-(defcustom read-project-compile-commands #'read-compile-commands-resolved-by-rtags
-  "compile-commands reader function"
-  :type 'function)
-
 ;;; flycheck gcc/clang fixes
-(defun flycheck-c/c++-clang-and-gcc-setup ()
+(defun flycheck-c/c++-setup ()
   (interactive)
-  ;; FIXME: no rtags
-  (let ((inc-dirs  (compile-commands-json/include-dirs read-project-compile-commands)))
-     ;;(message "Include-Dirs: %S" inc-dirs)
+  (let ((inc-dirs  (compile-commands-json/include-dirs  read-compile-commands)))
+     (message "Include-Dirs: %S" inc-dirs)
      (setq-local flycheck-clang-include-path inc-dirs)
-     (setq-local flycheck-gcc-include-path inc-dirs)))
-
-(add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
-
-(defun my-hack-local-vars-mode-hook ()
-  "Run a hook for the major-mode after the local variables have been processed."
-  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
+     (setq-local flycheck-gcc-include-path inc-dirs)
+     (setq-local flycheck-clang-tidy-build-path
+                 (compile-commands-json-build-path-env)))
+  (flycheck-buffer))
 
 
+
+
+;;;
 (defun my-c-c++-gtags-hook ()
   (define-key counsel-gtags-mode-map (kbd "M-t") 'counsel-gtags-find-definition)
   (define-key counsel-gtags-mode-map (kbd "M-r") 'counsel-gtags-find-reference)
@@ -64,10 +59,17 @@
 (defun my-c-c++-mode-hook ()
   (interactive)
   (my-c-c++-gtags-hook)
-  (flycheck-c/c++-clang-and-gcc-setup)
+  ;;(flycheck-c/c++-setup)
+  (run-with-timer 0.5 nil #'flycheck-c/c++-setup)
   (flycheck-mode)
   ;;
   (c-c++-bind-key-map))
+
+(add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
+
+(defun my-hack-local-vars-mode-hook ()
+  "Run a hook for the major-mode after the local variables have been processed."
+  (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
 
 (add-hook 'c-mode-local-vars-hook 'my-c-c++-mode-hook)
 (add-hook 'c++-mode-local-vars-hook 'my-c-c++-mode-hook)
@@ -85,6 +87,7 @@
     "g s" 'counsel-gtags-find-symbol
     "g c" 'counsel-gtags-create-tags
     "g u" 'counsel-gtags-update-tags
+    "g !" 'flycheck-c/c++-setup
     ))
 
 (defun c-c++-bind-key-map ()
