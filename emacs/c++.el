@@ -72,11 +72,7 @@
 
 
 (add-hook 'irony-mode-hook (lambda ()
-                             (irony-cdb-autosetup-compile-options)
-                             (irony-cdb-json-add-compile-commands-path
-                              (projectile-project-root)
-                              (s-concat (getenv "BUILD_DIR")
-                                        "/compile_commands.json"))
+                             ;;(irony-cdb-autosetup-compile-options)
                              (irony-eldoc +1)
                              (company-mode +1)))
 
@@ -94,6 +90,14 @@
     (setq-local flycheck-gcc-include-path inc-dirs)
     (setq-local flycheck-clang-tidy-build-path
                 (my-c-c++-build-dir)))
+  (let ((proj (projectile-project-root))
+        (bld (s-concat (my-c-c++-build-dir)
+                       "/compile_commands.json")))
+    (message "proj-dir=%s / build-dir=%s" proj bld)
+    (irony-cdb-json-add-compile-commands-path proj bld))
+  ;; irony
+  (irony-mode +1)
+  ;;
   (setq-local my-c-c++-touched t)
   (ignore-errors
     (flycheck-buffer)))
@@ -123,8 +127,6 @@
   (c-c++-bind-key-map)
   ;; rmsbolt
   (setq-local rmsbolt-default-directory (my-c-c++-build-dir))
-  ;; irony
-  (irony-mode +1)
   )
 
 
