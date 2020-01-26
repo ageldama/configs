@@ -827,7 +827,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (perl5 . "perl5.el")
              (golang . "golang.el")
              (rust+racer . "rust+racer.el")
-             (cpp+gtags . "cpp+gtags.el")
+             (c++ . "c++.el")
              (geiser . "geiser.el")
              (auctex . "auctex.el")
              (tcl . "tcl.el")
