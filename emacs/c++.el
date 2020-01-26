@@ -32,7 +32,6 @@
   )
 
 ;;; RTags
-
 (use-package rtags :ensure t :pin melpa
   :config
   (progn (setq rtags-autostart-diagnostics nil)
@@ -53,7 +52,6 @@
 
 
 ;;; RTags + ElDoc
-
 
 ;;; eldoc
 (use-package eldoc :ensure t :pin melpa :diminish eldoc-mode)
@@ -88,6 +86,28 @@
   (eldoc-mode 1))
 
 
+
+
+;;; RMSBolt
+(use-package rmsbolt :ensure t :pin melpa)
+
+(load-library (f-join langsup-base-path "compile-commands-json"))
+
+
+(defun c-c++-rmsbolt-this-or-off ()
+  (interactive)
+  (if rmsbolt-mode
+      ;; then, turn-off
+      (rmsbolt-mode -1)
+    ;; else
+    (progn
+      (setq-local rmsbolt-command
+                  (compile-commands-json/rmsbolt-command
+                   (make-read-compile-commands-in-dir (my-c-c++-build-dir))
+                   (buffer-file-name)))
+      ;;
+      (rmsbolt-mode)
+      (rmsbolt-compile))))
 
 
 
@@ -139,8 +159,11 @@
   (unless my-c-c++-touched
     (run-with-timer 0.5 nil #'flycheck-c/c++-setup))
   (flycheck-mode)
-  ;;
-  (c-c++-bind-key-map))
+  ;; keys
+  (c-c++-bind-key-map)
+  ;; rmsbolt
+  (setq-local rmsbolt-default-directory (my-c-c++-build-dir))
+  )
 
 
 (defun my-c-c++-mode-reset ()
@@ -172,6 +195,7 @@
   (message "Using GNU Global")
   (my-local-leader-def :keymaps 'c-mode-base-map
     "` !" 'my-c-c++-mode-reset
+    "` b" 'c-c++-rmsbolt-this-or-off
     
     "," 'counsel-gtags-go-backward
     "." 'counsel-gtags-dwim
@@ -193,6 +217,8 @@
   ;;
   (my-local-leader-def :keymaps 'c-mode-base-map
     "` !" 'my-c-c++-mode-reset
+    "` b" 'c-c++-rmsbolt-this-or-off
+    
     "?" 'rtags-print-symbol-info
     "." 'rtags-find-symbol-at-point
     "," 'rtags-location-stack-back
