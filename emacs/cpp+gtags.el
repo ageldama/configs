@@ -3,6 +3,7 @@
 (defun parse-compile-commands-json-inc-dirs (dir)
   (let* ((fn (s-concat dir "/compile_commands.json"))
          (inc-dirs
+          ;; https://github.com/ageldama/go-parse-compile-cmds
           (shell-command-to-string (s-concat "go-parse-compile-cmds " fn))))
     (mapcar (lambda (s) (if (s-prefix? "/" s) s
                           (s-concat dir "/" s)))
