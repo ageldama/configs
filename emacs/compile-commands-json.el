@@ -38,6 +38,12 @@
 (require 'f)
 (use-package ht :ensure t)
 
+;; TODO: "config/include" --> PREFIXING with BUILD_DIR when its an UNIX.
+
+;; TODO: make it fast:
+;; (compile-commands-json/include-dirs
+;;  (lambda () (json-read-file "/home/jhyun/P/build-dcmtk/compile_commands.json")))
+
 ;;; Code:
 (defun make-read-compile-commands-in-dir (dir)
   (lexical-let ((dir-name dir))

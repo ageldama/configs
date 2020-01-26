@@ -1,4 +1,12 @@
-;; DEPRECATED (defun my-c-c++-build-dir () (getenv "BUILD_DIR"))
+(defun my-c-c++-build-dir () (getenv "BUILD_DIR"))
+
+(defun parse-compile-commands-json-inc-dirs (dir)
+  (let* ((fn (s-concat dir "/compile_commands.json"))
+         (inc-dirs
+          (shell-command-to-string (s-concat "go-parse-compile-cmds " fn))))
+    (mapcar (lambda (s) (if (s-prefix? "/" s) s
+                          (s-concat dir "/" s)))
+            (s-split "\n" inc-dirs))))
 
 ;;; Debugger, CMake, Modern-CPP
 
@@ -27,21 +35,21 @@
 (use-package counsel-gtags :ensure t :pin melpa)
 
 
-;;; flycheck + rtags backend.
-
-(load-library (f-join langsup-base-path "compile-commands-json"))
-
 ;;; flycheck gcc/clang fixes
+(defvar my-c-c++-touched nil)
+
 (defun flycheck-c/c++-setup ()
   (interactive)
-  (let ((inc-dirs  (compile-commands-json/include-dirs  read-compile-commands)))
-     (message "Include-Dirs: %S" inc-dirs)
-     (setq-local flycheck-clang-include-path inc-dirs)
-     (setq-local flycheck-gcc-include-path inc-dirs)
-     (setq-local flycheck-clang-tidy-build-path
-                 (compile-commands-json-build-path-env)))
-  (flycheck-buffer))
-
+  (let ((inc-dirs  (parse-compile-commands-json-inc-dirs
+                    (my-c-c++-build-dir))))
+    (message "Include-Dirs: %S" inc-dirs)
+    (setq-local flycheck-clang-include-path inc-dirs)
+    (setq-local flycheck-gcc-include-path inc-dirs)
+    (setq-local flycheck-clang-tidy-build-path
+                (my-c-c++-build-dir)))
+  (setq-local my-c-c++-touched t)
+  (ignore-errors
+    (flycheck-buffer)))
 
 
 
@@ -59,8 +67,8 @@
 (defun my-c-c++-mode-hook ()
   (interactive)
   (my-c-c++-gtags-hook)
-  ;;(flycheck-c/c++-setup)
-  (run-with-timer 0.5 nil #'flycheck-c/c++-setup)
+  (unless my-c-c++-touched
+    (run-with-timer 0.5 nil #'flycheck-c/c++-setup))
   (flycheck-mode)
   ;;
   (c-c++-bind-key-map))
