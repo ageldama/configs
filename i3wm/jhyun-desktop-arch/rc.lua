@@ -318,7 +318,8 @@ globalkeys = gears.table.join(
       if client.focus then
         client.focus:raise()
       end
-    end),
+    end,
+    {description = "next client", group="client"}),
 
     awful.key({ modkey, "Shift"   }, "z", function ()
       -- awful.client.focus.history.previous()
@@ -326,12 +327,14 @@ globalkeys = gears.table.join(
       if client.focus then
         client.focus:raise()
       end
-    end),
+    end,
+    {description = "prev client", group="client"}),
 
     awful.key({ modkey,           }, "Tab", function ()
 			-- awful.spawn('rofi -show window')
 			awful.spawn('skippy-xd')
-    end),
+    end,
+    {description = "skippy-xd", group="client"}),
 
 
 
@@ -480,22 +483,22 @@ clientkeys = gears.table.join(
         {description = "(un)maximize horizontally", group = "client"}),
 
     -- Move window
-    awful.key({ modkey, "Shift"   }, "Left",
+    awful.key({ modkey, "Mod1"   }, "Left",
         function (c)
             c.x = c.x - 10
         end ,
         {description = "move window", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "Right",
+    awful.key({ modkey, "Mod1"   }, "Right",
         function (c)
             c.x = c.x + 10
         end ,
         {description = "move window", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "Up",
+    awful.key({ modkey, "Mod1"   }, "Up",
         function (c)
             c.y = c.y - 10
         end ,
         {description = "move window", group = "client"}),
-    awful.key({ modkey, "Shift"   }, "Down",
+    awful.key({ modkey, "Mod1"   }, "Down",
         function (c)
             c.y = c.y + 10
         end ,
@@ -520,7 +523,36 @@ clientkeys = gears.table.join(
     awful.key({ modkey, "Shift", "Control"   }, "Down", make_resize('height', add_nums, 100),
         {description = "reisze window", group = "client"}),
 
+		-- move client to prev/next tag and switch to it
+		awful.key({ modkey, "Shift" }, "Left",
+				function ()
+						-- get current tag
+						local t = client.focus and client.focus.first_tag or nil
+						if t == nil then
+								return
+						end
+						-- get previous tag (modulo 9 excluding 0 to wrap from 1 to 9)
+						local tag = client.focus.screen.tags[(t.name - 2) % 9 + 1]
+						awful.client.movetotag(tag)
+						awful.tag.viewprev()
+				end,
+						{description = "move client to previous tag and switch to it", group = "layout"}),
+		awful.key({ modkey, "Shift" }, "Right",
+				function ()
+						-- get current tag
+						local t = client.focus and client.focus.first_tag or nil
+						if t == nil then
+								return
+						end
+						-- get next tag (modulo 9 excluding 0 to wrap from 9 to 1)
+						local tag = client.focus.screen.tags[(t.name % 9) + 1]
+						awful.client.movetotag(tag)
+						awful.tag.viewnext()
+				end,
+						{description = "move client to next tag and switch to it", group = "layout"}),
 
+
+    --
     awful.key({ modkey }, "F1",
         function (c)
           awful.spawn('bash -c \'notify-send "<span font=\\"24\\">$(uptime -p) // $(date)</span>"\'')
