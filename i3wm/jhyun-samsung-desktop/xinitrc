@@ -35,6 +35,7 @@ pactl-mute.pl source all &
 
 dunst &
 redshift-gtk &
+tint2 &
 
 sxhkd &
 
