@@ -27,9 +27,13 @@ pulseaudio --start &
 
 ~/local/bin/caps-to-ctrl.sh 2s &
 
-#nm-applet &
+pactl-mute.pl source all &
 
+dunst &
 redshift-gtk &
+
+sxhkd &
+
 
 exec openbox
 

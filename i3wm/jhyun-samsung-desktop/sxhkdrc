@@ -1,0 +1,20 @@
+super + d
+  rofi -show
+
+super + shift + w
+  wg.pl
+
+super + Return
+  alacritty
+
+super + p
+  gnome-screenshot
+
+super + shift + p
+  gnome-screenshot -i
+
+super + Escape
+  xscreensaver-command -lock
+
+super + F10
+  pavucontrol
