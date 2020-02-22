@@ -187,26 +187,31 @@
 ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
 ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
 
+(defcustom *ageldama/set-font-fixed?* t "...")
+(defcustom *ageldama/font-fixed-en* "Hack" "eng")
+(defcustom *ageldama/font-fixed-ko* "Noto Serif Mono CJK KR" "kor")
+
 (defun my-set-fixed-fonts ()
   (interactive)
-  (let ((en-fn
-         "Hack"
-	 )
-        (ko-fn
-         "Noto Serif Mono CJK KR"
-         ))
-    ;; default Latin font (e.g. Consolas)
-    (set-frame-font en-fn t)
-    (set-face-attribute 'default nil :family en-fn)
-    ;; default font size (point * 10)
-    ;; NOTE depending on the default font,
-    ;; if the size is not supported very well, the frame will be clipped
-    ;; thus the beginning of the buffer may not be visible correctly.
-    (set-face-attribute 'default nil :height 130)
-    ;; use specific font for Korean charset.
-    ;; if you want to use different font size for specific charset,
-    ;; add :size `POINT-SIZE' in the font-spec.
-    (set-fontset-font t 'hangul (font-spec :name ko-fn))))
+  (when *ageldama/set-font-fixed?*
+    (let ((en-fn
+           *ageldama/font-fixed-en*
+           )
+          (ko-fn
+           *ageldama/font-fixed-ko*
+           ))
+      ;; default Latin font (e.g. Consolas)
+      (set-frame-font en-fn t)
+      (set-face-attribute 'default nil :family en-fn)
+      ;; default font size (point * 10)
+      ;; NOTE depending on the default font,
+      ;; if the size is not supported very well, the frame will be clipped
+      ;; thus the beginning of the buffer may not be visible correctly.
+      (set-face-attribute 'default nil :height 130)
+      ;; use specific font for Korean charset.
+      ;; if you want to use different font size for specific charset,
+      ;; add :size `POINT-SIZE' in the font-spec.
+      (set-fontset-font t 'hangul (font-spec :name ko-fn)))))
 
 (defun my-set-variable-fonts ()
   (interactive)
@@ -670,7 +675,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; moonshot
-(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
+;;(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
+(use-package moonshot :ensure t :pin melpa)
 (require 'moonshot)
 
 ;; (global-set-key (kbd "C-c x x") 'moonshot:run-executable)
@@ -839,7 +845,9 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; Themes
-(when +sys/gui?+
+(defcustom *ageldama/set-theme?* t "...")
+
+(when (and +sys/gui?+ *ageldama/set-theme?*)
   (load-theme 'tango-dark t)
   )
 

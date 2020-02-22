@@ -18,6 +18,8 @@ export SSH_AUTH_SOCK
 # "xev" first.
 xmodmap -e 'keycode 108 = Hangul'
 
+# no beep
+xset -b &
 
 xscreensaver -no-splash &
 xautolock -time 5 -locker 'xscreensaver-command -lock' &
