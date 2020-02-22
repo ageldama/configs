@@ -1,14 +1,14 @@
 super + d
   rofi -show
 
-super + shift + w
-  wg.pl
-
 super + Return
   alacritty
 
 super + p
   gnome-screenshot
+
+super + shift + w
+  hsetroot-solid.pl
 
 super + shift + p
   gnome-screenshot -i

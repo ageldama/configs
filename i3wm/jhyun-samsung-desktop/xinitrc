@@ -38,6 +38,7 @@ redshift-gtk &
 
 sxhkd &
 
+hsetroot-solid.pl &
 
 exec openbox
 
