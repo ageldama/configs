@@ -24,7 +24,9 @@ xset -b &
 xscreensaver -no-splash &
 xautolock -time 5 -locker 'xscreensaver-command -lock' &
 
-pulseaudio --start &
+# Use `systemctl start --user pulseaudio` instead
+# SEE: https://medium.com/@gamunu/enable-high-quality-audio-on-linux-6f16f3fe7e1f
+# pulseaudio --start &
 
 
 ~/local/bin/caps-to-ctrl.sh 2s &
