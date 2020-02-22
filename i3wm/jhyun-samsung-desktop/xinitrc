@@ -1,0 +1,37 @@
+#!/bin/sh
+
+export PATH=$PATH:$HOME/local/bin
+
+export TERMINAL=lxterminal
+
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
+
+ibus-daemon -d -x
+
+eval $(gnome-keyring-daemon --start)
+export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
+export SSH_AGENT_PID=$GNOME_KEYRING_PID
+
+
+# "xev" first.
+xmodmap -e 'keycode 108 = Hangul'
+
+
+xscreensaver -no-splash &
+xautolock -time 5 -locker 'xscreensaver-command -lock' &
+
+pulseaudio --start &
+
+
+~/local/bin/caps-to-ctrl.sh 2s &
+
+#nm-applet &
+
+redshift-gtk &
+
+exec openbox
+
+
+###EOF
