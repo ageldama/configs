@@ -111,17 +111,18 @@ blueman-applet &
 
 #~/local/bin/wg.pl &
 
-#sxhkd &
-#tint2 &
-#exec openbox
 
 #xrandr --output DVI-I-1 --right-of DVI-D-0
 #xrandr --output DVI-D-0 --right-of HDMI-0
 #xrandr --output DVI-I-1 --left-of DVI-D-0 --mode 1920x1080
 xrandr --output DVI-D-0 --off
 
+dunst &
+sxhkd &
+tint2 &
+exec openbox
 
-exec awesome
+#exec awesome
 #exec i3
 
 

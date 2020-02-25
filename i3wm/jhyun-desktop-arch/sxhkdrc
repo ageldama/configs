@@ -1,0 +1,23 @@
+super + d
+  rofi -show
+
+super + Return
+  alacritty
+
+super + p
+  gnome-screenshot
+
+super + shift + w
+  hsetroot-solid.pl
+
+super + shift + p
+  gnome-screenshot -i
+
+super + Escape
+  xscreensaver-command -lock
+
+super + shift + F1
+  notify-send "$(uptime -p) // $(date)"
+
+super + shift + F10
+  pavucontrol
