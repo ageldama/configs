@@ -346,6 +346,12 @@
     </keybind>
     -->
     <!-- Keybindings for windows -->
+    <keybind key="W-F1">
+      <action name="ToggleShade"/>
+    </keybind>
+    <keybind key="W-F2">
+      <action name="Iconify"/>
+    </keybind>
     <keybind key="W-F4">
       <action name="Close"/>
     </keybind>
