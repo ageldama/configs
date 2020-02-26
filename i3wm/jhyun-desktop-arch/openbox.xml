@@ -416,18 +416,18 @@
         <direction>down</direction>
       </action>
     </keybind>
-    <keybind key="W-f">
+    <keybind key="W-S-f">
       <action name="ToggleFullscreen"/>
     </keybind>
-    <keybind key="W-x">
+    <keybind key="W-S-x">
       <action name="ToggleMaximize"/>
     </keybind>
-    <keybind key="W-z">
+    <keybind key="W-S-z">
       <action name="ToggleMaximize">
         <direction>vertical</direction>
       </action>
     </keybind>
-    <keybind key="W-c">
+    <keybind key="W-S-c">
       <action name="ToggleMaximize">
         <direction>horizontal</direction>
       </action>
