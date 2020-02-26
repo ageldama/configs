@@ -16,8 +16,8 @@ super + shift + p
 super + Escape
   xscreensaver-command -lock
 
-super + shift + F1
+super + F1
   notify-send "$(uptime -p) // $(date)"
 
-super + shift + F10
+super + F10
   pavucontrol

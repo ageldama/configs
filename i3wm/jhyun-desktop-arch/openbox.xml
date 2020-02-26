@@ -346,16 +346,16 @@
     </keybind>
     -->
     <!-- Keybindings for windows -->
-    <keybind key="W-F1">
+    <keybind key="W-S-Up">
       <action name="ToggleShade"/>
     </keybind>
-    <keybind key="W-F2">
+    <keybind key="W-S-Down">
       <action name="Iconify"/>
     </keybind>
-    <keybind key="W-F4">
+    <keybind key="W-S-Q">
       <action name="Close"/>
     </keybind>
-    <keybind key="A-Escape">
+    <keybind key="W-S-space">
       <action name="Lower"/>
       <action name="FocusToBottom"/>
       <action name="Unfocus"/>
@@ -384,7 +384,7 @@
         </finalactions>
       </action>
     </keybind>
-    <keybind key="W-S-Tab">
+    <keybind key="W-C-Tab">
       <action name="NextWindow">
         <panels>yes</panels>
         <desktop>yes</desktop>
@@ -416,18 +416,18 @@
         <direction>down</direction>
       </action>
     </keybind>
-    <keybind key="W-F11">
+    <keybind key="W-f">
       <action name="ToggleFullscreen"/>
     </keybind>
-    <keybind key="W-F10">
+    <keybind key="W-x">
       <action name="ToggleMaximize"/>
     </keybind>
-    <keybind key="C-W-F10">
+    <keybind key="W-z">
       <action name="ToggleMaximize">
         <direction>vertical</direction>
       </action>
     </keybind>
-    <keybind key="A-W-F10">
+    <keybind key="W-c">
       <action name="ToggleMaximize">
         <direction>horizontal</direction>
       </action>
