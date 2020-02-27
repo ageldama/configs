@@ -674,6 +674,12 @@ i.e. change right window to bottom, or change bottom window to right."
  (direnv-use-faces-in-summary t))
 
 
+(use-package editorconfig
+  :ensure t :pin melpa
+  :config
+  (editorconfig-mode 1))
+
+
 ;;; moonshot
 ;;(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
 (use-package moonshot :ensure t :pin melpa)
