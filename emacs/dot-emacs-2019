@@ -676,6 +676,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (use-package editorconfig
   :ensure t :pin melpa
+  :diminish
   :config
   (editorconfig-mode 1))
 
