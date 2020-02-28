@@ -855,7 +855,9 @@ i.e. change right window to bottom, or change bottom window to right."
 (defcustom *ageldama/set-theme?* t "...")
 
 (when (and +sys/gui?+ *ageldama/set-theme?*)
-  (load-theme 'tango-dark t)
+  ;;(load-theme 'tango-dark t)
+  (use-package zenburn-theme :pin melpa :ensure t
+    :config (load-theme 'zenburn t t))
   )
 
 
