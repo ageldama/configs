@@ -355,18 +355,13 @@
     <keybind key="W-S-Q">
       <action name="Close"/>
     </keybind>
-    <keybind key="W-S-space">
-      <action name="Lower"/>
-      <action name="FocusToBottom"/>
-      <action name="Unfocus"/>
-    </keybind>
-    <keybind key="W-space">
+    <keybind key="W-F2">
       <action name="ShowMenu">
         <menu>client-menu</menu>
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
-    <keybind key="W-Z">
+    <keybind key="W-z">
       <action name="NextWindow">
         <finalactions>
           <action name="Focus"/>
@@ -375,25 +370,7 @@
         </finalactions>
       </action>
     </keybind>
-    <keybind key="W-Tab">
-      <action name="NextWindow">
-        <finalactions>
-          <action name="Focus"/>
-          <action name="Raise"/>
-          <action name="Unshade"/>
-        </finalactions>
-      </action>
-    </keybind>
-    <keybind key="W-S-Tab">
-      <action name="PreviousWindow">
-        <finalactions>
-          <action name="Focus"/>
-          <action name="Raise"/>
-          <action name="Unshade"/>
-        </finalactions>
-      </action>
-    </keybind>
-    <keybind key="W-C-Tab">
+    <keybind key="W-S-z">
       <action name="NextWindow">
         <panels>yes</panels>
         <desktop>yes</desktop>
@@ -404,6 +381,7 @@
         </finalactions>
       </action>
     </keybind>
+    <!-- TODO: W- Space, Tab -->
     <!-- Keybindings for window switching with the arrow keys -->
     <keybind key="C-W-Right">
       <action name="DirectionalCycleWindows">
