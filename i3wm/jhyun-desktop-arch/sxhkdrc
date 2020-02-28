@@ -21,3 +21,10 @@ super + F1
 
 super + F10
   pavucontrol
+
+super + shift + F10
+  pactl-mute.pl sink toggle_default
+
+super + shift + F9
+  xscreensaver-toggle.pl
+
