@@ -370,6 +370,7 @@
         </finalactions>
       </action>
     </keybind>
+    <!--
     <keybind key="W-S-z">
       <action name="NextWindow">
         <panels>yes</panels>
@@ -381,6 +382,7 @@
         </finalactions>
       </action>
     </keybind>
+    -->
     <!-- TODO: W- Space, Tab -->
     <!-- Keybindings for window switching with the arrow keys -->
     <keybind key="C-W-Right">
