@@ -293,6 +293,9 @@
     <keybind key="S-W-1">
       <action name="SendToDesktop">
         <to>1</to>
+        <!--
+        <follow>false</follow>
+        -->
       </action>
     </keybind>
     <keybind key="S-W-2">
