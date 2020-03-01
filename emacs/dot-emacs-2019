@@ -189,7 +189,7 @@
 
 (defcustom *ageldama/set-font-fixed?* t "...")
 (defcustom *ageldama/font-fixed-en* "DejaVu Sans Mono" "eng")
-(defcustom *ageldama/font-fixed-ko* "Noto Serif Mono CJK KR" "kor")
+(defcustom *ageldama/font-fixed-ko* "KoPub바탕체" "kor")
 
 (defun my-set-fixed-fonts ()
   (interactive)
