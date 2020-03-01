@@ -33,6 +33,8 @@ xautolock -time 5 -locker 'xscreensaver-command -lock' &
 
 pactl-mute.pl source all &
 
+dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
+
 dunst &
 redshift-gtk &
 tint2 &
