@@ -117,6 +117,8 @@ blueman-applet &
 #xrandr --output DVI-I-1 --left-of DVI-D-0 --mode 1920x1080
 xrandr --output DVI-D-0 --off
 
+dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
+
 dunst &
 sxhkd &
 tint2 &
