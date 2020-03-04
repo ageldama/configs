@@ -465,6 +465,13 @@
       </action>
     </keybind>
     -->
+
+    <keybind key="W-o">
+      <action name="MoveResizeTo">
+        <!-- move to next monitor -->
+        <monitor>next</monitor>
+      </action>
+    </keybind>
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>
