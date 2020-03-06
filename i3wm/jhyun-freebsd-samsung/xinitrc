@@ -1,0 +1,39 @@
+#!/bin/sh
+
+export TERMINAL=alacritty
+
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
+
+ibus-daemon -d -x
+
+
+dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+
+
+xset b off
+xset s on
+xset s 300
+
+xscreensaver -no-splash &
+
+redshift -l 37.566:126.977 & # Seoul
+
+compton -b &
+
+
+~/local/bin/caps-to-ctrl.sh 2 &
+
+
+dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${$}.log &
+
+dunst &
+sxhkd &
+tint2 &
+exec openbox
+
+
+###EOF
