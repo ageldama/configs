@@ -6,7 +6,7 @@
 
 ;; Don't forget `M-x esup', profile your `.emacs'.
 (setq gc-cons-threshold
-      (if (> (car (memory-info))
+      (if (< (or (car (memory-info)) 9999999999999999)
              (* 1024 1024 8))
           (* 1024 1024 500) ; 500 MiB
         ;; or, 100 MiB
