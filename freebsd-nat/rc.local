@@ -1,0 +1,3 @@
+echo
+service pf check
+service pf start
