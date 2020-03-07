@@ -1,3 +1,15 @@
+# /etc/pulse/daemon.conf:
+
+resample-method = src-sinc-best-quality
+default-sample-format = float32le
+alternate-sample-rate = 96000
+
+
+
+
+
+
+
 Improve sound quality by PulseAudio Configuration
 https://pacesettergraam.wordpress.com/2016/02/19/improve-sound-quality-by-pulseaudio-configuration/
 

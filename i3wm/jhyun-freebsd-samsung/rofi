@@ -1,0 +1,8 @@
+# ~/.config/rofi/config
+rofi.combi-modi:    window,drun,run,ssh
+rofi.theme:         lb
+rofi.font:          monospace 10
+rofi.modi:          combi
+
+rofi.theme: /usr/local/share/rofi/themes/gruvbox-dark-hard.rasi
+
