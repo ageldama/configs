@@ -845,6 +845,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (auctex . "auctex.el")
              (tcl . "tcl.el")
              (elpy . "python/elpy.el")
+             (ruby . "ruby.el")
              ))
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
