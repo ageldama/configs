@@ -99,6 +99,9 @@ Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
 Plugin 'thinca/vim-fontzoom'
 
+
+Plugin 'editorconfig/editorconfig-vim'
+
 color default
 set bg=dark
 
