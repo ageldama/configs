@@ -2,7 +2,10 @@
 (use-package js2-mode :ensure t :pin melpa
   :config (progn (add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
 		 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-                 (add-hook 'js2-mode-hook (lambda () (electric-indent-local-mode -1)))))
+                 (add-hook 'js2-mode-hook
+                           (lambda () (electric-indent-local-mode -1)))
+                 (setq js2-mode-show-parse-errors nil
+                       js2-mode-show-strict-warnings nil)))
 
 ;;; json-mode.
 (use-package json-mode :ensure t :pin melpa
@@ -24,7 +27,7 @@
 (use-package eslint-fix :ensure t :pin melpa)
 
 ;; prettier
-;; (use-package prettier-js        :ensure t :pin melpa)
+(use-package prettier-js        :ensure t :pin melpa)
 
 ;;; General keymap.
 (when (fboundp 'general-create-definer)
