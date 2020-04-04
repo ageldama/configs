@@ -8,8 +8,8 @@
   )
 
 
-(use-package robe :ensure t :pin melpa
-  :config
-  (add-hook 'enh-ruby-mode-hook 'robe-mode)
-  (eval-after-load 'company
-  '(push 'company-robe company-backends)))
+;; (use-package robe :ensure t :pin melpa
+;;   :config
+;;   (add-hook 'enh-ruby-mode-hook 'robe-mode)
+;;   (eval-after-load 'company
+;;   '(push 'company-robe company-backends)))
