@@ -121,7 +121,8 @@ dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tm
 
 dunst &
 sxhkd &
-tint2 &
+#tint2 &
+lxpanel &
 hsetroot -solid '#3f4058' &
 
 exec openbox
