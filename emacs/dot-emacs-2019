@@ -496,6 +496,13 @@
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
 
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+(setq org-tags-exclude-from-inheritance '("crypt"))
+;; GPG key to use for encryption
+;; Either the Key ID or set to nil to use symmetric encryption.
+(setq org-crypt-key nil)
+
 
 ;; https://emacs.stackexchange.com/a/45623/20004
 (require 'org-attach)
