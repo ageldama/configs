@@ -846,6 +846,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (slime . "slime.el")
              (perl5 . "perl5.el")
              (golang . "golang.el")
+             (java-lsp . "lsp.el")
              (golang-lsp . "golang-lsp.el")
              (rust+racer . "rust+racer.el")
              (c++ . "c++.el")

@@ -88,7 +88,7 @@
 
 
 
-(unless t
+
 (use-package lsp-java :ensure t :pin melpa
   :after lsp-mode
   ;:if *mvn*
@@ -97,7 +97,7 @@
   :custom
   (lsp-java-server-install-dir (expand-file-name "~/.emacs.d/eclipse.jdt.ls/server/"))
   (lsp-java-workspace-dir (expand-file-name "~/.emacs.d/eclipse.jdt.ls/workspace/")))
-)
+
 
 
 
