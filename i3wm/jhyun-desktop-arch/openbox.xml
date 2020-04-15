@@ -467,10 +467,10 @@
         <direction>west</direction>
       </action>
     </keybind>
-    <keybind key="W-F7">
+    <keybind key="W-m">
       <action name="Move"/>
     </keybind>
-    <keybind key="W-F8">
+    <keybind key="W-r">
       <action name="Resize"/>
     </keybind>
     <keybind key="W-S-R">
