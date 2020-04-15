@@ -18,7 +18,9 @@
   :config (progn (add-hook 'lsp-mode-hook 'lsp-ui-mode)
                  (add-hook 'go-mode-hook 'flycheck-mode)
                  (add-hook 'go-mode-hook 'lsp)
+                 (add-hook 'before-save-hook 'gofmt-before-save)
                  (setq lsp-prefer-flymake nil)))
+
 
 (use-package gotest :ensure t :pin melpa)
 
