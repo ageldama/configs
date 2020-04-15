@@ -22,3 +22,23 @@
 
 (use-package gotest :ensure t :pin melpa)
 
+
+
+
+
+
+
+
+
+(when (fboundp 'general-create-definer)
+  (my-local-leader-def
+   :keymaps 'go-mode-map
+   "r" 'go-run
+   "t" 'go-test-current-test
+   "T f" 'go-test-current-file
+   "T p" 'go-test-current-project
+   "T v" 'go-test-current-coverage
+   "T b" 'go-test-current-benchmark
+   "T F" 'go-test-current-file-benchmarks
+   "T B" 'go-test-current-project-benchmarks
+   ))
