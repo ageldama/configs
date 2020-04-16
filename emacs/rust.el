@@ -9,3 +9,7 @@
 (use-package flycheck-rust :ensure t :pin melpa
   :config (with-eval-after-load 'rust-mode
             (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
+(use-package toml-mode
+  :ensure t :pin melpa)
+

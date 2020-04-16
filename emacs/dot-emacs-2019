@@ -848,6 +848,7 @@ i.e. change right window to bottom, or change bottom window to right."
              (golang . "golang.el")
              (java-lsp . "lsp.el")
              (golang-lsp . "golang-lsp.el")
+             (rust . "rust.el")
              (rust+racer . "rust+racer.el")
              (c++ . "c++.el")
              (geiser . "geiser.el")
