@@ -867,8 +867,18 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (when (and +sys/gui?+ *ageldama/set-theme?*)
   ;;(load-theme *ageldama/set-theme?* t)
-  (use-package zenburn-theme :pin melpa :ensure t
-    :config (load-theme 'zenburn t t))
+  ;; (use-package zenburn-theme :pin melpa :ensure t
+  ;;   :config (load-theme 'zenburn t t))
+
+  (use-package
+  color-theme-sanityinc-tomorrow
+  :ensure t :pin melpa)
+
+
+  ;;(color-theme-sanityinc-tomorrow-day)
+  ;;(color-theme-sanityinc-tomorrow-night)
+  ;;(color-theme-sanityinc-tomorrow-blue)
+  (load-theme 'sanityinc-tomorrow-bright t t)
   )
 
 
