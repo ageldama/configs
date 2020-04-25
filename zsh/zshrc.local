@@ -33,9 +33,9 @@ export PATH=$PATH:~/local/bin:~/.local/bin
 alias tmux='tmux -2'
 
 
-if [[ "$TERM" = "xterm-termite" ]]; then
-    export TERM=xterm-256color
-fi
+#if [[ "$TERM" = "xterm-termite" ]]; then
+#    export TERM=xterm-256color
+#fi
 
 
 
@@ -59,6 +59,9 @@ elif [[ -f /usr/share/fzf/completion.zsh \
   # archlinux pacman
   source /usr/share/fzf/completion.zsh
   source /usr/share/fzf/key-bindings.zsh
+elif [[ -f /usr/share/doc/fzf/key-bindings.zsh ]]; then
+  source /usr/share/doc/fzf/completion.zsh
+  source /usr/share/doc/fzf/key-bindings.zsh
 elif [[ -f ~/.fzf.zsh ]]; then
   source ~/.fzf.zsh
 fi
