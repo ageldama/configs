@@ -6,7 +6,7 @@
   (company-mode -1))
 
 (use-package sly :ensure t :pin melpa
-  :config (setq inferior-lisp-program (expand-file-name "/usr/bin/sbcl")
+  :config (setq inferior-lisp-program (executable-find "sbcl")
                 sly-ignore-protocol-mismatches t)
   (dolist (i '(sly-mode-hook sly-db-hook))
     (add-hook i (lambda () (company-mode +1))))

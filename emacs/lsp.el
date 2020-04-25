@@ -8,13 +8,14 @@
   (lsp-prefer-flymake nil) ; Use flycheck instead of flymake
   (lsp-file-watch-threshold 2000)
   ;;:bind (:map lsp-mode-map ("C-c C-f" . lsp-format-buffer))
-  :hook ((
-          java-mode
+;  :hook ((
+;          java-mode
           ;;python-mode go-mode
           ;;         js-mode js2-mode typescript-mode web-mode
           ;;         c-mode c++-mode objc-mode
-          ) . lsp)
+;          ) . lsp)
   )
+
 
 
 
@@ -88,7 +89,7 @@
 
 
 
-(unless t
+
 (use-package lsp-java :ensure t :pin melpa
   :after lsp-mode
   ;:if *mvn*
@@ -97,8 +98,9 @@
   :custom
   (lsp-java-server-install-dir (expand-file-name "~/.emacs.d/eclipse.jdt.ls/server/"))
   (lsp-java-workspace-dir (expand-file-name "~/.emacs.d/eclipse.jdt.ls/workspace/")))
-)
 
+
+(add-hook 'java-mode-hook #'lsp)
 
 
 

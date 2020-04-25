@@ -9,3 +9,15 @@
 (use-package flycheck-rust :ensure t :pin melpa
   :config (with-eval-after-load 'rust-mode
             (add-hook 'flycheck-mode-hook #'flycheck-rust-setup)))
+
+(use-package toml-mode
+  :ensure t :pin melpa)
+
+
+
+
+(when (fboundp 'general-create-definer)
+  (my-local-leader-def
+    :keymaps 'rust-mode-map
+    "c" (general-simulate-key "C-c C-c" :name cargo)
+   ))
