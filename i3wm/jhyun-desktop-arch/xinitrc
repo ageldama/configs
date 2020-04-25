@@ -1,68 +1,24 @@
 #!/bin/sh
 
-#LOG_FILE=~/xinitrc.log
-# Close STDOUT file descriptor
-#exec 1<&-
-# Close STDERR FD
-#exec 2<&-
-
-# Open STDOUT as $LOG_FILE file for read and write.
-#exec 1<>$LOG_FILE
-
-# Redirect STDERR to STDOUT
-#exec 2>&1
-
 #export LANG=ko_KR.UTF-8
 
 export PATH=$PATH:/home/jhyun/local/bin
 
-#export TERMINAL=konsole
 export TERMINAL=alacritty
 
-#export XMODIFIERS="@im=SCIM"
-#export QT_IM_MODULE=scim
-#export GTK_IM_MODULE=scim
-
+# ibus + hangul
 export XMODIFIERS="@im=ibus"
 export QT_IM_MODULE=ibus
 export GTK_IM_MODULE=ibus
 
-#export XMODIFIERS="@im=nabi"
-#export QT_IM_MODULE=xim
-#export GTK_IM_MODULE=xim
-
-#scim -d 
-#fcitx -d
-#nabi&
 ibus-daemon -d -x
 
-# $ sudo pacman -S ibus ibus-qt ibus-hangul
-#
-#ibus-daemon&
-
-#fcitx &
-
-#exec gnome-session
-
+# ssh / gnome-keyring
 dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-~/.dropbox-dist/dropboxd &
-
-#eval $(gnome-keyring-daemon --start)
-#export SSH_AUTH_SOCK GPG_AGENT_INFO GNOME_KEYRING_CONTROL GNOME_KEYRING_PID
-#export SSH_AGENT_PID=$GNOME_KEYRING_PID
-
-#keychain ~/.ssh/id_rsa
-#[ -f ~/.keychain/$HOSTNAME-sh ] && . ~/.keychain/$HOSTNAME-sh 2>/dev/null
-#[ -f ~/.keychain/$HOSTNAME-sh-gpg ] && . ~/.keychain/$HOSTNAME-sh-gpg 2>/dev/null
-
-#eval $(ssh-agent)
-
-
-#~/local/bin/caps-to-ctrl.sh
-
+[[ -f ~/.dropbox-dist/dropboxd ]] && ~/.dropbox-dist/dropboxd &
 
 # "xev" first.
 # xmodmap -e 'keycode 108 = Hangul'
@@ -72,10 +28,7 @@ export SSH_AUTH_SOCK
 xbindkeys &
 
 #synclient TapButton2=3
-
-
 #xgamma -gamma 0.6
-
 
 xset b off
 xset s on
@@ -83,52 +36,37 @@ xset s 300
 
 xscreensaver -no-splash &
 
-#xautolock -time 5 -locker 'xscreensaver-command -lock' &
-#xscreensaver &
-
-# OR: systemctl --user enable pulseaudio
-#pulseaudio --start &
-
-# `systemd-journal` group
-#journalctl --no-pager -f --system --user | osd_cat -d 5 -s 3 -O 5 -l 20 -c green -A right -o 200 -f 7x13 &
-
 # Mute all audio input
 pactl-mute.pl source all &
 
-
+# NetworkManager
 nm-applet &
 
+# Redshift
 redshift-gtk -l 37.566:126.977 & # Seoul
-#redshift-gtk &
 
+# Compositor
 compton -b &
 
-#pacmd set-card-profile alsa_card.pci-0000_00_1b.0 output:analog-stereo+input:analog-stereo    &
-
-# (sleep 2 ; ~/local/bin/caps-to-ctrl.sh )
-
+# Bluetooth
 blueman-applet &
 
-#~/local/bin/wg.pl &
-
-
-#xrandr --output DVI-I-1 --right-of DVI-D-0
-#xrandr --output DVI-D-0 --right-of HDMI-0
-#xrandr --output DVI-I-1 --left-of DVI-D-0 --mode 1920x1080
-xrandr --output DVI-D-0 --off
-
+# Notification Logging
 dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
 
+# Notification growl.
 dunst &
+
+# hotkeys
 sxhkd &
-#tint2 &
+
+# panel + sys-tray
 lxpanel &
+
+# bg-color
 hsetroot -solid '#3f4058' &
 
 exec openbox
-
-#exec awesome
-#exec i3
 
 
 ###EOF
