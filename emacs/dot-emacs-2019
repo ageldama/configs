@@ -878,7 +878,7 @@ i.e. change right window to bottom, or change bottom window to right."
   ;;(color-theme-sanityinc-tomorrow-day)
   ;;(color-theme-sanityinc-tomorrow-night)
   ;;(color-theme-sanityinc-tomorrow-blue)
-  (load-theme 'sanityinc-tomorrow-bright t t)
+  (color-theme-sanityinc-tomorrow-bright)
   )
 
 
