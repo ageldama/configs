@@ -23,7 +23,7 @@ root.bind('<Control-d>', save_and_quit)
 vsb = tk.Scrollbar(root)
 vsb.pack(side=tk.RIGHT, fill=tk.Y)
 
-ta.pack(side=tk.LEFT, fill=tk.Y)
+ta.pack(side=tk.LEFT, fill=tk.BOTH, expand=True)
 
 vsb.config(command=ta.yview)
 ta.config(yscrollcommand=vsb.set)
