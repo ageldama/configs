@@ -18,11 +18,11 @@ dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemo
 eval $(/usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
 
-[[ -f ~/.dropbox-dist/dropboxd ]] && ~/.dropbox-dist/dropboxd &
+test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
 
 # "xev" first.
 # xmodmap -e 'keycode 108 = Hangul'
-[[ -f ~/.Xmodmap ]] && xmodmap ~/.Xmodmap
+test -f ~/.Xmodmap && xmodmap ~/.Xmodmap
 # setxkbmap -option caps:super
 
 xbindkeys &
