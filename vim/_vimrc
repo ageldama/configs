@@ -102,7 +102,7 @@ Plugin 'thinca/vim-fontzoom'
 
 Plugin 'editorconfig/editorconfig-vim'
 
-Plugin 'udalov/kotlin-vim'
+"Plugin 'udalov/kotlin-vim'
 
 color default
 set bg=dark
