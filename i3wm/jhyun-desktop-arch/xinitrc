@@ -31,8 +31,8 @@ xbindkeys &
 #xgamma -gamma 0.6
 
 xset b off
-xset s on
-xset s 300
+#xset s on
+#xset s 300
 
 xscreensaver -no-splash &
 
