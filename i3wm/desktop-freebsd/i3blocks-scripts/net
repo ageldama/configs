@@ -1,2 +1,0 @@
-#!/bin/sh
-netstat -4 -I "${BLOCK_INSTANCE}" -bh|tail -1|awk '{printf("%s: %s IN(%s) OUT(%s)", $1, $4, $8, $11)}'
