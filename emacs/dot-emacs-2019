@@ -890,4 +890,10 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; Uptime, Startup Time
 (message "Startup time: %s" (emacs-uptime))
 
+
+;;; pacman: protobuf 
+(when (f-exists?  "/usr/share/emacs/site-lisp/protobuf-mode.el")
+  (load-file "/usr/share/emacs/site-lisp/protobuf-mode.el")
+  (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode)))
+
 ;;; EOF.
