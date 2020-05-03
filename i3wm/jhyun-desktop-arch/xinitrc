@@ -61,7 +61,8 @@ dunst &
 sxhkd &
 
 # panel + sys-tray
-lxpanel &
+which xfce4-panel && xfce4-panel &
+which lxpanel && lxpanel &
 
 # bg-color
 hsetroot -solid '#3f4058' &
