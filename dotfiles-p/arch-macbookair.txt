@@ -1,0 +1,17 @@
+./.config/dunst/dunstrc -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/dunstrc
+./.config/openbox/rc.xml -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/openbox.xml
+./.config/rofi/config -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/rofi
+./.config/sxhkd/sxhkdrc -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/sxhkdrc
+./.gitconfig -> /home/jhyun/P/configs/git/gitconfig
+./.vimrc -> /home/jhyun/P/configs/vim/_vimrc
+./.tmux.conf -> /home/jhyun/P/configs/tmux.conf
+./.zshrc.local -> /home/jhyun/P/configs/zsh/zshrc.local
+./.zlogin -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/zlogin
+./.xinitrc -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/xinitrc
+./.Xmodmap -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/xmodmap
+./.monologue.txt -> /home/jhyun/P/v3/mumbles/arch-macbookair.txt
+./local/bin/hsetroot-solid.pl -> /home/jhyun/P/configs/hsetroot-solid.pl
+./local/bin/pactl-mute.pl -> /home/jhyun/P/configs/pactl-mute.pl
+./local/bin/xscreensaver-toggle.pl -> /home/jhyun/P/configs/xscreensaver-toggle.pl
+./local/bin/monologue.py -> /home/jhyun/P/configs/monologue.py
+./local/bin/caps-to-ctrl.sh -> /home/jhyun/P/configs/i3wm/caps-to-ctrl.sh
