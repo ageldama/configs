@@ -67,6 +67,10 @@ which lxpanel && lxpanel &
 # bg-color
 hsetroot -solid '#3f4058' &
 
+# caps->ctrl
+~/local/bin/caps-to-ctrl.sh &
+
+#
 exec openbox
 
 
