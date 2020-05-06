@@ -68,7 +68,7 @@ which lxpanel && lxpanel &
 hsetroot -solid '#3f4058' &
 
 # caps->ctrl
-~/local/bin/caps-to-ctrl.sh &
+~/local/bin/caps-to-ctrl.sh 2 &
 
 #
 exec openbox
