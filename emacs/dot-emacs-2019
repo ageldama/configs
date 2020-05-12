@@ -635,11 +635,12 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; Evil, my last resort. (sometimes)
-(use-package evil :ensure t :pin melpa
-  :init (setq evil-want-integration t)
-  :config (progn (evil-mode -1)
-                 ;; because I use `C-z' as my leader key
-                 (define-key evil-motion-state-map (kbd "C-z") nil)))
+(unless (fboundp 'evil-mode)
+  (use-package evil :ensure t :pin melpa
+    :init (setq evil-want-integration t)
+    :config (progn (evil-mode -1)
+                   ;; because I use `C-z' as my leader key
+                   (define-key evil-motion-state-map (kbd "C-z") nil))))
 
 (defun toggle-evil-mode ()
   (interactive)
