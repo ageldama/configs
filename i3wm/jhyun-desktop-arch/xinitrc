@@ -4,7 +4,7 @@
 
 export PATH=$PATH:/home/jhyun/local/bin
 
-export TERMINAL=alacritty
+export TERMINAL=x-terminal-emulator
 
 # ibus + hangul
 export XMODIFIERS="@im=ibus"

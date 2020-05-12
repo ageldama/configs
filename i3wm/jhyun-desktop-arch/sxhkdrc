@@ -2,7 +2,7 @@ super + d
   rofi -show
 
 super + Return
-  alacritty
+  x-terminal-emulator
 
 super + p
   gnome-screenshot
