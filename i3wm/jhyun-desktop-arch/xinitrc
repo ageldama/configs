@@ -2,7 +2,7 @@
 
 #export LANG=ko_KR.UTF-8
 
-export PATH=$PATH:/home/jhyun/local/bin
+export PATH=$PATH:$HOME/local/bin
 
 export TERMINAL=x-terminal-emulator
 
