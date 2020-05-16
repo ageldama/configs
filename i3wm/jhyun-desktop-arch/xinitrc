@@ -14,9 +14,22 @@ export GTK_IM_MODULE=ibus
 ibus-daemon -d -x
 
 # ssh / gnome-keyring
+case `uname` in
+    Linux)
 dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
 eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
 export SSH_AUTH_SOCK
+      ;;
+    FreeBSD)
+export XDG_RUNTIME_DIR=/tmp/jhyun
+mkdir $XDG_RUNTIME_DIR
+eval $(dbus-launch --sh-syntax)
+#dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+eval $(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+export SSH_AUTH_SOCK
+      ;;
+  esac
+
 
 test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
 
@@ -61,8 +74,16 @@ dunst &
 #sxhkd &
 
 # panel + sys-tray
-which xfce4-panel && xfce4-panel &
-which lxpanel && lxpanel &
+case `uname` in
+    Linux)
+      which xfce4-panel && xfce4-panel &
+      which lxpanel && lxpanel &
+      ;;
+    FreeBSD)
+      which xfce4-panel && dbus-launch xfce4-panel &
+      ;;
+esac
+
 
 # bg-color
 hsetroot -solid '#3f4058' &
@@ -71,7 +92,14 @@ hsetroot -solid '#3f4058' &
 ~/local/bin/caps-to-ctrl.sh 2 &
 
 #
-exec openbox
+case `uname` in
+    Linux)
+      exec openbox
+      ;;
+    FreeBSD)
+      exec dbus-launch openbox
+      ;;
+esac
 
 
 ###EOF
