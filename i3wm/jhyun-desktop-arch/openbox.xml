@@ -488,6 +488,69 @@
       </action>
     </keybind>
     -->
+    <keybind key="W-Return">
+      <action name="Execute">
+        <command>x-terminal-emulator</command>
+      </action>
+    </keybind>
+    <keybind key="W-d">
+      <action name="Execute">
+        <command>rofi -show</command>
+      </action>
+    </keybind>
+    <keybind key="W-p">
+      <action name="Execute">
+        <command>gnome-screenshot</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-p">
+      <action name="Execute">
+        <command>gnome-screenshot -i</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-w">
+      <action name="Execute">
+        <command>hsetroot-solid.pl</command>
+      </action>
+    </keybind>
+    <keybind key="W-S-m">
+      <action name="Execute">
+        <command>monologue.py</command>
+      </action>
+    </keybind>
+    <keybind key="W-Escape">
+      <action name="Execute">
+        <command>xscreensaver-command -lock</command>
+      </action>
+    </keybind>
+    <keybind key="W-F1">
+      <action name="Execute">
+        <command>
+          sh -c 'notify-send "$(uptime) // $(date)"'
+        </command>
+      </action>
+    </keybind>
+    <keybind key="W-F10">
+      <action name="Execute">
+        <command>
+          pavucontrol
+        </command>
+      </action>
+    </keybind>
+    <keybind key="W-S-F10">
+      <action name="Execute">
+        <command>
+          pactl-mute.pl sink toggle_default
+        </command>
+      </action>
+    </keybind>
+    <keybind key="W-S-F9">
+      <action name="Execute">
+        <command>
+          xscreensaver-toggle.pl
+        </command>
+      </action>
+    </keybind>
 
     <keybind key="W-o">
       <action name="MoveResizeTo">

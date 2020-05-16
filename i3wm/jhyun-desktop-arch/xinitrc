@@ -58,7 +58,7 @@ dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tm
 dunst &
 
 # hotkeys
-sxhkd &
+#sxhkd &
 
 # panel + sys-tray
 which xfce4-panel && xfce4-panel &
