@@ -7,16 +7,7 @@ function zlogin_startx_dialog () {
 
 
 if [[ -z $TMUX ]]; then
-  case `uname` in
-    Linux)
-      if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-        zlogin_startx_dialog
-      fi
-      ;;
-    FreeBSD)
-      if [[ $TTY =~ '^/dev/tty.+$' ]]; then
-        zlogin_startx_dialog
-      fi
-      ;;
-  esac
+  if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+    zlogin_startx_dialog
+  fi
 fi
