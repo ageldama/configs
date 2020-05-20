@@ -822,6 +822,15 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (general-create-definer my-local-leader-def :prefix "C-'")
 
+(defun my-C-z ()
+  (interactive)
+  (setq unread-command-events (listify-key-sequence "\C-z")))
+
+(global-set-key (kbd "<f5>") 'my-C-z)
+
+(global-set-key (kbd "S-<f5>")
+                'toggle-evil-mode)
+
 
 ;;; Lang-support.
 (defvar langsup-loadp-path (expand-file-name "~/.emacs.d/load-p/"))
