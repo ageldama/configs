@@ -766,8 +766,8 @@ i.e. change right window to bottom, or change bottom window to right."
   "g" 'magit-status
 
   "o" 'counsel-rg-maybe-projectile
-  ;;"p" 'counsel-projectile
-  "p" 'projectile-find-file-dwim
+  "p" 'counsel-projectile-find-file-dwim
+  ;;"p" 'projectile-find-file-dwim
 
   "P" (general-simulate-key "C-c p" :name projectile)
   
