@@ -47,7 +47,7 @@ nm-applet &
 redshift-gtk -l 37.566:126.977 & # Seoul
 
 # Compositor
-compton -b &
+picom -b &
 
 # Bluetooth
 blueman-applet &
