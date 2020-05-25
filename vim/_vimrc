@@ -58,7 +58,7 @@ Bundle 'rbgrouleff/bclose.vim'
 Bundle 't9md/vim-choosewin'
 
 " :Ack and K
-Bundle 'mileszs/ack.vim'
+"Bundle 'mileszs/ack.vim'
 
 Bundle 'godlygeek/tabular'
 "Bundle 'vim-syntastic/syntastic.git'
@@ -94,6 +94,7 @@ Bundle 'junegunn/goyo.vim'
 "
 Bundle 'majutsushi/tagbar'
 Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plugin 'junegunn/fzf.vim'
 
 " Plugin 'dracula/vim'
 
@@ -145,7 +146,7 @@ nmap <leader>p <Plug>yankstack_substitute_older_paste
 nmap <leader>P <Plug>yankstack_substitute_newer_paste
 
 " bind K to grep word under cursor
-nnoremap <Leader>/ :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+"nnoremap <Leader>/ :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 
 " xclip '\y'
 vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
@@ -159,7 +160,8 @@ if 1
   nnoremap <Leader>zb :Buffers<CR>
   nnoremap <Leader>zc :Colors<CR>
   nnoremap <Leader>za :Ag 
-  nnoremap <Leader>zr :Rg 
+  nnoremap <Leader>zr :Rg <C-R><C-W>
+  nnoremap <Leader>/ :Rg <C-R><C-W>
   nnoremap <Leader>zm :Marks<CR>
   nnoremap <Leader>zw :Windows<CR>
   nnoremap <Leader>zo :History<CR>
@@ -337,13 +339,15 @@ function! VisualSelection(direction, extra_filter) range
   let @" = l:saved_reg
 endfunction
 
-if executable('rg')
-  let g:ackprg = 'rg --vimgrep --no-heading'
-  set grepprg=rg\ --vimgrep\ --no-heading
-  set grepformat=%f:%l:%c:%m,%f:%l:%m
-elseif executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-  set grepprg=ag\ --nogroup\ --nocolor
+if 0
+  if executable('rg')
+    let g:ackprg = 'rg --vimgrep --no-heading'
+    set grepprg=rg\ --vimgrep\ --no-heading
+    set grepformat=%f:%l:%c:%m,%f:%l:%m
+  elseif executable('ag')
+    let g:ackprg = 'ag --vimgrep'
+    set grepprg=ag\ --nogroup\ --nocolor
+  endif
 endif
 
 "EOF
