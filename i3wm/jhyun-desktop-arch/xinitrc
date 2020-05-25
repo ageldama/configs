@@ -2,6 +2,8 @@
 
 #export LANG=ko_KR.UTF-8
 
+OSNAME=`uname`
+
 export PATH=$PATH:$HOME/local/bin
 
 export TERMINAL=x-terminal-emulator
@@ -14,19 +16,19 @@ export GTK_IM_MODULE=ibus
 ibus-daemon -d -x
 
 # ssh / gnome-keyring
-case `uname` in
-    Linux)
-      dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
-      eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-      export SSH_AUTH_SOCK
-      ;;
-    FreeBSD)
-      eval $(dbus-launch --sh-syntax)
-      #dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
-      eval $(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-      export SSH_AUTH_SOCK
-      ;;
-  esac
+case ${OSNAME} in
+  Linux)
+    dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+    eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+    export SSH_AUTH_SOCK
+    ;;
+  FreeBSD)
+    eval $(dbus-launch --sh-syntax)
+    #dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+    eval $(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+    export SSH_AUTH_SOCK
+    ;;
+esac
 
 
 
@@ -72,9 +74,6 @@ dunst &
 # hotkeys
 #sxhkd &
 
-# panel + sys-tray
-which xfce4-panel && xfce4-panel &
-
 # bg-color
 hsetroot -solid '#3f4058' &
 
@@ -82,7 +81,16 @@ hsetroot -solid '#3f4058' &
 ~/local/bin/caps-to-ctrl.sh 2 &
 
 #
-exec openbox
+case ${OSNAME} in
+  Linux)
+    xfce4-panel &
+    exec openbox
+    ;;
+  FreeBSD)
+    dbus-launch xfce4-panel &
+    exec dbus-launch openbox
+    ;;
+esac
 
 
 ###EOF
