@@ -14,9 +14,20 @@ export GTK_IM_MODULE=ibus
 ibus-daemon -d -x
 
 # ssh / gnome-keyring
-dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
-eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-export SSH_AUTH_SOCK
+case `uname` in
+    Linux)
+      dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+      eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+      export SSH_AUTH_SOCK
+      ;;
+    FreeBSD)
+      eval $(dbus-launch --sh-syntax)
+      #dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+      eval $(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+      export SSH_AUTH_SOCK
+      ;;
+  esac
+
 
 
 test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
