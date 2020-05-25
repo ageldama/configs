@@ -57,7 +57,12 @@ pactl-mute.pl source all &
 nm-applet &
 
 # Redshift
-redshift-gtk -l 37.566:126.977 & # Seoul
+which redshift-gtk
+if [ $? -eq 0 ]; then
+  redshift-gtk -l 37.566:126.977 & # Seoul
+else
+  redshift -l 37.566:126.977 & # Seoul
+fi
 
 # Compositor
 picom -b &
