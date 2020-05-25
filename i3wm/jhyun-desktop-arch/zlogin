@@ -1,13 +1,30 @@
+OSNAME=`uname`
+
 function zlogin_startx_dialog () {
     dialog --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
     if [[ $? == 0 || $? == 255 ]]; then
-      exec startx &> startx.log
+      case ${OSNAME} in
+        Linux)
+          exec startx &> startx.log
+          ;;
+        FreeBSD)
+          exec ck-launch-session startx &> startx.log
+          ;;
+      esac
     fi
 }
 
-
 if [[ -z $TMUX ]]; then
-  if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-    zlogin_startx_dialog
-  fi
+  case ${OSNAME} in
+    Linux)
+      if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+        zlogin_startx_dialog
+      fi
+    ;;
+  FreeBSD)
+      if [[ $TTY =~ '^/dev/tty.+$' ]]; then
+        zlogin_startx_dialog
+      fi
+    ;;
+  esac
 fi
