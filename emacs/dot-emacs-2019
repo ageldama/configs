@@ -660,6 +660,17 @@ i.e. change right window to bottom, or change bottom window to right."
         (eshell-emit-prompt)))))
 
 
+;;; python-mode + projectile
+(defun python-cd-proj-root ()
+  (interactive)
+  (when (fboundp 'projectile-project-root)
+    (if-let (root (projectile-project-root))
+        (cd root))))
+
+
+(add-hook 'python-mode-hook #'python-cd-proj-root)
+
+
 
 ;;; stardict, sdcv
 (use-package sdcv :ensure t :pin melpa)
