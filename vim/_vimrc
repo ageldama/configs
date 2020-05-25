@@ -44,8 +44,8 @@ Bundle 'gmarik/vundle'
 filetype plugin indent on
 "
 "Bundle 'davidhalter/jedi-vim'
-Bundle 'tpope/vim-fugitive'
-Bundle 'airblade/vim-gitgutter'
+"Bundle 'tpope/vim-fugitive'
+"Bundle 'airblade/vim-gitgutter'
 "Bundle 'fholgado/minibufexpl.vim'
 Bundle 'jlanzarotta/bufexplorer'
 
@@ -87,8 +87,8 @@ Bundle 'junegunn/goyo.vim'
 
 " Golang
 " FIXME: if filereadable("~/.vim/load-p/golang")
-Bundle 'fatih/vim-go'
-let g:go_auto_type_info = 1
+"Bundle 'fatih/vim-go'
+"let g:go_auto_type_info = 1
 "endif
 
 "
