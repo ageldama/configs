@@ -57,11 +57,12 @@ pactl-mute.pl source all &
 nm-applet &
 
 # Redshift
+SEOUL_POS=37.566:126.977 & # Seoul
 which redshift-gtk
 if [ $? -eq 0 ]; then
-  redshift-gtk -l 37.566:126.977 & # Seoul
+  redshift-gtk -l $SEOUL_POS
 else
-  redshift -l 37.566:126.977 & # Seoul
+  redshift -l $SEOUL_POS
 fi
 
 # Compositor
