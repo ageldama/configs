@@ -256,10 +256,14 @@
     (add-hook 'auto-revert-mode-hook
               (lambda () (diminish 'auto-revert-mode)))
     (add-hook 'ivy-mode-hook (lambda ()
-                                   (diminish 'ivy-mode)))
+                               (diminish 'ivy-mode)))
+    (diminish 'hs-minor-mode)
     (diminish 'counsel-mode)
     (diminish 'ivy-mode)
     (diminish 'undo-tree-mode)))
+
+;;; Hydra
+(use-package hydra :ensure t :pin melpa)
 
 ;;; which-key
 (use-package which-key :ensure t
@@ -269,12 +273,44 @@
 
 
 ;;; vimish-fold
-(use-package vimish-fold :ensure t :pin melpa
-  :config (progn (vimish-fold-global-mode +1)
-                 (global-set-key (kbd "C-c @ t") 'vimish-fold-toggle)
-                 (global-set-key (kbd "C-c @ f") 'vimish-fold)
-                 (global-set-key (kbd "C-c @ d") 'vimish-fold-delete)))
+(when nil
+  (use-package vimish-fold :ensure t :pin melpa
+    :config (progn (vimish-fold-global-mode +1)
+                   (global-set-key (kbd "C-c @ t") 'vimish-fold-toggle)
+                   (global-set-key (kbd "C-c @ f") 'vimish-fold)
+                   (global-set-key (kbd "C-c @ d") 'vimish-fold-delete)))
+  )
 
+
+;;; hs
+(load-library "hideshow")
+
+(dolist (i '(c-mode-common-hook emacs-lisp-mode-hook
+                                java-mode-hook lisp-mode-hook
+                                perl-mode-hook sh-mode-hook
+                                python-mode-hook))
+  (add-hook i 'hs-minor-mode))
+
+(defhydra hydra-hs ()
+   "
+Hide^^            ^Show^            ^Toggle^    ^Navigation^
+----------------------------------------------------------------
+_h_ hide all      _s_ show all      _t_oggle    _n_ext line
+_d_ hide block    _a_ show block              _p_revious line
+_l_ hide level
+
+_SPC_ cancel
+"
+   ("s" hs-show-all)
+   ("h" hs-hide-all)
+   ("a" hs-show-block)
+   ("d" hs-hide-block)
+   ("t" hs-toggle-hiding)
+   ("l" hs-hide-level)
+   ("n" forward-line)
+   ("p" (forward-line -1))
+   ("SPC" nil)
+   )
 
 
 ;;; rainbow-delimiters
@@ -627,6 +663,34 @@ i.e. change right window to bottom, or change bottom window to right."
                  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
+
+(defhydra hydra-multiple-cursors (:hint nil)
+  "
+ Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
+------------------------------------------------------------------
+ [_p_]   Next     [_n_]   Next     [_l_] Edit lines  [_0_] Insert numbers
+ [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_A_] Insert letters
+ [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search
+ [Click] Cursor at point       [_q_] Quit"
+  ("l" mc/edit-lines :exit t)
+  ("a" mc/mark-all-like-this :exit t)
+  ("n" mc/mark-next-like-this)
+  ("N" mc/skip-to-next-like-this)
+  ("M-n" mc/unmark-next-like-this)
+  ("p" mc/mark-previous-like-this)
+  ("P" mc/skip-to-previous-like-this)
+  ("M-p" mc/unmark-previous-like-this)
+  ("s" mc/mark-all-in-region-regexp :exit t)
+  ("0" mc/insert-numbers :exit t)
+  ("A" mc/insert-letters :exit t)
+  ("<mouse-1>" mc/add-cursor-on-click)
+  ;; Help with click recognition in this hydra
+  ("<down-mouse-1>" ignore)
+  ("<drag-mouse-1>" ignore)
+  ("q" nil))
+
+
+
 ;;; iedit -- use `C-;'
 (use-package iedit :ensure t :pin melpa :diminish iedit)
 
@@ -709,9 +773,72 @@ i.e. change right window to bottom, or change bottom window to right."
 (use-package moonshot :ensure t :pin melpa)
 (require 'moonshot)
 
-;; (global-set-key (kbd "C-c x x") 'moonshot:run-executable)
-;; (global-set-key (kbd "C-c x d") 'moonshot:run-debugger)
-;; (global-set-key (kbd "C-c x c") 'moonshot:run-runner)
+(defhydra hydra-moonshot ()
+  "
+Moonshot^^
+---------------------------------
+_x_ run-exe 
+_d_ debug 
+_c_ run-cmd
+
+_SPC_ cancel
+"
+  ("x" moonshot-run-executable)
+  ("d" moonshot-run-debugger)
+  ("c" moonshot-run-runner)
+  ("SPC" nil)
+  )
+
+
+
+;;; Misc toggles
+(defhydra hydra-misc-toggles ()
+  "
+Toggles:^^
+--------------------------
+_l_ : display-line-numbers-mode
+_s_ : whitespace-mode
+_i_ : highlight-indentation-mode
+_I_ : indent-guides-mode
+_h_ : idle-highlight-mode
+_z_ : ZONE
+_G_ : my-gc-toggle-timer
+
+_SPC_ : cancel
+"
+ ("l" display-line-numbers-mode)
+ ("s" global-whitespace-mode)
+ ("i" highlight-indentation-mode)
+ ("I" highlight-indent-guides-mode)
+ ("h" idle-highlight-mode)
+ ("z" zone)
+ ("G" my-gc-toggle-timer)
+
+ ("SPC" nil))
+
+
+;;; Flycheck + Hydra
+
+(defhydra hydra-flycheck
+    (:pre (flycheck-list-errors)
+     :post (quit-windows-on "*Flycheck errors*")
+     )
+  "Errors"
+  ("f" flycheck-error-list-set-filter "Filter")
+  ("j" flycheck-next-error "Next")
+  ("k" flycheck-previous-error "Previous")
+  ("gg" flycheck-first-error "First")
+  ("G" (progn (goto-char (point-max)) (flycheck-previous-error)) "Last")
+  ("?" flycheck-describe-checker "Desc")
+  ("c" flycheck-buffer "Buf")
+  ("C" flycheck-compile "Compile")  
+  ("s" flycheck-select-checker "Select")
+  ("v" flycheck-verify-setup "Verify")
+  ("x" flycheck-disable-checker "Disable")
+  ("C-w" flycheck-copy-errors-as-kill "Copy")  
+  ("SPC" nil))
+
+
 
 
 
@@ -759,10 +886,11 @@ i.e. change right window to bottom, or change bottom window to right."
 
   "w" 'writeroom-mode
 
-  "f" '(:ignore t :which-key "fold")
-  "f t" 'vimish-fold-toggle
-  "f f" 'vimish-fold
-  "f d" 'vimish-fold-delete
+  "h" 'hydra-hs/body
+  ;; "f" '(:ignore t :which-key "fold")
+  ;; "f t" 'vimish-fold-toggle
+  ;; "f f" 'vimish-fold
+  ;; "f d" 'vimish-fold-delete
 
   ;; "y" - yasnippet
   "y" '(:ignore t :which-key "yasnippet")
@@ -778,14 +906,17 @@ i.e. change right window to bottom, or change bottom window to right."
   "` f" 'elfeed
   "` G" 'garbage-collect
 
-  "C-q" '(:ignore t :which-key "toggle")
-  "C-q l" 'display-line-numbers-mode
-  "C-q s" 'global-whitespace-mode
-  "C-q i" 'highlight-indentation-mode
-  "C-q I" 'highlight-indent-guides-mode
-  "C-q h" 'idle-highlight-mode
-  "C-q z" 'zone
-  "C-q G" 'my-gc-toggle-timer
+  "c" 'hydra-flycheck/body
+
+  ;; "C-q" '(:ignore t :which-key "toggle")
+  ;; "C-q l" 'display-line-numbers-mode
+  ;; "C-q s" 'global-whitespace-mode
+  ;; "C-q i" 'highlight-indentation-mode
+  ;; "C-q I" 'highlight-indent-guides-mode
+  ;; "C-q h" 'idle-highlight-mode
+  ;; "C-q z" 'zone
+  ;; "C-q G" 'my-gc-toggle-timer
+  "C-q" 'hydra-misc-toggles/body
 
   "C-c" '(:ignore t :which-key "capture")
   "C-c RET" 'org-capture
@@ -810,6 +941,7 @@ i.e. change right window to bottom, or change bottom window to right."
   "S-<up>" 'buf-move-up
   "S-<down>" 'buf-move-down
   "*" 'ace-swap-window
+  "%" 'window-toggle-split-direction
 
   "=" 'balance-windows
   "+" 'enlarge-window
@@ -818,16 +950,20 @@ i.e. change right window to bottom, or change bottom window to right."
   "<" 'shrink-window-horizontally
 
   ;; avy
-  "c"  'avy-goto-char-timer
+  ;;"c"  'avy-goto-char-timer
   "l" 'avy-goto-line
 
   ;; moonshot
-  "x x" 'moonshot-run-executable
-  "x d" 'moonshot-run-debugger
-  "x c" 'moonshot-run-runner
+  "x" 'hydra-moonshot/body
+  ;; "x x" 'moonshot-run-executable
+  ;; "x d" 'moonshot-run-debugger
+  ;; "x c" 'moonshot-run-runner
 
   ;; undo-tree
   "u" 'undo-tree-visualize
+
+  ;; multiple-cursors
+  "M-m" 'hydra-multiple-cursors/body
 
   ;;
   "z" (general-simulate-key "C-'" :name mm)
