@@ -494,7 +494,19 @@ _SPC_ cancel
 (when +sys/gui?+
   (use-package git-gutter-fringe :ensure t :pin melpa
     :diminish git-gutter-mode
-    :config (global-git-gutter-mode +1)))
+    :config (global-git-gutter-mode +1))
+
+  (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
+                                        :hint nil)
+       ("n" git-gutter:next-hunk "next hunk")
+       ("p" git-gutter:previous-hunk "previous hunk")
+       ("h" (progn (goto-char (point-min)) (git-gutter:next-hunk 1)) "first hunk")
+       ("l" (progn (goto-char (point-min)) (git-gutter:previous-hunk 1)) "last hunk")
+       ("<RET>" git-gutter:popup-hunk "popup hunk")
+       ("s" git-gutter:stage-hunk "stage hunk")
+       ("r" git-gutter:revert-hunk "revert hunk")
+       ("?" git-gutter:statistic "stats")
+       ("<SPC>" nil "quit")))
 
 
 ;;; flycheck.
@@ -862,7 +874,7 @@ _SPC_ : cancel
 (my-global-leader-def
   "/" 'swiper-thing-at-point
 
-  "SPC" 'counsel-M-x
+  ;;"SPC" 'counsel-M-x
   "TAB" 'ivy-switch-buffer
 
   "?" 'counsel-descbinds
@@ -873,14 +885,15 @@ _SPC_ : cancel
   "r" 'counsel-recentf
 
   "g" 'magit-status
+  "M-g" 'hydra-git-gutter/body
 
   "o" 'counsel-rg-maybe-projectile
   "p" 'counsel-projectile-find-file-dwim
   ;;"p" 'projectile-find-file-dwim
 
-  "P" (general-simulate-key "C-c p" :name projectile)
+  ;;"P" (general-simulate-key "C-c p" :name projectile)
   
-  "e" (general-simulate-key "C-c !" :name flycheck)
+  ;;"e" (general-simulate-key "C-c !" :name flycheck)
 
   "k" 'counsel-yank-pop
 
