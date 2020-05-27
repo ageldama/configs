@@ -741,6 +741,12 @@ i.e. change right window to bottom, or change bottom window to right."
         (cd (pwd))
         (eshell-emit-prompt)))))
 
+;;; or, ansi-term is.
+(defun ansi-term-here ()
+  (interactive)
+  (let* ((sh-bin (getenv "SHELL")))
+    (ansi-term sh-bin)))
+
 
 ;;; python-mode + projectile
 (defun python-cd-proj-root ()
@@ -856,9 +862,6 @@ _SPC_ : cancel
 
 
 
-
-
-
 ;;; General -- Leading Keybinder
 (global-set-key (kbd "C-z") nil)
 (global-set-key (kbd "C-x C-z") nil)
@@ -879,7 +882,7 @@ _SPC_ : cancel
 
   "?" 'counsel-descbinds
 
-  "$" 'eshell-here
+  "$" 'ansi-term-here
   "." 'neotree
 
   "r" 'counsel-recentf
