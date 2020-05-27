@@ -506,6 +506,10 @@ _SPC_ cancel
        ("s" git-gutter:stage-hunk "stage hunk")
        ("r" git-gutter:revert-hunk "revert hunk")
        ("?" git-gutter:statistic "stats")
+       ("m" magit-status "magit" :exit t)
+       ("b" magit-blame "blame" :exit t)
+       ("t" git-timemachine "timemachine" :exit t)
+       ("d" magit-dispatch "dispatch" :exit t)       
        ("<SPC>" nil "quit")))
 
 
