@@ -9,21 +9,21 @@ export PATH=$PATH:$HOME/local/bin
 export TERMINAL=x-terminal-emulator
 
 # ibus + hangul
-case ${OSNAME} in
-  Linux)
+#case ${OSNAME} in
+#  Linux)
     export XMODIFIERS="@im=ibus"
     export QT_IM_MODULE=ibus
     export GTK_IM_MODULE=ibus
 
     ibus-daemon -d -x
-    ;;
-  FreeBSD)
-    export XMODIFIERS="@im=nabi"
-    export QT_IM_MODULE=xim
-    export GTK_IM_MODULE=xim
-    nabi &
-    ;;
-esac
+#    ;;
+#  FreeBSD)
+#    export XMODIFIERS="@im=nabi"
+#    export QT_IM_MODULE=xim
+#    export GTK_IM_MODULE=xim
+#    nabi &
+#    ;;
+#esac
 
 # ssh / gnome-keyring
 case ${OSNAME} in
