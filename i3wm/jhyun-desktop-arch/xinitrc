@@ -76,7 +76,12 @@ else
 fi
 
 # Compositor
-picom -b &
+which picom
+if [ $? -eq 0 ]; then
+  picom -b &
+else
+  compton -b &
+fi
 
 # Bluetooth
 blueman-applet &
