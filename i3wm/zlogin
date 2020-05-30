@@ -1,7 +1,0 @@
-if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
-    dialog --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
-    if [[ $? == 0 || $? == 255 ]]; then
-        exec startx
-    fi
-fi
-
