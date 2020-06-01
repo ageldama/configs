@@ -75,13 +75,22 @@
    "R T" 'godoctor-toggle-dry-run
    ))
 
+(defun golang-fff ()
+"
+go get -u golang.org/x/tools/...
+go get -u github.com/rogpeppe/godef
+go get -u github.com/golang/lint/golint
+go get -u github.com/stamblerre/gocode
+go get -u github.com/godoctor/godoctor
+go get -u golang.org/x/lint/golint
+go get -u github.com/kisielk/errcheck
+go get github.com/mdempsky/unconvert
 
-;; golang.org/x/tools/...
-;; github.com/rogpeppe/godef
-;; github.com/golang/lint/golint
-;; github.com/alecthomas/gometalinter
-;; github.com/mdempsky/gocode
-;; github.com/godoctor/godoctor
+https://staticcheck.io/docs/
+
+#go get -u github.com/alecthomas/gometalinter
+")
+
 
 
 ;;; EOF.
