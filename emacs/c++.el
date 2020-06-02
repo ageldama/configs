@@ -58,23 +58,8 @@
 
 
 
-;;; gtags : GNU Global
-(use-package counsel-gtags :ensure t :pin melpa)
-
-
-;;; irony
-(use-package irony :ensure t :pin melpa)
-
-(use-package company-irony :ensure t :pin melpa
-  :config (add-to-list 'company-backends 'company-irony))
-
-(use-package irony-eldoc :ensure t :pin melpa)
-
-
-(add-hook 'irony-mode-hook (lambda ()
-                             ;;(irony-cdb-autosetup-compile-options)
-                             (irony-eldoc +1)
-                             (company-mode +1)))
+;;; GNU Global
+(use-package ggtags :ensure t :pin melpa)
 
 
 
@@ -138,7 +123,7 @@
 (add-hook 'hack-local-variables-hook 'my-hack-local-vars-mode-hook)
 
 (defun my-hack-local-vars-mode-hook ()
-  "Run a hook for the major-mode after the local variables have been processed."
+  "Run a hook for the `major-mode' after the local variables have been processed."
   (run-hooks (intern (concat (symbol-name major-mode) "-local-vars-hook"))))
 
 (add-hook 'c-mode-local-vars-hook 'my-c-c++-mode-hook)
@@ -151,25 +136,15 @@
 (defun gtags-local-defs ()
   (message "Using GNU Global")
   (my-local-leader-def :keymaps 'c-mode-base-map
-    "` !" 'my-c-c++-mode-reset
-    "` b" 'c-c++-rmsbolt-this-or-off
-    
-    "," 'counsel-gtags-go-backward
-    "." 'counsel-gtags-dwim
-
-    "g" '(:ignore t :which-key "gtags")
-    "g d" 'counsel-gtags-find-definition
-    "g r" 'counsel-gtags-find-reference
-    "g s" 'counsel-gtags-find-symbol
-    "g c" 'counsel-gtags-create-tags
-    "g u" 'counsel-gtags-update-tags
-    "g !" 'flycheck-c/c++-setup
+    "!" 'my-c-c++-mode-reset
+    "b" 'c-c++-rmsbolt-this-or-off
+    "f" 'flycheck-c/c++-setup
     ))
 
 
 (defun c-c++-bind-key-map ()
   (when (fboundp 'general-create-definer)
-    (gtags-local-defs)))
+    (ggtags-local-defs)))
 
 
 ;;; EOF
