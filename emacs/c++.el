@@ -95,8 +95,7 @@
   ;; keys
   (c-c++-bind-key-map)
   ;; rmsbolt
-  (setq-local rmsbolt-default-directory (my-c-c++-build-dir))
-  )
+  (setq-local rmsbolt-default-directory (my-cc-build-dir)))
 
 
 (defun my-c-c++-mode-reset ()
