@@ -4,6 +4,12 @@ import json
 import sys
 
 
+def extract_incdir(s):
+    if s.startswith('-I'):
+        return s[2:]
+    return None
+
+    
 if __name__ == '__main__':
     if len(sys.argv) < 3:
         sys.exit(1)
@@ -22,14 +28,28 @@ if __name__ == '__main__':
                 coll = []
                 
                 for part in parsed:
-                    if part.startswith('-I'):
-                        coll.append(part[2:])
+                    incdir = extract_incdir(part)
+                    if incdir is not None:
+                        coll.append(incdir)
 
                 for incdir in coll:
                     print(incdir)
 
                 sys.exit(0)
 
-    sys.exit(1)  # Not found.
+        # Not found: sum all
+        incdirs = set()
+
+        for i in j:
+            cmd = i['command']
+            parsed = shlex.split(cmd)
+                
+            for part in parsed:
+                incdir = extract_incdir(part)
+                if incdir is not None:
+                    incdirs.add(incdir)
+
+        for incdir in incdirs:
+            print(incdir)
 
         
