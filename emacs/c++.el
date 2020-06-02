@@ -1,13 +1,10 @@
-(defun my-c-c++-build-dir () (getenv "BUILD_DIR"))
 
-(defun parse-compile-commands-json-inc-dirs (dir)
-  (let* ((fn (s-concat dir "/compile_commands.json"))
-         (inc-dirs
-          ;; https://github.com/ageldama/go-parse-compile-cmds
-          (shell-command-to-string (s-concat "go-parse-compile-cmds " fn))))
-    (mapcar (lambda (s) (if (s-prefix? "/" s) s
-                          (s-concat dir "/" s)))
-            (s-split "\n" inc-dirs))))
+(load-library (f-join langsup-base-path "compcmdsjson/compcmdsjson"))
+
+
+(defun my-cc-build-dir () (getenv "BUILD_DIR"))
+
+
 
 ;;; Debugger, CMake, Modern-CPP
 
@@ -38,8 +35,6 @@
 ;;; RMSBolt
 (use-package rmsbolt :ensure t :pin melpa)
 
-(load-library (f-join langsup-base-path "compile-commands-json"))
-
 
 (defun c-c++-rmsbolt-this-or-off ()
   (interactive)
@@ -49,8 +44,8 @@
     ;; else
     (progn
       (setq-local rmsbolt-command
-                  (compile-commands-json/rmsbolt-command
-                   (make-read-compile-commands-in-dir (my-c-c++-build-dir))
+                  (compcmdsjson-get-compcmds-rmsbolt
+                   (s-concat (my-cc-build-dir) "/compile_commands.json")
                    (buffer-file-name)))
       ;;
       (rmsbolt-mode)
@@ -68,20 +63,14 @@
 
 (defun flycheck-c/c++-setup ()
   (interactive)
-  (let ((inc-dirs  (parse-compile-commands-json-inc-dirs
-                    (my-c-c++-build-dir))))
+  (let ((inc-dirs (compcmdsjson-get-incdirs
+                   (s-concat (my-cc-build-dir) "/compile_commands.json")
+                   (buffer-file-name))))
     (message "Include-Dirs: %S" inc-dirs)
     (setq-local flycheck-clang-include-path inc-dirs)
     (setq-local flycheck-gcc-include-path inc-dirs)
     (setq-local flycheck-clang-tidy-build-path
-                (my-c-c++-build-dir)))
-  (let ((proj (projectile-project-root))
-        (bld (s-concat (my-c-c++-build-dir)
-                       "/compile_commands.json")))
-    (message "proj-dir=%s / build-dir=%s" proj bld)
-    (irony-cdb-json-add-compile-commands-path proj bld))
-  ;; irony
-  (irony-mode +1)
+                (my-cc-build-dir)))
   ;;
   (setq-local my-c-c++-touched t)
   (ignore-errors
@@ -90,21 +79,16 @@
 
 
 ;;;
-(defun my-c-c++-gtags-hook ()
-  (define-key counsel-gtags-mode-map (kbd "M-t") 'counsel-gtags-find-definition)
-  (define-key counsel-gtags-mode-map (kbd "M-r") 'counsel-gtags-find-reference)
-  (define-key counsel-gtags-mode-map (kbd "M-s") 'counsel-gtags-find-symbol)
-  (define-key counsel-gtags-mode-map (kbd "M-.") 'counsel-gtags-dwim)
-  (define-key counsel-gtags-mode-map (kbd "M-,") 'counsel-gtags-go-backward)
-  ;;
-  (counsel-gtags-mode))
-
+(defun my-c-c++-ggtags-hook ()
+  (ggtags-mode 1)
+  (eldoc-mode 1)
+  (company-mode 1))
 
   
 
 (defun my-c-c++-mode-hook ()
   (interactive)
-  (my-c-c++-gtags-hook)
+  (my-c-c++-ggtags-hook)
   (unless my-c-c++-touched
     (run-with-timer 0.5 nil #'flycheck-c/c++-setup))
   (flycheck-mode)
@@ -117,6 +101,7 @@
 
 (defun my-c-c++-mode-reset ()
   (interactive)
+  (compcmdsjson-clear-incdirs-cache)
   (setq-local my-c-c++-touched nil)
   (my-c-c++-mode-hook))
 
@@ -133,7 +118,7 @@
 
 
 
-(defun gtags-local-defs ()
+(defun ggtags-local-defs ()
   (message "Using GNU Global")
   (my-local-leader-def :keymaps 'c-mode-base-map
     "!" 'my-c-c++-mode-reset
