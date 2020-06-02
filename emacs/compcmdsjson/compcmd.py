@@ -16,7 +16,9 @@ if __name__ == '__main__':
 
         for i in j:
             if i['file'] == d_src_fn:
-                print(i['command'])
+                cmd = i['command']
+                parsed = shlex.split(cmd)
+                print(parsed)
                 sys.exit(0)
 
     sys.exit(1)  # Not found.
