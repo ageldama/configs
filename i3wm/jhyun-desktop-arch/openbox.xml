@@ -565,6 +565,13 @@
         <monitor>next</monitor>
       </action>
     </keybind>
+
+    <keybind key="W-Tab">
+      <action name="ShowMenu">
+        <menu>client-list-combined-menu</menu>
+      </action>
+    </keybind>
+
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>
