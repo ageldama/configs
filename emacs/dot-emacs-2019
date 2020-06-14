@@ -1049,15 +1049,6 @@ _SPC_ : cancel
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
 
-
-
-;;; Themes
-(use-package color-theme-sanityinc-tomorrow
-  :ensure t :pin melpa)
-
-(load-theme 'sanityinc-tomorrow-night t t)
-
-
 ;;; Uptime, Startup Time
 (message "Startup time: %s" (emacs-uptime))
 
