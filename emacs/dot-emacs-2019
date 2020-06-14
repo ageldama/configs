@@ -1053,9 +1053,10 @@ _SPC_ : cancel
 (message "Startup time: %s" (emacs-uptime))
 
 
-;;; pacman: protobuf 
-(when (f-exists?  "/usr/share/emacs/site-lisp/protobuf-mode.el")
-  (load-file "/usr/share/emacs/site-lisp/protobuf-mode.el")
-  (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode)))
+;;; pacman: protobuf
+(let ((path  "/usr/share/emacs/site-lisp/protobuf-mode.el"))
+  (when (f-exists? path)
+    (load-file path)
+    (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))))
 
 ;;; EOF.
