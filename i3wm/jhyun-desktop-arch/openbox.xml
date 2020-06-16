@@ -530,7 +530,7 @@
         </command>
       </action>
     </keybind>
-    <keybind key="W-F2">
+    <keybind key="W-F3">
       <action name="Execute">
         <command>
           gmrun
