@@ -513,6 +513,11 @@
         <command>hsetroot-solid.pl</command>
       </action>
     </keybind>
+    <keybind key="W-S-M-w">
+      <action name="Execute">
+        <command>wg.pl</command>
+      </action>
+    </keybind>
     <keybind key="W-S-m">
       <action name="Execute">
         <command>monologue.py</command>
