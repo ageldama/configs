@@ -810,9 +810,9 @@ _c_ run-cmd
 
 _SPC_ cancel
 "
-  ("x" moonshot-run-executable)
-  ("d" moonshot-run-debugger)
-  ("c" moonshot-run-runner)
+  ("x" moonshot-run-executable :exit t)
+  ("d" moonshot-run-debugger :exit t)
+  ("c" moonshot-run-runner :exit t)
   ("SPC" nil)
   )
 
@@ -865,7 +865,46 @@ _SPC_ : cancel
   ("C-w" flycheck-copy-errors-as-kill "Copy")  
   ("SPC" nil))
 
+;;; Windows/Buffers + Hydraw
+(defhydra hydra-windbuf (:hint nil)
+  "
+^Split^           ^Focus^             ^Buf^                  ^Size^
+^^^^^^^^-----------------------------------------------------------------
+___: split(v)     _o_: other-win.     _S-<left>_: bmv-l      _=_: balance
+_|_: split(h)     _<left>_: wmv-l     _S-<right>_: bmv-r     _+_: enlarge(v)
+_%_: toggle-dir.  _<right>_: wmv-r    _S-<up>_: bmv-u        _-_: shrink(v)
+_q_: delete-win.  _<up>_: wmv-u       _S-<down>_: bmv-d      _<_: shrink(h)
+_SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
+^ ^               ^ ^                 _C-<left>_: prev-buf
+^ ^               ^ ^                 _C-<right>_: next-buf
+^ ^               ^ ^                 _TAB_: ivy-buf
+"
+  ("_" split-window-below)
+  ("|" split-window-right)
+  ("%" window-toggle-split-direction)  
+  ("q" delete-window)
 
+  ("o" ace-window)    
+  ("<left>" windmove-left)
+  ("<right>" windmove-right)
+  ("<up>" windmove-up)
+  ("<down>" windmove-down)
+
+  ("S-<left>" buf-move-up)
+  ("S-<right>" buf-move-right)
+  ("S-<up>" buf-move-up)
+  ("S-<down>" buf-move-down)
+  ("C-<left>" previous-buffer)
+  ("C-<right>" next-buffer)
+  ("TAB" ivy-switch-buffer)
+  ("*" ace-swap-window)
+
+  ("=" balance-windows)
+  ("+" enlarge-window)
+  ("-" shrink-window)
+  ("<" shrink-window-horizontally)
+  (">" enlarge-window-horizontally)
+  ("SPC" nil))
 
 ;;; General -- Leading Keybinder
 (global-set-key (kbd "C-z") nil)
@@ -933,14 +972,6 @@ _SPC_ : cancel
 
   "c" 'hydra-flycheck/body
 
-  ;; "C-q" '(:ignore t :which-key "toggle")
-  ;; "C-q l" 'display-line-numbers-mode
-  ;; "C-q s" 'global-whitespace-mode
-  ;; "C-q i" 'highlight-indentation-mode
-  ;; "C-q I" 'highlight-indent-guides-mode
-  ;; "C-q h" 'idle-highlight-mode
-  ;; "C-q z" 'zone
-  ;; "C-q G" 'my-gc-toggle-timer
   "C-q" 'hydra-misc-toggles/body
 
   "C-c" '(:ignore t :which-key "capture")
@@ -951,6 +982,7 @@ _SPC_ : cancel
   ;;"r" (general-simulate-key "C-x r" :name regs)
 
   ;; windows
+  "C-w" 'hydra-windbuf/body
   "C-z" 'other-window
   "_" 'split-window-below
   "|" 'split-window-right
