@@ -39,6 +39,14 @@
 (my-gc-start-timer)
 
 
+(defun toggle-battery-saving-mode ()
+  (interactive)
+  (call-interactively #'global-flycheck-mode)
+  (call-interactively #'global-git-gutter-mode)
+  ;;(global-hl-todo-mode)
+  )
+
+
 ;;;
 (require 'cl)
 
@@ -830,6 +838,7 @@ _I_ : indent-guides-mode
 _h_ : idle-highlight-mode
 _z_ : ZONE
 _G_ : my-gc-toggle-timer
+_b_ : toggle-battery-saving-mode
 
 _SPC_ : cancel
 "
@@ -840,6 +849,7 @@ _SPC_ : cancel
  ("h" idle-highlight-mode)
  ("z" zone)
  ("G" my-gc-toggle-timer)
+ ("b" toggle-battery-saving-mode)
 
  ("SPC" nil))
 
