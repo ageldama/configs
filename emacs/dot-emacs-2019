@@ -1016,6 +1016,10 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   ">" 'enlarge-window-horizontally
   "<" 'shrink-window-horizontally
 
+  ;; jump / registers
+  "j" 'counsel-register
+  "J" 'point-to-register
+  
   ;; avy
   ;;"c"  'avy-goto-char-timer
   "l" 'avy-goto-line
