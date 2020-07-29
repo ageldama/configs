@@ -1046,10 +1046,9 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   (interactive)
   (setq unread-command-events (listify-key-sequence "\C-z")))
 
-(global-set-key (kbd "<f5>") 'my-C-z)
+(global-set-key (kbd "<f9>") 'my-C-z)
 
-(global-set-key (kbd "S-<f5>")
-                'toggle-evil-mode)
+(global-set-key (kbd "<f5>") 'toggle-evil-mode)
 
 
 ;;; Lang-support.
