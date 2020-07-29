@@ -30,3 +30,5 @@
 #	helper = "codecommit credential-helper "
 #	UseHttpPath = true
 
+[pull]
+	rebase = false
