@@ -917,127 +917,144 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   ("SPC" nil))
 
 ;;; General -- Leading Keybinder
-(global-set-key (kbd "C-z") nil)
-(global-set-key (kbd "C-x C-z") nil)
-
-(use-package general :ensure t :pin melpa)
-
 (defalias 'ctl-z-keymap (make-sparse-keymap))
 (defvar ctl-z-map (symbol-function 'ctl-z-keymap)
   "Global keymap for characters following C-z.")
+
 (define-key global-map "\C-z" 'ctl-z-keymap)
 
-(general-create-definer my-global-leader-def :prefix "C-z")
-(my-global-leader-def
-  "/" 'swiper-thing-at-point
+(use-package general :ensure t :pin melpa)
+
+(general-create-definer my-global-evil-leader-def
+  :states '(normal visual insert emacs)
+  :prefix "SPC"
+  :non-normal-prefix "M-SPC"  
+  )
+
+(general-create-definer my-global-emacs-leader-def
+  :prefix "C-z"
+  :keymaps 'global-map
+  )
+
+(defmacro eval-definers (definers &rest body)
+  (let ((i (gensym))
+        (l (gensym)))
+    `(dolist (,i ,definers)
+       (let ((,l  (list ,i ,@body)))
+         ;;(pp ,l)
+         (eval (macroexpand ,l))
+         ))))
+
+(eval-definers '(my-global-emacs-leader-def my-global-evil-leader-def)
+  "/" ''swiper-thing-at-point
 
   ;;"SPC" 'counsel-M-x
-  "TAB" 'ivy-switch-buffer
+  "TAB" ''ivy-switch-buffer
 
-  "?" 'counsel-descbinds
+  "?" ''counsel-descbinds
 
-  "$" 'ansi-term-here
-  "." 'neotree
+  "$" ''ansi-term-here
+  "." ''neotree
 
-  "r" 'counsel-recentf
+  "r" ''counsel-recentf
 
-  "g" 'magit-status
-  "M-g" 'hydra-git-gutter/body
+  "g" ''magit-status
+  "M-g" ''hydra-git-gutter/body
 
-  "o" 'counsel-rg-maybe-projectile
-  "p" 'counsel-projectile-find-file-dwim
+  "o" ''counsel-rg-maybe-projectile
+  "p" ''counsel-projectile-find-file-dwim
   ;;"p" 'projectile-find-file-dwim
 
   ;;"P" (general-simulate-key "C-c p" :name projectile)
   
   ;;"e" (general-simulate-key "C-c !" :name flycheck)
 
-  "k" 'counsel-yank-pop
+  "k" ''counsel-yank-pop
 
-  "m" 'counsel-mark-ring
-  "i" 'counsel-imenu
-  ":" 'toggle-evil-mode
+  "m" ''counsel-mark-ring
+  "i" ''counsel-imenu
+  ":" ''toggle-evil-mode
 
-  "w" 'writeroom-mode
+  "w" ''writeroom-mode
 
-  "h" 'hydra-hs/body
+  "h" ''hydra-hs/body
   ;; "f" '(:ignore t :which-key "fold")
   ;; "f t" 'vimish-fold-toggle
   ;; "f f" 'vimish-fold
   ;; "f d" 'vimish-fold-delete
 
   ;; "y" - yasnippet
-  "y" '(:ignore t :which-key "yasnippet")
-  "y i" 'yas-insert-snippet
-  "y e" 'yas-visit-snippet-file
-  "y n" 'yas-new-snippet
+  "y" ''(:ignore t :which-key "yasnippet")
+  "y i" ''yas-insert-snippet
+  "y e" ''yas-visit-snippet-file
+  "y n" ''yas-new-snippet
 
-  "`" '(:ignore t :which-key "misc")
-  "` p" 'counsel-list-processes
-  "` b" 'counsel-bookmark
-  "` D" 'sdcv-search-pointer
-  "` s" 'delete-trailing-whitespace
-  "` f" 'elfeed
-  "` G" 'garbage-collect
+  "`" ''(:ignore t :which-key "misc")
+  "` p" ''counsel-list-processes
+  "` b" ''counsel-bookmark
+  "` D" ''sdcv-search-pointer
+  "` s" ''delete-trailing-whitespace
+  "` f" ''elfeed
+  "` G" ''garbage-collect
 
-  "c" 'hydra-flycheck/body
+  "c" ''hydra-flycheck/body
 
-  "C-q" 'hydra-misc-toggles/body
+  "C-q" ''hydra-misc-toggles/body
 
-  "C-c" '(:ignore t :which-key "capture")
-  "C-c RET" 'org-capture
-  "C-c l" 'org-capture-open
+  "C-c" ''(:ignore t :which-key "capture")
+  "C-c RET" ''org-capture
+  "C-c l" ''org-capture-open
 
   ;; registers
   ;;"r" (general-simulate-key "C-x r" :name regs)
 
   ;; windows
-  "C-w" 'hydra-windbuf/body
-  "C-z" 'other-window
-  "_" 'split-window-below
-  "|" 'split-window-right
-  "q" 'delete-window
+  "C-w" ''hydra-windbuf/body
+  "C-z" ''other-window
+  "_" ''split-window-below
+  "|" ''split-window-right
+  "q" ''delete-window
 
-  "<left>" 'windmove-left
-  "<right>" 'windmove-right
-  "<up>" 'windmove-up
-  "<down>" 'windmove-down
+  "<left>" ''windmove-left
+  "<right>" ''windmove-right
+  "<up>" ''windmove-up
+  "<down>" ''windmove-down
 
-  "S-<left>" 'buf-move-up
-  "S-<right>" 'buf-move-right
-  "S-<up>" 'buf-move-up
-  "S-<down>" 'buf-move-down
-  "*" 'ace-swap-window
-  "%" 'window-toggle-split-direction
+  "S-<left>" ''buf-move-up
+  "S-<right>" ''buf-move-right
+  "S-<up>" ''buf-move-up
+  "S-<down>" ''buf-move-down
+  "*" ''ace-swap-window
+  "%" ''window-toggle-split-direction
 
-  "=" 'balance-windows
-  "+" 'enlarge-window
-  "-" 'shrink-window
-  ">" 'enlarge-window-horizontally
-  "<" 'shrink-window-horizontally
+  "=" ''balance-windows
+  "+" ''enlarge-window
+  "-" ''shrink-window
+  ">" ''enlarge-window-horizontally
+  "<" ''shrink-window-horizontally
 
   ;; jump / registers
-  "j" 'counsel-register
-  "J" 'point-to-register
+  "j" ''counsel-register
+  "J" ''point-to-register
   
   ;; avy
   ;;"c"  'avy-goto-char-timer
-  "l" 'avy-goto-line
+  "l" ''avy-goto-line
 
   ;; moonshot
-  "x" 'hydra-moonshot/body
+  "x" ''hydra-moonshot/body
   ;; "x x" 'moonshot-run-executable
   ;; "x d" 'moonshot-run-debugger
   ;; "x c" 'moonshot-run-runner
 
   ;; undo-tree
-  "u" 'undo-tree-visualize
+  "u" ''undo-tree-visualize
 
   ;; multiple-cursors
-  "M-m" 'hydra-multiple-cursors/body
+  "M-m" ''hydra-multiple-cursors/body
 
   ;;
-  "z" (general-simulate-key "C-'" :name mm)
+  "'" '(general-simulate-key "C-'" :name mm)
   )
 
 (general-create-definer my-local-leader-def :prefix "C-'")
@@ -1046,7 +1063,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   (interactive)
   (setq unread-command-events (listify-key-sequence "\C-z")))
 
-(global-set-key (kbd "<f9>") 'my-C-z)
+;;(global-set-key (kbd "<f9>") 'my-C-z)
 
 (global-set-key (kbd "<f5>") 'toggle-evil-mode)
 
