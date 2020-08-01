@@ -948,7 +948,9 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
 (eval-definers '(my-global-emacs-leader-def my-global-evil-leader-def)
   "/" ''swiper-thing-at-point
 
-  ;;"SPC" 'counsel-M-x
+  "SPC" ''counsel-M-x
+  "C-SPC" ''eval-expression
+
   "TAB" ''ivy-switch-buffer
 
   "?" ''counsel-descbinds
@@ -963,7 +965,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
 
   "o" ''counsel-rg-maybe-projectile
   "p" ''counsel-projectile-find-file-dwim
-  ;;"p" 'projectile-find-file-dwim
+  "P" ''projectile-commander
 
   ;;"P" (general-simulate-key "C-c p" :name projectile)
   
