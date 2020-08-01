@@ -951,6 +951,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   "SPC" ''counsel-M-x
   "C-SPC" ''eval-expression
 
+  "<backtab>" ''ibuffer
   "TAB" ''ivy-switch-buffer
 
   "?" ''counsel-descbinds
@@ -975,6 +976,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
 
   "m" ''counsel-mark-ring
   "i" ''counsel-imenu
+
   ":" ''toggle-evil-mode
 
   "w" ''writeroom-mode
