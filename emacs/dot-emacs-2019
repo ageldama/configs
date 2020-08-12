@@ -991,6 +991,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   ;;"e" (general-simulate-key "C-c !" :name flycheck)
 
   "k" ''counsel-yank-pop
+  "C-S-k" ''kill-current-buffer
 
   "m" ''counsel-mark-ring
   "i" ''counsel-imenu
