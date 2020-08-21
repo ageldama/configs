@@ -942,6 +942,10 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   (">" enlarge-window-horizontally)
   ("SPC" nil))
 
+;;; zoom-mode
+;;(use-package zoom :ensure t :pin melpa
+;;  :config (zoom-mode +1))
+
 ;;; General -- Leading Keybinder
 (defalias 'ctl-z-keymap (make-sparse-keymap))
 (defvar ctl-z-map (symbol-function 'ctl-z-keymap)
