@@ -942,6 +942,10 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   (">" enlarge-window-horizontally)
   ("SPC" nil))
 
+;;; zoom-mode
+;;(use-package zoom :ensure t :pin melpa
+;;  :config (zoom-mode +1))
+
 ;;; General -- Leading Keybinder
 (defalias 'ctl-z-keymap (make-sparse-keymap))
 (defvar ctl-z-map (symbol-function 'ctl-z-keymap)
@@ -1099,6 +1103,11 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
 ;;(global-set-key (kbd "<f9>") 'my-C-z)
 
 (global-set-key (kbd "<f5>") 'toggle-evil-mode)
+
+;; save -> load : use C-M-m to preview jump in `counsel-register'
+(global-set-key (kbd "<f6>") 'point-to-register)
+(global-set-key (kbd "<f7>") 'counsel-register)
+
 
 
 ;;; Lang-support.
