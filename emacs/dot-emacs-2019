@@ -1104,6 +1104,10 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
 
 (global-set-key (kbd "<f5>") 'toggle-evil-mode)
 
+(global-set-key (kbd "<f6>") 'point-to-register)
+(global-set-key (kbd "<f7>") 'counsel-register)
+
+
 
 ;;; Lang-support.
 (defvar langsup-loadp-path (expand-file-name "~/.emacs.d/load-p/"))
