@@ -995,7 +995,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   "M-g" ''hydra-git-gutter/body
 
   "o" ''counsel-rg-maybe-projectile
-  "p" ''counsel-projectile-find-file-dwim
+  "p" ''counsel-fzf  ;;counsel-projectile-find-file-dwim
   "P" ''projectile-commander
 
   ;;"P" (general-simulate-key "C-c p" :name projectile)
