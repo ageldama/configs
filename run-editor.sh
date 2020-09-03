@@ -1,7 +1,10 @@
 #!/bin/sh
-if [[ -p $XDG_RUNTIME_DIR/emacs/server ]];
-  emacsclient $@
+FILE="$XDG_RUNTIME_DIR/emacs/server"
+# echo $FILE
+# ls -lh $FILE
+if [[ -e "$FILE" ]]; then
+    emacsclient "$@"
 else
-  vim $@
+    vim "$@"
 fi
 
