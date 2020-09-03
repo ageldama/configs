@@ -3,6 +3,7 @@
 
 ;;; org-roam
 (use-package org-roam :ensure t :pin melpa
+  :diminish
   :hook
   (after-init . org-roam-mode)
   :custom
