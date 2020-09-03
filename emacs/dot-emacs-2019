@@ -504,6 +504,24 @@ _SPC_ cancel
 ;;; Git
 (use-package magit :ensure t :pin melpa)
 
+(use-package with-editor :ensure t :pin melpa
+  :config
+  ;;(with-editor-export-git-editor)
+  
+  (define-key (current-global-map)
+    [remap async-shell-command] 'with-editor-async-shell-command)
+  (define-key (current-global-map)
+    [remap shell-command] 'with-editor-shell-command)
+
+  (add-hook 'shell-mode-hook  'with-editor-export-editor)
+  (add-hook 'term-exec-hook   'with-editor-export-editor)
+  (add-hook 'eshell-mode-hook 'with-editor-export-editor)
+
+  (add-hook 'shell-mode-hook
+            (apply-partially 'with-editor-export-editor "GIT_EDITOR"))
+  (add-hook 'shell-mode-hook 'with-editor-export-git-editor))
+
+
 (use-package git-timemachine    :ensure t :pin  melpa)
 
 (when +sys/gui?+
