@@ -567,6 +567,13 @@
         </command>
       </action>
     </keybind>
+    <keybind key="W-F9">
+      <action name="Execute">
+        <command>
+          sh -c "kill -USR1 $(pidof redshift)"
+        </command>
+      </action>
+    </keybind>
     <keybind key="W-o">
       <action name="MoveResizeTo">
         <!-- move to next monitor -->
