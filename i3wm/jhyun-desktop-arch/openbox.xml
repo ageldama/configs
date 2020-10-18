@@ -532,6 +532,13 @@
         <command>xscreensaver-command -lock</command>
       </action>
     </keybind>
+    <keybind key="W-e">
+      <action name="Execute">
+        <command>
+          sh -c 'xdg-open $HOME'
+        </command>
+      </action>
+    </keybind>
     <keybind key="W-F1">
       <action name="Execute">
         <command>
