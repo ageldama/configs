@@ -1,6 +1,7 @@
 # -*- mode: R; -*-
 # ~/.Rprofile
 Sys.setlocale("LC_ALL", "en_US.UTF-8")
+options('browser' = 'firefox')
 
 
 
