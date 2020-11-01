@@ -8,8 +8,7 @@
   :config (progn (eval-after-load 'js2-mode '(add-hook 'js2-mode-hook #'add-node-modules-path))
                  (add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
 		 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
-                 (add-hook 'js2-mode-hook
-                           (lambda () (electric-indent-local-mode -1)))
+                 ;;(add-hook 'js2-mode-hook (lambda () (electric-indent-local-mode -1)))
                  (add-hook 'js2-mode-hook 'prettier-js-mode)
                  (setq js2-mode-show-parse-errors nil
                        js2-mode-show-strict-warnings nil)))
