@@ -18,8 +18,8 @@
   :config (add-to-list 'auto-mode-alist '("\\.json" . json-mode)))
 
 ;;; jsx
-(use-package rjsx-mode :ensure t :pin melpa
-  :config (add-to-list 'auto-mode-alist '("\\.jsx" . rjsx-mode)))
+;; (use-package rjsx-mode :ensure t :pin melpa
+;;   :config (add-to-list 'auto-mode-alist '("\\.jsx" . rjsx-mode)))
 
 ;; NPM integration
 (use-package npm-mode :ensure t :pin melpa)
