@@ -1,0 +1,6 @@
+# ~/.config/.lambda-term-inputrc
+[read-line]
+C-left: complete-bar-prev
+C-right: complete-bar-next
+C-down: complete-bar
+
