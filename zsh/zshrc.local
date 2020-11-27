@@ -94,10 +94,11 @@ fi
 =cut
 
 
-(type -p direnv >& /dev/null) && eval "$(direnv hook zsh)"
 
 
 if [[ -f ~/.zshrc.local2 ]]; then
   source ~/.zshrc.local2
 fi
+
+(type -p direnv >& /dev/null) && eval "$(direnv hook zsh)"
 
