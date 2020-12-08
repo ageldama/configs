@@ -1128,7 +1128,7 @@ _U_: 'FOO_BAR' upcase
   "M-m" ''hydra-multiple-cursors/body
 
   ;; string-inflection
-  "C-i" ''hydra-string-inflection/body
+  "M-i" ''hydra-string-inflection/body
 
   ;;
   "'" '(general-simulate-key "C-'" :name mm)
@@ -1176,7 +1176,8 @@ _U_: 'FOO_BAR' upcase
              (groovy . "groovy/groovy.el")
              (js2 . "javascript/js2.el")
              (jsx . "javascript/jsx.el")             
-             (web . "web.el")             
+             (web . "web.el")
+             (tide . "javascript/tide.el")
              (js+light . "javascript/js+light.el")
              (pug . "javascript/pug.el")
              (vue . "javascript/vue.el")
