@@ -1,3 +1,4 @@
+(use-package add-node-modules-path :ensure t :pin melpa)
 
 (defun setup-tide-mode ()
   (interactive)
@@ -17,11 +18,10 @@
 
 (use-package tide
   :ensure t :pin melpa
-  :after (typescript-mode company flycheck)
+  :config (setq typescript-indent-level 2)
+  :after (typescript-mode company flycheck add-node-modules-path)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
-         (typescript-mode . (lambda () (setq typescript-indent-level
-                                             (or (plist-get (tide-tsfmt-options) ':indentSize) 2))))
          (before-save . tide-format-before-save)))
 
 ;;; TSX

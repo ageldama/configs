@@ -307,7 +307,7 @@
   (add-hook i 'hs-minor-mode))
 
 (defhydra hydra-hs ()
-   "
+  "
 Hide^^            ^Show^            ^Toggle^    ^Navigation^
 ----------------------------------------------------------------
 _h_ hide all      _s_ show all      _t_oggle    _n_ext line
@@ -316,16 +316,16 @@ _l_ hide level
 
 _SPC_ cancel
 "
-   ("s" hs-show-all)
-   ("h" hs-hide-all)
-   ("a" hs-show-block)
-   ("d" hs-hide-block)
-   ("t" hs-toggle-hiding)
-   ("l" hs-hide-level)
-   ("n" forward-line)
-   ("p" (forward-line -1))
-   ("SPC" nil)
-   )
+  ("s" hs-show-all)
+  ("h" hs-hide-all)
+  ("a" hs-show-block)
+  ("d" hs-hide-block)
+  ("t" hs-toggle-hiding)
+  ("l" hs-hide-level)
+  ("n" forward-line)
+  ("p" (forward-line -1))
+  ("SPC" nil)
+  )
 
 
 ;;; rainbow-delimiters
@@ -567,7 +567,7 @@ _SPC_ cancel
              (lambda () (local-set-key ,key
                                        'company-capf))))
 
-(bind-company-local-key 'prog-mode-hook (kbd "<C-tab>"))
+(bind-company-local-key 'prog-mode-hook (kbd "C-c \\"))
 (bind-company-local-key 'text-mode-hook (kbd "C-c \\"))
 
 
@@ -1069,7 +1069,7 @@ _U_: 'FOO_BAR' upcase
   "` f" ''elfeed
   "` G" ''garbage-collect
 
-  "c" ''hydra-flycheck/body
+  "!" ''hydra-flycheck/body
 
   "C-q" ''hydra-misc-toggles/body
 
@@ -1208,5 +1208,7 @@ _U_: 'FOO_BAR' upcase
   (when (f-exists? path)
     (load-file path)
     (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))))
+
+
 
 ;;; EOF.
