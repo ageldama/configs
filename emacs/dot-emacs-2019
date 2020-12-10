@@ -1134,7 +1134,9 @@ _U_: 'FOO_BAR' upcase
   "'" '(general-simulate-key "C-'" :name mm)
   )
 
-(general-create-definer my-local-leader-def :prefix "C-'")
+(general-create-definer my-local-leader-def :prefix "C-'"
+  ;;:states '(normal visual insert emacs)
+  )
 
 (defun my-C-z ()
   (interactive)
