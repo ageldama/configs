@@ -766,6 +766,39 @@ i.e. change right window to bottom, or change bottom window to right."
   (evil-mode (if (null evil-state) 1 -1)))
 
 
+;;; evil-surround
+(use-package evil-surround
+  :ensure t :pin melpa
+  :config
+  (global-evil-surround-mode 1))
+"
+    'Hello world!'
+
+        --> cs'<q> :
+
+    <q>Hello world!</q>
+
+
+
+    ysiw] (iw is a text object):
+
+        [Hello] world!
+
+
+
+    wrap the entire line in parentheses with yssb or yss):
+
+        ({ Hello } world!)
+
+
+
+    Revert to the original text: ds{ds)
+
+        Hello world!
+
+"
+
+
 ;;; eshell is my fren
 (defun eshell-here ()
   (interactive)
@@ -1083,6 +1116,7 @@ _U_: 'FOO_BAR' upcase
   ;; avy
   ;;"c"  'avy-goto-char-timer
   "l" 'avy-goto-line
+  "L" 'avy-goto-char-2
 
   ;; moonshot
   "x" 'hydra-moonshot/body
