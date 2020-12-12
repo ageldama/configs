@@ -307,7 +307,7 @@
   (add-hook i 'hs-minor-mode))
 
 (defhydra hydra-hs ()
-   "
+  "
 Hide^^            ^Show^            ^Toggle^    ^Navigation^
 ----------------------------------------------------------------
 _h_ hide all      _s_ show all      _t_oggle    _n_ext line
@@ -316,16 +316,16 @@ _l_ hide level
 
 _SPC_ cancel
 "
-   ("s" hs-show-all)
-   ("h" hs-hide-all)
-   ("a" hs-show-block)
-   ("d" hs-hide-block)
-   ("t" hs-toggle-hiding)
-   ("l" hs-hide-level)
-   ("n" forward-line)
-   ("p" (forward-line -1))
-   ("SPC" nil)
-   )
+  ("s" hs-show-all)
+  ("h" hs-hide-all)
+  ("a" hs-show-block)
+  ("d" hs-hide-block)
+  ("t" hs-toggle-hiding)
+  ("l" hs-hide-level)
+  ("n" forward-line)
+  ("p" (forward-line -1))
+  ("SPC" nil)
+  )
 
 
 ;;; rainbow-delimiters
@@ -567,7 +567,7 @@ _SPC_ cancel
              (lambda () (local-set-key ,key
                                        'company-capf))))
 
-(bind-company-local-key 'prog-mode-hook (kbd "<C-tab>"))
+(bind-company-local-key 'prog-mode-hook (kbd "C-c \\"))
 (bind-company-local-key 'text-mode-hook (kbd "C-c \\"))
 
 
@@ -945,6 +945,28 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
 ;;(use-package zoom :ensure t :pin melpa
 ;;  :config (zoom-mode +1))
 
+;;; string-inflect
+(use-package string-inflection  :ensure t :pin melpa)
+
+(defhydra hydra-string-inflection ()
+  "
+string-inflection:^^
+----------------------------------------------------------
+_c_: 'fooBar' lower-camelcase
+_C_: 'FooBar' capital-camelcase
+_p_: 'Foo_Bar' capital-underscore
+_k_: 'foo-bar' kebab
+_u_: 'foo_bar' underscore
+_U_: 'FOO_BAR' upcase
+"
+  ("c" string-inflection-lower-camelcase :exit t)
+  ("C" string-inflection-camelcase :exit t)
+  ("p" string-inflection-capital-underscore :exit t)
+  ("k" string-inflection-kebab-case :exit t)
+  ("u" string-inflection-underscore :exit t)
+  ("U" string-inflection-upcase :exit t)
+  ("SPC" nil))
+
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
@@ -969,7 +991,8 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
 
   "?" 'counsel-descbinds
 
-  "$" 'ansi-term-here
+  "$ e" 'eshell-here
+  "$ a" 'ansi-term-here
   "." 'neotree
 
   "r" 'counsel-recentf
@@ -1015,7 +1038,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   "` f" 'elfeed
   "` G" 'garbage-collect
 
-  "c" 'hydra-flycheck/body
+  "!" 'hydra-flycheck/body
 
   "C-q" 'hydra-misc-toggles/body
 
@@ -1073,12 +1096,18 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   ;; multiple-cursors
   "M-m" 'hydra-multiple-cursors/body
 
+  ;; string-inflection
+  "M-i" ''hydra-string-inflection/body
+
   ;;"'" '(general-simulate-key "C-'" :name mm)
   )
 
 
-;;(global-set-key (kbd "<f9>") 'my-C-z)
+(defun my-C-z ()
+  (interactive)
+  (setq unread-command-events (listify-key-sequence "\C-z")))
 
+;;(global-set-key (kbd "<f9>") 'my-C-z)
 (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
 ;; save -> load : use C-M-m to preview jump in `counsel-register'
@@ -1131,7 +1160,8 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
              (groovy . "groovy/groovy.el")
              (js2 . "javascript/js2.el")
              (jsx . "javascript/jsx.el")             
-             (web . "web.el")             
+             (web . "web.el")
+             (tide . "javascript/tide.el")
              (js+light . "javascript/js+light.el")
              (pug . "javascript/pug.el")
              (vue . "javascript/vue.el")
@@ -1162,5 +1192,7 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   (when (f-exists? path)
     (load-file path)
     (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))))
+
+
 
 ;;; EOF.
