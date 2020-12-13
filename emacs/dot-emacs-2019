@@ -753,6 +753,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; Evil, my last resort. (sometimes)
+(setq evil-want-keybinding nil)
+
 (unless (fboundp 'evil-mode)
   (use-package evil :ensure t :pin melpa
     :init (setq evil-want-integration t)))
@@ -764,6 +766,13 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun toggle-evil-mode ()
   (interactive)
   (evil-mode (if (null evil-state) 1 -1)))
+
+
+(use-package evil-collection
+  :after evil
+  :ensure t :pin melpa
+  :config
+  (evil-collection-init))
 
 
 ;;; evil-surround
