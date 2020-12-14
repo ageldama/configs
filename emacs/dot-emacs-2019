@@ -763,6 +763,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (setq evil-default-state 'normal) ;;emacs)
 
+(evil-set-initial-state 'dired-mode 'emacs)
+
 (defun toggle-evil-mode ()
   (interactive)
   (evil-mode (if (null evil-state) 1 -1)))

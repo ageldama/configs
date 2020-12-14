@@ -78,9 +78,9 @@ fi
 # Compositor
 which picom
 if [ $? -eq 0 ]; then
-  picom -b &
+  true #picom -b &
 else
-  compton -b &
+  true #compton -b &
 fi
 
 # Bluetooth
