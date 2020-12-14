@@ -16,6 +16,8 @@
 ;; aligns annotation to the right hand side
 (setq company-tooltip-align-annotations t)
 
+(setq typescript-indent-level 2)
+
 (use-package tide
   :ensure t :pin melpa
   :config (setq typescript-indent-level 2)
