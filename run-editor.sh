@@ -2,7 +2,7 @@
 FILE="$XDG_RUNTIME_DIR/emacs/server"
 # echo $FILE
 # ls -lh $FILE
-if [[ -e "$FILE" ]]; then
+if test -e "$FILE"; then
     emacsclient "$@"
 else
     vim "$@"
