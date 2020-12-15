@@ -1,4 +1,5 @@
-;; NOTE: go get -u golang.org/x/tools/cmd/gopls
+;; go get golang.org/x/tools/gopls@latest
+;; go get golang.org/x/tools/cmd/goimports
 
 (use-package lsp-mode :ensure t :pin melpa
   :commands (lsp lsp-deferred)
@@ -16,9 +17,17 @@
   :ensure t :pin melpa
   :config (push 'company-lsp company-backends))
 
+
 (defun lsp-go-install-save-hooks ()
-  (add-hook 'before-save-hook #'lsp-format-buffer t t)
-  (add-hook 'before-save-hook #'lsp-organize-imports t t))
+  ;;(add-hook 'before-save-hook #'lsp-format-buffer t t)
+  ;;(add-hook 'before-save-hook #'lsp-organize-imports t t)
+  ;;
+  ;; NOTE: 2개으로 나눠 놓으면, async하게 동작하는 것 때문에 느린
+  ;; 컴퓨터에서 파일을 깨먹어서, 하나의 gofmt만을 사용하고, 또, gofmt
+  ;; 대신에 goimports을 써서 formatting, organize imports을 함께
+  ;; 처리한다.
+  (add-hook 'before-save-hook #'gofmt-before-save t t)
+  )
 
 (use-package go-mode :ensure t :pin melpa
   :config (progn (add-hook 'lsp-mode-hook 'lsp-ui-mode)
@@ -27,6 +36,7 @@
                  (add-hook 'before-save-hook 'lsp-go-install-save-hooks)
                  (setq lsp-prefer-flymake nil)))
 
+(setq gofmt-command "goimports")
 
 (use-package gotest :ensure t :pin melpa)
 
