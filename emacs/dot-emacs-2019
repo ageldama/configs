@@ -42,7 +42,7 @@
 (defun toggle-battery-saving-mode ()
   (interactive)
   (call-interactively #'global-flycheck-mode)
-  (call-interactively #'global-git-gutter-mode)
+  ;;(call-interactively #'global-git-gutter-mode)
   ;;(global-hl-todo-mode)
   )
 
@@ -519,9 +519,9 @@ _SPC_ cancel
 ;;   (add-hook 'shell-mode-hook 'with-editor-export-git-editor))
 
 
-(use-package git-timemachine    :ensure t :pin  melpa)
+;; (use-package git-timemachine    :ensure t :pin  melpa)
 
-(when +sys/gui?+
+(when nil ;; DEACTIVATED, +sys/gui?+
   (use-package git-gutter-fringe :ensure t :pin melpa
     :diminish git-gutter-mode
     :config (global-git-gutter-mode +1))
@@ -1042,7 +1042,7 @@ _U_: 'FOO_BAR' upcase
   "r" 'counsel-recentf
 
   "g" 'magit-status
-  "M-g" 'hydra-git-gutter/body
+  ;;"M-g" 'git-timemachine
 
   "o" 'counsel-rg-maybe-projectile
   "p" 'counsel-projectile-find-file-dwim
