@@ -4,6 +4,7 @@
 
 (setq inhibit-startup-screen t)
 
+
 ;; Don't forget `M-x esup', profile your `.emacs'.
 (setq gc-cons-threshold
       (if (< (or (car (memory-info)) 9999999999999999)
@@ -120,8 +121,11 @@
 
 ;;
 (setq-default indent-tabs-mode nil) ; suppress using TAB chars for indentation.
+
 (setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
+
 ;;(global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
+
 (electric-indent-mode +1)
 
 
@@ -143,6 +147,11 @@
 (setq make-backup-files nil)
 (setq version-control   nil)   ; backup uses version numbers?
 
+
+;;; similar buffer names
+(setq uniquify-buffer-name-style 'post-forward-angle-brackets)
+
+;;;
 (if +sys/gui?+
     (progn
       (menu-bar-mode   -1)
@@ -190,6 +199,7 @@
 
 (use-package f :ensure t)
 (use-package s :ensure t)
+
 
 
 ;;; GUI fonts
@@ -541,6 +551,21 @@ _SPC_ cancel
        ("t" git-timemachine "timemachine" :exit t)
        ("d" magit-dispatch "dispatch" :exit t)       
        ("<SPC>" nil "quit")))
+
+
+;;; hippie-expand, zap-up-to-char
+
+(global-set-key "\M-z" 'zap-up-to-char)
+
+(global-set-key "\M-/" 'hippie-expand)
+
+(setq hippie-expand-try-functions-list '(try-expand-dabbrev
+                                         try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill
+                                         try-complete-file-name-partially try-complete-file-name
+                                         try-expand-all-abbrevs try-expand-list try-expand-line
+                                         try-complete-lisp-symbol-partially try-complete-lisp-symbol))
+
+
 
 
 ;;; flycheck.
