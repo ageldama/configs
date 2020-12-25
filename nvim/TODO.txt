@@ -1,0 +1,9 @@
+* TODO occur
+* TODO ripgrep + occur
+* TODO wgrep
+* TODO expand-region
+* TODO ALE
+* TODO CoC
+* TODO multiple-cursors
+* TODO yank-stack
+* TODO editor-config
