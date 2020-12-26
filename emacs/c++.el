@@ -63,10 +63,16 @@
 
 (defun flycheck-c/c++-setup ()
   (interactive)
-  (let ((inc-dirs (compcmdsjson-get-incdirs
-                   (s-concat (my-cc-build-dir) "/compile_commands.json")
-                   (buffer-file-name))))
-    (message "Include-Dirs: %S" inc-dirs)
+  (let* ((inc-dirs (compcmdsjson-get-incdirs
+                    (s-concat (my-cc-build-dir) "/compile_commands.json")
+                    (buffer-file-name)))
+         (inc-dirs* (let ((saved-dir (pwd))
+                          (inc-dirs** nil))
+                      (cd (my-cc-build-dir))
+                      (setq inc-dirs** (mapcar #'expand-file-name inc-dirs))
+                      (cd saved-dir)
+                      inc-dirs**)))
+    (message "Include-Dirs: %S" inc-dirs*)
     (setq-local flycheck-clang-include-path inc-dirs)
     (setq-local flycheck-gcc-include-path inc-dirs)
     (setq-local flycheck-clang-tidy-build-path
