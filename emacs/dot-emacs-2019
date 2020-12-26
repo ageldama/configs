@@ -933,7 +933,7 @@ _n_ find-name     _G_ magit
 _SPC_ cancel
 "
   ("f" find-file :exit t)
-  ("r" recentf-open-files :exit t)
+  ("r" counsel-recentf :exit t)
   ("p" projectile-find-file-dwim :exit t)
   ("g" counsel-rg-maybe-projectile :exit t)
   ("n" find-name-dired :exit t)
