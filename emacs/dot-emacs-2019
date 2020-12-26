@@ -1257,6 +1257,7 @@ _U_: 'FOO_BAR' upcase
              (rust . "rust.el")
              (rust+racer . "rust+racer.el")
              (c++ . "c++.el")
+             (c++-ccls . "c++-ccls.el")
              (geiser . "geiser.el")
              (auctex . "auctex.el")
              (tcl . "tcl.el")
