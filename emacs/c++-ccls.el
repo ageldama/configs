@@ -30,30 +30,7 @@
 
 
 ;;; RMSBolt
-;; FIXME: broken nao w/ ccls.
-(unless t
-
-(load-library (f-join langsup-base-path "compcmdsjson/compcmdsjson"))
-(defun my-cc-build-dir () (getenv "BUILD_DIR"))
-
 (use-package rmsbolt :ensure t :pin melpa)
-
-
-(defun c-c++-rmsbolt-this-or-off ()
-  (interactive)
-  (if rmsbolt-mode
-      ;; then, turn-off
-      (rmsbolt-mode -1)
-    ;; else
-    (progn
-      (setq-local rmsbolt-command
-                  (compcmdsjson-get-compcmds-rmsbolt
-                   (s-concat (my-cc-build-dir) "/compile_commands.json")
-                   (buffer-file-name)))
-      ;;
-      (rmsbolt-mode)
-      (rmsbolt-compile))))
-)
 
 ;;; ccls
 (use-package ccls :ensure t :pin melpa
@@ -61,3 +38,15 @@
                                                    (require 'ccls) (lsp))))
 
 
+;;;
+(defun ccls-local-defs ()
+  (my-local-leader-def :keymaps 'c-mode-base-map
+    "b" 'rmsbolt-mode
+    ))
+
+
+(defun c-c++-bind-key-map ()
+  (when (fboundp 'general-create-definer)
+    (ccls-local-defs)))
+
+(add-hook 'c++-mode-hook #'c-c++-bind-key-map)
