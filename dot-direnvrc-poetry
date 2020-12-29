@@ -1,4 +1,5 @@
 # $HOME/.direnvrc
+# https://github.com/direnv/direnv/wiki/Python#poetry
 
 layout_poetry() {
   if [[ ! -f pyproject.toml ]]; then
