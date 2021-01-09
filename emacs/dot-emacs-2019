@@ -1170,9 +1170,9 @@ _U_: 'FOO_BAR' upcase
   "J" 'point-to-register
   
   ;; avy
-  ;;"c"  'avy-goto-char-timer
-  "l" 'avy-goto-line
-  "L" 'avy-goto-char-2
+  "g"  'avy-goto-char-timer
+  ;;"l" 'avy-goto-line
+  ;;"L" 'avy-goto-char-2
 
   ;; moonshot
   "x" 'hydra-moonshot/body
