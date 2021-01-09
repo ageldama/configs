@@ -1174,6 +1174,10 @@ _U_: 'FOO_BAR' upcase
   ;;"l" 'avy-goto-line
   ;;"L" 'avy-goto-char-2
 
+  ;; projectile
+  "p" 'projectile-find-file-dwim
+  "P" 'projectile-commander
+
   ;; moonshot
   "x" 'hydra-moonshot/body
   ;; "x x" 'moonshot-run-executable
