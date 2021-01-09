@@ -933,22 +933,20 @@ Files^^            ^Dirs^
 ------------------------------------
 _f_ open-file     _d_ dired
 _r_ recentf       _e_ eshell
-_p_ projectile    _a_ ansi-term
+_n_ find-by-name  _a_ ansi-term
 _g_ grep          _._ neotree
-_n_ find-name     _G_ magit
+_n_ find-name     
 
 _SPC_ cancel
 "
   ("f" find-file :exit t)
   ("r" counsel-recentf :exit t)
-  ("p" projectile-find-file-dwim :exit t)
   ("g" counsel-rg-maybe-projectile :exit t)
   ("n" find-name-dired :exit t)
   ("d" dired :exit t)
   ("e" eshell-here :exit t)
   ("a" ansi-term-here :exit t)
   ("." neotree :exit t)
-  ("G" magit-status :exit t)
   ("SPC" nil)
   )
 
@@ -1172,11 +1170,15 @@ _U_: 'FOO_BAR' upcase
   ;; avy
   "g"  'avy-goto-char-timer
   ;;"l" 'avy-goto-line
-  ;;"L" 'avy-goto-char-2
+  "l" 'avy-goto-char-2
 
   ;; projectile
   "p" 'projectile-find-file-dwim
   "P" 'projectile-commander
+
+  ;; magit
+  "M-g" 'magit-status
+ 
 
   ;; moonshot
   "x" 'hydra-moonshot/body
