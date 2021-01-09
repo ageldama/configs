@@ -27,7 +27,7 @@ fi
 #export PAGER=most
 export PAGER=less
 #export EDITOR=run-editor.sh
-export EDITOR=emacsclient -a vim
+export EDITOR='emacsclient -a vim'
 
 export PATH=$PATH:~/local/bin:~/.local/bin
 
