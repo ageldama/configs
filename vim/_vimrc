@@ -4,7 +4,64 @@
 "  ageldama@gmail.com : 2017-08-05
 "  ageldama@gmail.com : 2018-03-24
 "  ageldama@gmail.com : 2018-12-02
+"  ageldama@gmail.com : 2021-01-10
 "
+nnoremap <SPACE> <Nop>
+let mapleader=" "
+
+set paste
+set nocompatible
+syntax on
+set number
+set ruler
+set visualbell
+
+set autoindent
+set smartindent
+set shiftwidth=2
+set tabstop=2
+set softtabstop=2
+set expandtab	" tab대신 스페이스!
+
+set wrap
+
+set textwidth=250
+
+set modeline
+
+set showmode
+set showcmd
+
+"
+set hls
+set incsearch
+set ignorecase	" 대소문자무시
+set scs	" smart-search
+
+"
+set backspace=indent,eol,start
+
+"
+set fencs=utf8,euc-kr
+
+"
+filetype on
+filetype indent on
+filetype plugin on
+
+
+" Clipboard
+set clipboard=unnamed
+
+
+
+" No annoying sound on errors
+set noerrorbells
+set novisualbell
+set t_vb=
+set tm=500
+
+
 
 " https://github.com/VundleVim/Vundle.vim/issues/769#issue-188457119
 " START - Setting up Vundle - the vim plugin bundler
@@ -42,26 +99,20 @@ Bundle 'gmarik/vundle'
 " The bundles you install will be listed here
 "
 filetype plugin indent on
-"
-"Bundle 'davidhalter/jedi-vim'
-"Bundle 'tpope/vim-fugitive'
-"Bundle 'airblade/vim-gitgutter'
-"Bundle 'fholgado/minibufexpl.vim'
+
 Bundle 'jlanzarotta/bufexplorer'
 
-Bundle 'vim-airline/vim-airline'
-"Bundle 'vim-airline/vim-airline-themes'
-
 Bundle 'scrooloose/nerdtree'
-"Bundle 'ctrlpvim/ctrlp.vim'
 Bundle 'rbgrouleff/bclose.vim'
 Bundle 't9md/vim-choosewin'
 
-" :Ack and K
-"Bundle 'mileszs/ack.vim'
+Bundle 'editorconfig/editorconfig-vim'
+Bundle 'liuchengxu/vim-which-key'
 
-Bundle 'godlygeek/tabular'
-"Bundle 'vim-syntastic/syntastic.git'
+Bundle 'vim-airline/vim-airline'
+
+Bundle 'easymotion/vim-easymotion'
+Bundle 'ntpeters/vim-better-whitespace'
 
 " :ALEInfo?
 Bundle 'w0rp/ale'
@@ -69,41 +120,29 @@ Bundle 'w0rp/ale'
 " #, / and :Occur and :Moccur, <leader>oc and <leader>mo
 Bundle 'vim-scripts/occur.vim'
 
-"    start: <C-n> start multicursor and add a virtual cursor + selection on the match
-"        next: <C-n> add a new virtual cursor + selection on the next match
-"        skip: <C-x> skip the next match
-"        prev: <C-p> remove current virtual cursor + selection and go back on previous match
-"    select all: <A-n> start muticursor and directly select all matches
+" try :'<,'>:Tab/=<cr>
+Bundle 'godlygeek/tabular'
+
+" multiple-cursors:
+"				 start      :  <C-n>
+"        next       :  <C-n>
+"        skip       :  <C-x>
+"        prev       :  <C-p>
+"   		 select all :  <A-n>
 Bundle 'terryma/vim-multiple-cursors'
 
-" yankstack
-Bundle 'maxbrunsfeld/vim-yankstack'
+" for GVim
+Bundle 'thinca/vim-fontzoom'
 
-Bundle 'ntpeters/vim-better-whitespace'
-
-" Goyo
+" no distraction
 Bundle 'junegunn/goyo.vim'
 
 
-" Golang
-" FIXME: if filereadable("~/.vim/load-p/golang")
-"Bundle 'fatih/vim-go'
-"let g:go_auto_type_info = 1
-"endif
+" FZF
+Bundle 'junegunn/fzf.vim'
+Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
-"
-Bundle 'majutsushi/tagbar'
-Plugin 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
-Plugin 'junegunn/fzf.vim'
-
-" Plugin 'dracula/vim'
-
-Plugin 'thinca/vim-fontzoom'
-
-
-Plugin 'editorconfig/editorconfig-vim'
-
-"Plugin 'udalov/kotlin-vim'
+" color and font
 
 color default
 set bg=dark
@@ -114,14 +153,13 @@ if 1
   "set t_AF=^[[38;5;%dm
   if has('gui_running')
     set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
-    "set guifont=Inconsolata\ Medium\ 12
-    "set guifont="Noto Sans Mono CJK KR 14"
     color koehler
     set bg=dark
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
     set guioptions-=r  "remove right-hand scroll bar
     set guioptions-=L  "remove left-hand scroll bar
+    "
     map <m-o> :Fontzoom!<cr>
     map <m--> <Plug>(fontzoom-smaller)
     map <m-=> <Plug>(fontzoom-larger)
@@ -131,119 +169,38 @@ if 1
   endif
 endif
 
-" vim-choosewin
-let g:choosewin_overlay_enable = 1
-nmap  <leader>-  <Plug>(choosewin)
+" which-key
+nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
 
-"------------------------------------------------------------------------------
-"let mapleader = "\\"
+" easymotion
+nmap g <Plug>(easymotion-s2)
+nmap [ <Plug>(easymotion-prev)
+nmap ] <Plug>(easymotion-next)
 
-set paste
+" chosewin
+map <leader>w :ChooseWin<cr>
 
-" yankstack
-nmap <leader>p <Plug>yankstack_substitute_older_paste
-nmap <leader>P <Plug>yankstack_substitute_newer_paste
+" ALE
+  let g:ale_sign_error                 = '>>'
+  let g:ale_sign_warning               = '--'
+  let g:airline#extensions#ale#enabled = 1
+  let g:ale_completion_enabled         = 0
+  let g:ale_enabled                    = 1
+  let g:ale_open_list                  = 0
+  autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
 
-" bind K to grep word under cursor
-"nnoremap <Leader>/ :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+
 
 " xclip '\y'
 vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 
-" bind \ (backward slash) to grep shortcut
-" command -nargs=+ -complete=file -bar Ag silent! grep! <args>|cwindow|redraw!
-
-" FZF
-if 1
-  nnoremap <C-p> :FZF<CR>
-  nnoremap <Leader>zb :Buffers<CR>
-  nnoremap <Leader>zc :Colors<CR>
-  nnoremap <Leader>za :Ag 
-  nnoremap <Leader>zr :Rg <C-R><C-W>
-  nnoremap <Leader>/ :Rg <C-R><C-W>
-  nnoremap <Leader>zm :Marks<CR>
-  nnoremap <Leader>zw :Windows<CR>
-  nnoremap <Leader>zo :History<CR>
-  nnoremap <Leader>z/ :History/<CR>
-  nnoremap <Leader>zs :Snippets/<CR>
-  nnoremap <Leader>zg :Commits<CR>
-  nnoremap <Leader>z: :Commands<CR>
-  nnoremap <Leader>z? :Maps<CR>
-  "nnoremap <Leader>zf :Filetypes<CR>
-  " NOTE: https://github.com/junegunn/fzf.vim#commands
-endif
-
-
-" use only Vim settings (instead of vi)
-set nocompatible
-
-" 문법강조
-syntax on
-
-" 줄번호
-set number
-
-" Row/Col?
-set ruler
-
-" 비쥬얼벨
-set visualbell
-
-" 자동들여쓰기 및 탭크기랑 <<, >> 크기조절.
-set autoindent
-set smartindent
-set shiftwidth=2
-set tabstop=2
-set softtabstop=2
-set expandtab	" tab대신 스페이스!
-
-" wrap? 그냥 보이는 것만 설정합니다.
-set wrap
-
-" textwidth : 자동으로 행을 자르기. 0이면 끄기.
-set textwidth=250
-
-" modeline 향수
-set modeline
-
-set showmode
-set showcmd
-
-" 검색
-set hls
-set incsearch
-set ignorecase	" 대소문자무시
-set scs	" smart-search
-
-" 백스페이스 : 언제나, 심지어 내가 방금 입력한게 아닌 것도 지우도록-_-
-set backspace=indent,eol,start
-
-" 파일인코딩
-set fencs=utf8,euc-kr
-
-" 파일타입설정
-filetype on
-filetype indent on
-filetype plugin on
-
-""""""""""""""""""""""""""""""
-" => Visual mode related
-""""""""""""""""""""""""""""""
-" Visual mode pressing * or # searches for the current selection
-" Super useful! From an idea by Michael Naumann
-vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
-vnoremap <silent> # :<C-u>call VisualSelection('', '')<CR>?<C-R>=@/<CR><CR>
-
-
 " Close the current buffer
-map <leader>bd :Bclose<cr>:tabclose<cr>gT
-
+"map <leader>bd :Bclose<cr>:tabclose<cr>gT
 " Close all the buffers
-map <leader>ba :bufdo bd<cr>
-
-map <leader>] :bnext<cr>
-map <leader>[ :bprevious<cr>
+"map <leader>ba :bufdo bd<cr>
+map <leader>b] :bnext<cr>
+map <leader>b[ :bprevious<cr>
 
 " Useful mappings for managing tabs
 map <leader>tn :tabnew<cr>
@@ -268,86 +225,57 @@ map <leader>te :tabedit <c-r>=expand("%:p:h")<cr>/
 map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 
-" airline
-set laststatus=2
 
-" minibufexplorer
-"map <Leader>mbe :MBEOpen<cr>
-"map <Leader>mbc :MBEClose<cr>
-"map <Leader>mbt :MBEToggle<cr>
-
-" ALE
-if 1
-  let g:ale_sign_error = '>>'
-  let g:ale_sign_warning = '--'
-  let g:airline#extensions#ale#enabled = 1
-  let g:ale_completion_enabled = 0
-  let g:ale_enabled = 1
-  let g:ale_open_list = 0
-  autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
-endif
-
-" Syntastic
-if 0
-  set statusline+=%#warningmsg#
-  set statusline+=%{SyntasticStatuslineFlag()}
-  set statusline+=%*
-
-  let g:syntastic_always_populate_loc_list = 1
-  let g:syntastic_auto_loc_list = 1
-  let g:syntastic_check_on_open = 1
-  let g:syntastic_check_on_wq = 0
-endif
-
-" PerlTidy
-"define :Tidy command to run perltidy on visual selection || entire buffer"
-command! -range=% -nargs=* PerlTidy <line1>,<line2>!perltidy
-"run :Tidy on entire buffer and return cursor to (approximate) original position"
-fun DoPerlTidy()
-  let Pos = line2byte( line( "." ) )
-  :PerlTidy
-  exe "goto " . Pos
-endfun
-
-" Clipboard
-set clipboard=unnamed
-
-
-
-" No annoying sound on errors
-set noerrorbells
-set novisualbell
-set t_vb=
-set tm=500
-
-
-
-function! VisualSelection(direction, extra_filter) range
-  let l:saved_reg = @"
-  execute "normal! vgvy"
-
-  let l:pattern = escape(@", "\\/.*'$^~[]")
-  let l:pattern = substitute(l:pattern, "\n$", "", "")
-
-  if a:direction == 'gv'
-    call CmdLine("Ack '" . l:pattern . "' " )
-  elseif a:direction == 'replace'
-    call CmdLine("%s" . '/'. l:pattern . '/')
-  endif
-
-  let @/ = l:pattern
-  let @" = l:saved_reg
+" Goyo
+nnoremap <F4> :Goyo <CR>
+function! s:goyo_enter()
+  set noshowmode
+  set noshowcmd
+  set scrolloff=999
+  set number
+  set rnu
+  " ...
 endfunction
 
-if 0
-  if executable('rg')
-    let g:ackprg = 'rg --vimgrep --no-heading'
-    set grepprg=rg\ --vimgrep\ --no-heading
-    set grepformat=%f:%l:%c:%m,%f:%l:%m
-  elseif executable('ag')
-    let g:ackprg = 'ag --vimgrep'
-    set grepprg=ag\ --nogroup\ --nocolor
-  endif
-endif
+function! s:goyo_leave()
+  set showmode
+  set showcmd
+  set scrolloff=999
+  " ...
+endfunction
+
+autocmd! User GoyoEnter nested call <SID>goyo_enter()
+autocmd! User GoyoLeave nested call <SID>goyo_leave()
+
+
+
+" ripgrep + vimgrep
+set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
+
+
+
+" FZF
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+
+nnoremap <silent> <Leader>B :Buffers<CR>
+nnoremap <silent> <C-f> :Files<CR>
+nnoremap <silent> <Leader>f :Rg<CR>
+nnoremap <silent> <Leader>/ :BLines<CR>
+nnoremap <silent> <Leader>' :Marks<CR>
+nnoremap <silent> <Leader>g :Commits<CR>
+nnoremap <silent> <Leader>H :Helptags<CR>
+nnoremap <silent> <Leader>hh :History<CR>
+nnoremap <silent> <Leader>h: :History:<CR>
+nnoremap <silent> <Leader>h/ :History/<CR>
+nnoremap <silent> <Leader>hs :Snippets/<CR>
+nnoremap <silent> <Leader>hc :Commands<CR>
+nnoremap <silent> <Leader>hm :Maps<CR>
+
+
+"
+" TODO ? Plugin 'SirVer/ultisnips'
+" TODO ? Plugin 'honza/vim-snippets'
+" TODO ? Plugin 'Shougo/deoplete.nvim'
 
 "EOF
