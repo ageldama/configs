@@ -1088,7 +1088,7 @@ _U_: 'FOO_BAR' upcase
   "SPC" 'counsel-M-x
   "C-SPC" 'eval-expression
 
-  "<backtab>" 'ibuffer
+  "b" 'ibuffer
   "TAB" 'ivy-switch-buffer
 
   "?" 'counsel-descbinds
