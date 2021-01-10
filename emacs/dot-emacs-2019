@@ -1127,11 +1127,11 @@ _U_: 'FOO_BAR' upcase
 
   "!" 'hydra-flycheck/body
 
-  "C-q" 'hydra-misc-toggles/body
+  "M-q" 'hydra-misc-toggles/body
 
-  "C-c" '(:ignore t :which-key "capture")
-  "C-c RET" 'org-capture
-  "C-c l" 'org-capture-open
+  "M-c" '(:ignore t :which-key "capture")
+  "M-c RET" 'org-capture
+  "M-c l" 'org-capture-open
 
   "=" 'er/expand-region
 
@@ -1158,13 +1158,9 @@ _U_: 'FOO_BAR' upcase
 
   ;; magit
   "M-g" 'magit-status
- 
 
   ;; moonshot
   "x" 'hydra-moonshot/body
-  ;; "x x" 'moonshot-run-executable
-  ;; "x d" 'moonshot-run-debugger
-  ;; "x c" 'moonshot-run-runner
 
   ;; undo-tree
   "u" 'undo-tree-visualize
