@@ -1,0 +1,15 @@
+# /etc/systemd/system/pulseaudio.service
+
+[Unit]
+Description=PulseAudio Sound System
+Before=sound.target
+
+[Service]
+User=pi
+BusName=org.pulseaudio.Server
+ExecStart=/usr/bin/pulseaudio
+Restart=always
+
+[Install]
+WantedBy=session.target
+
