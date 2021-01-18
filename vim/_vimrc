@@ -104,12 +104,9 @@ Bundle 'jlanzarotta/bufexplorer'
 
 Bundle 'scrooloose/nerdtree'
 Bundle 'rbgrouleff/bclose.vim'
-Bundle 't9md/vim-choosewin'
 
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'liuchengxu/vim-which-key'
-
-Bundle 'vim-airline/vim-airline'
 
 Bundle 'easymotion/vim-easymotion'
 Bundle 'ntpeters/vim-better-whitespace'
@@ -124,23 +121,16 @@ Bundle 'vim-scripts/occur.vim'
 Bundle 'godlygeek/tabular'
 
 " multiple-cursors:
-"				 start      :  <C-n>
-"        next       :  <C-n>
-"        skip       :  <C-x>
-"        prev       :  <C-p>
-"   		 select all :  <A-n>
+" start      : <C-n>
+" next       : <C-n>
+" skip       : <C-x>
+" prev       : <C-p>
+" select all : <A-n>
 Bundle 'terryma/vim-multiple-cursors'
 
 " for GVim
 Bundle 'thinca/vim-fontzoom'
 
-" no distraction
-Bundle 'junegunn/goyo.vim'
-
-
-" FZF
-Bundle 'junegunn/fzf.vim'
-Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
 
 " color and font
 
@@ -178,17 +168,15 @@ nmap g <Plug>(easymotion-s2)
 nmap [ <Plug>(easymotion-prev)
 nmap ] <Plug>(easymotion-next)
 
-" chosewin
-map <leader>w :ChooseWin<cr>
 
 " ALE
-  let g:ale_sign_error                 = '>>'
-  let g:ale_sign_warning               = '--'
-  let g:airline#extensions#ale#enabled = 1
-  let g:ale_completion_enabled         = 0
-  let g:ale_enabled                    = 1
-  let g:ale_open_list                  = 0
-  autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
+let g:ale_sign_error                 = '>>'
+let g:ale_sign_warning               = '--'
+"let g:airline#extensions#ale#enabled = 1
+let g:ale_completion_enabled         = 0
+let g:ale_enabled                    = 1
+let g:ale_open_list                  = 0
+autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
 
 
 
@@ -226,51 +214,12 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 
 
-" Goyo
-nnoremap <F4> :Goyo <CR>
-function! s:goyo_enter()
-  set noshowmode
-  set noshowcmd
-  set scrolloff=999
-  set number
-  set rnu
-  " ...
-endfunction
-
-function! s:goyo_leave()
-  set showmode
-  set showcmd
-  set scrolloff=999
-  " ...
-endfunction
-
-autocmd! User GoyoEnter nested call <SID>goyo_enter()
-autocmd! User GoyoLeave nested call <SID>goyo_leave()
-
 
 
 " ripgrep + vimgrep
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
 
 
-
-" FZF
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-
-nnoremap <silent> <Leader>B :Buffers<CR>
-nnoremap <silent> <C-f> :Files<CR>
-nnoremap <silent> <Leader>f :Rg<CR>
-nnoremap <silent> <Leader>/ :BLines<CR>
-nnoremap <silent> <Leader>' :Marks<CR>
-nnoremap <silent> <Leader>g :Commits<CR>
-nnoremap <silent> <Leader>H :Helptags<CR>
-nnoremap <silent> <Leader>hh :History<CR>
-nnoremap <silent> <Leader>h: :History:<CR>
-nnoremap <silent> <Leader>h/ :History/<CR>
-nnoremap <silent> <Leader>hs :Snippets/<CR>
-nnoremap <silent> <Leader>hc :Commands<CR>
-nnoremap <silent> <Leader>hm :Maps<CR>
 
 
 "
