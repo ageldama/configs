@@ -131,10 +131,12 @@ Bundle 'terryma/vim-multiple-cursors'
 " for GVim
 Bundle 'thinca/vim-fontzoom'
 
+" VimGrep
+Bundle 'dkprice/vim-easygrep'
 
 " color and font
 
-color default
+color koehler
 set bg=dark
 
 if 1
@@ -218,6 +220,11 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " ripgrep + vimgrep
 set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
+
+
+
+map <leader>gn :cnext<CR>
+map <leader>gp :cprev<CR>
 
 
 
