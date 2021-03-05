@@ -3,13 +3,20 @@
 
 (use-package prettier-js        :ensure t :pin melpa)
 
+(defvar *js2-prettier-mode-hook* t)
+
+(defun js2-prettier-mode-hook ()
+  (interactive)
+  (when *js2-prettier-mode-hook*
+    (prettier-js-mode)))
+
 (use-package js2-mode :ensure t :pin melpa
   :after add-node-modules-path
   :config (progn (eval-after-load 'js2-mode '(add-hook 'js2-mode-hook #'add-node-modules-path))
                  (add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
 		 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
                  ;;(add-hook 'js2-mode-hook (lambda () (electric-indent-local-mode -1)))
-                 (add-hook 'js2-mode-hook 'prettier-js-mode)
+                 (add-hook 'js2-mode-hook 'js2-prettier-mode-hook)
                  (setq js2-mode-show-parse-errors nil
                        js2-mode-show-strict-warnings nil)))
 
@@ -35,9 +42,10 @@
   (progn
     ;; js2
     (my-local-leader-def :keymaps 'js2-mode-map
+     "f" 'prettier-js
      "r" 'compile
      "n" (general-simulate-key "C-c n" :name npm)
-     "f" 'eslint-fix
+     "C-f" 'eslint-fix
      )
     ;; JSON
     (my-local-leader-def :keymaps 'json-mode-map

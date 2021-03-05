@@ -18,13 +18,20 @@
 
 (setq typescript-indent-level 2)
 
+(defvar *tide/tide-format-before-save-2* t)
+
+(defun tide-format-before-save-2 ()
+  (interactive)
+  (when *tide/tide-format-before-save-2*
+    (tide-format-before-save)))
+
 (use-package tide
   :ensure t :pin melpa
   :config (setq typescript-indent-level 2)
   :after (typescript-mode company flycheck add-node-modules-path)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
-         (before-save . tide-format-before-save)))
+         (before-save . tide-format-before-save-2)))
 
 ;;; TSX
 (require 'web-mode)

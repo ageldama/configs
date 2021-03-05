@@ -263,7 +263,8 @@
 
 
 (when +sys/gui?+
-  (cond ((or +sys/unix-like?+ +sys/mac?+)
+  (cond ((or +sys/unix-like?+ ;;+sys/mac?+
+             )
          (my-set-fixed-fonts))
   	;; Windows
         (+sys/winnt?+
