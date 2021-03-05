@@ -134,6 +134,9 @@ Bundle 'thinca/vim-fontzoom'
 " VimGrep
 Bundle 'dkprice/vim-easygrep'
 
+"
+Bundle 'vim-airline/vim-airline'
+
 " color and font
 
 color koehler
@@ -170,6 +173,21 @@ nmap g <Plug>(easymotion-s2)
 nmap [ <Plug>(easymotion-prev)
 nmap ] <Plug>(easymotion-next)
 
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
+
 
 " ALE
 let g:ale_sign_error                 = '>>'
@@ -189,17 +207,17 @@ vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 "map <leader>bd :Bclose<cr>:tabclose<cr>gT
 " Close all the buffers
 "map <leader>ba :bufdo bd<cr>
-map <leader>b] :bnext<cr>
-map <leader>b[ :bprevious<cr>
+map <leader>bn :bnext<cr>
+map <leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
+map <leader>tN :tabnew<cr>
 map <leader>to :tabonly<cr>
 map <leader>tc :tabclose<cr>
 map <leader>tm :tabmove
 map <leader>t<leader> :tabnext
-map <leader>t[ :tabprev<cr>
-map <leader>t] :tabnext<cr>
+map <leader>tp :tabprev<cr>
+map <leader>tn :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -223,8 +241,10 @@ set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
 
 
 
-map <leader>gn :cnext<CR>
-map <leader>gp :cprev<CR>
+map <leader>ln :lnext<CR>
+map <leader>lp :lprev<CR>
+map <leader>cn :cnext<CR>
+map <leader>cp :cprev<CR>
 
 
 
