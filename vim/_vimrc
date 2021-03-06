@@ -12,7 +12,7 @@ let mapleader=" "
 set paste
 set nocompatible
 syntax on
-set number
+set nonu
 set ruler
 set visualbell
 
@@ -135,15 +135,33 @@ Bundle 'thinca/vim-fontzoom'
 Bundle 'dkprice/vim-easygrep'
 
 "
-Bundle 'vim-airline/vim-airline'
+"Bundle 'vim-airline/vim-airline'
+"Bundle 'itchyny/lightline.vim'
+
+" fzf
+Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Bundle 'junegunn/fzf.vim'
+
+" ctrlp
+Bundle 'kien/ctrlp.vim'
+
+"
+Bundle 'morhetz/gruvbox'
 
 " color and font
 
-color koehler
+color gruvbox
 set bg=dark
 
-if 1
+if !has('gui_running')
   set t_Co=256
+endif
+
+" lightline
+set laststatus=2
+
+if 1
+  "set t_Co=256
   "set t_AB=^[[48;5;%dm
   "set t_AF=^[[38;5;%dm
   if has('gui_running')
@@ -199,7 +217,6 @@ let g:ale_open_list                  = 0
 autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
 
 
-
 " xclip '\y'
 vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 
@@ -247,11 +264,26 @@ map <leader>cn :cnext<CR>
 map <leader>cp :cprev<CR>
 
 
+" fzf
+map <leader>zf :Files<CR>
+map <leader>zg :GFiles<CR>
+map <leader>zG :GFiles?<CR>
+map <leader>zb :Buffers<CR>
+map <leader>zm :Marks<CR>
+map <leader>zr :History<CR>
+map <leader>z: :History:<CR>
+map <leader>z/ :History/<CR>
+map <leader>zk :Maps<CR>
+map <leader>z? :Helptags<CR>
+map <leader>zt :Filetypes<CR>
+
+" ctrlp
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
 
 
 "
 " TODO ? Plugin 'SirVer/ultisnips'
 " TODO ? Plugin 'honza/vim-snippets'
-" TODO ? Plugin 'Shougo/deoplete.nvim'
 
 "EOF
