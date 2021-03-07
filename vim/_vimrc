@@ -143,7 +143,7 @@ Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Bundle 'junegunn/fzf.vim'
 
 " ctrlp
-Bundle 'kien/ctrlp.vim'
+"Bundle 'kien/ctrlp.vim'
 
 "
 Bundle 'morhetz/gruvbox'
@@ -278,8 +278,8 @@ map <leader>z? :Helptags<CR>
 map <leader>zt :Filetypes<CR>
 
 " ctrlp
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_cmd = 'CtrlP'
+"let g:ctrlp_map = '<c-p>'
+"let g:ctrlp_cmd = 'CtrlP'
 
 
 "
