@@ -6,8 +6,9 @@
 "  ageldama@gmail.com : 2018-12-02
 "  ageldama@gmail.com : 2021-01-10
 "
-nnoremap <SPACE> <Nop>
-let mapleader=" "
+
+"nnoremap <SPACE> <Nop>
+"let mapleader=" "
 
 set paste
 set nocompatible
@@ -144,6 +145,9 @@ Bundle 'junegunn/fzf.vim'
 
 " ctrlp
 "Bundle 'kien/ctrlp.vim'
+
+" gitgutter
+Bundle 'airblade/vim-gitgutter'
 
 "
 Bundle 'morhetz/gruvbox'
