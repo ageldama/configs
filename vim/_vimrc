@@ -147,7 +147,7 @@ Bundle 'junegunn/fzf.vim'
 "Bundle 'kien/ctrlp.vim'
 
 " gitgutter
-Bundle 'airblade/vim-gitgutter'
+"Bundle 'airblade/vim-gitgutter'
 
 "
 Bundle 'morhetz/gruvbox'
