@@ -152,6 +152,22 @@ Bundle 'junegunn/fzf.vim'
 "
 "Bundle 'morhetz/gruvbox'
 
+Bundle 'Chiel92/vim-autoformat'
+
+" TypeScript, JavaScript
+Bundle 'pangloss/vim-javascript'
+" TypeScript syntax
+Bundle 'leafgarland/typescript-vim'
+" JS and JSX syntax
+"Bundle 'maxmellon/vim-jsx-pretty'
+"Bundle 'jparise/vim-graphql'        " GraphQL syntax
+
+
+" :VimProcInstall
+Bundle 'Shougo/vimproc.vim'
+Bundle 'Quramy/tsuquyomi'
+
+
 " color and font
 
 "color gruvbox
@@ -289,5 +305,27 @@ map <leader>zt :Filetypes<CR>
 "
 " TODO ? Plugin 'SirVer/ultisnips'
 " TODO ? Plugin 'honza/vim-snippets'
+
+
+" Source Vim configuration file and install plugins
+nnoremap <silent><leader>I :source ~/.vimrc \| :VundleInstall<CR>
+
+
+
+let g:tsuquyomi_completion_detail = 1
+autocmd FileType typescript setlocal completeopt+=menu,preview
+autocmd FileType typescript nmap <buffer> <Leader>e <Plug>(TsuquyomiRenameSymbol)
+autocmd FileType typescript nmap <buffer> <Leader>E <Plug>(TsuquyomiRenameSymbolC)
+
+set ballooneval
+autocmd FileType typescript setlocal balloonexpr=tsuquyomi#balloonexpr()
+autocmd FileType typescript nmap <buffer> <Leader>t : <C-u>echo tsuquyomi#hint()<CR>
+
+
+noremap <F3> :Autoformat<CR>
+
+" NOTE `yarn add -D typescript-formatter`
+" FIXME autocmd FileType typescript :Autoformat<CR>
+
 
 "EOF
