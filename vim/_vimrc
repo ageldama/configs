@@ -137,7 +137,7 @@ Bundle 'dkprice/vim-easygrep'
 
 "
 "Bundle 'vim-airline/vim-airline'
-"Bundle 'itchyny/lightline.vim'
+Bundle 'itchyny/lightline.vim'
 
 " fzf
 Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
