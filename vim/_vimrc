@@ -5,6 +5,7 @@
 "  ageldama@gmail.com : 2018-03-24
 "  ageldama@gmail.com : 2018-12-02
 "  ageldama@gmail.com : 2021-01-10
+"  ageldama@gmail.com : 2021-05-04, suckless.
 "
 
 let mapleader=" "
@@ -104,16 +105,16 @@ filetype plugin indent on
 Bundle 'jlanzarotta/bufexplorer'
 
 Bundle 'scrooloose/nerdtree'
-Bundle 'rbgrouleff/bclose.vim'
+"Bundle 'rbgrouleff/bclose.vim'
 
-Bundle 'editorconfig/editorconfig-vim'
+"Bundle 'editorconfig/editorconfig-vim'
 Bundle 'liuchengxu/vim-which-key'
 
 Bundle 'easymotion/vim-easymotion'
 Bundle 'ntpeters/vim-better-whitespace'
 
 " :ALEInfo?
-Bundle 'w0rp/ale'
+"Bundle 'w0rp/ale'
 
 " #, / and :Occur and :Moccur, <leader>oc and <leader>mo
 Bundle 'vim-scripts/occur.vim'
@@ -216,13 +217,13 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 " ALE
-let g:ale_sign_error                 = '>>'
-let g:ale_sign_warning               = '--'
+"let g:ale_sign_error                 = '>>'
+"let g:ale_sign_warning               = '--'
 "let g:airline#extensions#ale#enabled = 1
-let g:ale_completion_enabled         = 0
-let g:ale_enabled                    = 1
-let g:ale_open_list                  = 0
-autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
+"let g:ale_completion_enabled         = 0
+"let g:ale_enabled                    = 1
+"let g:ale_open_list                  = 0
+"autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
 
 
 " xclip '\y'
