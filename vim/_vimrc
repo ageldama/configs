@@ -14,7 +14,7 @@ nnoremap <SPACE> <Nop>
 set paste
 set nocompatible
 syntax on
-set nonu
+set nu
 set ruler
 set visualbell
 
