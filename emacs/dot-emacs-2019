@@ -796,7 +796,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (setq evil-default-state 'normal) ;;emacs)
 
-(evil-set-initial-state 'dired-mode 'emacs)
+
 
 (defun toggle-evil-mode ()
   (interactive)
@@ -876,7 +876,9 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; stardict, sdcv
-(use-package sdcv :ensure t :pin melpa)
+(use-package sdcv :ensure t :pin melpa
+  :config 
+  (evil-set-initial-state 'sdcv-mode 'emacs))
 
 
 
@@ -1258,6 +1260,10 @@ _U_: 'FOO_BAR' upcase
              ))
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
+
+
+;;;
+(evil-set-initial-state 'Info-mode 'emacs)
 
 ;;; Uptime, Startup Time
 (message "Startup time: %s" (emacs-uptime))
