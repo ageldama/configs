@@ -214,7 +214,6 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    <!--
     <keybind key="W-Up">
       <action name="GoToDesktop">
         <to>up</to>
@@ -227,7 +226,6 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    -->
     <keybind key="S-W-Left">
       <action name="SendToDesktop">
         <to>left</to>
@@ -240,7 +238,6 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    <!--
     <keybind key="S-W-Up">
       <action name="SendToDesktop">
         <to>up</to>
@@ -253,7 +250,6 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-    -->
     <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
@@ -363,10 +359,10 @@
     </keybind>
     -->
     <!-- Keybindings for windows -->
-    <keybind key="W-S-Up">
+    <keybind key="W-S-S">
       <action name="ToggleShade"/>
     </keybind>
-    <keybind key="W-S-Down">
+    <keybind key="W-S-M">
       <action name="Iconify"/>
     </keybind>
     <keybind key="W-S-Q">
@@ -523,11 +519,13 @@
         <command>wg.pl</command>
       </action>
     </keybind>
+    <!--
     <keybind key="W-S-m">
       <action name="Execute">
         <command>monologue.py</command>
       </action>
     </keybind>
+    -->
     <keybind key="W-Escape">
       <action name="Execute">
         <command>xscreensaver-command -lock</command>
