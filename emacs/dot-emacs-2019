@@ -630,12 +630,14 @@ _SPC_ cancel
 
 
 ;;; toc-org -- https://github.com/snosov1/toc-org
-(use-package toc-org :ensure t :pin melpa
-  :config
+(when nil
+  (use-package toc-org :ensure t :pin melpa
+    :config
     (add-hook 'org-mode-hook 'toc-org-mode)
     (add-hook 'markdown-mode-hook 'toc-org-mode)
-    ;(define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point)
+    ;;(define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point)
     )
+  )
 
 ;;; org-capture
 (setq org-default-notes-file "~/Vault2/c.org")
@@ -883,7 +885,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; elfeed
-(use-package elfeed :ensure t :pin melpa)
+;;(use-package elfeed :ensure t :pin melpa)
 
 
 ;;; realgud
@@ -1123,9 +1125,9 @@ _U_: 'FOO_BAR' upcase
   "`" '(:ignore t :which-key "misc")
   "` p" 'counsel-list-processes
   "` b" 'counsel-bookmark
-  "` D" 'sdcv-search-pointer
+  "` d" 'sdcv-search-input
   "` s" 'delete-trailing-whitespace
-  "` f" 'elfeed
+  ;;"` f" 'elfeed
   "` G" 'garbage-collect
 
   "!" 'hydra-flycheck/body
