@@ -962,11 +962,11 @@ _SPC_ cancel
   "
 Files^^            ^Dirs^            
 ------------------------------------
-_f_ open-file     _d_ dired
-_r_ recentf       _e_ eshell
-_n_ find-by-name  _a_ ansi-term
-_g_ grep          _._ neotree
-_n_ find-name     
+_f_ open-file     _d_ recentf+dired
+_r_ recentf       _M-d_ dired 
+_n_ find-by-name  _e_ eshell
+_g_ grep          _a_ ansi-term
+_n_ find-name     _._ neotree
 
 _SPC_ cancel
 "
@@ -974,8 +974,8 @@ _SPC_ cancel
   ("r" counsel-recentf :exit t)
   ("g" counsel-rg-maybe-projectile :exit t)
   ("n" find-name-dired :exit t)
-  ("d" dired :exit t)
-  ("D" bjm/ivy-dired-recent-dirs :exit t)
+  ("M-d" dired :exit t)
+  ("d" bjm/ivy-dired-recent-dirs :exit t)
   ("e" eshell-here :exit t)
   ("a" ansi-term-here :exit t)
   ("." neotree :exit t)
