@@ -647,7 +647,7 @@ _SPC_ cancel
   (find-file org-default-notes-file))
 
 ;;; org-tree-slide
-(use-package org-tree-slide :ensure t :pin melpa)
+;; (use-package org-tree-slide :ensure t :pin melpa)
 
 ;;; PlantUML
 (use-package plantuml-mode :ensure t :pin melpa
