@@ -792,7 +792,9 @@ i.e. change right window to bottom, or change bottom window to right."
 
 (unless (fboundp 'evil-mode)
   (use-package evil :ensure t :pin melpa
-    :init (setq evil-want-integration t)))
+    :init (setq evil-want-integration t)
+    :config (evil-set-undo-system 'undo-tree)
+    ))
 
 (evil-mode +1)
 
