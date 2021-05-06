@@ -42,8 +42,9 @@
 
 (defun toggle-battery-saving-mode ()
   (interactive)
-  (call-interactively #'global-flycheck-mode)
-  ;;(call-interactively #'global-git-gutter-mode)
+  (call-interactively #'global-flycheck-mode -1)
+  (call-interactively #'global-eldoc-mode -1)
+  (call-interactively #'global-company-mode -1)
   ;;(global-hl-todo-mode)
   )
 
@@ -719,16 +720,16 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; Yasnippet
-(use-package yasnippet :ensure t :pin melpa
-  :diminish yas-minor-mode
-  :config ;;(yas-global-mode +1)
-  (progn
-    (add-hook 'prog-mode-hook #'yas-minor-mode)
-    (add-hook 'text-mode-hook #'yas-minor-mode)))
+;; (use-package yasnippet :ensure t :pin melpa
+;;   :diminish yas-minor-mode
+;;   :config ;;(yas-global-mode +1)
+;;   (progn
+;;     (add-hook 'prog-mode-hook #'yas-minor-mode)
+;;     (add-hook 'text-mode-hook #'yas-minor-mode)))
 
-(use-package yasnippet-snippets :ensure t :pin melpa
-  :after yasnippet
-  :config (yas-reload-all))
+;; (use-package yasnippet-snippets :ensure t :pin melpa
+;;   :after yasnippet
+;;   :config (yas-reload-all))
 
 ;;; avy
 (use-package avy :ensure t :pin melpa
@@ -1146,10 +1147,10 @@ _U_: 'FOO_BAR' upcase
   ;; "f d" 'vimish-fold-delete
 
   ;; "y" - yasnippet
-  "y" '(:ignore t :which-key "yasnippet")
-  "y i" 'yas-insert-snippet
-  "y e" 'yas-visit-snippet-file
-  "y n" 'yas-new-snippet
+  ;; "y" '(:ignore t :which-key "yasnippet")
+  ;; "y i" 'yas-insert-snippet
+  ;; "y e" 'yas-visit-snippet-file
+  ;; "y n" 'yas-new-snippet
 
   "`" '(:ignore t :which-key "misc")
   "` p" 'counsel-list-processes
