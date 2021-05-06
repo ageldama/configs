@@ -321,7 +321,7 @@
              ;;                    java-mode-hook lisp-mode-hook
              ;;                    perl-mode-hook sh-mode-hook
              ;;                    python-mode-hook
-                                ))
+             ))
   (add-hook i 'hs-minor-mode))
 
 (defhydra hydra-hs ()
@@ -442,10 +442,10 @@ _SPC_ cancel
             (defun swiper-thing-at-point ()
               (interactive)
               (cl-flet ((ivy-with-thing-at-point (cmd)
-                                              (let ((ivy-initial-inputs-alist
-                                                     (list
-                                                      (cons cmd (thing-at-point 'symbol)))))
-                                                (funcall cmd))))
+                                                 (let ((ivy-initial-inputs-alist
+                                                        (list
+                                                         (cons cmd (thing-at-point 'symbol)))))
+                                                   (funcall cmd))))
                 (if current-prefix-arg
                     (ivy-with-thing-at-point 'swiper)
                   (swiper))))
@@ -502,11 +502,11 @@ _SPC_ cancel
 (defun counsel-rg-maybe-projectile ()
   (interactive)
   (cl-flet ((counsel-rg-thing-at-point ()
-                                    (interactive)
-                                    (let  ((tap (thing-at-point 'symbol)))
-                                      (if (null tap)
-                                          (counsel-rg)
-                                        (counsel-rg tap)))))
+                                       (interactive)
+                                       (let  ((tap (thing-at-point 'symbol)))
+                                         (if (null tap)
+                                             (counsel-rg)
+                                           (counsel-rg tap)))))
     (let ((tap (thing-at-point 'symbol)))
       (if (projectile-project-p)
           (counsel-projectile-rg)
@@ -548,19 +548,19 @@ _SPC_ cancel
 
   (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
                                         :hint nil)
-       ("n" git-gutter:next-hunk "next hunk")
-       ("p" git-gutter:previous-hunk "previous hunk")
-       ("h" (progn (goto-char (point-min)) (git-gutter:next-hunk 1)) "first hunk")
-       ("l" (progn (goto-char (point-min)) (git-gutter:previous-hunk 1)) "last hunk")
-       ("<RET>" git-gutter:popup-hunk "popup hunk")
-       ("s" git-gutter:stage-hunk "stage hunk")
-       ("r" git-gutter:revert-hunk "revert hunk")
-       ("?" git-gutter:statistic "stats")
-       ("m" magit-status "magit" :exit t)
-       ("b" magit-blame "blame" :exit t)
-       ("t" git-timemachine "timemachine" :exit t)
-       ("d" magit-dispatch "dispatch" :exit t)       
-       ("<SPC>" nil "quit")))
+    ("n" git-gutter:next-hunk "next hunk")
+    ("p" git-gutter:previous-hunk "previous hunk")
+    ("h" (progn (goto-char (point-min)) (git-gutter:next-hunk 1)) "first hunk")
+    ("l" (progn (goto-char (point-min)) (git-gutter:previous-hunk 1)) "last hunk")
+    ("<RET>" git-gutter:popup-hunk "popup hunk")
+    ("s" git-gutter:stage-hunk "stage hunk")
+    ("r" git-gutter:revert-hunk "revert hunk")
+    ("?" git-gutter:statistic "stats")
+    ("m" magit-status "magit" :exit t)
+    ("b" magit-blame "blame" :exit t)
+    ("t" git-timemachine "timemachine" :exit t)
+    ("d" magit-dispatch "dispatch" :exit t)       
+    ("<SPC>" nil "quit")))
 
 
 ;;; hippie-expand, zap-up-to-char
@@ -745,11 +745,13 @@ i.e. change right window to bottom, or change bottom window to right."
   )
 
 ;;; multiple-cursors
-(use-package multiple-cursors :ensure t :pin melpa
-  :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
-                 (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-                 (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-                 (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+(when nil
+  (use-package multiple-cursors :ensure t :pin melpa
+    :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
+                   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
+                   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
+                   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
+  )
 
 
 (defhydra hydra-multiple-cursors (:hint nil)
