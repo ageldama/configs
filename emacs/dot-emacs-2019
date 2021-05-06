@@ -316,10 +316,12 @@
 ;;; hs
 (load-library "hideshow")
 
-(dolist (i '(c-mode-common-hook emacs-lisp-mode-hook
-                                java-mode-hook lisp-mode-hook
-                                perl-mode-hook sh-mode-hook
-                                python-mode-hook))
+(dolist (i '(
+             ;; c-mode-common-hook emacs-lisp-mode-hook
+             ;;                    java-mode-hook lisp-mode-hook
+             ;;                    perl-mode-hook sh-mode-hook
+             ;;                    python-mode-hook
+                                ))
   (add-hook i 'hs-minor-mode))
 
 (defhydra hydra-hs ()
@@ -345,28 +347,30 @@ _SPC_ cancel
 
 
 ;;; rainbow-delimiters
-(use-package rainbow-delimiters  :ensure t :pin melpa
-  :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode))
+(when nil
+  (use-package rainbow-delimiters  :ensure t :pin melpa
+    :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
 
+(when nil
+  (use-package highlight-indent-guides  :ensure t :pin melpa
+    :if +sys/gui?+
+    :diminish
+    ;; :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
+    :config
+    (setf
+     ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
+     ;; 'fill 너무 촌스러워 보여서.
+     highlight-indent-guides-method 'column
+     highlight-indent-guides-responsive 'top
+     ;; (highlight-indent-guides-delay 0)
+     ;; make it transparent (kinda)
+     highlight-indent-guides-auto-odd-face-perc 3
+     highlight-indent-guides-auto-even-face-perc 7
+     ;;(highlight-indent-guides-auto-character-face-perc 7)
+     ))
+  )
 
-(use-package highlight-indent-guides  :ensure t :pin melpa
-  :if +sys/gui?+
-  :diminish
-  ;; :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
-  :config
-  (setf
-   ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
-   ;; 'fill 너무 촌스러워 보여서.
-   highlight-indent-guides-method 'column
-   highlight-indent-guides-responsive 'top
-   ;; (highlight-indent-guides-delay 0)
-   ;; make it transparent (kinda)
-   highlight-indent-guides-auto-odd-face-perc 3
-   highlight-indent-guides-auto-even-face-perc 7
-   ;;(highlight-indent-guides-auto-character-face-perc 7)
-   ))
-
-(use-package highlight-indentation :ensure t :pin melpa)
+;; (use-package highlight-indentation :ensure t :pin melpa)
 
 
 ;;; trees, files, and directories!
@@ -387,11 +391,11 @@ _SPC_ cancel
 
 
 ;; highlight symbol under the point after an idle
-(use-package idle-highlight-mode
-  :ensure t :pin melpa
-  ;; :config (add-hook 'prog-mode-hook
-  ;;                   (lambda () (idle-highlight-mode t)))
-  )
+;; (use-package idle-highlight-mode
+;;   :ensure t :pin melpa
+;;   ;; :config (add-hook 'prog-mode-hook
+;;   ;;                   (lambda () (idle-highlight-mode t)))
+;;   )
 
 
 ;;; helpful, discover-my-major
@@ -781,7 +785,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; iedit -- use `C-;'
-(use-package iedit :ensure t :pin melpa :diminish iedit)
+;; (use-package iedit :ensure t :pin melpa :diminish iedit)
 
 ;;; expand-region
 (use-package expand-region :ensure t :pin melpa
@@ -896,13 +900,14 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; direnv
-(use-package direnv :ensure t :pin melpa
- :config
- (direnv-mode)
- :custom
- (direnv-always-show-summary t)
- (direnv-show-paths-in-summary t)
- (direnv-use-faces-in-summary t))
+(when nil
+  (use-package direnv :ensure t :pin melpa
+    :config
+    (direnv-mode)
+    :custom
+    (direnv-always-show-summary t)
+    (direnv-show-paths-in-summary t)
+    (direnv-use-faces-in-summary t)))
 
 
 (use-package editorconfig
