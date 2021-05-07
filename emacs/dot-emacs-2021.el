@@ -603,13 +603,15 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; Evil, my last resort. (sometimes)
+
+;; Warning (evil-collection): Make sure to set `evil-want-keybinding' to nil before loading evil or evil-collection.
+;; See https://github.com/emacs-evil/evil-collection/issues/60 for more details.
 (setq evil-want-keybinding nil)
 
-(unless (fboundp 'evil-mode)
-  (use-package evil :ensure t :pin melpa
-    :init (setq evil-want-integration t)
-    :config (evil-set-undo-system 'undo-tree)
-    ))
+(use-package evil :ensure t :pin melpa)
+
+(setq evil-want-integration t)
+(evil-set-undo-system 'undo-tree)
 
 (evil-mode +1)
 
