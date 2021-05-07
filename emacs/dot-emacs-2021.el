@@ -386,7 +386,7 @@
             (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
             (global-set-key (kbd "C-c g") 'counsel-git)
             (global-set-key (kbd "C-c j") 'counsel-git-grep)
-            (global-set-key (kbd "C-c k") 'counsel-rg)
+            ;; (global-set-key (kbd "C-c k") 'counsel-rg)
             ;; (global-set-key (kbd "C-x l") 'counsel-locate)
             ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
             (global-set-key (kbd "M-y") 'counsel-yank-pop)
@@ -425,6 +425,12 @@
       (if (projectile-project-p)
           (counsel-projectile-rg)
         (counsel-rg-thing-at-point)))))
+
+
+;;; deadgrep
+(use-package deadgrep :ensure t :pin melpa
+  :config (global-set-key (kbd "C-c k") 'deadgrep))
+
 
 
 ;;; undo-tree
@@ -758,14 +764,14 @@ Files^^            ^Dirs^
 _f_ open-file     _d_ recentf+dired
 _r_ recentf       _M-d_ dired 
 _n_ find-by-name  _e_ eshell
-_g_ grep          _a_ ansi-term
+_g_ deadgrep      _a_ ansi-term
 _n_ find-name     _._ neotree
 
 _SPC_ cancel
 "
   ("f" find-file :exit t)
   ("r" counsel-recentf :exit t)
-  ("g" counsel-rg-maybe-projectile :exit t)
+  ("g" deadgrep :exit t)
   ("n" find-name-dired :exit t)
   ("M-d" dired :exit t)
   ("d" bjm/ivy-dired-recent-dirs :exit t)
