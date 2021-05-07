@@ -313,89 +313,8 @@
   )
 
 
-;;; hs
-(load-library "hideshow")
-
-(dolist (i '(
-             ;; c-mode-common-hook emacs-lisp-mode-hook
-             ;;                    java-mode-hook lisp-mode-hook
-             ;;                    perl-mode-hook sh-mode-hook
-             ;;                    python-mode-hook
-             ))
-  (add-hook i 'hs-minor-mode))
-
-(defhydra hydra-hs ()
-  "
-Hide^^            ^Show^            ^Toggle^    ^Navigation^
-----------------------------------------------------------------
-_h_ hide all      _s_ show all      _t_oggle    _n_ext line
-_d_ hide block    _a_ show block              _p_revious line
-_l_ hide level
-
-_SPC_ cancel
-"
-  ("s" hs-show-all)
-  ("h" hs-hide-all)
-  ("a" hs-show-block)
-  ("d" hs-hide-block)
-  ("t" hs-toggle-hiding)
-  ("l" hs-hide-level)
-  ("n" forward-line)
-  ("p" (forward-line -1))
-  ("SPC" nil)
-  )
-
-
-;;; rainbow-delimiters
-(when nil
-  (use-package rainbow-delimiters  :ensure t :pin melpa
-    :config (add-hook 'prog-mode-hook 'rainbow-delimiters-mode)))
-
-(when nil
-  (use-package highlight-indent-guides  :ensure t :pin melpa
-    :if +sys/gui?+
-    :diminish
-    ;; :hook ((prog-mode web-mode nxml-mode) . highlight-indent-guides-mode)
-    :config
-    (setf
-     ;; 'character 정말로 주석처리할 때 문자가 포함되어 버려서.
-     ;; 'fill 너무 촌스러워 보여서.
-     highlight-indent-guides-method 'column
-     highlight-indent-guides-responsive 'top
-     ;; (highlight-indent-guides-delay 0)
-     ;; make it transparent (kinda)
-     highlight-indent-guides-auto-odd-face-perc 3
-     highlight-indent-guides-auto-even-face-perc 7
-     ;;(highlight-indent-guides-auto-character-face-perc 7)
-     ))
-  )
-
-;; (use-package highlight-indentation :ensure t :pin melpa)
-
-
 ;;; trees, files, and directories!
 (use-package neotree :ensure t :pin melpa)
-
-(when nil
-  (use-package treemacs
-    :ensure t)
-
-  (use-package treemacs-evil
-    :after treemacs evil
-    :ensure t)
-
-  (use-package treemacs-projectile
-    :after treemacs projectile
-    :ensure t))
-
-
-
-;; highlight symbol under the point after an idle
-;; (use-package idle-highlight-mode
-;;   :ensure t :pin melpa
-;;   ;; :config (add-hook 'prog-mode-hook
-;;   ;;                   (lambda () (idle-highlight-mode t)))
-;;   )
 
 
 ;;; helpful, discover-my-major
@@ -425,12 +344,7 @@ _SPC_ cancel
 
 
 
-;; lacarte -- better F10 menu-bar.
-;; (use-package lacarte :ensure t :pin marmalade
-;;   :config (progn
-;;    (global-set-key [?\e ?\M-x] 'lacarte-execute-command)
-;;    (global-set-key [?\M-`]     'lacarte-execute-menu-command)
-;;    (global-set-key [f10]       'lacarte-execute-menu-command)))
+;;; lacarte -- better F10 menu-bar.
 (global-set-key (kbd "M-`")       'menu-bar-open)
 (global-set-key (kbd "<f10>")       'menu-bar-open)
 
@@ -524,44 +438,6 @@ _SPC_ cancel
 ;;; Git
 (use-package magit :ensure t :pin melpa)
 
-;; (use-package with-editor :ensure t :pin melpa
-;;   :config
-;;   ;;(with-editor-export-git-editor)
-;;   (define-key (current-global-map)
-;;     [remap async-shell-command] 'with-editor-async-shell-command)
-;;   (define-key (current-global-map)
-;;     [remap shell-command] 'with-editor-shell-command)
-;;   (add-hook 'shell-mode-hook  'with-editor-export-editor)
-;;   (add-hook 'term-exec-hook   'with-editor-export-editor)
-;;   (add-hook 'eshell-mode-hook 'with-editor-export-editor)
-;;   (add-hook 'shell-mode-hook
-;;             (apply-partially 'with-editor-export-editor "GIT_EDITOR"))
-;;   (add-hook 'shell-mode-hook 'with-editor-export-git-editor))
-
-
-;; (use-package git-timemachine    :ensure t :pin  melpa)
-
-(when nil ;; DEACTIVATED, +sys/gui?+
-  (use-package git-gutter-fringe :ensure t :pin melpa
-    :diminish git-gutter-mode
-    :config (global-git-gutter-mode +1))
-
-  (defhydra hydra-git-gutter (:body-pre (git-gutter-mode 1)
-                                        :hint nil)
-    ("n" git-gutter:next-hunk "next hunk")
-    ("p" git-gutter:previous-hunk "previous hunk")
-    ("h" (progn (goto-char (point-min)) (git-gutter:next-hunk 1)) "first hunk")
-    ("l" (progn (goto-char (point-min)) (git-gutter:previous-hunk 1)) "last hunk")
-    ("<RET>" git-gutter:popup-hunk "popup hunk")
-    ("s" git-gutter:stage-hunk "stage hunk")
-    ("r" git-gutter:revert-hunk "revert hunk")
-    ("?" git-gutter:statistic "stats")
-    ("m" magit-status "magit" :exit t)
-    ("b" magit-blame "blame" :exit t)
-    ("t" git-timemachine "timemachine" :exit t)
-    ("d" magit-dispatch "dispatch" :exit t)       
-    ("<SPC>" nil "quit")))
-
 
 ;;; hippie-expand, zap-up-to-char
 
@@ -569,11 +445,12 @@ _SPC_ cancel
 
 (global-set-key "\M-/" 'hippie-expand)
 
-(setq hippie-expand-try-functions-list '(try-expand-dabbrev
-                                         try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill
-                                         try-complete-file-name-partially try-complete-file-name
-                                         try-expand-all-abbrevs try-expand-list try-expand-line
-                                         try-complete-lisp-symbol-partially try-complete-lisp-symbol))
+(setq hippie-expand-try-functions-list
+      '(try-expand-dabbrev
+        try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill
+        try-complete-file-name-partially try-complete-file-name
+        try-expand-all-abbrevs try-expand-list try-expand-line
+        try-complete-lisp-symbol-partially try-complete-lisp-symbol))
 
 
 
@@ -634,16 +511,6 @@ _SPC_ cancel
 (setq org-link-abbrev-alist '(("org-attach" . org-attach-expand-link)))
 
 
-;;; toc-org -- https://github.com/snosov1/toc-org
-(when nil
-  (use-package toc-org :ensure t :pin melpa
-    :config
-    (add-hook 'org-mode-hook 'toc-org-mode)
-    (add-hook 'markdown-mode-hook 'toc-org-mode)
-    ;;(define-key markdown-mode-map (kbd "\C-c\C-o") 'toc-org-markdown-follow-thing-at-point)
-    )
-  )
-
 ;;; org-capture
 (setq org-default-notes-file "~/Vault2/c.org")
 
@@ -651,8 +518,6 @@ _SPC_ cancel
   (interactive)
   (find-file org-default-notes-file))
 
-;;; org-tree-slide
-;; (use-package org-tree-slide :ensure t :pin melpa)
 
 ;;; PlantUML
 (use-package plantuml-mode :ensure t :pin melpa
@@ -723,71 +588,14 @@ i.e. change right window to bottom, or change bottom window to right."
 (global-set-key (kbd "C-x |") 'window-toggle-split-direction)
 
 
-;;; Yasnippet
-;; (use-package yasnippet :ensure t :pin melpa
-;;   :diminish yas-minor-mode
-;;   :config ;;(yas-global-mode +1)
-;;   (progn
-;;     (add-hook 'prog-mode-hook #'yas-minor-mode)
-;;     (add-hook 'text-mode-hook #'yas-minor-mode)))
-
-;; (use-package yasnippet-snippets :ensure t :pin melpa
-;;   :after yasnippet
-;;   :config (yas-reload-all))
 
 ;;; avy
 (use-package avy :ensure t :pin melpa
   :custom
   (avy-timeout-seconds 0.3)
   (avy-style 'pre)
-  ;; :custom-face
-  ;; (avy-lead-face ((t (:background "#51afef" :foreground "#870000" :weight bold))))
   )
 
-;;; multiple-cursors
-(when nil
-  (use-package multiple-cursors :ensure t :pin melpa
-    :config (progn (global-set-key (kbd "C-c m c") 'mc/edit-lines)
-                   (global-set-key (kbd "C->") 'mc/mark-next-like-this)
-                   (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
-                   (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
-  )
-
-
-(defhydra hydra-multiple-cursors (:hint nil)
-  "
- Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
-------------------------------------------------------------------
- [_p_]   Next     [_n_]   Next     [_l_] Edit lines  [_0_] Insert numbers
- [_P_]   Skip     [_N_]   Skip     [_a_] Mark all    [_A_] Insert letters
- [_M-p_] Unmark   [_M-n_] Unmark   [_s_] Search
- [Click] Cursor at point       [_q_] Quit"
-  ("l" mc/edit-lines :exit t)
-  ("a" mc/mark-all-like-this :exit t)
-  ("n" mc/mark-next-like-this)
-  ("N" mc/skip-to-next-like-this)
-  ("M-n" mc/unmark-next-like-this)
-  ("p" mc/mark-previous-like-this)
-  ("P" mc/skip-to-previous-like-this)
-  ("M-p" mc/unmark-previous-like-this)
-  ("C-n" next-line)
-  ("C-p" previous-line)
-  ("C-f" forward-char)
-  ("C-b" backward-char)    
-  ("s" mc/mark-all-in-region-regexp :exit t)
-  ("0" mc/insert-numbers :exit t)
-  ("A" mc/insert-letters :exit t)
-  ("<mouse-1>" mc/add-cursor-on-click)
-  ;; Help with click recognition in this hydra
-  ("<down-mouse-1>" ignore)
-  ("<drag-mouse-1>" ignore)
-  ("q" nil))
-
-
-
-
-;;; iedit -- use `C-;'
-;; (use-package iedit :ensure t :pin melpa :diminish iedit)
 
 ;;; expand-region
 (use-package expand-region :ensure t :pin melpa
@@ -874,44 +682,17 @@ i.e. change right window to bottom, or change bottom window to right."
     (ansi-term sh-bin)))
 
 
-;;; python-mode + projectile
-(defun python-cd-proj-root ()
-  (interactive)
-  (when (fboundp 'projectile-project-root)
-    (if-let (root (projectile-project-root))
-        (cd root))))
-
-
-;;(add-hook 'python-mode-hook #'python-cd-proj-root)
-
-
-
 ;;; stardict, sdcv
 (use-package sdcv :ensure t :pin melpa
   :config 
   (evil-set-initial-state 'sdcv-mode 'emacs))
 
 
-
-;;; elfeed
-;;(use-package elfeed :ensure t :pin melpa)
-
-
 ;;; realgud
 (use-package realgud :ensure t :pin melpa)
 
 
-;;; direnv
-(when nil
-  (use-package direnv :ensure t :pin melpa
-    :config
-    (direnv-mode)
-    :custom
-    (direnv-always-show-summary t)
-    (direnv-show-paths-in-summary t)
-    (direnv-use-faces-in-summary t)))
-
-
+;;;
 (use-package editorconfig
   :ensure t :pin melpa
   :diminish
@@ -1000,9 +781,6 @@ Toggles:^^
 --------------------------
 _l_ : display-line-numbers-mode
 _s_ : whitespace-mode
-_i_ : highlight-indentation-mode
-_I_ : indent-guides-mode
-_h_ : idle-highlight-mode
 _z_ : ZONE
 _G_ : my-gc-toggle-timer
 _b_ : toggle-battery-saving-mode
@@ -1011,9 +789,6 @@ _SPC_ : cancel
 "
  ("l" display-line-numbers-mode)
  ("s" global-whitespace-mode)
- ("i" highlight-indentation-mode)
- ("I" highlight-indent-guides-mode)
- ("h" idle-highlight-mode)
  ("z" zone)
  ("G" my-gc-toggle-timer)
  ("b" toggle-battery-saving-mode)
@@ -1083,9 +858,6 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   (">" enlarge-window-horizontally)
   ("SPC" nil))
 
-;;; zoom-mode
-;;(use-package zoom :ensure t :pin melpa
-;;  :config (zoom-mode +1))
 
 ;;; string-inflect
 (use-package string-inflection  :ensure t :pin melpa)
@@ -1135,8 +907,6 @@ _U_: 'FOO_BAR' upcase
 
   "?" 'counsel-descbinds
 
-  ;;"M-g" 'git-timemachine
-
   "k" 'counsel-yank-pop
   "C-S-k" 'kill-current-buffer
 
@@ -1147,24 +917,11 @@ _U_: 'FOO_BAR' upcase
 
   "w" 'writeroom-mode
 
-  "h" 'hydra-hs/body
-  ;; "f" '(general-simulate-key "C-c @" :name vimish-fold)
-  ;'(:ignore t :which-key "fold"); "f t" 'vimish-fold-toggle
-  ;; "f f" 'vimish-fold
-  ;; "f d" 'vimish-fold-delete
-
-  ;; "y" - yasnippet
-  ;; "y" '(:ignore t :which-key "yasnippet")
-  ;; "y i" 'yas-insert-snippet
-  ;; "y e" 'yas-visit-snippet-file
-  ;; "y n" 'yas-new-snippet
-
   "`" '(:ignore t :which-key "misc")
   "` p" 'counsel-list-processes
   "` b" 'counsel-bookmark
   "` d" 'sdcv-search-input
   "` s" 'delete-trailing-whitespace
-  ;;"` f" 'elfeed
   "` G" 'garbage-collect
 
   "!" 'hydra-flycheck/body
@@ -1174,11 +931,6 @@ _U_: 'FOO_BAR' upcase
   "M-c" '(:ignore t :which-key "capture")
   "M-c RET" 'org-capture
   "M-c l" 'org-capture-open
-
-  "=" 'er/expand-region
-
-  ;; registers
-  ;;"r" (general-simulate-key "C-x r" :name regs)
 
   ;; windows
   "M-w" 'hydra-windbuf/body
@@ -1207,9 +959,6 @@ _U_: 'FOO_BAR' upcase
   ;; undo-tree
   "u" 'undo-tree-visualize
 
-  ;; multiple-cursors
-  "M-m" 'hydra-multiple-cursors/body
-
   ;; string-inflection
   "M-i" 'hydra-string-inflection/body
 
@@ -1221,31 +970,11 @@ _U_: 'FOO_BAR' upcase
   (interactive)
   (setq unread-command-events (listify-key-sequence "\C-z")))
 
-;;(global-set-key (kbd "<f9>") 'my-C-z)
 (global-set-key (kbd "<f5>") 'ace-window)
 (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
 ;; save -> load : use C-M-m to preview jump in `counsel-register'
 (global-set-key (kbd "C-x r j") 'counsel-register)
-;;;(global-set-key (kbd "S-<f7>") 'point-to-register)
-
-;; ;;; marks
-;; (defun push-local-mark-ring ()
-;;   (interactive)
-;;   (set-mark-command nil)
-;;   (keyboard-quit))
-;;
-;; (defun xah-pop-local-mark-ring ()
-;;   "Move cursor to last mark position of current buffer.
-;; Call this repeatedly will cycle all positions in `mark-ring'.
-;; URL `http://ergoemacs.org/emacs/emacs_jump_to_previous_position.html'
-;; Version 2016-04-04"
-;;   (interactive)
-;;   (set-mark-command t))
-;;
-;; ;;(global-set-key (kbd "<f7>") 'pop-global-mark)
-;; (global-set-key (kbd "<f8>") 'xah-pop-local-mark-ring)
-;; (global-set-key (kbd "S-<f8>") 'push-local-mark-ring)
 
 
 
@@ -1268,7 +997,6 @@ _U_: 'FOO_BAR' upcase
 
 
 (dolist (i '(
-             ;;(org-roam . "org-roam.el")
              (clojure . "clojure.el")
              (org-more . "org-more.el")
              (protobuf . "proto+grpc.el")
