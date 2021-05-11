@@ -898,10 +898,12 @@ _U_: 'FOO_BAR' upcase
   "
 avy-goto:^^
 ----------------------------------------------------------
+_g_: goto-char-timer
 _c_: goto-char-timer
 _l_: goto-line
 _w_: goto-word-1
 "
+  ("g" avy-goto-char-timer :exit t)
   ("c" avy-goto-char-timer :exit t)
   ("l" avy-goto-line :exit t)
   ("w" avy-goto-word-1 :exit t)
