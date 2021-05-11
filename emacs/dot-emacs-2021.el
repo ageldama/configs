@@ -792,6 +792,8 @@ _s_ : whitespace-mode
 _z_ : ZONE
 _G_ : my-gc-toggle-timer
 _b_ : toggle-battery-saving-mode
+_w_ : writeroom-mode
+_:_ : toggle-evil-mode
 
 _SPC_ : cancel
 "
@@ -800,6 +802,8 @@ _SPC_ : cancel
  ("z" zone)
  ("G" my-gc-toggle-timer)
  ("b" toggle-battery-saving-mode)
+ ("w" writeroom-mode)
+ (":" toggle-evil-mode)
 
  ("SPC" nil))
 
@@ -889,6 +893,24 @@ _U_: 'FOO_BAR' upcase
   ("U" string-inflection-upcase :exit t)
   ("SPC" nil))
 
+
+(defhydra hydra-avy-goto ()
+  "
+avy-goto:^^
+----------------------------------------------------------
+_c_: goto-char-timer
+_l_: goto-line
+_w_: goto-word-1
+"
+  ("c" avy-goto-char-timer :exit t)
+  ("l" avy-goto-line :exit t)
+  ("w" avy-goto-word-1 :exit t)
+  ("SPC" nil))
+
+;; (evil-global-set-key 'normal
+;;                      "g " ;; "g SPC"
+;;                      'hydra-avy-goto/body)
+
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
@@ -907,8 +929,8 @@ _U_: 'FOO_BAR' upcase
   
   "/" 'swiper-thing-at-point
 
-  "SPC" 'counsel-M-x
-  "C-SPC" 'eval-expression
+  "RET" 'counsel-M-x
+  "M-RET" 'eval-expression
 
   "b" 'ibuffer
   "TAB" 'ivy-switch-buffer
@@ -920,10 +942,6 @@ _U_: 'FOO_BAR' upcase
 
   "m" 'counsel-mark-ring
   "i" 'counsel-imenu
-
-  ":" 'toggle-evil-mode
-
-  "w" 'writeroom-mode
 
   "`" '(:ignore t :which-key "misc")
   "` p" 'counsel-list-processes
@@ -950,9 +968,7 @@ _U_: 'FOO_BAR' upcase
   "J" 'point-to-register
   
   ;; avy
-  "g"  'avy-goto-char-timer
-  ;;"l" 'avy-goto-line
-  "l" 'avy-goto-char-2
+  "SPC" 'hydra-avy-goto/body
 
   ;; projectile
   "p" 'projectile-find-file-dwim
