@@ -20,4 +20,19 @@
   (my-local-leader-def
     :keymaps 'rust-mode-map
     "c" (general-simulate-key "C-c C-c" :name cargo)
+
+    "f" 'rust-format-buffer
+    "F" 'rust-format-diff-buffer
+    
+    "r" 'rust-run
+    "R" 'rust-run-release
+
+    "t" 'rust-test
+
+    "M-c" 'rust-compile
+
+    "!" 'rust-run-clippy
+    "M-!" 'rust-check
+
+    "M-d" 'rust-dbg-wrap-or-unwrap
    ))
