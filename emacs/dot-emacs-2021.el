@@ -1070,6 +1070,9 @@ _w_: goto-word-1
       evil-replace-state-cursor `(bar "red")
       evil-visual-state-cursor  `(box "orange"))
 
+(set-face-attribute 'region nil :background "cyan")
+
+
 ;;; Uptime, Startup Time
 (message "Startup time: %s" (emacs-uptime))
 
