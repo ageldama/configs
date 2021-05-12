@@ -313,6 +313,11 @@
   )
 
 
+;;; matchit
+(use-package evil-matchit :ensure t :pin melpa :after evil
+  :config (global-evil-matchit-mode +1))
+
+
 ;;; trees, files, and directories!
 (use-package neotree :ensure t :pin melpa)
 
@@ -1057,6 +1062,7 @@ _w_: goto-word-1
 
 ;;;
 (evil-set-initial-state 'Info-mode 'emacs)
+
 
 ;;; Uptime, Startup Time
 (message "Startup time: %s" (emacs-uptime))
