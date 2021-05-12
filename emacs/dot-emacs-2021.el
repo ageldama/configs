@@ -1063,14 +1063,15 @@ _w_: goto-word-1
 ;;;
 (evil-set-initial-state 'Info-mode 'emacs)
 
-(setq evil-emacs-state-cursor   `(bar "grey")
-      evil-insert-state-cursor  `(bar "#00aa55")
-      evil-motion-state-cursor  `(box "blue")
-      evil-normal-state-cursor  `(box "dark green")
-      evil-replace-state-cursor `(bar "red")
-      evil-visual-state-cursor  `(box "orange"))
+(when +sys/gui?+
+  (setq evil-emacs-state-cursor   `(bar "grey")
+        evil-insert-state-cursor  `(bar "#00aa55")
+        evil-motion-state-cursor  `(box "blue")
+        evil-normal-state-cursor  `(box "dark green")
+        evil-replace-state-cursor `(bar "red")
+        evil-visual-state-cursor  `(box "orange"))
 
-(set-face-attribute 'region nil :background "cyan")
+  (set-face-attribute 'region nil :background "pink"))
 
 
 ;;; Uptime, Startup Time
