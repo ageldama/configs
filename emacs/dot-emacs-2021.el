@@ -523,11 +523,18 @@
 
 
 ;;; org-capture
-(setq org-default-notes-file "~/Vault2/c.org")
+(setq org-default-notes-file "~/P/v3/CAPTURE.org")
 
 (defun org-capture-open ()
   (interactive)
   (find-file org-default-notes-file))
+
+
+;;;
+;; (setq org-todo-keywords
+;;       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+(setq org-agenda-files '("~/P/v3/PLAN.org" "~/P/v3/CAPTURE.org"))
 
 
 ;;; PlantUML
@@ -961,9 +968,10 @@ _w_: goto-word-1
 
   "M-q" 'hydra-misc-toggles/body
 
-  "M-c" '(:ignore t :which-key "capture")
-  "M-c RET" 'org-capture
-  "M-c l" 'org-capture-open
+  "M-o" '(:ignore t :which-key "org")
+  "M-o a" 'org-agenda
+  "M-o c" 'org-capture
+  "M-o l" 'org-capture-open
 
   ;; windows
   "M-w" 'hydra-windbuf/body
