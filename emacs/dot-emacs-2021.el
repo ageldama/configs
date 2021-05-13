@@ -711,7 +711,6 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; realgud
 (use-package realgud :ensure t :pin melpa)
 
-
 ;;;
 (use-package editorconfig
   :ensure t :pin melpa
@@ -972,6 +971,7 @@ _w_: goto-word-1
   "M-o a" 'org-agenda
   "M-o c" 'org-capture
   "M-o l" 'org-capture-open
+  "M-o M-d" 'diary/new-or-open-org-file
 
   ;; windows
   "M-w" 'hydra-windbuf/body
@@ -1080,6 +1080,10 @@ _w_: goto-word-1
         evil-visual-state-cursor  `(box "orange"))
 
   (set-face-attribute 'region nil :background "pink"))
+
+
+;;; Org / Diary.
+(load-file (s-concat langsup-base-path "/cal-dt.el"))
 
 
 ;;; Uptime, Startup Time
