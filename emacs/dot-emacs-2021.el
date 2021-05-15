@@ -742,6 +742,7 @@ _SPC_ cancel
 
 
 ;;; Dired
+(setq dired-dwim-target t)
 
 ;;; http://pragmaticemacs.com/emacs/open-a-recent-directory-in-dired-revisited/
 ;; open recent directory, requires ivy (part of swiper)
