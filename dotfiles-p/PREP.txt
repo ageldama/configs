@@ -1,0 +1,99 @@
+(Q) xbps: networkmanager?
+
+(Q) xbps listing
+
+
+---
+
+
+zsh
+zsh-syntax-highlighting
+fzf
+
+exa
+ripgrep
+fd
+
+
+----
+
+oh-my-zsh
+
+
+----
+
+
+$HOME/
+    .tmux.conf -> /home/jhyun/P/configs/tmux.conf
+    
+    .vimrc -> /home/jhyun/P/configs/vim/_vimrc
+    
+    .xbindkeysrc.scm -> /home/jhyun/P/configs/i3wm/dot-xbindkeysrc.scm
+    
+    .xinitrc -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/xinitrc*
+        $HOME/local/bin/x-terminal-emulator
+        dbus
+        gnome-keyring
+        ibus
+        ibus-hangul
+        xbindkeys
+        network-manager
+        redshift-gtk
+        bluemon
+        picom
+        dunst
+        xfce4-panel
+        xfwm4
+        xfce4-terminal
+        openbox
+    
+    .Xmodmap -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/xmodmap
+    
+    .zlogin -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/zlogin*
+        dialog
+        
+    .zshrc.local -> /home/jhyun/P/configs/zsh/zshrc.local
+
+    
+$HOME/local/bin/    
+    caps-to-ctrl.sh -> /home/jhyun/P/configs/i3wm/caps-to-ctrl.sh*
+    
+    hsetroot-solid.pl -> /home/jhyun/P/configs/hsetroot-solid.pl*
+        hsetroot
+        notify-osd // notify-send
+    
+    pactl-mute.pl -> /home/jhyun/P/configs/pactl-mute.pl*
+        pulseaudio
+        notify-osd // notify-send
+    
+    run-editor.sh -> /home/jhyun/P/configs/run-editor.sh*
+    
+    wg.pl -> /home/jhyun/P/configs/i3wm/wg.pl*
+        feh
+    
+    x-terminal-emulator -> /usr/bin/xfce4-terminal*
+    
+    xdotool-capslock.sh -> /home/jhyun/P/configs/xdotool-capslock.sh*
+        xdotool
+        
+    xscreensaver-toggle.pl -> /home/jhyun/P/configs/xscreensaver-toggle.pl*
+        notify-osd // notify-send
+        xscreensaver
+
+
+$HOME/.config/openbox/rc.xml -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/openbox.xml
+    x-terminal-emulator
+    rofi
+    gnome-screenshot
+    xdg-utils // xdg-open
+    gmrun
+    pavucontrol
+    
+    
+    
+        
+$HOME/.config/dunst/dunstrc -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/dunstrc
+
+
+$HOME/.config/rofi/config -> /home/jhyun/P/configs/i3wm/jhyun-desktop-arch/rofi
+
