@@ -1,0 +1,16 @@
+#picom -d &
+
+export XMODIFIERS="@im=ibus"
+export QT_IM_MODULE=ibus
+export GTK_IM_MODULE=ibus
+
+ibus-daemon -d -x
+
+dunst &
+
+caps-to-ctrl.sh 2 &
+hsetroot -solid \#526871 &
+
+xscreensaver -no-splash &
+
+exec openbox
