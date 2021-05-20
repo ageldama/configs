@@ -1,5 +1,6 @@
 (use-package add-node-modules-path :ensure t :pin melpa)
 
+(setq js-indent-level 2)
 
 ;;; https://gist.github.com/CodyReichert/9dbc8bd2a104780b64891d8736682cea
 (use-package web-mode :ensure t :pin melpa)

@@ -125,6 +125,8 @@
 
 (setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
 
+(setq c-basic-offset 2)
+
 ;;(global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
 
 (electric-indent-mode +1)
