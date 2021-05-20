@@ -1,0 +1,18 @@
+* /etc/elogind/logind.conf:
+
+  [Login]
+  HandlePowerKey=ignore
+
+* /etc/acpi/handler.sh:
+
+  case "$1" in
+      button/power)
+          #echo "PowerButton pressed!">/dev/tty5
+          case "$2" in
+              PBTN|PWRF)
+          logger "PowerButton pressed: $2, shutting down..."
+          # shutdown -P now <<<--- COMMENT OUT
+
+
+
+# EOF.
