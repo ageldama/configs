@@ -102,6 +102,10 @@ hsetroot -solid '#3f4058' &
 ~/local/bin/caps-to-ctrl.sh 2 &
 
 #
+test -f ~/.xinitrc2 && ~/.xinitrc2
+
+
+#
 case ${OSNAME} in
   Linux)
     xfce4-panel &
