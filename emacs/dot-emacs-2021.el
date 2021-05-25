@@ -744,7 +744,10 @@ _SPC_ cancel
 
 
 ;;; Dired
-(setq dired-dwim-target t)
+(setq dired-dwim-target t
+      wdired-confirm-overwrite t
+      wdired-use-interactive-rename t
+      )
 
 ;;; http://pragmaticemacs.com/emacs/open-a-recent-directory-in-dired-revisited/
 ;; open recent directory, requires ivy (part of swiper)
