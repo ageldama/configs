@@ -1063,6 +1063,7 @@ _w_: goto-word-1
              (rust+racer . "rust+racer.el")
              (c++ . "c++.el")
              (c++-ccls . "c++-ccls.el")
+             (meson . "meson.el")
              (geiser . "geiser.el")
              (auctex . "auctex.el")
              (tcl . "tcl.el")
