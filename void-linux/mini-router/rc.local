@@ -1,0 +1,15 @@
+# Default rc.local for void; add your custom commands here.
+#
+# This is run by runit in stage 2 before the services are executed
+# (see /etc/runit/2).
+
+ETH0=enp4s0
+ip link set dev ${ETH0}
+ip addr add 10.0.0.1/24 brd + dev ${ETH0}
+# ip route add default via 10.0.0.1
+ip link set ${ETH0} up
+
+
+iptables -t nat -A POSTROUTING -o wlp0s29f7u4 -j MASQUERADE
+iptables -A FORWARD -i enp4s0 -j ACCEPT
+
