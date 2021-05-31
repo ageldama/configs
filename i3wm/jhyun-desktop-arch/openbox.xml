@@ -374,8 +374,9 @@
       </action>
     </keybind>
     <!-- Keybindings for window switching -->
-    <keybind key="W-z">
-      <action name="NextWindow">
+    <!--
+    <keybind key="A-S-Tab">
+      <action name="PrevWindow">
         <finalactions>
           <action name="Focus"/>
           <action name="Raise"/>
@@ -383,6 +384,7 @@
         </finalactions>
       </action>
     </keybind>
+    -->
     <keybind key="A-Tab">
       <action name="NextWindow">
         <finalactions>
