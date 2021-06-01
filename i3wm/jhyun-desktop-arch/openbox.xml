@@ -413,6 +413,11 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
+    <keybind key="W-S-Return">
+      <action name="Execute">
+        <command>skippy-xd</command>
+      </action>
+    </keybind>
     <!-- Keybindings for window switching with the arrow keys -->
     <keybind key="C-W-Right">
       <action name="DirectionalCycleWindows">
@@ -547,17 +552,17 @@
         </command>
       </action>
     </keybind>
-    <keybind key="W-F1">
-      <action name="Execute">
-        <command>
-          sh -c 'notify-send "$(uptime) // $(date)"'
-        </command>
-      </action>
-    </keybind>
     <keybind key="W-F2">
       <action name="Execute">
         <command>
           gmrun
+        </command>
+      </action>
+    </keybind>
+    <keybind key="W-F8">
+      <action name="Execute">
+        <command>
+          sh -c 'notify-send "$(uptime) // $(date)"'
         </command>
       </action>
     </keybind>
