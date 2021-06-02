@@ -1156,6 +1156,14 @@ _w_: goto-word-1
 (evil-global-set-key 'normal (kbd "] w") '(lambda () (interactive (other-window +1))))
 
 
+;;; Evil-Jump
+
+(defun my-evil-jump-other-win ()
+  (interactive)
+  (split-window)
+  (evil-jump-to-tag))
+
+(evil-global-set-key 'normal (kbd "g D") 'my-evil-jump-other-win)
 
 
 ;;; Uptime, Startup Time
