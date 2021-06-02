@@ -324,6 +324,8 @@
 ;; (use-package neotree :ensure t :pin melpa)
 (use-package treemacs :ensure t :pin melpa)
 
+(use-package ztree :ensure t :pin melpa)
+
 
 ;;; helpful, discover-my-major
 (use-package helpful :pin melpa :ensure t
@@ -786,6 +788,7 @@ _r_ recentf             _d_ dired
 _n_ find-by-name        _e_ eshell
 _g_ deadgrep            _a_ ansi-term
 _n_ find-name           _._ treemacs
+^ ^                     _M-t_ ztree
 ^ ^                     ^ ^
 _M-s f_ sudo-file       _M-s d_ sudo-dir
 _M-l c_ literally-file  _M-l f_ literally-find
@@ -817,6 +820,8 @@ _SPC_ cancel
   ("M-l c" (lambda () (interactive) (find-file-literally (buffer-file-name))) :exit t)
 
   ("M-w" buffer-path-and-line-col :exit t)
+
+  ("M-t" ztree-dir :exit t)
 
   ("SPC" nil)
   )
@@ -1172,6 +1177,7 @@ _w_: goto-word-1
 
 ;;; Evil Peekaboo
 (use-package evil-owl :ensure t :pin melpa
+  :diminish
   :config
   (setq evil-owl-max-string-length 500)
 
