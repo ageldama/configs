@@ -1007,6 +1007,9 @@ _w_: goto-word-1
   ;; string-inflection
   "M-i" 'hydra-string-inflection/body
 
+  ;; xdg-open
+  "M-x" 'xdg-open-current-region
+
   ;;"'" '(general-simulate-key "C-'" :name mm)
   )
 
@@ -1093,6 +1096,13 @@ _w_: goto-word-1
 
 ;;; Org / Diary.
 (load-file (s-concat langsup-base-path "/cal-dt.el"))
+
+
+;;; xdg-open + region
+
+(defun xdg-open-current-region ()
+  (interactive)
+  (shell-command-on-region (region-beginning) (region-end) "xargs xdg-open &"))
 
 
 ;;; Uptime, Startup Time
