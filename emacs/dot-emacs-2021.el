@@ -352,48 +352,52 @@
 
 
 
-;;; lacarte -- better F10 menu-bar.
+;;; menu-ber.
 (global-set-key (kbd "M-`")       'menu-bar-open)
 (global-set-key (kbd "<f10>")       'menu-bar-open)
 
 
-;;;
-(use-package counsel :ensure t :pin melpa
-  :diminish
-  :config (progn
-            ;;
-            (ivy-mode 1)
-            (setq ivy-use-virtual-buffers t)
-            (setq enable-recursive-minibuffers t)
-            (setq ivy-re-builders-alist
-                  '((swiper . ivy--regex-plus)
-                    (counsel-M-x . ivy--regex-fuzzy)
-                    (t      . ivy--regex-plus)))
-            (global-set-key "\C-s" 'swiper-isearch-thing-at-point)
-            (global-set-key (kbd "C-c C-r") 'ivy-resume)
-            (global-set-key (kbd "<f6>") 'ivy-resume)
-            (global-set-key (kbd "M-x") 'counsel-M-x)
-            (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-            (global-set-key (kbd "C-h a") 'counsel-apropos)
-            ;; USE `helpful' INSTEAD:
-            ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-            ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-            (global-set-key (kbd "<f1> l") 'counsel-find-library)
-            (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-            (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-            (global-set-key (kbd "C-c g") 'counsel-git)
-            (global-set-key (kbd "C-c j") 'counsel-git-grep)
-            ;; (global-set-key (kbd "C-c k") 'counsel-rg)
-            ;; (global-set-key (kbd "C-x l") 'counsel-locate)
-            ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-            (global-set-key (kbd "M-y") 'counsel-yank-pop)
-            (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
+;;; Counsel, Ivy, Swiper.
+(when t
+    (use-package counsel :ensure t :pin melpa
+    :diminish
+    :config (progn
+                ;;
+                (ivy-mode 1)
+                (setq ivy-use-virtual-buffers t)
+                (setq enable-recursive-minibuffers t)
+                (setq ivy-re-builders-alist
+                    '((swiper . ivy--regex-plus)
+                        (counsel-M-x . ivy--regex-fuzzy)
+                        (t      . ivy--regex-plus)))
+                (global-set-key "\C-s" 'swiper-isearch-thing-at-point)
+                (global-set-key (kbd "C-c C-r") 'ivy-resume)
+                (global-set-key (kbd "<f6>") 'ivy-resume)
+                (global-set-key (kbd "M-x") 'counsel-M-x)
+                (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+                (global-set-key (kbd "C-h a") 'counsel-apropos)
+                ;; USE `helpful' INSTEAD:
+                ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+                ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+                (global-set-key (kbd "<f1> l") 'counsel-find-library)
+                (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+                (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+                (global-set-key (kbd "C-c g") 'counsel-git)
+                (global-set-key (kbd "C-c j") 'counsel-git-grep)
+                ;; (global-set-key (kbd "C-c k") 'counsel-rg)
+                ;; (global-set-key (kbd "C-x l") 'counsel-locate)
+                ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+                (global-set-key (kbd "M-y") 'counsel-yank-pop)
+                (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
 
-;; `C-o` in Ivy minibuf.
-(use-package ivy-hydra :ensure t :pin melpa)
+    ;; `C-o` in Ivy minibuf.
+    (use-package ivy-hydra :ensure t :pin melpa)
 
-(use-package ivy-rich :ensure t :pin melpa
-  :config (ivy-rich-mode +1))
+    (use-package ivy-rich :ensure t :pin melpa
+      :config (ivy-rich-mode +1))
+)
+
+
 
 ;;; wgrep: writable grep
 (use-package wgrep :ensure t :pin melpa)
@@ -1003,9 +1007,8 @@ _w_: goto-word-1
   "*" 'ace-swap-window
   "%" 'window-toggle-split-direction
 
-  ;; jump / registers
-  "j" 'counsel-register
-  "J" 'point-to-register
+  ;; jumps / registers
+  "j" (general-simulate-key "C-x r" :name regs-marks)
   
   ;; avy
   "SPC" 'hydra-avy-goto/body
@@ -1052,6 +1055,7 @@ _w_: goto-word-1
 
 ;; save -> load : use C-M-m to preview jump in `counsel-register'
 (global-set-key (kbd "C-x r j") 'counsel-register)
+(global-set-key (kbd "C-x r J") 'point-to-register)
 
 
 
@@ -1166,6 +1170,25 @@ _w_: goto-word-1
 (evil-global-set-key 'normal (kbd "g D") 'my-evil-jump-other-win)
 
 
+;;; Evil Peekaboo
+(use-package evil-owl :ensure t :pin melpa
+  :config
+  (setq evil-owl-max-string-length 500)
+
+  (setq evil-owl-header-format      "%s"
+        evil-owl-register-format    " %r: %s"
+        evil-owl-local-mark-format  " %m: [l: %-5l, c: %-5c] ---- %s"
+        evil-owl-global-mark-format " %m: [l: %-5l, c: %-5c] %b ==== %s"
+        evil-owl-separator          "\n")
+
+  (add-to-list 'display-buffer-alist
+               '("*evil-owl*"
+                 (display-buffer-in-side-window)
+                 (side . bottom)
+                 (window-height . 0.3)))
+  (evil-owl-mode +1))
+
+
 ;;; Uptime, Startup Time
 (message "Startup time: %s" (emacs-uptime))
 
@@ -1175,6 +1198,9 @@ _w_: goto-word-1
   (when (f-exists? path)
     (load-file path)
     (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))))
+
+
+
 
 
 
