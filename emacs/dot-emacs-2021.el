@@ -360,17 +360,6 @@
 (use-package counsel :ensure t :pin melpa
   :diminish
   :config (progn
-            (defun swiper-thing-at-point ()
-              (interactive)
-              (cl-flet ((ivy-with-thing-at-point (cmd)
-                                                 (let ((ivy-initial-inputs-alist
-                                                        (list
-                                                         (cons cmd (thing-at-point 'symbol)))))
-                                                   (funcall cmd))))
-                (if current-prefix-arg
-                    (ivy-with-thing-at-point 'swiper)
-                  (swiper))))
-
             ;;
             (ivy-mode 1)
             (setq ivy-use-virtual-buffers t)
@@ -379,7 +368,7 @@
                   '((swiper . ivy--regex-plus)
                     (counsel-M-x . ivy--regex-fuzzy)
                     (t      . ivy--regex-plus)))
-            (global-set-key "\C-s" 'swiper-thing-at-point)
+            (global-set-key "\C-s" 'swiper-isearch-thing-at-point)
             (global-set-key (kbd "C-c C-r") 'ivy-resume)
             (global-set-key (kbd "<f6>") 'ivy-resume)
             (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -940,16 +929,16 @@ _w_: goto-word-1
 
 (general-create-definer my-local-leader-def
   :states '(normal visual insert emacs)
-  :prefix "M-RET"
-  :non-normal-prefix "M-RET")
+  :prefix "SPC RET"
+  :non-normal-prefix "C-c RET")
 
 (my-global-leader-def
   "f" 'files-dirs-hs/body
-  
-  "/" 'swiper-thing-at-point
 
-  "RET" 'counsel-M-x
-  "M-RET" 'eval-expression
+  "/" 'swiper-isearch-thing-at-point
+  
+  ;;"RET" 'counsel-M-x
+  ;;"M-RET" 'eval-expression
 
   "b" 'ibuffer
   "TAB" 'ivy-switch-buffer
