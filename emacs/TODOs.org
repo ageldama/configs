@@ -1,4 +1,52 @@
-* TODO cquery? https://github.com/MaskRay/ccls
-  1) <2018-08-12 Sun>
 
-* TODO language-server? Java?
+
+* DONE (make-frame-command)
+  CLOSED: [2021-06-02 Wed 16:19]
+
+
+
+* DONE sudo edit
+  CLOSED: [2021-06-02 Wed 16:41]
+    ("E" spacemacs/sudo-edit "Open using sudo...")
+
+    
+* DONE add dir/file-variable
+  CLOSED: [2021-06-02 Wed 16:47]
+  SPC f v d 	add a directory variable
+  SPC f v f 	add a local variable to the current file
+  SPC f v p 	add a local variable to the first line of the current file
+
+
+  
+* DONE open cur file-or-dir with extl-app
+  CLOSED: [2021-06-02 Wed 16:59]
+     == xdg-open.
+     
+
+* DONE google-search?
+  CLOSED: [2021-06-02 Wed 16:59]
+
+
+* DONE show+copy curr filename/ext/path/linenr/colnr.
+  CLOSED: [2021-06-02 Wed 17:08]
+    SPC f y c 	show and copy current file absolute path with line and column number in the minibuffer
+    SPC f y d 	show and copy current directory absolute path in the minibuffer
+    SPC f y l 	show and copy current file absolute path with line number in the minibuffer
+    SPC f y n 	show and copy current file name with extension in the minibuffer
+    SPC f y N 	show and copy current file name without extension in the minibuffer
+    SPC f y y 	show and copy current file absolute path in the minibuffer
+    
+   ("y" "Yank/Copy"
+    ("c" spacemacs/copy-file-path-with-line-column "File path with line and column")
+    ("d" spacemacs/copy-directory-path "Directory path")
+    ("l" spacemacs/copy-file-path-with-line "File path with line number")
+    ("n" spacemacs/copy-file-name "File name")
+    ("N" spacemacs/copy-file-name-base "File name without extension")
+    ("y" spacemacs/copy-file-path "File path")
+    ("b" spacemacs/copy-buffer-name "Buffer name")))))
+
+
+
+
+
+

@@ -321,7 +321,8 @@
 
 
 ;;; trees, files, and directories!
-(use-package neotree :ensure t :pin melpa)
+;; (use-package neotree :ensure t :pin melpa)
+(use-package treemacs :ensure t :pin melpa)
 
 
 ;;; helpful, discover-my-major
@@ -762,28 +763,57 @@ _SPC_ cancel
 
 (global-set-key (kbd "C-x C-d") 'bjm/ivy-dired-recent-dirs)
 
+
+(defun buffer-path-and-line-col ()
+  (interactive)
+  (let ((pos (format "%s\t%s\t%s" (or (buffer-file-name) default-directory)
+                     (line-number-at-pos) (current-column))))
+    (kill-new pos)
+    (message "Path (Yanked): %s" pos)))
+
+
 ;;; Files + Dirs
 (defhydra files-dirs-hs ()
   "
 Files^^            ^Dirs^            
 ------------------------------------
-_f_ open-file     _d_ recentf+dired
-_r_ recentf       _M-d_ dired 
-_n_ find-by-name  _e_ eshell
-_g_ deadgrep      _a_ ansi-term
-_n_ find-name     _._ neotree
-
+_f_ open-file           _M-d_ recentf+dired
+_r_ recentf             _d_ dired 
+_n_ find-by-name        _e_ eshell
+_g_ deadgrep            _a_ ansi-term
+_n_ find-name           _._ treemacs
+^ ^                     ^ ^
+_M-s f_ sudo-file       _M-s d_ sudo-dir
+_M-l c_ literally-file  _M-l f_ literally-find
+^ ^                     ^ ^
+_M-w_ copy-path-pos     ^ ^
+^ ^                     ^ ^
 _SPC_ cancel
 "
   ("f" find-file :exit t)
   ("r" counsel-recentf :exit t)
   ("g" deadgrep :exit t)
   ("n" find-name-dired :exit t)
-  ("M-d" dired :exit t)
-  ("d" bjm/ivy-dired-recent-dirs :exit t)
+  ("d" dired :exit t)
+  ("M-d" bjm/ivy-dired-recent-dirs :exit t)
   ("e" eshell-here :exit t)
   ("a" ansi-term-here :exit t)
-  ("." neotree :exit t)
+  ("." treemacs :exit t)
+
+  ("M-s f" (lambda () (interactive)
+            (find-file (s-concat "/sudo:root@localhost:" (buffer-file-name))))
+   :exit t)
+
+  ("M-s d" (lambda () (interactive)
+           (find-file (s-concat "/sudo:root@localhost:"
+                                (file-name-directory (buffer-file-name)))))
+   :exit t)
+
+  ("M-l f" find-file-literally :exit t)
+  ("M-l c" (lambda () (interactive) (find-file-literally (buffer-file-name))) :exit t)
+
+  ("M-w" buffer-path-and-line-col :exit t)
+
   ("SPC" nil)
   )
 
@@ -844,10 +874,10 @@ ___: split(v)     _o_: other-win.     _S-<left>_: bmv-l      _=_: balance
 _|_: split(h)     _<left>_: wmv-l     _S-<right>_: bmv-r     _+_: enlarge(v)
 _%_: toggle-dir.  _<right>_: wmv-r    _S-<up>_: bmv-u        _-_: shrink(v)
 _q_: delete-win.  _<up>_: wmv-u       _S-<down>_: bmv-d      _<_: shrink(h)
-_SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
-^ ^               ^ ^                 _C-<left>_: prev-buf
+^ ^               _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
+_f_: new-frame    ^ ^                 _C-<left>_: prev-buf
 ^ ^               ^ ^                 _C-<right>_: next-buf
-^ ^               ^ ^                 _TAB_: ivy-buf
+_SPC_: EXIT       ^ ^                 _TAB_: ivy-buf
 "
   ("_" split-window-below)
   ("|" split-window-right)
@@ -868,6 +898,8 @@ _SPC_: EXIT       _<down>_: wmv-d     _*_: swap              _>_: enlarge(h)
   ("C-<right>" next-buffer)
   ("TAB" ivy-switch-buffer)
   ("*" ace-swap-window)
+
+  ("f" (make-frame) :exit t)
 
   ("=" balance-windows)
   ("+" enlarge-window)
@@ -915,9 +947,7 @@ _w_: goto-word-1
   ("w" avy-goto-word-1 :exit t)
   ("SPC" nil))
 
-;; (evil-global-set-key 'normal
-;;                      "g " ;; "g SPC"
-;;                      'hydra-avy-goto/body)
+;; (evil-global-set-key 'normal "g " 'hydra-avy-goto/body)
 
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
@@ -969,7 +999,7 @@ _w_: goto-word-1
   "M-o M-d" 'diary/new-or-open-org-file
 
   ;; windows
-  "M-w" 'hydra-windbuf/body
+  "w" 'hydra-windbuf/body
   "*" 'ace-swap-window
   "%" 'window-toggle-split-direction
 
@@ -985,7 +1015,7 @@ _w_: goto-word-1
   "P" 'projectile-commander
 
   ;; magit
-  "M-g" 'magit-status
+  "g" 'magit-status
 
   ;; moonshot
   "x" 'hydra-moonshot/body
@@ -996,8 +1026,18 @@ _w_: goto-word-1
   ;; string-inflection
   "M-i" 'hydra-string-inflection/body
 
-  ;; xdg-open
-  "M-x" 'xdg-open-current-region
+  ;; xdg-open, browse-url etc.
+  "M-x" '(:ignore t :which-key "external-open")
+  "M-x RET" 'xdg-open-current-region
+  "M-x ." 'xdg-open-current-buffer
+  "M-x g" 'google-it
+
+  ;; vars
+  "M-v" '(:ignore t :which-key "vars")
+  "M-v d" 'add-dir-local-variable 
+  "M-v f" 'add-file-local-variable
+  "M-v p" 'add-file-local-variable-prop-line
+   
 
   ;;"'" '(general-simulate-key "C-'" :name mm)
   )
@@ -1089,9 +1129,33 @@ _w_: goto-word-1
 
 ;;; xdg-open + region
 
-(defun xdg-open-current-region ()
+(defun xdg-open-current-region (start end)
+  (interactive "r")
+  (shell-command-on-region start end "xargs xdg-open &"))
+
+
+(defun xdg-open-current-buffer ()
   (interactive)
-  (shell-command-on-region (region-beginning) (region-end) "xargs xdg-open &"))
+  (async-shell-command (s-concat "xdg-open "
+    ;; Dired등의 버퍼는 #'buffer-file-name =NIL 이고, 현재경로만 있으니까.
+    (or (buffer-file-name) default-directory))))
+
+
+(defun google-it (start end)
+  (interactive "r")
+  (let ((q (buffer-substring-no-properties start end)))
+    (browse-url (concat "https://google.com/?q="
+                        (url-hexify-string q) "!g"))))
+
+
+;;; Be more evil: took from Spacemacs.
+;;; --- vim-unimpaired
+(evil-global-set-key 'normal (kbd "[ t") '(lambda () (interactive (other-frame -1))))
+(evil-global-set-key 'normal (kbd "] t") '(lambda () (interactive (other-frame +1))))
+(evil-global-set-key 'normal (kbd "[ w") '(lambda () (interactive (other-window -1))))
+(evil-global-set-key 'normal (kbd "] w") '(lambda () (interactive (other-window +1))))
+
+
 
 
 ;;; Uptime, Startup Time
