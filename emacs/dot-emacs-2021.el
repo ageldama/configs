@@ -2,7 +2,9 @@
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
 
-(setq inhibit-startup-screen t)
+(setq inhibit-startup-screen t
+      vc-follow-symlinks t
+      )
 
 
 ;; Don't forget `M-x esup', profile your `.emacs'.
