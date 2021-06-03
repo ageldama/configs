@@ -507,6 +507,28 @@
       </action>
     </keybind>
 
+    <keybind key="W-C-Up">
+      <action name="GrowToEdge">
+        <direction>north</direction>
+      </action>
+    </keybind>
+    <keybind key="W-C-Down">
+      <action name="GrowToEdge">
+        <direction>south</direction>
+      </action>
+    </keybind>
+    <keybind key="W-C-Right">
+      <action name="GrowToEdge">
+        <direction>east</direction>
+      </action>
+    </keybind>
+    <keybind key="W-C-Left">
+      <action name="GrowToEdge">
+        <direction>west</direction>
+      </action>
+    </keybind>
+
+
     <keybind key="W-a">
       <action name="Move"/>
     </keybind>
