@@ -507,10 +507,10 @@
       </action>
     </keybind>
 
-    <keybind key="W-m">
+    <keybind key="W-a">
       <action name="Move"/>
     </keybind>
-    <keybind key="W-r">
+    <keybind key="W-s">
       <action name="Resize"/>
     </keybind>
       
@@ -558,7 +558,7 @@
         <command>hsetroot-solid.pl</command>
       </action>
     </keybind>
-    <keybind key="W-S-M-w">
+    <keybind key="W-w">
       <action name="Execute">
         <command>wg.pl</command>
       </action>
