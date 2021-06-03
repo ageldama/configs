@@ -577,6 +577,7 @@
         <command>xscreensaver-command -lock</command>
       </action>
     </keybind>
+
     <keybind key="W-e">
       <action name="Execute">
         <command>
@@ -591,13 +592,15 @@
         </command>
       </action>
     </keybind>
-    <keybind key="W-F2">
+
+    <keybind key="W-r">
       <action name="Execute">
         <command>
           gmrun
         </command>
       </action>
     </keybind>
+
     <keybind key="W-F8">
       <action name="Execute">
         <command>
@@ -605,6 +608,7 @@
         </command>
       </action>
     </keybind>
+
     <keybind key="W-F10">
       <action name="Execute">
         <command>
@@ -612,21 +616,61 @@
         </command>
       </action>
     </keybind>
-    <keybind key="W-S-F10">
-      <action name="Execute">
-        <command>
-          pactl-mute.pl sink toggle_default
-        </command>
-      </action>
+
+    <keybind key="W-F9">
+      <keybind key="x">
+        <action name="Execute">
+          <command>
+            xscreensaver-toggle.pl
+          </command>
+        </action>
+      </keybind>
+
+      <keybind key="r">
+        <action name="Execute">
+          <command>
+            sh -c "kill -USR1 $(pidof redshift)"
+          </command>
+        </action>
+      </keybind>
+
+      <keybind key="s">
+        <action name="Execute">
+          <command>
+            pactl-mute.pl sink toggle_default
+          </command>
+        </action>
+      </keybind>
+
+      <keybind key="S-s">
+        <action name="Execute">
+          <command>
+            pactl-mute.pl sink toggle_all
+          </command>
+        </action>
+      </keybind>
+
+      <keybind key="m">
+        <action name="Execute">
+          <command>
+            pactl-mute.pl sink all
+          </command>
+        </action>
+        <action name="Execute">
+          <command>
+            pactl-mute.pl source all
+          </command>
+        </action>
+      </keybind>
+
     </keybind>
+
     <keybind key="W-S-F9">
       <action name="Execute">
         <command>
           xscreensaver-toggle.pl
         </command>
       </action>
-    </keybind>
-    <keybind key="W-F9">
       <action name="Execute">
         <command>
           sh -c "kill -USR1 $(pidof redshift)"

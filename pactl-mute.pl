@@ -125,6 +125,18 @@ sub toggle_mute_default_only {
   return $i, $self->description($i), $self->is_muted($i);
 }
 
+sub toggle_mute_all {
+  my $self = shift;
+  my %result = ();
+  foreach my $i ($self->all_names) {
+    $self->toggle_mute($i);
+    my $desc = $self->description($i);
+    my $muted = $self->is_muted($i);
+    $result{$i} = [$desc, $muted];
+  }
+  return %result;
+}
+
 
 1;
 
@@ -199,6 +211,14 @@ if ($ARGV[1] eq 'all') {
   $, = "\t";
   say $result[0], $result[1], $result[2];
   notify_mute($result[0], $result[1], $result[2]);
+} elsif ($ARGV[1] eq 'toggle_all') {
+  my %result = $pactl->toggle_mute_all;
+  $, = "\t";
+  foreach my $k (keys %result) {
+    my $i = $result{$k};
+    say $k, $i->[0], $i->[1];
+    notify_mute($k, $i->[0], 1);
+  }
 } else {
   die "Only 'default' or 'all' or 'toggle_default' allowed, not '${ARGV[1]}'!";
 }
