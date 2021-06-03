@@ -968,13 +968,14 @@ _w_: goto-word-1
 
 (general-create-definer my-local-leader-def
   :states '(normal visual insert emacs)
-  :prefix "SPC RET"
-  :non-normal-prefix "C-c RET")
+  :prefix "SPC SPC"
+  :non-normal-prefix "C-c SPC"
+  :prefix-name "mm")
 
 (my-global-leader-def
   "f" 'files-dirs-hs/body
 
-  "/" 'swiper-isearch-thing-at-point
+  ;;"/" 'swiper-isearch-thing-at-point
   
   ;;"RET" 'counsel-M-x
   ;;"M-RET" 'eval-expression
@@ -1016,7 +1017,7 @@ _w_: goto-word-1
   "j" (general-simulate-key "C-x r" :name regs-marks)
   
   ;; avy
-  "SPC" 'hydra-avy-goto/body
+  "RET" 'hydra-avy-goto/body
 
   ;; projectile
   "p" 'projectile-find-file-dwim
