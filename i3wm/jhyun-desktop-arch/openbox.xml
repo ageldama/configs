@@ -486,6 +486,15 @@
       </action>
     </keybind>
 
+    <keybind key="W-S-F11">
+      <action name="ToggleOmnipresent"/>
+      <action name="ToggleDecorations"/>
+      <!-- <action name="ToggleFullscreen"/> -->
+      <action name="ToggleMaximize"/>
+      <action name="ToggleAlwaysOnBottom"/>
+      <!-- <action name="SendToLayer"><layer>bottom</layer></action> -->
+    </keybind>
+
     <keybind key="W-A-Up">
       <action name="MoveToEdge">
         <direction>north</direction>
