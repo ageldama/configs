@@ -1,0 +1,8 @@
+//  ~/.config/rofi/config.rasi
+
+configuration {
+	modi: "combi";
+	font: "Envy Code R 10";
+	combi-modi: "window,drun,run,ssh";
+	theme: "/usr/share/rofi/themes/gruvbox-dark-hard.rasi";
+}
