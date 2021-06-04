@@ -56,6 +56,7 @@
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  (add-hook 'lsp-mode-hook #'lsp-treemacs-sync-mode)
   (require 'dap-cpptools))
 
 

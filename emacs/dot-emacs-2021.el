@@ -867,13 +867,14 @@ _SPC_ : cancel
   ("k" flycheck-previous-error "Previous")
   ("gg" flycheck-first-error "First")
   ("G" (progn (goto-char (point-max)) (flycheck-previous-error)) "Last")
-  ("?" flycheck-describe-checker "Desc")
-  ("c" flycheck-buffer "Buf")
+  ("?" flycheck-describe-checker "Desc-Chker")
+  ("c" flycheck-buffer "ChkBuf")
   ("C" flycheck-compile "Compile")  
-  ("s" flycheck-select-checker "Select")
-  ("v" flycheck-verify-setup "Verify")
-  ("x" flycheck-disable-checker "Disable")
-  ("C-w" flycheck-copy-errors-as-kill "Copy")  
+  ("s" flycheck-select-checker "Sel-Chker")
+  ("v" flycheck-verify-setup "Verify-Setup")
+  ("x" flycheck-disable-checker "Disable-Chker")
+  ("e" flycheck-explain-error-at-point "Explain-Err")
+  ("C-w" flycheck-copy-errors-as-kill "Copy-Err")  
   ("SPC" nil))
 
 ;;; Windows/Buffers + Hydraw
@@ -1000,7 +1001,7 @@ _w_: goto-word-1
   "` s" 'delete-trailing-whitespace
   "` G" 'garbage-collect
 
-  "!" 'hydra-flycheck/body
+  "e" 'hydra-flycheck/body
 
   "M-q" 'hydra-misc-toggles/body
 
@@ -1017,6 +1018,9 @@ _w_: goto-word-1
 
   ;; jumps / registers
   "j" (general-simulate-key "C-x r" :name regs-marks)
+
+  ;; LSP
+  "l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
   "RET" 'hydra-avy-goto/body
