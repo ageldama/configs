@@ -789,7 +789,7 @@ _f_ open-file           _M-d_ recentf+dired
 _r_ recentf             _d_ dired 
 _n_ find-by-name        _e_ eshell
 _g_ deadgrep            _a_ ansi-term
-_n_ find-name           _._ treemacs
+^ ^                     _._ treemacs
 ^ ^                     _M-t_ ztree
 ^ ^                     ^ ^
 _M-s f_ sudo-file       _M-s d_ sudo-dir
