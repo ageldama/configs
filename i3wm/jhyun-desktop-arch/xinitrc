@@ -112,11 +112,13 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 #
 case ${OSNAME} in
   Linux)
-    xfce4-panel &
+    # xfce4-panel &
+    tint2 &
     exec openbox
     ;;
   FreeBSD)
-    dbus-launch xfce4-panel &
+    #dbus-launch xfce4-panel &
+    tint2 &
     exec dbus-launch openbox
     ;;
 esac
