@@ -1020,7 +1020,7 @@ _w_: goto-word-1
   "j" (general-simulate-key "C-x r" :name regs-marks)
 
   ;; LSP
-  "l" (general-simulate-key "s-l" :name lsp)
+  ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
   "RET" 'hydra-avy-goto/body
