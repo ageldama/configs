@@ -717,9 +717,14 @@
     </keybind>
 
     <keybind key="W-Tab">
+      <action name="Execute">
+        <command>rofi -show windowcd</command>
+      </action>
+      <!--
       <action name="ShowMenu">
         <menu>client-list-combined-menu</menu>
       </action>
+      -->
     </keybind>
 
   </keyboard>
