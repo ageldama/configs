@@ -1110,6 +1110,7 @@ _w_: goto-word-1
              (rust . "rust.el")
              (rust+racer . "rust+racer.el")
              (c++ . "c++.el")
+             (c++-light-2021 . "c++-light-2021.el")
              (c++-ccls . "c++-ccls.el")
              (lsp-cpp-clangd . "lsp-cpp-clangd.el")
              (lsp-rust-rls . "lsp-rust-rls.el")
@@ -1141,10 +1142,6 @@ _w_: goto-word-1
 
 ;;; Org / Diary.
 (load-file (s-concat langsup-base-path "/cal-dt.el"))
-
-
-;;; very basic for c/c++ coding
-(load-file (s-concat langsup-base-path "/goog-c-style.el"))
 
 
 ;;; xdg-open + region
