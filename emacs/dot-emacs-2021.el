@@ -1143,6 +1143,10 @@ _w_: goto-word-1
 (load-file (s-concat langsup-base-path "/cal-dt.el"))
 
 
+;;; very basic for c/c++ coding
+(load-file (s-concat langsup-base-path "/goog-c-style.el"))
+
+
 ;;; xdg-open + region
 
 (defun xdg-open-current-region (start end)
