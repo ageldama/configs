@@ -6,5 +6,7 @@
         *ageldama/font-fixed-ko* "나눔고딕코딩" )
   (my-set-fixed-fonts))
 
+;; (toggle-battery-saving-mode)
+;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
 
 ;;;EOF.
