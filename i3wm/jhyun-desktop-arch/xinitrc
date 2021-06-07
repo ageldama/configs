@@ -29,7 +29,7 @@ esac
 case ${OSNAME} in
   Linux)
     if ! pgrep ssh-agent; then
-      dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+      dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
       eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
       export SSH_AUTH_SOCK
     else
