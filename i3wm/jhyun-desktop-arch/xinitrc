@@ -33,7 +33,7 @@ case ${OSNAME} in
       eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
       export SSH_AUTH_SOCK
     else
-      echo "gnome-keyring-daemon SKIP"
+      notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
     fi
     ;;
   FreeBSD)
