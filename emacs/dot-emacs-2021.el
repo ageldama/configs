@@ -999,33 +999,33 @@ _q_: (quit)
   ;;"RET" 'counsel-M-x
   ;;"M-RET" 'eval-expression
 
-  "b" 'ibuffer
-  "TAB" 'ivy-switch-buffer
+  "b"    'ibuffer
+  "TAB"  'ivy-switch-buffer
 
   "?" 'counsel-descbinds
 
-  "k" 'counsel-yank-pop
-  "C-k" 'kill-current-buffer
+  "k"    'counsel-yank-pop
+  "C-k"  'kill-current-buffer
 
   "m" 'counsel-mark-ring
   "i" 'counsel-imenu
 
-  "`" '(:ignore t :which-key "misc")
-  "` p" 'counsel-list-processes
-  "` b" 'counsel-bookmark
-  "` d" 'sdcv-search-input
-  "` s" 'delete-trailing-whitespace
-  "` G" 'garbage-collect
+  "`"    '(:ignore t :which-key "misc")
+  "` p"  'counsel-list-processes
+  "` b"  'counsel-bookmark
+  "` d"  'sdcv-search-input
+  "` s"  'delete-trailing-whitespace
+  "` G"  'garbage-collect
 
   "e" 'hydra-flycheck/body
 
   "M-q" 'hydra-misc-toggles/body
 
-  "o" '(:ignore t :which-key "org")
-  "o a" 'org-agenda
-  "o c" 'org-capture
-  "o l" 'org-capture-open
-  "o d" 'diary/new-or-open-org-file
+  "o"    '(:ignore t :which-key "org")
+  "o a"  'org-agenda
+  "o c"  'org-capture
+  "o l"  'org-capture-open
+  "o d"  'diary/new-or-open-org-file
 
   ;; windows
   "w" 'hydra-windbuf/body
@@ -1039,18 +1039,18 @@ _q_: (quit)
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
-  "j" 'avy-goto-line
-  "M-j" 'avy-goto-word-0
-  "C-S-j" 'avy-pop-mark
-  "C-j" 'hydra-avy-goto/body
+  "j"      'avy-goto-line
+  "M-j"    'avy-goto-word-0
+  "C-S-j"  'avy-pop-mark
+  "C-j"    'hydra-avy-goto/body
 
   ;; projectile
   "p" 'projectile-find-file-dwim
   "P" 'projectile-commander
 
   ;; magit
-  "g" 'magit-status
-  "C-S-g" 'omz-ish/gwip
+  "g"      'magit-status
+  "C-S-g"  'omz-ish/gwip
 
   ;; moonshot
   "x" 'hydra-moonshot/body
@@ -1062,16 +1062,16 @@ _q_: (quit)
   "M-i" 'hydra-string-inflection/body
 
   ;; xdg-open, browse-url etc.
-  "M-x" '(:ignore t :which-key "external-open")
-  "M-x RET" 'xdg-open-current-region
-  "M-x ." 'xdg-open-current-buffer
-  "M-x g" 'google-it
+  "M-x"      '(:ignore t :which-key "external-open")
+  "M-x RET"  'xdg-open-current-region
+  "M-x ."    'xdg-open-current-buffer
+  "M-x g"    'google-it
 
   ;; vars
-  "M-v" '(:ignore t :which-key "vars")
-  "M-v d" 'add-dir-local-variable 
-  "M-v f" 'add-file-local-variable
-  "M-v p" 'add-file-local-variable-prop-line
+  "M-v"    '(:ignore t :which-key "vars")
+  "M-v d"  'add-dir-local-variable 
+  "M-v f"  'add-file-local-variable
+  "M-v p"  'add-file-local-variable-prop-line
    
 
   ;;"'" '(general-simulate-key "C-'" :name mm)
