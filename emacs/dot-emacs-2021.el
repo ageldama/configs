@@ -2,8 +2,8 @@
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
 
-(setq inhibit-startup-screen t
-      vc-follow-symlinks t
+(setq inhibit-startup-screen  t
+      vc-follow-symlinks      t
       )
 
 
@@ -45,8 +45,8 @@
 (defun toggle-battery-saving-mode ()
   (interactive)
   (call-interactively #'global-flycheck-mode -1)
-  (call-interactively #'global-eldoc-mode -1)
-  (call-interactively #'global-company-mode -1)
+  (call-interactively #'global-eldoc-mode    -1)
+  (call-interactively #'global-company-mode  -1)
   ;;(global-hl-todo-mode)
   )
 
@@ -80,13 +80,13 @@
 
 
 
-(prefer-coding-system 'utf-8)
-(set-language-environment "UTF-8")
-(set-selection-coding-system 'utf-8)
-(set-default-coding-systems 'utf-8)
-(set-terminal-coding-system 'utf-8)
-(set-keyboard-coding-system 'utf-8)
-(setq locale-coding-system 'utf-8)
+(set-language-environment     "UTF-8")
+(prefer-coding-system         'utf-8)
+(set-selection-coding-system  'utf-8)
+(set-default-coding-systems   'utf-8)
+(set-terminal-coding-system   'utf-8)
+(set-keyboard-coding-system   'utf-8)
+(setq                         locale-coding-system 'utf-8)
 
 ;; Treat clipboard input as UTF-8 string first; compound text next, etc.
 ;; NOTE: the default is just fine.
@@ -201,10 +201,10 @@
 
 
 (use-package quelpa :ensure t :pin melpa
-  :config (setq ;; big startup/init speed boosts:
-           quelpa-checkout-melpa-p nil  ; don't use it
-           quelpa-update-melpa-p nil    ; and don't even update it
-           ))
+  ;; big startup/init speed boosts:
+  :config (setq quelpa-checkout-melpa-p  nil ; don't use it
+                quelpa-update-melpa-p    nil ; and don't even update it
+                ))
 
 (use-package f :ensure t)
 (use-package s :ensure t)
@@ -447,6 +447,16 @@
 
 ;;; Git
 (use-package magit :ensure t :pin melpa)
+
+
+(defun omz-ish/gwip ()
+  (interactive)
+  (magit-with-toplevel
+    (message "git-wip-commit: %s"
+             (shell-command-to-string
+              "git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m '--wip-- [skip ci]'"))))
+     
+
 
 
 ;;; hippie-expand, zap-up-to-char
@@ -951,17 +961,17 @@ _U_: 'FOO_BAR' upcase
 avy-goto:^^
 ----------------------------------------------------------
 _,_: pop-back
-_j_: word-0
 _c_: char-timer
 _l_: line
-_w_: word-1
+_w_: word-0
+_W_: word-1
 _q_: (quit)
 "
   ("," avy-pop-mark        :exit t)
-  ("j" avy-goto-word-0     :exit t)
   ("c" avy-goto-char-timer :exit t)
   ("l" avy-goto-line       :exit t)
-  ("w" avy-goto-word-1     :exit t)
+  ("w" avy-goto-word-0     :exit t)
+  ("W" avy-goto-word-1     :exit t)
   ("q" nil))
 
 ;; (evil-global-set-key 'normal "g " 'hydra-avy-goto/body)
@@ -1029,8 +1039,9 @@ _q_: (quit)
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
-  "j" 'avy-goto-word-0
-  "M-j" 'avy-pop-mark
+  "j" 'avy-goto-line
+  "M-j" 'avy-goto-word-0
+  "C-S-j" 'avy-pop-mark
   "C-j" 'hydra-avy-goto/body
 
   ;; projectile
@@ -1039,6 +1050,7 @@ _q_: (quit)
 
   ;; magit
   "g" 'magit-status
+  "C-S-g" 'omz-ish/gwip
 
   ;; moonshot
   "x" 'hydra-moonshot/body
