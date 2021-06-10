@@ -990,7 +990,7 @@ _w_: goto-word-1
   "?" 'counsel-descbinds
 
   "k" 'counsel-yank-pop
-  "S-k" 'kill-current-buffer
+  "C-k" 'kill-current-buffer
 
   "m" 'counsel-mark-ring
   "i" 'counsel-imenu
