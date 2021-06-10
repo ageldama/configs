@@ -367,7 +367,7 @@
     :config (progn
               ;;
               (ivy-mode 1)
-              (setq ivy-use-selectable-prompt     t
+              (setq ivy-use-selectable-prompt     t  ;; <C-p>.
                     ivy-use-virtual-buffers       t
                     enable-recursive-minibuffers  t
                     ivy-re-builders-alist         '((swiper      . ivy--regex-plus)
