@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 #export LANG=ko_KR.UTF-8
 
@@ -33,7 +33,10 @@ case ${OSNAME} in
       eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
       export SSH_AUTH_SOCK
     else
-      notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
+      # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
+      if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
+        ssh-add < /dev/null &
+      fi
     fi
     ;;
   FreeBSD)
@@ -112,8 +115,9 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 #
 case ${OSNAME} in
   Linux)
+    unset WINDOW_MANAGER STARTUP
     xfce4-panel &
-    exec openbox
+    exec openbox ${1+"$@"}
     ;;
   FreeBSD)
     dbus-launch xfce4-panel &

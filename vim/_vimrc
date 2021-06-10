@@ -173,7 +173,7 @@ if 1
   "set t_AB=^[[48;5;%dm
   "set t_AF=^[[38;5;%dm
   if has('gui_running')
-    set guifont=Noto\ Sans\ Mono\ CJK\ KR\ 10
+    set guifont=DejaVu\ Sans\ Mono\ 10
     color koehler
     set bg=dark
     set guioptions-=m  "remove menu bar
