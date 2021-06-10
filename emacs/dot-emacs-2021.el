@@ -950,15 +950,18 @@ _U_: 'FOO_BAR' upcase
   "
 avy-goto:^^
 ----------------------------------------------------------
-_g_: goto-char-timer
-_c_: goto-char-timer
-_l_: goto-line
-_w_: goto-word-1
+_b_: pop-back
+_j_: word-1
+_c_: char-timer
+_l_: line
+_w_: word-1
+_SPC_: (quit)
 "
-  ("g" avy-goto-char-timer :exit t)
-  ("c" avy-goto-char-timer :exit t)
-  ("l" avy-goto-line :exit t)
-  ("w" avy-goto-word-1 :exit t)
+  ("b" avy-pop-mark :exit t)
+  ("j" avy-goto-word-1  :exit t)
+  ("c" avy-goto-char-timer  :exit t)
+  ("l" avy-goto-line  :exit t)
+  ("w" avy-goto-word-1  :exit t)
   ("SPC" nil))
 
 ;; (evil-global-set-key 'normal "g " 'hydra-avy-goto/body)
@@ -1019,13 +1022,13 @@ _w_: goto-word-1
   "%" 'window-toggle-split-direction
 
   ;; jumps / registers
-  "j" (general-simulate-key "C-x r" :name regs-marks)
+  "r" (general-simulate-key "C-x r" :name regs-marks)
 
   ;; LSP
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
-  "a" 'hydra-avy-goto/body
+  "j" 'hydra-avy-goto/body
 
   ;; projectile
   "p" 'projectile-find-file-dwim
