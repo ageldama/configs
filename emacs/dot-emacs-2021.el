@@ -496,7 +496,8 @@
 
 ;;; Org
 (add-hook 'org-mode-hook
-          (lambda () 
+          (lambda ()
+            (flycheck-mode -1)
             (setq truncate-lines nil)
             (setq fill-column most-positive-fixnum)
             (turn-off-auto-fill)
