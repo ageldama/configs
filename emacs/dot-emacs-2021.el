@@ -365,14 +365,14 @@
     (use-package counsel :ensure t :pin melpa
     :diminish
     :config (progn
-                ;;
-                (ivy-mode 1)
-                (setq ivy-use-virtual-buffers t)
-                (setq enable-recursive-minibuffers t)
-                (setq ivy-re-builders-alist
-                    '((swiper . ivy--regex-plus)
-                        (counsel-M-x . ivy--regex-fuzzy)
-                        (t      . ivy--regex-plus)))
+              ;;
+              (ivy-mode 1)
+              (setq ivy-use-selectable-prompt     t
+                    ivy-use-virtual-buffers       t
+                    enable-recursive-minibuffers  t
+                    ivy-re-builders-alist         '((swiper      . ivy--regex-plus)
+                                                    (counsel-M-x . ivy--regex-fuzzy)
+                                                    (t           . ivy--regex-plus)))
                 (global-set-key "\C-s" 'swiper-isearch-thing-at-point)
                 (global-set-key (kbd "C-c C-r") 'ivy-resume)
                 (global-set-key (kbd "<f6>") 'ivy-resume)
