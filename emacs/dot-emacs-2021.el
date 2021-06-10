@@ -323,10 +323,9 @@
 
 
 ;;; trees, files, and directories!
-;; (use-package neotree :ensure t :pin melpa)
 (use-package treemacs :ensure t :pin melpa)
 
-(use-package ztree :ensure t :pin melpa)
+(use-package neotree :ensure t :pin melpa)
 
 
 ;;; helpful, discover-my-major
@@ -571,6 +570,10 @@
 (use-package ace-window :ensure t :pin melpa
   :config (global-set-key (kbd "C-x o") 'ace-window))
 
+(defun ace-swap-window-last ()
+  (interactive)
+  (aw-swap-window (previous-window)))
+
 ;;; buf-move-*
 (use-package buffer-move :ensure t :pin melpa)
 
@@ -788,7 +791,7 @@ _r_ recentf             _d_ dired
 _n_ find-by-name        _e_ eshell
 _g_ deadgrep            _a_ ansi-term
 ^ ^                     _._ treemacs
-^ ^                     _M-t_ ztree
+^ ^                     _t_ neotree
 ^ ^                     ^ ^
 _M-s f_ sudo-file       _M-s d_ sudo-dir
 _M-l c_ literally-file  _M-l f_ literally-find
@@ -821,7 +824,7 @@ _SPC_ cancel
 
   ("M-w" buffer-path-and-line-col :exit t)
 
-  ("M-t" ztree-dir :exit t)
+  ("t" neotree :exit t)
 
   ("SPC" nil)
   )
@@ -987,7 +990,7 @@ _w_: goto-word-1
   "?" 'counsel-descbinds
 
   "k" 'counsel-yank-pop
-  "C-S-k" 'kill-current-buffer
+  "S-k" 'kill-current-buffer
 
   "m" 'counsel-mark-ring
   "i" 'counsel-imenu
@@ -1003,11 +1006,11 @@ _w_: goto-word-1
 
   "M-q" 'hydra-misc-toggles/body
 
-  "M-o" '(:ignore t :which-key "org")
-  "M-o a" 'org-agenda
-  "M-o c" 'org-capture
-  "M-o l" 'org-capture-open
-  "M-o M-d" 'diary/new-or-open-org-file
+  "o" '(:ignore t :which-key "org")
+  "o a" 'org-agenda
+  "o c" 'org-capture
+  "o l" 'org-capture-open
+  "o d" 'diary/new-or-open-org-file
 
   ;; windows
   "w" 'hydra-windbuf/body
@@ -1021,7 +1024,7 @@ _w_: goto-word-1
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
-  "RET" 'hydra-avy-goto/body
+  "a" 'hydra-avy-goto/body
 
   ;; projectile
   "p" 'projectile-find-file-dwim
