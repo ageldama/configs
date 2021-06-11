@@ -8,14 +8,18 @@ export PATH=$PATH:$HOME/local/bin
 
 export TERMINAL=x-terminal-emulator
 
-# ibus + hangul
+# fcitx/ibus + hangul
 case ${OSNAME} in
   Linux)
-    export XMODIFIERS="@im=ibus"
-    export QT_IM_MODULE=ibus
-    export GTK_IM_MODULE=ibus
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS=@im=fcitx
+    fcitx5 -D &
 
-    ibus-daemon -d -x
+    #export XMODIFIERS="@im=ibus"
+    #export QT_IM_MODULE=ibus
+    #export GTK_IM_MODULE=ibus
+    #ibus-daemon -d -x
     ;;
   FreeBSD)
     export XMODIFIERS="@im=nabi"
