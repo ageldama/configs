@@ -120,8 +120,8 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 case ${OSNAME} in
   Linux)
     unset WINDOW_MANAGER STARTUP
-    xfce4-panel &
-    exec openbox ${1+"$@"}
+    dbus-launch xfce4-panel &
+    exec dbus-launch openbox ${1+"$@"}
     ;;
   FreeBSD)
     dbus-launch xfce4-panel &
