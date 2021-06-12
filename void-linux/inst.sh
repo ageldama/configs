@@ -11,6 +11,7 @@ xbps-install vim tmux mc dialog \
 	emacs-gtk3 clang-analyzer clang-tools-extra \
 	firefox mpv vlc mplayer telegram-desktop mcomix curl wget \
 	pulseaudio pavucontrol xscreensaver xmodmap \
+  perl-LWP-Protocol-https perl-LWP-Protocol-socks \
 	fzf exa fd ripgrep zsh zsh-syntax-highlighting \
 	noto-fonts-cjk noto-fonts-ttf noto-fonts-ttf-extra noto-fonts-emoji \
 	fonts-droid-ttf fonts-nanum-ttf fonts-nanum-ttf-extra \
