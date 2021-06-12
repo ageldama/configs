@@ -5,6 +5,7 @@ xbps-install vim tmux mc dialog \
 	samba \
 	xorg xorg-apps xorg-fonts xorg-input-drivers xorg-server ttf-bitstream-vera \
 	xinit xset xterm twm xfce4-panel xfwm4 Thunar thunar-volman \
+  gvfs gvfs-mtp gvfs-smb \
 	openbox obconf gmrun x2x-git \
 	hsetroot feh xbindkeys rofi dunst notify-osd redshift-gtk \
 	git tig base-devel cmake ninja meson ctags gdb \
