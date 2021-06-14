@@ -1,0 +1,17 @@
+! ~/.Xmodmap
+
+keycode 108 = Hangul
+
+keycode 66 = Control_L
+clear Lock
+add Control = Control_L
+
+! F2 as Super_L
+! keycode 68 = Super_L
+
+! Keypad ENTER as Super_L
+keycode 104 = Super_L
+
+! Control_R as Super_L
+!keycode 105 = Super_L
+
