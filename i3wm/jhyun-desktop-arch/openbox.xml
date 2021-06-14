@@ -562,38 +562,6 @@
     </keybind>
     -->
 
-    <keybind key="W-Return">
-      <action name="Execute">
-        <command>x-terminal-emulator</command>
-      </action>
-    </keybind>
-    <keybind key="W-d">
-      <action name="Execute">
-        <command>rofi -show</command>
-      </action>
-    </keybind>
-
-    <keybind key="W-p">
-      <action name="Execute">
-        <command>gnome-screenshot</command>
-      </action>
-    </keybind>
-    <keybind key="W-S-p">
-      <action name="Execute">
-        <command>gnome-screenshot -i</command>
-      </action>
-    </keybind>
-
-    <keybind key="W-S-w">
-      <action name="Execute">
-        <command>hsetroot-solid.pl</command>
-      </action>
-    </keybind>
-    <keybind key="W-w">
-      <action name="Execute">
-        <command>wg.pl</command>
-      </action>
-    </keybind>
     <!--
     <keybind key="W-S-m">
       <action name="Execute">
@@ -603,111 +571,6 @@
     -->
 
 
-    <keybind key="W-Escape">
-      <action name="Execute">
-        <command>xscreensaver-command -lock</command>
-      </action>
-    </keybind>
-
-    <keybind key="W-e">
-      <action name="Execute">
-        <command>
-          sh -c 'xdg-open $HOME'
-        </command>
-      </action>
-    </keybind>
-    <keybind key="W-S-e">
-      <action name="Execute">
-        <command>
-          x-terminal-emulator -e mc
-        </command>
-      </action>
-    </keybind>
-
-    <keybind key="W-r">
-      <action name="Execute">
-        <command>
-          gmrun
-        </command>
-      </action>
-    </keybind>
-
-    <keybind key="W-F8">
-      <action name="Execute">
-        <command>
-          sh -c 'notify-send "$(uptime) // $(date)"'
-        </command>
-      </action>
-    </keybind>
-
-    <keybind key="W-F10">
-      <action name="Execute">
-        <command>
-          pavucontrol
-        </command>
-      </action>
-    </keybind>
-
-    <keybind key="W-F9">
-      <keybind key="x">
-        <action name="Execute">
-          <command>
-            xscreensaver-toggle.pl
-          </command>
-        </action>
-      </keybind>
-
-      <keybind key="r">
-        <action name="Execute">
-          <command>
-            sh -c "kill -USR1 $(pidof redshift)"
-          </command>
-        </action>
-      </keybind>
-
-      <keybind key="s">
-        <action name="Execute">
-          <command>
-            pactl-mute.pl sink toggle_default
-          </command>
-        </action>
-      </keybind>
-
-      <keybind key="S-s">
-        <action name="Execute">
-          <command>
-            pactl-mute.pl sink toggle_all
-          </command>
-        </action>
-      </keybind>
-
-      <keybind key="m">
-        <action name="Execute">
-          <command>
-            pactl-mute.pl sink all
-          </command>
-        </action>
-        <action name="Execute">
-          <command>
-            pactl-mute.pl source all
-          </command>
-        </action>
-      </keybind>
-
-    </keybind>
-
-    <keybind key="W-S-F9">
-      <action name="Execute">
-        <command>
-          xscreensaver-toggle.pl
-        </command>
-      </action>
-      <action name="Execute">
-        <command>
-          sh -c "kill -USR1 $(pidof redshift)"
-        </command>
-      </action>
-    </keybind>
 
     <keybind key="W-o">
       <action name="MoveResizeTo">
@@ -716,16 +579,6 @@
       </action>
     </keybind>
 
-    <keybind key="W-Tab">
-      <action name="Execute">
-        <command>rofi -show windowcd</command>
-      </action>
-      <!--
-      <action name="ShowMenu">
-        <menu>client-list-combined-menu</menu>
-      </action>
-      -->
-    </keybind>
 
   </keyboard>
   <mouse>
