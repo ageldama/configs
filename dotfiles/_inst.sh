@@ -1,7 +1,7 @@
 #!/bin/sh
 
-sdir=HOME
-ddir=~/local/bin
+sdir="$1"
+ddir="$2"
 
 # TODO mkdir -pv ~/local/bin
 
