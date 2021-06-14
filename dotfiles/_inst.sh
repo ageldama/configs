@@ -8,8 +8,12 @@ expand_tilde() {
 
 sdir="$1"
 ddir="$2"
+uninst="$DOTFILES_UNINST"
 
-mkdir -pv ~/local/bin
+if [[ "i${uninst}j" == "ij" ]]; then
+  mkdir -p $(expand_tilde $ddir)
+  echo "mkdir $ddir ... $?"
+fi
 
 for f in $(/bin/ls -Aa $sdir); do
   if [[ "$f" == "." ]] || [[ "$f" == '..' ]]; then
@@ -23,7 +27,13 @@ for f in $(/bin/ls -Aa $sdir); do
 
   dfn="$ddir/$f"
   dfn="$(expand_tilde $dfn)"
-  echo "    $sfn --> $dfn"
-  ln -sv "$sfn" "$dfn"
+
+  if [[ "i${uninst}j" == "ij" ]]; then
+    echo "  (Install)   $sfn --> $dfn"
+    ln -sv "$sfn" "$dfn"
+  else
+    echo "  (Uninstall)   $dfn  ($sfn)"
+    rm -v "$dfn"
+  fi
 done
 
