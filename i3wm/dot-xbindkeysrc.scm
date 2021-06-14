@@ -11,8 +11,8 @@
     (("b:12") . "xdotool key Next")
 
     ;;
-    ((Mod4 Return)  . "x-terminal-emulator")
-    ((Mod4 r)       . "gmrun")
+    ;;((Mod4 Return)  . "x-terminal-emulator")
+    ;;((Mod4 r)       . "gmrun")
     ((Mod4 d)       . "rofi -show")
     ((Mod4 Tab)     . "rofi -show windowcd")
     ((Mod4 Escape)  . "xscreensaver-command -lock")

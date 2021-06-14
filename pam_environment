@@ -1,4 +1,5 @@
 GTK_IM_MODULE DEFAULT=fcitx
 QT_IM_MODULE  DEFAULT=fcitx
 XMODIFIERS    DEFAULT=\@im=fcitx
+PATH          DEFAULT=${HOME}/local/bin:${PATH}
 

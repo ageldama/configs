@@ -424,7 +424,6 @@
       </action>
     </keybind>
 
-  <!--
     <keybind key="W-Return">
       <action name="Execute">
         <command>x-terminal-emulator</command>
@@ -436,7 +435,6 @@
         <command>gmrun</command>
       </action>
     </keybind>
-    -->
 
     <!-- Keybindings for window switching with the arrow keys -->
     <keybind key="W-z">

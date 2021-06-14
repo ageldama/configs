@@ -1,6 +1,6 @@
 #!/bin/sh
 
-export PATH=~/local/bin:$PATH
+#export PATH=~/local/bin:$PATH
 
 # gnome-keyring
 if ! pgrep ssh-agent; then
