@@ -1,0 +1,64 @@
+#!/bin/sh
+
+export PATH=~/local/bin:$PATH
+
+# gnome-keyring
+if ! pgrep ssh-agent; then
+    dbus-update-activation-environment --all --verbose 
+    eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+    export SSH_AUTH_SOCK
+else
+    # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
+    if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
+        ssh-add < /dev/null &
+    fi
+fi
+
+# Redshift
+SEOUL_POS=37.566:126.977 # Seoul
+
+which redshift-gtk
+if [ $? -eq 0 ]; then
+  redshift-gtk -l $SEOUL_POS &
+else
+  redshift -l $SEOUL_POS &
+fi
+
+#
+test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
+test -f ~/.Xmodmap && xmodmap ~/.Xmodmap
+xset b off
+xscreensaver -no-splash &
+pactl-mute.pl source all &
+nm-applet &
+fcitx5 -d &
+xbindkeys -p -n &
+
+# Compositor
+which picom
+if [ $? -eq 0 ]; then
+  true #picom -b &
+else
+  true #compton -b &
+fi
+
+# Bluetooth
+blueman-applet &
+
+# Notification Logging
+dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
+
+# Notification growl.
+dunst &
+
+# bg-color
+hsetroot -solid '#3f4058' &
+
+# caps->ctrl
+~/local/bin/caps-to-ctrl.sh 2 &
+
+#
+dbus-launch xfce4-panel &
+
+#
+test -f ~/.xinitrc2 && ~/.xinitrc2
