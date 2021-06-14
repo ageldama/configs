@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 expand_tilde() {
     tilde_less="${1#\~/}"
@@ -10,25 +10,27 @@ sdir="$1"
 ddir="$2"
 uninst="$DOTFILES_UNINST"
 
-if [[ "i${uninst}j" == "ij" ]]; then
+if [ -z ${uninst} ]; then
   mkdir -p $(expand_tilde $ddir)
-  echo "mkdir $ddir ... $?"
+  echo "INSTALL: mkdir $ddir ..."
+else
+  echo "UNINSTALL: mkdir $ddir ..."
 fi
 
 for f in $(/bin/ls -Aa $sdir); do
-  if [[ "$f" == "." ]] || [[ "$f" == '..' ]]; then
+  if [ "$f" = "." ] || [ "$f" = '..' ]; then
     continue
   fi
 
   sfn="$PWD/$1/$f"
-  if [[ -L "$sfn" ]]; then
+  if [ -L "$sfn" ]; then
     sfn=$(readlink -f $sfn)
   fi
 
   dfn="$ddir/$f"
   dfn="$(expand_tilde $dfn)"
 
-  if [[ "i${uninst}j" == "ij" ]]; then
+  if [ -z ${uninst} ]; then
     echo "  (Install)   $sfn --> $dfn"
     ln -sv "$sfn" "$dfn"
   else
