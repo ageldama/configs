@@ -18,8 +18,12 @@
 "x-terminal-emulator"
   Mod4 + Return
 
-"gmrun"
+#"gmrun"
+"xfce4-appfinder -c"
   Mod4 + r
+
+"xfce4-taskmanager"
+  Control + Alt + Delete
 
 "rofi -show"
   Mod4 + d
