@@ -32,7 +32,7 @@ xscreensaver -no-splash &
 pactl-mute.pl source all &
 nm-applet &
 fcitx5 -d &
-xbindkeys -p -n &
+dbus-launch xbindkeys -p -n &
 
 # Compositor
 picom -b &
