@@ -1,0 +1,2 @@
+zypper in fcitx fcitx-qt5 fcitx-config-gtk3 fcitx-gtk2 fcitx-gtk3 fcitx-hangul fcitx-mozc  sddm sddm-branding-openSUSE xfce4-terminal patterns-xfce-xfce patterns-base-x11 patterns-base-x11_enhanced patterns-base-x11_raspberrypi patterns-base-basic_desktop ghc cabal-install
+
