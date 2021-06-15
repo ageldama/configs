@@ -1,0 +1,1 @@
+/home/jhyun/P/configs/dotfiles/local_bin/../../notify-uptime.sh

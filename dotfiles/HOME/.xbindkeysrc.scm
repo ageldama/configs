@@ -1,1 +1,0 @@
-/home/jhyun/P/configs/dotfiles/../i3wm/dot-xbindkeysrc.scm
