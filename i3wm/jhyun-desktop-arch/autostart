@@ -4,14 +4,13 @@ export PATH=~/local/bin:$PATH
 
 # gnome-keyring
 if ! pgrep ssh-agent; then
-    dbus-update-activation-environment --all --verbose 
+    dbus-update-activation-environment --all --verbose
     eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
     export SSH_AUTH_SOCK
 else
     # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
     if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
-        # ssh-add < /dev/null &
-        echo skip
+        ssh-add < /dev/null &
     fi
 fi
 
