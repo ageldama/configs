@@ -1,14 +1,6 @@
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# Load profiles from /etc/profile.d
-#if test -d /etc/profile.d/; then
-#  for profile in /etc/profile.d/*.sh; do
-#    test -r "$profile" && . "$profile"
-#  done
-#  unset profile
-#fi
-
 command_exists () {
   type "$1" &> /dev/null ;
 }
@@ -33,16 +25,6 @@ export PATH=$PATH:~/local/bin:~/.local/bin
 
 alias tmux='tmux -2'
 alias view='vim -R'
-
-#if [[ "$TERM" = "xterm-termite" ]]; then
-#    export TERM=xterm-256color
-#fi
-
-
-
-
-#eval "$(perl -I$HOME/perl5/lib/perl5 -Mlocal::lib)"
-#export PATH=~/perl5/bin:$PATH
 
 if [[ -d /usr/local/share/zsh-syntax-highlighting/ ]]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -73,27 +55,10 @@ fi
 alias fzfpreview="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
 
 
-: <<'=cut'
-if [[ -d ~/local/go ]]; then
-  export PATH=$PATH:$HOME/local/go/bin
-fi
 
-if [[ -d ~/go ]]; then
-  export GOPATH=$HOME/go
-  export PATH=$PATH:$GOPATH/bin
-fi
-
-if [[ -d "$HOME/.cargo" ]]; then
-  export PATH="$HOME/.cargo/bin:$PATH"
-fi
-
-if [[ -d "$HOME/.nvm" ]]; then
-  export NVM_DIR="$HOME/.nvm"
-  [[ -s "$NVM_DIR/nvm.sh" ]] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-  [[ -s "$NVM_DIR/bash_completion" ]] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-fi
-=cut
-
+autoload zmv
+alias zcp='zmv -C'
+alias zln='zmv -L'
 
 
 
@@ -102,4 +67,5 @@ if [[ -f ~/.zshrc.local2 ]]; then
 fi
 
 # (type -p direnv >& /dev/null) && eval "$(direnv hook zsh)"
+
 
