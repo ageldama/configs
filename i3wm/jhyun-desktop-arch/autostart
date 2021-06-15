@@ -35,12 +35,7 @@ fcitx5 -d &
 xbindkeys -p -n &
 
 # Compositor
-which picom
-if [ $? -eq 0 ]; then
-  true #picom -b &
-else
-  true #compton -b &
-fi
+picom -b &
 
 # Bluetooth
 blueman-applet &
