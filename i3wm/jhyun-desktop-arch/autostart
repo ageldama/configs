@@ -10,7 +10,8 @@ if ! pgrep ssh-agent; then
 else
     # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
     if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
-        ssh-add < /dev/null &
+        # ssh-add < /dev/null &
+        echo skip
     fi
 fi
 
