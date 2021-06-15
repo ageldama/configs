@@ -45,12 +45,17 @@
 "wg.pl"
   Mod4 + w
 
-"notify-send \"$(uptime) // $(date)\""
+"notify-uptime.sh"
   Mod4 + F8
 
 "pavucontrol"
   Mod4 + F10
 
-    ((Mod4 F9)       . "rofi-toggles.sh")
-    ((Mod4 Shift F9) . "xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)")
+"rofi-toggles.sh"
+  Mod4 + F9
 
+"xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)"
+  Mod4 + Shift + F9
+
+
+#EOF
