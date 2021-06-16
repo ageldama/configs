@@ -484,6 +484,7 @@
 (use-package company :ensure t :pin melpa
   :diminish company-mode
   :config (progn (require 'company)
+                 (setq company-idle-delay 0.2)
 		 (global-company-mode +1)
                  ;; (global-set-key (kbd "C-TAB") 'company-complete)
 		 ;; (global-set-key (kbd "C-c \\") 'company-complete)
