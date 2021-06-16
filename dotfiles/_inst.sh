@@ -7,7 +7,8 @@ expand_tilde() {
 }
 
 sdir="$1"
-ddir="$2"
+ddir="$2/"
+ddir=$(expand_tilde $ddir)
 uninst="$DOTFILES_UNINST"
 
 if [ -z ${uninst} ]; then
