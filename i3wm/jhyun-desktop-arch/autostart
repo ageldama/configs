@@ -31,8 +31,8 @@ xset b off
 xscreensaver -no-splash &
 pactl-mute.pl source all &
 nm-applet &
-fcitx5 -d &
-dbus-launch xbindkeys -p -n &
+#fcitx5 -d &
+#dbus-launch xbindkeys -p -n &
 
 # Compositor
 picom -b &
