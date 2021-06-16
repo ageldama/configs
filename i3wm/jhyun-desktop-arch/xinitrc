@@ -26,12 +26,7 @@ case ${OSNAME} in
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
     export XMODIFIERS=@im=fcitx
-    fcitx5 -d &
-
-    #export XMODIFIERS="@im=ibus"
-    #export QT_IM_MODULE=ibus
-    #export GTK_IM_MODULE=ibus
-    #ibus-daemon -d -x
+    fcitx5 -r &
     ;;
   FreeBSD)
     export XMODIFIERS="@im=nabi"
@@ -69,10 +64,10 @@ test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
 
 # "xev" first.
 # xmodmap -e 'keycode 108 = Hangul'
-test -f ~/.Xmodmap && xmodmap ~/.Xmodmap
+# TODO test -f ~/.Xmodmap && xmodmap ~/.Xmodmap
 # setxkbmap -option caps:super
 
-xbindkeys &
+# TODO xbindkeys &
 
 #synclient TapButton2=3
 #xgamma -gamma 0.6
@@ -122,7 +117,7 @@ dunst &
 hsetroot -solid '#3f4058' &
 
 # caps->ctrl
-~/local/bin/caps-to-ctrl.sh 2 &
+# TODO ~/local/bin/caps-to-ctrl.sh 2 &
 
 #
 test -f ~/.xinitrc2 && ~/.xinitrc2
