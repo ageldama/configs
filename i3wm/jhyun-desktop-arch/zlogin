@@ -17,7 +17,7 @@ function zlogin_startx_dialog () {
 if [[ -z $TMUX ]]; then
   case ${OSNAME} in
     Linux)
-      if [[ -z $DISPLAY && $XDG_VTNR -eq 1 ]]; then
+      if [[ -z $DISPLAY && $XDG_VTNR -ge 1 ]]; then
         zlogin_startx_dialog
       fi
     ;;
