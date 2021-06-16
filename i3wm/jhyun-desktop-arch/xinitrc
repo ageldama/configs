@@ -67,7 +67,7 @@ test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
 # TODO test -f ~/.Xmodmap && xmodmap ~/.Xmodmap
 # setxkbmap -option caps:super
 
-# TODO xbindkeys &
+xbindkeys &
 
 #synclient TapButton2=3
 #xgamma -gamma 0.6
@@ -117,7 +117,7 @@ dunst &
 hsetroot -solid '#3f4058' &
 
 # caps->ctrl
-# TODO ~/local/bin/caps-to-ctrl.sh 2 &
+~/local/bin/caps-to-ctrl.sh 2 &
 
 #
 test -f ~/.xinitrc2 && ~/.xinitrc2
