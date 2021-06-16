@@ -573,6 +573,7 @@
     </keybind>
 
     <!-- Keybindings for running applications -->
+    <!--
     <keybind key="W-e">
       <action name="Execute">
         <command>sh -c 'xdg-open $HOME'</command>
@@ -661,12 +662,13 @@
       </action>
     </keybind>
 
-
     <keybind key="W-F10">
       <action name="Execute">
         <command>pavucontrol</command>
       </action>
     </keybind>
+    -->
+
   </keyboard>
 
 

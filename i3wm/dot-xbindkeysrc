@@ -11,55 +11,55 @@
 "xdotool key Next"
   b:12
 
-#
-#"xbindkeys_show"
-#  Mod4 + control+shift + F1
-#
-#"x-terminal-emulator"
-#  Mod4 + Return
-#
-##"gmrun"
-#"xfce4-appfinder -c"
-#  Mod4 + r
-#
-#"xfce4-taskmanager"
-#  Control + Alt + Delete
-#
-#"rofi -show"
-#  Mod4 + d
-#
-#"rofi -show windowcd"
-#  Mod4 + Tab
-#
-#"xscreensaver-command -lock"
-#  Mod4 + Escape
-#
-#"gnome-screenshot"
-#  Mod4 + p
-#"gnome-screenshot -i"
-#  Mod4 + Shift + p
-#
-#"xdg-open $HOME"
-#  Mod4 + e
-#"x-terminal-emulator -e mc"
-#  Mod4 + Shift + e
-#
-#"hsetroot-solid.pl"
-#  Mod4 + Shift + w
-#"wg.pl"
-#  Mod4 + w
-#
-#"notify-uptime.sh"
-#  Mod4 + F8
-#
-#"pavucontrol"
-#  Mod4 + F10
-#
-#"rofi-toggles.sh"
-#  Mod4 + F9
-#
-#"xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)"
-#  Mod4 + Shift + F9
+
+"xbindkeys_show"
+  Mod4 + Shift + H
+
+"x-terminal-emulator"
+  Mod4 + Return
+
+#"gmrun"
+"xfce4-appfinder -c"
+  Mod4 + r
+
+"xfce4-taskmanager"
+  Control + Alt + Delete
+
+"rofi -show"
+  Mod4 + d
+
+"rofi -show windowcd"
+  Mod4 + Tab
+
+"xscreensaver-command -lock"
+  Mod4 + Escape
+
+"gnome-screenshot"
+  Mod4 + p
+"gnome-screenshot -i"
+  Mod4 + Shift + p
+
+"xdg-open $HOME"
+  Mod4 + e
+"x-terminal-emulator -e mc"
+  Mod4 + Shift + e
+
+"hsetroot-solid.pl"
+  Mod4 + Shift + w
+"wg.pl"
+  Mod4 + w
+
+"notify-uptime.sh"
+  Mod4 + F8
+
+"pavucontrol"
+  Mod4 + F10
+
+"rofi-toggles.sh"
+  Mod4 + F9
+
+"xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)"
+  Mod4 + Shift + F9
 
 
 #EOF
