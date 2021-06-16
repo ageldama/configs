@@ -3,6 +3,7 @@
 export PATH=~/local/bin:$PATH
 
 # gnome-keyring
+S=<<'EOD'
 if ! pgrep ssh-agent; then
     dbus-update-activation-environment --all --verbose
     eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
@@ -13,6 +14,7 @@ else
         ssh-add < /dev/null &
     fi
 fi
+EOD
 
 # Redshift
 SEOUL_POS=37.566:126.977 # Seoul
