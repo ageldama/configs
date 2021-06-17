@@ -1,7 +1,6 @@
-# ~/.config/rofi/config
-rofi.combi-modi:    window,drun,run,ssh
-rofi.theme:         lb
-rofi.font:          Envy Code R 10
-rofi.modi:          combi
-
-rofi.theme: /usr/share/rofi/themes/gruvbox-dark-hard.rasi
+configuration {
+	modi: "combi";
+	font: "Hack 10";
+	combi-modi: "window,drun,run,ssh";
+}
+@import "/usr/share/rofi/themes/purple.rasi"
