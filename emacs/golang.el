@@ -2,6 +2,7 @@
 
 (use-package go-mode :ensure t :pin melpa
   :config (add-hook 'go-mode-hook (lambda ()
+                                    (setq company-idle-delay 0.2)
                                     (add-hook 'before-save-hook 'gofmt-before-save))))
 
 (when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
