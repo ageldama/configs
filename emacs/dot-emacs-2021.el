@@ -360,8 +360,17 @@
 (global-set-key (kbd "<f10>")       'menu-bar-open)
 
 
+;;;
+(use-package prescient :ensure t :pin melpa)
+;; (use-package company-prescient :ensure t :pin melpa)
+ 
+
 ;;; Counsel, Ivy, Swiper.
 (when t
+  (use-package ivy-prescient :ensure t :pin melpa
+    :after counsel
+    :config (ivy-prescient-mode))
+
     (use-package counsel :ensure t :pin melpa
     :diminish
     :config (progn
