@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 expand_tilde() {
     tilde_less="${1#\~/}"
