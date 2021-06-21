@@ -29,10 +29,10 @@ case ${OSNAME} in
     fcitx -r &
     ;;
   FreeBSD)
-    export XMODIFIERS="@im=ibus"
-    export QT_IM_MODULE=ibus
-    export GTK_IM_MODULE=ibus
-    ibus-daemon &
+    export XMODIFIERS="@im=nabi"
+    export QT_IM_MODULE=xim
+    export GTK_IM_MODULE=xim
+    nabi &
     ;;
 esac
 
