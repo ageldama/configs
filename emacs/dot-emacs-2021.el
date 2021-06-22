@@ -501,6 +501,18 @@
 		 (define-key company-active-map (kbd "RET") 'company-complete-selection)
 		 (define-key company-active-map (kbd "<prior>") 'company-previous-page)
 		 (define-key company-active-map (kbd "<next>") 'company-next-page)
+
+                 (let ((map company-active-map))
+                   (define-key map (kbd "<tab>") 'company-complete-common-or-cycle))
+                 (let ((map company-active-map))
+                   (define-key map (kbd "<backtab>") 'company-select-previous))
+
+                 (with-eval-after-load 'company
+                   (define-key company-active-map (kbd "C-M-i") #'company-complete-selection)
+                   (define-key company-active-map (kbd "C-SPC") #'company-complete-selection)
+                   (define-key company-active-map (kbd "<C-return>") #'company-complete-selection))
+
+                 ;;
 		 (setq company-tooltip-align-annotations t)
 		 (add-hook 'after-init-hook 'global-company-mode)))
 
