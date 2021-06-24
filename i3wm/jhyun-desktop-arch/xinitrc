@@ -132,7 +132,7 @@ case ${OSNAME} in
     ;;
   FreeBSD)
     dbus-launch xfce4-panel &
-    exec dbus-launch openbox
+    exec dbus-launch openbox ${1+"$@"}
     ;;
 esac
 
