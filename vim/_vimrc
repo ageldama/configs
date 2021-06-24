@@ -105,9 +105,9 @@ filetype plugin indent on
 Bundle 'jlanzarotta/bufexplorer'
 
 Bundle 'scrooloose/nerdtree'
-"Bundle 'rbgrouleff/bclose.vim'
+Bundle 'rbgrouleff/bclose.vim'
 
-"Bundle 'editorconfig/editorconfig-vim'
+Bundle 'editorconfig/editorconfig-vim'
 Bundle 'liuchengxu/vim-which-key'
 
 Bundle 'easymotion/vim-easymotion'
@@ -150,7 +150,16 @@ Bundle 'junegunn/fzf.vim'
 " gitgutter
 "Bundle 'airblade/vim-gitgutter'
 
-"
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+
+Bundle 'terryma/vim-expand-region'
+
+Bundle 'junegunn/vim-peekaboo'
+
+
+
+
 "Bundle 'morhetz/gruvbox'
 
 
@@ -193,27 +202,8 @@ endif
 " which-key
 nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
 
-
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
-"nmap g <Plug>(easymotion-s2)
-"nmap [ <Plug>(easymotion-prev)
-"nmap ] <Plug>(easymotion-next)
-
-" <Leader>f{char} to move to {char}
-"map  <Leader>f <Plug>(easymotion-bd-f)
-"nmap <Leader>f <Plug>(easymotion-overwin-f)
-
-" s{char}{char} to move to {char}{char}
-"nmap s <Plug>(easymotion-overwin-f2)
-
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 " ALE
@@ -229,19 +219,10 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " xclip '\y'
 vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
 
-" Close the current buffer
-"map <leader>bd :Bclose<cr>:tabclose<cr>gT
-" Close all the buffers
-"map <leader>ba :bufdo bd<cr>
-map <leader>bn :bnext<cr>
-map <leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
-map <leader>tN :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>t<C-n> :tabnew<cr>
+map <leader>t<C-q> :tabclose<cr>
 map <leader>tp :tabprev<cr>
 map <leader>tn :tabnext<cr>
 
@@ -267,11 +248,6 @@ set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
 
 
 
-map <leader>ln :lnext<CR>
-map <leader>lp :lprev<CR>
-map <leader>cn :cnext<CR>
-map <leader>cp :cprev<CR>
-
 
 " fzf
 map <leader>zf :Files<CR>
@@ -285,6 +261,11 @@ map <leader>z/ :History/<CR>
 map <leader>zk :Maps<CR>
 map <leader>z? :Helptags<CR>
 map <leader>zt :Filetypes<CR>
+
+" expand-region
+map K <Plug>(expand_region_expand)
+map J <Plug>(expand_region_shrink)
+
 
 " ctrlp
 "let g:ctrlp_map = '<c-p>'
