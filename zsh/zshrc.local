@@ -5,6 +5,7 @@ command_exists () {
   type "$1" &> /dev/null ;
 }
 
+FOO=<<'EOC'
 if command_exists exa ; then
   alias ls='exa -Fa'
   alias l='exa -Fa'
@@ -15,6 +16,7 @@ else
   alias l='ls'
   alias ll='ls -lH'
 fi
+EOC
 
 #export PAGER=most
 export PAGER=less
