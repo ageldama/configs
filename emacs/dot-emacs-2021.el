@@ -1027,7 +1027,9 @@ _q_: (quit)
   "` s"  'delete-trailing-whitespace
   "` G"  'garbage-collect
 
-  "e" 'hydra-flycheck/body
+  "e"   'flycheck-next-error
+  "M-e" 'flycheck-previous-error
+  "C-e" 'hydra-flycheck/body
 
   "M-q" 'hydra-misc-toggles/body
 
@@ -1049,10 +1051,10 @@ _q_: (quit)
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
-  "j"      'avy-goto-line
-  "M-j"    'avy-goto-word-0
-  "C-S-j"  'avy-pop-mark
-  "C-j"    'hydra-avy-goto/body
+  "l"   'avy-goto-line
+  "s"   'avy-goto-char
+  "C-t" 'avy-pop-mark
+  "C-j" 'hydra-avy-goto/body
 
   ;; projectile
   "p" 'projectile-find-file-dwim
