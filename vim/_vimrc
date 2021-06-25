@@ -105,10 +105,10 @@ filetype plugin indent on
 Bundle 'jlanzarotta/bufexplorer'
 
 Bundle 'scrooloose/nerdtree'
-Bundle 'rbgrouleff/bclose.vim'
+"Bundle 'rbgrouleff/bclose.vim'
 
 Bundle 'editorconfig/editorconfig-vim'
-Bundle 'liuchengxu/vim-which-key'
+"Bundle 'liuchengxu/vim-which-key'
 
 Bundle 'easymotion/vim-easymotion'
 Bundle 'ntpeters/vim-better-whitespace'
@@ -141,11 +141,12 @@ Bundle 'dkprice/vim-easygrep'
 Bundle 'itchyny/lightline.vim'
 
 " fzf
-Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Bundle 'junegunn/fzf.vim'
+"Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Bundle 'junegunn/fzf.vim'
+"Bundle 'wookayin/fzf-ripgrep.vim'
 
 " ctrlp
-"Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 
 " gitgutter
 "Bundle 'airblade/vim-gitgutter'
@@ -153,9 +154,7 @@ Bundle 'junegunn/fzf.vim'
 Bundle 'tpope/vim-unimpaired'
 Bundle 'tpope/vim-surround'
 
-Bundle 'terryma/vim-expand-region'
-
-Bundle 'junegunn/vim-peekaboo'
+"Bundle 'junegunn/vim-peekaboo'
 
 
 
@@ -200,7 +199,10 @@ if 1
 endif
 
 " which-key
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
+"let g:mapleader = "\<Space>"
+"let g:maplocalleader = ','
+"nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+"nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
@@ -217,7 +219,7 @@ map <Leader> <Plug>(easymotion-prefix)
 
 
 " xclip '\y'
-vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
+"vnoremap <silent><Leader>y :'<,'>w !xclip -selection clipboard<CR>
 
 
 " Useful mappings for managing tabs
@@ -250,27 +252,27 @@ set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
 
 
 " fzf
-map <leader>zf :Files<CR>
-map <leader>zg :GFiles<CR>
-map <leader>zG :GFiles?<CR>
-map <leader>zb :Buffers<CR>
-map <leader>zm :Marks<CR>
-map <leader>zr :History<CR>
-map <leader>z: :History:<CR>
-map <leader>z/ :History/<CR>
-map <leader>zk :Maps<CR>
-map <leader>z? :Helptags<CR>
-map <leader>zt :Filetypes<CR>
-
-" expand-region
-map K <Plug>(expand_region_expand)
-map J <Plug>(expand_region_shrink)
+"map <leader>zf :Files<CR>
+"map <leader>zg :GFiles<CR>
+"map <leader>zG :GFiles?<CR>
+"map <leader>zb :Buffers<CR>
+"map <leader>zm :Marks<CR>
+"map <leader>zr :History<CR>
+"map <leader>z: :History:<CR>
+"map <leader>z/ :History/<CR>
+"map <leader>zk :Maps<CR>
+"map <leader>z? :Helptags<CR>
+"map <leader>zt :Filetypes<CR>
 
 
 " ctrlp
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
+"nnoremap <Leader>b :CtrlPBuffer<CR>
 
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+endif
 
 "
 " TODO ? Plugin 'SirVer/ultisnips'

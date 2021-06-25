@@ -26,7 +26,7 @@ case ${OSNAME} in
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
     export XMODIFIERS=@im=fcitx
-    fcitx -r &
+    fcitx -s 5 -r &
     ;;
   FreeBSD)
     export XMODIFIERS="@im=nabi"
