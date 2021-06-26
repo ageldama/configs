@@ -382,7 +382,8 @@
                     ivy-re-builders-alist         '((swiper      . ivy--regex-plus)
                                                     (counsel-M-x . ivy--regex-fuzzy)
                                                     (t           . ivy--regex-plus)))
-                (global-set-key "\C-s" 'swiper-isearch-thing-at-point)
+                (global-set-key "\C-s" 'swiper)
+                (global-set-key (kbd "C-c s") 'swiper-thing-at-point)
                 (global-set-key (kbd "C-c C-r") 'ivy-resume)
                 (global-set-key (kbd "<f6>") 'ivy-resume)
                 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -1127,7 +1128,7 @@ _q_: (quit)
   (interactive)
   (setq unread-command-events (listify-key-sequence "\C-z")))
 
-(global-set-key (kbd "<f5>") 'ace-window)
+;; (global-set-key (kbd "<f5>") 'ace-window)
 (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
 ;; save -> load : use C-M-m to preview jump in `counsel-register'
