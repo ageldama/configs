@@ -7,6 +7,8 @@ redshift="redshift"
 sink_default="sink_default"
 sink_all="sink_all"
 sink_src_all="sink_src_all"
+poweroff="poweroff"
+reboot="reboot"
 
 # Error msg
 msg() {
@@ -14,7 +16,7 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$xscreensaver\nredshift\nsink_default\nsink_all\nsink_src_all"
+options="$xscreensaver\nredshift\nsink_default\nsink_all\nsink_src_all\n------\npoweroff\nreboot"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Toggle:" -dmenu -selected-row 0)"
 case $chosen in
@@ -32,5 +34,11 @@ case $chosen in
         ;;
     $sink_src_all)
         pactl-mute.pl sink all; pactl-mute.pl source all
+        ;;
+    $poweroff)
+        xterm -e sudo poweroff
+        ;;
+    $reboot)
+        xterm -e sudo reboot
         ;;
 esac
