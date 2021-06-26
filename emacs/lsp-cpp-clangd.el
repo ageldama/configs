@@ -31,6 +31,7 @@
       ;;company-idle-delay 0.0
       company-minimum-prefix-length 1
       ;;lsp-idle-delay 0.1  ;; clangd is fast
+      lsp-restart 'auto-restart
       )
 
 
