@@ -1053,8 +1053,29 @@ _q_: (quit)
 
   ;; windows
   "w" 'hydra-windbuf/body
+  "M-SPC" 'other-window
+
   "*" 'ace-swap-window
   "%" 'window-toggle-split-direction
+  "_" 'split-window-below
+  "|" 'split-window-right
+  "q" 'delete-window
+
+  "<left>" 'windmove-left
+  "<right>" 'windmove-right
+  "<up>" 'windmove-up
+  "<down>" 'windmove-down
+
+  "S-<left>" 'buf-move-up
+  "S-<right>" 'buf-move-right
+  "S-<up>" 'buf-move-up
+  "S-<down>" 'buf-move-down
+
+  "=" 'balance-windows
+  "+" 'enlarge-window
+  "-" 'shrink-window
+  ">" 'enlarge-window-horizontally
+  "<" 'shrink-window-horizontally
 
   ;; jumps / registers
   "r" (general-simulate-key "C-x r" :name regs-marks)
