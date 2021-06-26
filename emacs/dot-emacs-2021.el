@@ -508,7 +508,7 @@
                    (define-key map (kbd "<backtab>") 'company-select-previous))
 
                  (with-eval-after-load 'company
-                   (define-key company-active-map (kbd "C-M-i") #'company-complete-selection)
+                   (define-key company-active-map (kbd "C-M-i") #'company-complete)
                    (define-key company-active-map (kbd "C-SPC") #'company-complete-selection)
                    (define-key company-active-map (kbd "<C-return>") #'company-complete-selection))
 
