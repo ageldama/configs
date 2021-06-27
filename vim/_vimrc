@@ -114,7 +114,7 @@ Bundle 'easymotion/vim-easymotion'
 Bundle 'ntpeters/vim-better-whitespace'
 
 " :ALEInfo?
-"Bundle 'w0rp/ale'
+Bundle 'w0rp/ale'
 
 " #, / and :Occur and :Moccur, <leader>oc and <leader>mo
 Bundle 'vim-scripts/occur.vim'
