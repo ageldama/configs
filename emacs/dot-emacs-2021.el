@@ -755,8 +755,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; moonshot
-;;(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
-(use-package moonshot :ensure t :pin melpa)
+(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
+;;(use-package moonshot :ensure t :pin melpa)
 (require 'moonshot)
 
 (defhydra hydra-moonshot ()
@@ -1129,6 +1129,21 @@ _q_: (quit)
   (setq unread-command-events (listify-key-sequence "\C-z")))
 
 ;; (global-set-key (kbd "<f5>") 'ace-window)
+
+(defun recompile-existing-compilation-window ()
+  (interactive)
+  (let ((comp-wnd (cl-find-if
+                   (lambda (window)
+                     (with-current-buffer (window-buffer window)
+                       (eq major-mode 'compilation-mode)))
+                   (window-list))))
+    (if comp-wnd
+        (with-current-buffer (window-buffer comp-wnd) (recompile))
+      (moonshot-run-runner))))
+
+(global-set-key (kbd "<f5>") 'recompile-existing-compilation-window)
+
+
 (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
 ;; save -> load : use C-M-m to preview jump in `counsel-register'
