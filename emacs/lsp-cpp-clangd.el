@@ -19,7 +19,7 @@
 
 (use-package lsp-mode :ensure t :pin melpa)
 (use-package lsp-ui :ensure t :pin melpa)
-(use-package dap-mode :ensure t :pin melpa)
+;;; Well, nothx (use-package dap-mode :ensure t :pin melpa)
 
 
 (add-hook 'c-mode-hook 'lsp)
@@ -38,7 +38,8 @@
 
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  (require 'dap-cpptools))
+  ;;(require 'dap-cpptools)
+  )
 
 
 
