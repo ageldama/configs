@@ -107,14 +107,14 @@ Bundle 'jlanzarotta/bufexplorer'
 Bundle 'scrooloose/nerdtree'
 "Bundle 'rbgrouleff/bclose.vim'
 
-"Bundle 'editorconfig/editorconfig-vim'
-Bundle 'liuchengxu/vim-which-key'
+Bundle 'editorconfig/editorconfig-vim'
+"Bundle 'liuchengxu/vim-which-key'
 
 Bundle 'easymotion/vim-easymotion'
 Bundle 'ntpeters/vim-better-whitespace'
 
 " :ALEInfo?
-"Bundle 'w0rp/ale'
+Bundle 'w0rp/ale'
 
 " #, / and :Occur and :Moccur, <leader>oc and <leader>mo
 Bundle 'vim-scripts/occur.vim'
@@ -141,16 +141,24 @@ Bundle 'dkprice/vim-easygrep'
 Bundle 'itchyny/lightline.vim'
 
 " fzf
-Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Bundle 'junegunn/fzf.vim'
+"Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
+"Bundle 'junegunn/fzf.vim'
+"Bundle 'wookayin/fzf-ripgrep.vim'
 
 " ctrlp
-"Bundle 'kien/ctrlp.vim'
+Bundle 'kien/ctrlp.vim'
 
 " gitgutter
 "Bundle 'airblade/vim-gitgutter'
 
-"
+Bundle 'tpope/vim-unimpaired'
+Bundle 'tpope/vim-surround'
+
+"Bundle 'junegunn/vim-peekaboo'
+
+
+
+
 "Bundle 'morhetz/gruvbox'
 
 
@@ -191,29 +199,13 @@ if 1
 endif
 
 " which-key
-nnoremap <silent> <leader> :WhichKey '<Space>'<CR>
-
+"let g:mapleader = "\<Space>"
+"let g:maplocalleader = ','
+"nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+"nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
 
 " easymotion
 map <Leader> <Plug>(easymotion-prefix)
-"nmap g <Plug>(easymotion-s2)
-"nmap [ <Plug>(easymotion-prev)
-"nmap ] <Plug>(easymotion-next)
-
-" <Leader>f{char} to move to {char}
-"map  <Leader>f <Plug>(easymotion-bd-f)
-"nmap <Leader>f <Plug>(easymotion-overwin-f)
-
-" s{char}{char} to move to {char}{char}
-"nmap s <Plug>(easymotion-overwin-f2)
-
-" Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-
-" Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 " ALE
@@ -227,21 +219,12 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 " xclip '\y'
-vnoremap <silent><Leader>y :'<,'>w !xclip<CR>
+"vnoremap <silent><Leader>y :'<,'>w !xclip -selection clipboard<CR>
 
-" Close the current buffer
-"map <leader>bd :Bclose<cr>:tabclose<cr>gT
-" Close all the buffers
-"map <leader>ba :bufdo bd<cr>
-map <leader>bn :bnext<cr>
-map <leader>bp :bprevious<cr>
 
 " Useful mappings for managing tabs
-map <leader>tN :tabnew<cr>
-map <leader>to :tabonly<cr>
-map <leader>tc :tabclose<cr>
-map <leader>tm :tabmove
-map <leader>t<leader> :tabnext
+map <leader>t<C-n> :tabnew<cr>
+map <leader>t<C-q> :tabclose<cr>
 map <leader>tp :tabprev<cr>
 map <leader>tn :tabnext<cr>
 
@@ -267,29 +250,29 @@ set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
 
 
 
-map <leader>ln :lnext<CR>
-map <leader>lp :lprev<CR>
-map <leader>cn :cnext<CR>
-map <leader>cp :cprev<CR>
-
 
 " fzf
-map <leader>zf :Files<CR>
-map <leader>zg :GFiles<CR>
-map <leader>zG :GFiles?<CR>
-map <leader>zb :Buffers<CR>
-map <leader>zm :Marks<CR>
-map <leader>zr :History<CR>
-map <leader>z: :History:<CR>
-map <leader>z/ :History/<CR>
-map <leader>zk :Maps<CR>
-map <leader>z? :Helptags<CR>
-map <leader>zt :Filetypes<CR>
+"map <leader>zf :Files<CR>
+"map <leader>zg :GFiles<CR>
+"map <leader>zG :GFiles?<CR>
+"map <leader>zb :Buffers<CR>
+"map <leader>zm :Marks<CR>
+"map <leader>zr :History<CR>
+"map <leader>z: :History:<CR>
+"map <leader>z/ :History/<CR>
+"map <leader>zk :Maps<CR>
+"map <leader>z? :Helptags<CR>
+"map <leader>zt :Filetypes<CR>
+
 
 " ctrlp
 "let g:ctrlp_map = '<c-p>'
 "let g:ctrlp_cmd = 'CtrlP'
+"nnoremap <Leader>b :CtrlPBuffer<CR>
 
+if executable('rg')
+  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
+endif
 
 "
 " TODO ? Plugin 'SirVer/ultisnips'

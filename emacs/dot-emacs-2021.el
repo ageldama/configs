@@ -188,8 +188,8 @@
                     (not (gnutls-available-p))))
        (proto (if nil "http" "https")))
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (add-to-list 'package-archives (cons "marmalade" (concat proto "://marmalade-repo.org/packages/")) t)
-  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
+  ;;(add-to-list 'package-archives (cons "marmalade" (concat proto "://marmalade-repo.org/packages/")) t)
+  ;;(add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
   ;; (when (< emacs-major-version 24)
   ;;   (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/"))))
   )
@@ -382,7 +382,8 @@
                     ivy-re-builders-alist         '((swiper      . ivy--regex-plus)
                                                     (counsel-M-x . ivy--regex-fuzzy)
                                                     (t           . ivy--regex-plus)))
-                (global-set-key "\C-s" 'swiper-isearch-thing-at-point)
+                (global-set-key "\C-s" 'swiper)
+                (global-set-key (kbd "C-c s") 'swiper-thing-at-point)
                 (global-set-key (kbd "C-c C-r") 'ivy-resume)
                 (global-set-key (kbd "<f6>") 'ivy-resume)
                 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -501,6 +502,18 @@
 		 (define-key company-active-map (kbd "RET") 'company-complete-selection)
 		 (define-key company-active-map (kbd "<prior>") 'company-previous-page)
 		 (define-key company-active-map (kbd "<next>") 'company-next-page)
+
+                 (let ((map company-active-map))
+                   (define-key map (kbd "<tab>") 'company-complete-common-or-cycle))
+                 (let ((map company-active-map))
+                   (define-key map (kbd "<backtab>") 'company-select-previous))
+
+                 (with-eval-after-load 'company
+                   (define-key company-active-map (kbd "C-M-i") #'company-complete)
+                   (define-key company-active-map (kbd "C-SPC") #'company-complete-selection)
+                   (define-key company-active-map (kbd "<C-return>") #'company-complete-selection))
+
+                 ;;
 		 (setq company-tooltip-align-annotations t)
 		 (add-hook 'after-init-hook 'global-company-mode)))
 
@@ -742,8 +755,8 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; moonshot
-;;(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
-(use-package moonshot :ensure t :pin melpa)
+(quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
+;;(use-package moonshot :ensure t :pin melpa)
 (require 'moonshot)
 
 (defhydra hydra-moonshot ()
@@ -1027,7 +1040,9 @@ _q_: (quit)
   "` s"  'delete-trailing-whitespace
   "` G"  'garbage-collect
 
-  "e" 'hydra-flycheck/body
+  "e"   'flycheck-next-error
+  "M-e" 'flycheck-previous-error
+  "C-e" 'hydra-flycheck/body
 
   "M-q" 'hydra-misc-toggles/body
 
@@ -1039,8 +1054,29 @@ _q_: (quit)
 
   ;; windows
   "w" 'hydra-windbuf/body
+  "M-SPC" 'other-window
+
   "*" 'ace-swap-window
   "%" 'window-toggle-split-direction
+  "_" 'split-window-below
+  "|" 'split-window-right
+  "q" 'delete-window
+
+  "<left>" 'windmove-left
+  "<right>" 'windmove-right
+  "<up>" 'windmove-up
+  "<down>" 'windmove-down
+
+  "S-<left>" 'buf-move-up
+  "S-<right>" 'buf-move-right
+  "S-<up>" 'buf-move-up
+  "S-<down>" 'buf-move-down
+
+  "=" 'balance-windows
+  "+" 'enlarge-window
+  "-" 'shrink-window
+  ">" 'enlarge-window-horizontally
+  "<" 'shrink-window-horizontally
 
   ;; jumps / registers
   "r" (general-simulate-key "C-x r" :name regs-marks)
@@ -1049,10 +1085,10 @@ _q_: (quit)
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy
-  "j"      'avy-goto-line
-  "M-j"    'avy-goto-word-0
-  "C-S-j"  'avy-pop-mark
-  "C-j"    'hydra-avy-goto/body
+  "l"   'avy-goto-line
+  "s"   'avy-goto-char
+  "C-t" 'avy-pop-mark
+  "C-j" 'hydra-avy-goto/body
 
   ;; projectile
   "p" 'projectile-find-file-dwim
@@ -1092,7 +1128,22 @@ _q_: (quit)
   (interactive)
   (setq unread-command-events (listify-key-sequence "\C-z")))
 
-(global-set-key (kbd "<f5>") 'ace-window)
+;; (global-set-key (kbd "<f5>") 'ace-window)
+
+(defun recompile-existing-compilation-window ()
+  (interactive)
+  (let ((comp-wnd (cl-find-if
+                   (lambda (window)
+                     (with-current-buffer (window-buffer window)
+                       (eq major-mode 'compilation-mode)))
+                   (window-list))))
+    (if comp-wnd
+        (with-current-buffer (window-buffer comp-wnd) (recompile))
+      (moonshot-run-runner))))
+
+(global-set-key (kbd "<f5>") 'recompile-existing-compilation-window)
+
+
 (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
 ;; save -> load : use C-M-m to preview jump in `counsel-register'
