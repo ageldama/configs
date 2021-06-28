@@ -21,20 +21,9 @@ export PATH=$PATH:$HOME/local/bin
 export TERMINAL=x-terminal-emulator
 
 # fcitx/ibus + hangul
-case ${OSNAME} in
-  Linux)
-    export GTK_IM_MODULE=fcitx
-    export QT_IM_MODULE=fcitx
-    export XMODIFIERS=@im=fcitx
-    fcitx -s 5 -r &
-    ;;
-  FreeBSD)
-    export XMODIFIERS="@im=nabi"
-    export QT_IM_MODULE=xim
-    export GTK_IM_MODULE=xim
-    nabi &
-    ;;
-esac
+export QT_IM_MODULE=fcitx
+export XMODIFIERS=@im=fcitx
+fcitx -s 5 -r &
 
 # ssh / gnome-keyring
 case ${OSNAME} in
