@@ -1132,13 +1132,22 @@ _q_: (quit)
 
 (defun recompile-existing-compilation-window ()
   (interactive)
-  (let ((comp-wnd (cl-find-if
-                   (lambda (window)
-                     (with-current-buffer (window-buffer window)
-                       (eq major-mode 'compilation-mode)))
-                   (window-list))))
-    (if comp-wnd
-        (with-current-buffer (window-buffer comp-wnd) (recompile))
+  (let* ((frm+wnd-lst
+         (apply #'append
+                (mapcar (lambda (frm)
+                          (with-selected-frame frm
+                            (mapcar (lambda (wnd) (cons frm wnd))
+                                    (window-list))))
+                        (visible-frame-list))))
+         (comp-frm-wnd (seq-find #'(lambda (frm-wnd)
+                                        (with-selected-frame (car frm-wnd)
+                                          (with-current-buffer (window-buffer (cdr frm-wnd))
+                                            (eq major-mode 'compilation-mode))))
+                                    frm+wnd-lst)))
+    (if comp-frm-wnd
+        (progn (with-selected-frame (car comp-frm-wnd)
+                 (with-current-buffer (window-buffer (cdr comp-frm-wnd)) (recompile))))
+      ;; else
       (moonshot-run-runner))))
 
 (global-set-key (kbd "<f5>") 'recompile-existing-compilation-window)
