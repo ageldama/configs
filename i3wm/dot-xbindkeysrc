@@ -19,11 +19,11 @@
   Mod4 + Return
 
 #"gmrun"
-"xfce4-appfinder -c"
-  Mod4 + r
+#"xfce4-appfinder -c"
+#  Mod4 + r
 
-"xfce4-taskmanager"
-  Control + Alt + Delete
+#"xfce4-taskmanager"
+#  Control + Alt + Delete
 
 "rofi -show"
   Mod4 + d
