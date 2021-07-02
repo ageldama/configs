@@ -1306,7 +1306,10 @@ _q_: (quit)
     (add-to-list 'auto-mode-alist '("\\.proto$" . protobuf-mode))))
 
 
-
+;;; modus
+(use-package modus-themes :ensure t :pin melpa
+  :config
+  (when +sys/gui?+ (load-theme 'modus-operandi 1)))
 
 
 
