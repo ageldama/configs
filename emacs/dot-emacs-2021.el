@@ -206,6 +206,9 @@
                 quelpa-update-melpa-p    nil ; and don't even update it
                 ))
 
+;;; NOTE do this manually:
+;; (quelpa-checkout-melpa)
+
 (use-package f :ensure t)
 (use-package s :ensure t)
 
