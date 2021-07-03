@@ -9,8 +9,13 @@ def unzip(source_file, dest_path):
   with zipfile.ZipFile(source_file, 'r') as zf:
     zipInfo = zf.infolist()
     for member in zipInfo:
-      member.filename = member.filename.decode("euc-kr").encode("utf-8")
-      zf.extract(member)
+      try:
+        print(member.filename.encode('cp437').decode('euc-kr', 'ignore'))
+        member.filename = member.filename.encode('cp437').decode('euc-kr', 'ignore')
+        zf.extract(member, dest_path)
+      except:
+        print(source_file)
+        raise Exception('what?!')
 
 if __name__ == "__main__":
   unzip(sys.argv[1], '')
