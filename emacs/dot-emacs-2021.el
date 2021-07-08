@@ -1019,7 +1019,7 @@ _q_: (quit)
 (my-global-leader-def
   "f" 'files-dirs-hs/body
 
-  ;;"/" 'swiper-isearch-thing-at-point
+  "/" 'swiper-isearch-thing-at-point
 
   ;;"RET" 'swiper
   ;;"RET" 'counsel-M-x
