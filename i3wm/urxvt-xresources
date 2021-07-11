@@ -1,0 +1,5 @@
+URxvt*background: black
+URxvt*foreground: white
+URxvt*font: xft:DejaVu Sans Mono:size=9:antialias=true,xft:Noto Sans Mono CJK KR:size=10
+URxvt*boldfont: xft:DejaVu Sans Mono:bold:size=9:antialias=true,xft:Noto Sans Mono CJK KR:size=10
+
