@@ -1089,9 +1089,9 @@ _q_: (quit)
   
   ;; avy
   "l"   'avy-goto-line
-  "s"   'avy-goto-char
-  "C-t" 'avy-pop-mark
+  "M-j" 'avy-goto-char
   "C-j" 'hydra-avy-goto/body
+  "C-t" 'avy-pop-mark
 
   ;; projectile
   "p" 'projectile-find-file-dwim
