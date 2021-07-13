@@ -27,6 +27,13 @@ export XMODIFIERS=@im=fcitx
 fcitx -s 5 -r -d &
 
 # ssh / gnome-keyring
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+  eval "$(ssh-agent)"
+  # FreeBSD: `pkg add -y OpenSSH-askpass`
+  ssh-add < /dev/null &
+fi
+
+STOP_GNOME_KEYRING=<<'EOD'
 case ${OSNAME} in
   Linux)
     if ! pgrep ssh-agent; then
@@ -47,7 +54,7 @@ case ${OSNAME} in
     export SSH_AUTH_SOCK
     ;;
 esac
-
+EOD
 
 
 test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
@@ -114,17 +121,8 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 
 
 #
-case ${OSNAME} in
-  Linux)
-    unset WINDOW_MANAGER STARTUP
-    dbus-launch xfce4-panel &
-    exec dbus-launch openbox ${1+"$@"}
-    ;;
-  FreeBSD)
-    dbus-launch xfce4-panel &
-    exec dbus-launch openbox ${1+"$@"}
-    ;;
-esac
+dbus-launch lxpanel &
+exec dbus-launch openbox ${1+"$@"}
 
 
 ###EOF
