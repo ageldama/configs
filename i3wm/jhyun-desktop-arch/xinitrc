@@ -121,7 +121,7 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 
 
 #
-dbus-launch lxpanel &
+dbus-launch xfce4-panel &
 exec dbus-launch openbox ${1+"$@"}
 
 
