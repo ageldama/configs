@@ -12,13 +12,12 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 fcitx -s 5 -r -d &
 
-# ssh / gnome-keyring
-#    if ! pgrep ssh-agent; then
-#    fi
-#    ;;
+if ! pgrep ssh-agent; then
+  eval "$(ssh-agent)"
+  # FreeBSD: `pkg add -y OpenSSH-askpass`
+  ssh-add < /dev/null
+fi
 
-# TODO ssh-agent
-# TODO ssh-add + xterm
 
 
 dbus-launch xbindkeys -n -p &
