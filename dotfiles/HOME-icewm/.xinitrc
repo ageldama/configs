@@ -15,10 +15,12 @@ fcitx -s 5 -r -d &
 if [ -z "${SSH_AUTH_SOCK}" ]; then
   eval "$(ssh-agent)"
   # FreeBSD: `pkg add -y OpenSSH-askpass`
-  ssh-add < /dev/null
+  ssh-add < /dev/null &
 fi
 
 
+
+dbus-launch dunst &
 
 dbus-launch xbindkeys -n -p &
 
