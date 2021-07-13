@@ -2,8 +2,15 @@
 use strict;
 use warnings;
 use Data::Dumper;
+use Getopt::Std;
 
 {
+    my %opts = (u => 0);
+    getopts('u', \%opts);
+
+    $ENV{DOTFILES_UNINST} = 1 if $opts{u};
+
+    #
     my $fn = 'dirs.config';
     open(my $fh, $fn) or die "Could not open $fn: $!";
 
@@ -22,10 +29,4 @@ use Data::Dumper;
 
     close $fh;
 }
-
-# TODO export DOTFILES_UNINST=$1
-
-# while read p; do
-#   echo "${p}" | awk '{print "###", $1, "\t==>\t", $2; system(sprintf("sh ./_inst.sh \"%s\" \"%s\"", $1, $2)); }'
-# done <dirs.config
 
