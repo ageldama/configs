@@ -650,7 +650,11 @@ i.e. change right window to bottom, or change bottom window to right."
   :custom
   (avy-timeout-seconds 0.3)
   (avy-style 'pre)
-  )
+  :config
+  (progn (global-set-key (kbd "M-g l") 'avy-goto-line)
+         (global-set-key (kbd "M-g f") 'avy-goto-char)
+         (global-set-key (kbd "M-g M-j") 'hydra-avy-goto/body)
+         (global-set-key (kbd "M-g C-t") 'avy-pop-mark)))
 
 
 ;;; expand-region
@@ -1087,11 +1091,11 @@ _q_: (quit)
   ;; LSP
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
-  ;; avy
-  "l"   'avy-goto-line
-  "M-j" 'avy-goto-char
-  "C-j" 'hydra-avy-goto/body
-  "C-t" 'avy-pop-mark
+  ;; avy: Moved to `M-g
+  ;; "l"   'avy-goto-line
+  ;; "M-j" 'avy-goto-char
+  ;; "C-j" 'hydra-avy-goto/body
+  ;; "C-t" 'avy-pop-mark
 
   ;; projectile
   "p" 'projectile-find-file-dwim
