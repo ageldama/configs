@@ -12,7 +12,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 fcitx -s 5 -r -d &
 
-if ! pgrep ssh-agent; then
+if [ -z "${SSH_AUTH_SOCK}" ]; then
   eval "$(ssh-agent)"
   # FreeBSD: `pkg add -y OpenSSH-askpass`
   ssh-add < /dev/null
