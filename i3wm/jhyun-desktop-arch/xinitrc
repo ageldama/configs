@@ -29,6 +29,9 @@ fcitx -s 5 -r -d &
 # ssh / gnome-keyring
 if [ -z "${SSH_AUTH_SOCK}" ]; then
   eval "$(ssh-agent)"
+fi
+
+if [ ! -z "${SSH_AUTH_SOCK}" ]; then
   # FreeBSD: `pkg add -y OpenSSH-askpass`
   ssh-add < /dev/null &
 fi
