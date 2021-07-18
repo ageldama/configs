@@ -1,0 +1,288 @@
+
+[colors]
+background = #000000
+foreground = #ffffff
+
+primary = #aa0D47A1
+secondary = #e60053
+alert = #bd2c40
+
+shade1 = #0D47A1
+shade2 = #1565C0
+shade3 = #1976D2
+shade4 = #1E88E5
+shade5 = #2196F3
+shade6 = #42A5F5
+shade7 = #64B5F6
+shade8 = #90CAF9
+ashade8 = #2C2C2C
+
+[bar/topbar]
+
+locale = en_US.UTF-8
+
+enable-ipc = true
+
+width = 100%
+height = 24
+radius = 1.0
+fixed-center = true
+
+background = ${colors.background}
+foreground = ${colors.foreground}
+
+line-size = 3
+line-color = #f00
+
+border-size = 0
+border-color = #00000000
+
+padding-left = 0
+padding-right = 0
+
+module-margin-left = 1
+module-margin-right = 2
+
+font-0 = Hack:style=bold:pixelsize=11;1
+font-1 = FontAwesome5Free:style=Solid:size=11;2
+font-2 = FontAwesome:style=Regular:size=11;2
+font-3 = FontAwesome5Free:style=Regular:size=11;2
+font-4 = FontAwesome5Brands:style=Regular:size=11;2
+
+modules-left = xwindow
+modules-center = ewmh cpu memory temperature
+modules-right = date hostname
+
+tray-position = right
+tray-padding = 5
+
+cursor-click = pointer
+cursor-scroll = ns-resize
+
+[module/xwindow]
+type = internal/xwindow
+label = %title%
+label-maxlen = 50
+format-background = #0a0a0a
+format-padding = 5
+label-underline = #fba922
+
+[module/cpu]
+type = internal/cpu
+interval = 2
+format-prefix = "CPU= "
+format-prefix-foreground = #fffb00
+label = %percentage:2%%
+label-background = #3f3f3f
+label-underline = #fba922
+format-padding = 1
+
+[module/memory]
+type = internal/memory
+interval = 2
+format-prefix = "MEM= "
+format-prefix-foreground = #fffb00
+label = %percentage_used%%
+format-padding = 1
+label-background = #3f3f3f
+label-underline = #fba922
+
+[module/wlan]
+type = internal/network
+;;interface = wlan0
+interval = 3.0
+
+format-connected = <ramp-signal> <label-connected>
+label-connected = %essid%
+
+format-disconnected = X
+
+ramp-signal-0 = WIFI
+ramp-signal-foreground = #FFFFFF
+format-connected-padding = 0
+
+[module/date]
+
+type = internal/date
+interval = 6
+
+date-alt =%A, %d.%B %Y
+time = %H:%M %Z // %A, %d. %B %Y
+
+format-prefix = ""
+format-prefix-foreground = #FFFFFF
+format-background = #dc143c
+format-padding = 2
+
+label =  %date% %time%
+
+[module/battery]
+type = internal/battery
+battery = BAT0
+adapter = ADP1
+full-at = 98
+
+format-charging = <animation-charging> <label-charging>
+format-discharging = <animation-discharging> <label-discharging>
+format-discharging-padding = 1
+
+format-full-prefix = "  "
+format-full-prefix-foreground = #FFFFFF
+format-full-prefix-background = #dc143c
+
+format-charging-padding = 1
+
+animation-charging-0 = 
+animation-charging-1 = 
+animation-charging-2 = 
+animation-charging-3 = 
+animation-charging-4 = 
+animation-charging-foreground = #FFFFFF
+animation-charging-framerate = 1000
+
+animation-discharging-0 = 
+animation-discharging-1 = 
+animation-discharging-2 = 
+animation-discharging-3 = 
+animation-discharging-4 = 
+animation-discharging-foreground = #FFFFFF
+animation-discharging-framerate = 1000
+
+[module/temperature]
+type = internal/temperature
+thermal-zone = 0
+warn-temperature = 60
+
+format = <ramp> <label>
+format-warn = <ramp> <label-warn>
+
+label = %temperature-c%
+label-warn = %temperature-c%
+label-warn-background = #dc143c
+label-warn-padding = 1
+
+ramp-0 = TEMP=
+ramp-1 = TEMP=
+ramp-foreground = #fffb00
+format-padding = 1
+label-background = #3f3f3f
+label-underline = #fba922
+
+[module/pulseaudio]
+type = internal/pulseaudio
+
+; Use PA_VOLUME_UI_MAX (~153%) if true, or PA_VOLUME_NORM (100%) if false
+; Default: true
+use-ui-max = true
+
+; Interval for volume increase/decrease (in percent points)
+; Default: 5
+interval = 5
+
+; Available tags:
+;   <label-volume> (default)
+;   <ramp-volume>
+;   <bar-volume>
+format-volume = <ramp-volume> <label-volume>
+format-volume-foreground = #FFFFFF
+
+; Available tags:
+;   <label-muted> (default)
+;   <ramp-volume>
+;   <bar-volume>
+;format-muted = <label-muted>
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+;label-volume = %percentage%%
+
+; Available tokens:
+;   %percentage% (default)
+;   %decibels% (unreleased)
+label-muted = 
+label-muted-foreground = #FFFFFF
+
+; Only applies if <ramp-volume> is used
+ramp-volume-0 = 
+ramp-volume-1 = 
+ramp-volume-2 = 
+
+[module/bluetooth]
+type = custom/script
+exec = ~/.bin/rofi-bluetooth/rofi-bluetooth --status
+interval = 1
+click-left = ~/.bin/rofi-bluetooth/rofi-bluetooth &
+
+[module/spotify]
+type = custom/script
+interval = 1
+format-prefix = " "
+format = <label>
+exec = python ~/.bin/scripts/spotify_status.py -f '{artist}: {song}'
+
+[module/removable-disks]
+type = custom/script
+exec = ~/.bin/scripts/removable_disks.sh
+
+
+
+[module/hostname]
+interval = 30
+type = custom/script
+format-padding = 1
+exec = hostname
+format-prefix = "@[ "
+format-suffix = " ]"
+
+
+[module/uptime]
+interval = 60
+type = custom/script
+format-padding = 1
+exec = uptime -p
+label-background = #3f3f3f
+label-underline = #fba922
+
+[module/ewmh]
+type = internal/xworkspaces
+
+; Only show workspaces defined on the same output as the bar
+;
+; Useful if you want to show monitor specific workspaces
+; on different bars
+;
+; Default: false
+pin-workspaces = false
+
+; Create click handler used to focus desktop
+; Default: true
+enable-click = true
+
+; Create scroll handlers used to cycle desktops
+; Default: true
+enable-scroll = false
+
+label-active = >%name%<
+label-active-foreground = #fffb00
+label-active-background = #3f3f3f
+label-active-underline = #fba922
+label-active-padding = 1
+
+
+
+; ------------------------ END OF MODULES --------------------------------------------------
+
+
+screenchange-reload = true
+;compositing-background = xor
+;compositing-background = screen
+;compositing-foreground = source
+;compositing-border = over
+;apseudo-transparency = true
+
+[global/wm]
+margin-top = 5
+margin-bottom = 5
+
+; vim:ft=dosini
