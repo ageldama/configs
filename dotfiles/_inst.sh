@@ -32,11 +32,11 @@ for f in $(/bin/ls -Aa $sdir); do
   dfn="$(expand_tilde $dfn)"
 
   if [ -z ${uninst} ]; then
-    echo "  (Install)   $sfn --> $dfn"
-    ln -sv "$sfn" "$dfn"
+    echo "(LN_S)   $sfn --> $dfn"
+    echo -n "  "; ln -sv "$sfn" "$dfn"
   else
-    echo "  (Uninstall)   $dfn  ($sfn)"
-    rm -v "$dfn"
+    echo "(RM)   $dfn  ($sfn)"
+    echo -n "  "; rm -v "$dfn"
   fi
 done
 

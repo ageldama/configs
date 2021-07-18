@@ -25,6 +25,7 @@ use Getopt::Std;
         if ($ok_to_go) {
             system("sh ./_inst.sh \"$dot_dir\" \"$dst_dir\"");
         }
+        print "------------------\n\n";
     }
 
     close $fh;
