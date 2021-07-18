@@ -125,7 +125,7 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 
 #
 #dbus-launch xfce4-panel &
-exec dbus-launch openbox ${1+"$@"}
+exec dbus-launch openbox --startup ~/.config/openbox/autostart.sh ${1+"$@"}
 
 
 ###EOF
