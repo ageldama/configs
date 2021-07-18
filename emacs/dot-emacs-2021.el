@@ -1056,7 +1056,8 @@ _q_: (quit)
   "o"    '(:ignore t :which-key "org")
   "o a"  'org-agenda
   "o c"  'org-capture
-  "o l"  'org-capture-open
+  "o M-c"  'org-capture-open
+  "o M-p"  '(lambda () (interactive) (find-file "~/P/v3/PLAN.org"))
   "o d"  'diary/new-or-open-org-file
 
   ;; windows
