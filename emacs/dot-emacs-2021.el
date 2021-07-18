@@ -386,7 +386,7 @@
                                                     (counsel-M-x . ivy--regex-fuzzy)
                                                     (t           . ivy--regex-plus)))
                 (global-set-key "\C-s" 'swiper)
-                (global-set-key (kbd "C-c s") 'swiper-thing-at-point)
+                (global-set-key (kbd "M-s s") 'swiper-thing-at-point)
                 (global-set-key (kbd "C-c C-r") 'ivy-resume)
                 (global-set-key (kbd "<f6>") 'ivy-resume)
                 (global-set-key (kbd "M-x") 'counsel-M-x)
@@ -1023,7 +1023,7 @@ _q_: (quit)
 (my-global-leader-def
   "f" 'files-dirs-hs/body
 
-  "/" 'swiper-isearch-thing-at-point
+  ;;"/" 'swiper-isearch-thing-at-point
 
   ;;"RET" 'swiper
   ;;"RET" 'counsel-M-x
