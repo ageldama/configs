@@ -17,9 +17,9 @@
 
 (use-package go-projectile :ensure t :pin melpa)
 
-(use-package flycheck-golangci-lint :ensure t :pin melpa
-    :config (eval-after-load 'flycheck
-              '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup)))
+;; (use-package flycheck-golangci-lint :ensure t :pin melpa
+;;     :config (eval-after-load 'flycheck
+;;               '(add-hook 'flycheck-mode-hook #'flycheck-golangci-lint-setup)))
 
 (use-package gotest :ensure t :pin melpa)
 
@@ -39,14 +39,9 @@
   (progn
     ;; Only enable selected linters
     (setq flycheck-gometalinter-disable-all t)
-    (setq flycheck-gometalinter-enable-linters '(
-                                                 "vet"
-                                                 ;;"vetshadow"
-                                                 ;;"varcheck"
-                                                 "golint" "gofmt" "gosec"
-                                                 "misspell"
-                                                 ;;"gotype"
-                                                 ))
+    ;; (setq flycheck-gometalinter-enable-linters '("vet" "golint" "gofmt" "gosec" "misspell"
+    ;;                                              ;;"vetshadow" ;;"varcheck" ;;"gotype"
+    ;;                                              ))
     ;;
     (flycheck-gometalinter-setup)))
 
