@@ -126,6 +126,7 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 #
 #dbus-launch xfce4-panel &
 (sleep 2s; polybar topbar) &
+(sleep 7s; pkill -USR1 topbar) &
 exec dbus-launch openbox ${1+"$@"}
 
 
