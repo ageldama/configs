@@ -1,0 +1,6 @@
+URxvt*background: black
+URxvt*foreground: white
+URxvt*font: xft:Hack:size=9:antialias=true,xft:D2Coding:size=11
+URxvt*boldfont: xft:Hack:bold:size=9:antialias=true,xft:D2Coding:size=11
+
+
