@@ -27,11 +27,12 @@
 
 (use-package go-dlv :ensure t :pin melpa)
 
-(use-package company-go :ensure t :pin melpa
-  :config (add-hook 'go-mode-hook
-                    (lambda ()
-                      (set (make-local-variable 'company-backends) '(company-go))
-                      (company-mode))))
+(when nil
+  (use-package company-go :ensure t :pin melpa
+    :config (add-hook 'go-mode-hook
+                      (lambda ()
+                        (set (make-local-variable 'company-backends) '(company-go))
+                        (company-mode)))))
 
 (use-package flycheck-gometalinter
   :ensure t
