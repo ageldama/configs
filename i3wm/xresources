@@ -1,6 +1,38 @@
-URxvt*background: black
-URxvt*foreground: white
-URxvt*font: xft:Hack:size=9:antialias=true,xft:D2Coding:size=11
-URxvt*boldfont: xft:Hack:bold:size=9:antialias=true,xft:D2Coding:size=11
+!! Colorscheme
 
+URxvt.foreground: #ffffff
+URxvt.background: #000000
+URxvt.cursorColor: #ffff00
+
+
+!! URxvt Appearance
+URxvt.font: xft:DejaVu Sans Mono:style=Regular:size=10:antialias=true,xft:D2Coding:size=11
+URxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:size=10:antialias=true,xft:D2Coding:size=11
+URxvt.italicFont: xft:DejaVu Sans Mono:style=Italic:size=10:antialias=true,xft:D2Coding:size=11
+URxvt.boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=10:antialias=true,xft:D2Coding:size=11
+
+URxvt.letterSpace: 0
+URxvt.lineSpace: 0
+URxvt.geometry: 92x24
+URxvt.internalBorder: 0
+URxvt.cursorBlink: true
+URxvt.cursorUnderline: false
+URxvt.saveline: 2048
+URxvt.scrollBar: false
+URxvt.scrollBar_right: false
+URxvt.urgentOnBell: true
+URxvt.depth: 24
+URxvt.iso14755: false
+
+!! Copy Paste & Other Extensions
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,font-size,tabbed,font-size
+
+URxvt.keysym.C-plus:	perl:font-size:increase
+URxvt.keysym.C-minus:	perl:font-size:decrease
+!URxvt.font-size.step: 4
+
+URxvt.keysym.M-Escape: perl:keyboard-select:activate
+# The following line overwrites the default Meta-s binding and allows to
+# activate keyboard-select directly in backward search mode:
+URxvt.keysym.M-s: perl:keyboard-select:search
 
