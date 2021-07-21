@@ -1061,7 +1061,7 @@ _q_: (quit)
   "o d"  'diary/new-or-open-org-file
 
   ;; windows
-  "w" 'hydra-windbuf/body
+  "M-w" 'hydra-windbuf/body
   "M-SPC" 'other-window
 
   "*" 'ace-swap-window
@@ -1093,7 +1093,8 @@ _q_: (quit)
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy: Moved to `M-g
-  ;; "l"   'avy-goto-line
+  "L"   'avy-goto-line
+  "w"   'avy-goto-word-0
   ;; "M-j" 'avy-goto-char
   ;; "C-j" 'hydra-avy-goto/body
   ;; "C-t" 'avy-pop-mark
