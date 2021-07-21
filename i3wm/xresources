@@ -32,7 +32,7 @@ URxvt.keysym.C-minus:	perl:font-size:decrease
 !URxvt.font-size.step: 4
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
-# The following line overwrites the default Meta-s binding and allows to
-# activate keyboard-select directly in backward search mode:
+! The following line overwrites the default Meta-s binding and allows to
+! activate keyboard-select directly in backward search mode:
 URxvt.keysym.M-s: perl:keyboard-select:search
 
