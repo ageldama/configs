@@ -1,0 +1,69 @@
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use Data::Dumper;
+
+
+sub cur_win {
+  my $stdout = qx/xdotool getactivewindow/;
+  chomp $stdout;
+  return $stdout;
+}
+
+sub cur_desktop {
+  my $stdout = qx/xdotool get_desktop/;
+  chomp $stdout;
+  return $stdout;
+}
+
+sub window_ids {
+  my $desktop = shift;
+  my $stdout = qx/xdotool search --desktop $desktop --all ''/;
+  return split /\n/, $stdout;
+}
+
+sub display_wh {
+  my $stdout = qx/xdotool getdisplaygeometry/;
+  chomp $stdout;
+  return split / /, $stdout;
+}
+
+sub window_geom {
+  my $wid = shift;
+  my $stdout = qx/xdotool getwindowgeometry $wid/;
+  my ($x, $y);
+  my ($w, $h);
+
+  if ($stdout =~ m/Position: (\d+),(\d+) .+/) {
+    $x = $1;
+    $y = $2;
+  }
+
+  if ($stdout =~ m/Geometry: (\d+)x(\d+)/) {
+    $w = $1;
+    $h = $2;
+  }
+
+  return ($x, $y, $w, $h);
+}
+
+
+{
+  my $win = cur_win;
+  my $desktop = cur_desktop;
+  my @window_ids = window_ids($desktop);
+  my ($disp_w, $disp_h) = display_wh;
+  my %geoms = ();
+
+  foreach my $wid (@window_ids) {
+    #print "desktop=$desktop / wid=$wid\n";
+    my ($x, $y, $w, $h) = window_geom($wid);
+    #print "  ($x,$y)[$w,$h]\n";
+    $geoms{$wid} = [$x, $y, $w, $h];
+  }
+
+  print(Dumper(\%geoms));
+}
+
+#  xdotool windowmove 14680074 10 0
+
