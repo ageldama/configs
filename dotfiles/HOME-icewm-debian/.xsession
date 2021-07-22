@@ -8,7 +8,8 @@ fi
 if [ -f /usr/bin/lxqt-openssh-askpass ]; then
   export SSH_ASKPASS=/usr/bin/lxqt-openssh-askpass
 fi
-ssh-add < /dev/null &
+
+(ssh-add -L) || (ssh-add < /dev/null) &
 
 xrdb -merge ~/.Xresources
 
