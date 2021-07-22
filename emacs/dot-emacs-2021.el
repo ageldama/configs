@@ -1093,7 +1093,7 @@ _q_: (quit)
   ;;"l" (general-simulate-key "s-l" :name lsp)
   
   ;; avy: Moved to `M-g
-  "L"   'avy-goto-line
+  "l"   'avy-goto-line
   "w"   'avy-goto-word-0
   ;; "M-j" 'avy-goto-char
   ;; "C-j" 'hydra-avy-goto/body
