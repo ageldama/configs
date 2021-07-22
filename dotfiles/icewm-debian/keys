@@ -1,3 +1,5 @@
+key "Alt+Super+F10" icesh -w focus vertical
+key "Shift+Super+F10" icesh -w focus horizontal
 
 key "Super+Enter" x-terminal-emulator
 key "Ctrl+Alt+t" x-terminal-emulator
