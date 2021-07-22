@@ -1,17 +1,21 @@
 #!/bin/sh
 export PATH=$PATH:$HOME/local/bin
 
+if [ -z "${SSH_AUTH_SOCK}" ]; then
+  eval "$(ssh-agent)"
+fi
+
 if [ -f /usr/bin/lxqt-openssh-askpass ]; then
   export SSH_ASKPASS=/usr/bin/lxqt-openssh-askpass
 fi
-ssh-add < /dev/null
+ssh-add < /dev/null &
 
 xrdb -merge ~/.Xresources
 
 killall icewmbg &
 (sleep 1s; xsetroot -solid '#333333') &
 
-~/local/bin/caps-to-ctrl.sh &
+~/local/bin/caps-to-ctrl.sh
 
 ssh-add < /dev/null &
 
