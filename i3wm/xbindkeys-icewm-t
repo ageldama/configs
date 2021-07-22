@@ -1,0 +1,104 @@
+
+# EX-G pro 유무선 하이스펙 트랙볼 마우스 M-XPT1MRBK
+"xdotool key Prior" # wheel <-
+  b:6
+"xdotool key Next"  # wheel ->
+  b:7
+"xdotool key Next"
+  b:10
+"xdotool key Prior"
+  b:11
+"xdotool key Next"
+  b:12
+
+
+"xbindkeys_show"
+  Mod4 + Shift + H
+
+"x-terminal-emulator"
+  Mod4 + Return
+
+"icesh -w focus moveby -100 0"
+  Mod4 + Mod1 + Left
+"icesh -w focus moveby 100 0"
+  Mod4 + Mod1 + Right
+"icesh -w focus moveby 0 -100"
+  Mod4 + Mod1 + Up
+"icesh -w focus moveby 0 100"
+  Mod4 + Mod1 + Down
+
+"icesh -w focus moveby -5 0"
+  Shift + Mod4 + Mod1 + Left
+"icesh -w focus moveby 5 0"
+  Shift + Mod4 + Mod1 + Right
+"icesh -w focus moveby 0 -5"
+  Shift + Mod4 + Mod1 + Up
+"icesh -w focus moveby 0 5"
+  Shift + Mod4 + Mod1 + Down
+
+"icesh -w focus sizeby -10% 0"
+  Mod4 + Control + Left
+"icesh -w focus sizeby +10% 0"
+  Mod4 + Control + Right
+"icesh -w focus sizeby 0 -10%"
+  Mod4 + Control + Up
+"icesh -w focus sizeby 0 +10%"
+  Mod4 + Control + Down
+
+"icesh -w focus sizeby -1% 0"
+  Shift + Mod4 + Control + Left
+"icesh -w focus sizeby 1% 0"
+  Shift + Mod4 + Control + Right
+"icesh -w focus sizeby 0 -1%"
+  Shift + Mod4 + Control + Up
+"icesh -w focus sizeby 0 +1%"
+  Shift + Mod4 + Control + Down
+
+
+#"gmrun"
+#"xfce4-appfinder -c"
+#  Mod4 + r
+
+#"xfce4-taskmanager"
+#  Control + Alt + Delete
+
+"rofi -show"
+  Mod4 + d
+
+"rofi -show window"
+  Mod4 + Tab
+"rofi -show windowcd"
+  Mod4 + Shift + Tab
+
+"xscreensaver-command -lock"
+  Mod4 + Escape
+
+"gnome-screenshot"
+  Mod4 + p
+"gnome-screenshot -i"
+  Mod4 + Shift + p
+
+"thunar "
+  Mod4 + e
+"x-terminal-emulator -e mc"
+  Mod4 + Shift + e
+
+"hsetroot-solid.pl"
+  Mod4 + Shift + w
+"wg.pl"
+  Mod4 + w
+
+"notify-uptime.sh"
+  Mod4 + F8
+
+"pavucontrol"
+  Mod4 + F10
+
+"rofi-toggles.sh"
+  Mod4 + F9
+
+"xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)"
+  Mod4 + Shift + F9
+
+
+#EOF
