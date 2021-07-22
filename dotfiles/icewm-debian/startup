@@ -1,0 +1,5 @@
+#!/bin/sh
+killall icewmbg
+xsetroot -solid '#333333'
+xscreensaver &
+
