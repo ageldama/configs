@@ -1,0 +1,23 @@
+
+key "Super+Enter" x-terminal-emulator
+key "Ctrl+Alt+t" x-terminal-emulator
+
+key "Super+r" gmrun
+key "Shift+Super+r" icesh restart
+
+key "Super+p" gnome-screenshot
+key "Shift+Super+p" gnome-screenshot -i
+
+key "Super+e" thunar
+key "Shift+Super+e" x-terminal-emulator -e mc
+
+key "Super+w" wg.pl
+key "Shift+Super+w" hsetroot-solid.pl
+
+
+
+key "Super+F8" notify-uptime.sh
+key "Super+F9" rofi-toggles.sh
+key "Super+F10" pavucontrol
+
+

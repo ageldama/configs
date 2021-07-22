@@ -1,8 +1,10 @@
 #!/bin/sh
+export PATH=$PATH:$HOME/local/bin
+
 killall icewmbg &
 (sleep 1s; xsetroot -solid '#333333') &
 
-caps-to-ctrl.sh &
+~/local/bin/caps-to-ctrl.sh &
 
 ssh-add < /dev/null &
 
@@ -14,4 +16,6 @@ xscreensaver &
 
 dunst &
 
-#EOF
+exec icewm
+
+
