@@ -1,5 +1,14 @@
 #!/bin/sh
-killall icewmbg
-xsetroot -solid '#333333'
+killall icewmbg &
+(sleep 1s; xsetroot -solid '#333333') &
+
+caps-to-ctrl.sh &
+
+ssh-add < /dev/null &
+
+SEOUL_POS=37.566:126.977 # Seoul
+redshift-gtk -l $SEOUL_POS &
+
+
 xscreensaver &
 
