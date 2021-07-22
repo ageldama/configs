@@ -12,3 +12,6 @@ redshift-gtk -l $SEOUL_POS &
 
 xscreensaver &
 
+dunst &
+
+#EOF
