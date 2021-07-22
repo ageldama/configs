@@ -1,6 +1,8 @@
 #!/bin/sh
 export PATH=$PATH:$HOME/local/bin
 
+xrdb -load ~/.Xresources
+
 killall icewmbg &
 (sleep 1s; xsetroot -solid '#333333') &
 
