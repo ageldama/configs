@@ -2,6 +2,8 @@
 key "Super+Enter" x-terminal-emulator
 key "Ctrl+Alt+t" x-terminal-emulator
 
+key "Super+d" rofi -show
+
 key "Super+r" gmrun
 key "Shift+Super+r" icesh restart
 
