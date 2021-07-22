@@ -1,6 +1,11 @@
 #!/bin/sh
 export PATH=$PATH:$HOME/local/bin
 
+if [ -f /usr/bin/lxqt-openssh-askpass ]; then
+  export SSH_ASKPASS=/usr/bin/lxqt-openssh-askpass
+fi
+ssh-add < /dev/null
+
 xrdb -merge ~/.Xresources
 
 killall icewmbg &
