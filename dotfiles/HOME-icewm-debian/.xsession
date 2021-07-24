@@ -16,7 +16,7 @@ xrdb -merge ~/.Xresources
 killall icewmbg &
 (sleep 1s; xsetroot -solid '#333333') &
 
-~/local/bin/caps-to-ctrl.sh
+(sleep 3s; ~/local/bin/caps-to-ctrl.sh) &
 
 ssh-add < /dev/null &
 
