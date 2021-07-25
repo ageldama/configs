@@ -1,7 +1,7 @@
 !! Colorscheme
 
-URxvt*inputMethod: fcitx
-URxvt*preeditType: Root
+!URxvt*inputMethod: fcitx
+!URxvt*preeditType: Root
 !URxvt*imLocale: ko_KR.UTF-8
 
 URxvt.foreground: #ffffff
