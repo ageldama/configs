@@ -11,7 +11,8 @@
   (exec-path-from-shell-copy-env "GOPATH"))
 
 (use-package go-eldoc :ensure t :pin melpa
-  :config (add-hook 'go-mode-hook 'go-eldoc-setup))
+  ;; :config (add-hook 'go-mode-hook 'go-eldoc-setup)
+  )
 
 (use-package golint :ensure t :pin melpa)
 
