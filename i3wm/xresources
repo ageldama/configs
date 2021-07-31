@@ -1,7 +1,7 @@
 !! Colorscheme
 
-URxvt*inputMethod: fcitx
-URxvt*preeditType: Root
+!URxvt*inputMethod: fcitx
+!URxvt*preeditType: Root
 !URxvt*imLocale: ko_KR.UTF-8
 
 URxvt.foreground: #ffffff
@@ -10,12 +10,16 @@ URxvt.cursorColor: #ffff00
 
 
 !! URxvt Appearance
-URxvt.font: xft:DejaVu Sans Mono:style=Regular:size=10:antialias=true,xft:NanumGothicCoding:size=10:style=Regular
-URxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:size=10:antialias=true,xft:NanumGothicCoding:size=10:style=Bold
-URxvt.italicFont: xft:DejaVu Sans Mono:style=Italic:size=10:antialias=true,xft:NanumGothicCoding:size=10:style=Italic
-URxvt.boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=10:antialias=true,xft:NanumGothicCoding:size=10:style=Bold Italic
+URxvt.font: xft:DejaVu Sans Mono:style=Regular:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Regular
+URxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Bold
+URxvt.italicFont: xft:DejaVu Sans Mono:style=Italic:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Italic
+URxvt.boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Bold Italic
 
-URxvt.letterSpace: 0
+URxvt.letterSpace: -1
 URxvt.lineSpace: 0
 URxvt.geometry: 92x24
 URxvt.internalBorder: 0
@@ -29,7 +33,9 @@ URxvt.depth: 24
 URxvt.iso14755: false
 
 !! Copy Paste & Other Extensions
-URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,font-size,tabbed,font-size
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,font-size
+!! NOTE: not with XIM:
+!URxvt.perl-ext-common: tabbed
 
 URxvt.keysym.C-plus:	perl:font-size:increase
 URxvt.keysym.C-minus:	perl:font-size:decrease

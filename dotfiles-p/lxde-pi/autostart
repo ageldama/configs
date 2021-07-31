@@ -1,0 +1,6 @@
+@lxpanel --profile LXDE-pi
+@pcmanfm --desktop --profile LXDE-pi
+@xscreensaver -no-splash
+@redshift-gtk
+@/home/jhyun/local/bin/caps-to-ctrl.sh
+@sh -c 'ssh-add < /dev/null'

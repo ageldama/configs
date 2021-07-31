@@ -180,6 +180,9 @@
 
 (global-set-key (kbd "C-x C-b") #'ibuffer)
 
+(global-set-key (kbd "S-<left>") #'tab-previous)
+(global-set-key (kbd "S-<right>") #'tab-next)
+(global-set-key (kbd "S-<down>") #'tab-new)
 
 
 ;;; package.el

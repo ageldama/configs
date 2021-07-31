@@ -11,7 +11,8 @@
   (exec-path-from-shell-copy-env "GOPATH"))
 
 (use-package go-eldoc :ensure t :pin melpa
-  :config (add-hook 'go-mode-hook 'go-eldoc-setup))
+  ;; :config (add-hook 'go-mode-hook 'go-eldoc-setup)
+  )
 
 (use-package golint :ensure t :pin melpa)
 
@@ -55,7 +56,8 @@
    "t" 'go-test-current-test
    "T" 'go-test-current-file
    "f" 'gofmt
-   "d" 'godoc-at-point
+   "d" 'godoc
+   "M-d" 'godoc-at-point
    "D" 'godef-describe
    "+" 'go-import-add
    "." 'godef-jump
