@@ -1,0 +1,3 @@
+#!/bin/sh
+~/local/bin/caps-to-ctrl.sh
+
