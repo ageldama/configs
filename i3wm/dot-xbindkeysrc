@@ -41,7 +41,7 @@
 "gnome-screenshot -i"
   Mod4 + Shift + p
 
-"thunar "
+"pcmanfm "
   Mod4 + e
 "x-terminal-emulator -e mc"
   Mod4 + Shift + e
