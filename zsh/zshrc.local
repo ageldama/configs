@@ -66,8 +66,7 @@ alias zcp='zmv -C'
 alias zln='zmv -L'
 
 if [[ -d $HOME/local/z.lua ]]; then
-  eval "$(lua $HOME/local/z.lua/z.lua --init zsh)"
-  alias zi="z -I"
+  source $HOME/local/z.lua/z.lua.plugin.zsh
 fi
 
 
