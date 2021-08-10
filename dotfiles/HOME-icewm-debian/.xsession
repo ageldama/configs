@@ -13,6 +13,9 @@ fi
 
 #(ssh-add -L) || (ssh-add < /dev/null) &
 
+# no beep
+xset b off
+
 xrdb -merge ~/.Xresources
 
 killall icewmbg &
