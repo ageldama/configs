@@ -24,7 +24,7 @@ export TERMINAL=x-terminal-emulator
 export GTK_IM_MODULE=fcitx
 export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
-fcitx -s 5 -r -d &
+pgrep fcitx || fcitx -s 5 -r -d &
 
 # ssh / gnome-keyring
 if [ -z "${SSH_AUTH_SOCK}" ]; then
