@@ -20,6 +20,10 @@ OSNAME=`uname`
 
 export PATH=$PATH:$HOME/local/bin
 
+# fedora 34, xdm oddity
+[[ ":$PATH:" != *":/usr/local/bin:"* ]] && PATH="/usr/local/bin:${PATH}"
+
+
 export TERMINAL=x-terminal-emulator
 
 # fcitx/ibus + hangul
