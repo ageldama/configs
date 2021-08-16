@@ -33,6 +33,9 @@ if [[ -z "$GTK_IM_MODULE" ]]; then
   export QT_IM_MODULE=fcitx
   export XMODIFIERS=@im=fcitx
   pgrep fcitx || fcitx -s 5 -r -d &
+elif [[ "$GTK_IM_MODULE" == "fcitx" ]]; then
+  # fedora 34, xdm oddity, once again
+  pgrep fcitx || fcitx -s 5 -r -d &
 fi
 
 # ssh / gnome-keyring
