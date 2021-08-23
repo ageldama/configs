@@ -146,7 +146,8 @@ if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
   exec dbus-launch openbox ${1+"$@"}
 else
   # under xsession
-  lxpanel &
+  #lxpanel &
+  xfce4-panel &
   exec openbox ${1+"$@"}
 fi
 
