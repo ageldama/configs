@@ -133,6 +133,9 @@ hsetroot -solid '#3f4058' &
 # caps->ctrl
 ~/local/bin/caps-to-ctrl.sh 2 &
 
+# urxvtd
+urxvtd --quiet --opendisplay --fork &
+
 #
 test -f ~/.xinitrc2 && ~/.xinitrc2
 
