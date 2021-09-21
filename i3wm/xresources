@@ -36,13 +36,17 @@ URxvt.depth: 24
 URxvt.iso14755: false
 
 !! Copy Paste & Other Extensions
-URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,font-size
+URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
+!,font-size
 !! NOTE: not with XIM:
 !URxvt.perl-ext-common: tabbed
 
-URxvt.keysym.C-plus:	perl:font-size:increase
-URxvt.keysym.C-minus:	perl:font-size:decrease
+!URxvt.keysym.C-plus:	perl:font-size:increase
+!URxvt.keysym.C-minus:	perl:font-size:decrease
 !URxvt.font-size.step: 4
+
+URxvt.keysym.C-pluse:  resize-font:smaller
+URxvt.keysym.C-minus:    resize-font:bigger
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
 ! The following line overwrites the default Meta-s binding and allows to
