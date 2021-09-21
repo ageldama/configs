@@ -36,7 +36,8 @@ URxvt.depth: 24
 URxvt.iso14755: false
 
 !! Copy Paste & Other Extensions
-URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
+URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font
+!clipboard,
 !,font-size
 !! NOTE: not with XIM:
 !URxvt.perl-ext-common: tabbed
@@ -53,3 +54,11 @@ URxvt.keysym.M-Escape: perl:keyboard-select:activate
 ! activate keyboard-select directly in backward search mode:
 URxvt.keysym.M-s: perl:keyboard-select:search
 
+
+URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.url-select.launcher: xdg-open
+
+!URxvt.kuake.hotkey: F12
+
+
+!!!EOF.
