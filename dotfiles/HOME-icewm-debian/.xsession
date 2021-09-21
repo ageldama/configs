@@ -33,6 +33,8 @@ xscreensaver -no-splash &
 
 dunst &
 
+$HOME/.icewm/startup &
+
 exec icewm
 
 
