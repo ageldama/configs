@@ -39,7 +39,8 @@ URxvt.iso14755: false
 URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font,\
 eval,confirm-paste
 
-!clipboard,
+!,clipboard
+
 !,font-size
 !! NOTE: not with XIM:
 !URxvt.perl-ext-common: tabbed
@@ -67,6 +68,10 @@ URxvt.keysym.M-Up: eval:scroll_up 1
 URxvt.keysym.M-Down: eval:scroll_down 1
 URxvt.keysym.M-Home: eval:scroll_to_top
 URxvt.keysym.M-End:  eval:scroll_to_bottom
+
+URxvt.keysym.Shift-Control-V: eval:paste_clipboard
+URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+
 
 
 
