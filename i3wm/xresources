@@ -45,7 +45,7 @@ URxvt.perl-ext-common: default,clipboard,url-select,keyboard-select,resize-font
 !URxvt.keysym.C-minus:	perl:font-size:decrease
 !URxvt.font-size.step: 4
 
-URxvt.keysym.C-pluse:  resize-font:smaller
+URxvt.keysym.C-plus:  resize-font:smaller
 URxvt.keysym.C-minus:    resize-font:bigger
 
 URxvt.keysym.M-Escape: perl:keyboard-select:activate
