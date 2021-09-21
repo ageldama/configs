@@ -36,11 +36,14 @@ URxvt.depth: 24
 URxvt.iso14755: false
 
 !! Copy Paste & Other Extensions
-URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font
+URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font,\
+eval,confirm-paste
+
 !clipboard,
 !,font-size
 !! NOTE: not with XIM:
 !URxvt.perl-ext-common: tabbed
+
 
 !URxvt.keysym.C-plus:	perl:font-size:increase
 !URxvt.keysym.C-minus:	perl:font-size:decrease
@@ -59,6 +62,13 @@ URxvt.keysym.M-u: perl:url-select:select_next
 URxvt.url-select.launcher: xdg-open
 
 !URxvt.kuake.hotkey: F12
+
+URxvt.keysym.M-Up: eval:scroll_up 1
+URxvt.keysym.M-Down: eval:scroll_down 1
+URxvt.keysym.M-Home: eval:scroll_to_top
+URxvt.keysym.M-End:  eval:scroll_to_bottom
+
+
 
 
 !!!EOF.
