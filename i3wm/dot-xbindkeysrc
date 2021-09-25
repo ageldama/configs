@@ -18,6 +18,11 @@
 "x-terminal-emulator"
   Mod4 + Return
 
+
+"urxvt"
+  Mod4 + Shift + Return
+
+
 #"gmrun"
 #"xfce4-appfinder -c"
 #  Mod4 + r
