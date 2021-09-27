@@ -11,6 +11,8 @@
         *ageldama/font-fixed-ko* "나눔고딕코딩" )
   (my-set-fixed-fonts))
 
+(set-face-attribute 'default nil :height 165)
+
 ;; (toggle-battery-saving-mode)
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
 
