@@ -158,7 +158,7 @@ bindsym Shift+$mod+p exec gnome-screenshot -i
 bindsym $mod+F10 exec sh -c 'pavucontrol'
 bindsym Shift+$mod+F10 exec sh -c 'pactl-mute.pl sink toggle_default'
 bindsym $mod+F8 exec sh -c 'notify-uptime.sh'
-bindsym $mod+F9 exec sh -c 'rofi-toggles.sh'
+bindsym Mod1+Control+Delete exec sh -c 'rofi-toggles.sh'
 
 bindsym XF86AudioMute exec pamixer -t
 
