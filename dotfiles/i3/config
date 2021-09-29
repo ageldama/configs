@@ -37,8 +37,8 @@ bindsym $mod+Shift+q kill
 
 # start dmenu (a program launcher)
 #bindsym $mod+d exec rofi -show
-bindsym $mod+Tab exec rofi -show
-bindsym Shift+$mod+Tab exec gmrun
+bindsym $mod+z exec rofi -show
+bindsym Shift+$mod+z exec gmrun
 bindsym Control+$mod+Return exec pcmanfm
 bindsym Shift+$mod+Return exec x-terminal-emulator -e mc
 
@@ -149,7 +149,7 @@ exec --no-startup-id /home/jhyun/local/bin/caps-to-ctrl.sh 2
 #exec --no-startup-id blueman-applet
 #exec --no-startup-id hsetroot -solid "#ccaacc"
 #exec --no-startup-id xautolock -time 5 -locker 'i3lock'
-exec --no-startup-id urxvtd
+#exec --no-startup-id urxvtd
 
 bindsym $mod+Escape exec xscreensaver-command -lock
 

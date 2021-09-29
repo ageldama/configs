@@ -32,6 +32,8 @@ xscreensaver -no-splash &
 
 dunst &
 
+test -f ~/.xinitrc2 && ~/.xinitrc2
+
 exec i3
 
 
