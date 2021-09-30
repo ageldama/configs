@@ -35,6 +35,8 @@ dunst &
 
 $HOME/.icewm/startup &
 
+test -f ~/.xinitrc2 && ~/.xinitrc2
+
 exec icewm
 
 
