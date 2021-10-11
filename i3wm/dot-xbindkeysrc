@@ -5,6 +5,10 @@
 "xdotool key Next"  # wheel ->
   b:7
 "xdotool key Next"
+  b:8
+"xdotool key Prior"
+  b:9
+"xdotool key Next"
   b:10
 "xdotool key Prior"
   b:11
