@@ -5,6 +5,10 @@
 "xdotool key Next"  # wheel ->
   b:7
 "xdotool key Next"
+  b:8
+"xdotool key Prior"
+  b:9
+"xdotool key Next"
   b:10
 "xdotool key Prior"
   b:11
@@ -17,6 +21,11 @@
 
 "x-terminal-emulator"
   Mod4 + Return
+
+
+"urxvt"
+  Mod4 + Shift + Return
+
 
 #"gmrun"
 #"xfce4-appfinder -c"

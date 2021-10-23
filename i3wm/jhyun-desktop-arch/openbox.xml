@@ -418,11 +418,14 @@
         <menu>client-menu</menu>
       </action>
     </keybind>
+
+    <!--
     <keybind key="W-S-Return">
       <action name="Execute">
         <command>skippy-xd</command>
       </action>
     </keybind>
+    -->
 
   <!--
     <keybind key="W-Return">
