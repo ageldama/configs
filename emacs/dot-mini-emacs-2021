@@ -130,6 +130,9 @@
 ;; "o d"  'diary/new-or-open-org-file
 
 
+(require 'magit nil t)
+
+
 
 
 ;;; EOF.
