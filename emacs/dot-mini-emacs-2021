@@ -91,10 +91,14 @@
 
 ;;; Org
 (add-hook 'org-mode-hook
-          (lambda () (progn
-                       (local-set-key (kbd "C-c l")
-                                      'org-store-link)
-                       (turn-on-auto-fill))))
+          (lambda ()
+            (flycheck-mode -1)
+            (setq truncate-lines nil)
+            (setq fill-column most-positive-fixnum)
+            (turn-off-auto-fill)
+            (local-set-key (kbd "C-c l") 'org-store-link)
+            ))
+
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
 
