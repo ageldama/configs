@@ -32,7 +32,7 @@
   (progn
     (menu-bar-mode   -1)))
 
-
+(global-visual-line-mode +1)
 
 
 ;;; GUI fonts
@@ -92,7 +92,7 @@
 ;;; Org
 (add-hook 'org-mode-hook
           (lambda ()
-            (flycheck-mode -1)
+            ;;(flycheck-mode -1)
             (setq truncate-lines nil)
             (setq fill-column most-positive-fixnum)
             (turn-off-auto-fill)
