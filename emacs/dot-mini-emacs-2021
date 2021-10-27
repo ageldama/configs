@@ -1,0 +1,128 @@
+;;; -*- mode: emacs-lisp; coding: utf-8; -*-
+
+(setq inhibit-startup-screen t)
+(setq default-input-method   "korean-hangul")
+(prefer-coding-system 'utf-8-unix)
+
+(setq user-full-name    "Jong-Hyouk Yun")
+(setq user-mail-address "ageldama@gmail.com")
+
+(column-number-mode  t)
+(display-time-mode   -1)
+(show-paren-mode     t)
+(transient-mark-mode t)
+
+(global-auto-revert-mode t)
+;;(global-whitespace-mode +1)
+(setq-default show-trailing-whitespace t)
+
+(add-hook 'kill-emacs-query-functions
+          (lambda () (y-or-n-p "Bye??? "))
+          'append)
+
+;;; no backup files
+(setq make-backup-files nil)
+(setq version-control   nil)   ; backup uses version numbers?
+
+(if window-system
+    (progn
+      (menu-bar-mode   -1)
+      (tool-bar-mode   -1)
+      (scroll-bar-mode -1))
+  (progn
+    (menu-bar-mode   -1)))
+
+
+
+
+;;; GUI fonts
+;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
+;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
+
+(defun my-set-fixed-fonts ()
+  (interactive)
+  (let ((en-fn
+         "Noto Sans Mono CJK KR"
+	 )
+        (ko-fn
+         "Noto Sans Mono CJK KR"
+         ))
+    ;; default Latin font (e.g. Consolas)
+    ;; but I use Monaco
+    (set-frame-font en-fn t)
+    (set-face-attribute 'default nil :family en-fn)
+    ;; default font size (point * 10)
+    ;; WARNING!  Depending on the default font,
+    ;; if the size is not supported very well, the frame will be clipped
+    ;; so that the beginning of the buffer may not be visible correctly.
+    (set-face-attribute 'default nil :height 130)
+    ;; use specific font for Korean charset.
+    ;; if you want to use different font size for specific charset,
+    ;; add :size POINT-SIZE in the font-spec.
+    (set-fontset-font t 'hangul (font-spec :name ko-fn))))
+
+(when (and t window-system)
+  (cond ((or (string-equal system-type "berkeley-unix")
+             (string-equal system-type "gnu/linux")
+             (string-equal system-type "darwin"))
+         (my-set-fixed-fonts))
+  	;; Windows
+        ((string-equal system-type "windows-nt")
+         (set-face-attribute 'default nil :font "Consolas-11"))
+        (t :unknown)))
+
+;;;
+(global-linum-mode   -1)
+(global-hl-line-mode -1)
+
+
+(global-set-key (kbd "M-`")       'menu-bar-open)
+(global-set-key (kbd "<f10>")       'menu-bar-open)
+
+
+;;;
+(setq-default indent-tabs-mode nil)
+(setq tab-width nil) ;; ONLY affects to REAL <TAB>-chars to display.
+;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ;; [tab] inserts two spaces
+(electric-indent-mode +1)
+
+
+;;(load-theme 'deeper-blue t )
+
+;;; Org
+(add-hook 'org-mode-hook
+          (lambda () (progn
+                       (local-set-key (kbd "C-c l")
+                                      'org-store-link)
+                       (turn-on-auto-fill))))
+(setq org-log-done 'time)
+(setq org-startup-with-inline-images t)
+
+;;; org-capture
+(setq org-default-notes-file "~/P/v3/CAPTURE.org")
+
+(defun org-capture-open ()
+  (interactive)
+  (find-file org-default-notes-file))
+
+
+;;;
+;; (setq org-todo-keywords
+;;       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+(setq org-agenda-files '("~/P/v3/PLAN.org" "~/P/v3/CAPTURE.org"))
+
+
+;;(load-file (s-concat langsup-base-path "/cal-dt.el"))
+
+;; "o"    '(:ignore t :which-key "org")
+;; "o a"  'org-agenda
+;; "o c"  'org-capture
+;; "o M-c"  'org-capture-open
+;; "o M-p"  '(lambda () (interactive) (find-file "~/P/v3/PLAN.org"))
+;; "o d"  'diary/new-or-open-org-file
+
+
+
+
+;;; EOF.
