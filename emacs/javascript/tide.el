@@ -26,12 +26,17 @@
   (when *tide/tide-format-before-save-2*
     (tide-format-before-save)))
 
+(defun tide-flycheck-select-eslint ()
+  (interactive)
+  (flycheck-select-checker 'javascript-eslint))
+
 (use-package tide
   :ensure t :pin melpa
   :config (setq typescript-indent-level 2)
   :after (typescript-mode company flycheck add-node-modules-path)
   :hook ((typescript-mode . tide-setup)
          (typescript-mode . tide-hl-identifier-mode)
+         (typescript-mode . tide-flycheck-select-eslint)
          (before-save . tide-format-before-save-2)))
 
 ;; (setq tide-tsserver-executable "node_modules/typescript/bin/tsserver")
