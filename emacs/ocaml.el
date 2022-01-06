@@ -34,3 +34,6 @@
 (use-package merlin-eldoc
   :ensure t :pin melpa
   :hook ((reason-mode tuareg-mode caml-mode) . merlin-eldoc-setup))
+
+(use-package dune
+  :ensure t :pin melpa)
