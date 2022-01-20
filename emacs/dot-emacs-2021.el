@@ -152,6 +152,18 @@
 (setq make-backup-files nil)
 (setq version-control   nil)   ; backup uses version numbers?
 
+;; (setq backup-directory-alist
+;;       `((".*" . ,temporary-file-directory)))
+
+;; (setq auto-save-file-name-transforms
+;;       `((".*" ,temporary-file-directory t)))
+
+;; (setq auto-save-file-name-transforms
+;;   `((".*" "~/.emacs-saves/" t)))
+
+;; (setq create-lockfiles nil)
+
+
 
 ;;; similar buffer names
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
