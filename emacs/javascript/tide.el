@@ -18,6 +18,7 @@
 
 (setq typescript-indent-level 2)
 
+
 (defvar *tide/tide-format-before-save-2* t)
 
 (defun tide-format-before-save-2 ()
@@ -37,6 +38,12 @@
          (typescript-mode . tide-hl-identifier-mode)
          (typescript-mode . tide-flycheck-select-eslint)
          (before-save . tide-format-before-save-2)))
+
+;; (setq tide-tsserver-executable "node_modules/typescript/bin/tsserver")
+(add-hook 'typescript-mode-hook
+          (defun my-ttypescript-mode-setup ()
+            (flycheck-select-checker 'javascript-eslint)))
+
 
 ;;; TSX
 (require 'web-mode)
