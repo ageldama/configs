@@ -27,15 +27,23 @@ export PATH=$PATH:$HOME/local/bin
 export TERMINAL=x-terminal-emulator
 
 # fcitx/ibus + hangul
-if [[ -z "$GTK_IM_MODULE" ]]; then
-  # without im-config: 
-  export GTK_IM_MODULE=fcitx
-  export QT_IM_MODULE=fcitx
-  export XMODIFIERS=@im=fcitx
-  pgrep fcitx || fcitx -s 5 -r -d &
-elif [[ "$GTK_IM_MODULE" == "fcitx" ]]; then
-  # fedora 34, xdm oddity, once again
-  pgrep fcitx || fcitx -s 5 -r -d &
+ibus_daemon=$(which ibus-daemon)
+if [[ -x $ibus_daemon ]]; then
+  export GTK_IM_MODULE=ibus
+  export QT_IM_MODULE=ibus
+  export XMODIFIERS=@im=ibus
+  ibus-daemon -d 
+else
+  if [[ -z "$GTK_IM_MODULE" ]]; then
+    # without im-config: 
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS=@im=fcitx
+    pgrep fcitx || fcitx -s 5 -r -d &
+  elif [[ "$GTK_IM_MODULE" == "fcitx" ]]; then
+    # fedora 34, xdm oddity, once again
+    pgrep fcitx || fcitx -s 5 -r -d &
+  fi
 fi
 
 # ssh / gnome-keyring
