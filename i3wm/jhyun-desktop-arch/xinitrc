@@ -142,8 +142,8 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 
 #
 if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
-  #dbus-launch xfce4-panel &
-  dbus-launch lxpanel &
+  dbus-launch xfce4-panel &
+  #dbus-launch lxpanel &
   #(sleep 2s; polybar topbar) &
   #(sleep 7s; pkill -USR1 topbar) &
   exec dbus-launch openbox ${1+"$@"}
