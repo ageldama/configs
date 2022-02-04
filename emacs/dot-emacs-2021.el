@@ -785,6 +785,12 @@ i.e. change right window to bottom, or change bottom window to right."
   (editorconfig-mode 1))
 
 
+;;; yas
+(use-package yasnippet :ensure t :pin melpa :config (yas-global-mode +1))
+
+(use-package yasnippet-snippets :ensure t :pin melpa :after yasnippet)
+
+
 ;;; moonshot
 (quelpa '(moonshot :repo "ageldama/moonshot" :fetcher github))
 ;;(use-package moonshot :ensure t :pin melpa)
