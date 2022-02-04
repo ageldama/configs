@@ -788,6 +788,23 @@ i.e. change right window to bottom, or change bottom window to right."
 ;;; yas
 (use-package yasnippet :ensure t :pin melpa :config (yas-global-mode +1))
 
+(defhydra hydra-yas ()
+  "
+Yasnippet^^
+---------------------------------
+_s_ ins
+_n_ new
+_v_ visit
+
+_SPC_ cancel
+"
+  ("s" yas-insert-snippet :exit t)
+  ("n" yas-new-snippet :exit t)
+  ("v" yas-visit-snippet-file :exit t)
+  ("SPC" nil)
+  )
+
+
 (use-package yasnippet-snippets :ensure t :pin melpa :after yasnippet)
 
 
@@ -1161,6 +1178,9 @@ _q_: (quit)
    
 
   ;;"'" '(general-simulate-key "C-'" :name mm)
+
+  "SPC" 'yas-insert-snippet
+  "M-y" 'hydra-yas/body
   )
 
 
