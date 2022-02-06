@@ -3,6 +3,7 @@
 #export LANG=ko_KR.UTF-8
 
 # Run all system xinitrc shell scripts
+FOO=<<'CUT'
 xinitdir="/etc/X11/xinit/xinitrc.d"
 if [ -d "$xinitdir" ]; then
     for script in $xinitdir/*; do
@@ -12,19 +13,38 @@ if [ -d "$xinitdir" ]; then
         fi
     done
 fi
+CUT
 
 
 OSNAME=`uname`
 
 export PATH=$PATH:$HOME/local/bin
 
+# fedora 34, xdm oddity
+[[ ":$PATH:" != *":/usr/local/bin:"* ]] && PATH="/usr/local/bin:${PATH}"
+
+
 export TERMINAL=x-terminal-emulator
 
 # fcitx/ibus + hangul
-export GTK_IM_MODULE=fcitx
-export QT_IM_MODULE=fcitx
-export XMODIFIERS=@im=fcitx
-fcitx -s 5 -r -d &
+ibus_daemon=$(which ibus-daemon)
+if [[ -x $ibus_daemon ]]; then
+  export GTK_IM_MODULE=ibus
+  export QT_IM_MODULE=ibus
+  export XMODIFIERS=@im=ibus
+  ibus-daemon -d 
+else
+  if [[ -z "$GTK_IM_MODULE" ]]; then
+    # without im-config: 
+    export GTK_IM_MODULE=fcitx
+    export QT_IM_MODULE=fcitx
+    export XMODIFIERS=@im=fcitx
+    pgrep fcitx || fcitx -s 5 -r -d &
+  elif [[ "$GTK_IM_MODULE" == "fcitx" ]]; then
+    # fedora 34, xdm oddity, once again
+    pgrep fcitx || fcitx -s 5 -r -d &
+  fi
+fi
 
 # ssh / gnome-keyring
 if [ -z "${SSH_AUTH_SOCK}" ]; then
@@ -121,15 +141,25 @@ hsetroot -solid '#3f4058' &
 # caps->ctrl
 ~/local/bin/caps-to-ctrl.sh 2 &
 
+# urxvtd
+#urxvtd --quiet --opendisplay --fork &
+
 #
 test -f ~/.xinitrc2 && ~/.xinitrc2
 
 
 #
-dbus-launch xfce4-panel &
-#(sleep 2s; polybar topbar) &
-#(sleep 7s; pkill -USR1 topbar) &
-exec dbus-launch openbox ${1+"$@"}
-
+if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+  dbus-launch xfce4-panel &
+  #dbus-launch lxpanel &
+  #(sleep 2s; polybar topbar) &
+  #(sleep 7s; pkill -USR1 topbar) &
+  exec dbus-launch openbox ${1+"$@"}
+else
+  # under xsession
+  #lxpanel &
+  xfce4-panel &
+  exec openbox ${1+"$@"}
+fi
 
 ###EOF

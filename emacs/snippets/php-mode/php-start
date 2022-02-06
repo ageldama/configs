@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: <?php
+# key: 
+# --
+<?php declare(strict_types=1);

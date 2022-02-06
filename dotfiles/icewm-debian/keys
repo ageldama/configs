@@ -12,7 +12,7 @@ key "Shift+Super+r" icesh restart
 key "Super+p" gnome-screenshot
 key "Shift+Super+p" gnome-screenshot -i
 
-key "Super+e" thunar
+key "Super+e" pcmanfm
 key "Shift+Super+e" x-terminal-emulator -e mc
 
 key "Super+w" wg.pl

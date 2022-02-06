@@ -152,6 +152,18 @@
 (setq make-backup-files nil)
 (setq version-control   nil)   ; backup uses version numbers?
 
+;; (setq backup-directory-alist
+;;       `((".*" . ,temporary-file-directory)))
+
+;; (setq auto-save-file-name-transforms
+;;       `((".*" ,temporary-file-directory t)))
+
+;; (setq auto-save-file-name-transforms
+;;   `((".*" "~/.emacs-saves/" t)))
+
+;; (setq create-lockfiles nil)
+
+
 
 ;;; similar buffer names
 (setq uniquify-buffer-name-style 'post-forward-angle-brackets)
@@ -495,6 +507,10 @@
 (use-package flycheck :ensure t :pin melpa
   :config (global-flycheck-mode +1))
 
+(use-package flycheck-pos-tip :ensure t :pin melpa
+  :config (with-eval-after-load 'flycheck
+            (flycheck-pos-tip-mode)))
+
 
 ;;; company.
 (use-package company :ensure t :pin melpa
@@ -654,10 +670,15 @@ i.e. change right window to bottom, or change bottom window to right."
   (avy-timeout-seconds 0.3)
   (avy-style 'pre)
   :config
-  (progn (global-set-key (kbd "M-g l") 'avy-goto-line)
-         (global-set-key (kbd "M-g f") 'avy-goto-char)
-         (global-set-key (kbd "M-g M-j") 'hydra-avy-goto/body)
-         (global-set-key (kbd "M-g C-t") 'avy-pop-mark)))
+  (progn
+    (global-set-key (kbd "C-'") 'avy-goto-char-timer)
+    (global-set-key (kbd "C-:") 'avy-goto-char-2)
+    (global-set-key (kbd "C-c C-j") 'avy-resume)
+    (global-set-key (kbd "M-g l") 'avy-goto-line)
+    (global-set-key (kbd "M-g f") 'avy-goto-char)
+    (global-set-key (kbd "M-g w") 'avy-goto-word-1)
+    (global-set-key (kbd "M-g M-j") 'hydra-avy-goto/body)
+    (global-set-key (kbd "M-g C-t") 'avy-pop-mark)))
 
 
 ;;; expand-region
@@ -762,6 +783,29 @@ i.e. change right window to bottom, or change bottom window to right."
   :diminish
   :config
   (editorconfig-mode 1))
+
+
+;;; yas
+(use-package yasnippet :ensure t :pin melpa :config (yas-global-mode +1))
+
+(defhydra hydra-yas ()
+  "
+Yasnippet^^
+---------------------------------
+_s_ ins
+_n_ new
+_v_ visit
+
+_SPC_ cancel
+"
+  ("s" yas-insert-snippet :exit t)
+  ("n" yas-new-snippet :exit t)
+  ("v" yas-visit-snippet-file :exit t)
+  ("SPC" nil)
+  )
+
+
+(use-package yasnippet-snippets :ensure t :pin melpa :after yasnippet)
 
 
 ;;; moonshot
@@ -1098,6 +1142,7 @@ _q_: (quit)
   ;; avy: Moved to `M-g
   "l"   'avy-goto-line
   "w"   'avy-goto-word-0
+  ;; "j"   'avy-goto-char-timer
   ;; "M-j" 'avy-goto-char
   ;; "C-j" 'hydra-avy-goto/body
   ;; "C-t" 'avy-pop-mark
@@ -1133,6 +1178,9 @@ _q_: (quit)
    
 
   ;;"'" '(general-simulate-key "C-'" :name mm)
+
+  "SPC" 'yas-insert-snippet
+  "M-y" 'hydra-yas/body
   )
 
 

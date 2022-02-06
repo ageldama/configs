@@ -65,6 +65,9 @@ autoload zmv
 alias zcp='zmv -C'
 alias zln='zmv -L'
 
+if [[ -d $HOME/local/z.lua ]]; then
+  source $HOME/local/z.lua/z.lua.plugin.zsh
+fi
 
 
 if [[ -f ~/.zshrc.local2 ]]; then

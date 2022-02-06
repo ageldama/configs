@@ -36,9 +36,11 @@ case $chosen in
         pactl-mute.pl sink all; pactl-mute.pl source all
         ;;
     $poweroff)
+        pgrep systemd && systemctl poweroff
         xterm -e sudo poweroff
         ;;
     $reboot)
+        pgrep systemd && systemctl reboot
         xterm -e sudo reboot
         ;;
 esac

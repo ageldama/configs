@@ -28,3 +28,5 @@ if [[ -z $TMUX ]]; then
     ;;
   esac
 fi
+
+

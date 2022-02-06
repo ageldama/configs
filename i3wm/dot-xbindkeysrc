@@ -5,6 +5,10 @@
 "xdotool key Next"  # wheel ->
   b:7
 "xdotool key Next"
+  b:8
+"xdotool key Prior"
+  b:9
+"xdotool key Next"
   b:10
 "xdotool key Prior"
   b:11
@@ -17,6 +21,11 @@
 
 "x-terminal-emulator"
   Mod4 + Return
+
+
+"urxvt"
+  Mod4 + Shift + Return
+
 
 #"gmrun"
 #"xfce4-appfinder -c"
@@ -41,7 +50,7 @@
 "gnome-screenshot -i"
   Mod4 + Shift + p
 
-"thunar "
+"pcmanfm "
   Mod4 + e
 "x-terminal-emulator -e mc"
   Mod4 + Shift + e
@@ -58,7 +67,7 @@
   Mod4 + F10
 
 "rofi-toggles.sh"
-  Mod4 + F9
+  Control + Alt + Delete
 
 "xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)"
   Mod4 + Shift + F9

@@ -18,10 +18,9 @@ xset b off
 
 xrdb -merge ~/.Xresources
 
-killall icewmbg &
 (sleep 1s; xsetroot -solid '#333333') &
 
-(sleep 3s; ~/local/bin/caps-to-ctrl.sh) &
+~/local/bin/caps-to-ctrl.sh &
 
 ssh-add < /dev/null &
 
@@ -33,10 +32,8 @@ xscreensaver -no-splash &
 
 dunst &
 
-$HOME/.icewm/startup &
-
 test -f ~/.xinitrc2 && ~/.xinitrc2
 
-exec icewm
+exec i3
 
 
