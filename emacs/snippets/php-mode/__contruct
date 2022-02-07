@@ -2,6 +2,6 @@
 # name: __contruct
 # key: 
 # --
-public __construct()
+public function __construct()
 {
 }
