@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# name: __contruct
+# key: 
+# --
+public __construct()
+{
+}
