@@ -1179,7 +1179,7 @@ _q_: (quit)
 
   ;;"'" '(general-simulate-key "C-'" :name mm)
 
-  "SPC" 'yas-insert-snippet
+  "RET" 'yas-insert-snippet
   "M-y" 'hydra-yas/body
   )
 
