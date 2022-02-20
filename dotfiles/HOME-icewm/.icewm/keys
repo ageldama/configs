@@ -1,5 +1,5 @@
-key "Alt+Left" icesh -f left top sizeto 50% 100%
+#key "Control+Shift+Left" icesh -f left top sizeto 50% 100%
 
-key "Alt+Right" icesh -f right top sizeto 50% 100%
+#key "Control+Shift+Right" icesh -f right top sizeto 50% 100%
 
 
