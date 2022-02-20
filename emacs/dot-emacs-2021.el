@@ -557,6 +557,8 @@
             (setq fill-column most-positive-fixnum)
             (turn-off-auto-fill)
             (local-set-key (kbd "C-c l") 'org-store-link)
+            (when (fboundp 'yas-minor-mode)
+              (yas-minor-mode -1))
             ))
 
 (setq org-log-done 'time)
@@ -792,12 +794,14 @@ i.e. change right window to bottom, or change bottom window to right."
   "
 Yasnippet^^
 ---------------------------------
+_m_ toggle
 _s_ ins
 _n_ new
 _v_ visit
 
 _SPC_ cancel
 "
+  ("m" yas-minor-mode :exit nil)
   ("s" yas-insert-snippet :exit t)
   ("n" yas-new-snippet :exit t)
   ("v" yas-visit-snippet-file :exit t)
