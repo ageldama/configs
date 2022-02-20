@@ -3,4 +3,22 @@ Win95Keys=0 # was 0
 KeySysWindowList="Super+F1"
 
 
-
+TitleFontNameXft = "Noto Sans CJK KR:size=12"
+MenuFontNameXft = "Noto Sans CJK Kr:size=10:bold"
+StatusFontNameXft = "D2Coding:size=12:bold"
+QuickSwitchFontNameXft = "D2Coding:size=12:bold"
+NormalButtonFontNameXft = "Noto Sans CJK KR:size=12"
+ActiveButtonFontNameXft = "Noto Sans CJK KR:size=12:bold"
+NormalTaskBarFontNameXft = "Noto Sans CJK KR:size=12"
+ActiveTaskBarFontNameXft = "Noto Sans CJK KR:size=12:bold"
+ToolButtonFontNameXft = "Noto Sans CJK KR:size=12"
+NormalWorkspaceFontNameXft = "Noto Sans CJK KR:size=12"
+ActiveWorkspaceFontNameXft = "Noto Sans CJK KR:size=12"
+MinimizedWindowFontNameXft = "Noto Sans CJK KR:size=12"
+ListBoxFontNameXft = "Noto Sans CJK KR:size=12"
+ToolTipFontNameXft = "Noto Sans CJK KR:size=12"
+ClockFontNameXft = "D2Coding:size=12"
+TempFontNameXft = "D2Coding:size=12"
+ApmFontNameXft = "D2Coding:size=12"
+InputFontNameXft = "D2Coding:size=12"
+LabelFontNameXft = "Noto Sans CJK KR:size=12"
