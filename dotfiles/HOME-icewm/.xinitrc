@@ -28,6 +28,8 @@ xset b off
 #xset s on
 #xset s 300
 
+xrdb -merge $HOME/.Xresources &
+
 xscreensaver -no-splash &
 
 # Mute all audio input
