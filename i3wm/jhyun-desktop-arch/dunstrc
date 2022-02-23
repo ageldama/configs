@@ -161,7 +161,8 @@ icon_path = /usr/share/icons/gnome/48x48/actions/:/usr/share/icons/gnome/48x48/a
 
 
 frame_width = 3
-frame_color = "#8EC07C"
+#frame_color = "#8EC07C"
+frame_color = "#FFFFFF"
 
 [shortcuts]
 
@@ -171,15 +172,15 @@ frame_color = "#8EC07C"
 # Xev might be helpful to find names for keys.
 
 # Close notification.
-close = mod4+shift+ctrl+F8
+close = mod4+ctrl+Escape
 
 # Close all notifications.
-close_all = mod4+shift+ctrl+F9
+close_all = mod4+shift+ctrl+Escape
 
 # Redisplay last message(s).
 # On the US keyboard layout "grave" is normally above TAB and left
 # of "1".
-history = mod4+shift+F8
+history = mod4+ctrl+F1
 
 # Context menu.
 context = mod4+shift+ctrl+mod1+F8
@@ -187,24 +188,21 @@ context = mod4+shift+ctrl+mod1+F8
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
-frame_color = "#3B7C87"
-foreground = "#3B7C87"
-background = "#191311"
-#background = "#2B313C"
+frame_color = "#00ff00"
+foreground = "#00ff00"
+background = "#999999"
 timeout = 4
 
 [urgency_normal]
-frame_color = "#5B8234"
-foreground = "#5B8234"
-background = "#191311"
-#background = "#2B313C"
+frame_color = "#00ffff"
+foreground = "#00ffff"
+background = "#999999"
 timeout = 6
 
 [urgency_critical]
-frame_color = "#B7472A"
-foreground = "#B7472A"
-background = "#191311"
-#background = "#2B313C"
+frame_color = "#ff0000"
+foreground = "#ff0000"
+background = "#999999"
 timeout = 8
 
 
