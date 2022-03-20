@@ -771,6 +771,11 @@ i.e. change right window to bottom, or change bottom window to right."
     (ansi-term sh-bin)))
 
 
+
+;;; shell-pop
+(use-package shell-pop :ensure t :pin melpa)
+
+
 ;;; stardict, sdcv
 (use-package sdcv :ensure t :pin melpa
   :config 
@@ -1074,6 +1079,7 @@ _q_: (quit)
 
 (my-global-leader-def
   "f" 'files-dirs-hs/body
+  "$" 'shell-pop
 
   ;;"/" 'swiper-isearch-thing-at-point
 
