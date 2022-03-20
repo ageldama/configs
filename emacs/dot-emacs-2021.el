@@ -1074,8 +1074,8 @@ _q_: (quit)
 
 (general-create-definer my-local-leader-def
   :states '(normal visual insert emacs)
-  :prefix "SPC `"
-  :non-normal-prefix "<C-f12>"
+  :prefix "SPC SPC"
+  :non-normal-prefix "<f12> SPC"
   :prefix-name "mm")
 
 (my-global-leader-def
