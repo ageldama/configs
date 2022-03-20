@@ -751,19 +751,6 @@ i.e. change right window to bottom, or change bottom window to right."
 "
 
 
-;;; eshell is my fren
-(defun eshell-here ()
-  (interactive)
-  (let ((eshell-buf (get-buffer "*eshell*")))
-    (if (null eshell-buf)
-        ;; just start new eshell
-        (eshell)
-      ;; else:
-      (with-current-buffer eshell-buf
-        (eshell/pushd (eshell/pwd))
-        (cd (pwd))
-        (eshell-emit-prompt)))))
-
 ;;; or, ansi-term is.
 (defun ansi-term-here ()
   (interactive)
@@ -908,7 +895,7 @@ _SPC_ cancel
   ("n" find-name-dired :exit t)
   ("d" dired :exit t)
   ("M-d" bjm/ivy-dired-recent-dirs :exit t)
-  ("e" eshell-here :exit t)
+  ("e" eshell-toggle :exit t)
   ("a" ansi-term-here :exit t)
   ("." treemacs :exit t)
 
