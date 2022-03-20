@@ -5,6 +5,6 @@
 (use-package modern-cpp-font-lock :ensure t :pin melpa
   :config (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode))
 
-(load-file (s-concat langsup-base-path "/goog-c-style.el"))
+;; (load-file (s-concat langsup-base-path "/goog-c-style.el"))
 
 
