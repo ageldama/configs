@@ -773,7 +773,11 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; shell-pop
-(use-package shell-pop :ensure t :pin melpa)
+;; (use-package shell-pop :ensure t :pin melpa)
+
+
+;;; eshell-toggle
+(use-package eshell-toggle :pin melpa :ensure t)
 
 
 ;;; stardict, sdcv
@@ -1089,7 +1093,7 @@ _q_: (quit)
 
 (my-global-leader-def
   "f" 'files-dirs-hs/body
-  "$" 'shell-pop
+  "$" 'eshell-toggle
 
   ;;"/" 'swiper-isearch-thing-at-point
 
