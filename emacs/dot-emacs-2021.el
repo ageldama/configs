@@ -1063,18 +1063,28 @@ _q_: (quit)
 
 ;; (evil-global-set-key 'normal "g " 'hydra-avy-goto/body)
 
+
+;;; snails
+;; (quelpa '(snails :repo "manateelazycat/snails" :fetcher github))
+;; (setq snails-show-with-frame nil)
+;; (add-hook 'snails-mode-hook
+;;           (lambda () (evil-mode -1)))
+
+
+
+
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
 (general-create-definer my-global-leader-def
   :states '(normal visual insert emacs)
   :prefix "SPC"
-  :non-normal-prefix "M-SPC")
+  :non-normal-prefix "<f12>")
 
 (general-create-definer my-local-leader-def
   :states '(normal visual insert emacs)
-  :prefix "SPC SPC"
-  :non-normal-prefix "C-c SPC"
+  :prefix "SPC `"
+  :non-normal-prefix "<C-f12>"
   :prefix-name "mm")
 
 (my-global-leader-def
@@ -1098,12 +1108,12 @@ _q_: (quit)
   "m" 'counsel-mark-ring
   "i" 'counsel-imenu
 
-  "`"    '(:ignore t :which-key "misc")
-  "` p"  'counsel-list-processes
-  "` b"  'counsel-bookmark
-  "` d"  'sdcv-search-input
-  "` s"  'delete-trailing-whitespace
-  "` G"  'garbage-collect
+  "~"    '(:ignore t :which-key "misc")
+  "~ p"  'counsel-list-processes
+  "~ b"  'counsel-bookmark
+  "~ d"  'sdcv-search-input
+  "~ s"  'delete-trailing-whitespace
+  "~ G"  'garbage-collect
 
   "e"   'flycheck-next-error
   "M-e" 'flycheck-previous-error
