@@ -508,9 +508,9 @@
 (use-package flycheck :ensure t :pin melpa
   :config (global-flycheck-mode +1))
 
-(use-package flycheck-pos-tip :ensure t :pin melpa
-  :config (with-eval-after-load 'flycheck
-            (flycheck-pos-tip-mode)))
+;;(use-package flycheck-pos-tip :ensure t :pin melpa
+;;  :config (with-eval-after-load 'flycheck
+;;            (flycheck-pos-tip-mode)))
 
 
 ;;; company.
