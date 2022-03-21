@@ -2,7 +2,7 @@ Win95Keys=0 # was 0
 
 KeySysWindowList="Super+F1"
 
-TimeFormat = "%X, %d %a, %b %Y"
+TimeFormat = "%X, %d %a %b %Y"
 
 
 TitleFontNameXft = "Noto Sans CJK KR:size=9:bold"
