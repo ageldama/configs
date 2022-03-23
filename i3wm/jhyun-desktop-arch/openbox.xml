@@ -362,6 +362,12 @@
     </keybind>
     -->
 
+    <keybind key="W-F2">
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
+    </keybind>
+
     <!-- Keybindings for windows -->
     <keybind key="W-S-S">
       <action name="ToggleShade"/>
