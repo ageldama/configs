@@ -67,7 +67,8 @@
   Mod4 + F10
 
 "rofi-toggles.sh"
-  Control + Alt + Delete
+  Mod4 + F9
+#  Control + Alt + Delete
 
 "xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)"
   Mod4 + Shift + F9

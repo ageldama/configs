@@ -12,7 +12,7 @@ sub rand_color {
 my $c = rand_color;
 
 system(sprintf("hsetroot -solid '%s'", $c));
-system(sprintf("notify-send '%s'", $c));
+system(sprintf("notify-send -u low '%s'", $c));
 
 
 

@@ -28,6 +28,8 @@ xset b off
 #xset s on
 #xset s 300
 
+xrdb -merge $HOME/.Xresources &
+
 xscreensaver -no-splash &
 
 # Mute all audio input
@@ -66,9 +68,10 @@ hsetroot -solid '#3f4058' &
 # caps->ctrl
 ~/local/bin/caps-to-ctrl.sh 2 &
 
+test -f ~/.use-keypad-pointer && setxkbmap -option keypad:pointerkeys
+
 #
 test -f ~/.xinitrc2 && ~/.xinitrc2
-
 
 #
 exec dbus-launch icewm ${1+"$@"}
