@@ -1,0 +1,10 @@
+~/.use-icewm
+~/.use-openbox
+
+* Obsolete, But Working
+  ~/.use-icewm-debian
+  ~/.use-i3-xsession
+
+* Input Method, etc
+  ~/.use-ibus : (default: false == fcitx)
+  ~/.use-keypad-pointer

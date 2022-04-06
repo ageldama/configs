@@ -469,7 +469,8 @@
 (use-package undo-tree
   :diminish 
   :ensure t
-  :init (global-undo-tree-mode))
+  :init (global-undo-tree-mode)
+  :config (setq undo-tree-auto-save-history nil))
 
 
 
@@ -507,9 +508,9 @@
 (use-package flycheck :ensure t :pin melpa
   :config (global-flycheck-mode +1))
 
-(use-package flycheck-pos-tip :ensure t :pin melpa
-  :config (with-eval-after-load 'flycheck
-            (flycheck-pos-tip-mode)))
+;;(use-package flycheck-pos-tip :ensure t :pin melpa
+;;  :config (with-eval-after-load 'flycheck
+;;            (flycheck-pos-tip-mode)))
 
 
 ;;; company.
@@ -750,24 +751,20 @@ i.e. change right window to bottom, or change bottom window to right."
 "
 
 
-;;; eshell is my fren
-(defun eshell-here ()
-  (interactive)
-  (let ((eshell-buf (get-buffer "*eshell*")))
-    (if (null eshell-buf)
-        ;; just start new eshell
-        (eshell)
-      ;; else:
-      (with-current-buffer eshell-buf
-        (eshell/pushd (eshell/pwd))
-        (cd (pwd))
-        (eshell-emit-prompt)))))
-
 ;;; or, ansi-term is.
 (defun ansi-term-here ()
   (interactive)
   (let* ((sh-bin (getenv "SHELL")))
     (ansi-term sh-bin)))
+
+
+
+;;; shell-pop
+;; (use-package shell-pop :ensure t :pin melpa)
+
+
+;;; eshell-toggle
+(use-package eshell-toggle :pin melpa :ensure t)
 
 
 ;;; stardict, sdcv
@@ -898,7 +895,7 @@ _SPC_ cancel
   ("n" find-name-dired :exit t)
   ("d" dired :exit t)
   ("M-d" bjm/ivy-dired-recent-dirs :exit t)
-  ("e" eshell-here :exit t)
+  ("e" eshell-toggle :exit t)
   ("a" ansi-term-here :exit t)
   ("." treemacs :exit t)
 
@@ -1057,22 +1054,33 @@ _q_: (quit)
 
 ;; (evil-global-set-key 'normal "g " 'hydra-avy-goto/body)
 
+
+;;; snails
+;; (quelpa '(snails :repo "manateelazycat/snails" :fetcher github))
+;; (setq snails-show-with-frame nil)
+;; (add-hook 'snails-mode-hook
+;;           (lambda () (evil-mode -1)))
+
+
+
+
 ;;; General -- Leading Keybinder
 (use-package general :ensure t :pin melpa)
 
 (general-create-definer my-global-leader-def
   :states '(normal visual insert emacs)
   :prefix "SPC"
-  :non-normal-prefix "M-SPC")
+  :non-normal-prefix "<f12>")
 
 (general-create-definer my-local-leader-def
   :states '(normal visual insert emacs)
   :prefix "SPC SPC"
-  :non-normal-prefix "C-c SPC"
+  :non-normal-prefix "<f12> SPC"
   :prefix-name "mm")
 
 (my-global-leader-def
   "f" 'files-dirs-hs/body
+  "$" 'eshell-toggle
 
   ;;"/" 'swiper-isearch-thing-at-point
 
@@ -1091,12 +1099,12 @@ _q_: (quit)
   "m" 'counsel-mark-ring
   "i" 'counsel-imenu
 
-  "`"    '(:ignore t :which-key "misc")
-  "` p"  'counsel-list-processes
-  "` b"  'counsel-bookmark
-  "` d"  'sdcv-search-input
-  "` s"  'delete-trailing-whitespace
-  "` G"  'garbage-collect
+  "~"    '(:ignore t :which-key "misc")
+  "~ p"  'counsel-list-processes
+  "~ b"  'counsel-bookmark
+  "~ d"  'sdcv-search-input
+  "~ s"  'delete-trailing-whitespace
+  "~ G"  'garbage-collect
 
   "e"   'flycheck-next-error
   "M-e" 'flycheck-previous-error

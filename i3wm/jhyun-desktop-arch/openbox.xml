@@ -120,7 +120,7 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>10</number>
+    <number>5</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>#1</name>
@@ -202,7 +202,6 @@
       </action>
     </keybind>
     -->
-
     <keybind key="W-Left">
       <action name="GoToDesktop">
         <to>left</to>
@@ -251,7 +250,6 @@
         <wrap>no</wrap>
       </action>
     </keybind>
-
     <keybind key="W-1">
       <action name="GoToDesktop">
         <to>1</to>
@@ -302,7 +300,6 @@
         <to>10</to>
       </action>
     </keybind>
-
     <keybind key="S-W-1">
       <action name="SendToDesktop">
         <to>1</to>
@@ -361,7 +358,11 @@
       <action name="ToggleShowDesktop"/>
     </keybind>
     -->
-
+    <keybind key="W-F2">
+      <action name="ShowMenu">
+        <menu>root-menu</menu>
+      </action>
+    </keybind>
     <!-- Keybindings for windows -->
     <keybind key="W-S-S">
       <action name="ToggleShade"/>
@@ -377,7 +378,6 @@
     <!--     <menu>client-menu</menu> -->
     <!--   </action> -->
     <!-- </keybind> -->
-
     <!-- Keybindings for window switching -->
     <!--
     <keybind key="A-S-Tab">
@@ -412,13 +412,11 @@
       </action>
     </keybind>
     -->
-
     <keybind key="W-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
       </action>
     </keybind>
-
     <!--
     <keybind key="W-S-Return">
       <action name="Execute">
@@ -426,8 +424,7 @@
       </action>
     </keybind>
     -->
-
-  <!--
+    <!--
     <keybind key="W-Return">
       <action name="Execute">
         <command>x-terminal-emulator</command>
@@ -441,7 +438,6 @@
     </keybind>
 
     -->
-
     <!-- Keybindings for window switching with the arrow keys -->
     <keybind key="W-z">
       <keybind key="Right">
@@ -464,7 +460,6 @@
           <direction>down</direction>
         </action>
       </keybind>
-
       <keybind key="S-Right">
         <action name="DirectionalTargetWindow">
           <direction>right</direction>
@@ -486,7 +481,6 @@
         </action>
       </keybind>
     </keybind>
-    
     <keybind key="W-S-f">
       <action name="ToggleFullscreen"/>
     </keybind>
@@ -503,7 +497,6 @@
         <direction>horizontal</direction>
       </action>
     </keybind>
-
     <keybind key="W-S-F11">
       <action name="ToggleOmnipresent"/>
       <action name="ToggleDecorations"/>
@@ -512,7 +505,6 @@
       <action name="ToggleAlwaysOnBottom"/>
       <!-- <action name="SendToLayer"><layer>bottom</layer></action> -->
     </keybind>
-
     <keybind key="W-A-Up">
       <action name="MoveToEdge">
         <direction>north</direction>
@@ -533,7 +525,6 @@
         <direction>west</direction>
       </action>
     </keybind>
-
     <keybind key="W-C-Up">
       <action name="GrowToEdge">
         <direction>north</direction>
@@ -554,27 +545,21 @@
         <direction>west</direction>
       </action>
     </keybind>
-
-
     <keybind key="W-a">
       <action name="Move"/>
     </keybind>
     <keybind key="W-s">
       <action name="Resize"/>
     </keybind>
-      
     <keybind key="W-S-R">
       <action name="Reconfigure"/>
     </keybind>
-
-
     <keybind key="W-o">
       <action name="MoveResizeTo">
         <!-- move to next monitor -->
         <monitor>next</monitor>
       </action>
     </keybind>
-
     <!-- Keybindings for running applications -->
     <!--
     <keybind key="W-e">
@@ -671,11 +656,7 @@
       </action>
     </keybind>
     -->
-
   </keyboard>
-
-
-
   <mouse>
     <dragThreshold>1</dragThreshold>
     <!-- number of pixels the mouse must move before a drag begins -->
@@ -688,7 +669,6 @@
     <screenEdgeWarpMouse>false</screenEdgeWarpMouse>
     <!-- Set this to TRUE to move the mouse pointer across the desktop when
          switching due to hitting the edge of the screen -->
-
     <context name="Frame">
       <mousebind button="A-Left" action="Press">
         <action name="Focus"/>
@@ -713,7 +693,6 @@
         <action name="FocusToBottom"/>
         <action name="Unfocus"/>
       </mousebind>
-
       <!--
       <mousebind button="W-Up" action="Click">
         <action name="GoToDesktop">
@@ -747,7 +726,6 @@
       </mousebind>
       -->
     </context>
-
     <context name="Titlebar">
       <mousebind button="Left" action="Drag">
         <action name="Move"/>
@@ -777,7 +755,6 @@
         </action>
       </mousebind>
     </context>
-
     <context name="Titlebar Top Right Bottom Left TLCorner TRCorner BRCorner BLCorner">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -873,7 +850,6 @@
         </action>
       </mousebind>
     </context>
-
     <context name="AllDesktops">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -884,7 +860,6 @@
         <action name="ToggleOmnipresent"/>
       </mousebind>
     </context>
-
     <context name="Shade">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -894,7 +869,6 @@
         <action name="ToggleShade"/>
       </mousebind>
     </context>
-
     <context name="Iconify">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -904,7 +878,6 @@
         <action name="Iconify"/>
       </mousebind>
     </context>
-
     <context name="Maximize">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -935,7 +908,6 @@
         </action>
       </mousebind>
     </context>
-
     <context name="Close">
       <mousebind button="Left" action="Press">
         <action name="Focus"/>
@@ -946,7 +918,6 @@
         <action name="Close"/>
       </mousebind>
     </context>
-
     <context name="Desktop">
       <!--
       <mousebind button="Up" action="Click">
@@ -991,7 +962,6 @@
       </mousebind>
       -->
     </context>
-
     <context name="Root">
       <!-- Menus -->
       <mousebind button="Middle" action="Press">
@@ -1005,7 +975,6 @@
         </action>
       </mousebind>
     </context>
-
     <context name="MoveResize">
       <!--
       <mousebind button="Up" action="Click">
@@ -1031,7 +1000,6 @@
       -->
     </context>
   </mouse>
-
   <menu>
     <!-- You can specify more than one menu file in here and they are all loaded,
        just don't make menu ids clash or, well, it'll be kind of pointless -->
@@ -1057,7 +1025,6 @@
     <manageDesktops>yes</manageDesktops>
     <!-- show the manage desktops section in the client-list-(combined-)menu -->
   </menu>
-
   <applications>
     <!--
   # this is an example with comments through out. use these to make your
