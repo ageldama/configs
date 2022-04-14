@@ -15,3 +15,11 @@
   )
 
 (bind-company-local-key 'sly-mrepl-mode-hook (kbd "<C-tab>"))
+
+(defun sly-start-qlot (directory)
+  (interactive (list (read-directory-name "Project directory: ")))
+  (sly-start :program "qlot"
+             :program-args '("exec" "ros" "-S" "." "run")
+             :directory directory
+             :name 'qlot
+             :env (list (concat "PATH=" (mapconcat 'identity exec-path ":")))))
