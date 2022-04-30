@@ -5,3 +5,16 @@ if [ -z "${PERL_LOCAL_LIB_ROOT}" ]; then
   eval $(perl -Mlocal::lib)
 fi
 
+
+# guix
+GUIX_PROFILE="$HOME/.guix-profile"
+. "$GUIX_PROFILE/etc/profile"
+
+eval $(guix package --search-paths -p "$HOME/.guix-profile")
+
+
+export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
+
+export PKG_CONFIG_PATH=$HOME/.guix-profile/lib/pkgconfig
+
+
