@@ -10,7 +10,7 @@ fi
 GUIX_PROFILE="$HOME/.guix-profile"
 . "$GUIX_PROFILE/etc/profile"
 
-eval $(guix package --search-paths -p "$HOME/.guix-profile")
+#export PATH=$PATH:$(guix package --search-paths -p "/home/jhyun/.guix-profile" |  sed 's/export PATH=//')
 
 
 export GUIX_LOCPATH=$HOME/.guix-profile/lib/locale
