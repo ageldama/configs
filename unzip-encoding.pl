@@ -45,6 +45,9 @@ sub unzip_with_encoding {
     my $crc = $member->crc32();
     print 'Extracting: ', $mem_fn_2, "\n";
     $member->extractToFileNamed($mem_fn_2);
+
+    next if $size == 0;
+
     # check the size and the crc32:
     my $filesize = stat($mem_fn_2)->size;
     $filesize == $size or warn "Size mismatch: extracted($filesize) <=> archived($size)";
