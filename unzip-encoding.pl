@@ -13,6 +13,22 @@ use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 use Digest::CRC;
 
 
+#
+sub HELP_MESSAGE {
+  my $fh = shift;
+  print {$fh} <<'HELP';
+
+Options:
+
+    -f[FILENAME] : zip filename.
+
+    -e[ENCODING] : filename encoding in the zip, default=euc-kr.
+
+Exiting
+HELP
+  exit 0;
+}
+
 sub crc32_file {
   my $fn = shift;
 
