@@ -1,3 +1,4 @@
+#!/usr/bin/env perl
 use utf8;
 use strict;
 use warnings;
@@ -11,6 +12,22 @@ use Getopt::Std;
 use Archive::Zip qw( :ERROR_CODES :CONSTANTS );
 use Digest::CRC;
 
+
+#
+sub HELP_MESSAGE {
+  my $fh = shift;
+  print {$fh} <<'HELP';
+
+Options:
+
+    -f[FILENAME] : zip filename.
+
+    -e[ENCODING] : filename encoding in the zip, default=euc-kr.
+
+Exiting
+HELP
+  exit 0;
+}
 
 sub crc32_file {
   my $fn = shift;
@@ -44,6 +61,9 @@ sub unzip_with_encoding {
     my $crc = $member->crc32();
     print 'Extracting: ', $mem_fn_2, "\n";
     $member->extractToFileNamed($mem_fn_2);
+
+    next if $size == 0;
+
     # check the size and the crc32:
     my $filesize = stat($mem_fn_2)->size;
     $filesize == $size or warn "Size mismatch: extracted($filesize) <=> archived($size)";
