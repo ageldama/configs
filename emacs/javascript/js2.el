@@ -45,7 +45,7 @@
 (use-package eslint-fix :ensure t :pin melpa)
 
 ;;; keymap.
-(defhydra hydra-lang-js2
+(defhydra hydra-lang-js2 ()
   "js2"
   
   ("f" prettier-js "prettier" :exit t)
@@ -54,7 +54,7 @@
 
   ("SPC" nil))
 
-(defhydra hydra-lang-json
+(defhydra hydra-lang-json ()
   "json"
   ("p" jsons-print-path "print-path" :exit t)
   ("f" json-mode-beautify "beautify" :exit t)
