@@ -57,38 +57,39 @@
 (flycheck-add-mode 'typescript-tslint 'web-mode)
 
 
-;;; General keymap.
-(when (fboundp 'general-create-definer)
-  (progn
-    ;; TIDE
-    (my-local-leader-def :keymaps 'tide-mode-map
-     ;;;
-      "?" 'tide-documentation-at-point
+;;; keymap.
+
+(defhydra hydra-lang-tide ()
+  "tide"
+     ("?" tide-documentation-at-point "doc" :exit t)
       
-      "R s" 'tide-rename-symbol
-      "R R" 'tide-refactor
-      "R f" 'tide-rename-file      
+     ("R s" tide-rename-symbol "ren-sym" :exit t)
+     ("R R" tide-refactor "refactor" :exit t)
+     ("R f" tide-rename-file      "ren-file" :exit t)
       
-      "f" 'tide-format
-      "1" 'tide-fix
-      "o" 'tide-organize-imports      
-      "!" 'tide-project-errors
+     ("f" tide-format "fmt" :exit t)
+     ("1" tide-fix "fix" :exit t)
+     ("o" tide-organize-imports      "org-imp" :exit t)
+     ("!" tide-project-errors "proj-errs" :exit t)
       
-      "*" 'tide-jsdoc-template
+     ("*" tide-jsdoc-template "jsdoc" :exit t)
       
-      "M-_" 'tide-add-tslint-disable-next-line
+     ("M-_" tide-add-tslint-disable-next-line "tslint-next" :exit t)
       
-      ;;
-      "<" 'tide-references      
-      "," 'tide-jump-back
-      "." 'tide-jump-to-definition
-      ">" 'tide-jump-to-implementation
+     ("<" tide-references       "ref" :exit t)
+     ("," tide-jump-back "jmp-back" :exit t)
+     ("." tide-jump-to-definition "jmp-def" :exit t)
+     (">" tide-jump-to-implementation "jmp-impl" :exit t)
       
       ;;
-      "` R" 'tide-restart-server
-      "` v" 'tide-verify-setup
-      "` l" 'tide-list-servers
-      )))
+     ("` R" tide-restart-server "restart-srv" :exit t)
+     ("` v" tide-verify-setup "verify-setup" :exit t)
+     ("` l" tide-list-servers "list-srvs" :exit t)
+
+     ("SPC" nil))
+
+(lang-mode-hydra-set 'typescript-mode-hook 'hydra-lang-tide/body)
+
 
 ;;;
 (defconst agelmacs/layer/tide t)

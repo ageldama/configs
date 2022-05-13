@@ -44,21 +44,26 @@
 ;; eslint
 (use-package eslint-fix :ensure t :pin melpa)
 
-;;; General keymap.
-(when (fboundp 'general-create-definer)
-  (progn
-    ;; js2
-    (my-local-leader-def :keymaps 'js2-mode-map
-     "f" 'prettier-js
-     "r" 'compile
-     "n" (general-simulate-key "C-c n" :name npm)
-     "C-f" 'eslint-fix
-     )
-    ;; JSON
-    (my-local-leader-def :keymaps 'json-mode-map
-     "p" 'jsons-print-path
-     "f" 'json-mode-beautify
-    )))
+;;; keymap.
+(defhydra hydra-lang-js2
+  "js2"
+  
+  ("f" prettier-js "prettier" :exit t)
+  ("r" compile "compile" :exit t)
+  ("C-f" eslint-fix "eslint-fix" :exit t)
+
+  ("SPC" nil))
+
+(defhydra hydra-lang-json
+  "json"
+  ("p" jsons-print-path "print-path" :exit t)
+  ("f" json-mode-beautify "beautify" :exit t)
+
+  ("SPC" nil))
+  
+(lang-mode-hydra-set 'js2-mode-hook 'hydra-lang-js2/body)
+
+(lang-mode-hydra-set 'json-mode-hook 'hydra-lang-json/body)
 
 ;;;
 (defconst agelmacs/layer/js2 t)
