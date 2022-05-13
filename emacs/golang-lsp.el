@@ -50,16 +50,19 @@
 
 
 
+(defhydra hydra-lang-go ()
+  "go-lsp"
+  
+  ("r" go-run "run" :exit t)
+  ("t" go-test-current-test "t-cur" :exit t)
+  ("M-t f" go-test-current-file "t-curf" :exit t)
+  ("M-t p" go-test-current-project "t-curp" :exit t)
+  ("M-t v" go-test-current-coverage "t-cov" :exit t)
+  ("M-t b" go-test-current-benchmark "t-cur-bench" :exit t)
+  ("M-t F" go-test-current-file-benchmarks "t-curf-bench" :exit t)
+  ("M-t B" go-test-current-project-benchmarks "t-curp-bench" :exit t)
 
-(when (fboundp 'general-create-definer)
-  (my-local-leader-def
-   :keymaps 'go-mode-map
-   "r" 'go-run
-   "t" 'go-test-current-test
-   "M-t f" 'go-test-current-file
-   "M-t p" 'go-test-current-project
-   "M-t v" 'go-test-current-coverage
-   "M-t b" 'go-test-current-benchmark
-   "M-t F" 'go-test-current-file-benchmarks
-   "M-t B" 'go-test-current-project-benchmarks
-   ))
+  ("SPC" nil))
+
+(lang-mode-hydra-set 'go-mode-hook 'hydra-lang-go/body)
+

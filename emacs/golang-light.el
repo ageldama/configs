@@ -9,16 +9,20 @@
   (exec-path-from-shell-copy-env "GOPATH"))
 
 
-(when (fboundp 'general-create-definer)
-  (my-local-leader-def
-   :keymaps 'go-mode-map
-   "f"   'gofmt
-   "d"   'godoc
-   "M-d" 'godoc-at-point
-   "D"   'godef-describe
-   "+"   'go-import-add
-   "."   'godef-jump
+(defhydra hudra-lang-go-light ()
+  "go-light"
+  ("f"   gofmt "fmt" :exit t)
+  ("d"   godoc "doc" :exit t)
+  ("M-d" godoc-at-point "doc-pt" :exit t)
+  ("D"   godef-describe "desc" :exit t)
+  ("+"   go-import-add "imp+" :exit t)
+  ("."   godef-jump "jmp" :exit t)
+
+  ("SPC" nil))
+
    ;; "g"   'go-goto-map
    ;; "u"   'go-guru-map
-   ))
+
+
+(lang-mode-hydra-set 'go-mode-hook 'hydra-lang-go-light/body)
 

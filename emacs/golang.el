@@ -49,30 +49,33 @@
 
 (use-package godoctor :ensure t :pin melpa)
 
-(when (fboundp 'general-create-definer)
-  (my-local-leader-def
-   :keymaps 'go-mode-map
-   "r" 'go-run
-   "t" 'go-test-current-test
-   "T" 'go-test-current-file
-   "f" 'gofmt
-   "d" 'godoc
-   "M-d" 'godoc-at-point
-   "D" 'godef-describe
-   "+" 'go-import-add
-   "." 'godef-jump
-   "g" 'go-goto-map
-   "u" 'go-guru-map
-   "R" '(:ignore t :which-key "godoctor")
-   "R d" 'godoctor-godoc
-   "R D" 'godoctor-godoc-dry-run
-   "R r" 'godoctor-rename
-   "R R" 'godoctor-rename-dry-run
-   "R e" 'godoctor-extract
-   "R E" 'godoctor-extract-dry-run
-   "R t" 'godoctor-toggle
-   "R T" 'godoctor-toggle-dry-run
-   ))
+(defhydra hydra-lang-go ()
+  "go"
+  
+  ("r" go-run "run" :exit t)
+  ("t" go-test-current-test "t-curt" :exit t)
+  ("T" go-test-current-file "t-curf" :exit t)
+  ("f" gofmt "fmt" :exit t)
+  ("d" godoc "doc" :exit t)
+  ("M-d" godoc-at-point "doc-pt" :exit t)
+  ("D" godef-describe "desc" :exit t)
+  ("+" go-import-add "imp+" :exit t)
+  ("." godef-jump "def-jmp" :exit t)
+  ("g" go-goto-map "goto" :exit t)
+  ("u" go-guru-map "guru" :exit t)
+  ("R d" godoctor-godoc "godoc" :exit t)
+  ("R D" godoctor-godoc-dry-run "godoc-dry" :exit t)
+  ("R r" godoctor-rename "ren" :exit t)
+  ("R R" godoctor-rename-dry-run "ren-dry" :exit t)
+  ("R e" godoctor-extract "extract" :exit t)
+  ("R E" godoctor-extract-dry-run "extract-dry" :exit t)
+  ("R t" godoctor-toggle "toggle" :exit t)
+  ("R T" godoctor-toggle-dry-run "toggle-dry" :exit t)
+
+  ("SPC" nil))
+
+(lang-mode-hydra-set 'go-mode-hook 'hydra-lang-go/body)
+
 
 (defun golang-fff ()
 "
