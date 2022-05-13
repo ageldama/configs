@@ -1190,6 +1190,7 @@ _SPC_ : cancel
   ("m" counsel-mark-ring "mark-ring" :exit t)
   ("i" counsel-imenu "imenu" :exit t)
 
+  ("M-q" hydra-misc-toggles/body "toggles" :exit t)
   ("~" hydra-misc-fns/body "misc-fns" :exit t)
   ("o" hydra-org/body "org" :exit t)
 
