@@ -316,7 +316,8 @@
 (use-package which-key :ensure t
   :diminish which-key-mode
   :config (progn (which-key-mode)
-                 (which-key-setup-side-window-bottom)))
+                 (which-key-setup-side-window-bottom)
+                 (setq which-key-max-description-length 200)))
 
 
 ;;; vimish-fold
@@ -760,7 +761,7 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; shell-pop
-;; (use-package shell-pop :ensure t :pin melpa)
+(use-package shell-pop :ensure t :pin melpa)
 
 
 ;;; eshell-toggle
@@ -895,6 +896,7 @@ _SPC_ cancel
   ("n" find-name-dired :exit t)
   ("d" dired :exit t)
   ("M-d" bjm/ivy-dired-recent-dirs :exit t)
+  ("$" shell-pop :exit t)
   ("e" eshell-toggle :exit t)
   ("a" ansi-term-here :exit t)
   ("." treemacs :exit t)
@@ -1064,138 +1066,221 @@ _q_: (quit)
 
 
 
-;;; General -- Leading Keybinder
+;;;----------------------------------------------------------------------
+
 (use-package general :ensure t :pin melpa)
 
-(general-create-definer my-global-leader-def
-  :states '(normal visual insert emacs)
-  :prefix "SPC"
-  :non-normal-prefix "<f12>")
+(defun keysim-regs-marks ()
+  (interactive)
+  (general--simulate-keys nil "C-x r"))
 
-(general-create-definer my-local-leader-def
-  :states '(normal visual insert emacs)
-  :prefix "SPC SPC"
-  :non-normal-prefix "<f12> SPC"
-  :prefix-name "mm")
+;; (general-simulate-key "C-x r" :name regs-marks)
 
-(my-global-leader-def
-  "f" 'files-dirs-hs/body
-  "$" 'eshell-toggle
 
-  ;;"/" 'swiper-isearch-thing-at-point
+;; (use-package with-simulated-input :ensure t :pin melpa)
 
-  ;;"RET" 'swiper
-  ;;"RET" 'counsel-M-x
-  ;;"M-RET" 'eval-expression
 
-  "b"    'ibuffer
-  "TAB"  'ivy-switch-buffer
 
-  "?" 'counsel-descbinds
 
-  "k"    'counsel-yank-pop
-  "C-k"  'kill-current-buffer
+;;; hydra: global /misc.
 
-  "m" 'counsel-mark-ring
-  "i" 'counsel-imenu
+(defhydra hydra-misc-fns ()
+  "
+Misc:^^
+--------------------------
+_p_ : list-proc
+_b_ : bookmarks
+_d_ : search sdcv
+_s_ : del-trail-ws
+_G_ : gc
 
-  "~"    '(:ignore t :which-key "misc")
-  "~ p"  'counsel-list-processes
-  "~ b"  'counsel-bookmark
-  "~ d"  'sdcv-search-input
-  "~ s"  'delete-trailing-whitespace
-  "~ G"  'garbage-collect
+_SPC_ : cancel
+"
+  ("p"  counsel-list-processes :exit t)
+  ("b"  counsel-bookmark :exit t)
+  ("d"  sdcv-search-input :exit t)
+  ("s"  delete-trailing-whitespace :exit t)
+  ("G"  garbage-collect :exit t)
 
-  "e"   'flycheck-next-error
-  "M-e" 'flycheck-previous-error
-  "C-e" 'hydra-flycheck/body
+ ("SPC" nil))
 
-  "M-q" 'hydra-misc-toggles/body
 
-  "o"    '(:ignore t :which-key "org")
-  "o a"  'org-agenda
-  "o c"  'org-capture
-  "o M-c"  'org-capture-open
-  "o M-p"  '(lambda () (interactive) (find-file "~/P/v3/PLAN.org"))
-  "o d"  'diary/new-or-open-org-file
+;;; hydra: global /org.
+
+(defun org-open-PLAN ()
+  (interactive)
+  (find-file "~/P/v3/PLAN.org"))
+
+
+(defhydra hydra-org ()
+  "
+Org:^^
+--------------------------
+_a_ : agenda
+_c_ : capture
+_M-c_ : capture open
+_M-p_ : plan
+_d_ : diary
+
+_SPC_ : cancel
+"
+  ("a"  org-agenda :exit t)
+  ("c"  org-capture :exit t)
+  ("M-c" org-capture-open :exit t)
+  ("M-p" org-open-PLAN :exit t)
+  ("d"  diary/new-or-open-org-file :exit t)
+
+ ("SPC" nil))
+
+
+;;; hydra: global /vars.
+
+(defhydra hydra-vars ()
+  "
+Vars:^^
+--------------------------
+_d_ : add-dir-local
+_f_ : add-file-local
+_p_ : add-file-local-prop-line
+
+_SPC_ : cancel
+"
+  ("d"  add-dir-local-variable :exit t)
+  ("f"  add-file-local-variable :exit t)
+  ("p"  add-file-local-variable-prop-line :exit t)
+
+ ("SPC" nil))
+
+
+;;; hydra: global /ext-open.
+
+(defhydra hydra-ext-open ()
+  "
+Ext-Open:^^
+--------------------------
+_RET_ : xdg-open-cur-region
+_._ : xdg-open-cur-buf
+_g_ : google-it
+
+_SPC_ : cancel
+"
+  ("RET"  xdg-open-current-region :exit t)
+  ("."    xdg-open-current-buffer :exit t)
+  ("g"    google-it :exit t)
+
+ ("SPC" nil))
+
+
+;;; hydra: global /root
+
+(defhydra hydra-my-global ()
+  ">>> "
+
+  ("f" files-dirs-hs/body "files" :exit t)
+  ("$" shell-pop "sh-pop" :exit t)
+
+  ("b"    ibuffer "ibuf" :exit t)
+  ("TAB"  ivy-switch-buffer "ivy-buf" :exit t)
+
+  ("?" counsel-descbinds "descbinds" :exit t)
+
+  ("k" counsel-yank-pop "yank-pop" :exit t)
+  ("C-k" kill-current-buffer "kill-cur-buf" :exit t)
+
+  ("m" counsel-mark-ring "mark-ring" :exit t)
+  ("i" counsel-imenu "imenu" :exit t)
+
+  ("~" hydra-misc-fns/body "misc-fns" :exit t)
+  ("o" hydra-org/body "org" :exit t)
 
   ;; windows
-  "M-w" 'hydra-windbuf/body
-  "M-SPC" 'other-window
+  ("M-w" hydra-windbuf/body "windbuf" :exit t)
+  ("M-SPC" other-window "other-win" :exit t)
 
-  "*" 'ace-swap-window
-  "%" 'window-toggle-split-direction
-  "_" 'split-window-below
-  "|" 'split-window-right
-  "q" 'delete-window
+  ("*" ace-swap-window "ace-swap-win" :exit t)
+  ("%" window-toggle-split-direction
+       "win-toggle-dir" :exit t)
+  ("_" split-window-below "split-win-below" :exit t)
+  ("|" split-window-right "split-win-r" :exit t)
+  ("q" delete-window "del-win" :exit t)
 
-  "<left>" 'windmove-left
-  "<right>" 'windmove-right
-  "<up>" 'windmove-up
-  "<down>" 'windmove-down
+  ("<left>" windmove-left "windmv-l" :exit t)
+  ("<right>" windmove-right "windmv-r" :exit t)
+  ("<up>" windmove-up "windmv-up" :exit t)
+  ("<down>" windmove-down "windmv-dn" :exit t)
 
-  "S-<left>" 'buf-move-up
-  "S-<right>" 'buf-move-right
-  "S-<up>" 'buf-move-up
-  "S-<down>" 'buf-move-down
+  ("S-<left>" buf-move-up "bufmv-up" :exit t)
+  ("S-<right>" buf-move-right "bufmv-dn" :exit t)
+  ("S-<up>" buf-move-up "bufmv-up" :exit t)
+  ("S-<down>" buf-move-down "bufmv-dn" :exit t)
 
-  "=" 'balance-windows
-  "+" 'enlarge-window
-  "-" 'shrink-window
-  ">" 'enlarge-window-horizontally
-  "<" 'shrink-window-horizontally
+  ("=" balance-windows "balance-win" :exit t)
+  ("+" enlarge-window "enlarge-win" :exit t)
+  ("-" shrink-window "shrink-win" :exit t)
+  (">" enlarge-window-horizontally "enlarge-win-h" :exit t)
+  ("<" shrink-window-horizontally "shrink-win-h" :exit t)
 
   ;; jumps / registers
-  "r" (general-simulate-key "C-x r" :name regs-marks)
+  ("r" keysim-regs-marks "regs-marks" :exit t)
 
-  ;; LSP
-  ;;"l" (general-simulate-key "s-l" :name lsp)
+ ;; avy
+ ("l"   avy-goto-line "avy-goto-line" :exit t)
+ ("w"   avy-goto-word-0 "avy-goto-word-0" :exit t)
+
+ ;; projectile
+ ("p" projectile-find-file-dwim "proj-find-dwim" :exit t)
+ ("P" projectile-commander "prj-cmdr" :exit t)
+
+ ;; magit
+ ("g"      magit-status "magit" :exit t)
+ ("C-S-g"  omz-ish/gwip "gwip" :exit t)
+
+ ;; 
+ ("x" hydra-moonshot/body "moonshot" :exit t)
+ ("u" undo-tree-visualize "undo-tree" :exit t)
+ ("M-i" hydra-string-inflection/body "str-infl" :exit t)
+ ("M-x" hydra-ext-open/body "ext-open" :exit t)
+ ("M-v" 'hydra-vars/body "vars" :exit t)
+
+ ;; yas
+ ("RET" yas-insert-snippet "yas-ins" :exit t)
+ ("M-y" 'hydra-yas/body "yas" :exit t)
+
+ ;;
+ ("SPC" nil))
+
+
+
+;;;
+
+(defvar-local lang-mode-hydra nil)
+
+
+(defmacro lang-mode-hydra-set (mode-hook hydra-body)
+  `(add-hook ,mode-hook
+             (lambda () (setq-local lang-mode-hydra
+                                    (symbol-function ,hydra-body)))))
   
-  ;; avy: Moved to `M-g
-  "l"   'avy-goto-line
-  "w"   'avy-goto-word-0
-  ;; "j"   'avy-goto-char-timer
-  ;; "M-j" 'avy-goto-char
-  ;; "C-j" 'hydra-avy-goto/body
-  ;; "C-t" 'avy-pop-mark
-
-  ;; projectile
-  "p" 'projectile-find-file-dwim
-  "P" 'projectile-commander
-
-  ;; magit
-  "g"      'magit-status
-  "C-S-g"  'omz-ish/gwip
-
-  ;; moonshot
-  "x" 'hydra-moonshot/body
-
-  ;; undo-tree
-  "u" 'undo-tree-visualize
-
-  ;; string-inflection
-  "M-i" 'hydra-string-inflection/body
-
-  ;; xdg-open, browse-url etc.
-  "M-x"      '(:ignore t :which-key "external-open")
-  "M-x RET"  'xdg-open-current-region
-  "M-x ."    'xdg-open-current-buffer
-  "M-x g"    'google-it
-
-  ;; vars
-  "M-v"    '(:ignore t :which-key "vars")
-  "M-v d"  'add-dir-local-variable 
-  "M-v f"  'add-file-local-variable
-  "M-v p"  'add-file-local-variable-prop-line
-   
-
-  ;;"'" '(general-simulate-key "C-'" :name mm)
-
-  "RET" 'yas-insert-snippet
-  "M-y" 'hydra-yas/body
-  )
 
 
+(defun do-lang-mode-hydra ()
+  (interactive)
+  (when lang-mode-hydra
+    (call-interactively lang-mode-hydra)))
+
+
+(evil-global-set-key 'normal (kbd "SPC") 'hydra-my-global/body)
+
+(evil-global-set-key 'normal (kbd "M-RET") 'do-lang-mode-hydra)
+
+(global-set-key (kbd "C-x x") 'hydra-my-global/body)
+
+(global-set-key (kbd "C-x c") 'do-lang-mode-hydra)
+
+
+
+
+;;;
 (defun my-C-z ()
   (interactive)
   (setq unread-command-events (listify-key-sequence "\C-z")))
@@ -1251,42 +1336,45 @@ _q_: (quit)
       (load-langsup langsup-name))))
 
 
-(dolist (i '(
-             (clojure . "clojure.el")
-             (org-more . "org-more.el")
-             (protobuf . "proto+grpc.el")
-             (groovy . "groovy/groovy.el")
-             (js2 . "javascript/js2.el")
-             (jsx . "javascript/jsx.el")             
-             (web . "web.el")
-             (tide . "javascript/tide.el")
-             (js+light . "javascript/js+light.el")
-             (pug . "javascript/pug.el")
-             (vue . "javascript/vue.el")
-             (sly . "sly.el")
-             (slime . "slime.el")
-             (perl5 . "perl5.el")
-             (golang . "golang.el")
-             (golang-light . "golang-light.el")
-             (java-lsp . "lsp.el")
-             (golang-lsp . "golang-lsp.el")
-             (rust . "rust.el")
-             (rust+racer . "rust+racer.el")
-             (c++ . "c++.el")
-             (c++-light-2021 . "c++-light-2021.el")
-             (c++-ccls . "c++-ccls.el")
-             (lsp-cpp-clangd . "lsp-cpp-clangd.el")
-             (lsp-cpp-ccls . "lsp-cpp-ccls.el")
-             (lsp-rust-rls . "lsp-rust-rls.el")
-             (meson . "meson.el")
-             (geiser . "geiser.el")
-             (auctex . "auctex.el")
-             (tcl . "tcl.el")
-             (elpy . "python/elpy.el")
-             (ruby . "ruby.el")
-             (ocaml . "ocaml.el")
-             ))
-  (load-langsup-or-not (symbol-name (car i)) (cdr i)))
+
+
+
+;; (dolist (i '(
+;;              (clojure . "clojure.el")
+;;              (org-more . "org-more.el")
+;;              (protobuf . "proto+grpc.el")
+;;              (groovy . "groovy/groovy.el")
+;;              (js2 . "javascript/js2.el")
+;;              (jsx . "javascript/jsx.el")             
+;;              (web . "web.el")
+;;              (tide . "javascript/tide.el")
+;;              (js+light . "javascript/js+light.el")
+;;              (pug . "javascript/pug.el")
+;;              (vue . "javascript/vue.el")
+;;              (sly . "sly.el")
+;;              (slime . "slime.el")
+;;              (perl5 . "perl5.el")
+;;              (golang . "golang.el")
+;;              (golang-light . "golang-light.el")
+;;              (java-lsp . "lsp.el")
+;;              (golang-lsp . "golang-lsp.el")
+;;              (rust . "rust.el")
+;;              (rust+racer . "rust+racer.el")
+;;              (c++ . "c++.el")
+;;              (c++-light-2021 . "c++-light-2021.el")
+;;              (c++-ccls . "c++-ccls.el")
+;;              (lsp-cpp-clangd . "lsp-cpp-clangd.el")
+;;              (lsp-cpp-ccls . "lsp-cpp-ccls.el")
+;;              (lsp-rust-rls . "lsp-rust-rls.el")
+;;              (meson . "meson.el")
+;;              (geiser . "geiser.el")
+;;              (auctex . "auctex.el")
+;;              (tcl . "tcl.el")
+;;              (elpy . "python/elpy.el")
+;;              (ruby . "ruby.el")
+;;              (ocaml . "ocaml.el")
+;;              ))
+;;   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
 
 

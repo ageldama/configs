@@ -52,16 +52,21 @@
 (add-hook 'cperl-mode-hook
  	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 
-(when (fboundp 'general-create-definer)
-  ;; cperl
-  (my-local-leader-def :keymaps 'cperl-mode-map
-    "d" 'cperl-db
-    "r" 'run-perl-prog
-    "t" 'run-perl-prove
-    "?" 'cperl-perldoc-at-point
-    "m" 'cperl-build-manpage
-    "f" 'perltidy-dwim
-    ))
 
+(defhydra hydra-lang-cperl ()
+  "perl5"
+
+  ("d" cperl-db "dbg" :exit t)
+  ("r" run-perl-prog "run" :exit t)
+  ("t" run-perl-prove "prove" :exit t)
+  ("?" cperl-perldoc-at-point "cperl-doc" :exit t)
+  ("m" cperl-build-manpage "cperl-build-man" :exit t)
+  ("f" perltidy-dwim "perltidy" :exit t)
+
+  ("SPC" nil))
+
+(lang-mode-hydra-set 'cperl-mode-hook 'hydra-lang-cperl/body)
+   
+  
 
 ;;; EOF.
