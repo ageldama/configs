@@ -21,4 +21,6 @@
 ;; (toggle-battery-saving-mode)
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
 
+(load-theme 'modus-vivendi t)
+
 ;;;EOF.
