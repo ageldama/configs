@@ -23,4 +23,10 @@
 
 (load-theme 'modus-vivendi t)
 
+
+(dolist (cmd '(
+               "cd %d; rubocop -A"
+               ))
+  (cl-pushnew cmd moonshot-runners-preset :test #'string=))
+
 ;;;EOF.
