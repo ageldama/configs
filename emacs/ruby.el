@@ -8,3 +8,5 @@
                            "cd %d; rubocop -A"
                            ))
               (cl-pushnew cmd moonshot-runners :test #'string=))))
+
+(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode))
