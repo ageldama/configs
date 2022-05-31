@@ -1336,7 +1336,9 @@ _SPC_ : cancel
     (when (f-exists? loadp-fn)
       (load-langsup langsup-name))))
 
-
+(defun loadp-avail? (loadp-name)
+  (let ((loadp-fn (format "%s/%s" langsup-loadp-path loadp-name)))
+    (f-exists? loadp-fn)))
 
 
 

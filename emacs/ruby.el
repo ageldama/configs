@@ -9,4 +9,7 @@
                            ))
               (cl-pushnew cmd moonshot-runners :test #'string=))))
 
-(add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode))
+(use-package yaml-mode :ensure t :pin melpa)
+
+(when (loadp-avail? "web")
+  (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode)))
