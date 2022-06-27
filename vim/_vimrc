@@ -157,10 +157,14 @@ Bundle 'tpope/vim-surround'
 "Bundle 'junegunn/vim-peekaboo'
 
 
-
+" + _
+Bundle 'terryma/vim-expand-region'
 
 "Bundle 'morhetz/gruvbox'
 
+
+" gs_, gsc etc...
+Bundle 'arthurxavierx/vim-caser'
 
 
 
@@ -228,10 +232,10 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 " Useful mappings for managing tabs
-map <leader>t<C-n> :tabnew<cr>
+map <leader>tn :tabnew<cr>
 map <leader>t<C-q> :tabclose<cr>
-map <leader>tp :tabprev<cr>
-map <leader>tn :tabnext<cr>
+map <leader>t[ :tabprev<cr>
+map <leader>t] :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
