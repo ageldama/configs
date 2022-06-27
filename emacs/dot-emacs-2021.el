@@ -119,7 +119,7 @@
 
 ;; cuz annoying
 (global-whitespace-mode -1)
-(setq-default show-trailing-whitespace nil)
+(setq-default show-trailing-whitespace t)
 
 
 ;;
