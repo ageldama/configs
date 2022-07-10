@@ -1,6 +1,6 @@
-key "Super+Shift+z" icesh -f left top sizeto 50% 100%
+key "Super+Shift+z" icesh -f top sizeto 50% 100%
 
-key "Super+Shift+x" icesh -f right top sizeto 100% 50%
+key "Super+Shift+x" icesh -f left sizeto 100% 50%
 
 #key "Super+Shift+a" icesh -f left top sizeto 50% 50%
 
