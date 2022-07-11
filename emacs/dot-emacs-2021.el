@@ -561,7 +561,8 @@
             (local-set-key (kbd "C-c l") 'org-store-link)
             (when (fboundp 'yas-minor-mode)
               (yas-minor-mode -1))
-            ))
+            (setq org-adapt-indentation t)
+          ))
 
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
