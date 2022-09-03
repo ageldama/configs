@@ -24,3 +24,9 @@ TempFontNameXft = "Noto Sans Mono CJK KR:size=9"
 ApmFontNameXft = "Noto Sans Mono CJK KR:size=9"
 InputFontNameXft = "Noto Sans Mono CJK KR:size=9"
 LabelFontNameXft = "Noto Sans CJK KR:size=9"
+
+#  Goes one workspace to the left.
+KeySysWorkspacePrev="Super+Left"
+KeySysWorkspaceNext="Super+Right"
+KeySysWorkspaceLast="Super+Down"
+
