@@ -51,6 +51,11 @@
   )
 
 
+;; (setq battery-mode-line-format "[%b%p%%, %m-mins.]")
+
+
+
+
 ;;;
 (require 'cl-lib)
 
