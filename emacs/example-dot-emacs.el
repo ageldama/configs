@@ -23,6 +23,8 @@
 
 (load-theme 'modus-vivendi t)
 
+(when (boundp 'native-comp-async-report-warnings-errors)
+  (setq native-comp-async-report-warnings-errors 'silent))
 
 ;; (dolist (cmd '(
 ;;                "cd %d; rubocop -A"
