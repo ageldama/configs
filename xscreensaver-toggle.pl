@@ -5,7 +5,7 @@ use feature qw(say);
 
 package main;
 
-my $pid = `pgrep -u \`id -u\` xscreensaver`;
+my $pid = `pgrep -u \`id -u\` ^xscreensaver\$`;
 chomp $pid;
 
 if ($pid) {
