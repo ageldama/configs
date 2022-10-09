@@ -1231,8 +1231,9 @@ _SPC_ : cancel
   ("r" keysim-regs-marks "regs-marks" :exit t)
 
  ;; avy
- ("l"   avy-goto-line "avy-goto-line" :exit t)
- ("w"   avy-goto-word-0 "avy-goto-word-0" :exit t)
+ ("l"   avy-goto-line "goto-line" :exit t)
+ ("w"   avy-goto-word-0 "goto-word-0" :exit t)
+ ("s" avy-goto-char-2 "goto-char-2" :exit t)
 
  ;; projectile
  ("p" projectile-find-file-dwim "proj-find-dwim" :exit t)
