@@ -1255,7 +1255,10 @@ _SPC_ : cancel
  ("M-y" 'hydra-yas/body "yas" :exit t)
 
  ;;
- ("SPC" nil))
+ ;;("SPC" nil)
+ ("SPC" avy-goto-char-2 "goto-char-2" :exit t)
+
+ )
 
 
 
