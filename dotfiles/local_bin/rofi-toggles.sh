@@ -4,6 +4,8 @@ rofi_command="rofi "
 
 xscreensaver="xscreensaver"
 redshift="redshift"
+bluetooth_on='bluetooth_on'
+bluetooth_off='bluetooth_off'
 sink_default="sink_default"
 sink_all="sink_all"
 sink_src_all="sink_src_all"
@@ -16,7 +18,7 @@ msg() {
 }
 
 # Variable passed to rofi
-options="$xscreensaver\nredshift\nsink_default\nsink_all\nsink_src_all\n------\npoweroff\nreboot"
+options="xscreensaver\nredshift\nbluetooth_on\nbluetooth_off\nsink_default\nsink_all\nsink_src_all\n------\npoweroff\nreboot"
 
 chosen="$(echo -e "$options" | $rofi_command -p "Toggle:" -dmenu -selected-row 0)"
 case $chosen in
@@ -25,6 +27,14 @@ case $chosen in
         ;;
     $redshift)
         kill -USR1 $(pidof redshift)
+        ;;
+    $bluetooth_on)
+        blueman-applet &
+        bluetoothctl power on
+        ;;
+    $bluetooth_off)
+        pkill blueman-applet
+        bluetoothctl power off
         ;;
     $sink_default)
         pactl-mute.pl sink toggle_default
