@@ -86,7 +86,9 @@ test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
 # TODO test -f ~/.Xmodmap && xmodmap ~/.Xmodmap
 # setxkbmap -option caps:super
 
-dbus-launch xbindkeys -n -p &
+# NO-POLLING, instead:        killall -HUP xbindkeys
+# dbus-launch xbindkeys -n -p &
+dbus-launch xbindkeys &
 
 #synclient TapButton2=3
 #xgamma -gamma 0.6

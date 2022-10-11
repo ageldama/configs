@@ -22,7 +22,9 @@ fi
 
 dbus-launch dunst &
 
-dbus-launch xbindkeys -n -p &
+# NO-POLLING, instead:        killall -HUP xbindkeys
+# dbus-launch xbindkeys -n -p &
+dbus-launch xbindkeys &
 
 xset b off
 #xset s on
