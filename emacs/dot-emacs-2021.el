@@ -1233,7 +1233,7 @@ _SPC_ : cancel
  ;; avy
  ("l"   avy-goto-line "goto-line" :exit t)
  ("w"   avy-goto-word-0 "goto-word-0" :exit t)
- ("s" avy-goto-char-2 "goto-char-2" :exit t)
+ ("s" avy-goto-char-timer "goto-char-timer" :exit t)
 
  ;; projectile
  ("p" projectile-find-file-dwim "proj-find-dwim" :exit t)
@@ -1256,7 +1256,7 @@ _SPC_ : cancel
 
  ;;
  ;;("SPC" nil)
- ("SPC" avy-goto-char-2 "goto-char-2" :exit t)
+ ("SPC" avy-goto-char-timer "goto-char-timer" :exit t)
 
  )
 
