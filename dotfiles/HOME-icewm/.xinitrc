@@ -65,7 +65,11 @@ dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tm
 
 
 # bg-color
-hsetroot -solid '#3f4058' &
+if [ -x  ~/.fehbg ]; then
+    ~/.fehbg &
+else
+    hsetroot -solid '#3f4058' &
+fi
 
 # caps->ctrl
 ~/local/bin/caps-to-ctrl.sh 2 &
