@@ -66,6 +66,9 @@
 "scripts-rofi.sh"
   Mod4 + F10
 
+"pavucontrol"
+  Mod4 + Shift + F10
+
 "rofi-toggles.sh"
   Mod4 + F9
 #  Control + Alt + Delete
