@@ -63,7 +63,7 @@
 "notify-uptime.sh"
   Mod4 + F8
 
-"pavucontrol"
+"scripts-rofi.sh"
   Mod4 + F10
 
 "rofi-toggles.sh"
