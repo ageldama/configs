@@ -33,7 +33,11 @@ for f in $(/bin/ls -Aa $sdir); do
 
   if [ -z ${uninst} ]; then
     echo "(LN_S)   $sfn --> $dfn"
-    echo -n "  "; ln -sv "$sfn" "$dfn"
+    if [ -L "${dfn}" ]; then
+      echo " SKIPPING (existing)"
+    else
+      echo -n "  "; ln -sv "$sfn" "$dfn"
+    fi
   else
     echo "(RM)   $dfn  ($sfn)"
     echo -n "  "; rm -v "$dfn"
