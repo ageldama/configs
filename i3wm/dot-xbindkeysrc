@@ -60,21 +60,12 @@
 "wg.pl"
   Mod4 + Alt + w
 
-"notify-uptime.sh"
-  Mod4 + F8
-
 "scripts-rofi.sh"
-  Mod4 + F10
+  Mod4 + F9
 
 "pavucontrol"
-  Mod4 + Shift + F10
-
-"rofi-toggles.sh"
-  Mod4 + F9
-#  Control + Alt + Delete
-
-"xscreensaver-toggle.pl; kill -USR1 $(pidof redshift)"
   Mod4 + Shift + F9
+
 
 
 #EOF
