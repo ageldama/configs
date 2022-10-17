@@ -34,7 +34,7 @@
 #"xfce4-taskmanager"
 #  Control + Alt + Delete
 
-"rofi -combi-modi drun,window -show combi"
+"rofi -combi-modi drun,window,run -show combi"
   Mod4 + d
 
 "rofi -show window"
