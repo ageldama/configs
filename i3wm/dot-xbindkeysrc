@@ -43,10 +43,11 @@
   Mod4 + Shift + Tab
 
 "xscreensaver-command -lock"
-  Mod4 + Escape
+  Mod4 + l
 
-"gnome-screenshot"
-  Mod4 + p
+#"gnome-screenshot"
+#  Mod4 + p
+
 "gnome-screenshot -i"
   Mod4 + Shift + p
 
