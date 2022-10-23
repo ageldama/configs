@@ -35,7 +35,7 @@
 #  Control + Alt + Delete
 
 "rofi -combi-modi drun,window,run -show combi"
-  Mod4 + d
+  Mod4 + r
 
 "rofi -show window"
   Mod4 + Tab
