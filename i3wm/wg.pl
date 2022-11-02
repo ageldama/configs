@@ -10,7 +10,9 @@ use feature qw<say>;
   say scalar @files;
   my $pick = $files[rand @files];
   say $pick;
-  system("feh --bg-fill ${pick}");
+
+  system("pgrep -u $ENV{USER} gnome-shell && gsettings set org.gnome.desktop.background picture-uri ${pick} || feh --bg-fill ${pick}");
+
   #
 =begin
   Glib::Object::Introspection->setup (
