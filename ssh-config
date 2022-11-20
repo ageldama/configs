@@ -1,5 +1,17 @@
 # ~/.ssh/config
 
+# chmod 600 THIs
+
+Host *
+  Compression yes
+  ForwardX11 yes
+  ForwardX11Trusted yes
+
+Host jhyun_10.0.1.1
+  User jhyun
+  HostName 10.0.1.1
+
+
 Host freebsd-vbox
      User jhyun
      HostName 127.0.0.1
