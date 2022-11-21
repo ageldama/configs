@@ -10,7 +10,14 @@ use feature qw<say>;
   say scalar @files;
   my $pick = $files[rand @files];
   say $pick;
-  system("feh --bg-fill ${pick}");
+
+
+  my $color_dark = `gsettings get org.gnome.desktop.interface color-scheme | grep -o \\\\-dark`;
+  chomp $color_dark;
+  #say $color_dark;
+
+  system("pgrep -u $ENV{USER} gnome-shell && gsettings set org.gnome.desktop.background picture-uri${color_dark} ${pick} || feh --bg-fill ${pick}");
+
   #
 =begin
   Glib::Object::Introspection->setup (
