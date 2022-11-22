@@ -183,6 +183,8 @@ bindsym $mod+Shift+w exec "wg.pl"
 bindsym $mod+F9 exec "scripts-rofi.sh"
 bindsym $mod+Shift+F9 exec "pavucontrol"
 bindsym $mod+Shift+p exec "gnome-screenshot -i"
+bindsym $mod+F10 exec "thunar || pcmanfm "
+bindsym $mod+Shift+F10 exec "x-terminal-emulator -e mc"
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
