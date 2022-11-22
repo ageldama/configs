@@ -12,7 +12,7 @@ export QT_IM_MODULE=fcitx
 export XMODIFIERS=@im=fcitx
 fcitx -s 5 -r -d &
 
-if [ -z "${SSH_AUTH_SOCK}" ]; then
+if [[ -z "${SSH_AUTH_SOCK}" ]]; then
   eval "$(ssh-agent)"
   # FreeBSD: `pkg add -y OpenSSH-askpass`
   ssh-add < /dev/null &
@@ -24,7 +24,9 @@ dbus-launch dunst &
 
 # NO-POLLING, instead:        killall -HUP xbindkeys
 # dbus-launch xbindkeys -n -p &
-dbus-launch xbindkeys &
+if [[ -f ~/.use-xbindkeys ]]; then
+  dbus-launch xbindkeys &
+fi
 
 xset b off
 #xset s on
@@ -43,7 +45,7 @@ nm-applet &
 # Redshift
 SEOUL_POS=37.566:126.977 # Seoul
 which redshift-gtk
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
   redshift-gtk -l $SEOUL_POS &
 else
   redshift -l $SEOUL_POS &
@@ -51,7 +53,7 @@ fi
 
 # Compositor
 which picom
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
   true #picom -b &
 else
   true #compton -b &
@@ -65,7 +67,7 @@ dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tm
 
 
 # bg-color
-if [ -x  ~/.fehbg ]; then
+if [[ -x  ~/.fehbg ]]; then
     ~/.fehbg &
 else
     hsetroot -solid '#3f4058' &
