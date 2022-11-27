@@ -45,4 +45,31 @@ key "Super+Shift+k" icesh -f moveby 0 -15
 key "Super+Shift+h" icesh -f moveby -15 0
 key "Super+Shift+l" icesh -f moveby 15 0
 
+
+# launchers
+key "Super+Return" x-terminal-emulator
+
+key "Super+r" rofi -combi-modi drun,window,run -show combi
+
+key "Super+Tab" rofi -show window
+key "Super+Shift+Tab" rofi -show windowcd
+
+key "Super+l" xscreensaver-command -lock
+
+key "Super+Shift+p" gnome-screenshot -i
+
+key "Super+e" sh -c 'thunar || pcmanfm'
+key "Super+Shift+e" x-terminal-emulator -e mc
+
+key "Super+Control+w" hsetroot-solid.pl
+key "Super+Alt+w" wg.pl
+
+key "Super+F9" scripts-rofi.sh
+
+key "Super+Shift+F9" pavucontrol
+
+
+
+
+
 #EOF.
