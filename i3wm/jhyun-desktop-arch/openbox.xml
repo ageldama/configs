@@ -560,8 +560,8 @@
         <monitor>next</monitor>
       </action>
     </keybind>
+
     <!-- Keybindings for running applications -->
-    <!--
     <keybind key="W-e">
       <action name="Execute">
         <command>sh -c 'xdg-open $HOME'</command>
@@ -579,31 +579,25 @@
       </action>
     </keybind>
 
-    <keybind key="W-r">
-      <action name="Execute">
-        <command>xfce4-appfinder -c</command>
-      </action>
-    </keybind>
-
     <keybind key="W-d">
       <action name="Execute">
-        <command>rofi -show</command>
+        <command>rofi -combi-modi drun,window,run -show combi</command>
       </action>
     </keybind>
 
     <keybind key="W-Tab">
       <action name="Execute">
-        <command>rofi -show windowcd</command>
+        <command>rofi -show window</command>
       </action>
     </keybind>
 
     <keybind key="C-A-Delete">
       <action name="Execute">
-        <command>xfce4-taskmanager</command>
+        <command>sh -c 'xfce4-taskmanager || lxtask'</command>
       </action>
     </keybind>
 
-    <keybind key="W-Escape">
+    <keybind key="W-l">
       <action name="Execute">
         <command>xscreensaver-command -lock</command>
       </action>
@@ -614,6 +608,7 @@
         <command>gnome-screenshot</command>
       </action>
     </keybind>
+
     <keybind key="W-S-p">
       <action name="Execute">
         <command>gnome-screenshot -i</command>
@@ -621,6 +616,11 @@
     </keybind>
 
     <keybind key="W-w">
+      <action name="Execute">
+        <command>~/.fehbg</command>
+      </action>
+    </keybind>
+    <keybind key="W-M-w">
       <action name="Execute">
         <command>wg.pl</command>
       </action>
@@ -630,6 +630,26 @@
         <command>hsetroot-solid.pl</command>
       </action>
     </keybind>
+
+    <keybind key="W-F9">
+      <action name="Execute">
+        <command>scripts-rofi.sh</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-S-F9">
+      <action name="Execute">
+        <command>pavucontrol</command>
+      </action>
+    </keybind>
+
+    <!--
+    <keybind key="W-r">
+      <action name="Execute">
+        <command>xfce4-appfinder -c</command>
+      </action>
+    </keybind>
+
 
     <keybind key="W-F8">
       <action name="Execute">
@@ -656,6 +676,7 @@
       </action>
     </keybind>
     -->
+
   </keyboard>
   <mouse>
     <dragThreshold>1</dragThreshold>

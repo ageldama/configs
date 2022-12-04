@@ -88,7 +88,9 @@ test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
 
 # NO-POLLING, instead:        killall -HUP xbindkeys
 # dbus-launch xbindkeys -n -p &
-dbus-launch xbindkeys &
+if [[ -f ~/.use-xbindkeys ]]; then
+    dbus-launch xbindkeys &
+fi
 
 #synclient TapButton2=3
 #xgamma -gamma 0.6
@@ -137,10 +139,18 @@ dunst &
 #sxhkd &
 
 # bg-color
-hsetroot -solid '#3f4058' &
+if [[ -x  ~/.fehbg ]]; then
+    ~/.fehbg &
+else
+    hsetroot -solid '#3f4058' &
+fi
+
 
 # caps->ctrl
 ~/local/bin/caps-to-ctrl.sh 2 &
+
+# pointerkeys
+test -f ~/.use-keypad-pointer && setxkbmap -option keypad:pointerkeys
 
 # urxvtd
 #urxvtd --quiet --opendisplay --fork &
@@ -155,7 +165,9 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
     if [[ -f ~/.use-xfce4-panel ]]; then
         dbus-launch xfce4-panel &
-    else
+    fi
+
+    if [[ -f ~/.use-lxpanel ]]; then
         dbus-launch lxpanel &
     fi
   #dbus-launch lxpanel &
@@ -167,7 +179,9 @@ else
   #lxpanel &
     if [[ -f ~/.use-xfce4-panel ]]; then
         xfce4-panel &
-    else
+    fi
+
+    if [[ -f ~/.use-lxpanel ]]; then
         lxpanel &
     fi
 
