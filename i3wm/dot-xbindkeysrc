@@ -19,54 +19,5 @@
 "xbindkeys_show"
   Mod4 + Shift + F1
 
-"x-terminal-emulator"
-  Mod4 + Return
-
-
-"urxvt"
-  Mod4 + Shift + Return
-
-
-#"gmrun"
-#"xfce4-appfinder -c"
-#  Mod4 + r
-
-#"xfce4-taskmanager"
-#  Control + Alt + Delete
-
-"rofi -combi-modi drun,window,run -show combi"
-  Mod4 + r
-
-"rofi -show window"
-  Mod4 + Tab
-"rofi -show windowcd"
-  Mod4 + Shift + Tab
-
-"xscreensaver-command -lock"
-  Mod4 + l
-
-#"gnome-screenshot"
-#  Mod4 + p
-
-"gnome-screenshot -i"
-  Mod4 + Shift + p
-
-"thunar || pcmanfm "
-  Mod4 + e
-"x-terminal-emulator -e mc"
-  Mod4 + Shift + e
-
-"hsetroot-solid.pl"
-  Mod4 + Control + w
-"wg.pl"
-  Mod4 + Alt + w
-
-"scripts-rofi.sh"
-  Mod4 + F9
-
-"pavucontrol"
-  Mod4 + Shift + F9
-
-
 
 #EOF
