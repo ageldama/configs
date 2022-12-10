@@ -47,7 +47,7 @@ URxvt.iso14755: false
 
 !! Copy Paste & Other Extensions
 URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font,\
-eval,confirm-paste,tabbed
+eval,confirm-paste
 
 !,clipboard
 
