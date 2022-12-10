@@ -352,50 +352,50 @@
       <action name="SendToDesktop">
         <to>10</to>
       </action>
-		</keybind>
+    </keybind>
 
-		<!-- Win95/IceWM-style: -->
-		<keybind key="A-F1">
-			<action name="Raise"/>
-		</keybind>
+    <!-- Win95/IceWM-style: -->
+    <keybind key="A-F1">
+      <action name="RaiseLower"/>
+    </keybind>
 
-		<keybind key="A-F2">
+    <keybind key="A-F2">
       <action name="ToggleOmnipresent"/>
-		</keybind>
+    </keybind>
 
-		<keybind key="A-F3">
-			<action name="Lower"/>
-		</keybind>
+    <!-- <keybind key="A-F3">
+      <action name="Lower"/>
+    </keybind> -->
 
-		<keybind key="A-F4">
+    <keybind key="A-F4">
       <action name="Close"/>
-		</keybind>
+    </keybind>
 
-		<keybind key="A-F7">
+    <keybind key="A-F7">
       <action name="Move"/>
-		</keybind>
+    </keybind>
 
-		<keybind key="A-F8">
+    <keybind key="A-F8">
       <action name="Resize"/>
-		</keybind>
+    </keybind>
 
-		<keybind key="A-F9">
+    <keybind key="A-F9">
       <action name="Iconify"/>
-		</keybind>
+    </keybind>
 
-		<keybind key="A-F10">
+    <keybind key="A-F10">
       <action name="ToggleMaximize"/>
-		</keybind>
+    </keybind>
 
-		<keybind key="A-S-F10">
+    <keybind key="A-S-F10">
       <action name="ToggleMaximize">
         <direction>vertical</direction>
       </action>
-		</keybind>
+    </keybind>
 
-		<keybind key="A-F12">
+    <keybind key="A-F12">
       <action name="ToggleShade"/>
-		</keybind>
+    </keybind>
 
 
 
