@@ -352,7 +352,54 @@
       <action name="SendToDesktop">
         <to>10</to>
       </action>
-    </keybind>
+		</keybind>
+
+		<!-- Win95/IceWM-style: -->
+		<keybind key="A-F1">
+			<action name="Raise"/>
+		</keybind>
+
+		<keybind key="A-F2">
+      <action name="ToggleOmnipresent"/>
+		</keybind>
+
+		<keybind key="A-F3">
+			<action name="Lower"/>
+		</keybind>
+
+		<keybind key="A-F4">
+      <action name="Close"/>
+		</keybind>
+
+		<keybind key="A-F7">
+      <action name="Move"/>
+		</keybind>
+
+		<keybind key="A-F8">
+      <action name="Resize"/>
+		</keybind>
+
+		<keybind key="A-F9">
+      <action name="Iconify"/>
+		</keybind>
+
+		<keybind key="A-F10">
+      <action name="ToggleMaximize"/>
+		</keybind>
+
+		<keybind key="A-S-F10">
+      <action name="ToggleMaximize">
+        <direction>vertical</direction>
+      </action>
+		</keybind>
+
+		<keybind key="A-F12">
+      <action name="ToggleShade"/>
+		</keybind>
+
+
+
+
     <!--
     <keybind key="W-d">
       <action name="ToggleShowDesktop"/>
@@ -603,13 +650,13 @@
       </action>
     </keybind>
 
-    <keybind key="W-p">
+    <keybind key="Print">
       <action name="Execute">
         <command>gnome-screenshot</command>
       </action>
     </keybind>
 
-    <keybind key="W-S-p">
+    <keybind key="S-Print">
       <action name="Execute">
         <command>gnome-screenshot -i</command>
       </action>
