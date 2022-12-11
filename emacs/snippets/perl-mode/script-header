@@ -1,0 +1,8 @@
+# -*- mode: snippet -*-
+# name: perl-header
+# key: 
+# --
+#!/usr/bin/env perl
+use strict;
+use warnings;
+use feature qw(say);
