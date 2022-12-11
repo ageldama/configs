@@ -1,6 +1,11 @@
 #!/bin/sh
 
-if [ -z "${PERL_LOCAL_LIB_ROOT}" ]; then
+if [[ -x "$(command -v zoxide)" ]]; then
+  eval "$(zoxide init zsh)"
+fi
+
+
+if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
   #echo perl-local-lib
   eval $(perl -Mlocal::lib)
 fi
