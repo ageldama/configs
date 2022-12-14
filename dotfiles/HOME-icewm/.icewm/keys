@@ -56,7 +56,8 @@ key "Super+Shift+Tab" rofi -show windowcd
 
 key "Super+l" xscreensaver-command -lock
 
-key "Super+Shift+p" gnome-screenshot -i
+key "Super+Print" gnome-screenshot
+key "Super+Shift+Print" gnome-screenshot -i
 
 key "Super+e" sh -c 'thunar || pcmanfm'
 key "Super+Shift+e" x-terminal-emulator -e mc
