@@ -1,0 +1,24 @@
+{
+    "mapping": {
+        "1,277,1": [
+            "KEY_PAGEDOWN",
+            "keyboard"
+        ],
+        "1,278,1": [
+            "KEY_PAGEUP",
+            "keyboard"
+        ],
+        "1,276,1": [
+            "Alt_L+Left",
+            "keyboard"
+        ],
+        "1,275,1": [
+            "Alt_L+Right",
+            "keyboard"
+        ],
+        "1,279,1": [
+            "BTN_MIDDLE",
+            "mouse"
+        ]
+    }
+}
