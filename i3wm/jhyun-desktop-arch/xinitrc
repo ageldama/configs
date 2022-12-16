@@ -45,12 +45,16 @@ else
   fi
 fi
 
+# polkit-1
+test -x /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 && /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
+
+
 # ssh / gnome-keyring
-if [ -z "${SSH_AUTH_SOCK}" ]; then
+if [[ -z "${SSH_AUTH_SOCK}" ]]; then
   eval "$(ssh-agent)"
 fi
 
-if [ ! -z "${SSH_AUTH_SOCK}" ]; then
+if [[ ! -z "${SSH_AUTH_SOCK}" ]]; then
   # FreeBSD: `pkg add -y OpenSSH-askpass`
   ssh-add < /dev/null &
 fi
