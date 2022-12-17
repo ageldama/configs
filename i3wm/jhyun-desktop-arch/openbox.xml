@@ -632,6 +632,12 @@
       </action>
     </keybind>
 
+    <keybind key="W-Escape">
+      <action name="Execute">
+        <command>lxpanelctl menu</command>
+      </action>
+    </keybind>
+
     <keybind key="W-Tab">
       <action name="Execute">
         <command>rofi -show window</command>
