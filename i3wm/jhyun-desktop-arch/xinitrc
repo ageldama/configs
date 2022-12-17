@@ -174,9 +174,15 @@ if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
     if [[ -f ~/.use-lxpanel ]]; then
         dbus-launch lxpanel &
     fi
+
+    if [[ -f ~/.use-polybar ]]; then
+      dbus-launch polybar bottombar &
+    fi
+
   #dbus-launch lxpanel &
   #(sleep 2s; polybar topbar) &
   #(sleep 7s; pkill -USR1 topbar) &
+
   exec dbus-launch openbox ${1+"$@"}
 else
   # under xsession
@@ -190,9 +196,8 @@ else
     fi
 
     if [[ -f ~/.use-polybar ]]; then
-        polybar bottombar &
+      polybar bottombar &
     fi
-
 
     exec openbox ${1+"$@"}
 fi
