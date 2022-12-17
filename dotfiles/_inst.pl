@@ -33,21 +33,8 @@ use IO::Dir;
         my $src_fn = "$src_dir/$fn";
         my $dst_fn = "$dst_dir/$fn";
 
-        if ( -l $src_fn ) {
-          # pushd
-          my $saved_cwd = getcwd;
-          chdir dirname($src_fn);
-
-          #
-          my $src_fn2 = readlink($src_fn);
-          say $src_fn2;
-
-          # popd
-          chdir $saved_cwd;
-        }
-
-        my $src_fn2 = abs_path($src_fn) or die "$!: $src_fn";
-        $src_fn = $src_fn2;
+        # readlink (...for real / as realink(1)) :
+        $src_fn = abs_path($src_fn);
 
         #say Dumper([$src_fn, $dst_fn]);
 
@@ -58,7 +45,7 @@ use IO::Dir;
                 print "SKIPPING (existing)\n";
             }
             else {
-                # TODO: symlink($src_fn, $dst_fn);
+                symlink($src_fn, $dst_fn) or warn "$! : $src_fn => $dst_fn";
                 print "SYMLINK\n";
             }
         }
