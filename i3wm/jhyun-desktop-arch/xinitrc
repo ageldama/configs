@@ -189,6 +189,11 @@ else
         lxpanel &
     fi
 
+    if [[ -f ~/.use-polybar ]]; then
+        polybar bottombar &
+    fi
+
+
     exec openbox ${1+"$@"}
 fi
 
