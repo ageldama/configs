@@ -8,7 +8,7 @@ for my $fn (@ARGV) {
     if ($resolved =~ m/^\//) {
         print "$resolved\n";
 
-        # TODO
+        # TODO : it's crippled, sry
         print "\t===> " . File::Spec->abs2rel($resolved) . "\n";
 
     } else {

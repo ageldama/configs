@@ -6,9 +6,9 @@ use feature      qw(say);
 use Cwd          qw(getcwd abs_path);
 use File::Path   qw(make_path);
 use File::Basename;
-use Path::ExpandTilde;    # no-builtin
-use Data::Dumper::OneLine;
 use IO::Dir;
+use Path::ExpandTilde;        # no-builtin
+use Data::Dumper::OneLine;    # no-builtin
 
 # main:
 {
@@ -45,7 +45,7 @@ use IO::Dir;
                 print "SKIPPING (existing)\n";
             }
             else {
-                symlink($src_fn, $dst_fn) or warn "$! : $src_fn => $dst_fn";
+                symlink( $src_fn, $dst_fn ) or warn "$! : $src_fn => $dst_fn";
                 print "SYMLINK\n";
             }
         }
