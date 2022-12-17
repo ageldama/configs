@@ -3,29 +3,34 @@ use strict;
 use warnings;
 use Data::Dumper;
 use Getopt::Std;
+use IO::File;
 
 {
     my %opts = (u => 0);
     getopts('u', \%opts);
 
-    $ENV{DOTFILES_UNINST} = 1 if $opts{u};
+    my $inst_or_uninst = 'i';
+    $inst_or_uninst = 'u' if $opts{u};
 
     #
     my $fn = 'dirs.config';
-    open(my $fh, $fn) or die "Could not open $fn: $!";
+    my $fh = IO::File->new($fn, '<') or die "Could not open $fn: $!";
 
     while(my $line = <$fh>)  {
-        next if $line =~ '^[\s]+$';
-        next if $line =~ '^#.+$';
+        next if $line =~ '^[\s]+$';  # skip: whitespaces
+        next if $line =~ '^#.+$';    # skip: comment
         my ($dot_dir, $dst_dir, $pred) = split /\s+/, $line;
 
         qx/$pred/;
         my $ok_to_go = $? == 0;
-        print "* DOT=$dot_dir  DST=$dst_dir  PRED=$pred ==> ", ($ok_to_go ? "OK" : "SKIP"), "\n";
+        print "* [[ $dot_dir ]]\n";
+        print "\t- PRED:\t$pred\n";
+        print "\t- DEST:\t$dst_dir\n";
+        print "\t- ", ($ok_to_go ? "APPLYING ..." : "SKIPPING."), "\n";
         if ($ok_to_go) {
-            system("sh ./_inst.sh \"$dot_dir\" \"$dst_dir\"");
+            system("./_inst.pl $inst_or_uninst \"$dot_dir\" \"$dst_dir\"");
         }
-        print "------------------\n\n";
+        print "\n\n";
     }
 
     close $fh;
