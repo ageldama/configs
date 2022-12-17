@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../i3wm/caps-to-ctrl.sh
+../../i3wm/caps-to-ctrl.sh

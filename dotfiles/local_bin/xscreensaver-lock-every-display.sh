@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../xscreensaver-lock-every-display.sh
+../../xscreensaver-lock-every-display.sh

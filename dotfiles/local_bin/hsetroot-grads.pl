@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../hsetroot-grads.pl
+../../hsetroot-grads.pl

@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../stop-xscreensaver.sh
+../../stop-xscreensaver.sh

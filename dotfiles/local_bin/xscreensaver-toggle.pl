@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../xscreensaver-toggle.pl
+../../xscreensaver-toggle.pl

@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../vim/_vimrc
+../../vim/_vimrc

@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/HOME/../../i3wm/jhyun-desktop-arch/zlogin
+../../i3wm/jhyun-desktop-arch/zlogin

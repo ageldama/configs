@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../hsetroot-solid.pl
+../../hsetroot-solid.pl

@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../xdotool-capslock.sh
+../../xdotool-capslock.sh

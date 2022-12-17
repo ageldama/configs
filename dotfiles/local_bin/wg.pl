@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../i3wm/wg.pl
+../../i3wm/wg.pl

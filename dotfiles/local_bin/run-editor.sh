@@ -1,1 +1,1 @@
-/home/jhyun/P/configs/dotfiles/../run-editor.sh
+../../run-editor.sh
