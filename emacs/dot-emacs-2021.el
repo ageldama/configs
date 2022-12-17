@@ -1276,8 +1276,10 @@ _SPC_ : cancel
 
 (defun do-lang-mode-hydra ()
   (interactive)
-  (when lang-mode-hydra
-    (call-interactively lang-mode-hydra)))
+  (if lang-mode-hydra
+      (call-interactively lang-mode-hydra)
+    ;; else
+    (message "Null lang-mode-hydra local-var")))
 
 
 (evil-global-set-key 'normal (kbd "SPC") 'hydra-my-global/body)
