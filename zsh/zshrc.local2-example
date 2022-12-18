@@ -11,6 +11,12 @@ if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
 fi
 
 
+
+if [[ -d ~/.roswell/bin ]]; then
+    export PATH=~/.roswell/bin:$PATH
+fi
+
+
 # guix
 GUIX_PROFILE="$HOME/.guix-profile"
 . "$GUIX_PROFILE/etc/profile"
