@@ -89,6 +89,7 @@ sub toggle_mute {
 
 
 sub find_default {
+# NOTE: maybe @DEFAULT_SINK@, @DEFAULT_SOURCE@
   my $self = shift;
   my $sth = $self->sth;
 
@@ -190,7 +191,7 @@ sub notify_mute {
   my ($name, $desc, $muted) = @_;
   my $sth = $pactl->sth;
   $notify_send->puts(sprintf("%s: %s (%s) has %s.", $sth, $name, $desc,
-    $muted ? 'muted' : 'unmuted'));
+    $muted ? 'MUTED' : 'UNMUTED'));
 }
 
 if ($ARGV[1] eq 'all') {
