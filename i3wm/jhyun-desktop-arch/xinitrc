@@ -50,37 +50,39 @@ test -x /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 && /usr/l
 
 
 # ssh / gnome-keyring
-if [[ -z "${SSH_AUTH_SOCK}" ]]; then
-  eval "$(ssh-agent)"
+if [[ -f ~/.use-ssh-add ]]; then
+  if [[ -z "${SSH_AUTH_SOCK}" ]]; then
+    eval "$(ssh-agent)"
+  fi
+
+  if [[ ! -z "${SSH_AUTH_SOCK}" ]]; then
+    # FreeBSD: `pkg add -y OpenSSH-askpass`
+    ssh-add < /dev/null &
+  fi
 fi
 
-if [[ ! -z "${SSH_AUTH_SOCK}" ]]; then
-  # FreeBSD: `pkg add -y OpenSSH-askpass`
-  ssh-add < /dev/null &
-fi
-
-STOP_GNOME_KEYRING=<<'EOD'
-case ${OSNAME} in
-  Linux)
-    if ! pgrep ssh-agent; then
-      dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
-      eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-      export SSH_AUTH_SOCK
-    else
-      # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
-      if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
-        ssh-add < /dev/null &
+if [[ -f ~/.use-gnome-keyring ]]; then
+  case ${OSNAME} in
+    Linux)
+      if ! pgrep ssh-agent; then
+        dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
+        eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+        export SSH_AUTH_SOCK
+      else
+        # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
+        if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
+          ssh-add < /dev/null &
+        fi
       fi
-    fi
-    ;;
-  FreeBSD)
-    eval $(dbus-launch --sh-syntax)
-    #dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
-    eval $(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-    export SSH_AUTH_SOCK
-    ;;
-esac
-EOD
+      ;;
+    FreeBSD)
+      eval $(dbus-launch --sh-syntax)
+      #dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
+      eval $(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+      export SSH_AUTH_SOCK
+      ;;
+  esac
+fi
 
 
 test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
