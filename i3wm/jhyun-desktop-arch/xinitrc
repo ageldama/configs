@@ -116,7 +116,7 @@ nm-applet &
 # Redshift
 SEOUL_POS=37.566:126.977 # Seoul
 which redshift-gtk
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
   redshift-gtk -l $SEOUL_POS &
 else
   redshift -l $SEOUL_POS &
@@ -124,7 +124,7 @@ fi
 
 # Compositor
 which picom
-if [ $? -eq 0 ]; then
+if [[ $? -eq 0 ]]; then
   true #picom -b &
 else
   true #compton -b &
