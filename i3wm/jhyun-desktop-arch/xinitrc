@@ -157,7 +157,7 @@ fi
 test -f ~/.use-keypad-pointer && setxkbmap -option keypad:pointerkeys
 
 # urxvtd
-#urxvtd --quiet --opendisplay --fork &
+#test -f ~/.use-urxvtd && urxvtd --quiet --opendisplay --fork &
 
 #
 test -f ~/.xinitrc2 && ~/.xinitrc2
