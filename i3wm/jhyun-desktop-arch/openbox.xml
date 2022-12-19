@@ -724,21 +724,21 @@
 			</action>
 		</keybind>
 
-		<keybind key="XF86AudioMute">
+		<keybind key="XF86AudioMute | C-W-m">
 			<action name="Execute">
 				<command>pactl-mute.pl sink toggle_default</command>
 			</action>
 		</keybind>
 
-		<keybind key="XF86AudioLowerVolume">
+		<keybind key="XF86AudioLowerVolume | C-W-Next">
 			<action name="Execute">
-				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pactl get-sink-volume @DEFAULT_SINK@; pactl get-sink-mute @DEFAULT_SINK@)"'</command>
+				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pa-get-vol.sh)"'</command>
 			</action>
 		</keybind>
 
-		<keybind key="XF86AudioRaiseVolume">
+		<keybind key="XF86AudioRaiseVolume | C-W-Prior">
 			<action name="Execute">
-				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pactl get-sink-volume @DEFAULT_SINK@; pactl get-sink-mute @DEFAULT_SINK@)"'</command>
+				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pa-get-vol.sh)"'</command>
 			</action>
 		</keybind>
 
