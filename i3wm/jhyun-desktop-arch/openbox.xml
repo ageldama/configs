@@ -646,11 +646,13 @@
       </action>
     </keybind>
 
+    <!--
     <keybind key="C-A-Delete">
       <action name="Execute">
         <command>sh -c 'xfce4-taskmanager || lxtask'</command>
       </action>
     </keybind>
+    -->
 
     <keybind key="W-l">
       <action name="Execute">
@@ -686,7 +688,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-F9 | XF86LaunchB">
+    <keybind key="W-F9 | XF86LaunchB | C-A-Delete">
       <action name="Execute">
         <command>scripts-rofi.sh</command>
       </action>
