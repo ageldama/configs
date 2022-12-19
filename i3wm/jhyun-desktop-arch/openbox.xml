@@ -626,7 +626,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-d">
+    <keybind key="W-d | XF86LaunchA">
       <action name="Execute">
         <command>rofi -combi-modi drun,window,run -show combi</command>
       </action>
@@ -686,7 +686,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-F9">
+    <keybind key="W-F9 | XF86LaunchB">
       <action name="Execute">
         <command>scripts-rofi.sh</command>
       </action>
