@@ -1,37 +1,48 @@
-#!/bin/bash
+#!/usr/bin/perl
 
-get_default_sink() {
-    pactl info | perl -ne '/default sink:\s+(.+)/i && print $1'
+use strict;
+use warnings;
+use Data::Dumper;
+use List::Util qw(first);
+
+sub get_default_sink {
+  qx{pactl info} =~ m/default sink:\s+(.+)/i && return $1;
 }
 
-get_sinks() {
-    pactl list sinks | perl -ne '/^\s+Name:\s+(.+)/ && print $1 . "\n"'
+sub get_sinks {
+  map { /^\s+Name:\s+(.+)/ && $1 } grep /^\s+Name:/, qx{pactl list sinks};
 }
 
-# TODO handle(empty-list)
+sub find_next_sink {
+  my ($cur, $sinks) = @_;
 
-SINKS=$(get_sinks)
-#declare -a SINKS
+  my $len = scalar @$sinks;
 
-for i in $SINKS
-do
-    echo "S: $i"
-done
+  if($len == 1){
+    return $cur;
+  }
 
+  my $index = first { $sinks->[$_] eq $cur } 0..($len-1);
 
-XXX=<<'EOF'
-new_sink=$(pacmd list-sinks | grep index | tee /dev/stdout | grep -m1 -A1 "* index" | tail -1 | cut -c12-)
+  $index ++;
+  $index = 0 if $index >= $len;
 
-echo "Setting default sink to: $new_sink";
-pacmd set-default-sink $new_sink
-pacmd list-sink-inputs | grep index | while read line
-do
-echo "Moving input: ";
-echo $line | cut -f2 -d' ';
-echo "to sink: $new_sink";
-pacmd move-sink-input `echo $line | cut -f2 -d' '` $new_sink
+  return $sinks->[$index];
+}
 
-done
+# main:
 
-pacmd list-sinks | grep '* index' -A1 > /dev/stderr
-EOF
+my @sinks = get_sinks;
+die "No sinks" if scalar @sinks == 0;
+# print Dumper(\@sinks) . "\n";
+
+my $cur = get_default_sink;
+# print "$cur\n";
+
+my $next_sink = find_next_sink($cur, \@sinks);
+# print $next_sink;
+
+qx{pactl set-default-sink $next_sink};
+print $next_sink;
+
+#EOF.
