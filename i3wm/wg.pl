@@ -14,9 +14,12 @@ use feature qw<say>;
 
   my $color_dark = `gsettings get org.gnome.desktop.interface color-scheme | grep -o \\\\-dark`;
   chomp $color_dark;
-  #say $color_dark;
 
-  system("pgrep -u $ENV{USER} gnome-shell && gsettings set org.gnome.desktop.background picture-uri${color_dark} ${pick} || feh --bg-fill ${pick}");
+  if(defined $color_dark){
+    system("pgrep -u $ENV{USER} '^gnome-shell\$' && gsettings set org.gnome.desktop.background picture-uri${color_dark} ${pick} || feh --bg-fill ${pick}");
+  }else{
+    system("feh --bg-fill ${pick}");
+  }
 
   #
 =begin
