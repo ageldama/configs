@@ -654,7 +654,7 @@
     </keybind>
     -->
 
-    <keybind key="W-l">
+    <keybind key="W-Escape">
       <action name="Execute">
         <command>xscreensaver-command -lock</command>
       </action>
