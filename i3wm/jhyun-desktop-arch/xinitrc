@@ -136,7 +136,10 @@ fi
 blueman-applet &
 
 # Notification Logging
-dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
+if [[ -f ~/.use-notifications-dump ]]; then
+    # Prefer `dunstctl history-pop` instead:
+    dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
+fi
 
 # Notification growl.
 dunst &
