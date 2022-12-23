@@ -626,7 +626,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-d | XF86LaunchA">
+    <keybind key="W-d XF86LaunchA">
       <action name="Execute">
         <command>rofi -combi-modi drun,window,run -show combi</command>
       </action>
@@ -688,7 +688,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-F9 | XF86LaunchB | C-A-Delete">
+    <keybind key="W-F9 XF86LaunchB C-A-Delete">
       <action name="Execute">
         <command>scripts-rofi.sh</command>
       </action>
@@ -724,19 +724,19 @@
 			</action>
 		</keybind>
 
-		<keybind key="XF86AudioMute | C-W-m">
+		<keybind key="XF86AudioMute C-W-m">
 			<action name="Execute">
 				<command>pactl-mute.pl sink toggle_default</command>
 			</action>
 		</keybind>
 
-		<keybind key="XF86AudioLowerVolume | C-W-Next">
+		<keybind key="XF86AudioLowerVolume C-W-Next">
 			<action name="Execute">
 				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pa-get-vol.sh)"'</command>
 			</action>
 		</keybind>
 
-		<keybind key="XF86AudioRaiseVolume | C-W-Prior">
+		<keybind key="XF86AudioRaiseVolume C-W-Prior">
 			<action name="Execute">
 				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pa-get-vol.sh)"'</command>
 			</action>
