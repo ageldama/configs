@@ -171,40 +171,51 @@ test -f ~/.xinitrc2 && ~/.xinitrc2
 #
 #xprop -root -f _NET_DESKTOP_LAYOUT 32cccc -set _NET_DESKTOP_LAYOUT 0,5,2,0
 
-if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
-    if [[ -f ~/.use-xfce4-panel ]]; then
-        dbus-launch xfce4-panel &
-    fi
+if [[ -f ~/.use-icewm ]]; then
+  if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+    exec dbus-launch icewm ${1+"$@"}
+  else
+    exec icewm ${1+"$@"}
+  fi
+fi
 
-    if [[ -f ~/.use-lxpanel ]]; then
-        dbus-launch lxpanel &
-    fi
+if [[ -f ~/.use-openbox ]]; then
 
-    if [[ -f ~/.use-polybar ]]; then
-      dbus-launch polybar bottombar &
-    fi
+  if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+      if [[ -f ~/.use-xfce4-panel ]]; then
+          dbus-launch xfce4-panel &
+      fi
 
-  #dbus-launch lxpanel &
-  #(sleep 2s; polybar topbar) &
-  #(sleep 7s; pkill -USR1 topbar) &
+      if [[ -f ~/.use-lxpanel ]]; then
+          dbus-launch lxpanel &
+      fi
 
-  exec dbus-launch openbox ${1+"$@"}
-else
-  # under xsession
-  #lxpanel &
-    if [[ -f ~/.use-xfce4-panel ]]; then
-        xfce4-panel &
-    fi
+      if [[ -f ~/.use-polybar ]]; then
+        dbus-launch polybar bottombar &
+      fi
 
-    if [[ -f ~/.use-lxpanel ]]; then
-        lxpanel &
-    fi
+    #dbus-launch lxpanel &
+    #(sleep 2s; polybar topbar) &
+    #(sleep 7s; pkill -USR1 topbar) &
 
-    if [[ -f ~/.use-polybar ]]; then
-      polybar bottombar &
-    fi
+    exec dbus-launch openbox ${1+"$@"}
+  else
+    # under xsession
+    #lxpanel &
+      if [[ -f ~/.use-xfce4-panel ]]; then
+          xfce4-panel &
+      fi
 
-    exec openbox ${1+"$@"}
+      if [[ -f ~/.use-lxpanel ]]; then
+          lxpanel &
+      fi
+
+      if [[ -f ~/.use-polybar ]]; then
+        polybar bottombar &
+      fi
+
+      exec openbox ${1+"$@"}
+  fi
 fi
 
 ###EOF
