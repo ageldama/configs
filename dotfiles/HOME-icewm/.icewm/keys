@@ -71,8 +71,9 @@ key "Super+Esc" xscreensaver-command -lock
 key "Print" gnome-screenshot
 key "Shift+Print" gnome-screenshot -i
 
-key "Super+e" sh -c 'thunar || pcmanfm'
-key "Super+Shift+e" x-terminal-emulator -e mc
+key "Super+e" x-terminal-emulator -e mc
+key "Super+Shift+e" sh -c 'thunar || pcmanfm'
+key "Super+Shift+m" x-terminal-emulator -e bashmount
 
 key "Super+w" wg.pl
 key "Super+Shift+w" hsetroot-solid.pl
