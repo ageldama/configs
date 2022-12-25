@@ -1,0 +1,19 @@
+1. vim / vim <Leader>I
+2. emacs / LOAD ~/.emacs / M-x quelpa-checkout-quelpa / LOAD ~/.emacs
+3. omz + chsh(zsh)
+4. cp zshrc.local2 ~/.zshrc.local2 && echo >> source ~/.zshrc.local
+5. bashmount
+
+
+Perl: local::lib, cpanm
+fzf
+zoxide
+
+
+TODO: pkg-names?
+
+TODO: better README?
+
+TODO: -a, -h, usage
+
+TODO: actions -- sudo, run, link, copy
