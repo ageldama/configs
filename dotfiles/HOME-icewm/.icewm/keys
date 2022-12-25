@@ -84,7 +84,7 @@ key "XF86LaunchB" scripts-rofi.sh
 key "Super+Shift+F9" pavucontrol
 
 
-
+key "Super+o" icesh-send-next-monitor.pl
 
 
 #EOF.
