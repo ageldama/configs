@@ -31,3 +31,9 @@ KeySysWorkspaceNext="Super+Right"
 KeySysWorkspaceLast="Super+Down"
 
 KeySysShowDesktop="Super+F5"
+
+KeyWinMaximizeVert="Shift+Alt+F10"
+KeyWinMaximizeHoriz="Shift+Ctrl+F10"
+
+
+# SEE: https://github.com/ice-wm/icewm/blob/master/src/default.h
