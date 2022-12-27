@@ -22,14 +22,23 @@ URxvt.cursorColor: #ffff00
 !URxvt.boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=10:antialias=true,\
 !  xft:NanumGothicCoding:size=10:style=Bold Italic
 
-URxvt.font: xft:Hermit:style=Regular:size=10:antialias=true,\
-  xft:NanumGothicCoding:size=10:style=Regular
-URxvt.boldFont: xft:Hermit:style=Bold:size=10:antialias=true,\
-  xft:NanumGothicCoding:size=10:style=Bold
-URxvt.italicFont: xft:Hermit:style=Italic:size=10:antialias=true,\
-  xft:NanumGothicCoding:size=10:style=Italic
-URxvt.boldItalicFont: xft:Hermit:style=Bold Italic:size=10:antialias=true,\
-  xft:NanumGothicCoding:size=10:style=Bold Italic
+!URxvt.font: xft:Hermit:style=Regular:size=10:antialias=true,\
+!  xft:NanumGothicCoding:size=10:style=Regular
+!URxvt.boldFont: xft:Hermit:style=Bold:size=10:antialias=true,\
+!  xft:NanumGothicCoding:size=10:style=Bold
+!URxvt.italicFont: xft:Hermit:style=Italic:size=10:antialias=true,\
+!  xft:NanumGothicCoding:size=10:style=Italic
+!URxvt.boldItalicFont: xft:Hermit:style=Bold Italic:size=10:antialias=true,\
+!  xft:NanumGothicCoding:size=10:style=Bold Italic
+
+URxvt.font: xft:DejaVu Sans Mono:style=Regular:size=10:antialias=true,\
+  xft:D2Coding:size=10:style=Regular
+URxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:size=10:antialias=true,\
+  xft:D2Coding:size=10:style=Bold
+URxvt.italicFont: xft:DejaVu Sans Mono:style=Italic:size=10:antialias=true,\
+  xft:D2Coding:size=10:style=Italic
+URxvt.boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=10:antialias=true,\
+  xft:D2Coding:size=10:style=Bold Italic
 
 
 URxvt.letterSpace: -1
