@@ -110,5 +110,38 @@ Xautolock.time: 10
 !Xautolock.cornerredelay: 10
 
 
+XTerm*renderFont: true
+XTerm*faceName: DejaVu Sans Mono
+XTerm*faceSize: 10
+
+UXTerm*renderFont: true
+UXTerm*faceName: DejaVu Sans Mono
+UXTerm*faceSize: 10
+
+! Use white-on-black colors
+XTerm.vt100.reverseVideo: true
+UXTerm.vt100.reverseVideo: true
+
+! XTerm already has 256 colors support
+! We ask it to set the correct $TERM
+XTerm.termName: xterm-256color
+UXTerm.termName: xterm-256color
+
+! Start with maximized window
+!xterm*maximized: true
+
+! Make Alt key behave like in other terminals
+XTerm.vt100.metaSendsEscape: true
+UXTerm.vt100.metaSendsEscape: true
+
+! Number of lines to save for scrolling
+XTerm.vt100.saveLines: 100000
+UXTerm.vt100.saveLines: 100000
+
+! Increase-decrease font size using Ctrl-/+
+xterm*VT100.Translations: #override \
+    Ctrl <Key> minus: smaller-vt-font() \n\
+    Ctrl <Key> plus: larger-vt-font()
+
 
 !!!EOF.
