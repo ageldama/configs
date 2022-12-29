@@ -1,3 +1,4 @@
 # Do: cpanm --installdeps .
+requires 'DDP';
 requires 'Path::ExpandTilde', '0.003'; # or newer
 requires 'Data::Dumper::OneLine', '0.06'; # or newer
