@@ -1,5 +1,4 @@
-#!/bin/bash
-# STOP !/usr/bin/env bash
+#!/usr/bin/env bash
 
 #export LANG=ko_KR.UTF-8
 
