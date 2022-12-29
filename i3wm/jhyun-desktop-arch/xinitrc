@@ -107,7 +107,11 @@ xset b off
 
 xrdb -merge $HOME/.Xresources &
 
-xscreensaver -no-splash &
+if [[ -f ~/.use-xautolock ]]; then
+    xautolock &
+else
+    xscreensaver -no-splash &
+fi
 
 # Mute all audio input
 pactl-mute.pl source all &

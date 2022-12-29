@@ -64,7 +64,7 @@ key "XF86LaunchA" rofi -combi-modi drun,window,run -show combi
 key "Super+Tab" rofi -show window
 key "Super+Shift+Tab" rofi -show windowcd
 
-key "Super+Esc" xscreensaver-command -lock
+key "Super+Esc" xscreensaver-lock.pl
 
 key "Print" gnome-screenshot
 key "Shift+Print" gnome-screenshot -i

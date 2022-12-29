@@ -1,0 +1,1 @@
+../../xscreensaver-lock.pl
