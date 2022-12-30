@@ -59,7 +59,7 @@ if [[ -f ~/.use-ssh-add ]]; then
     # FreeBSD: `pkg add -y OpenSSH-askpass`
     #ssh-add < /dev/null &
 
-    SSH_ASKPASS=$(ssh-askpass)
+    SSH_ASKPASS=$(which ssh-askpass)
     SSH_ASKPASS_REQUIRE=prefer
   fi
 fi
