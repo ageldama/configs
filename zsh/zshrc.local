@@ -50,6 +50,9 @@ elif [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]]; then
 elif [[ -f /usr/local/share/examples/fzf/shell/key-bindings.zsh ]]; then
   # freebsd
   source /usr/local/share/examples/fzf/shell/key-bindings.zsh
+elif [[ -f /etc/zsh_completion.d/fzf-key-bindings ]]; then
+  # opensuse
+  source /etc/zsh_completion.d/fzf-key-bindings
 elif [[ -f /usr/share/doc/fzf/key-bindings.zsh ]]; then
   source /usr/share/doc/fzf/completion.zsh
   source /usr/share/doc/fzf/key-bindings.zsh
