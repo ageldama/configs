@@ -144,4 +144,9 @@ xterm*VT100.Translations: #override \
     Ctrl <Key> plus: larger-vt-font()
 
 
+!right hand side scrollbar
+xterm*ScrollBar: false
+xterm*rightScrollBar: false
+
+
 !!!EOF.
