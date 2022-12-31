@@ -30,9 +30,7 @@ my $pid = open2(my $chld_out, my $chld_in,
                ) or die;
 # say "rofi-pid: $pid";
 
-foreach (@scripts) {
-  print $chld_in $_. "\n";
-}
+print $chld_in "$_\n" foreach @scripts;
 
 close($chld_in) or die;
 
@@ -46,14 +44,12 @@ if($child_exit_status != 0){
   die 'bye: cancelled';
 }
 
+#
 my $stdout = <$chld_out>;
 chomp $stdout;
-# say "selected: $stdout";
 
 close($chld_out) or die;
 
-if ($child_exit_status == 0) {
-  system($stdout);
-}
+system($stdout);
 
 #EOF.
