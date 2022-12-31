@@ -73,7 +73,7 @@ key "Super+e" x-terminal-emulator -e mc
 key "Super+Shift+e" sh -c 'thunar || pcmanfm'
 key "Super+Shift+m" x-terminal-emulator -e bashmount
 
-key "Super+w" hsetroot-whatever.pl
+key "Super+w" wg-whatever.pl
 #key "Super+w" wg.pl
 
 key "Super+F9" scripts-rofi.pl
