@@ -690,7 +690,7 @@
 
     <keybind key="W-F9 XF86LaunchB C-A-Delete">
       <action name="Execute">
-        <command>scripts-rofi.sh</command>
+        <command>scripts-rofi.pl</command>
       </action>
     </keybind>
 

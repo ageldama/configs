@@ -76,8 +76,8 @@ key "Super+Shift+m" x-terminal-emulator -e bashmount
 key "Super+w" wg.pl
 key "Super+Shift+w" hsetroot-solid.pl
 
-key "Super+F9" scripts-rofi.sh
-key "XF86LaunchB" scripts-rofi.sh
+key "Super+F9" scripts-rofi.pl
+key "XF86LaunchB" scripts-rofi.pl
 
 key "Super+Shift+F9" pavucontrol
 
