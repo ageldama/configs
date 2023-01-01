@@ -560,9 +560,9 @@
 (add-hook 'org-mode-hook
           (lambda ()
             (flycheck-mode -1)
-            (setq truncate-lines nil)
-            (setq fill-column most-positive-fixnum)
-            (turn-off-auto-fill)
+            ;; (setq truncate-lines nil)
+            ;; (setq fill-column most-positive-fixnum)
+            ;; (turn-off-auto-fill)
             (local-set-key (kbd "C-c l") 'org-store-link)
             (when (fboundp 'yas-minor-mode)
               (yas-minor-mode -1))
