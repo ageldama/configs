@@ -5,18 +5,28 @@ command_exists () {
   type "$1" &> /dev/null ;
 }
 
-FOO=<<'EOC'
-if command_exists exa ; then
-  alias ls='exa -Fa'
-  alias l='exa -Fa'
-  alias ll='exa -l'
-  alias lll='exa -Tl'
-else
-  alias ls='ls -F -G -a --color'
-  alias l='ls'
-  alias ll='ls -lH'
+if [[ -o interactive ]]; then
+  if command_exists exa ; then
+    alias ls='exa -Fa'
+    alias l='exa -Fa'
+    alias ll='exa -l'
+    alias lll='exa -Tl'
+  else
+    alias ls='ls -F -G -a --color'
+    alias l='ls'
+    alias ll='ls -lH'
+  fi
+
+  command_exists batcat && alias bat=batcat
+  command_exists fdfind && alias fd=fdfind
+
+
+  if [[ -x "$(command -v zoxide)" ]]; then
+    eval "$(zoxide init zsh)"
+  fi
+
 fi
-EOC
+
 
 #export PAGER=most
 export PAGER=less
@@ -71,6 +81,11 @@ alias zln='zmv -L'
 #if [[ -d $HOME/local/z.lua ]]; then
 #  source $HOME/local/z.lua/z.lua.plugin.zsh
 #fi
+
+if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
+  #echo perl-local-lib
+  eval $(perl -Mlocal::lib)
+fi
 
 
 if [[ -f ~/.zshrc.local2 ]]; then
