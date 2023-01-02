@@ -76,8 +76,8 @@ key "Super+Shift+m" x-terminal-emulator -e bashmount
 key "Super+w" wg-whatever.pl
 #key "Super+w" wg.pl
 
-key "Super+F9" scripts-rofi.pl
-key "XF86LaunchB" scripts-rofi.pl
+key "Super+F9" sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'
+key "XF86LaunchB" sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'
 
 key "Super+Shift+F9" pavucontrol
 

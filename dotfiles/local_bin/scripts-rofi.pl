@@ -6,6 +6,10 @@ use feature qw(say);
 use File::Find;
 use IPC::Open2;
 use DDP;
+use Getopt::Std;
+
+my %opts = (p => 0);
+getopts('p', \%opts);
 
 use constant SCRIPT_DIR => "$ENV{HOME}/local/scripts";
 
@@ -50,6 +54,10 @@ chomp $stdout;
 
 close($chld_out) or die;
 
-system($stdout);
+if($opts{p}){
+  print "$stdout\n";
+}else{
+  system($stdout);
+}
 
 #EOF.
