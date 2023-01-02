@@ -4,16 +4,22 @@
   b:6
 "xdotool key Next"  # wheel ->
   b:7
-"xdotool key Next"
-  b:8
-"xdotool key Prior"
-  b:9
+
+# most left/right-buttons
 "xdotool key Next"
   b:10
 "xdotool key Prior"
   b:11
+
+# the center btn
 "xdotool key Next"
   b:12
+
+# two up/down btns
+"xdotool key alt+Right"
+  b:8
+"xdotool key alt+Left"
+  b:9
 
 
 "xbindkeys_show"
