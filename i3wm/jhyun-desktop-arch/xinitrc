@@ -132,11 +132,8 @@ else
 fi
 
 # Compositor
-which picom
-if [[ $? -eq 0 ]]; then
-  true #picom -b &
-else
-  true #compton -b &
+if [[ -f ~/.use-picom ]]; then
+  picom -b &
 fi
 
 # Bluetooth
