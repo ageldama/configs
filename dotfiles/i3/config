@@ -198,8 +198,8 @@ bindsym $mod+m exec "pactl-mute.pl sink toggle_default"
 bindsym XF86MonBrightnessDown exec ~/.config/i3/helpers/mon-bright-dn.sh
 bindsym XF86MonBrightnessUp exec ~/.config/i3/helpers/mon-bright-up.sh
 
-bindsym XF86KbdBrightnessDown exec "sh -c 'notify-send \"$(brightnessctl --device=smc::kbd_backlight s 5%-)\"'"
-bindsym XF86KbdBrightnessUp exec "sh -c 'notify-send \"$(brightnessctl --device=smc::kbd_backlight s +5%)\"'"
+bindsym XF86KbdBrightnessDown exec ~/.config/i3/helpers/kbd-bright-dn.sh
+bindsym XF86KbdBrightnessUp exec ~/.config/i3/helpers/kbd-bright-up.sh
 
 
 
