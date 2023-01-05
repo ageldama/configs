@@ -176,15 +176,31 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-bindsym $mod+Escape exec "xscreensaver-command -lock"
+bindsym $mod+Escape exec "xscreensaver-lock.pl"
 bindsym $mod+d exec "rofi -combi-modi drun,ssh,window,run -show combi"
+bindsym XF86LaunchA exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym $mod+Tab exec "rofi -show window"
-bindsym $mod+Shift+w exec "wg.pl"
-bindsym $mod+F9 exec "scripts-rofi.pl"
+bindsym $mod+Shift+w exec "wg-whatever.pl"
+bindsym $mod+F9 exec "sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'"
+bindsym XF86LaunchB exec "sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'"
 bindsym $mod+Shift+F9 exec "pavucontrol"
-bindsym $mod+Shift+p exec "gnome-screenshot -i"
-bindsym $mod+F10 exec "thunar || pcmanfm "
-bindsym $mod+Shift+F10 exec "x-terminal-emulator -e mc"
+bindsym Print exec "gnome-screenshot"
+bindsym Shift+Print exec "gnome-screenshot -i"
+bindsym $mod+Shift+F10 exec "thunar || pcmanfm "
+bindsym $mod+F10 exec "x-terminal-emulator -e mc"
+
+
+bindsym $mod+Next exec ~/.config/i3/helpers/pa-vol-dn.sh
+bindsym $mod+Prior exec ~/.config/i3/helpers/pa-vol-up.sh
+
+bindsym $mod+m exec "pactl-mute.pl sink toggle_default"
+
+bindsym XF86MonBrightnessDown exec ~/.config/i3/helpers/mon-bright-dn.sh
+bindsym XF86MonBrightnessUp exec ~/.config/i3/helpers/mon-bright-up.sh
+
+bindsym XF86KbdBrightnessDown exec ~/.config/i3/helpers/kbd-bright-dn.sh
+bindsym XF86KbdBrightnessUp exec ~/.config/i3/helpers/kbd-bright-up.sh
+
 
 
 # Start i3bar to display a workspace bar (plus the system information i3status
