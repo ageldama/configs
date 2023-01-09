@@ -5,14 +5,17 @@
 ;;; Debian Buster:
 ;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
+(when +sys/gui?+
+  (progn
+    (setq *ageldama/font-fixed-en* "DejaVu Sans Mono" 
+          *ageldama/font-fixed-ko* "나눔고딕코딩" )
+    (my-set-fixed-fonts))
 
-(progn
-  (setq *ageldama/font-fixed-en* "DejaVu Sans Mono" 
-        *ageldama/font-fixed-ko* "나눔고딕코딩" )
-  (my-set-fixed-fonts))
+  (set-face-attribute 'default nil :height 125)
+  ;;; NOTE 105, 85?
 
-(set-face-attribute 'default nil :height 165)
-;;; NOTE 105, 85?
+  (load-theme 'modus-vivendi t))
+
 
 ;; 너무 느리면 끄자.
 (yas-global-mode +1)
@@ -21,7 +24,6 @@
 ;; (toggle-battery-saving-mode)
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
 
-(load-theme 'modus-vivendi t)
 
 (when (boundp 'native-comp-async-report-warnings-errors)
   (setq native-comp-async-report-warnings-errors 'silent))
