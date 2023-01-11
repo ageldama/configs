@@ -132,11 +132,8 @@ else
 fi
 
 # Compositor
-which picom
-if [[ $? -eq 0 ]]; then
-  true #picom -b &
-else
-  true #compton -b &
+if [[ -f ~/.use-picom ]]; then
+  picom -b &
 fi
 
 # Bluetooth
@@ -183,6 +180,14 @@ if [[ -f ~/.use-icewm ]]; then
     exec dbus-launch icewm ${1+"$@"}
   else
     exec icewm ${1+"$@"}
+  fi
+fi
+
+if [[ -f ~/.use-i3 ]]; then
+  if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
+    exec dbus-launch i3 ${1+"$@"}
+  else
+    exec i3 ${1+"$@"}
   fi
 fi
 
