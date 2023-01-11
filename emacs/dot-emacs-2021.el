@@ -559,6 +559,7 @@
 ;;; Org
 (add-hook 'org-mode-hook
           (lambda ()
+            (turn-on-auto-fill)
             (flycheck-mode -1)
             ;; (setq truncate-lines nil)
             ;; (setq fill-column most-positive-fixnum)
