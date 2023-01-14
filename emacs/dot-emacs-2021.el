@@ -1291,6 +1291,10 @@ _SPC_ : cancel
 
 (global-set-key (kbd "C-x c") 'do-lang-mode-hydra)
 
+(global-set-key (kbd "<f8>") 'hydra-my-global/body)
+
+(global-set-key (kbd "<f9>") 'do-lang-mode-hydra)
+
 
 
 
