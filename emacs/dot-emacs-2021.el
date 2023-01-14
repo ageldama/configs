@@ -1136,6 +1136,7 @@ _SPC_ : cancel
   ("M-c" org-capture-open :exit t)
   ("M-p" org-open-PLAN :exit t)
   ("d"  diary/new-or-open-org-file :exit t)
+  ("m" diary/new-or-open-memo :exit t)
 
  ("SPC" nil))
 

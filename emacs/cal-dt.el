@@ -15,23 +15,21 @@
     (s-concat (nth 0 dts) "-" (nth 1 dts))))
 
 
-(defun diary/sel-date (dt-str)
-  (let* ((dt-str2 (split-string dt-str "-"))
-         (dt (mapcar #'string-to-number dt-str2)))
-    dt))
+(defun diary/split-date (dt-str)
+  (mapcar #'string-to-number (split-string dt-str "-")))
 
 ;; (diary/sel-date (org-read-date))
 
 
 (defvar diary/wrong-name-rx
-    (rx (group (= 4 digit)) "-"
-        (group (= 2 digit)) "-"
-        (group (= 2 digit)) ".org"))
+  (rx (group (= 4 digit)) "-"
+      (group (= 2 digit)) "-"
+      (group (= 2 digit)) ".org"))
 
 
 (defun diary/list-wrong-fmt-files ()
   (interactive)
-  (--filter 
+  (--filter
    (string-match diary/wrong-name-rx it)
    (directory-files ".")))
 
@@ -51,17 +49,43 @@
       (let ((new-name (diary/fix-name wrong-name)))
         (if (f-exists? new-name)
             (message "# EXISTS: mv %s %s" wrong-name new-name)
-            ;; else
+          ;; else
           (f-move wrong-name new-name))))))
+
+
+(defvar diary/make-diary-file-name/base-dir "~/P/v3/diary")
+
+(defun diary/make-diary-file-name (yyyy-mm-dd-str)
+  (let ((yyyy-mm-dd (diary/split-date yyyy-mm-dd-str)))
+    (let* ((dt-fmt-str (apply #'diary/fmt-diary-date yyyy-mm-dd))
+           (mon-fmt-str (diary/fmt-month dt-fmt-str)))
+      (format "%s/%s/%s.org"
+              diary/make-diary-file-name/base-dir
+              mon-fmt-str dt-fmt-str))))
+
+(defvar diary/initial-diary-content/tags '())
+
+(defvar diary/initial-diary-content/fmt-title "%s")
+
+(defun diary/initial-diary-content (&rest kws)
+  "`KWS' := (:yyyy-mm-dd \"2023-01-23\" :file-name \"..\" ...)"
+  (format (concat "#+TITLE: " diary/initial-diary-content/fmt-title
+                  "\n#+TAGS[]: %s\n\n")
+          (plist-get kws :yyyy-mm-dd)
+          (string-join
+           (mapcar (lambda (v) (format "%s" v))
+                   diary/initial-diary-content/tags) " ")))
+
+
+(defvar diary/fn-make-file-name #'diary/make-diary-file-name)
+
+(defvar diary/fn-initial-content #'diary/initial-diary-content)
 
 
 (defun diary/new-or-open-org-file ()
   (interactive)
-  (let* ((yyyy-mm-dd (diary/sel-date (org-read-date)))
-         (dt-fmt-str (apply #'diary/fmt-diary-date yyyy-mm-dd))
-         (mon-fmt-str (diary/fmt-month dt-fmt-str))
-         (file-name (format "~/P/v3/diary/%s/%s.org"
-                            mon-fmt-str dt-fmt-str)))
+  (let* ((yyyy-mm-dd (org-read-date))
+         (file-name (funcall diary/fn-make-file-name yyyy-mm-dd)))
     (if (f-exists? file-name)
         (progn (message "FOUND: %s" file-name)
                (find-file file-name))
@@ -70,6 +94,14 @@
         (message "NOT-FOUND: %S" file-name)
         (find-file file-name)
         ;; TITLE, TAGS
-        (insert (format "#+TITLE: %s\n#+TAGS[]: \n\n" dt-fmt-str))))))
+        (insert (funcall diary/fn-initial-content
+                         :yyyy-mm-dd yyyy-mm-dd :file-name file-name))))))
 
-         
+(defun diary/new-or-open-memo ()
+  (interactive)
+  (let ((diary/initial-diary-content/fmt-title "MEMO: %s")
+        (diary/initial-diary-content/tags '(memo daily))
+        (diary/make-diary-file-name/base-dir "~/P/v3/memo"))
+    (diary/new-or-open-org-file)))
+
+;;;EOF.
