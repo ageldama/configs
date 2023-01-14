@@ -74,10 +74,10 @@ URxvt.font-size.step: 1
 URxvt.keysym.M-Escape:    builtin-string:
 URxvt.keysym.M-s:    builtin-string:
 
-URxvt.keysym.C-M-Escape: perl:keyboard-select:activate
+URxvt.keysym.C-M-s: perl:keyboard-select:activate
 ! The following line overwrites the default Meta-s binding and allows to
 ! activate keyboard-select directly in backward search mode:
-URxvt.keysym.C-M-s: perl:keyboard-select:search
+URxvt.keysym.C-M-f: perl:keyboard-select:search
 URxvt.keysym.C-M-r: perl:searchable-scrollback:start
 URxvt.keyboard-select.clipboard: true
 
@@ -92,8 +92,8 @@ URxvt.keysym.Shift-Down: eval:scroll_down 1
 URxvt.keysym.M-Home: eval:scroll_to_top
 URxvt.keysym.M-End:  eval:scroll_to_bottom
 
-URxvt.keysym.Shift-Control-V: eval:paste_clipboard
-URxvt.keysym.Shift-Control-C: eval:selection_to_clipboard
+URxvt.keysym.C-M-V: eval:paste_clipboard
+URxvt.keysym.C-M-C: eval:selection_to_clipboard
 
 
 
