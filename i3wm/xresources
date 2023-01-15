@@ -72,7 +72,8 @@ URxvt.font-size.step: 1
 !URxvt.keysym.C-plus:   resize-font:bigger
 
 URxvt.keysym.M-Escape:    builtin-string:
-URxvt.keysym.M-s:    builtin-string:
+URxvt.keysym.M-s:         builtin-string:
+URxvt.keysym.M-u:         builtin-string:
 
 URxvt.keysym.C-M-s: perl:keyboard-select:activate
 ! The following line overwrites the default Meta-s binding and allows to
@@ -82,7 +83,7 @@ URxvt.keysym.C-M-r: perl:searchable-scrollback:start
 URxvt.keyboard-select.clipboard: true
 
 
-URxvt.keysym.M-u: perl:url-select:select_next
+URxvt.keysym.C-M-u: perl:url-select:select_next
 URxvt.url-select.launcher: xdg-open
 
 !URxvt.kuake.hotkey: F12
