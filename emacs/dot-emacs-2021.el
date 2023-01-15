@@ -1128,6 +1128,7 @@ _c_ : capture
 _M-c_ : capture open
 _M-p_ : plan
 _d_ : diary
+_m_ : memo/log (+C-u)
 
 _SPC_ : cancel
 "
