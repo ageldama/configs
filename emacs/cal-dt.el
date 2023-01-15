@@ -97,11 +97,46 @@
         (insert (funcall diary/fn-initial-content
                          :yyyy-mm-dd yyyy-mm-dd :file-name file-name))))))
 
-(defun diary/new-or-open-memo ()
-  (interactive)
-  (let ((diary/initial-diary-content/fmt-title "MEMO: %s")
-        (diary/initial-diary-content/tags '(memo daily))
-        (diary/make-diary-file-name/base-dir "~/P/v3/memo"))
-    (diary/new-or-open-org-file)))
+
+(defvar diary/memo-types
+  '(
+    :memo
+    (:fmt-title "MEMO: %s" :tags (memo daily) :base-dir "~/P/v3/memo")
+    :tmp
+    (:fmt-title "TMP: %s" :tags (memo tmp) :base-dir "/tmp")
+    ))
+
+(defun diary/memo-types/default ()
+  (car diary/memo-types))
+
+(defun diary/memo-types/select ()
+  (let ((memo-types (cl-loop with idx = 0
+                             for item in diary/memo-types
+                             when (evenp idx)
+                             collect item
+                             do (cl-incf idx))))
+    (intern
+     (completing-read "Select memo type> " memo-types
+                      nil ; predicate
+                      nil ; require-match
+                      nil ; initial-input
+                      ))))
+
+
+(defun diary/new-or-open-memo (&optional ask-memo-type?)
+  (interactive "P")
+  (let* ((memo-type-key (if ask-memo-type?
+                            (diary/memo-types/select)
+                          ;;else
+                          (diary/memo-types/default)))
+         (sel (plist-get diary/memo-types memo-type-key)))
+    (let ((diary/initial-diary-content/fmt-title
+           (plist-get sel :fmt-title))
+          (diary/initial-diary-content/tags
+           (plist-get sel :tags))
+          (diary/make-diary-file-name/base-dir
+           (plist-get sel :base-dir)))
+      (diary/new-or-open-org-file))))
+
 
 ;;;EOF.
