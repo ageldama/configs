@@ -5,6 +5,9 @@ function zlogin_startx_dialog () {
     if [[ $? == 0 || $? == 255 ]]; then
       case ${OSNAME} in
         Linux)
+          if [ -f ~/.use-nvidia ]; then
+            lsmod | grep nvidia || sudo modprobe nvidia
+          fi
           exec startx &> startx.log
           ;;
         FreeBSD)
