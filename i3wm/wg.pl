@@ -6,11 +6,14 @@ use feature qw<say>;
 #use Glib::Object::Introspection;
 
 {
-  my @files = split /\n/, qx<find -L ~/P/wg/ -type f -not -path '*/\.git/*'>;
-  say scalar @files;
-  my $pick = $files[rand @files];
-  say $pick;
+  my $pick = shift;
 
+  if(!defined($pick)){
+    my @files = split /\n/, qx<find -L ~/P/wg/ -type f -not -path '*/\.git/*'>;
+    say scalar @files;
+    $pick = $files[rand @files];
+    say $pick;
+  }
 
   my $color_dark = `gsettings get org.gnome.desktop.interface color-scheme | grep -o \\\\-dark`;
   chomp $color_dark;
