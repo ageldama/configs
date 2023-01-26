@@ -1015,7 +1015,7 @@ _SPC_: EXIT       ^ ^                 _TAB_: ivy-buf
   ("<up>" windmove-up)
   ("<down>" windmove-down)
 
-  ("S-<left>" buf-move-up)
+  ("S-<left>" buf-move-left)
   ("S-<right>" buf-move-right)
   ("S-<up>" buf-move-up)
   ("S-<down>" buf-move-down)
@@ -1233,7 +1233,7 @@ _SPC_ : cancel
   ("<up>" windmove-up "windmv-up" :exit t)
   ("<down>" windmove-down "windmv-dn" :exit t)
 
-  ("S-<left>" buf-move-up "bufmv-up" :exit t)
+  ("S-<left>" buf-move-left "bufmv-up" :exit t)
   ("S-<right>" buf-move-right "bufmv-dn" :exit t)
   ("S-<up>" buf-move-up "bufmv-up" :exit t)
   ("S-<down>" buf-move-down "bufmv-dn" :exit t)
@@ -1247,35 +1247,35 @@ _SPC_ : cancel
   ;; jumps / registers
   ("r" keysim-regs-marks "regs-marks" :exit t)
 
- ;; avy
- ("l"   avy-goto-line "goto-line" :exit t)
- ("w"   avy-goto-word-0 "goto-word-0" :exit t)
- ("s" avy-goto-char-timer "goto-char-timer" :exit t)
+  ;; avy
+  ("l"   avy-goto-line "goto-line" :exit t)
+  ("w"   avy-goto-word-0 "goto-word-0" :exit t)
+  ("s" avy-goto-char-timer "goto-char-timer" :exit t)
 
- ;; projectile
- ("p" projectile-find-file-dwim "proj-find-dwim" :exit t)
- ("P" projectile-commander "prj-cmdr" :exit t)
+  ;; projectile
+  ("p" projectile-find-file-dwim "proj-find-dwim" :exit t)
+  ("P" projectile-commander "prj-cmdr" :exit t)
 
- ;; magit
- ("g"      magit-status "magit" :exit t)
- ("C-S-g"  omz-ish/gwip "gwip" :exit t)
+  ;; magit
+  ("g"      magit-status "magit" :exit t)
+  ("C-S-g"  omz-ish/gwip "gwip" :exit t)
 
- ;; 
- ("x" hydra-moonshot/body "moonshot" :exit t)
- ("u" undo-tree-visualize "undo-tree" :exit t)
- ("M-i" hydra-string-inflection/body "str-infl" :exit t)
- ("M-x" hydra-ext-open/body "ext-open" :exit t)
- ("M-v" hydra-vars/body "vars" :exit t)
+  ;; 
+  ("x" hydra-moonshot/body "moonshot" :exit t)
+  ("u" undo-tree-visualize "undo-tree" :exit t)
+  ("M-i" hydra-string-inflection/body "str-infl" :exit t)
+  ("M-x" hydra-ext-open/body "ext-open" :exit t)
+  ("M-v" hydra-vars/body "vars" :exit t)
 
- ;; yas
- ;; ("RET" yas-insert-snippet "yas-ins" :exit t)
- ("M-y" hydra-yas/body "yas" :exit t)
+  ;; yas
+  ;; ("RET" yas-insert-snippet "yas-ins" :exit t)
+  ("M-y" hydra-yas/body "yas" :exit t)
 
- ;;
- ;;("SPC" nil)
- ;; ("SPC" avy-goto-char-timer "goto-char-timer" :exit t)
+  ;;
+  ;;("SPC" nil)
+  ;; ("SPC" avy-goto-char-timer "goto-char-timer" :exit t)
 
- )
+  )
 
 
 ;;;
@@ -1287,7 +1287,7 @@ _SPC_ : cancel
   `(add-hook ,mode-hook
              (lambda () (setq-local lang-mode-hydra
                                     (symbol-function ,hydra-body)))))
-  
+
 
 
 (defun do-lang-mode-hydra ()
