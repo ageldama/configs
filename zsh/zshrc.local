@@ -21,9 +21,10 @@ if [[ -o interactive ]]; then
   command_exists fdfind && alias fd=fdfind
 
 
-  if [[ -x "$(command -v zoxide)" ]]; then
-    eval "$(zoxide init zsh)"
-  fi
+  # NOTE: use omz-plugin(zoxide) instead :
+  # if [[ -x "$(command -v zoxide)" ]]; then
+  #   eval "$(zoxide init zsh)"
+  # fi
 
 fi
 
@@ -38,6 +39,8 @@ export PATH=$PATH:~/local/bin:~/.local/bin
 alias tmux='tmux -2'
 alias view='vim -R'
 
+# NOTE: use omz-plugin(fzf) instead :
+DEPRECATED=<<'EO_DEP'
 if [[ -d /usr/local/share/zsh-syntax-highlighting/ ]]; then
   source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 elif [[ -d /usr/share/zsh/plugins/zsh-syntax-highlighting/ ]]; then
@@ -71,7 +74,7 @@ elif [[ -f ~/.fzf.zsh ]]; then
 fi
 
 alias fzfpreview="fzf --preview 'bat --style=numbers --color=always {} | head -500'"
-
+EO_DEP
 
 
 autoload zmv
