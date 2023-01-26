@@ -18,7 +18,18 @@ use IO::File;
 
     while(my $line = <$fh>)  {
         next if $line =~ '^[\s]+$';  # skip: whitespaces
-        next if $line =~ '^#.+$';    # skip: comment
+        next if $line =~ '^#.*$';    # skip: comment
+
+        # Script?
+        if($line =~ m/^CUSTOM:\s+(?<custom_script>.+)$/){
+          my $script = $+{custom_script};
+          print "* CUSTOM: $script $inst_or_uninst\n";
+          system("$script $inst_or_uninst");
+          print "\n\n";
+          next;
+        }
+
+        # otherwise: SRC    DEST   PRED
         my ($dot_dir, $dst_dir, $pred) = split /\s+/, $line;
 
         qx/$pred/;
