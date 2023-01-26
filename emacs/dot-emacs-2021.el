@@ -565,8 +565,9 @@
             ;; (setq fill-column most-positive-fixnum)
             ;; (turn-off-auto-fill)
             (local-set-key (kbd "C-c l") 'org-store-link)
-            (when (fboundp 'yas-minor-mode)
-              (yas-minor-mode -1))
+            ;; NOTE: conflicts = <tab>
+            ;; (when (fboundp 'yas-minor-mode)
+            ;;   (yas-minor-mode -1))
             (setq org-adapt-indentation t)
           ))
 
@@ -793,12 +794,23 @@ i.e. change right window to bottom, or change bottom window to right."
 
 
 ;;; yas
-(use-package yasnippet :ensure t :pin melpa :config (yas-global-mode +1))
+(use-package yasnippet :ensure t :pin melpa
+  :config (progn
+            ;; no more tabs:
+            ;; (define-key yas-minor-mode-map [(tab)] nil)
+            ;; (define-key yas-minor-mode-map (kbd "TAB") nil)
+            ;; desc
+            ;; (define-key yas-minor-mode-map (kbd "C-c C-c TAB") 'yas-expand)
+            (define-key yas-minor-mode-map (kbd "C-c & d") 'yas-describe-tables)
+            ;;
+            (yas-global-mode +1)))
 
 (defhydra hydra-yas ()
   "
 Yasnippet^^
 ---------------------------------
+_TAB_ expand
+_d_ desc
 _m_ toggle
 _s_ ins
 _n_ new
@@ -806,6 +818,8 @@ _v_ visit
 
 _SPC_ cancel
 "
+  ("TAB" yas-expand :exit t)
+  ("d" yas-describe-tables :exit t)
   ("m" yas-minor-mode :exit nil)
   ("s" yas-insert-snippet :exit t)
   ("n" yas-new-snippet :exit t)
@@ -1205,7 +1219,7 @@ _SPC_ : cancel
 
   ;; windows
   ("M-w" hydra-windbuf/body "windbuf" :exit t)
-  ("M-SPC" other-window "other-win" :exit t)
+  ;; ("M-SPC" other-window "other-win" :exit t)
 
   ("*" ace-swap-window "ace-swap-win" :exit t)
   ("%" window-toggle-split-direction
@@ -1251,18 +1265,17 @@ _SPC_ : cancel
  ("u" undo-tree-visualize "undo-tree" :exit t)
  ("M-i" hydra-string-inflection/body "str-infl" :exit t)
  ("M-x" hydra-ext-open/body "ext-open" :exit t)
- ("M-v" 'hydra-vars/body "vars" :exit t)
+ ("M-v" hydra-vars/body "vars" :exit t)
 
  ;; yas
- ("RET" yas-insert-snippet "yas-ins" :exit t)
- ("M-y" 'hydra-yas/body "yas" :exit t)
+ ;; ("RET" yas-insert-snippet "yas-ins" :exit t)
+ ("M-y" hydra-yas/body "yas" :exit t)
 
  ;;
  ;;("SPC" nil)
- ("SPC" avy-goto-char-timer "goto-char-timer" :exit t)
+ ;; ("SPC" avy-goto-char-timer "goto-char-timer" :exit t)
 
  )
-
 
 
 ;;;

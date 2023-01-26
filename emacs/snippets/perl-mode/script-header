@@ -1,6 +1,6 @@
 # -*- mode: snippet -*-
 # name: perl-header
-# key: 
+# key: #!
 # --
 #!/usr/bin/env perl
 use strict;
