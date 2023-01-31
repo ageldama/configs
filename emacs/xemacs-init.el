@@ -77,6 +77,11 @@
 
 
 
+(add-hook 'find-file-hooks
+          'turn-on-auto-fill)
+
+
+
 
 ;;;
 
