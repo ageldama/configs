@@ -33,7 +33,7 @@
 190 192 194 196 198 200))
 
 (setq tab-width 2)
-(setq indent-line-function 'insert-tab)
+;;(setq indent-line-function 'insert-tab)
 
 
 ;;(if (fboundp 'global-font-lock-mode)
