@@ -41,8 +41,41 @@
 ;; XEmacs
 ;; (add-hook 'find-file-hook #'font-lock-mode)
 
+(font-lock-mode 'font)
 (setq font-lock-auto-fontify t)
 
+
+;;;; https://wiki.kldp.org/wiki.php/XEmacs-HOWTO :
+
+;; 마우스 휠 설정
+(global-set-key [mouse-4] 'scroll-down)
+(global-set-key [mouse-5] 'scroll-up)
+
+
+
+;; (custom-set-faces
+;; '(default ((t (:foreground "gray80" :background "black" :size "15" :family "Fixed"))) t)
+
+
+
+;; 폰트 : (TIP) xfontsel ?
+(set-face-font
+     'default
+     '("-*-terminus-medium-r-*-*-16-*-*-*-*-*-*-*")
+     'prepend)
+
+(set-face-font
+      'default
+      '("-*-dotum-medium-r-normal--14-*-*-*-*-*-*-*")
+      'global
+      '(mule-fonts)
+      'prepend)
+
+
+
+
+
+;;;
 
 (custom-set-variables
  '(blink-cursor-mode t t)
