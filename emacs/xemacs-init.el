@@ -1,5 +1,8 @@
 ;;; ~/.xemacs/init.el :
 
+;;;; [2023-01-31]:
+;;;;  MULE-UCS이 불완전해서, 종종 UTF-8 문서도 깨먹으니 사용에 주의.
+
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
 
