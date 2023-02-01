@@ -14,7 +14,9 @@
   (set-face-attribute 'default nil :height 125)
   ;;; NOTE 105, 85?
 
-  (load-theme 'modus-vivendi t))
+  ;; (load-theme 'modus-vivendi t)
+  (load-theme 'modus-operandi t)
+  )
 
 
 ;; 너무 느리면 끄자.
