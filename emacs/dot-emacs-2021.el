@@ -366,7 +366,10 @@
 
 ;;; markdown syntax highlighting and exporting
 (use-package markdown-mode :ensure t :pin melpa
-  :config (setq markdown-command "pandoc"))
+  :config (progn (setq markdown-command "pandoc")
+                 (add-hook 'markdown-mode-hook
+                           'turn-on-auto-fill)))
+
 
 
 ;;; inverse of `fill-text'
@@ -1177,9 +1180,9 @@ _SPC_ : cancel
 Org:^^
 --------------------------
 _a_ : agenda
-_c_ : capture
+_c_ : capture start
 _M-c_ : capture open
-_M-p_ : plan
+_p_ : plan
 _d_ : diary
 _m_ : memo/log (+C-u)
 
@@ -1188,7 +1191,7 @@ _SPC_ : cancel
   ("a"  org-agenda :exit t)
   ("c"  org-capture :exit t)
   ("M-c" org-capture-open :exit t)
-  ("M-p" org-open-PLAN :exit t)
+  ("p" org-open-PLAN :exit t)
   ("d"  diary/new-or-open-org-file :exit t)
   ("m" diary/new-or-open-memo :exit t)
 
