@@ -1363,6 +1363,19 @@ _SPC_ : cancel
 
 ;; (global-set-key (kbd "<f5>") 'ace-window)
 
+(when nil
+  ;; DISABLED: seems not working?
+  (if (and (>= emacs-major-version 28)
+           (fboundp 'ansi-color-compilation-filter))
+      (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+    (progn
+      (defun colorize-compilation-buffer ()
+        (let ((inhibit-read-only t))
+          (ansi-color-apply-on-region compilation-filter-start (point))))
+      (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)))
+  )
+
+
 (defun recompile-existing-compilation-window ()
   (interactive)
   (let* ((frm+wnd-lst
