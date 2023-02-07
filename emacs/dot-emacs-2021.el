@@ -1466,6 +1466,7 @@ _SPC_ : cancel
              (elpy . "python/elpy.el")
              (ruby . "ruby.el")
              (ocaml . "ocaml.el")
+             (zig . "zig.el")
              ))
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
