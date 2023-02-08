@@ -448,7 +448,13 @@
   (progn (projectile-global-mode)
          ;;(diminish 'projectile-mode)
          (setq projectile-mode-line-prefix " Prj")
-         (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
+         (define-key projectile-mode-map (kbd "C-c p")
+           'projectile-command-map)
+
+         ;; for xref :
+         (cl-defmethod project-roots ((project (head projectile)))
+           (list (cdr project)))
+         ))
 
 (use-package counsel-projectile :ensure t :pin melpa
   :config
@@ -1457,6 +1463,7 @@ _SPC_ : cancel
              (elpy . "python/elpy.el")
              (ruby . "ruby.el")
              (ocaml . "ocaml.el")
+             (zig . "zig.el")
              ))
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
