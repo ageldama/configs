@@ -374,7 +374,10 @@
 
 ;;; markdown syntax highlighting and exporting
 (use-package markdown-mode :ensure t :pin melpa
-  :config (setq markdown-command "pandoc"))
+  :config (progn (setq markdown-command "pandoc")
+                 (add-hook 'markdown-mode-hook
+                           'turn-on-auto-fill)))
+
 
 
 ;;; inverse of `fill-text'
@@ -395,7 +398,7 @@
 ;;;
 (use-package prescient :ensure t :pin melpa)
 ;; (use-package company-prescient :ensure t :pin melpa)
- 
+
 
 ;;; Counsel, Ivy, Swiper.
 (when t
@@ -403,7 +406,7 @@
     :after counsel
     :config (ivy-prescient-mode))
 
-    (use-package counsel :ensure t :pin melpa
+  (use-package counsel :ensure t :pin melpa
     :diminish
     :config (progn
               ;;
@@ -414,33 +417,33 @@
                     ivy-re-builders-alist         '((swiper      . ivy--regex-plus)
                                                     (counsel-M-x . ivy--regex-fuzzy)
                                                     (t           . ivy--regex-plus)))
-                (global-set-key "\C-s" 'swiper)
-                (global-set-key (kbd "M-s s") 'swiper-thing-at-point)
-                (global-set-key (kbd "C-c C-r") 'ivy-resume)
-                (global-set-key (kbd "<f6>") 'ivy-resume)
-                (global-set-key (kbd "M-x") 'counsel-M-x)
-                (global-set-key (kbd "C-x C-f") 'counsel-find-file)
-                (global-set-key (kbd "C-h a") 'counsel-apropos)
-                ;; USE `helpful' INSTEAD:
-                ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
-                ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
-                (global-set-key (kbd "<f1> l") 'counsel-find-library)
-                (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
-                (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
-                (global-set-key (kbd "C-c g") 'counsel-git)
-                (global-set-key (kbd "C-c j") 'counsel-git-grep)
-                ;; (global-set-key (kbd "C-c k") 'counsel-rg)
-                ;; (global-set-key (kbd "C-x l") 'counsel-locate)
-                ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
-                (global-set-key (kbd "M-y") 'counsel-yank-pop)
-                (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
+              (global-set-key "\C-s" 'swiper)
+              (global-set-key (kbd "M-s s") 'swiper-thing-at-point)
+              (global-set-key (kbd "C-c C-r") 'ivy-resume)
+              (global-set-key (kbd "<f6>") 'ivy-resume)
+              (global-set-key (kbd "M-x") 'counsel-M-x)
+              (global-set-key (kbd "C-x C-f") 'counsel-find-file)
+              (global-set-key (kbd "C-h a") 'counsel-apropos)
+              ;; USE `helpful' INSTEAD:
+              ;; (global-set-key (kbd "<f1> f") 'counsel-describe-function)
+              ;; (global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+              (global-set-key (kbd "<f1> l") 'counsel-find-library)
+              (global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+              (global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+              (global-set-key (kbd "C-c g") 'counsel-git)
+              (global-set-key (kbd "C-c j") 'counsel-git-grep)
+              ;; (global-set-key (kbd "C-c k") 'counsel-rg)
+              ;; (global-set-key (kbd "C-x l") 'counsel-locate)
+              ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+              (global-set-key (kbd "M-y") 'counsel-yank-pop)
+              (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
 
-    ;; `C-o` in Ivy minibuf.
-    (use-package ivy-hydra :ensure t :pin melpa)
+  ;; `C-o` in Ivy minibuf.
+  (use-package ivy-hydra :ensure t :pin melpa)
 
-    (use-package ivy-rich :ensure t :pin melpa
-      :config (ivy-rich-mode +1))
-)
+  (use-package ivy-rich :ensure t :pin melpa
+    :config (ivy-rich-mode +1))
+  )
 
 
 
@@ -453,7 +456,13 @@
   (progn (projectile-global-mode)
          ;;(diminish 'projectile-mode)
          (setq projectile-mode-line-prefix " Prj")
-         (define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)))
+         (define-key projectile-mode-map (kbd "C-c p")
+           'projectile-command-map)
+
+         ;; for xref :
+         (cl-defmethod project-roots ((project (head projectile)))
+           (list (cdr project)))
+         ))
 
 (use-package counsel-projectile :ensure t :pin melpa
   :config
@@ -498,7 +507,7 @@
     (message "git-wip-commit: %s"
              (shell-command-to-string
               "git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commit --no-verify --no-gpg-sign -m '--wip-- [skip ci]'"))))
-     
+
 
 
 
@@ -577,7 +586,7 @@
             ;; (when (fboundp 'yas-minor-mode)
             ;;   (yas-minor-mode -1))
             (setq org-adapt-indentation t)
-          ))
+            ))
 
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
@@ -708,13 +717,11 @@ i.e. change right window to bottom, or change bottom window to right."
 
 ;;; Evil, my last resort. (sometimes)
 
-;; Warning (evil-collection): Make sure to set `evil-want-keybinding' to nil before loading evil or evil-collection.
-;; See https://github.com/emacs-evil/evil-collection/issues/60 for more details.
-(setq evil-want-keybinding nil)
+(let ((evil-want-keybinding nil))
+  (use-package evil :ensure t :pin melpa))
 
-(use-package evil :ensure t :pin melpa)
-
-(setq evil-want-integration t)
+(setq evil-want-integration t
+      evil-want-keybinding t)
 (evil-set-undo-system 'undo-tree)
 
 (evil-mode +1)
@@ -726,13 +733,6 @@ i.e. change right window to bottom, or change bottom window to right."
 (defun toggle-evil-mode ()
   (interactive)
   (evil-mode (if (null evil-state) 1 -1)))
-
-
-(use-package evil-collection
-  :after evil
-  :ensure t :pin melpa
-  :config
-  (evil-collection-init))
 
 
 ;;; evil-surround
@@ -970,12 +970,12 @@ _SPC_ cancel
   ("." treemacs :exit t)
 
   ("M-s f" (lambda () (interactive)
-            (find-file (s-concat "/sudo:root@localhost:" (buffer-file-name))))
+             (find-file (s-concat "/sudo:root@localhost:" (buffer-file-name))))
    :exit t)
 
   ("M-s d" (lambda () (interactive)
-           (find-file (s-concat "/sudo:root@localhost:"
-                                (file-name-directory (buffer-file-name)))))
+             (find-file (s-concat "/sudo:root@localhost:"
+                                  (file-name-directory (buffer-file-name)))))
    :exit t)
 
   ("M-l f" find-file-literally :exit t)
@@ -1004,23 +1004,23 @@ _:_ : toggle-evil-mode
 
 _SPC_ : cancel
 "
- ("l" display-line-numbers-mode)
- ("s" global-whitespace-mode)
- ("z" zone)
- ("G" my-gc-toggle-timer)
- ("b" toggle-battery-saving-mode)
- ("w" writeroom-mode)
- (":" toggle-evil-mode)
+  ("l" display-line-numbers-mode)
+  ("s" global-whitespace-mode)
+  ("z" zone)
+  ("G" my-gc-toggle-timer)
+  ("b" toggle-battery-saving-mode)
+  ("w" writeroom-mode)
+  (":" toggle-evil-mode)
 
- ("SPC" nil))
+  ("SPC" nil))
 
 
 ;;; Flycheck + Hydra
 
 (defhydra hydra-flycheck
-    (:pre (flycheck-list-errors)
-     :post (quit-windows-on "*Flycheck errors*")
-     )
+  (:pre (flycheck-list-errors)
+        :post (quit-windows-on "*Flycheck errors*")
+        )
   "Errors"
   ("f" flycheck-error-list-set-filter "Filter")
   ("j" flycheck-next-error "Next")
@@ -1170,7 +1170,7 @@ _SPC_ : cancel
   ("s"  delete-trailing-whitespace :exit t)
   ("G"  garbage-collect :exit t)
 
- ("SPC" nil))
+  ("SPC" nil))
 
 
 ;;; hydra: global /org.
@@ -1185,9 +1185,9 @@ _SPC_ : cancel
 Org:^^
 --------------------------
 _a_ : agenda
-_c_ : capture
+_c_ : capture start
 _M-c_ : capture open
-_M-p_ : plan
+_p_ : plan
 _d_ : diary
 _m_ : memo/log (+C-u)
 
@@ -1196,11 +1196,11 @@ _SPC_ : cancel
   ("a"  org-agenda :exit t)
   ("c"  org-capture :exit t)
   ("M-c" org-capture-open :exit t)
-  ("M-p" org-open-PLAN :exit t)
+  ("p" org-open-PLAN :exit t)
   ("d"  diary/new-or-open-org-file :exit t)
   ("m" diary/new-or-open-memo :exit t)
 
- ("SPC" nil))
+  ("SPC" nil))
 
 
 ;;; hydra: global /vars.
@@ -1219,7 +1219,7 @@ _SPC_ : cancel
   ("f"  add-file-local-variable :exit t)
   ("p"  add-file-local-variable-prop-line :exit t)
 
- ("SPC" nil))
+  ("SPC" nil))
 
 
 ;;; hydra: global /ext-open.
@@ -1238,7 +1238,7 @@ _SPC_ : cancel
   ("."    xdg-open-current-buffer :exit t)
   ("g"    google-it :exit t)
 
- ("SPC" nil))
+  ("SPC" nil))
 
 
 ;;; hydra: global /root
@@ -1270,7 +1270,7 @@ _SPC_ : cancel
 
   ("*" ace-swap-window "ace-swap-win" :exit t)
   ("%" window-toggle-split-direction
-       "win-toggle-dir" :exit t)
+   "win-toggle-dir" :exit t)
   ("_" split-window-below "split-win-below" :exit t)
   ("|" split-window-right "split-win-r" :exit t)
   ("q" delete-window "del-win" :exit t)
@@ -1368,20 +1368,33 @@ _SPC_ : cancel
 
 ;; (global-set-key (kbd "<f5>") 'ace-window)
 
+(when nil
+  ;; DISABLED: seems not working?
+  (if (and (>= emacs-major-version 28)
+           (fboundp 'ansi-color-compilation-filter))
+      (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
+    (progn
+      (defun colorize-compilation-buffer ()
+        (let ((inhibit-read-only t))
+          (ansi-color-apply-on-region compilation-filter-start (point))))
+      (add-hook 'compilation-filter-hook 'colorize-compilation-buffer)))
+  )
+
+
 (defun recompile-existing-compilation-window ()
   (interactive)
   (let* ((frm+wnd-lst
-         (apply #'append
-                (mapcar (lambda (frm)
-                          (with-selected-frame frm
-                            (mapcar (lambda (wnd) (cons frm wnd))
-                                    (window-list))))
-                        (visible-frame-list))))
+          (apply #'append
+                 (mapcar (lambda (frm)
+                           (with-selected-frame frm
+                             (mapcar (lambda (wnd) (cons frm wnd))
+                                     (window-list))))
+                         (visible-frame-list))))
          (comp-frm-wnd (seq-find #'(lambda (frm-wnd)
-                                        (with-selected-frame (car frm-wnd)
-                                          (with-current-buffer (window-buffer (cdr frm-wnd))
-                                            (eq major-mode 'compilation-mode))))
-                                    frm+wnd-lst)))
+                                     (with-selected-frame (car frm-wnd)
+                                       (with-current-buffer (window-buffer (cdr frm-wnd))
+                                         (eq major-mode 'compilation-mode))))
+                                 frm+wnd-lst)))
     (if comp-frm-wnd
         (progn (with-selected-frame (car comp-frm-wnd)
                  (with-current-buffer (window-buffer (cdr comp-frm-wnd)) (recompile))))
@@ -1458,6 +1471,7 @@ _SPC_ : cancel
              (elpy . "python/elpy.el")
              (ruby . "ruby.el")
              (ocaml . "ocaml.el")
+             (zig . "zig.el")
              ))
   (load-langsup-or-not (symbol-name (car i)) (cdr i)))
 
@@ -1491,8 +1505,8 @@ _SPC_ : cancel
 (defun xdg-open-current-buffer ()
   (interactive)
   (async-shell-command (s-concat "xdg-open "
-    ;; Dired등의 버퍼는 #'buffer-file-name =NIL 이고, 현재경로만 있으니까.
-    (or (buffer-file-name) default-directory))))
+                                 ;; Dired등의 버퍼는 #'buffer-file-name =NIL 이고, 현재경로만 있으니까.
+                                 (or (buffer-file-name) default-directory))))
 
 
 (defun google-it (start end)
@@ -1541,10 +1555,6 @@ _SPC_ : cancel
   (evil-owl-mode +1))
 
 
-;;; Uptime, Startup Time
-(message "Startup time: %s" (emacs-uptime))
-
-
 ;;; pacman: protobuf
 (let ((path  "/usr/share/emacs/site-lisp/protobuf-mode.el"))
   (when (f-exists? path)
@@ -1556,6 +1566,21 @@ _SPC_ : cancel
 (use-package modus-themes :ensure t :pin melpa
   :config
   (when +sys/gui?+ (load-theme 'modus-operandi 1)))
+
+;;; evil-collection : final retouches
+;;;
+;; Warning (evil-collection): Make sure to set `evil-want-keybinding' to nil before loading evil or evil-collection.
+;; See https://github.com/emacs-evil/evil-collection/issues/60 for more details.
+(let ((evil-want-keybinding nil))
+  (use-package evil-collection
+    :after evil
+    :ensure t :pin melpa
+    :config
+    (evil-collection-init)))
+
+
+;;; Uptime, Startup Time
+(message "Startup time: %s" (emacs-uptime))
 
 
 
