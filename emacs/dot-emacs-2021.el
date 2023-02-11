@@ -55,6 +55,14 @@
 
 
 
+;;; tags
+(defun tags/refresh ()
+  "Read TAGS of current buffer. (buffer locally)"
+  (interactive)
+  (let ((tags-revert-without-query t))  ; don't query, revert silently
+    (visit-tags-table tags-file-name t)))
+
+
 
 ;;;
 (require 'cl-lib)
