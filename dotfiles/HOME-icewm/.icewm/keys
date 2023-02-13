@@ -76,10 +76,12 @@ key "Super+Shift+m" x-terminal-emulator -e bashmount
 key "Super+w" wg-whatever.pl
 #key "Super+w" wg.pl
 
-key "Super+F9" sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'
-key "XF86LaunchB" sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'
+key "Super+F9" scripts-rofi.pl -e -s
+key "XF86LaunchB" scripts-rofi.pl -e -s
 
-key "Super+Shift+F9" pavucontrol
+key "Super+Shift+F9" scripts-rofi.pl -r
+
+key "Super+Shift+v" sh -c 'which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol'
 
 
 key "Super+o" icesh-send-next-monitor.pl

@@ -8,10 +8,40 @@ use IPC::Open2;
 use DDP;
 use Getopt::Std;
 
-my %opts = (p => 0);
-getopts('p', \%opts);
+
+our $VERSION = '0.0.1';
+
+my %opts = (p => 0, s => 0, r => 0, e => 0);
+getopts('psre', \%opts);
 
 use constant SCRIPT_DIR => "$ENV{HOME}/local/scripts";
+use constant SEL_SAVE => "$ENV{HOME}/.scripts-rofi.sh";
+
+
+sub HELP_MESSAGE {
+  my $fh = shift;
+  print $fh <<"EO_HELP";
+List content of [${ \SCRIPT_DIR }] and ask to select:
+
+  -p : print selection
+  -s : save selection to [${ \SEL_SAVE }]
+  -r : rerun saved selection [${ \SEL_SAVE }]
+  -e : execute selection
+
+Exiting.
+EO_HELP
+
+  exit 0;
+}
+
+# rerun?
+if($opts{r}){
+  if(-x SEL_SAVE){
+    exit system(SEL_SAVE);
+  }else{
+    die 'No saved selection (exiting): ' . SEL_SAVE;
+  }
+}
 
 # main
 my @scripts = ();
@@ -54,9 +84,17 @@ chomp $stdout;
 
 close($chld_out) or die;
 
+if($opts{s}){
+  open(my $fh_out, '>', SEL_SAVE) or die;
+  print $fh_out "$stdout\n";
+  close($fh_out);
+
+  chmod(0700, SEL_SAVE) or die;
+}
+
 if($opts{p}){
   print "$stdout\n";
-}else{
+}elsif($opts{e}){
   system($stdout);
 }
 
