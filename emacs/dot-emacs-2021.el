@@ -1518,7 +1518,7 @@ _SPC_ : cancel
 
 ;;; Be more evil: took from Spacemacs.
 ;;; --- vim-unimpaired
-(diminish 'evil-collection-unimpaired-mode)
+(diminish 'evil-collection-unimpaired-mode "")
 ;; (evil-global-set-key 'normal (kbd "[ t") '(lambda () (interactive (other-frame -1))))
 ;; (evil-global-set-key 'normal (kbd "] t") '(lambda () (interactive (other-frame +1))))
 ;; (evil-global-set-key 'normal (kbd "[ w") '(lambda () (interactive (other-window -1))))

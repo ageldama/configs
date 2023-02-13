@@ -1,5 +1,29 @@
 #!/usr/bin/env perl
 
+package ScriptRofi::HistoryDB;
+
+use strict;
+use warnings;
+
+use DBI;
+
+
+sub open_or_create {
+  my $db_path = shift;
+
+  my $dbh = DBI->connect("dbi:SQLite:dbname=$db_path","","");
+
+  return bless {
+    dbh => $dbh,
+   };
+}
+
+
+1;  # ScriptRofi::HistoryDB
+
+
+package main;
+
 use strict;
 use warnings;
 use feature qw(say);
@@ -15,6 +39,7 @@ my %opts = (p => 0, s => 0, r => 0, e => 0);
 getopts('psre', \%opts);
 
 use constant SCRIPT_DIR => "$ENV{HOME}/local/scripts";
+use constant HISTORY_DB => "$ENV{HOME}/.scripts-rofi.sqlite3";
 use constant SEL_SAVE => "$ENV{HOME}/.scripts-rofi.sh";
 
 
@@ -58,6 +83,9 @@ find(
     },
     SCRIPT_DIR
    );
+
+
+my $history_db = ScriptRofi::HistoryDB::open_or_create(HISTORY_DB);
 
 my $pid = open2(my $chld_out, my $chld_in,
                 'rofi -dmenu -p "Select a script to run"'
