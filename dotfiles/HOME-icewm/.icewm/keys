@@ -79,7 +79,7 @@ key "Super+w" wg-whatever.pl
 key "Super+F9" scripts-rofi.pl -e -s
 key "XF86LaunchB" scripts-rofi.pl -e -s
 
-key "Super+Shift+F9" scripts-rofi.pl -r
+key "Super+Shift+F9" scripts-rofi.pl -r -e
 
 key "Super+Shift+v" sh -c 'which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol'
 
