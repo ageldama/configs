@@ -1576,7 +1576,9 @@ _SPC_ : cancel
     :after evil
     :ensure t :pin melpa
     :config
-    (evil-collection-init)))
+    (progn (evil-collection-init)
+           (diminish 'evil-collection-unimpaired-mode ""))
+    ))
 
 
 ;;; Uptime, Startup Time
