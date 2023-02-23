@@ -110,10 +110,12 @@ xset b off
 
 xrdb -merge $HOME/.Xresources &
 
-if [[ -f ~/.use-xautolock ]]; then
-    xautolock &
-else
-    xscreensaver -no-splash &
+if [[ ! -f ~/.no-screensaver ]]; then
+  if [[ -f ~/.use-xautolock ]]; then
+      xautolock &
+  else
+      xscreensaver -no-splash &
+  fi
 fi
 
 # Mute all audio input
