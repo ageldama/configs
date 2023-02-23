@@ -4,8 +4,8 @@ prog "rofi-menu" gnome-main-menu.png rofi -combi-modi drun,window,run -show comb
 prog "scripts-menu" gtk-run.png scripts-rofi.pl -e -s
 
 
-prog "mixer" volume-knob.png sh -c 'which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol'
+prog "mixer" volume-knob.png pavucontrol
 
-prog "fm4u" volume-knob.png fm4u.pl
+prog "fm4u" volume-knob.png x-terminal-emulator -e fm4u.pl
 
 
