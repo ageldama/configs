@@ -794,11 +794,12 @@ i.e. change right window to bottom, or change bottom window to right."
 (use-package realgud :ensure t :pin melpa)
 
 ;;;
-(use-package editorconfig
-  :ensure t :pin melpa
-  :diminish
-  :config
-  (editorconfig-mode 1))
+(when nil
+  (use-package editorconfig
+    :ensure t :pin melpa
+    :diminish
+    :config
+    (editorconfig-mode 1)))
 
 
 ;;; yas
