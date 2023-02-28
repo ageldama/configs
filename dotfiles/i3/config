@@ -181,12 +181,12 @@ bindsym $mod+d exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym XF86LaunchA exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym $mod+Tab exec "rofi -show window"
 bindsym $mod+Shift+w exec "wg-whatever.pl"
-bindsym $mod+F9 exec "sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'"
-bindsym XF86LaunchB exec "sh -c 'SEL=$(scripts-rofi.pl -p) && $SEL'"
-bindsym $mod+Shift+F9 exec "pavucontrol"
+bindsym $mod+F9 exec "scripts-rofi.pl -e -s"
+bindsym XF86LaunchB exec "scripts-rofi.pl -e -s"
+bindsym $mod+Shift+F9 exec "scripts-rofi.pl -r -e"
 bindsym Print exec "gnome-screenshot"
 bindsym Shift+Print exec "gnome-screenshot -i"
-bindsym $mod+Shift+F10 exec "thunar || pcmanfm "
+#bindsym $mod+Shift+F10 exec "thunar || pcmanfm "
 bindsym $mod+F10 exec "x-terminal-emulator -e mc"
 
 
@@ -194,6 +194,8 @@ bindsym $mod+Next exec ~/.config/i3/helpers/pa-vol-dn.sh
 bindsym $mod+Prior exec ~/.config/i3/helpers/pa-vol-up.sh
 
 bindsym $mod+m exec "pactl-mute.pl sink toggle_default"
+
+bindsym $mod+Shift+v exec "which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol"
 
 bindsym XF86MonBrightnessDown exec ~/.config/i3/helpers/mon-bright-dn.sh
 bindsym XF86MonBrightnessUp exec ~/.config/i3/helpers/mon-bright-up.sh
