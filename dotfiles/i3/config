@@ -188,6 +188,7 @@ bindsym Print exec "gnome-screenshot"
 bindsym Shift+Print exec "gnome-screenshot -i"
 #bindsym $mod+Shift+F10 exec "thunar || pcmanfm "
 bindsym $mod+F10 exec "x-terminal-emulator -e mc"
+bindsym $mod+Shift+m exec "x-terminal-emulator -e bashmount"
 
 
 bindsym $mod+Next exec ~/.config/i3/helpers/pa-vol-dn.sh
