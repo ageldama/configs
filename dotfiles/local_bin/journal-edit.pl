@@ -61,7 +61,7 @@ while (1){
                        $cur->year, $cur->month, $cur->month_abbr, $cur->day, $cur->day_abbr, $ext);
       my $cmd = $editor . " " . $fn;
       print $cmd . "\n";
-      exit system($cmd);
+      system($cmd);
       last SWITCH;
     }
 
