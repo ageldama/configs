@@ -88,8 +88,8 @@ URxvt.url-select.launcher: xdg-open
 
 !URxvt.kuake.hotkey: F12
 
-URxvt.keysym.Shift-Up: eval:scroll_up 1
-URxvt.keysym.Shift-Down: eval:scroll_down 1
+URxvt.keysym.C-Shift-Up: eval:scroll_up 1
+URxvt.keysym.C-Shift-Down: eval:scroll_down 1
 URxvt.keysym.M-Home: eval:scroll_to_top
 URxvt.keysym.M-End:  eval:scroll_to_bottom
 
