@@ -8,6 +8,53 @@ use DateTime::Duration;
 use Term::ReadLine;
 use FindBin qw($Script);
 use DDP;
+use Calendar::Any::Util::Calendar qw(calendar);
+use Text::Table;
+use Term::ANSIColor;
+
+
+sub highlight_day {
+    my ($cal, $day, $colorspec) = @_;
+    my $replacement = colored($day, $colorspec || 'white on_green');
+    $cal =~ s/\b$day\b/$replacement/g;
+    return $cal;
+}
+
+
+sub cal3 {
+    my ($yr, $mon, $day) = @_;
+    
+    my $today = DateTime->new(
+        year       => $yr,
+        month      => $mon,
+        day        => $day,
+        hour       => 10,
+        minute     => 13,
+        second     => 42,
+    );
+        
+    my $first_day = $today->clone;
+    $first_day->set(day => 1);
+
+    my $prev_mon = $first_day - DateTime::Duration->new(months => 1);
+    my $next_mon = $first_day + DateTime::Duration->new(months => 1);
+
+
+    my $tb = Text::Table->new(
+        "", '', "", '', "",
+    );
+
+    $tb->load([
+        calendar($prev_mon->month, $prev_mon->year),
+        ' ',
+        highlight_day(calendar($today->month, $today->year), $today->day),
+        ' ',
+        calendar($next_mon->month, $next_mon->year),
+    ]);
+
+    return $tb;
+}
+
 
 sub show_help {
   print <<EO_HELP;
@@ -36,9 +83,8 @@ my $OUT = $term->OUT || \*STDOUT;
 show_help;
 
 while (1){
-  system(sprintf("ncal -3 -d %d-%02d -H %d-%02d-%02d",
-                 $cur->year, $cur->month,
-                 $cur->year, $cur->month, $cur->day));
+  print "\n" . cal3($cur->year, $cur->month, $cur->day);
+
   my $prompt = $cur->ymd . " >>> ";
   my $inp = $term->readline($prompt);
 
