@@ -218,6 +218,8 @@
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   ;; (add-to-list 'package-archives (cons "marmalade" (concat proto "://marmalade-repo.org/packages/")) t)
   (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
+  (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))
+
   ;; (when (< emacs-major-version 24)
   ;;   (add-to-list 'package-archives '("gnu" . (concat proto "://elpa.gnu.org/packages/"))))
   )

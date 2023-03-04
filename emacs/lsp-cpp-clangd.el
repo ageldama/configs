@@ -2,13 +2,13 @@
 
 ;;; Debugger, CMake, Modern-CPP
 
-(use-package realgud :ensure t :pin melpa)
-(use-package cmake-mode :ensure t :pin melpa)
+;; (use-package realgud :ensure t :pin melpa)
+;; (use-package cmake-mode :ensure t :pin melpa)
 
-(use-package modern-cpp-font-lock :ensure t :pin melpa
-  :config (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode))
+;; (use-package modern-cpp-font-lock :ensure t :pin melpa
+;;   :config (add-hook 'c++-mode-hook #'modern-c++-font-lock-mode))
 
-(load-file (s-concat langsup-base-path "/goog-c-style.el"))
+;; (load-file (s-concat langsup-base-path "/goog-c-style.el"))
 
 
 ;;; flycheck + clang-tidy
@@ -22,8 +22,8 @@
 ;;; Well, nothx (use-package dap-mode :ensure t :pin melpa)
 
 
-(add-hook 'c-mode-hook 'lsp)
-(add-hook 'c++-mode-hook 'lsp)
+;; (add-hook 'c-mode-hook 'lsp)
+;; (add-hook 'c++-mode-hook 'lsp)
 
 (setq ;;gc-cons-threshold (* 100 1024 1024)
       ;;read-process-output-max (* 1024 1024)
