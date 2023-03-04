@@ -1,10 +1,22 @@
+
+(require 'cl)
 (require 'f)
+(require 'json)
 (require 'levenshtein)
+(require 'project)
+
 
 ;;; Code:
 
 
 (defvar-local compcmdsjson/*path* nil)
+
+
+(defvar-local compcmdsjson/*entry* nil)
+
+
+(defvar compcmdsjson/*hooks* nil)
+
 
 
 (defun compcmdsjson/find+dist ()
@@ -20,31 +32,43 @@ Result looks like `(list (FULL-PATH . DISTANCE) ...)'."
                 nil ;; predicate
                 t ;; follow-symlink
                 )))
-    (let* ((dir-dist (lambda (fn) (cons fn (levenshtein-distance
-                                            default-directory (f-dirname fn)))))
+    (let* ((dir-dist (lambda (fn)
+                       (cons fn (levenshtein-distance
+                                 default-directory (f-dirname fn)))))
            (cdr-< (lambda (a b) (< (cdr a) (cdr b))))
            (sorted (sort (mapcar dir-dist files) cdr-<)))
       sorted)))
 
 
-(defun compcmdsjson/read-found ()
+(defun compcmdsjson/select-found ()
   (interactive)
-  (let ((selected (completing-read "Select: "
-                                   (mapcar #'car (compcmdsjson/find+dist)))))
+  (let ((selected
+         (completing-read "Select: "
+                          (mapcar #'car (compcmdsjson/find+dist)))))
     (when selected
       (setq-local compcmdsjson/*path* selected)
-      selected)))
+      (compcmdsjson/find-entry))))
+
+
+(defun compcmdsjson/select-nearest ()
+  (let ((selected
+         (first (mapcar #'car (compcmdsjson/find+dist)))))
+    (when selected
+      (setq-local compcmdsjson/*path* selected)
+      (compcmdsjson/find-entry))))
 
 
 (defun compcmdsjson/find-entry ()
-  (json-parse-buffer
-   
-;;; TODO find-entry
-
-;;; TODO find-entry-interactive
-
-;;; TODO entry-found-hook
-
+  (setq-local compcmdsjson/*entry*
+              (let ((fn (buffer-file-name))
+                    (json-parsed (json-read-file compcmdsjson/*path*)))
+                (cl-loop for i across json-parsed
+                         ;; do (pp (alist-get 'file i))
+                         if (string-equal (alist-get 'file i) fn)
+                         return i)))
+  (when compcmdsjson/*entry*
+    (dolist (h compcmdsjson/*hooks*)
+            (funcall h))))
 
  
 (provide 'compcmdsjson)
