@@ -1,4 +1,8 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
+
+(add-to-list 'load-path
+             (expand-file-name "~/P/configs/emacs/site-lisp"))
+
 (setq user-full-name    "Jong-Hyouk Yun")
 (setq user-mail-address "ageldama@gmail.com")
 
