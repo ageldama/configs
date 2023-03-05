@@ -3,8 +3,6 @@
 Joystick 1 {
 	Axis 1: gradient, maxSpeed 3, tCurve 4, mouse+h
 	Axis 2: gradient, maxSpeed 3, tCurve 4, mouse+v
-	Axis 4: +key 114, -key 113
-	Axis 5: +key 116, -key 111
 	Axis 7: gradient, +key 114, -key 113
 	Axis 8: gradient, +key 116, -key 111
 	Button 1: mouse 1
