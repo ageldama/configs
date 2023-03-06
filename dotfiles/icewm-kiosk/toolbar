@@ -8,4 +8,7 @@ prog "mixer" volume-knob.png pavucontrol
 
 prog "fm4u" volume-knob.png x-terminal-emulator -e fm4u.pl
 
+prog "qjoypad" volume-knob.png qjoypad
+prog "calibre" volume-knob.png calibre
+prog "goldendict" volume-knob.png goldendict
 
