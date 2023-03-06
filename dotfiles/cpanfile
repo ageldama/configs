@@ -14,4 +14,7 @@ requires 'DateTime';
 requires 'DateTime::Duration';
 requires 'Text::Table';
 requires 'Term::ANSIColor';
+requires 'Term::ReadLine';
+requires 'Term::ReadLine::Perl';
+requires 'Term::ReadKey';
 
