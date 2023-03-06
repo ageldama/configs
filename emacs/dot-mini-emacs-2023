@@ -90,7 +90,56 @@
 
 
 
-;;(load-theme 'deeper-blue t )
+
+;;; packages
+(require 'package)
+
+(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
+                    (not (gnutls-available-p))))
+       (proto (if nil "http" "https")))
+  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
+  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
+  (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))
+  )
+
+(package-initialize)
+
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
+
+
+
+(use-package f :ensure t :pin melpa)
+
+(use-package s :ensure t :pin melpa)
+
+(use-package org :ensure t :pin org)
+
+
+(use-package modus-themes :ensure t :pin melpa)
+
+(when (display-graphic-p)
+  (load-theme 'modus-vivendi-tinted t ))
+
+
+
+(use-package hydra :ensure t :pin melpa)
+
+
+
+(use-package which-key :ensure t
+  :diminish which-key-mode
+  :config (progn (which-key-mode)
+                 (which-key-setup-side-window-bottom)
+                 (setq which-key-max-description-length 200)))
+
+
+
+(use-package writeroom-mode :ensure t :pin melpa)
+
+
+
 
 ;;; Org
 (add-hook 'org-mode-hook
@@ -105,6 +154,8 @@
           (lambda ()
             (auto-fill-mode +1)))
 
+
+
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
 
@@ -112,6 +163,44 @@
 ;;;
 ;; (setq org-todo-keywords
 ;;       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+
+
+
+
+;;; diary, memo
+(require 'f)  ;; elpa-f
+(require 's)  ;; elpa-s
+(require 'org)  ;; elpa-org
+(require 'cl)
+
+(load-file "~/P/configs/emacs/cal-dt.el")
+
+;; (diary/new-or-open-memo)
+;; (diary/new-or-open-org-file)
+
+
+
+
+;;; 
+
+(defhydra hydra-mini ()
+  "
+MiniMe^^
+---------------------------------
+_d_ diary
+_m_ memo
+_w_ writeroom
+
+_SPC_ cancel
+"
+  ("d" diary/new-or-open-org-file :exit t)
+  ("m" diary/new-or-open-memo :exit t)
+  ("w" writeroom-mode :exit t)
+  ("SPC" nil)
+  )
+
+(global-set-key (kbd "C-x x") 'hydra-mini/body)
+
 
 
 
