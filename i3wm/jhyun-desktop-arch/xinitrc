@@ -32,7 +32,7 @@ if [[ -f ~/.use-ibus ]]; then
   export QT_IM_MODULE=ibus
   export XMODIFIERS=@im=ibus
   ibus-daemon -d 
-else
+elif [[ -f ~/.use-fcitx ]]; then
   if [[ -z "$GTK_IM_MODULE" ]]; then
     # without im-config: 
     export GTK_IM_MODULE=fcitx
@@ -141,7 +141,12 @@ if [[ -f ~/.use-picom ]]; then
 fi
 
 # Bluetooth
-blueman-applet &
+test -f ~/.use-blueman && blueman-applet &
+
+
+# Onboard
+test -f ~/.use-onboard && onboard &
+
 
 # Notification Logging
 if [[ -f ~/.use-notifications-dump ]]; then
