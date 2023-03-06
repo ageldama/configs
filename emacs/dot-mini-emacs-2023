@@ -97,10 +97,13 @@
           (lambda ()
             ;;(flycheck-mode -1)
             (setq truncate-lines nil)
-            (setq fill-column most-positive-fixnum)
-            (turn-off-auto-fill)
-            (local-set-key (kbd "C-c l") 'org-store-link)
+            (auto-fill-mode +1)
             ))
+
+
+(add-hook 'fundamental-mode-hook
+          (lambda ()
+            (auto-fill-mode +1)))
 
 (setq org-log-done 'time)
 (setq org-startup-with-inline-images t)
