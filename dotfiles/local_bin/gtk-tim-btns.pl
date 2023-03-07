@@ -13,7 +13,12 @@ use DDP;
 
 
 
-use constant CONFIG_FILE =>  $ENV{HOME} . "/.my-tim-btns.pl";
+use constant CONFIG_FILE =>  $ENV{HOME} . "/.my-gtk-tim-btns.pl";
+
+use constant SCAN_DIRS => [
+  [$ENV{HOME} . '/local/scripts', 'blue', 'lightgrey', 'normal 18px serif'],
+  [$ENV{HOME} . '/local/bin', 'darkgreen', 'lightgrey', 'normal 18px serif'],
+];
 
 
 my $cmds = do CONFIG_FILE;
@@ -66,14 +71,10 @@ sub find_and_add {
 }
 
 
-find_and_add($ENV{HOME} . '/local/scripts', $cmds,
-  'blue', 'lightgrey', 'normal 18px serif');
-
-
-find_and_add($ENV{HOME} . '/local/bin', $cmds,
-  'darkgreen', 'lightgrey', 'normal 18px serif');
-
-
+foreach my $scan_dir (@{+SCAN_DIRS}) {
+  my ($dir, $fg, $bg, $font) = @$scan_dir;
+  find_and_add($dir, $cmds, $fg, $bg, $font);
+}
 
 
 # main
