@@ -128,7 +128,7 @@ URxvt.keysym.M-Escape:    builtin-string:
 URxvt.keysym.M-s:         builtin-string:
 URxvt.keysym.M-u:         builtin-string:
 
-URxvt.keysym.C-M-s: perl:keyboard-select:activate
+URxvt.keysym.C-M-bracketleft: perl:keyboard-select:activate
 ! The following line overwrites the default Meta-s binding and allows to
 ! activate keyboard-select directly in backward search mode:
 URxvt.keysym.C-M-f: perl:keyboard-select:search
