@@ -38,6 +38,12 @@ my $cmds = [
     },
 
     {
+        name => 'onboard',
+        cmd => 'onboard',
+        font => 'normal 20px serif',
+    },
+
+    {
         name => 'reboot',
         cmd => 'sh -c "zenity --question --text=\'reboot?\' && sudo reboot"',
         fg => 'yellow',
