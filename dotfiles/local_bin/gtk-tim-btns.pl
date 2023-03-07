@@ -6,6 +6,7 @@ use warnings;
 
 use FindBin qw($RealScript);
 use Gtk3;
+use File::Find;
 
 use DDP;
 
@@ -20,21 +21,57 @@ my $cmds = do CONFIG_FILE;
 if(!defined $cmds){
     warn "No config file: " . CONFIG_FILE;
     $cmds = [
-        {
-            name => 'reboot',
-            cmd => 'sh -c "zenity --question --text=\'reboot?\' && sudo reboot"',
-            fg => 'yellow',
-            bg => 'red',        
-        },
+      {
+        name => 'reboot',
+        cmd => 'sh -c "zenity --question --text=\'reboot?\' && sudo reboot"',
+        fg => 'yellow',
+        bg => 'red',
+      },
 
-        {
-            name => 'poweroff',
-            cmd => 'sh -c "zenity --question --text=\'poweroff?\' && sudo poweroff"',
-            fg => 'yellow',
-            bg => 'red',
-        },    
-        ];
+      {
+        name => 'poweroff',
+        cmd => 'sh -c "zenity --question --text=\'poweroff?\' && sudo poweroff"',
+        fg => 'yellow',
+        bg => 'red',
+      },
+    ];
 }
+
+
+sub find_and_add {
+  my ($dir, $arr, $fg, $bg, $font) = @_;
+
+  find(
+      {
+          wanted => sub {
+              my $fn = $File::Find::name;
+              return if -d $fn;
+
+              print "Scanned: " . $fn . "\n";
+
+              my $name = substr($fn, (length $dir) + 1);
+
+              push @$arr, {
+                name => $name,
+                cmd => $fn,
+                fg => $fg,
+                bg => $bg,
+                font => $font,
+              };
+          },
+          follow => 1,
+      },
+      $dir
+     );
+}
+
+
+find_and_add($ENV{HOME} . '/local/scripts', $cmds,
+  'blue', 'lightgrey', 'normal 18px serif');
+
+
+find_and_add($ENV{HOME} . '/local/bin', $cmds,
+  'darkgreen', 'lightgrey', 'normal 18px serif');
 
 
 
@@ -63,19 +100,12 @@ $box->set_margin_left(30);
 $box->set_margin_right(30);
 $box->set_homogeneous(0);
 $box->set_row_spacing(20);
+$box->set_column_spacing(20);
 $box->set_valign('start');
 $box->set_max_children_per_line(30);
 $scrolled->add($box);
 
 
-
-# TODO pad-between
-
-# TODO system
-
-# TODO ~/local/bin
-
-# TODO ~/local/scripts
 
 
 for my $row (@$cmds) {
@@ -84,11 +114,12 @@ for my $row (@$cmds) {
     my $font = exists $row->{font} ? $row->{font} : 'normal 18px serif';
     my $fg = exists $row->{fg} ? $row->{fg} : 'black';
     my $bg = exists $row->{bg} ? $row->{bg} : 'lightgrey';
-    
+
     my $btn = Gtk3::Button->new($name);
     $btn->signal_connect(
-        clicked => sub {   
+        clicked => sub {
             print "clicked: $cmd\n";
+            system($cmd . ' &');
         });
 
     $box->add($btn);
