@@ -19,46 +19,46 @@ URxvt.cursorColor: #ffff00
 ! github.com:janoamaral/Xresources-themes.git
 ! iterm-Grass.Xresources
 
-*.foreground:  #fff0a5
-*.background:  #13773d
-*.cursorColor: #8c2800
+URxvt.foreground:  #fff0a5
+URxvt.background:  #13773d
+!!URxvt.cursorColor: #8c2800
 !
 ! Black
-*.color0:      #000000
-*.color8:      #555555
+URxvt.color0:      #000000
+URxvt.color8:      #555555
 !
 ! Red
-*.color1:      #bb0000
-*.color9:      #bb0000
+URxvt.color1:      #bb0000
+URxvt.color9:      #bb0000
 !
 ! Green
-*.color2:      #00bb00
-*.color10:     #00bb00
+URxvt.color2:      #00bb00
+URxvt.color10:     #00bb00
 !
 ! Yellow
-*.color3:      #e7b000
-*.color11:     #e7b000
+URxvt.color3:      #e7b000
+URxvt.color11:     #e7b000
 !
 ! Blue
-*.color4:      #0000a3
-*.color12:     #0000bb
+URxvt.color4:      #0000a3
+URxvt.color12:     #0000bb
 !
 ! Magenta
-*.color5:      #950062
-*.color13:     #ff55ff
+URxvt.color5:      #950062
+URxvt.color13:     #ff55ff
 !
 ! Cyan
-*.color6:      #00bbbb
-*.color14:     #55ffff
+URxvt.color6:      #00bbbb
+URxvt.color14:     #55ffff
 !
 ! White
-*.color7:      #bbbbbb
-*.color15:     #ffffff
+URxvt.color7:      #bbbbbb
+URxvt.color15:     #ffffff
 !
 ! Bold, Italic, Underline
-*.colorBD:     #ffb03b
-!*.colorIT:
-!*.colorUL:
+URxvt.colorBD:     #ffb03b
+!URxvt.colorIT:
+!URxvt.colorUL:
 
 
 
