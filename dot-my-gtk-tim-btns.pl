@@ -1,6 +1,12 @@
 # ~/.my-tim-btns.pl
 
 my $cmds = [
+  {
+    name => 'gtk3-counter',
+    cmd => 'gtk3-counter.pl',
+    font => 'normal 32px serif',
+    },
+
     {
         name => 'calibre',
         cmd => 'calibre',
@@ -46,3 +52,4 @@ my $cmds = [
     },
 
   ];
+
