@@ -20,6 +20,8 @@ sub save_fehbg {
 	print $fh "#!/bin/sh\n";
 	print $fh "$cmd\n";
 	close($fh);
+
+  chmod(0777, "$ENV{HOME}/.fehbg");
 }
 
 sub gen_cmd_solid {
