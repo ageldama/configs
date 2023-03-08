@@ -72,6 +72,8 @@ if [[ -f ~/.use-gnome-keyring ]]; then
           dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
           eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
           export SSH_AUTH_SOCK
+        else
+          test -f /run/user/${UID}/keyring/ssh && export SSH_AUTH_SOCK=/run/user/${UID}/keyring/ssh
         fi
       else
         # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
