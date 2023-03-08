@@ -1,12 +1,12 @@
 # QJoyPad 4.3 Layout File
 
 Joystick 1 {
-	Axis 1: Gradient, maxSpeed 3, tCurve 3, mouse+h
-	Axis 2: Gradient, maxSpeed 3, tCurve 3, mouse+v
-	Axis 4: Absolute, +mouse 6, -mouse 7
-	Axis 5: Absolute, +mouse 5, -mouse 4
-	Axis 7: Gradient, +key 114, -key 113
-	Axis 8: Gradient, +key 116, -key 111
+	Axis 1: gradient, maxSpeed 5, tCurve 4, mouse+h
+	Axis 2: gradient, maxSpeed 5, tCurve 4, mouse+v
+	Axis 4: gradient, maxSpeed 1, mouse+h
+	Axis 5: gradient, maxSpeed 1, mouse+v
+	Axis 7: gradient, +key 114, -key 113
+	Axis 8: gradient, +key 116, -key 111
 	Button 1: mouse 1
 	Button 2: mouse 3
 	Button 3: key 9
@@ -15,5 +15,6 @@ Joystick 1 {
 	Button 6: key 117
 	Button 7: mouse 3
 	Button 8: mouse 1
+	Button 11: key 95
 }
 
