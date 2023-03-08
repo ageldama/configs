@@ -68,9 +68,11 @@ if [[ -f ~/.use-gnome-keyring ]]; then
   case ${OSNAME} in
     Linux)
       if ! pgrep ssh-agent; then
-        dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
-        eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
-        export SSH_AUTH_SOCK
+        if [[ "$XDG_SESSION_TYPE" -eq "tty" ]]; then
+          dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
+          eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+          export SSH_AUTH_SOCK
+        fi
       else
         # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
         if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
