@@ -1,3 +1,5 @@
+# -*- mode: sh; -*-
+
 export LANG=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
@@ -17,7 +19,12 @@ if [[ -o interactive ]]; then
     alias ll='ls -lH'
   fi
 
-  command_exists batcat && alias bat=batcat
+  if command_exists batcat; then
+      alias bat='batcat --theme=zenburn'
+  else
+      alias bat='bat --theme=zenburn'
+  fi
+
   command_exists fdfind && alias fd=fdfind
 
 
