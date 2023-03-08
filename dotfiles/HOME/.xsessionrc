@@ -1,0 +1,5 @@
+#!/bin/sh
+
+test -d ~/perl5 && eval $(perl -Mlocal::lib)
+
+
