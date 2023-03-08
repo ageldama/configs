@@ -67,7 +67,7 @@ fi
 if [[ -f ~/.use-gnome-keyring ]]; then
   case ${OSNAME} in
     Linux)
-      if ! pgrep ssh-agent; then
+      if (! pgrep -u $UID ssh-agent ) && (! pgrep -u $UID gnome-keyring ); then
         #if [[ "$XDG_SESSION_TYPE" -eq "tty" ]]; then
           dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
           eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
@@ -75,13 +75,19 @@ if [[ -f ~/.use-gnome-keyring ]]; then
           export GPG_AGENT_INFO
           export GNOME_KEYRING_CONTROL
           export GNOME_KEYRING_PID
-        #else
-          #test -f /run/user/${UID}/keyring/ssh && export SSH_AUTH_SOCK=/run/user/${UID}/keyring/ssh
         #fi
       else
-        # notify-send 'gnome-keyring-daemon SKIP. (`ssh-add < /dev/null` maybe)'
-        if test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
+        if pgrep -u $UID gnome-keyring && [[ -e /run/user/${UID}/keyring/ssh ]]; then
+          export SSH_AUTH_SOCK=/run/user/${UID}/keyring/ssh
+        elif test -S "$SSH_AUTH_SOCK" -a -x "$SSH_ASKPASS"; then
           ssh-add < /dev/null &
+        else
+          dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
+          eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+          export SSH_AUTH_SOCK
+          export GPG_AGENT_INFO
+          export GNOME_KEYRING_CONTROL
+          export GNOME_KEYRING_PID
         fi
       fi
       ;;
