@@ -15,7 +15,7 @@
   ;;; NOTE 105, 85?
 
   ;; (load-theme 'modus-vivendi t)
-  (load-theme 'modus-operandi t)
+  (load-theme 'modus-operandi-tinted t)
   )
 
 
