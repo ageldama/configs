@@ -45,14 +45,14 @@ my $cmds = [
 
     {
         name => 'reboot',
-        cmd => 'sh -c "zenity --question --text=\'reboot?\' && sudo reboot"',
+        cmd => '~/local/scripts/pwr/reboot.sh',
         fg => 'yellow',
         bg => 'red',
     },
 
     {
         name => 'poweroff',
-        cmd => 'sh -c "zenity --question --text=\'poweroff?\' && sudo poweroff"',
+        cmd => '~/local/scripts/pwr/poweroff.sh',
         fg => 'yellow',
         bg => 'red',
     },
