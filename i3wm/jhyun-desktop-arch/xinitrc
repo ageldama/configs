@@ -1,5 +1,10 @@
 #!/usr/bin/env bash
 
+# ...for opensuse: xdm-xsession
+if [[ "x${MY_XSESSIONRC}" -eq "x" && -x ~/.xsessionrc ]]; then
+  source ~/.xsessionrc
+fi
+
 #export LANG=ko_KR.UTF-8
 
 # Run all system xinitrc shell scripts
