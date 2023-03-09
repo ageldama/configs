@@ -21,7 +21,7 @@ URxvt.cursorColor: #ffff00
 ! iterm-Grass.Xresources
 
 URxvt.foreground:  #fff0a5
-URxvt.background:  #13773d
+URxvt.background:  #000000
 !!URxvt.cursorColor: #8c2800
 !
 ! Black
