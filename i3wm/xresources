@@ -20,7 +20,7 @@ URxvt.cursorColor: #ffff00
 ! github.com:janoamaral/Xresources-themes.git
 ! iterm-Grass.Xresources
 
-URxvt.foreground:  #fff0a5
+URxvt.foreground:  #f0f0f0
 URxvt.background:  #000000
 !!URxvt.cursorColor: #8c2800
 !
