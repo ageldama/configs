@@ -85,7 +85,7 @@ show_help;
 while (1){
   print "\n" . cal3($cur->year, $cur->month, $cur->day);
 
-  my $prompt = $cur->ymd . " >>> ";
+  my $prompt = colored($cur->ymd, 'underline') . ' > ';
   my $inp = $term->readline($prompt);
 
   # ^D
