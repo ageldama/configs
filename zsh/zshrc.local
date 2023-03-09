@@ -19,10 +19,13 @@ if [[ -o interactive ]]; then
     alias ll='ls -lH'
   fi
 
+
+  BATCAT_THEME=ansi-light
+
   if command_exists batcat; then
-      alias bat='batcat --theme=zenburn'
+      alias bat="batcat --theme=$BATCAT_THEME"
   else
-      alias bat='bat --theme=zenburn'
+      alias bat="bat --theme=$BATCAT_THEME"
   fi
 
   command_exists fdfind && alias fd=fdfind
