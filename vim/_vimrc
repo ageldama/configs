@@ -171,7 +171,7 @@ Bundle 'arthurxavierx/vim-caser'
 " color and font
 
 "color gruvbox
-set bg=dark
+set bg=light
 
 if !has('gui_running')
   set t_Co=256
