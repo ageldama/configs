@@ -1,14 +1,4 @@
 # /usr/share/icons/gnome/32x32/apps
 
-prog "rofi-menu" gnome-main-menu.png rofi -combi-modi drun,window,run -show combi
-prog "scripts-menu" gtk-run.png scripts-rofi.pl -e -s
-
-
-prog "mixer" volume-knob.png pavucontrol
-
-prog "fm4u" volume-knob.png x-terminal-emulator -e fm4u.pl
-
-prog "qjoypad" volume-knob.png qjoypad
-prog "calibre" volume-knob.png calibre
-prog "goldendict" volume-knob.png goldendict
+prog "tim-btns.pl" volume-knob.png gtk-tim-btns.pl
 
