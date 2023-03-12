@@ -26,33 +26,36 @@ key "XF86KbdBrightnessUp" sh -c 'notify-send "$(brightnessctl --device=smc::kbd_
 # display and select monitor setup configurations
 switchkey "Super+p" icewm-menu-xrandr
 
+key "Super+o" icesh-send-next-monitor.pl
+
+
+key "Super+Shift+w" icesh -X this -f top
+key "Super+Shift+s" icesh -X this -f bottom
+key "Super+Shift+a" icesh -X this -f left
+key "Super+Shift+d" icesh -X this -f right
+
+key "Super+Ctrl+j" icesh -f moveby 0 10
+key "Super+Ctrl+k" icesh -f moveby 0 -10
+key "Super+Ctrl+h" icesh -f moveby -10 0
+key "Super+Ctrl+l" icesh -f moveby 10 0
+
+key "Super+Shift+j" icesh -f moveby 0 100
+key "Super+Shift+k" icesh -f moveby 0 -100
+key "Super+Shift+h" icesh -f moveby -100 0
+key "Super+Shift+l" icesh -f moveby 100 0
+
+key "Super+Ctrl+Up"    icesh -f sizeby   0  20
+key "Super+Ctrl+Down"  icesh -f sizeby   0 -20
+key "Super+Ctrl+Left"  icesh -f sizeby -20   0
+key "Super+Ctrl+Right" icesh -f sizeby  20   0
+
+key "Super+Shift+Up"    icesh -f sizeby   0  100
+key "Super+Shift+Down"  icesh -f sizeby   0 -100
+key "Super+Shift+Left"  icesh -f sizeby -100   0
+key "Super+Shift+Right" icesh -f sizeby  100   0
 
 
 
-#key "Super+Shift+z" icesh -f top sizeto 50% 100%
-#key "Super+Shift+x" icesh -f left sizeto 100% 50%
-#key "Super+Shift+a" icesh -f left top sizeto 50% 50%
-
-# resize: [+/- | v/h] by 20% of winsize
-key "Super+Shift+Up" icesh -f sizeby 0% 15%
-key "Super+Shift+Down" icesh -f sizeby 0% -15%
-key "Super+Shift+Left" icesh -f sizeby -15% 0%
-key "Super+Shift+Right" icesh -f sizeby 15% 0%
-
-
-# TODO? resize: [v/h] [maximize/restore]
-
-# move: wasd (corners), hjkl (by 15px)
-
-key "Super+Shift+w" icesh -f top
-key "Super+Shift+s" icesh -f bottom
-key "Super+Shift+a" icesh -f left
-key "Super+Shift+d" icesh -f right
-
-key "Super+Shift+j" icesh -f moveby 0 15
-key "Super+Shift+k" icesh -f moveby 0 -15
-key "Super+Shift+h" icesh -f moveby -15 0
-key "Super+Shift+l" icesh -f moveby 15 0
 
 
 # launchers
@@ -82,9 +85,6 @@ key "XF86LaunchB" scripts-rofi.pl -e -s
 key "Super+Shift+F9" scripts-rofi.pl -r -e
 
 key "Super+Shift+v" sh -c 'which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol'
-
-
-key "Super+o" icesh-send-next-monitor.pl
 
 
 #EOF.

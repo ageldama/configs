@@ -1,5 +1,7 @@
 Win95Keys=0 # was 0
 
+ModSuperIsCtrlAlt=0
+
 KeySysWindowList="Super+F1"
 
 TimeFormat = "%X, %d %a %b %Y %Z"
@@ -29,9 +31,12 @@ InputFontNameXft = "Noto Sans Mono CJK KR:size=9"
 LabelFontNameXft = "Noto Sans CJK KR:size=9"
 
 #  Goes one workspace to the left.
-KeySysWorkspacePrev="Super+Left"
-KeySysWorkspaceNext="Super+Right"
-KeySysWorkspaceLast="Super+Down"
+KeySysWorkspacePrev="Super+z"
+KeySysWorkspaceNext="Super+x"
+KeySysWorkspaceLast="Super+c"
+KeySysWorkspacePrevTakeWin="Super+Shift+z"
+KeySysWorkspaceNextTakeWin="Super+Shift+x"
+KeySysWorkspaceLastTakeWin="Super+Shift+c"
 
 KeySysShowDesktop="Super+F5"
 
