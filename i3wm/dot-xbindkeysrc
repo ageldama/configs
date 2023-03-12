@@ -6,9 +6,9 @@
   b:7
 
 # most left/right-buttons
-"xdotool key Next"
+"xdotool key alt+Left"
   b:10
-"xdotool key Prior"
+"xdotool key alt+Right"
   b:11
 
 # the center btn
@@ -16,9 +16,11 @@
   b:12
 
 # two up/down btns
-"xdotool key alt+Right"
+#"xdotool key alt+Right"
+"xdotool key Next" # wheel ->
   b:8
-"xdotool key alt+Left"
+#"xdotool key alt+Left"
+"xdotool key Prior" # wheel <-
   b:9
 
 
