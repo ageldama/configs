@@ -6,6 +6,7 @@
 "  ageldama@gmail.com : 2018-12-02
 "  ageldama@gmail.com : 2021-01-10
 "  ageldama@gmail.com : 2021-05-04, suckless.
+"  ageldama@gmail.com : 2023-03-06, lighter.
 "
 
 let mapleader=" "
@@ -65,109 +66,6 @@ set tm=500
 
 
 
-" https://github.com/VundleVim/Vundle.vim/issues/769#issue-188457119
-" START - Setting up Vundle - the vim plugin bundler
-let iCanHazVundle=1
-let vundle_readme=expand('~/.vim/bundle/Vundle.vim/README.md')
-if !filereadable(vundle_readme)
-  echo "Installing Vundle.."
-  echo ""
-  silent !mkdir -p ~/.vim/bundle
-  silent !git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-  let iCanHazVundle=0
-endif
-set rtp+=~/.vim/bundle/Vundle.vim/
-call vundle#rc()
-
-" let Vundle manage Vundle, required
-Plugin 'VundleVim/Vundle.vim'
-if iCanHazVundle == 0
-  echo "Installing Bundles, please ignore key map error messages"
-  echo ""
-  :PluginInstall
-endif
-" END - Setting up Vundle - the vim plugin bundler
-
-" git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-" let Vundle manage Vundle required!
-Bundle 'gmarik/vundle'
-"
-" The bundles you install will be listed here
-"
-filetype plugin indent on
-
-Bundle 'jlanzarotta/bufexplorer'
-
-Bundle 'scrooloose/nerdtree'
-"Bundle 'rbgrouleff/bclose.vim'
-
-Bundle 'editorconfig/editorconfig-vim'
-"Bundle 'liuchengxu/vim-which-key'
-
-Bundle 'easymotion/vim-easymotion'
-Bundle 'ntpeters/vim-better-whitespace'
-
-" :ALEInfo?
-"Bundle 'w0rp/ale'
-
-" #, / and :Occur and :Moccur, <leader>oc and <leader>mo
-Bundle 'vim-scripts/occur.vim'
-
-" try :'<,'>:Tab/=<cr>
-Bundle 'godlygeek/tabular'
-
-" multiple-cursors:
-" start      : <C-n>
-" next       : <C-n>
-" skip       : <C-x>
-" prev       : <C-p>
-" select all : <A-n>
-Bundle 'terryma/vim-multiple-cursors'
-
-" for GVim
-Bundle 'thinca/vim-fontzoom'
-
-" VimGrep
-Bundle 'dkprice/vim-easygrep'
-
-"
-"Bundle 'vim-airline/vim-airline'
-Bundle 'itchyny/lightline.vim'
-
-" fzf
-"Bundle 'junegunn/fzf', { 'do': { -> fzf#install() } }
-"Bundle 'junegunn/fzf.vim'
-"Bundle 'wookayin/fzf-ripgrep.vim'
-
-" ctrlp
-Bundle 'kien/ctrlp.vim'
-
-" gitgutter
-"Bundle 'airblade/vim-gitgutter'
-
-Bundle 'tpope/vim-unimpaired'
-Bundle 'tpope/vim-surround'
-
-"Bundle 'junegunn/vim-peekaboo'
-
-
-" + _
-Bundle 'terryma/vim-expand-region'
-
-"Bundle 'morhetz/gruvbox'
-
-
-" gs_, gsc etc...
-Bundle 'arthurxavierx/vim-caser'
-
-
-
 " color and font
 
 "color gruvbox
@@ -177,7 +75,7 @@ if !has('gui_running')
   set t_Co=256
 endif
 
-" lightline
+
 set laststatus=2
 
 if 1
@@ -201,34 +99,6 @@ if 1
     "set bg=dark
   endif
 endif
-
-" which-key
-"let g:mapleader = "\<Space>"
-"let g:maplocalleader = ','
-"nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
-"nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
-
-" easymotion
-map <Leader> <Plug>(easymotion-prefix)
-
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-" ALE
-"let g:ale_sign_error                 = '>>'
-"let g:ale_sign_warning               = '--'
-"let g:airline#extensions#ale#enabled = 1
-"let g:ale_completion_enabled         = 0
-"let g:ale_enabled                    = 1
-"let g:ale_open_list                  = 0
-"autocmd BufRead,BufNewFile *.{java} let b:ale_enabled=0
-
-
-" xclip '\y'
-"vnoremap <silent><Leader>y :'<,'>w !xclip -selection clipboard<CR>
 
 
 " Useful mappings for managing tabs
@@ -260,36 +130,8 @@ set grepprg=rg\ --vimgrep\ --no-heading\ --smart-case\ --follow
 
 
 
-" fzf
-"map <leader>zf :Files<CR>
-"map <leader>zg :GFiles<CR>
-"map <leader>zG :GFiles?<CR>
-"map <leader>zb :Buffers<CR>
-"map <leader>zm :Marks<CR>
-"map <leader>zr :History<CR>
-"map <leader>z: :History:<CR>
-"map <leader>z/ :History/<CR>
-"map <leader>zk :Maps<CR>
-"map <leader>z? :Helptags<CR>
-"map <leader>zt :Filetypes<CR>
-
-
-" ctrlp
-"let g:ctrlp_map = '<c-p>'
-"let g:ctrlp_cmd = 'CtrlP'
-"nnoremap <Leader>b :CtrlPBuffer<CR>
-
-if executable('rg')
-  let g:ctrlp_user_command = 'rg %s --files --hidden --color=never --glob ""'
-endif
-
-"
-" TODO ? Plugin 'SirVer/ultisnips'
-" TODO ? Plugin 'honza/vim-snippets'
-
-
 " Source Vim configuration file and install plugins
-nnoremap <silent><leader>I :source ~/.vimrc \| :VundleInstall<CR>
+nnoremap <silent><leader>I :source ~/.vimrc<CR>
 
 
 
