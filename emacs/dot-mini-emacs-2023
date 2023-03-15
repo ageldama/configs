@@ -119,8 +119,8 @@
 
 (use-package modus-themes :ensure t :pin melpa)
 
-(when (display-graphic-p)
-  (load-theme 'modus-vivendi-tinted t ))
+;; (when (display-graphic-p)
+;;   (load-theme 'modus-vivendi-tinted t ))
 
 
 
