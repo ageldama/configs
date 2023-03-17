@@ -16,6 +16,14 @@ my $cmds = [
     },
 
     {
+        name => 'evince',
+        cmd => 'evince',
+        font => 'normal 28px serif',
+        fg => 'blue',
+    },
+
+
+    {
         name => 'qjoypad',
         cmd => 'qjoypad',
         font => 'normal 28px serif',
