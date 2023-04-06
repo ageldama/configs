@@ -160,9 +160,9 @@
 
 
 
-(add-hook 'kill-emacs-query-functions
-          (lambda () (y-or-n-p "Bye??? "))
-          'append)
+;; (add-hook 'kill-emacs-query-functions
+;;           (lambda () (y-or-n-p "Bye??? "))
+;;           'append)
 
 
 ;;; no backup files
