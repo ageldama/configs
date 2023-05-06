@@ -217,23 +217,20 @@
 ;; (diary/new-or-open-org-file)
 
 
+(defun open-v3-plan ()
+  (interactive)
+  (find-file "~/P/v3/PLAN.org"))
+
 
 
 ;;; 
 
-(defhydra hydra-mini ()
-  "
-MiniMe^^
----------------------------------
-_d_ diary
-_m_ memo
-_w_ writeroom
-
-_SPC_ cancel
-"
-  ("d" diary/new-or-open-org-file :exit t)
-  ("m" diary/new-or-open-memo :exit t)
-  ("w" writeroom-mode :exit t)
+(defhydra hydra-mini (global-map "<f12>")
+  "minime"
+  ("d" diary/new-or-open-org-file "diary" :exit t)
+  ("m" diary/new-or-open-memo "memo" :exit t)
+  ("p" open-v3-plan "plan" :exit t)
+  ("w" writeroom-mode "writeroom" :exit t)
   ("SPC" nil)
   )
 
