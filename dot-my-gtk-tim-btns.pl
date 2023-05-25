@@ -67,6 +67,15 @@ my $cmds = [
     },
 
     {
+        name => 'firefox',
+        cmd => 'firefox',
+        font => 'normal 12px serif',
+        bg => 'grey',
+        fg => 'blue',
+    },
+
+
+    {
         name => 'reboot',
         cmd => '~/local/scripts/pwr/reboot.sh',
         fg => 'yellow',
