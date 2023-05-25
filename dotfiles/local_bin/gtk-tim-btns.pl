@@ -82,6 +82,7 @@ Gtk3::init;
 
 
 my $window = Gtk3::Window->new('toplevel');
+$window->stick;
 $window->signal_connect(destroy => sub { Gtk3::main_quit; });
 $window->resize(800, 900);
 #$window->maximized;

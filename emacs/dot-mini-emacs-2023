@@ -140,6 +140,44 @@
 
 
 
+;;; Evil, my last resort. (sometimes)
+
+(let ((evil-want-keybinding nil))
+  (use-package evil :ensure t :pin melpa))
+
+(setq evil-want-integration t
+      evil-want-keybinding t)
+
+;;(evil-set-undo-system 'undo-tree)
+
+(evil-mode +1)
+
+(setq evil-default-state 'normal)
+
+
+
+(use-package avy :ensure t :pin melpa
+  :custom
+  (avy-timeout-seconds 0.3)
+  (avy-style 'pre)
+  :config
+  (progn
+    (global-set-key (kbd "C-'") 'avy-goto-char-timer)
+    (global-set-key (kbd "C-:") 'avy-goto-char-2)
+    (global-set-key (kbd "C-c C-j") 'avy-resume)
+    (global-set-key (kbd "M-g l") 'avy-goto-line)
+    (global-set-key (kbd "M-g f") 'avy-goto-char)
+    (global-set-key (kbd "M-g w") 'avy-goto-word-1)
+    (global-set-key (kbd "M-g M-j") 'hydra-avy-goto/body)
+    (global-set-key (kbd "M-g C-t") 'avy-pop-mark)))
+
+
+;;; Dired
+(setq dired-dwim-target t
+      wdired-confirm-overwrite t
+      wdired-use-interactive-rename t
+      )
+
 
 ;;; Org
 (add-hook 'org-mode-hook
@@ -179,32 +217,46 @@
 ;; (diary/new-or-open-org-file)
 
 
+(defun open-v3-plan ()
+  (interactive)
+  (find-file "~/P/v3/PLAN.org"))
+
 
 
 ;;; 
 
-(defhydra hydra-mini ()
-  "
-MiniMe^^
----------------------------------
-_d_ diary
-_m_ memo
-_w_ writeroom
-
-_SPC_ cancel
-"
-  ("d" diary/new-or-open-org-file :exit t)
-  ("m" diary/new-or-open-memo :exit t)
-  ("w" writeroom-mode :exit t)
+(defhydra hydra-mini (global-map "<f12>")
+  "minime"
+  ("d" diary/new-or-open-org-file "diary" :exit t)
+  ("m" diary/new-or-open-memo "memo" :exit t)
+  ("p" open-v3-plan "plan" :exit t)
+  ("w" writeroom-mode "writeroom" :exit t)
   ("SPC" nil)
   )
 
 (global-set-key (kbd "C-x x") 'hydra-mini/body)
 
 
+;;; wgrep: writable grep
+(use-package wgrep :ensure t :pin melpa)
 
+;;;
+(use-package diminish :ensure t :pin melpa
+  :config
+  (progn
+    (diminish 'visual-line-mode)
+    (diminish 'which-key-mode)
+    ))
 
-
+;;;
+(let ((evil-want-keybinding nil))
+  (use-package evil-collection
+    :after evil
+    :ensure t :pin melpa
+    :config
+    (progn (evil-collection-init)
+           (diminish 'evil-collection-unimpaired-mode)
+           )))
 
 
 ;;; EOF.
