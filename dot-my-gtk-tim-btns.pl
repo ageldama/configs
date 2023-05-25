@@ -74,6 +74,13 @@ my $cmds = [
         fg => 'blue',
     },
 
+    {
+        name => 'vlc',
+        cmd => 'vlc',
+        font => 'normal 12px serif',
+        bg => 'grey',
+        fg => 'blue',
+    },
 
     {
         name => 'reboot',
