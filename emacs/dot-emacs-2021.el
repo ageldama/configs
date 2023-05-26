@@ -1401,7 +1401,8 @@ _SPC_ : cancel
          (comp-frm-wnd (seq-find #'(lambda (frm-wnd)
                                      (with-selected-frame (car frm-wnd)
                                        (with-current-buffer (window-buffer (cdr frm-wnd))
-                                         (eq major-mode 'compilation-mode))))
+                                         (or (member major-mode '(compilation-mode grep-mode)))
+                                         )))                                         
                                  frm+wnd-lst)))
     (if comp-frm-wnd
         (progn (with-selected-frame (car comp-frm-wnd)
