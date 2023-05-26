@@ -219,6 +219,7 @@
   ("p" open-v3-plan "plan" :exit t)
   ("w" writeroom-mode "writeroom" :exit t)
   ("M-w" omz-ish/gwip "gwip" :exit t)
+  ("G a" git/add-this "git/add" :exit t)
   ("SPC" nil)
   )
 
@@ -288,6 +289,14 @@
                 (format "cd '%s' && git commit -am '%s'"
                         git-root commit-msg))))))
 
+
+(defun git/add-this ()
+  (interactive)
+  (message "git-add: %s"
+           (shell-command-to-string
+            (format "cd '%s' && git add '%s'"
+                    default-directory
+                    (buffer-file-name)))))
 
 
 
