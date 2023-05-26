@@ -347,6 +347,8 @@
 
     (global-set-key (kbd "<f5>")
                     #'recompile-showing-compilation-window)
+    (define-key god-local-mode-map (kbd "<f5>")
+      #'recompile-showing-compilation-window)
 
     (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
     (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
@@ -354,10 +356,6 @@
     (define-key god-local-mode-map (kbd "W") #'other-window)
     (define-key god-local-mode-map (kbd "B") #'ibuffer)
 
-    (define-key god-local-mode-map (kbd "<f5>")
-      #'recompile-showing-compilation-window)
-
-        
     ;;; isearch
     (require 'god-mode-isearch)
     (define-key isearch-mode-map (kbd "<escape>") #'god-mode-isearch-activate)
