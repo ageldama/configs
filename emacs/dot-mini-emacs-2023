@@ -282,8 +282,6 @@
   (let ((commit-msg "--wip-- [skip ci]")
         (git-root (git/find-nearest-repo)))
     (when (not (null git-root))
-(message "hwg")
-      
       (message "git-wip-commit: %s"
                (shell-command-to-string
                 (format "cd '%s' && git commit -am '%s'"
