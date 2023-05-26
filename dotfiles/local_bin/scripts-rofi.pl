@@ -124,6 +124,56 @@ EO_SQL
 1;  # ScriptRofi::HistoryDB
 
 
+
+package ScriptRofi::HistoryDB::Dummy;
+
+
+sub open_or_create {
+    my ($db_path, $flag_file) = @_;
+    
+    return bless {
+        scripts => [],
+        flag_file => $flag_file,
+    };
+}
+
+
+sub update_paths {
+    my ($self, $scripts) = @_;
+    $self->{scripts} = $scripts;
+}
+
+
+sub list_sorted {
+    my ($self, $base_dir) = @_;
+    return $self->{scripts};
+}
+
+
+sub update_sel {
+    my ($self, $sel) = @_;
+    my $fn = $self->{flag_file};
+    open(my $fh, '>', $fn) or die "Could not open file '$fn' $!";
+    print $fh $sel;
+    close $fh;
+}
+
+
+sub get_recent {
+    my $self = shift;
+    my $fn = $self->{flag_file};
+    open my $fh, '<', $fn or die;
+    my $sel = <$fh>;
+    close $fh;
+    return $sel;
+}
+
+
+
+1; # ScriptRofi::HistoryDB::Dummy;
+
+
+
 package main;
 
 use strict;
@@ -142,11 +192,16 @@ getopts('psre', \%opts);
 
 use constant SCRIPT_DIR => "$ENV{HOME}/local/scripts";
 use constant HISTORY_DB => "$ENV{HOME}/.scripts-rofi.sqlite3";
+use constant NO_HISTORY_DB_FLAG_FILE => "$ENV{HOME}/.no-db-scripts-rofi";
 
 
 sub HELP_MESSAGE {
   my $fh = shift;
   print $fh <<"EO_HELP";
+SCRIPT_DIR:       ${ \SCRIPT_DIR }
+HISTORY_DB:       ${ \HISTORY_DB }
+NO_DB_FLAG_FILE:  ${ \NO_HISTORY_DB_FLAG_FILE }
+
 List content of [${ \SCRIPT_DIR }] and ask to select:
 
   -p : print selection
@@ -161,7 +216,12 @@ EO_HELP
 }
 
 
-my $history_db = ScriptRofi::HistoryDB::open_or_create(HISTORY_DB);
+
+
+my $USE_HISTORY_DB = ! -r NO_HISTORY_DB_FLAG_FILE;
+
+my $history_db = ScriptRofi::HistoryDB::Dummy::open_or_create(HISTORY_DB, NO_HISTORY_DB_FLAG_FILE);
+$history_db = ScriptRofi::HistoryDB::open_or_create(HISTORY_DB) if $USE_HISTORY_DB;
 #p $history_db;
 
 
