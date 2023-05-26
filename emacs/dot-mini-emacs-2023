@@ -140,22 +140,35 @@
 
 
 
-;;; Evil, my last resort. (sometimes)
+;;; god-mode
+(use-package god-mode :ensure t :pin melpa
+  :config
+  (progn
+    ;; (define-key god-local-mode-map (kbd "z") #'repeat)
+    (define-key god-local-mode-map (kbd ".") #'repeat)
 
-(let ((evil-want-keybinding nil))
-  (use-package evil :ensure t :pin melpa))
+    (global-set-key (kbd "<escape>") #'god-local-mode)
+    (define-key god-local-mode-map (kbd "i") #'god-local-mode)
 
-(setq evil-want-integration t
-      evil-want-keybinding t)
+    (global-set-key (kbd "C-x C-1") #'delete-other-windows)
+    (global-set-key (kbd "C-x C-2") #'split-window-below)
+    (global-set-key (kbd "C-x C-3") #'split-window-right)
+    (global-set-key (kbd "C-x C-0") #'delete-window)
 
-;;(evil-set-undo-system 'undo-tree)
+    (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
+    (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
 
-(evil-mode +1)
+    ;;; isearch
+    (require 'god-mode-isearch)
+    (define-key isearch-mode-map (kbd "<escape>") #'god-mode-isearch-activate)
+    (define-key god-mode-isearch-map (kbd "<escape>") #'god-mode-isearch-disable)
 
-(setq evil-default-state 'normal)
+    ;;;
+    (god-mode-all 1)
+    ))
 
 
-
+;;;
 (use-package avy :ensure t :pin melpa
   :custom
   (avy-timeout-seconds 0.3)
@@ -240,6 +253,11 @@
 ;;; wgrep: writable grep
 (use-package wgrep :ensure t :pin melpa)
 
+
+
+
+
+
 ;;;
 (use-package diminish :ensure t :pin melpa
   :config
@@ -248,15 +266,6 @@
     (diminish 'which-key-mode)
     ))
 
-;;;
-(let ((evil-want-keybinding nil))
-  (use-package evil-collection
-    :after evil
-    :ensure t :pin melpa
-    :config
-    (progn (evil-collection-init)
-           (diminish 'evil-collection-unimpaired-mode)
-           )))
 
 
 ;;; EOF.
