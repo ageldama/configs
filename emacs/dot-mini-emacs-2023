@@ -218,6 +218,7 @@
   ("m" diary/new-or-open-memo "memo" :exit t)
   ("p" open-v3-plan "plan" :exit t)
   ("w" writeroom-mode "writeroom" :exit t)
+  ("M-w" omz-ish/gwip "gwip" :exit t)
   ("SPC" nil)
   )
 
