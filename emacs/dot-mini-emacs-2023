@@ -140,32 +140,6 @@
 
 
 
-;;; god-mode
-(use-package god-mode :ensure t :pin melpa
-  :config
-  (progn
-    ;; (define-key god-local-mode-map (kbd "z") #'repeat)
-    (define-key god-local-mode-map (kbd ".") #'repeat)
-
-    (global-set-key (kbd "<escape>") #'god-local-mode)
-    (define-key god-local-mode-map (kbd "i") #'god-local-mode)
-
-    (global-set-key (kbd "C-x C-1") #'delete-other-windows)
-    (global-set-key (kbd "C-x C-2") #'split-window-below)
-    (global-set-key (kbd "C-x C-3") #'split-window-right)
-    (global-set-key (kbd "C-x C-0") #'delete-window)
-
-    (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
-    (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
-
-    ;;; isearch
-    (require 'god-mode-isearch)
-    (define-key isearch-mode-map (kbd "<escape>") #'god-mode-isearch-activate)
-    (define-key god-mode-isearch-map (kbd "<escape>") #'god-mode-isearch-disable)
-
-    ;;;
-    (god-mode-all 1)
-    ))
 
 
 ;;;
@@ -248,6 +222,7 @@
   )
 
 (global-set-key (kbd "C-x x") 'hydra-mini/body)
+(global-set-key (kbd "C-`") 'hydra-mini/body)
 
 
 ;;; wgrep: writable grep
@@ -255,6 +230,134 @@
 
 
 
+
+;;; ibuffer
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
+
+
+
+;;; expand-region
+(use-package expand-region :ensure t :pin melpa
+  :config (global-set-key (kbd "C-=") 'er/expand-region))
+
+
+
+
+
+;;; git / wip
+(require 'subr-x)
+
+(defun git/find-nearest-repo ()
+  (interactive)
+  (let ((cur-dir default-directory)
+        (result nil)
+        (keep-looping t))
+    ;;
+    (while (and keep-looping
+                (not (equal "../" cur-dir))
+                (not (null cur-dir)))
+      ;;
+      (setq cur-dir
+            (string-remove-suffix "/" cur-dir))
+      ;;
+      (let ((git-repo (format "%s/.git" cur-dir)))
+        (message "dir: %s" git-repo)
+        (if (and (f-exists? git-repo) (f-directory? git-repo))
+            ;; then:
+            (progn
+              (message "found: %s" cur-dir)
+              (setq result cur-dir keep-looping nil))
+          ;; else:
+          (progn ;; move to parent
+            (setq cur-dir (f-parent cur-dir))))
+        ))
+    
+    ;; return
+    result))
+
+
+(defun omz-ish/gwip ()
+  (interactive)
+  (let ((commit-msg "--wip-- [skip ci]")
+        (git-root (git/find-nearest-repo)))
+    (when (not (null git-root))
+(message "hwg")
+      
+      (message "git-wip-commit: %s"
+               (shell-command-to-string
+                (format "cd '%s' && git commit -am '%s'"
+                        git-root commit-msg))))))
+
+
+
+
+;;; recompile
+
+(defun recompile-showing-compilation-window ()
+  (interactive)
+  (let* ((frm+wnd-lst
+          (apply #'append
+                 (mapcar (lambda (frm)
+                           (with-selected-frame frm
+                             (mapcar (lambda (wnd) (cons frm wnd))
+                                     (window-list))))
+                         (visible-frame-list))))
+         (comp-frm-wnd (seq-find #'(lambda (frm-wnd)
+                                     (with-selected-frame (car frm-wnd)
+                                       (with-current-buffer (window-buffer (cdr frm-wnd))
+                                         (or (member major-mode '(compilation-mode grep-mode))
+                                             )
+                                         )))
+                                 frm+wnd-lst)))
+    (if comp-frm-wnd
+        (progn (with-selected-frame (car comp-frm-wnd)
+                 (with-current-buffer (window-buffer (cdr comp-frm-wnd)) (recompile))))
+      ;; else
+      (message "no comile-buffer found"))))
+
+
+
+
+
+
+
+;;; god-mode
+(use-package god-mode :ensure t :pin melpa
+  :config
+  (progn
+    ;; (define-key god-local-mode-map (kbd "z") #'hydra-mini/body)
+    (define-key god-local-mode-map (kbd ".") #'repeat)
+
+    (global-set-key (kbd "<escape>") #'god-local-mode)
+    (define-key god-local-mode-map (kbd "i") #'god-local-mode)
+
+    (global-set-key (kbd "C-x C-1") #'delete-other-windows)
+    (global-set-key (kbd "C-x C-2") #'split-window-below)
+    (global-set-key (kbd "C-x C-3") #'split-window-right)
+    (global-set-key (kbd "C-x C-0") #'delete-window)
+
+    (global-set-key (kbd "<f5>")
+                    #'recompile-showing-compilation-window)
+
+    (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
+    (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
+
+    (define-key god-local-mode-map (kbd "W") #'other-window)
+    (define-key god-local-mode-map (kbd "B") #'ibuffer)
+
+    (define-key god-local-mode-map (kbd "<f5>")
+      #'recompile-showing-compilation-window)
+
+        
+    ;;; isearch
+    (require 'god-mode-isearch)
+    (define-key isearch-mode-map (kbd "<escape>") #'god-mode-isearch-activate)
+    (define-key god-mode-isearch-map (kbd "<escape>") #'god-mode-isearch-disable)
+
+    ;;;
+    (god-mode-all 1)
+    ))
 
 
 
