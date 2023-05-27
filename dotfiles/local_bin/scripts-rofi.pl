@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-package ScriptRofi::HistoryDB;
+package ScriptRofi::HistoryDB::Sqlite3;
 
 use strict;
 use warnings;
@@ -121,7 +121,7 @@ EO_SQL
 }
 
 
-1;  # ScriptRofi::HistoryDB
+1;  # ScriptRofi::HistoryDB::Sqlite3
 
 
 
@@ -221,7 +221,7 @@ EO_HELP
 my $USE_HISTORY_DB = ! -r NO_HISTORY_DB_FLAG_FILE;
 
 my $history_db = ScriptRofi::HistoryDB::Dummy::open_or_create(HISTORY_DB, NO_HISTORY_DB_FLAG_FILE);
-$history_db = ScriptRofi::HistoryDB::open_or_create(HISTORY_DB) if $USE_HISTORY_DB;
+$history_db = ScriptRofi::HistoryDB::Sqlite3::open_or_create(HISTORY_DB) if $USE_HISTORY_DB;
 #p $history_db;
 
 
