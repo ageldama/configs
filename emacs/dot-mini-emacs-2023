@@ -216,27 +216,38 @@
 
 
 ;;; 
+(eval
+ `(defhydra hydra-mini (global-map "<f12>")
+    "minime"
+    ("`" menu-bar-open "menu-bar" :exit t)
+    
+    ("o d" diary/new-or-open-org-file "diary" :exit t)
+    ("o m" diary/new-or-open-memo "memo" :exit t)
+    ("o p" open-v3-plan "plan" :exit t)
+    
+    ("w" writeroom-mode "writeroom" :exit t)
+    
+    ,@(when (fboundp 'magit-status)
+        '(("g" magit-status "magit" :exit t)))
 
-(defhydra hydra-mini (global-map "<f12>")
-  "minime"
-  ("`" menu-bar-open "menu-bar" :exit t)
-  ("o d" diary/new-or-open-org-file "diary" :exit t)
-  ("o m" diary/new-or-open-memo "memo" :exit t)
-  ("o p" open-v3-plan "plan" :exit t)
-  ("w" writeroom-mode "writeroom" :exit t)
-  ("G w" omz-ish/gwip "gwip" :exit t)
-  ("G a" git/add-this "git/add" :exit t)
-  ("SPC" nil)
-  )
+    ("G w" omz-ish/gwip "gwip" :exit t)
+    ("G a" git/add-this "git/add" :exit t)
+
+    ,@(when (fboundp 'hydra-moonshot/body)
+        '(("x" hydra-moonshot/body :exit t)))
+
+    ,@(when (fboundp 'hydra-string-inflection/body)
+        '(("M-t" hydra-string-inflection/body/body :exit t)))
+
+    ("SPC" nil)
+    ))
 
 (global-set-key (kbd "C-x x") 'hydra-mini/body)
 (global-set-key (kbd "C-`") 'hydra-mini/body)
 
 
-;;; TODO magit
-;;; TODO moonshot
-;;; TODO string-inflection
-;;; TODO undo-tree
+
+
 
 
 (defhydra hydra/tab ()
