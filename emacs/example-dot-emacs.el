@@ -1,8 +1,11 @@
 (setq langsup-base-path (expand-file-name "~/P/configs/emacs/"))
-(load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2021.el"))
-;;(load-file (expand-file-name "~/P/configs/emacs/dot-mini-emacs-2023"))
+
+;; TODO (load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2021.el"))
+
+(load-file (expand-file-name "~/P/configs/emacs/dot-mini-emacs-2023"))
 
 
+;;; Loads for mini-emacs:
 (let ((l '(
            "company.el"           
            "deadgrep.el"
@@ -48,8 +51,10 @@
 
 
 ;; 너무 느리면 끄자.
-(yas-global-mode +1)
-;;(yas-global-mode -1)
+(when (fboundp 'yas-global-mode)
+  (yas-global-mode +1)
+  ;; (yas-global-mode -1)
+  )
 
 ;; (toggle-battery-saving-mode)
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
@@ -57,6 +62,7 @@
 
 (when (boundp 'native-comp-async-report-warnings-errors)
   (setq native-comp-async-report-warnings-errors 'silent))
+
 
 ;; (dolist (cmd '(
 ;;                "cd %d; rubocop -A"
