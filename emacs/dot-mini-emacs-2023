@@ -192,6 +192,11 @@
 
 
 
+(use-package ace-window :ensure t :pin melpa
+  :config (global-set-key (kbd "C-x o") 'ace-window))
+
+
+
 ;;; diary, memo
 (require 'f)  ;; elpa-f
 (require 's)  ;; elpa-s
@@ -214,9 +219,9 @@
 
 (defhydra hydra-mini (global-map "<f12>")
   "minime"
-  ("d" diary/new-or-open-org-file "diary" :exit t)
-  ("m" diary/new-or-open-memo "memo" :exit t)
-  ("p" open-v3-plan "plan" :exit t)
+  ("o d" diary/new-or-open-org-file "diary" :exit t)
+  ("o m" diary/new-or-open-memo "memo" :exit t)
+  ("o p" open-v3-plan "plan" :exit t)
   ("w" writeroom-mode "writeroom" :exit t)
   ("G w" omz-ish/gwip "gwip" :exit t)
   ("G a" git/add-this "git/add" :exit t)
@@ -225,6 +230,10 @@
 
 (global-set-key (kbd "C-x x") 'hydra-mini/body)
 (global-set-key (kbd "C-`") 'hydra-mini/body)
+
+
+
+
 
 
 ;;; wgrep: writable grep
@@ -353,7 +362,7 @@
     (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
     (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
 
-    (define-key god-local-mode-map (kbd "W") #'other-window)
+    (define-key god-local-mode-map (kbd "W") #'ace-window)
     (define-key god-local-mode-map (kbd "B") #'ibuffer)
 
     ;;; isearch
