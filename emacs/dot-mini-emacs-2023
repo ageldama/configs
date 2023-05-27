@@ -150,13 +150,14 @@
   :config
   (progn
     (global-set-key (kbd "C-'") 'avy-goto-char-timer)
-    (global-set-key (kbd "C-:") 'avy-goto-char-2)
+    (global-set-key (kbd "C-:") 'avy-goto-line)
     (global-set-key (kbd "C-c C-j") 'avy-resume)
     (global-set-key (kbd "M-g l") 'avy-goto-line)
     (global-set-key (kbd "M-g f") 'avy-goto-char)
     (global-set-key (kbd "M-g w") 'avy-goto-word-1)
-    (global-set-key (kbd "M-g M-j") 'hydra-avy-goto/body)
-    (global-set-key (kbd "M-g C-t") 'avy-pop-mark)))
+    ;; (global-set-key (kbd "M-g j") 'hydra-avy-goto/body)
+    (global-set-key (kbd "M-g ,") 'avy-pop-mark)))
+
 
 
 ;;; Dired
@@ -263,7 +264,9 @@
   ("<up>"     #'tab-list
    "list" :exit t)
   ("X"        #'tab-close
-   "close" :exit t))
+   "close" :exit t)
+  ("SPC" nil)
+  )
 
 
 ;;; wgrep: writable grep
@@ -364,6 +367,8 @@
       (message "no comile-buffer found"))))
 
 
+(global-set-key (kbd "<f5>")
+                #'recompile-showing-compilation-window)
 
 
 
@@ -384,17 +389,18 @@
     (global-set-key (kbd "C-x C-3") #'split-window-right)
     (global-set-key (kbd "C-x C-0") #'delete-window)
 
-    (global-set-key (kbd "<f5>")
-                    #'recompile-showing-compilation-window)
     (define-key god-local-mode-map (kbd "<f5>")
       #'recompile-showing-compilation-window)
 
     (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
     (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
 
+    ;;; Big capitals:
     (define-key god-local-mode-map (kbd "W") #'ace-window)
     (define-key god-local-mode-map (kbd "B") #'ibuffer)
     (define-key god-local-mode-map (kbd "T") #'hydra/tab/body)
+
+    ;;; TODO HINT : C-, C-w, use the comma-key!
 
     ;;; isearch
     (require 'god-mode-isearch)
