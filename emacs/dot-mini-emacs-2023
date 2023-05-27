@@ -41,11 +41,11 @@
   (interactive)
   (let ((en-fn
          ;; "Noto Sans Mono CJK KR"
-         "D2Coding"
+         "NanumGothicCoding"
 	 )
         (ko-fn
          ;; "Noto Sans Mono CJK KR"
-         "D2Coding"
+         "NanumGothicCoding"
          ))
     ;; default Latin font (e.g. Consolas)
     ;; but I use Monaco
