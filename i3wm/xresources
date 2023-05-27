@@ -9,8 +9,7 @@ Xcursor.size: 28
 
 !URxvt.background: #ffffff
 !URxvt.foreground: #000000
-
-URxvt.cursorColor: #ffff00
+!URxvt.cursorColor: #ffff00
 
 
 !
@@ -20,13 +19,13 @@ URxvt.cursorColor: #ffff00
 ! github.com:janoamaral/Xresources-themes.git
 ! iterm-Grass.Xresources
 
-!URxvt.foreground:  #f0f0f0
-!URxvt.background:  #000000
-!!URxvt.cursorColor: #8c2800
-!
+URxvt.foreground:  #f0f0f0
+URxvt.background:  #000000
+URxvt.cursorColor: #8c2800
 
-URxvt.foreground:  #fff0a5
-URxvt.background:  #13773d
+
+!URxvt.foreground:  #fff0a5
+!URxvt.background:  #13773d
 
 
 ! Black
