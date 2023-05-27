@@ -1,11 +1,11 @@
 (setq langsup-base-path (expand-file-name "~/P/configs/emacs/"))
 (load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2021.el"))
-
+;;(load-file (expand-file-name "~/P/configs/emacs/dot-mini-emacs-2023"))
 
 ;;; Debian Buster:
 ;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
-(when +sys/gui?+
+(when window-system
   (progn
     (setq *ageldama/font-fixed-en* "DejaVu Sans Mono" 
           *ageldama/font-fixed-ko* "나눔고딕코딩" )
