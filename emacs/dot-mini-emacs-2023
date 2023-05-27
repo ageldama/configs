@@ -219,6 +219,7 @@
 
 (defhydra hydra-mini (global-map "<f12>")
   "minime"
+  ("`" menu-bar-open "menu-bar" :exit t)
   ("o d" diary/new-or-open-org-file "diary" :exit t)
   ("o m" diary/new-or-open-memo "memo" :exit t)
   ("o p" open-v3-plan "plan" :exit t)
@@ -232,8 +233,26 @@
 (global-set-key (kbd "C-`") 'hydra-mini/body)
 
 
+;;; TODO magit
+;;; TODO moonshot
+;;; TODO string-inflection
+;;; TODO undo-tree
 
 
+(defhydra hydra/tab ()
+  "tabs"
+  ("<left>"   #'tab-previous
+   "prev" :exit t)
+  ("<right>"  #'tab-next
+   "next" :exit t)
+  ("<tab>"    #'tab-recent
+   "recent" :exit t)
+  ("<down>"   #'tab-new
+   "new" :exit t)
+  ("<up>"     #'tab-list
+   "list" :exit t)
+  ("X"        #'tab-close
+   "close" :exit t))
 
 
 ;;; wgrep: writable grep
@@ -364,6 +383,7 @@
 
     (define-key god-local-mode-map (kbd "W") #'ace-window)
     (define-key god-local-mode-map (kbd "B") #'ibuffer)
+    (define-key god-local-mode-map (kbd "T") #'hydra/tab/body)
 
     ;;; isearch
     (require 'god-mode-isearch)

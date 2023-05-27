@@ -2,6 +2,34 @@
 (load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2021.el"))
 ;;(load-file (expand-file-name "~/P/configs/emacs/dot-mini-emacs-2023"))
 
+
+(let ((l '(
+           "company.el"           
+           "deadgrep.el"
+           "editorconfig.el"
+           "eldoc.el"
+           "flycheck.el"          
+           "hl-todo.el"           
+           "magit.el"             
+           "markdown-mode.el"
+           "moonshot.el" 
+           "multiple-cursors.el"
+           "plantuml.el"          
+           "quelpa.el"         
+           "readlgud.el"
+           "string-inflection.el"
+           "undo-tree.el"
+           "unfill.el"      
+           "vimish-fold.el"                  
+           "which-key.el"
+           "yas.el"
+           )))
+  (dolist (i l)
+    (load-file (expand-file-name
+                (s-concat "~/P/configs/emacs/theo/" i)))))
+
+
+
 ;;; Debian Buster:
 ;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
