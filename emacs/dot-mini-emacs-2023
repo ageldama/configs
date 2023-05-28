@@ -296,7 +296,7 @@
 
 
 ;;;
-(use-package browse-kill-ring :ensure t)
+;; (use-package browse-kill-ring :ensure t)
 
 
 ;;;
@@ -380,7 +380,9 @@
 
     ("G" hydra-git/body "git")
 
-    ("M-k" browse-kill-ring "kill-ring" )
+    ,(when (fboundp 'browse-kill-ring)
+       '("M-k" browse-kill-ring "kill-ring" ))
+    
     ("C-k" kill-current-buffer "kill-cur-buf" )
 
     ;; ("M--" hydra-misc-fns/body "misc-fns" )
