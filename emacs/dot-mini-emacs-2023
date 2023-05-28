@@ -380,8 +380,8 @@
 
     ("G" hydra-git/body "git")
 
-    ,(when (fboundp 'browse-kill-ring)
-       '("M-k" browse-kill-ring "kill-ring" ))
+    ,@(when (fboundp 'browse-kill-ring)
+       '(("M-k" browse-kill-ring "kill-ring" )))
     
     ("C-k" kill-current-buffer "kill-cur-buf" )
 
