@@ -26,7 +26,7 @@
 	   ;; "feat/plantuml.el"
 	   ;; "feat/projectile.el"
 	   ;; "feat/quelpa.el"
-	   ;; "feat/readlgud.el"
+	   ;; "feat/realgud.el"
 	   ;; "feat/string-inflection.el"
 	   ;; "feat/unfill.el"
 	   ;; "feat/vimish-fold.el"
