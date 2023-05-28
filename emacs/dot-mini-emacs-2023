@@ -296,6 +296,10 @@
 
 
 ;;;
+(use-package browse-kill-ring :ensure t)
+
+
+;;;
 
 (defun def-hydras ()
 
@@ -376,7 +380,7 @@
 
     ("G" hydra-git/body "git")
 
-    ;;("k" counsel-yank-pop "yank-pop" )
+    ("M-k" browse-kill-ring "kill-ring" )
     ("C-k" kill-current-buffer "kill-cur-buf" )
 
     ;; ("M--" hydra-misc-fns/body "misc-fns" )
@@ -395,7 +399,7 @@
         '(("M-c" hydra-multiple-cursors/body "mcurs" )))
 
     ,@(when (fboundp 'hydra-yas/body)
-        '(("M-y" hydra-yas/body "yas" )))
+        '(("M-s" hydra-yas/body "yas" )))
 
     ,@(when (fboundp 'hydra-flycheck/body)
         '(("M-c" hydra-flycheck/body "flychk" )))
