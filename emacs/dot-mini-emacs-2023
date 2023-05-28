@@ -363,6 +363,8 @@
     "minimi"
     ("`" menu-bar-open "menu-bar" )
 
+    ("b" ibuffer "buf" )
+
     ("o" hydra-org/body "org")
 
     ("M-f" hydra-files/body "files" )
