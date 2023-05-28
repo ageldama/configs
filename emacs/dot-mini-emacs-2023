@@ -225,7 +225,7 @@
 (require 'org)  ;; elpa-org
 (require 'cl)
 
-(load-file (s-concat (f-dirname (buffer-file-name)) "/cal-dt.el"))
+(load-file (s-concat minimi-config-path "/cal-dt.el"))
 
 ;; (diary/new-or-open-memo)
 ;; (diary/new-or-open-org-file)
@@ -276,9 +276,12 @@
 
 (defun toggle-battery-saving-mode ()
   (interactive)
-  (call-interactively #'global-flycheck-mode -1)
-  (call-interactively #'global-eldoc-mode    -1)
-  (call-interactively #'global-company-mode  -1)
+  (when (fboundp #'global-flycheck-mode)
+    (call-interactively #'global-flycheck-mode -1))
+  (when (fboundp #'global-eldoc-mode)
+    (call-interactively #'global-eldoc-mode    -1))
+  (when (fboundp #'global-company-mode)
+    (call-interactively #'global-company-mode  -1))
   ;;(global-hl-todo-mode)
   )
 
