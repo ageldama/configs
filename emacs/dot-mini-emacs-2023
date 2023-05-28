@@ -53,6 +53,7 @@
 
 (global-eldoc-mode -1)
 
+
 ;;; GUI fonts
 ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
 ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/

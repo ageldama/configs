@@ -1,35 +1,69 @@
-(setq langsup-base-path (expand-file-name "~/P/configs/emacs/"))
+;; (setq langsup-base-path (expand-file-name "~/P/configs/emacs/"))
+;; (load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2021.el"))
 
-;; TODO (load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2021.el"))
+;;; minimi
+(setq minimi-config-path
+      (expand-file-name "~/P/configs/emacs/"))
 
-(load-file (expand-file-name "~/P/configs/emacs/dot-mini-emacs-2023"))
+(load-file (concat minimi-config-path
+                   "/dot-mini-emacs-2023"))
 
-
-;;; Loads for mini-emacs:
 (let ((l '(
-           "company.el"           
-           "deadgrep.el"
-           "editorconfig.el"
-           "eldoc.el"
-           "flycheck.el"          
-           "hl-todo.el"           
-           "magit.el"             
-           "markdown-mode.el"
-           "moonshot.el" 
-           "multiple-cursors.el"
-           "plantuml.el"          
-           "quelpa.el"         
-           "readlgud.el"
-           "string-inflection.el"
-           "undo-tree.el"
-           "unfill.el"      
-           "vimish-fold.el"                  
-           "which-key.el"
-           "yas.el"
+	   ;; "feat/company.el"
+	   ;; "feat/deadgrep.el"
+	   ;; "feat/editorconfig.el"
+	   ;; "feat/eldoc.el"
+	   ;; "feat/evil-matchit.el"
+	   ;; "feat/evil-owl.el"
+	   ;; "feat/evil-surround.el"
+	   ;; "feat/flycheck.el"
+	   ;; "feat/helpful.el"
+	   ;; "feat/hl-todo.el"
+	   ;; "feat/magit.el"
+	   ;; "feat/markdown-mode.el"
+	   ;; "feat/moonshot.el"
+	   ;; "feat/multiple-cursors.el"
+	   ;; "feat/plantuml.el"
+	   ;; "feat/projectile.el"
+	   ;; "feat/quelpa.el"
+	   ;; "feat/readlgud.el"
+	   ;; "feat/string-inflection.el"
+	   ;; "feat/unfill.el"
+	   ;; "feat/vimish-fold.el"
+	   ;; "feat/yas.el"
+
+	   ;; "auctex.el"
+	   ;; "c++-light-2022.el"
+	   ;; "clojure.el"
+	   ;; "cmake.el"
+	   ;; "geiser.el"
+	   ;; "golang.el"
+	   ;; "golang-light.el"
+	   ;; "golang-lsp.el"
+	   ;; "goog-c-style.el"
+	   ;; "lsp-cpp-ccls.el"
+	   ;; "lsp-cpp-clangd.el"
+	   ;; "lsp-rust-rls.el"
+	   ;; "meson.el"
+	   ;; "mini-slime.el"
+	   ;; "ocaml.el"
+	   ;; "org-more.el"
+	   ;; "org-roam.el"
+	   "perl5.el"
+	   ;; "proto+grpc.el"
+	   ;; "ruby.el"
+	   ;; "rust.el"
+	   ;; "slime.el"
+	   ;; "sly.el"
+	   ;; "tcl.el"
+	   ;; "web.el"
+	   ;; "xclip.el"
+	   ;; "zig.el"
            )))
-  (dolist (i l)
-    (load-file (expand-file-name
-                (s-concat "~/P/configs/emacs/theo/" i)))))
+  (dolist (i l) (load-file (concat minimi-config-path i)))
+  ;;
+  (def-hydras))
+
 
 
 
