@@ -83,14 +83,15 @@
     (set-fontset-font t 'hangul (font-spec :name ko-fn))))
 
 (when (and t window-system)
-  (cond ((or (string-equal system-type "berkeley-unix")
-             (string-equal system-type "gnu/linux")
-             (string-equal system-type "darwin"))
-         (my-set-fixed-fonts))
-  	;; Windows
-        ((string-equal system-type "windows-nt")
-         (set-face-attribute 'default nil :font "Consolas-11"))
-        (t :unknown)))
+  (cond
+   ;;
+   ((member system-type 
+            '(berkeley-unix gnu/linux darwin))
+    (my-set-fixed-fonts))
+   ;; Windows
+   ((string-equal system-type "windows-nt")
+    (set-face-attribute 'default nil :font "Consolas-11"))
+   (t :unknown)))
 
 ;;;
 (global-linum-mode   -1)
@@ -192,7 +193,9 @@
 ;;; Org
 (add-hook 'org-mode-hook
           (lambda ()
-            ;;(flycheck-mode -1)
+            (when (fboundp 'flycheck-mode)
+              (flycheck-mode -1))
+            ;;
             (setq truncate-lines nil)
             (auto-fill-mode +1)
             ))
@@ -303,115 +306,115 @@
 
 (defun def-hydras ()
 
-(defhydra hydra-files (:exit t)
-  ("n" find-name-dired "dired-by-name")
+  (defhydra hydra-files (:exit t)
+    ("n" find-name-dired "dired-by-name")
 
-  ("M-s f" (lambda () (interactive)
-             (find-file (s-concat "/sudo:root@localhost:" (buffer-file-name))))
-   "sudo:file")
+    ("M-s f" (lambda () (interactive)
+               (find-file (s-concat "/sudo:root@localhost:" (buffer-file-name))))
+     "sudo:file")
 
-  ("M-s d" (lambda () (interactive)
-             (find-file (s-concat "/sudo:root@localhost:"
-                                  (file-name-directory (buffer-file-name)))))
-   "sudo:dired")
+    ("M-s d" (lambda () (interactive)
+               (find-file (s-concat "/sudo:root@localhost:"
+                                    (file-name-directory (buffer-file-name)))))
+     "sudo:dired")
 
-  ("M-l f" find-file-literally "file-lit")
-  ("M-l c" (lambda () (interactive)
-             (find-file-literally (buffer-file-name)))
-   "cur-lit")
+    ("M-l f" find-file-literally "file-lit")
+    ("M-l c" (lambda () (interactive)
+               (find-file-literally (buffer-file-name)))
+     "cur-lit")
 
-  ("M-w" buffer-path-and-line-col "copy-path-linum")
+    ("M-w" buffer-path-and-line-col "copy-path-linum")
 
-  ("SPC" nil)
-  )
-
-
-(defhydra hydra-local-vars (:exit t)
-  ("d"  add-dir-local-variable  "dir-local")
-  ("f"  add-file-local-variable "file-local")
-  ("p"  add-file-local-variable-prop-line "prop-line")
-
-  ("SPC" nil))
+    ("SPC" nil)
+    )
 
 
-(eval
- `(defhydra hydra-misc-toggles (:exit t)
-    "toggles"
-    ("l" display-line-numbers-mode "linum")
-    ("s" global-whitespace-mode "whitespaces")
-    ("z" zone "zone")
-    ("G" my-gc-toggle-timer "gc-timer")
-    ("b" toggle-battery-saving-mode "batter-saving")
-    ,@(when (fboundp 'writeroom-mode)
-        '(("w" writeroom-mode "writeroom")))
-    (":" toggle-evil-mode "evil")
+  (defhydra hydra-local-vars (:exit t)
+    ("d"  add-dir-local-variable  "dir-local")
+    ("f"  add-file-local-variable "file-local")
+    ("p"  add-file-local-variable-prop-line "prop-line")
 
-    ("SPC" nil)))
+    ("SPC" nil))
 
 
+  (eval
+   `(defhydra hydra-misc-toggles (:exit t)
+      "toggles"
+      ("l" display-line-numbers-mode "linum")
+      ("s" global-whitespace-mode "whitespaces")
+      ("z" zone "zone")
+      ("G" my-gc-toggle-timer "gc-timer")
+      ("b" toggle-battery-saving-mode "batter-saving")
+      ,@(when (fboundp 'writeroom-mode)
+          '(("w" writeroom-mode "writeroom")))
+      (":" toggle-evil-mode "evil")
 
- (defhydra hydra-org (:exit t)
+      ("SPC" nil)))
+
+
+
+  (defhydra hydra-org (:exit t)
     ("d" diary/new-or-open-org-file "diary" )
     ("m" diary/new-or-open-memo "memo" )
     ("p" open-v3-plan "plan" )
     )
 
 
-(defhydra hydra-git (:exit t)
+  (defhydra hydra-git (:exit t)
     ("w" omz-ish/gwip "gwip" )
     ("a" git/add-this "git/add" )
     )
 
-(eval
- `(defhydra hydra-mini (global-map "<f12>" :exit t)
-    "minimi"
-    ("`" menu-bar-open "menu-bar" )
+  (eval
+   `(defhydra hydra-mini (global-map "<f12>" :exit t)
+      "minimi"
+      ("`" menu-bar-open "menu-bar" )
 
-    ("b" ibuffer "buf" )
+      ("b" ibuffer "buf" )
 
-    ("o" hydra-org/body "org")
+      ("o" hydra-org/body "org")
 
-    ("M-f" hydra-files/body "files" )
+      ("M-f" hydra-files/body "files" )
 
-    ("u" undo-tree-visualize "undo-tree" )
-   
-    ,@(when (fboundp 'magit-status)
-        '(("g" magit-status "magit" )))
+      ("u" undo-tree-visualize "undo-tree" )
+      
+      ,@(when (fboundp 'magit-status)
+          '(("g" magit-status "magit" )))
 
-    ("G" hydra-git/body "git")
+      ("G" hydra-git/body "git")
 
-    ,@(when (fboundp 'browse-kill-ring)
-       '(("M-k" browse-kill-ring "kill-ring" )))
-    
-    ("C-k" kill-current-buffer "kill-cur-buf" )
+      ,@(when (fboundp 'browse-kill-ring)
+          '(("M-k" browse-kill-ring "kill-ring" )))
+      
+      ("C-k" kill-current-buffer "kill-cur-buf" )
 
-    ;; ("M--" hydra-misc-fns/body "misc-fns" )
+      ;; ("M--" hydra-misc-fns/body "misc-fns" )
 
-    ("M-q" hydra-misc-toggles/body "toggles" )
+      ("M-q" hydra-misc-toggles/body "toggles" )
 
-    ,@(when (fboundp 'hydra-moonshot/body)
-        '(("x" hydra-moonshot/body "moonshot" )))
+      ,@(when (fboundp 'hydra-moonshot/body)
+          '(("x" hydra-moonshot/body "moonshot" )))
 
-    ,@(when (fboundp 'hydra-string-inflection/body)
-        '(("M-i" hydra-string-inflection/body/body
-           "infl."
-           )))
+      ,@(when (fboundp 'hydra-string-inflection/body)
+          '(("M-i" hydra-string-inflection/body/body
+             "infl."
+             )))
 
-    ,@(when (fboundp 'hydra-multiple-cursors/body)
-        '(("M-c" hydra-multiple-cursors/body "mcurs" )))
+      ,@(when (fboundp 'hydra-multiple-cursors/body)
+          '(("M-c" hydra-multiple-cursors/body "mcurs" )))
 
-    ,@(when (fboundp 'hydra-yas/body)
-        '(("M-s" hydra-yas/body "yas" )))
+      ,@(when (fboundp 'hydra-yas/body)
+          '(("M-s" hydra-yas/body "yas" )))
 
-    ,@(when (fboundp 'hydra-flycheck/body)
-        '(("M-c" hydra-flycheck/body "flychk" )))
+      ,@(when (fboundp 'hydra-flycheck/body)
+          '(("M-c" hydra-flycheck/body "flychk" )))
 
-    ("M-v" hydra-local-vars/body "local-vars" )
+      ("M-v" hydra-local-vars/body "local-vars" )
 
-    ("SPC" nil)
-    ))
+      ("SPC" nil)
+      ))
 
-) ;; def-hydras
+  ) ;; def-hydras
 
 (def-hydras)
 
