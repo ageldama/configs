@@ -62,7 +62,7 @@
   (interactive)
   (let ((en-fn
          ;; "Noto Sans Mono CJK KR"
-         "NanumGothicCoding"
+         "DejaVu Sans Mono"
 	 )
         (ko-fn
          ;; "Noto Sans Mono CJK KR"
