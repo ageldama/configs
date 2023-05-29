@@ -49,8 +49,11 @@
   (progn
     (menu-bar-mode   -1)))
 
+;;; +1 -> show it, no need horiz-scrolling:
 (global-visual-line-mode +1)
 
+
+;;; 내장 eldoc
 (global-eldoc-mode -1)
 
 
