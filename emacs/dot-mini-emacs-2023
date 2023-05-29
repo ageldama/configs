@@ -323,18 +323,13 @@
                (find-file-literally (buffer-file-name)))
      "cur-lit")
 
-    ("M-w" buffer-path-and-line-col "copy-path-linum")
-
-    ("SPC" nil)
-    )
+    ("M-w" buffer-path-and-line-col "copy-path-linum"))
 
 
   (defhydra hydra-local-vars (:exit t)
     ("d"  add-dir-local-variable  "dir-local")
     ("f"  add-file-local-variable "file-local")
-    ("p"  add-file-local-variable-prop-line "prop-line")
-
-    ("SPC" nil))
+    ("p"  add-file-local-variable-prop-line "prop-line"))
 
 
   (eval
@@ -347,27 +342,24 @@
       ("b" toggle-battery-saving-mode "batter-saving")
       ,@(when (fboundp 'writeroom-mode)
           '(("w" writeroom-mode "writeroom")))
-      (":" toggle-evil-mode "evil")
-
-      ("SPC" nil)))
-
+      (":" toggle-evil-mode "evil")))
 
 
   (defhydra hydra-org (:exit t)
     ("d" diary/new-or-open-org-file "diary" )
     ("m" diary/new-or-open-memo "memo" )
-    ("p" open-v3-plan "plan" )
-    )
+    ("p" open-v3-plan "plan" ))
 
 
   (defhydra hydra-git (:exit t)
     ("w" omz-ish/gwip "gwip" )
-    ("a" git/add-this "git/add" )
-    )
+    ("a" git/add-this "git/add" ))
+  
 
   (eval
    `(defhydra hydra-mini (global-map "<f12>" :exit t)
       "minimi"
+
       ("`" menu-bar-open "menu-bar" )
 
       ("b" ibuffer "buf" )
@@ -397,8 +389,7 @@
 
       ,@(when (fboundp 'hydra-string-inflection/body)
           '(("M-i" hydra-string-inflection/body/body
-             "infl."
-             )))
+             "infl.")))
 
       ,@(when (fboundp 'hydra-multiple-cursors/body)
           '(("M-c" hydra-multiple-cursors/body "mcurs" )))
@@ -409,10 +400,7 @@
       ,@(when (fboundp 'hydra-flycheck/body)
           '(("M-c" hydra-flycheck/body "flychk" )))
 
-      ("M-v" hydra-local-vars/body "local-vars" )
-
-      ("SPC" nil)
-      ))
+      ("M-v" hydra-local-vars/body "local-vars" )))
 
   ) ;; def-hydras
 
@@ -441,8 +429,8 @@
    "list" )
   ("X"        #'tab-close
    "close" )
-  ("SPC" nil)
-  )
+  ("SPC" nil))
+
 
 
 ;;; wgrep: writable grep
@@ -485,6 +473,7 @@
   ("s" er/mark-symbol "symbol")
   ("j" (funcall 'set-mark-command t) :exit nil)
   ("SPC" nil))
+
 
 (global-set-key (kbd "C-+") 'hydra-expand-region/body)
 
