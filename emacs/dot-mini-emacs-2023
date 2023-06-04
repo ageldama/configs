@@ -518,13 +518,29 @@
     result))
 
 
-(defun mini-git/gwip ()
-  (interactive)
+
+(defmacro def-compile-no-arg-cmd (name &rest body)
+  `(defun ,name ()
+     (interactive)
+     (compile ,@body)))
+
+
+(def-compile-no-arg-cmd t-git-status
+  (format "cd '%s' && git status"
+          default-directory))
+
+
+(def-compile-no-arg-cmd mini-git/gwip
   (let ((commit-msg "--wip-- [skip ci]")
         (git-root (git/find-nearest-repo)))
-    (when (not (null git-root))
-      (compile (format "cd '%s' && git commit -am '%s'"
-                       git-root commit-msg)))))
+    (if (null git-root)
+        (error "Not a/in git-repos? %s"
+               default-directory)
+        ;; else: found `.git/`:
+      (format "cd '%s' && git commit -am '%s'"
+                       git-root commit-msg))))
+  
+
 
 
 (defun mini-git/add-this ()
