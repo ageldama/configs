@@ -542,17 +542,15 @@
 
 
 (def-compile-no-arg-cmd mini-git/status 
-  (format "cd '%s' && git status"))
+  (format "cd '%s' && git status" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/push
-  (format "cd '%s' && git push"
-          default-directory))
+  (format "cd '%s' && git push" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/pull
-  (format "cd '%s' && git pull"
-          default-directory))
+  (format "cd '%s' && git pull" default-directory))
 
 
 
