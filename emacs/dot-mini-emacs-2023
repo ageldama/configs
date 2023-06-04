@@ -485,6 +485,14 @@
 (global-set-key (kbd "C-+") 'hydra-expand-region/body)
 
 
+;;;
+(defmacro def-compile-no-arg-cmd (name &rest body)
+  `(defun ,name ()
+     (interactive)
+     (compile ,@body)))
+
+
+
 
 ;;; git / wip
 (require 'subr-x)
@@ -518,11 +526,6 @@
     result))
 
 
-
-(defmacro def-compile-no-arg-cmd (name &rest body)
-  `(defun ,name ()
-     (interactive)
-     (compile ,@body)))
 
 
 (def-compile-no-arg-cmd mini-git/gwip
