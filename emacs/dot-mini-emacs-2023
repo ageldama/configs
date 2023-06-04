@@ -356,7 +356,11 @@
 
   (defhydra hydra-git (:exit t)
     ("w" mini-git/gwip "gwip" )
-    ("a" mini-git/add-this "git/add" ))
+    ("a" mini-git/add-this "add" )
+    ("s" mini-git/status "status" )
+    ("p" mini-git/push "push" )
+    ("F" mini-git/pull "pull" )
+    )
   
 
   (eval
@@ -528,6 +532,28 @@
   (compile (format "cd '%s' && git add '%s'"
                    default-directory
                    (buffer-file-name))))
+
+
+(defun mini-git/status ()
+  (interactive)
+  (compile (format "cd '%s' && git status"
+                   default-directory
+                   (buffer-file-name))))
+
+
+(defun mini-git/push ()
+  (interactive)
+  (compile (format "cd '%s' && git push"
+                   default-directory
+                   (buffer-file-name))))
+
+
+(defun mini-git/pull ()
+  (interactive)
+  (compile (format "cd '%s' && git pull"
+                   default-directory
+                   (buffer-file-name))))
+
 
 
 
