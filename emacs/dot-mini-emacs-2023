@@ -356,7 +356,7 @@
 
   (defhydra hydra-git (:exit t)
     ("w" mini-git/gwip "gwip" )
-    ("a" mini-git/add-this "add" )
+    ("a" mini-git/add "add" )
     ("s" mini-git/status "status" )
     ("p" mini-git/push "push" )
     ("F" mini-git/pull "pull" )
@@ -487,9 +487,11 @@
 
 ;;;
 (defmacro def-compile-no-arg-cmd (name &rest body)
-  `(defun ,name ()
-     (interactive)
-     (compile ,@body)))
+  (let ((cmd (gensym "cmd-")))
+    `(defun ,name ()
+       (interactive)
+       (let ((,cmd ,@body))
+         (compile ,cmd)))))
 
 
 
