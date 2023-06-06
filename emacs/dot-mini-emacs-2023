@@ -200,7 +200,9 @@
             (when (fboundp 'flycheck-mode)
               (flycheck-mode -1))
             ;;
-            (setq truncate-lines nil)
+            (setq truncate-lines nil
+                  org-adapt-indentation t
+                  )
             (auto-fill-mode +1)
             ))
 
