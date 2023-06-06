@@ -504,31 +504,14 @@
 
 (defun git/find-nearest-repo ()
   (interactive)
-  (let ((cur-dir default-directory)
-        (result nil)
-        (keep-looping t))
-    ;;
-    (while (and keep-looping
-                (not (equal "../" cur-dir))
-                (not (null cur-dir)))
-      ;;
-      (setq cur-dir
-            (string-remove-suffix "/" cur-dir))
-      ;;
-      (let ((git-repo (format "%s/.git" cur-dir)))
-        (message "dir: %s" git-repo)
-        (if (and (f-exists? git-repo) (f-directory? git-repo))
-            ;; then:
-            (progn
-              (message "found: %s" cur-dir)
-              (setq result cur-dir keep-looping nil))
-          ;; else:
-          (progn ;; move to parent
-            (setq cur-dir (f-parent cur-dir))))
-        ))
-    
-    ;; return
-    result))
+  (f-traverse-upwards
+   (lambda (p)
+     (message "... %s" p)
+     (let ((git-dir (format "%s/.git"
+                            (string-remove-suffix "/" p))))
+       (and (f-dir? p)
+            (f-dir? git-dir))))
+   default-directory))
 
 
 
@@ -546,7 +529,9 @@
 
 (def-compile-no-arg-cmd mini-git/add 
   (format "cd '%s' && git add '%s'"
-          default-directory (buffer-file-name)))
+          default-directory
+          (f-relative (buffer-file-name)
+                      default-directory)))
 
 
 (def-compile-no-arg-cmd mini-git/status 
