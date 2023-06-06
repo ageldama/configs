@@ -491,10 +491,14 @@
 
 ;;;
 (defmacro def-compile-no-arg-cmd (name &rest body)
-  (let ((cmd (gensym "cmd-")))
-    `(defun ,name ()
-       (interactive)
+  (let ((cmd (gensym "cmd-"))
+        (arg (gensym "arg-")))
+    `(defun ,name (,arg)
+       (interactive "P")
        (let ((,cmd ,@body))
+         (unless (null ,arg)
+           (setf ,cmd 
+                 (read-string "[git-cmd]: " ,cmd)))
          (compile ,cmd)))))
 
 
