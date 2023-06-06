@@ -363,6 +363,7 @@
     ("s" mini-git/status "status" )
     ("p" mini-git/push "push" )
     ("F" mini-git/pull "pull" )
+    ("R" mini-git/remote-v "remote-v" )
     )
   
 
@@ -546,6 +547,8 @@
   (format "cd '%s' && git pull" default-directory))
 
 
+(def-compile-no-arg-cmd mini-git/remote-v
+  (format "cd '%s' && git remote -v" default-directory))
 
 
 
