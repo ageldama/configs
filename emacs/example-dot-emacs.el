@@ -31,6 +31,7 @@
 	   ;; "feat/unfill.el"
 	   ;; "feat/vimish-fold.el"
 	   ;; "feat/yas.el"
+	   ;; "feat/counsel.el"
 
 	   ;; "auctex.el"
 	   ;; "c++-light-2022.el"
