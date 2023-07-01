@@ -411,9 +411,38 @@
       ,@(when (fboundp 'hydra-flycheck/body)
           '(("M-c" hydra-flycheck/body "flychk" )))
 
-      ("M-v" hydra-local-vars/body "local-vars" )))
+      ("M-v" hydra-local-vars/body "local-vars" )
 
+      ;; FIXME
+      ,@(when (fboundp 'projectile-mode)
+          '(("p"
+             (lambda ()
+               (interactive) (my-simulate-key-event "C-c p"))
+               "projectile" )))
+
+      ))
   ) ;; def-hydras
+
+(defun gen-input(KEYS)
+  (setq  unread-command-events (nconc (listify-key-sequence (kbd KEYS)) unread-command-events)))
+
+(defun my-simulate-key-event (event &optional N)
+  "Simulate an arbitrary keypress event.
+
+This function sets the `unread-command-events' variable in order to simulate a
+series of key events given by EVENT. Can also For negative N, simulate the
+specified key EVENT directly.  For positive N, removes the last N elements from
+the list of key events in `this-command-keys' and then appends EVENT.  For N nil,
+treat as N=1."
+  (let ((prefix (listify-key-sequence (this-command-keys)))
+         (key (listify-key-sequence event))
+         (n (prefix-numeric-value N)))
+     (if (< n 0)
+         (setq prefix key)
+       (nbutlast prefix n)
+       (nconc prefix key))
+       (setq unread-command-events prefix)))
+
 
 (def-hydras)
 
