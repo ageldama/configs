@@ -35,6 +35,8 @@
 (use-package ivy-rich :ensure t :pin melpa
   :config (ivy-rich-mode +1))
 
+;; `C-o` in Ivy minibuf.
+(use-package ivy-hydra :ensure t :pin melpa)
 
 (when (fboundp 'projectile-find-file)
   (use-package counsel-projectile
