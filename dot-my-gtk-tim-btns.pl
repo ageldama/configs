@@ -96,5 +96,12 @@ my $cmds = [
         bg => 'red',
     },
 
+    {
+        name => 'udiskie',
+        cmd => 'udiskie -t',
+        fg => 'white',
+        bg => 'purple',
+    },
+
   ];
 
