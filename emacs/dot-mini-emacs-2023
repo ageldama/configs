@@ -61,16 +61,18 @@
 ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
 ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
 
-(defun my-set-fixed-fonts ()
+(defun my-set-fixed-fonts (en-fn ko-fn)
   (interactive)
-  (let ((en-fn
-         ;; "Noto Sans Mono CJK KR"
-         "DejaVu Sans Mono"
-	 )
-        (ko-fn
-         ;; "Noto Sans Mono CJK KR"
-         "NanumGothicCoding"
-         ))
+  (let (
+        ;; (en-fn
+        ;;  ;; "Noto Sans Mono CJK KR"
+        ;;  "DejaVu Sans Mono"
+	;;  )
+        ;; (ko-fn
+        ;;  ;; "Noto Sans Mono CJK KR"
+        ;;  "NanumGothicCoding"
+        ;;  )
+        )
     ;; default Latin font (e.g. Consolas)
     ;; but I use Monaco
     (set-frame-font en-fn t)
