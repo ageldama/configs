@@ -83,6 +83,13 @@ my $cmds = [
     },
 
     {
+        name => 'home-dir',
+        cmd => 'xdg-open $HOME',
+        font => 'normal 22px serif',
+        fg => 'blue',
+    },
+
+    {
         name => 'reboot',
         cmd => '~/local/scripts/pwr/reboot.sh',
         fg => 'yellow',
