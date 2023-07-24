@@ -299,7 +299,7 @@
 
 
 ;;;
-;; (use-package browse-kill-ring :ensure t)
+(use-package browse-kill-ring :ensure t :pin melpa)
 
 
 ;;;
@@ -379,6 +379,8 @@
           '(("g" magit-status "magit" )))
 
       ("G" hydra-git/body "git")
+
+      ("T" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
       ,@(when (fboundp 'browse-kill-ring)
           '(("M-k" browse-kill-ring "kill-ring" )))
