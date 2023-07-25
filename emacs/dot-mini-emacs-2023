@@ -339,7 +339,7 @@
       ("s" global-whitespace-mode "whitespaces")
       ("z" zone "zone")
       ("G" my-gc-toggle-timer "gc-timer")
-      ("b" toggle-battery-saving-mode "batter-saving")
+      ("b" toggle-battery-saving-mode "battery-saving")
       ,@(when (fboundp 'writeroom-mode)
           '(("w" writeroom-mode "writeroom")))
       (":" toggle-evil-mode "evil")))
