@@ -7,7 +7,7 @@ use Set::Scalar;
 use DDP;
 
 
-my @desired_plugins = qw(fzf zoxide systemd);
+my @desired_plugins = qw(fzf zoxide systemd docker docker-compose);
 my $desireds = Set::Scalar->new(@desired_plugins);
 
 {
