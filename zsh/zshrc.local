@@ -22,7 +22,7 @@ if [[ -o interactive ]]; then
   fi
 
 
-  BATCAT_THEME=zenburn
+  BATCAT_THEME=Dracula
 
   if command_exists batcat; then
       alias bat="batcat --theme=$BATCAT_THEME"

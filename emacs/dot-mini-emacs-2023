@@ -61,20 +61,14 @@
 ;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
 ;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
 
-(defun my-set-fixed-fonts ()
+(defun my-set-fixed-fonts (&optional en-fn ko-fn)
   (interactive)
-  (let ((en-fn
-         ;; "Noto Sans Mono CJK KR"
-         "DejaVu Sans Mono"
-	 )
-        (ko-fn
-         ;; "Noto Sans Mono CJK KR"
-         "NanumGothicCoding"
-         ))
+  (let ((en-fn* (or en-fn "DejaVu Sans Mono"))
+        (ko-fn* (or ko-fn "NanumGothicCoding")))
     ;; default Latin font (e.g. Consolas)
     ;; but I use Monaco
-    (set-frame-font en-fn t)
-    (set-face-attribute 'default nil :family en-fn)
+    (set-frame-font en-fn* t)
+    (set-face-attribute 'default nil :family en-fn*)
     ;; default font size (point * 10)
     ;; WARNING!  Depending on the default font,
     ;; if the size is not supported very well, the frame will be clipped
@@ -83,7 +77,7 @@
     ;; use specific font for Korean charset.
     ;; if you want to use different font size for specific charset,
     ;; add :size POINT-SIZE in the font-spec.
-    (set-fontset-font t 'hangul (font-spec :name ko-fn))))
+    (set-fontset-font t 'hangul (font-spec :name ko-fn*))))
 
 (when (and t window-system)
   (cond
@@ -305,7 +299,7 @@
 
 
 ;;;
-;; (use-package browse-kill-ring :ensure t)
+(use-package browse-kill-ring :ensure t :pin melpa)
 
 
 ;;;
@@ -345,7 +339,7 @@
       ("s" global-whitespace-mode "whitespaces")
       ("z" zone "zone")
       ("G" my-gc-toggle-timer "gc-timer")
-      ("b" toggle-battery-saving-mode "batter-saving")
+      ("b" toggle-battery-saving-mode "battery-saving")
       ,@(when (fboundp 'writeroom-mode)
           '(("w" writeroom-mode "writeroom")))
       (":" toggle-evil-mode "evil")))
@@ -385,6 +379,8 @@
           '(("g" magit-status "magit" )))
 
       ("G" hydra-git/body "git")
+
+      ("T" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
       ,@(when (fboundp 'browse-kill-ring)
           '(("M-k" browse-kill-ring "kill-ring" )))
