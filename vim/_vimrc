@@ -218,6 +218,9 @@ Plug 'thinca/vim-fontzoom'
 
 
 
+"Plug 'liuchengxu/vim-which-key'
+
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
