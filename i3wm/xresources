@@ -1,5 +1,7 @@
 
-Xcursor.size: 28
+" Debian: xcursor-themes
+Xcursor.theme: whiteglass
+Xcursor.size: 32
 
 !! Colorscheme
 
