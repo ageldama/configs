@@ -611,12 +611,13 @@
     <!-- Keybindings for running applications -->
     <keybind key="W-e">
       <action name="Execute">
-        <command>sh -c 'xdg-open $HOME'</command>
+        <command>x-terminal-emulator -e mc</command>
       </action>
     </keybind>
+
     <keybind key="W-S-e">
       <action name="Execute">
-        <command>x-terminal-emulator -e mc</command>
+        <command>sh -c 'xdg-open $HOME'</command>
       </action>
     </keybind>
 
@@ -662,13 +663,13 @@
 
     <keybind key="Print">
       <action name="Execute">
-        <command>gnome-screenshot</command>
+        <command>gnome-screenshot -i</command>
       </action>
     </keybind>
 
     <keybind key="S-Print">
       <action name="Execute">
-        <command>gnome-screenshot -i</command>
+        <command>gnome-screenshot</command>
       </action>
     </keybind>
 
@@ -698,49 +699,49 @@
       <action name="Execute">
         <command>pavucontrol</command>
       </action>
-		</keybind>
+    </keybind>
 
-		<keybind key="XF86MonBrightnessDown">
-			<action name="Execute">
-				<command>sh -c 'notify-send "$(brightnessctl s 5%-)"'</command>
-			</action>
-		</keybind>
+    <keybind key="XF86MonBrightnessDown">
+      <action name="Execute">
+        <command>sh -c 'notify-send "$(brightnessctl s 5%-)"'</command>
+      </action>
+    </keybind>
 
-		<keybind key="XF86MonBrightnessUp">
-			<action name="Execute">
-				<command>sh -c 'notify-send "$(brightnessctl s +5%)"'</command>
-			</action>
-		</keybind>
+    <keybind key="XF86MonBrightnessUp">
+      <action name="Execute">
+        <command>sh -c 'notify-send "$(brightnessctl s +5%)"'</command>
+      </action>
+    </keybind>
 
-		<keybind key="XF86KbdBrightnessDown">
-			<action name="Execute">
-				<command>sh -c 'notify-send "$(brightnessctl --device=smc::kbd_backlight s 5%-)"'</command>
-			</action>
-		</keybind>
+    <keybind key="XF86KbdBrightnessDown">
+      <action name="Execute">
+	<command>sh -c 'notify-send "$(brightnessctl --device=smc::kbd_backlight s 5%-)"'</command>
+      </action>
+    </keybind>
 
-		<keybind key="XF86KbdBrightnessUp">
-			<action name="Execute">
-				<command>sh -c 'notify-send "$(brightnessctl --device=smc::kbd_backlight s +5%)"'</command>
-			</action>
-		</keybind>
+    <keybind key="XF86KbdBrightnessUp">
+      <action name="Execute">
+	<command>sh -c 'notify-send "$(brightnessctl --device=smc::kbd_backlight s +5%)"'</command>
+      </action>
+    </keybind>
 
-		<keybind key="XF86AudioMute C-W-m">
-			<action name="Execute">
-				<command>pactl-mute.pl sink toggle_default</command>
-			</action>
-		</keybind>
+    <keybind key="XF86AudioMute C-W-m">
+      <action name="Execute">
+	<command>pactl-mute.pl sink toggle_default</command>
+      </action>
+    </keybind>
 
-		<keybind key="XF86AudioLowerVolume C-W-Next">
-			<action name="Execute">
-				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pa-get-vol.sh)"'</command>
-			</action>
-		</keybind>
+    <keybind key="XF86AudioLowerVolume C-W-Next">
+      <action name="Execute">
+	<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pa-get-vol.sh)"'</command>
+      </action>
+    </keybind>
 
-		<keybind key="XF86AudioRaiseVolume C-W-Prior">
-			<action name="Execute">
-				<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pa-get-vol.sh)"'</command>
-			</action>
-		</keybind>
+    <keybind key="XF86AudioRaiseVolume C-W-Prior">
+      <action name="Execute">
+	<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pa-get-vol.sh)"'</command>
+      </action>
+    </keybind>
 
     <!--
     <keybind key="W-r">
