@@ -228,14 +228,12 @@ if [[ -f ~/.use-openbox ]]; then
   if [[ -z "$DBUS_SESSION_BUS_ADDRESS" ]]; then
       if [[ -f ~/.use-xfce4-panel ]]; then
           dbus-launch xfce4-panel &
-      fi
-
-      if [[ -f ~/.use-lxpanel ]]; then
+      elif [[ -f ~/.use-lxpanel ]]; then
           dbus-launch lxpanel &
-      fi
-
-      if [[ -f ~/.use-polybar ]]; then
+      elif [[ -f ~/.use-polybar ]]; then
         dbus-launch polybar bottombar &
+      elif [[ -f ~/.use-tint2 ]]; then
+        dbus-launch tint2 &
       fi
 
     #dbus-launch lxpanel &
@@ -248,14 +246,12 @@ if [[ -f ~/.use-openbox ]]; then
     #lxpanel &
       if [[ -f ~/.use-xfce4-panel ]]; then
           xfce4-panel &
-      fi
-
-      if [[ -f ~/.use-lxpanel ]]; then
+      elif [[ -f ~/.use-lxpanel ]]; then
           lxpanel &
-      fi
-
-      if [[ -f ~/.use-polybar ]]; then
+      elif [[ -f ~/.use-polybar ]]; then
         polybar bottombar &
+      elif [[ -f ~/.use-tint2 ]]; then
+        tint2 &
       fi
 
       exec openbox ${1+"$@"}
