@@ -680,7 +680,7 @@
     </keybind>
     <keybind key="W-M-w">
       <action name="Execute">
-        <command>wg.pl</command>
+        <command>wg-whatever.pl</command>
       </action>
     </keybind>
     <keybind key="W-S-w">
