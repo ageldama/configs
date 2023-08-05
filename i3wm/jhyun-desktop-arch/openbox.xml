@@ -749,6 +749,18 @@
       </action>
     </keybind>
 
+    <keybind key="W-v">
+      <action name="Execute">
+        <command>x-terminal-emulator -e pulsemixer</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-m">
+      <action name="Execute">
+        <command>x-terminal-emulator -e bashmount</command>
+      </action>
+    </keybind>
+
     <!--
     <keybind key="W-r">
       <action name="Execute">
