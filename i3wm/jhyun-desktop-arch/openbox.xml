@@ -691,7 +691,13 @@
 
     <keybind key="W-F9 XF86LaunchB C-A-Delete">
       <action name="Execute">
-        <command>scripts-rofi.pl</command>
+        <command>scripts-rofi.pl -e -s</command>
+      </action>
+    </keybind>
+
+    <keybind key="W-M-F9">
+      <action name="Execute">
+        <command>scripts-rofi.pl -e -r</command>
       </action>
     </keybind>
 
