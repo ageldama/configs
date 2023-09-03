@@ -7,6 +7,7 @@
                  (display-buffer-in-side-window)
                  (side . bottom)
                  (window-height . 0.3)))
+  (diminish 'evil-owl-mode)
   (evil-owl-mode))
 
 
