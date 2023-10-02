@@ -141,6 +141,11 @@ if [[ ! -f ~/.no-screensaver ]]; then
   fi
 fi
 
+#
+if [[ -f ~/.use-pactl-zeroconf-discover ]]; then
+  pactl load-module module-zeroconf-discover
+fi
+
 # Mute all audio input
 pactl-mute.pl source all &
 
