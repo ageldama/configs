@@ -36,7 +36,7 @@ if [[ -f ~/.use-ibus ]]; then
   export GTK_IM_MODULE=ibus
   export QT_IM_MODULE=ibus
   export XMODIFIERS=@im=ibus
-  ibus-daemon -d 
+  pgrep -u $UID ibus-daemon || ibus-daemon -d 
 elif [[ -f ~/.use-fcitx ]]; then
   if [[ -z "$GTK_IM_MODULE" ]]; then
     # without im-config: 
@@ -139,6 +139,11 @@ if [[ ! -f ~/.no-screensaver ]]; then
   else
       xscreensaver -no-splash &
   fi
+fi
+
+#
+if [[ -f ~/.use-pactl-zeroconf-discover ]]; then
+  pactl load-module module-zeroconf-discover
 fi
 
 # Mute all audio input
