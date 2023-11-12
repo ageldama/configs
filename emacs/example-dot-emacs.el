@@ -57,6 +57,7 @@
 	   ;; "slime.el"
 	   ;; "sly.el"
 	   ;; "tcl.el"
+	   ;; "javascript/js2.el"
 	   ;; "web.el"
 	   ;; "xclip.el"
 	   ;; "zig.el"
