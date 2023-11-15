@@ -107,6 +107,11 @@ if [[ -f ~/.zshrc.local2 ]]; then
   source ~/.zshrc.local2
 fi
 
+
+if [[ -d $HOME/bin ]]; then
+  export PATH=HOME/bin:$PATH
+fi
+
 # (type -p direnv >& /dev/null) && eval "$(direnv hook zsh)"
 
 

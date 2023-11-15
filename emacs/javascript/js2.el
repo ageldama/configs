@@ -21,6 +21,7 @@
   :after add-node-modules-path
   :config (progn (eval-after-load 'js2-mode '(add-hook 'js2-mode-hook #'add-node-modules-path))
                  (add-to-list 'auto-mode-alist '("\\.js" . js2-mode))
+                 (add-to-list 'auto-mode-alist '("\\.cjs" . js2-mode))
                  (add-to-list 'auto-mode-alist '("\\.mjs" . js2-mode))
 		 (add-to-list 'interpreter-mode-alist '("node" . js2-mode))
                  ;;(add-hook 'js2-mode-hook (lambda () (electric-indent-local-mode -1)))
