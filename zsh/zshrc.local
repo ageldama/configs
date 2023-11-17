@@ -109,7 +109,7 @@ fi
 
 
 if [[ -d $HOME/bin ]]; then
-  export PATH=HOME/bin:$PATH
+  export PATH=$HOME/bin:$PATH
 fi
 
 # (type -p direnv >& /dev/null) && eval "$(direnv hook zsh)"
