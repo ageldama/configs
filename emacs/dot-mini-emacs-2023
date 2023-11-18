@@ -91,7 +91,10 @@
    (t :unknown)))
 
 ;;;
-(global-linum-mode   -1)
+(if (fboundp 'global-display-line-numbers-mode)
+    (global-display-line-numbers-mode -1)
+  ;; else
+  (global-linum-mode   -1))
 (global-hl-line-mode -1)
 
 
@@ -120,6 +123,7 @@
   (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
   (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
   (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))
+  (add-to-list 'package-archives (cons "elpa" (concat proto "://elpa.nongnu.org/nongnu/")))
   )
 
 (package-initialize)
