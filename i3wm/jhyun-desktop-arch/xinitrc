@@ -131,6 +131,8 @@ xset b off
 #xset s on
 #xset s 300
 
+test -f ~/.use-xset-noblank && ~/local/bin/xset-noblank.sh &
+
 xrdb -merge $HOME/.Xresources &
 
 if [[ ! -f ~/.no-screensaver ]]; then
