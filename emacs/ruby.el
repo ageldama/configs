@@ -11,5 +11,5 @@
 
 (use-package yaml-mode :ensure t :pin melpa)
 
-(when (loadp-avail? "web")
+(when (fboundp 'web-mode)
   (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode)))
