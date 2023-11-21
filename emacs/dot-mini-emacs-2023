@@ -305,6 +305,7 @@
 ;;;
 (use-package browse-kill-ring :ensure t :pin melpa)
 
+(use-package eshell-toggle :ensure t :pin melpa)
 
 ;;;
 
@@ -384,6 +385,8 @@
 
       ("G" hydra-git/body "git")
 
+      ("'" eshell-toggle "eshell")
+      
       ("T" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
       ,@(when (fboundp 'browse-kill-ring)
