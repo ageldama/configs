@@ -588,7 +588,20 @@ treat as N=1."
 
 
 
-;;; recompile
+;;; compile & recompile
+
+(if (and (>= emacs-major-version 28)
+         (fboundp 'ansi-color-compilation-filter))
+    ;; then
+    (unless (member 'ansi-color-compilation-filter compilation-filter-hook)
+      (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter))
+  ;; else
+  (progn
+    (defun colorize-compilation-buffer ()
+      (let ((inhibit-read-only t))
+        (ansi-color-apply-on-region compilation-filter-start (point))))
+    (unless (member 'colorize-compilation-buffer compilation-filter-hook)
+      (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))))
 
 (defun recompile-showing-compilation-window ()
   (interactive)
