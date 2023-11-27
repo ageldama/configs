@@ -188,11 +188,7 @@ if [[ -f ~/.use-notifications-dump ]]; then
 fi
 
 # Notification growl.
-if [[ -e ~/.use-xfce4-notifyd ]]; then
-  xfce4-notifyd &
-elif [[-e ~/.use-dunst ]]; then
-  dunst &
-fi
+dunst &
 
 # hotkeys
 #sxhkd &
