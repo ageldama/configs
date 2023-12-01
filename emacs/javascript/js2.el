@@ -1,15 +1,17 @@
 ;;; js2-mode.
 (use-package add-node-modules-path :ensure t :pin melpa)
 
-(use-package prettier-js        :ensure t :pin melpa)
+;;; NOTE apheleia-mode
+;;;
+;; (use-package prettier-js        :ensure t :pin melpa)
 
-(defvar *js2-prettier* t)
+;; (defvar *js2-prettier* t)
 
-(defun js2-prettier ()
-  (interactive)
-  (when (and (or (eq major-mode 'js2-mode)
-                 ) *js2-prettier*)
-    (prettier-js)))
+;; (defun js2-prettier ()
+;;   (interactive)
+;;   (when (and (or (eq major-mode 'js2-mode)
+;;                  ) *js2-prettier*)
+;;     (prettier-js)))
 
 ;; (add-hook 'find-file-hook
 ;;           (lambda ()
@@ -35,7 +37,8 @@
 ;; RUN!
 (add-hook 'js2-mode-hook
           (lambda ()
-            (add-hook 'before-save-hook #'js2-prettier)
+            (when (fboundp 'js2-prettier)
+              (add-hook 'before-save-hook #'js2-prettier))
             (setq js2-basic-offset 2)
             (set (make-local-variable 'compile-command)
                  (concat "node " (shell-quote-argument buffer-file-name)))))
@@ -47,13 +50,13 @@
 (defhydra hydra-lang-js2 ()
   "js2"
   
-  ("f" prettier-js "prettier" :exit t)
+  ;; ("f" prettier-js "prettier" :exit t)
   ("r" compile "compile" :exit t)
   ("C-f" eslint-fix "eslint-fix" :exit t)
 
   ("SPC" nil))
 
-  
+
 (lang-mode-hydra-set 'js2-mode-hook 'hydra-lang-js2/body)
 
 
