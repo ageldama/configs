@@ -32,6 +32,8 @@
 	   ;; "feat/vimish-fold.el"
 	   ;; "feat/yas.el"
 	   ;; "feat/counsel.el"
+	   ;; "feat/apheleia.el"
+	   ;; "feat/rg.el"
 
 	   ;; "auctex.el"
 	   ;; "c++-light-2022.el"
@@ -72,7 +74,7 @@
 
 
 ;;; Debian Buster:
-;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+                                        ;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (when window-system
   (progn

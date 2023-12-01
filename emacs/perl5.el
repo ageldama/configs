@@ -11,11 +11,11 @@
 
 ;;; indents
 (setq
-    ;; cperl-indent-level 2
-    ;;   cperl-close-paren-offset -2
-    ;;   cperl-continued-statement-offset 2
-      cperl-indent-parens-as-block t
-      cperl-tab-always-indent t)
+ ;; cperl-indent-level 2
+ ;;   cperl-close-paren-offset -2
+ ;;   cperl-continued-statement-offset 2
+ cperl-indent-parens-as-block t
+ cperl-tab-always-indent t)
 
 (load (concat minimi-config-path "perl/perltidy"))
 ;; (let ((base-fn  (concat load-layer-base-path "perl/perltidy")))
@@ -26,6 +26,8 @@
 
 (require 'cperl-mode)
 
+(when (boundp 'apheleia-mode-alist)
+  (add-to-list 'apheleia-mode-alist '(cperl-mode . perltidy)))
 
 ;;;
 (require 'f)
@@ -67,7 +69,7 @@
   ("SPC" nil))
 
 (lang-mode-hydra-set 'cperl-mode-hook 'hydra-lang-cperl/body)
-   
-  
+
+
 
 ;;; EOF.
