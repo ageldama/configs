@@ -74,12 +74,15 @@
 
 
 ;;; Debian Buster:
-                                        ;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
+;;(setq gnutls-algorithm-priority "NORMAL:-VERS-TLS1.3")
 
 (when window-system
   (progn
     (setq *ageldama/font-fixed-en* "DejaVu Sans Mono" 
-          *ageldama/font-fixed-ko* "나눔고딕코딩" )
+          ;; *ageldama/font-fixed-ko* "나눔고딕코딩"
+          ;; *ageldama/font-fixed-ko* "Noto Sans Mono CJK KR"
+          *ageldama/font-fixed-ko* "D2Coding"
+          )
     (my-set-fixed-fonts))
 
   (set-face-attribute 'default nil :height 125)
