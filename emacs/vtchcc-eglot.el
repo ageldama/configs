@@ -26,3 +26,20 @@
 (define-key eglot-mode-map (kbd "C-c e f") #'apheleia-format-buffer)
 
 (define-key eglot-mode-map (kbd "C-c RET") #'eglot-code-actions)
+
+(defhydra hydra-lang-typescript ()
+  "typescript"
+
+  ("M-p" flymake-goto-prev-error "prv-err")
+  ("M-n" flymake-goto-next-error "nxt-err")
+  ("L"   flymake-show-buffer-diagnostics "buf-errs")
+  ("f"   apheleia-format-buffer "fmt")
+  ("RET" eglot-code-actions "actions")
+
+  ("SPC" nil))
+
+(lang-mode-hydra-set 'typescript-mode-hook 'hydra-lang-typescript/body)
+   
+
+
+(use-package yaml-mode :ensure t :pin melpa)

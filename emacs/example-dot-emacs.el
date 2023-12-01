@@ -57,6 +57,8 @@
 	   ;; "slime.el"
 	   ;; "sly.el"
 	   ;; "tcl.el"
+	   ;; "vtchcc-eglot.el" ; typescript, yaml
+	   ;; "json.el"
 	   ;; "javascript/js2.el"
 	   ;; "web.el"
 	   ;; "xclip.el"

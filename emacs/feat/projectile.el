@@ -11,3 +11,5 @@
          (cl-defmethod project-roots ((project (head projectile)))
            (list (cdr project)))
          ))
+
+(use-package rg :ensure t)
