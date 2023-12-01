@@ -131,6 +131,9 @@ xset b off
 #xset s on
 #xset s 300
 
+# `xset r rate N R` :: after N-ms, repeats R-times :
+xset r rate 400 40
+
 test -f ~/.use-xset-noblank && ~/local/bin/xset-noblank.sh &
 
 xrdb -merge $HOME/.Xresources &
