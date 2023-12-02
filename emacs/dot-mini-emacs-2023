@@ -239,9 +239,11 @@
 ;; (diary/new-or-open-org-file)
 
 
-(defun open-v3-plan ()
+(defvar *v3/plan-path* "~/P/v3/PLAN.org")
+
+(defun v3/open-plan ()
   (interactive)
-  (find-file "~/P/v3/PLAN.org"))
+  (find-file *v3/plan-path*))
 
 
 
@@ -351,9 +353,10 @@
 
 
   (defhydra hydra-org (:exit t)
+    ("a" org-agenda "org-agenda")
     ("d" diary/new-or-open-org-file "diary" )
     ("m" diary/new-or-open-memo "memo" )
-    ("p" open-v3-plan "plan" ))
+    ("p" v3/open-plan "plan" ))
 
 
   (defhydra hydra-git (:exit t)
@@ -421,7 +424,7 @@
           '(("p"
              (lambda ()
                (interactive) (my-simulate-key-event "C-c p"))
-               "projectile" )))
+             "projectile" )))
 
       ))
   ) ;; def-hydras
@@ -438,13 +441,13 @@ specified key EVENT directly.  For positive N, removes the last N elements from
 the list of key events in `this-command-keys' and then appends EVENT.  For N nil,
 treat as N=1."
   (let ((prefix (listify-key-sequence (this-command-keys)))
-         (key (listify-key-sequence event))
-         (n (prefix-numeric-value N)))
-     (if (< n 0)
-         (setq prefix key)
-       (nbutlast prefix n)
-       (nconc prefix key))
-       (setq unread-command-events prefix)))
+        (key (listify-key-sequence event))
+        (n (prefix-numeric-value N)))
+    (if (< n 0)
+        (setq prefix key)
+      (nbutlast prefix n)
+      (nconc prefix key))
+    (setq unread-command-events prefix)))
 
 
 (def-hydras)
@@ -559,10 +562,10 @@ treat as N=1."
     (if (null git-root)
         (error "Not a/in git-repos? [%s]"
                default-directory)
-        ;; else: found `.git/`:
+      ;; else: found `.git/`:
       (format "cd '%s' && git commit -am '%s'"
-                       git-root commit-msg))))
-  
+              git-root commit-msg))))
+
 
 (def-compile-no-arg-cmd mini-git/add 
   (format "cd '%s' && git add '%s'"
