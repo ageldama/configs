@@ -5,6 +5,8 @@
 (setq minimi-config-path
       (expand-file-name "~/P/configs/emacs/"))
 
+(add-to-list 'load-path minimi-config-path)
+
 (load-file (concat minimi-config-path
                    "/dot-mini-emacs-2023"))
 
@@ -89,7 +91,10 @@
   ;;; NOTE 105, 85?
 
   ;; (load-theme 'modus-vivendi t)
-  (load-theme 'modus-operandi-tinted t)
+  ;; (load-theme 'modus-operandi-tinted t)
+  (require 'day-and-night)
+  (day-and-night/change-theme-by-time)
+  (day-and-night/start-timer 30)
   )
 
 
