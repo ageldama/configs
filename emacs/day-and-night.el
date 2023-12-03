@@ -39,6 +39,7 @@
            secs 1 (lambda () (day-and-night/change-theme-by-time))))))
 
 (defun day-and-night/cancel-timer ()
+  (interactive)
   (unless (null *day-and-night/idle-timer*)
     (cancel-timer *day-and-night/idle-timer*)
     (setf *day-and-night/idle-timer* nil)))
