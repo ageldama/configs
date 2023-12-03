@@ -1,5 +1,9 @@
 (use-package typescript-mode :ensure t)
 
+
+(use-package lsp-mode :ensure t)
+(use-package lsp-ui :ensure t)
+
 (use-package eglot :ensure t)
 
 (add-hook 'eglot--managed-mode-hook
@@ -25,7 +29,7 @@
   ("SPC" nil))
 
 (lang-mode-hydra-set 'typescript-mode-hook 'hydra-lang-typescript/body)
-   
+
 
 
 (use-package yaml-mode :ensure t :pin melpa)
