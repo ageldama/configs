@@ -1,7 +1,7 @@
 
 
 (defvar *day-and-night/day-theme* 'modus-operandi-tinted)
-(defvar *day-and-night/night-theme* 'modus-vivendi)
+(defvar *day-and-night/night-theme* 'modus-vivendi-deuteranopia)
 
 (defvar *day-and-night/day-starting-at* 600)
 (defvar *day-and-night/night-starting-at* 1800)
