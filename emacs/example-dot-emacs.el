@@ -11,6 +11,9 @@
                    "/dot-mini-emacs-2023"))
 
 (let ((l '(
+           ;; "feat/helm.el"
+           ;; "feat/helm-swoop.el"
+           ;; "feat/browse-kill-ring.el"
 	   ;; "feat/company.el"
 	   ;; "feat/deadgrep.el"
 	   ;; "feat/editorconfig.el"
@@ -27,6 +30,7 @@
 	   ;; "feat/multiple-cursors.el"
 	   ;; "feat/plantuml.el"
 	   ;; "feat/projectile.el"
+           ;; "feat/helm-projectile.el"
 	   ;; "feat/quelpa.el"
 	   ;; "feat/realgud.el"
 	   ;; "feat/string-inflection.el"
