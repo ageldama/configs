@@ -40,6 +40,7 @@
 	   ;; "feat/counsel.el"
 	   ;; "feat/apheleia.el"
 	   ;; "feat/rg.el"
+	   ;; "feat/helm-ag.el"
 
 	   ;; "auctex.el"
 	   ;; "c++-light-2022.el"

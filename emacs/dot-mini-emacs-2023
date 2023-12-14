@@ -373,6 +373,12 @@
 
       ("`" menu-bar-open "menu-bar" )
 
+      ,@(when (fboundp 'helm-do-grep-ag)
+          '(("\\" helm-do-grep-ag "helm-do-grep-ag" )))
+
+      ,@(when (fboundp 'helm-resume)
+          '(("," helm-resume "helm-resume" )))
+
       ,@(when (fboundp 'helm-bookmarks)
           '(("B" helm-bookmarks "bookmks" )))
 
@@ -437,6 +443,10 @@
                  (my-simulate-key-event "C-c p")
                  ))
              "projectile" )))
+
+      ,@(when (fboundp 'helm-projectile-grep)
+          '(("P" helm-projectile-grep "proj-grep" )))
+      
 
       ))
   ) ;; def-hydras
