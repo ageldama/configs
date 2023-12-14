@@ -5,7 +5,7 @@
 (setq minimi-config-path
       (expand-file-name "~/P/configs/emacs/"))
 
-(add-to-list 'load-path minimi-config-path)
+(add-to-list 'load-path (concat minimi-config-path "/elisp"))
 
 (load-file (concat minimi-config-path
                    "/dot-mini-emacs-2023"))
@@ -65,7 +65,7 @@
 	   ;; "rust.el"
 	   ;; "slime.el"
 	   ;; "sly.el"
-	   ;; "tcl.el"
+	   ;; "lang-tcl.el"
 	   ;; "vtchcc-eglot.el" ; typescript, yaml
 	   ;; "json.el"
 	   ;; "javascript/js2.el"
