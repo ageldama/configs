@@ -196,6 +196,7 @@ URxvt.depth: 24
 URxvt.iso14755: false
 
 !! Copy Paste & Other Extensions
+URxvt*perl-lib: ~/.urxvt/ext
 URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font,\
 eval,confirm-paste,font-size
 
