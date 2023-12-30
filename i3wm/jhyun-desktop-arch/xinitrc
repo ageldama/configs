@@ -157,6 +157,9 @@ pactl-mute.pl source all &
 # NetworkManager
 nm-applet &
 
+# volume
+test -f ~/.use-volumeicon && volumeicon &
+
 # Redshift
 if [[ -f ~/.use-redshift ]]; then
     SEOUL_POS=37.566:126.977 # Seoul
