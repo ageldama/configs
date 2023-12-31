@@ -446,7 +446,9 @@
 
       ,@(when (fboundp 'helm-projectile-grep)
           '(("P" helm-projectile-grep "proj-grep" )))
-      
+
+      ("w" avy-goto-word-1 "goto-word")
+      ("l" avy-goto-line "goto-line")
 
       ))
   ) ;; def-hydras
