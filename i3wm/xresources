@@ -156,6 +156,8 @@ xterm*VT100.Translations: #override \
 !right hand side scrollbar
 xterm*ScrollBar: false
 xterm*rightScrollBar: false
+XTerm*ScrollBar: false
+XTerm*rightScrollBar: false
 
 
 !!!EOF.
