@@ -104,10 +104,10 @@ endif
 
 
 " Useful mappings for managing tabs
-map <leader>tn :tabnew<cr>
-map <leader>t<C-q> :tabclose<cr>
-map <leader>t[ :tabprev<cr>
-map <leader>t] :tabnext<cr>
+"map <leader>tn :tabnew<cr>
+"map <leader>t<C-q> :tabclose<cr>
+"map <leader>t[ :tabprev<cr>
+"map <leader>t] :tabnext<cr>
 
 " Let 'tl' toggle between this and the last accessed tab
 let g:lasttab = 1
@@ -191,7 +191,6 @@ Plug 'jlanzarotta/bufexplorer'
 "Plug 'rbgrouleff/bclose.vim'
 
 Plug 'editorconfig/editorconfig-vim'
-"Plug 'liuchengxu/vim-which-key'
 
 Plug 'easymotion/vim-easymotion'
 Plug 'ntpeters/vim-better-whitespace'
@@ -200,7 +199,7 @@ Plug 'ntpeters/vim-better-whitespace'
 "Bundle 'w0rp/ale'
 
 " #, / and :Occur and :Moccur, <leader>oc and <leader>mo
-Plug 'vim-scripts/occur.vim'
+"Plug 'vim-scripts/occur.vim'
 
 " try :'<,'>:Tab/=<cr>
 Plug 'godlygeek/tabular'
@@ -234,6 +233,20 @@ call plug#end()
 "let g:lightline = { 'colorscheme': 'wombat', }
 
 
+" <Leader>f{char} to move to {char}
+map  <Leader>f <Plug>(easymotion-bd-f)
+nmap <Leader>f <Plug>(easymotion-overwin-f)
+
+" s{char}{char} to move to {char}{char}
+nmap s <Plug>(easymotion-overwin-f2)
+
+" Move to line
+map <Leader>L <Plug>(easymotion-bd-jk)
+nmap <Leader>L <Plug>(easymotion-overwin-line)
+
+" Move to word
+map  <Leader>w <Plug>(easymotion-bd-w)
+nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 "EOF
