@@ -148,7 +148,7 @@ XTerm.vt100.saveLines: 100000
 UXTerm.vt100.saveLines: 100000
 
 ! Increase-decrease font size using Ctrl-/+
-xterm*VT100.Translations: #override \
+XTerm*VT100.Translations: #override \
     Ctrl <Key> minus: smaller-vt-font() \n\
     Ctrl <Key> plus: larger-vt-font()
 
