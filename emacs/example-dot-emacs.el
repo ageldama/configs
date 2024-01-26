@@ -50,6 +50,7 @@
 	   ;; "golang.el"
 	   ;; "golang-light.el"
 	   ;; "golang-lsp.el"
+	   ;; "golang-lsp2.el"
 	   ;; "goog-c-style.el"
 	   ;; "lsp-cpp-ccls.el"
 	   ;; "lsp-cpp-clangd.el"
