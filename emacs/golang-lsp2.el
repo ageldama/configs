@@ -1,4 +1,6 @@
-(use-package go-mode :ensure t)
+(use-package go-mode :ensure t :pin melpa)
+
+(use-package gotest :ensure t :pin melpa)
 
 
 (use-package lsp-mode :ensure t)
@@ -19,6 +21,14 @@
 
 (defhydra hydra-lang-golang ()
   "golang"
+
+  ("r" go-run "run" :exit t)
+  ("t" go-test-current-test "t-curT" :exit t)
+  ("T" go-test-current-file "t-curF" :exit t)
+
+  ("D" godef-describe "desc" :exit t)
+  ("." godef-jump "def-jmp" :exit t)
+  ("+" go-import-add "imp+" :exit t)
 
   ("M-p" flymake-goto-prev-error "prv-err")
   ("M-n" flymake-goto-next-error "nxt-err")
