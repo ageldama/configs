@@ -642,7 +642,7 @@ treat as N=1."
          (comp-frm-wnd (seq-find #'(lambda (frm-wnd)
                                      (with-selected-frame (car frm-wnd)
                                        (with-current-buffer (window-buffer (cdr frm-wnd))
-                                         (or (member major-mode '(compilation-mode grep-mode))
+                                         (or (member major-mode '(compilation-mode grep-mode go-test-mode))
                                              )
                                          )))
                                  frm+wnd-lst)))
