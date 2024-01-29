@@ -388,6 +388,13 @@
       ,@(when (fboundp 'helm-all-mark-rings)
           '(("R" helm-all-mark-rings "markring" )))
 
+      ("b" (lambda () (interactive)
+             (if (fboundp 'helm-buffers-list)
+                 (helm-buffers-list)
+               ;; else
+               (ibuffer)))
+       "buf")
+
       ("o" hydra-org/body "org")
 
       ("M-f" hydra-files/body "files" )
