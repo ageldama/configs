@@ -525,7 +525,9 @@ treat as N=1."
 
 
 ;;; ibuffer
-(global-set-key (kbd "C-x C-b") 'ibuffer)
+(if (fboundp 'helm-buffers-list)
+    (global-set-key (kbd "C-x C-b") 'helm-buffers-list)
+  (global-set-key (kbd "C-x C-b") 'ibuffer))
 
 
 
