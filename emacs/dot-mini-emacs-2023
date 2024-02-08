@@ -510,6 +510,14 @@ treat as N=1."
 
 
 
+;;;
+
+(define-key prog-mode-map (kbd "M-n") 'next-error)
+(define-key prog-mode-map (kbd "M-p") 'previous-error)
+
+
+
+
 ;;; wgrep: writable grep
 (use-package wgrep :ensure t :pin melpa)
 
