@@ -35,8 +35,6 @@
 
 (global-set-key "\M-/" 'hippie-expand)
 
-
-
 ;;; no backup files
 (setq make-backup-files nil)
 (setq version-control   nil)   ; backup uses version numbers?

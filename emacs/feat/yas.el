@@ -7,8 +7,13 @@
             ;; desc
             ;; (define-key yas-minor-mode-map (kbd "C-c C-c TAB") 'yas-expand)
             (define-key yas-minor-mode-map (kbd "C-c & d")
-              'yas-describe-tables)
+                        'yas-describe-tables)
             (define-key yas-minor-mode-map (kbd "C-c & TAB") 'yas-expand)
+
+            ;; (setq hippie-expand-try-functions-list
+            ;;       (append hippie-expand-try-functions-list
+            ;;               '(yas-hippie-try-expand)))
+
             ;;
             (yas-global-mode +1)))
 
