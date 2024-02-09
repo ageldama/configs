@@ -433,6 +433,9 @@
       
       ("C-k" kill-current-buffer "kill-cur-buf" )
 
+      ,@(when (fboundp 'counsel-recentf)
+          '(("r" counsel-recentf "recentf" )))
+
       ;; ("M--" hydra-misc-fns/body "misc-fns" )
 
       ("M-q" hydra-misc-toggles/body "toggles" )
@@ -455,19 +458,13 @@
 
       ("M-v" hydra-local-vars/body "local-vars" )
 
-      ,@(when (fboundp 'projectile-mode)
-          '(("p"
-             (lambda ()
-               (interactive)
-               (if (fboundp 'helm-projectile)
-                   (helm-projectile)
-                 ;;else
-                 (my-simulate-key-event "C-c p")
-                 ))
-             "projectile" )))
+      ,@(when (and (fboundp 'projectile-mode) (fboundp 'helm-projectile))
+          '(("p" helm-projectile "projectile" )))
 
-      ,@(when (fboundp 'helm-projectile-grep)
-          '(("P" helm-projectile-grep "proj-grep" )))
+      ,@(when (and (fboundp 'projectile-mode) (fboundp 'counsel-projectile))
+          '(("p" counsel-projectile "prj" )))
+
+      ("P" projectile-commander "prj-cmdr" )
 
       ("w" avy-goto-word-1 "goto-word")
       ("l" avy-goto-line "goto-line")
