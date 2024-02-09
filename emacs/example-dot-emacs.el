@@ -95,7 +95,7 @@
     (my-set-fixed-fonts))
 
   (set-face-attribute 'default nil :height 125)
-  ;;; NOTE 105, 85?
+  ;;; NOTE 105, 85, 95?
 
   ;; (load-theme 'modus-vivendi t)
   ;; (load-theme 'modus-operandi-tinted t)
