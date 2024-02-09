@@ -11,6 +11,7 @@
                    "/dot-mini-emacs-2023"))
 
 (let ((l '(
+           ;; "exec-path-from-shell.el"
            ;; "feat/helm.el"
            ;; "feat/helm-swoop.el"
            ;; "feat/browse-kill-ring.el"

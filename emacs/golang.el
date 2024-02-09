@@ -5,10 +5,10 @@
                                     (setq company-idle-delay 1.0)
                                     (add-hook 'before-save-hook 'gofmt-before-save))))
 
-(when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
-  (use-package exec-path-from-shell :ensure t :pin melpa)
-  (exec-path-from-shell-copy-env "GOROOT")
-  (exec-path-from-shell-copy-env "GOPATH"))
+;; (when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
+;;   (use-package exec-path-from-shell :ensure t :pin melpa)
+;;   (exec-path-from-shell-copy-env "GOROOT")
+;;   (exec-path-from-shell-copy-env "GOPATH"))
 
 (use-package go-eldoc :ensure t :pin melpa
   ;; :config (add-hook 'go-mode-hook 'go-eldoc-setup)
@@ -78,7 +78,7 @@
 
 
 (defun golang-fff ()
-"
+  "
 go get -u golang.org/x/tools/...
 go get -u github.com/rogpeppe/godef
 go get -u github.com/golang/lint/golint

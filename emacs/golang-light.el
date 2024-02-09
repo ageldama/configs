@@ -2,10 +2,10 @@
 
 (use-package gotest :ensure t :pin melpa)
 
-(when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
-  (use-package exec-path-from-shell :ensure t :pin melpa)
-  (exec-path-from-shell-copy-env "GOROOT")
-  (exec-path-from-shell-copy-env "GOPATH"))
+;; (when (and (fboundp 'go-mode) (memq window-system '(mac ns)))
+;;   (use-package exec-path-from-shell :ensure t :pin melpa)
+;;   (exec-path-from-shell-copy-env "GOROOT")
+;;   (exec-path-from-shell-copy-env "GOPATH"))
 
 
 (defhydra hydra-lang-go-light ()
