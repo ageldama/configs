@@ -7,7 +7,7 @@
                   ivy-use-virtual-buffers       t
                   enable-recursive-minibuffers  t
                   ivy-re-builders-alist         '((swiper      . ivy--regex-plus)
-                                                  (counsel-M-x . ivy--regex-fuzzy)
+                                                  (counsel-M-x . ivy--regex-plus)
                                                   (t           . ivy--regex-plus)))
             (global-set-key "\C-s" 'swiper)
             (global-set-key (kbd "M-s s") 'swiper-thing-at-point)
