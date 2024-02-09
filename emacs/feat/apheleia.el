@@ -10,6 +10,8 @@
 
 (global-set-key (kbd "C-c M-f") #'apheleia-format-buffer)
 
+(when (fboundp 'diminish)
+  (diminish 'apheleia-mode "Aph"))
 
 
 ;;; EOF.
