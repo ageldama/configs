@@ -385,11 +385,20 @@
       ,@(when (fboundp 'helm-bookmarks)
           '(("B" helm-bookmarks "bookmks" )))
 
+      ,@(when (fboundp 'counsel-bookmark)
+          '(("B" counsel-bookmark "bookmks" )))
+
       ,@(when (fboundp 'helm-imenu)
           '(("I" helm-imenu "imenu" )))
 
+      ,@(when (fboundp 'counsel-imenu)
+          '(("I" counsel-imenu "imenu" )))
+
       ,@(when (fboundp 'helm-all-mark-rings)
           '(("R" helm-all-mark-rings "markring" )))
+
+      ,@(when (fboundp 'counsel-mark-ring)
+          '(("R" counsel-mark-ring "markring" )))
 
       ("b" (lambda () (interactive)
              (if (fboundp 'helm-buffers-list)
@@ -418,6 +427,9 @@
 
       ,@(when (fboundp 'helm-show-kill-ring)
           '(("k" helm-show-kill-ring "kill-ring" )))
+
+      ,@(when (fboundp 'counsel-yank-pop)
+          '(("k" counsel-yank-pop "yank-pop" )))
       
       ("C-k" kill-current-buffer "kill-cur-buf" )
 
