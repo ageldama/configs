@@ -29,5 +29,5 @@
   `(add-hook ,hook
              (lambda () (local-set-key ,key 'company-capf))))
 
-(bind-company-local-key 'prog-mode-hook (kbd "C-c TAB"))
-(bind-company-local-key 'text-mode-hook (kbd "C-c TAB"))
+;; (bind-company-local-key 'prog-mode-hook (kbd "C-c TAB"))
+;; (bind-company-local-key 'text-mode-hook (kbd "C-c TAB"))
