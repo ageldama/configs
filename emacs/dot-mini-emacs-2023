@@ -376,6 +376,8 @@
       ,@(when (fboundp 'helm-do-grep-ag)
           '(("\\" helm-do-grep-ag "helm-do-grep-ag" )))
 
+      ("." xref-find-definitions "xref-def")
+
       ,@(when (fboundp 'helm-resume)
           '(("," helm-resume "helm-resume" )))
 
