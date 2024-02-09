@@ -42,6 +42,7 @@
 	   ;; "feat/apheleia.el"
 	   ;; "feat/rg.el"
 	   ;; "feat/helm-ag.el"
+	   ;; "feat/embark.el"
 
 	   ;; "auctex.el"
 	   ;; "c++-light-2022.el"
