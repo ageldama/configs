@@ -367,7 +367,7 @@
   
 
   (eval
-   `(defhydra hydra-mini (global-map "<f12>" :exit t)
+   `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
       "minimi"
 
       ("`" menu-bar-open "menu-bar" )
@@ -677,7 +677,8 @@ treat as N=1."
         (progn (with-selected-frame (car comp-frm-wnd)
                  (with-current-buffer (window-buffer (cdr comp-frm-wnd)) (recompile))))
       ;; else
-      (message "no comile-buffer found"))))
+      (progn (message "no comile-buffer found")
+             (call-interactively 'compile)))))
 
 
 (global-set-key (kbd "<f5>")

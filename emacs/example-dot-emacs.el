@@ -1,6 +1,8 @@
 ;; (setq langsup-base-path (expand-file-name "~/P/configs/emacs/"))
 ;; (load-file (expand-file-name "~/P/configs/emacs/dot-emacs-2021.el"))
 
+(setq large-file-warning-threshold (* 1024 1024 1024))
+
 ;;; minimi
 (setq minimi-config-path
       (expand-file-name "~/P/configs/emacs/"))
