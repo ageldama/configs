@@ -6,9 +6,12 @@
             (setq ivy-use-selectable-prompt     t  ;; <C-p>.
                   ivy-use-virtual-buffers       t
                   enable-recursive-minibuffers  t
-                  ivy-re-builders-alist         '((swiper      . ivy--regex-plus)
-                                                  (counsel-M-x . ivy--regex-plus)
-                                                  (t           . ivy--regex-plus)))
+                  ivy-re-builders-alist
+                  '(
+                    (swiper      . ivy--regex-plus)
+                    ;; (counsel-M-x . ivy--regex-plus)
+                    (t           . ivy--regex-fuzzy)
+                    ))
             (global-set-key "\C-s" 'swiper)
             (global-set-key (kbd "M-s s") 'swiper-thing-at-point)
             (global-set-key (kbd "C-c C-r") 'ivy-resume)
