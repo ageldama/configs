@@ -220,6 +220,12 @@ Plug 'thinca/vim-fontzoom'
 "Plug 'liuchengxu/vim-which-key'
 
 
+if !empty(glob("~/.use-vim-go"))
+  Plug 'fatih/vim-go'
+endif
+
+
+
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
 call plug#end()
@@ -247,6 +253,10 @@ nmap <Leader>L <Plug>(easymotion-overwin-line)
 " Move to word
 map  <Leader>w <Plug>(easymotion-bd-w)
 nmap <Leader>w <Plug>(easymotion-overwin-w)
+
+
+
+
 
 
 "EOF
