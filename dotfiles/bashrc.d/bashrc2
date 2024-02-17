@@ -12,7 +12,6 @@ alias view='vim -R'
 
 
 if [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
-  echo fzf
   source /usr/share/fzf/shell/key-bindings.bash
 fi
 
