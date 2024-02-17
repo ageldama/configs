@@ -1,0 +1,39 @@
+#!/bin/bash
+
+
+export PAGER=less
+export EDITOR=run-editor.sh
+#export EDITOR='emacsclient -a vim'
+
+export PATH=$PATH:~/local/bin:~/.local/bin
+
+alias tmux='tmux -2'
+alias view='vim -R'
+
+
+if [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
+  echo fzf
+  source /usr/share/fzf/shell/key-bindings.bash
+fi
+
+if [ -x "$(command -v zoxide)" ]; then
+  eval "$(zoxide init bash)"
+fi
+
+
+
+if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
+  #echo perl-local-lib
+  eval $(perl -Mlocal::lib)
+fi
+
+
+
+if [[ -d $HOME/bin ]]; then
+  export PATH=$HOME/bin:$PATH
+fi
+
+
+export PATH=~/go/bin:$PATH
+
+
