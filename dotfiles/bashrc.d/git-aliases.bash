@@ -9,6 +9,10 @@
 # https://github.com/ohmyzsh/ohmyzsh/blob/master/plugins/git/git.plugin.zsh
 # https://github.com/ohmyzsh/ohmyzsh/tree/master/plugins/git
 
+function git_current_branch() {
+  git symbolic-ref -q HEAD | sed -e 's|^refs/heads/||'
+}
+
 #
 # Aliases
 # (sorted alphabetically)
