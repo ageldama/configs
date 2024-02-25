@@ -1,6 +1,15 @@
 #!/bin/bash
 
 
+EXAMPLE_BASHRC=<<EO_EXAMPLE_BASHRC
+if [[ -d "$HOME/.bashrc.d" ]]; then
+  for fn in $HOME/.bashrc.d/*; do
+    source $fn
+  done
+fi
+EO_EXAMPLE_BASHRC
+
+
 export PAGER=less
 export EDITOR=run-editor.sh
 #export EDITOR='emacsclient -a vim'
@@ -10,8 +19,9 @@ export PATH=$PATH:~/local/bin:~/.local/bin
 alias tmux='tmux -2'
 alias view='vim -R'
 
-
-if [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
+if [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
+  source /usr/share/doc/fzf/examples/key-bindings.bash
+elif [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
   source /usr/share/fzf/shell/key-bindings.bash
 fi
 
