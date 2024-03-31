@@ -162,13 +162,14 @@
 
 
 
-
-
 ;;;
 (use-package avy :ensure t :pin melpa
   :custom
   (avy-timeout-seconds 0.3)
   (avy-style 'pre)
+
+  :bind (("M-c" . avy-goto-word-1))
+
   :config
   (progn
     (global-set-key (kbd "C-'") 'avy-goto-char-timer)
