@@ -168,20 +168,20 @@
   (avy-timeout-seconds 0.3)
   (avy-style 'pre)
 
-  :bind (("M-c" . avy-goto-word-1))
-
   :config
   (progn
-    (global-set-key (kbd "C-'") 'avy-goto-char-timer)
-    (global-set-key (kbd "C-\"") 'avy-goto-word-1)
+    ;; (global-set-key (kbd "C-'") 'avy-goto-char-timer)
+    ;; (global-set-key (kbd "C-\"") 'avy-goto-word-1)
     ;; (global-set-key (kbd "C-:") 'avy-goto-line)
-    (global-set-key (kbd "C-c C-j") 'avy-resume)
+    (global-set-key (kbd "M-c") 'avy-goto-char-timer)
     (global-set-key (kbd "M-g l") 'avy-goto-line)
     (global-set-key (kbd "M-g f") 'avy-goto-char)
     (global-set-key (kbd "M-g w") 'avy-goto-word-1)
     (global-set-key (kbd "M-g W") 'avy-goto-word-0)
     ;; (global-set-key (kbd "M-g j") 'hydra-avy-goto/body)
-    (global-set-key (kbd "M-g ,") 'avy-pop-mark)))
+    (global-set-key (kbd "M-g M-c") 'avy-resume)
+    (global-set-key (kbd "M-g ,") 'avy-pop-mark)
+    ))
 
 
 
