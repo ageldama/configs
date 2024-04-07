@@ -32,7 +32,12 @@ export PATH=$PATH:$HOME/local/bin
 export TERMINAL=x-terminal-emulator
 
 # fcitx/ibus + hangul
-if [[ -f ~/.use-ibus ]]; then
+if [[ -f ~/.use-uim ]]; then
+  export GTK_IM_MODULE=uim
+  export QT_IM_MODULE=uim
+  export XMODIFIERS=@im=uim
+  pgrep -u $UID uim-xim || uim-xim &
+elif [[ -f ~/.use-ibus ]]; then
   export GTK_IM_MODULE=ibus
   export QT_IM_MODULE=ibus
   export XMODIFIERS=@im=ibus
@@ -136,7 +141,7 @@ xset r rate 400 40
 
 test -f ~/.use-xset-noblank && ~/local/bin/xset-noblank.sh &
 
-xrdb -merge $HOME/.Xresources &
+test -f ~/.Xresources && xrdb -merge $HOME/.Xresources &
 
 if [[ ! -f ~/.no-screensaver ]]; then
   if [[ -f ~/.use-xautolock ]]; then
