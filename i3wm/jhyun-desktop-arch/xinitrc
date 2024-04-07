@@ -56,7 +56,9 @@ elif [[ -f ~/.use-fcitx ]]; then
 fi
 
 # polkit-1
-if [[ -x /usr/libexec/polkit-gnome-authentication-agent-1 ]]; then
+if [[ -x /usr/bin/lxpolkit ]]; then
+  lxpolkit &
+elif [[ -x /usr/libexec/polkit-gnome-authentication-agent-1 ]]; then
   /usr/libexec/polkit-gnome-authentication-agent-1 &
 elif [[ -x /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 ]]; then
   /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1 &
