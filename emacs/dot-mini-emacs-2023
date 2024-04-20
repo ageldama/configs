@@ -443,7 +443,7 @@
           '(("x" hydra-moonshot/body "moonshot" )))
 
       ,@(when (fboundp 'hydra-string-inflection/body)
-          '(("M-i" hydra-string-inflection/body/body
+          '(("M-i" hydra-string-inflection/body
              "infl.")))
 
       ,@(when (fboundp 'hydra-multiple-cursors/body)
