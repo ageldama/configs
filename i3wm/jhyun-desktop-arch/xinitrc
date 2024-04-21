@@ -55,6 +55,10 @@ elif [[ -f ~/.use-fcitx ]]; then
   fi
 fi
 
+if [[ -f ~/.use-ibus-daemon-only ]]; then
+  ibus-daemon -d --xim
+fi
+
 # polkit-1
 if [[ -x /usr/bin/lxpolkit ]]; then
   lxpolkit &
