@@ -371,7 +371,8 @@
    `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
       "minimi"
 
-      ("<SPC>" avy-goto-char-timer "avy")
+      ("f" avy-goto-char-timer "avy")
+      ("F" avy-resume "avy-resume")
       
       ("`" menu-bar-open "menu-bar" )
 
