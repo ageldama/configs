@@ -1,11 +1,18 @@
 # ~/.my-tim-btns.pl
 
 my $cmds = [
-  {
-    name => 'gtk3-counter',
-    cmd => 'gtk3-counter.pl',
-    font => 'normal 28px serif',
-    fg => 'red',
+    {
+        name => 'gtk3-counter',
+        cmd => 'gtk3-counter.pl',
+        font => 'normal 28px serif',
+        fg => 'red',
+    },
+
+    {
+        name => 'chromium',
+        cmd => 'chromium-browser',
+        font => 'normal 22px serif',
+        fg => 'green',
     },
 
     {
