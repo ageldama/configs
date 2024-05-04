@@ -1,10 +1,21 @@
 
+(defun diary/month-name-abbr (time-val)
+  (nth (1- (string-to-number (format-time-string "%m" time-val)))
+       '("Jan" "Feb" "Mar" "Apr" "May" "Jun" "Jul" "Aug" "Sep" "Oct" "Nov" "Dec")))
+
+(defun diary/week-name-abbr (time-val)
+  (nth (1- (string-to-number (format-time-string "%u" time-val)))
+       '("Mon" "Tue" "Wed" "Thu" "Fri" "Sat" "Sun")))
+
 (defun diary/fmt-diary-date (year month day)
-  (let ((date-time-str
-         (string-join (list (format "%04d-%02d-%02d" year month day)
-                            "T12:21:54+0000"))))
-    (format-time-string "%Y-%m%b-%d%a" 
-                        (date-to-time date-time-str))))
+  (let* ((date-time-str
+          (string-join (list (format "%04d-%02d-%02d" year month day)
+                             "T12:21:54+0000")))
+         (time-val (date-to-time date-time-str))
+         (month-name-abbr (diary/month-name-abbr time-val))
+         (week-name-abbr (diary/week-name-abbr time-val)))
+    (format-time-string (concat "%Y-%m" month-name-abbr "-%d" week-name-abbr) time-val)))
+
 
 ;; (diary/fmt-diary-date 1982 10 13)
 

@@ -10,6 +10,9 @@ use DDP;
 my @desired_plugins = qw(fzf zoxide systemd); # docker docker-compose);
 my $desireds = Set::Scalar->new(@desired_plugins);
 
+# not applicable:
+exit 0 unless -f glob('~/.use-zsh');
+
 {
   my $i_or_u = shift;    # 'i' or 'u' for installing/uninstalling.
   croak 'Specify: i || u.' unless defined($i_or_u) and ($i_or_u eq 'i' or $i_or_u eq 'u');
