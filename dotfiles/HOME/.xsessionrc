@@ -1,6 +1,0 @@
-#!/bin/sh
-
-if [ -f .use-perl-local-lib ]; then
-  eval $(perl -Mlocal::lib)
-fi
-
