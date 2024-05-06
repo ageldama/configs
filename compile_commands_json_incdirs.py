@@ -18,12 +18,17 @@ class CompileCommands(object):
     def __init__(self):
         pass
 
-    def get_inc_dirs(self, escape=True):
+    def get_inc_dirs(self, curr_dir=True, escape=True):
         esc = shlex.quote
         if not escape:
             esc = lambda s: s
+
+        dirs = []
+        dirs.extend(self.inc_dirs)
+        if curr_dir:
+            dirs.append('.')
             
-        return [ shlex.quote(os.path.abspath(d)) for d in self.inc_dirs ]
+        return [ shlex.quote(os.path.abspath(d)) for d in dirs ]
         
     def load(
             self,

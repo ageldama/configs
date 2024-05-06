@@ -1,3 +1,4 @@
+;; (use-package levenshtein :pin melpa :ensure t)
 
 (require 'cl)
 (require 'f)
@@ -42,12 +43,17 @@ Result looks like `(list (FULL-PATH . DISTANCE) ...)'."
 
 (defun compcmdsjson/select-found ()
   (interactive)
-  (let ((selected
-         (completing-read "Select: "
-                          (mapcar #'car (compcmdsjson/find+dist)))))
-    (when selected
-      (setq-local compcmdsjson/*path* selected)
-      (compcmdsjson/find-entry))))
+  (let ((files (mapcar #'car (compcmdsjson/find+dist))))
+    (let ((selected
+           (if (eq 1 (length files))
+               (first files)
+             ;; else
+             (completing-read "Select: " files))))
+      (when selected
+        (setq-local compcmdsjson/*path* selected)
+        (message "%s" compcmdsjson/*path*)
+        ;; (compcmdsjson/find-entry)
+        ))))
 
 
 (defun compcmdsjson/select-nearest ()
@@ -55,7 +61,8 @@ Result looks like `(list (FULL-PATH . DISTANCE) ...)'."
          (first (mapcar #'car (compcmdsjson/find+dist)))))
     (when selected
       (setq-local compcmdsjson/*path* selected)
-      (compcmdsjson/find-entry))))
+      ;; (compcmdsjson/find-entry)
+      )))
 
 
 (defun compcmdsjson/find-entry ()
@@ -68,7 +75,7 @@ Result looks like `(list (FULL-PATH . DISTANCE) ...)'."
                          return i)))
   (when compcmdsjson/*entry*
     (dolist (h compcmdsjson/*hooks*)
-            (funcall h))))
+      (funcall h))))
 
- 
+
 (provide 'compcmdsjson)

@@ -25,6 +25,7 @@
 	   ;; "feat/evil-owl.el"
 	   ;; "feat/evil-surround.el"
 	   ;; "feat/flycheck.el"
+	   ;; "feat/flycheck-compcmdsjson.el"
 	   ;; "feat/helpful.el"
 	   ;; "feat/hl-todo.el"
 	   ;; "feat/magit.el"
