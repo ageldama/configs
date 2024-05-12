@@ -14,6 +14,7 @@
 
 (let ((l '(
            ;; "exec-path-from-shell.el"
+           ;; "feat/pc-bufsw.el"
            ;; "feat/helm.el"
            ;; "feat/helm-swoop.el"
            ;; "feat/browse-kill-ring.el"

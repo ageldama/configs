@@ -376,6 +376,9 @@
       
       ("`" menu-bar-open "menu-bar" )
 
+      ,@(when (fboundp 'embark-act)
+          '(("<tab>" embark-act "embark" )))
+
       ,@(when (fboundp 'helm-do-grep-ag)
           '(("\\" helm-do-grep-ag "helm-do-grep-ag" )))
 
