@@ -44,7 +44,7 @@ elif [[ -f ~/.use-ibus ]]; then
   pgrep -u $UID ibus-daemon || ibus-daemon -d --xim
 elif [[ -f ~/.use-fcitx ]]; then
   if [[ -z "$GTK_IM_MODULE" ]]; then
-    # without im-config: 
+    # without im-config:
     export GTK_IM_MODULE=fcitx
     export QT_IM_MODULE=fcitx
     export XMODIFIERS=@im=fcitx
@@ -52,6 +52,22 @@ elif [[ -f ~/.use-fcitx ]]; then
   elif [[ "$GTK_IM_MODULE" == "fcitx" ]]; then
     # fedora 34, xdm oddity, once again
     pgrep fcitx || fcitx -s 5 -r -d &
+  fi
+elif [[ -f ~/.use-fcitx5 ]]; then
+  if [[ -z "$GTK_IM_MODULE" ]]; then
+    # without im-config:
+    export GTK_IM_MODULE=fcitx5
+    export QT_IM_MODULE=fcitx5
+    export XMODIFIERS=@im=fcitx5
+    pgrep fcitx5 || fcitx5 -s 5 -r -d &
+  elif [[ "$GTK_IM_MODULE" == "fcitx5" ]]; then
+    # fedora 34, xdm oddity, once again
+    pgrep fcitx5 || fcitx5 -s 5 -r -d &
+  fi
+elif [[ -f /usr/share/im-config/xinputrc.common ]]; then
+  . /usr/share/im-config/xinputrc.common
+  if [[ -f ~/.xinputrc ]]; then
+    . ~/.xinputrc
   fi
 fi
 
