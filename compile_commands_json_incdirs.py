@@ -41,20 +41,30 @@ class CompileCommands(object):
 
             for row in parsed:
                 directory = row['directory'] or '.'
-                self.cc_commands.update([row['arguments'][0]])
 
-                inc_dir_next = False
-                for arg in row['arguments']:
-                    if inc_dir_next:
-                        # ...지난 번 열이 `-I`였을 때: 그냥 추가.
-                        self.inc_dirs.add(arg)
-                        inc_dir_next = False
-                    elif arg == '-I':
-                        # 그냥 `-I` ==> 다음 열이 incdir.
-                        inc_dir_next = True
-                    elif arg.startswith('-I') and len(arg) > 3:
-                        # `-I${dir}`의 형태:
-                        self.inc_dirs.add(arg[2:])
+                if 'command' in row:
+                    cmd = row['command'].split()[0]
+                    self.cc_commands.update([cmd])
+
+                    for cmd_part in shlex.split(row['command']):
+                        if cmd_part[0:2] == '-I':
+                            self.inc_dirs.add(cmd_part[2:])
+
+                if 'arguments' in row:
+                    self.cc_commands.update([row['arguments'][0]])
+
+                    inc_dir_next = False
+                    for arg in row['arguments']:
+                        if inc_dir_next:
+                            # ...지난 번 열이 `-I`였을 때: 그냥 추가.
+                            self.inc_dirs.add(arg)
+                            inc_dir_next = False
+                        elif arg == '-I':
+                            # 그냥 `-I` ==> 다음 열이 incdir.
+                            inc_dir_next = True
+                        elif arg.startswith('-I') and len(arg) > 3:
+                            # `-I${dir}`의 형태:
+                            self.inc_dirs.add(arg[2:])
 
         #
         if load_system_incdir:
