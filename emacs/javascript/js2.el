@@ -37,8 +37,8 @@
 ;; RUN!
 (add-hook 'js2-mode-hook
           (lambda ()
-            (when (fboundp 'js2-prettier)
-              (add-hook 'before-save-hook #'js2-prettier))
+            ;; (when (fboundp 'js2-prettier)
+            ;;   (add-hook 'before-save-hook #'js2-prettier))
             (setq js2-basic-offset 2)
             (set (make-local-variable 'compile-command)
                  (concat "node " (shell-quote-argument buffer-file-name)))))
