@@ -256,7 +256,11 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 
-
+if !empty(expand(glob("~/.vimrc.local2")))
+    source ~/.vimrc.local2
+else
+  " echo "File does not exists"
+endif
 
 
 "EOF
