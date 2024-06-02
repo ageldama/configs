@@ -678,14 +678,14 @@
         <command>~/.fehbg</command>
       </action>
     </keybind>
-    <keybind key="W-M-w">
+    <!--keybind key="W-M-w">
       <action name="Execute">
-        <command>wg-whatever.pl</command>
       </action>
-    </keybind>
+    </keybind-->
     <keybind key="W-S-w">
       <action name="Execute">
-        <command>hsetroot-solid.pl</command>
+        <command>wg-whatever.pl</command>
+        <!--command>hsetroot-solid.pl</command-->
       </action>
     </keybind>
 
