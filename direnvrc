@@ -1,6 +1,3 @@
-# ~/.direnvrc
-# Thanks: https://rgoswami.me/posts/poetry-direnv/
-
 layout_poetry() {
   if [[ ! -f pyproject.toml ]]; then
     log_error 'No pyproject.toml found.  Use `poetry new` or `poetry init` to create one first.'
@@ -13,6 +10,15 @@ layout_poetry() {
   PATH_add "$VENV"
 }
 
-# .envrc with layout_poetry
+layout_pdm() {
+  if [[ ! -f pyproject.toml ]]; then
+    log_error 'No pyproject.toml found.  Use `pdm new` or `pdm init` to create one first.'
+    exit 2
+  fi
 
+  local VENV=$(dirname $(pdm run which python))
+  export VIRTUAL_ENV=$(echo "$VENV" | rev | cut -d'/' -f2- | rev)
+  export PDM_ACTIVE=1
+  PATH_add "$VENV"
+}
 
