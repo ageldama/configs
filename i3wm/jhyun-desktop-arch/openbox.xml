@@ -531,15 +531,15 @@
     <keybind key="W-S-f">
       <action name="ToggleFullscreen"/>
     </keybind>
-    <keybind key="W-S-x">
+    <keybind key="W-C-x">
       <action name="ToggleMaximize"/>
     </keybind>
-    <keybind key="W-S-z">
+    <keybind key="W-C-z">
       <action name="ToggleMaximize">
         <direction>vertical</direction>
       </action>
     </keybind>
-    <keybind key="W-S-c">
+    <keybind key="W-C-c">
       <action name="ToggleMaximize">
         <direction>horizontal</direction>
       </action>
@@ -870,8 +870,8 @@
         <action name="Move"/>
       </mousebind>
       <mousebind button="Left" action="DoubleClick">
-        <!-- <action name="ToggleMaximize"/> -->
-        <action name="ToggleShade"/>
+        <action name="ToggleMaximize"/>
+        <!-- <action name="ToggleShade"/> -->
       </mousebind>
       <mousebind button="Up" action="Click">
         <action name="if">
