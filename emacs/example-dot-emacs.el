@@ -98,7 +98,7 @@
           ;; *ageldama/font-fixed-ko* "Noto Sans Mono CJK KR"
           *ageldama/font-fixed-ko* "D2Coding"
           )
-    (my-set-fixed-fonts))
+    (my-set-fixed-fonts *ageldama/font-fixed-en* *ageldama/font-fixed-ko*))
 
   (set-face-attribute 'default nil :height 125)
   ;;; NOTE 105, 85, 95?
