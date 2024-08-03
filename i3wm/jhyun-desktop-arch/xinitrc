@@ -218,7 +218,11 @@ if [[ -f ~/.use-notifications-dump ]]; then
 fi
 
 # Notification growl.
-dunst &
+test -f ~/.use-dunst && dunst &
+
+if [[ -f ~/.use-xfce4-notifyd ]]; then
+  systemctl --user start xfce4-notifyd.service
+fi
 
 # hotkeys
 #sxhkd &
