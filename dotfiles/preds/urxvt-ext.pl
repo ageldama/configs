@@ -1,5 +1,7 @@
 #!/usr/bin/env perl
 
+exit 1 unless -r "$ENV{HOME}/.use-urxvt";
+
 if(-r '/etc/os-release'){
   open my $fh, '<', '/etc/os-release' or die;
   while(<$fh>){
