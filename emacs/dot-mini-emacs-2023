@@ -174,6 +174,7 @@
     ;; (global-set-key (kbd "C-\"") 'avy-goto-word-1)
     ;; (global-set-key (kbd "C-:") 'avy-goto-line)
     (global-set-key (kbd "M-g M-g") 'avy-goto-char-timer)
+    ;; (global-set-key (kbd "M-g M-g") 'goto-line)
     (global-set-key (kbd "M-g l") 'avy-goto-line)
     (global-set-key (kbd "M-g f") 'avy-goto-char)
     (global-set-key (kbd "M-g w") 'avy-goto-word-1)
@@ -371,8 +372,8 @@
    `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
       "minimi"
 
-      ("f" avy-goto-char-timer "avy")
-      ("F" avy-resume "avy-resume")
+      ("<SPC>" avy-goto-char-timer "avy")
+      (";" avy-resume "avy-resume")
       
       ("`" menu-bar-open "menu-bar" )
 
@@ -618,37 +619,37 @@ treat as N=1."
 
 
 (def-compile-no-arg-cmd mini-git/gwip
-                        (let ((commit-msg "--wip-- [skip ci]")
-                              (git-root (git/find-nearest-repo)))
-                          (if (null git-root)
-                              (error "Not a/in git-repos? [%s]"
-                                     default-directory)
-                            ;; else: found `.git/`:
-                            (format "cd '%s' && git commit -am '%s'"
-                                    git-root commit-msg))))
+  (let ((commit-msg "--wip-- [skip ci]")
+        (git-root (git/find-nearest-repo)))
+    (if (null git-root)
+        (error "Not a/in git-repos? [%s]"
+               default-directory)
+      ;; else: found `.git/`:
+      (format "cd '%s' && git commit -am '%s'"
+              git-root commit-msg))))
 
 
 (def-compile-no-arg-cmd mini-git/add 
-                        (format "cd '%s' && git add '%s'"
-                                default-directory
-                                (f-relative (buffer-file-name)
-                                            default-directory)))
+  (format "cd '%s' && git add '%s'"
+          default-directory
+          (f-relative (buffer-file-name)
+                      default-directory)))
 
 
 (def-compile-no-arg-cmd mini-git/status 
-                        (format "cd '%s' && git status" default-directory))
+  (format "cd '%s' && git status" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/push
-                        (format "cd '%s' && git push" default-directory))
+  (format "cd '%s' && git push" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/pull
-                        (format "cd '%s' && git pull" default-directory))
+  (format "cd '%s' && git pull" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/remote-v
-                        (format "cd '%s' && git remote -v" default-directory))
+  (format "cd '%s' && git remote -v" default-directory))
 
 
 
@@ -718,7 +719,7 @@ treat as N=1."
       (global-set-key (kbd "C-x C-0") #'delete-window)
 
       (define-key god-local-mode-map (kbd "<f5>")
-                  #'recompile-showing-compilation-window)
+        #'recompile-showing-compilation-window)
 
       (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
       (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
