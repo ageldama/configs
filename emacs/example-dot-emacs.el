@@ -110,6 +110,8 @@
   (day-and-night/start-timer 30)
   )
 
+(global-display-line-numbers-mode 1)
+(global-hl-line-mode 1)
 
 ;; 너무 느리면 끄자.
 (when (fboundp 'yas-global-mode)
