@@ -162,8 +162,10 @@ call plug#begin()
 
 Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 
-"Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 
+if !empty(glob("~/.use-vim-fzf"))
+  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+endif
 
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-surround'
@@ -187,8 +189,7 @@ Plug 'itchyny/lightline.vim'
 
 Plug 'jlanzarotta/bufexplorer'
 
-"Plug 'scrooloose/nerdtree'
-"Plug 'rbgrouleff/bclose.vim'
+Plug 'rbgrouleff/bclose.vim'
 
 Plug 'editorconfig/editorconfig-vim'
 
@@ -196,7 +197,9 @@ Plug 'easymotion/vim-easymotion'
 Plug 'ntpeters/vim-better-whitespace'
 
 " :ALEInfo?
-"Bundle 'w0rp/ale'
+if !empty(glob("~/.use-vim-ale"))
+  Plug 'w0rp/ale'
+endif
 
 " #, / and :Occur and :Moccur, <leader>oc and <leader>mo
 "Plug 'vim-scripts/occur.vim'
@@ -217,7 +220,7 @@ Plug 'thinca/vim-fontzoom'
 
 
 
-"Plug 'liuchengxu/vim-which-key'
+Plug 'liuchengxu/vim-which-key'
 
 
 if !empty(glob("~/.use-vim-go"))
