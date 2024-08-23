@@ -844,7 +844,9 @@ treat as N=1."
     ))
 
 
-
+(defun reload-emacs-rc ()
+  (interactive)
+  (load-file "~/.emacs"))
 
 
 
