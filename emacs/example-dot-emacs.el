@@ -77,6 +77,7 @@
 	   ;; "vtchcc-eglot.el" ; typescript, yaml
 	   ;; "json.el"
 	   ;; "javascript/js2.el"
+	   ;; "javascript/typescript.el"
 	   ;; "web.el"
 	   ;; "xclip.el"
 	   ;; "zig.el"
