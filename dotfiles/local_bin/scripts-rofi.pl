@@ -187,7 +187,7 @@ use Getopt::Std;
 
 our $VERSION = '0.0.1';
 
-my %opts = (p => 0, s => 0, r => 0, e => 0);
+my %opts = (p => 0, s => 0, r => 0, e => 1);
 getopts('psre', \%opts);
 
 use constant SCRIPT_DIR => "$ENV{HOME}/local/scripts";
@@ -207,7 +207,7 @@ List content of [${ \SCRIPT_DIR }] and ask to select:
   -p : print selection
   -s : save selection
   -r : rerun last saved selection
-  -e : execute selection
+  -e : execute selection (DEFAULT)
 
 Exiting.
 EO_HELP
