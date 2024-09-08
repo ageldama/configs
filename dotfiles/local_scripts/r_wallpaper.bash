@@ -75,5 +75,14 @@ if [ ! -f "$FILEPATH" ]; then
   curl "$WURI" -s > $FILEPATH
 fi
 
-feh --bg-fill $FILEPATH
+if [[ DESKTOP_SESSION -eq cinnamon ]]; then
+  # echo $FILEPATH
+  # gsettings set org.gnome.desktop.background picture-uri file://${FILEPATH}
+  # $ gsettings list-recursively org.cinnamon.desktop.background
+  gsettings set org.cinnamon.desktop.background picture-options 'zoom'
+  gsettings set org.cinnamon.desktop.background picture-uri file://${FILEPATH}
+else
+  feh --bg-fill $FILEPATH
+fi
+
 
