@@ -13,10 +13,10 @@ mkdir -p $WPATH
 # We need to change our user agent so Reddit allow us to get the JSON without errors
 USERAGENT="Mozilla/5.0 (X11; Linux x86_64; rv:100.0) Gecko/20100101 Firefox/100.0"
 
-APIURL="https://www.reddit.com/r/wallpapers.json?limit=100"
+APIURL="https://www.reddit.com/r/wallpaper.json?limit=100"
 
 # Remove cached response if older than 2 hours.
-find $(dirname $JSONCACHE) -name "$(basename $JSONCACHE)" -mmin +120 -exec rm {} \; 2>/dev/null
+find $(dirname $JSONCACHE) -name "$(basename $JSONCACHE)" -mmin +10 -exec rm {} \; 2>/dev/null
 
 # Remove wallpapers older than 2 days
 find $(dirname $WPATH) -mtime +2 -exec rm {} \; 2>/dev/null
