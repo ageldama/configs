@@ -75,7 +75,7 @@ if [ ! -f "$FILEPATH" ]; then
   curl "$WURI" -s > $FILEPATH
 fi
 
-if [[ DESKTOP_SESSION -eq cinnamon ]]; then
+if [[ "$DESKTOP_SESSION" == "cinnamon" ]]; then
   # echo $FILEPATH
   # gsettings set org.gnome.desktop.background picture-uri file://${FILEPATH}
   # $ gsettings list-recursively org.cinnamon.desktop.background
