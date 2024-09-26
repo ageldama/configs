@@ -10,3 +10,6 @@
 
 (add-to-list 'auto-mode-alist '("\\.mjs?\\'" . js-mode))
 (add-to-list 'auto-mode-alist '("\\.cjs?\\'" . js-mode))
+
+
+(add-hook 'html-mode-hook 'web-mode)
