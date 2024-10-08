@@ -48,6 +48,7 @@
 	   ;; "feat/rg.el"
 	   ;; "feat/helm-ag.el"
 	   ;; "feat/embark.el"
+	   ;; "feat/treemacs.el"
 
 	   ;; "auctex.el"
 	   ;; "c++-light-2022.el"
