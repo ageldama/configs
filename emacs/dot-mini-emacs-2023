@@ -161,6 +161,9 @@
 (use-package writeroom-mode :ensure t :pin melpa)
 
 
+(use-package telephone-line :ensure t :pin melpa)
+(telephone-line-mode 1)
+
 
 ;;;
 (use-package avy :ensure t :pin melpa
@@ -619,37 +622,37 @@ treat as N=1."
 
 
 (def-compile-no-arg-cmd mini-git/gwip
-  (let ((commit-msg "--wip-- [skip ci]")
-        (git-root (git/find-nearest-repo)))
-    (if (null git-root)
-        (error "Not a/in git-repos? [%s]"
-               default-directory)
-      ;; else: found `.git/`:
-      (format "cd '%s' && git commit -am '%s'"
-              git-root commit-msg))))
+                        (let ((commit-msg "--wip-- [skip ci]")
+                              (git-root (git/find-nearest-repo)))
+                          (if (null git-root)
+                              (error "Not a/in git-repos? [%s]"
+                                     default-directory)
+                            ;; else: found `.git/`:
+                            (format "cd '%s' && git commit -am '%s'"
+                                    git-root commit-msg))))
 
 
 (def-compile-no-arg-cmd mini-git/add 
-  (format "cd '%s' && git add '%s'"
-          default-directory
-          (f-relative (buffer-file-name)
-                      default-directory)))
+                        (format "cd '%s' && git add '%s'"
+                                default-directory
+                                (f-relative (buffer-file-name)
+                                            default-directory)))
 
 
 (def-compile-no-arg-cmd mini-git/status 
-  (format "cd '%s' && git status" default-directory))
+                        (format "cd '%s' && git status" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/push
-  (format "cd '%s' && git push" default-directory))
+                        (format "cd '%s' && git push" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/pull
-  (format "cd '%s' && git pull" default-directory))
+                        (format "cd '%s' && git pull" default-directory))
 
 
 (def-compile-no-arg-cmd mini-git/remote-v
-  (format "cd '%s' && git remote -v" default-directory))
+                        (format "cd '%s' && git remote -v" default-directory))
 
 
 
@@ -719,7 +722,7 @@ treat as N=1."
       (global-set-key (kbd "C-x C-0") #'delete-window)
 
       (define-key god-local-mode-map (kbd "<f5>")
-        #'recompile-showing-compilation-window)
+                  #'recompile-showing-compilation-window)
 
       (define-key god-local-mode-map (kbd "[") #'backward-paragraph)
       (define-key god-local-mode-map (kbd "]") #'forward-paragraph)
