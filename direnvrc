@@ -22,3 +22,16 @@ layout_pdm() {
   PATH_add "$VENV"
 }
 
+layout_hatch() {
+  if [[ ! -f pyproject.toml ]]; then
+    log_error 'No pyproject.toml found.  Use `hatch new` or `hatch init` to create one first.'
+    exit 2
+  fi
+
+  local VENV=$(dirname $(hatch run which python))
+  export VIRTUAL_ENV=$(echo "$VENV" | rev | cut -d'/' -f2- | rev)
+  export HATCH_ACTIVE=1
+  PATH_add "$VENV"
+}
+
+
