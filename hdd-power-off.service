@@ -1,0 +1,13 @@
+[Unit]
+Description=Run SystemD as users
+After=network.target
+
+[Service]
+Type=oneshot
+User=root
+ExecStart=/bin/bash /home/aamadleg/local/bin/hdparm.sh
+Restart=no
+
+
+[Install]
+WantedBy=multi-user.target

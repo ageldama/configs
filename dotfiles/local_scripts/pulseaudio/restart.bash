@@ -1,0 +1,2 @@
+systemctl --user restart pulseaudio
+

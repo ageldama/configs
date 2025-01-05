@@ -13,7 +13,7 @@ foreach my $i (qw<
   github.com/securego/gosec/cmd/gosec/...
 >) {
   print $i;
-  print qx(go get -u -v ${i});
+  print qx(go install -v ${i});
 }
 
 #print qx(gometalinter -i -u); # NOTE: I fucking love IU!

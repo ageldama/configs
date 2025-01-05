@@ -14,6 +14,8 @@
 
 (let ((l '(
            ;; "exec-path-from-shell.el"
+           ;; "feat/direnv.el"
+           ;; "feat/pc-bufsw.el"
            ;; "feat/helm.el"
            ;; "feat/helm-swoop.el"
            ;; "feat/browse-kill-ring.el"
@@ -25,6 +27,7 @@
 	   ;; "feat/evil-owl.el"
 	   ;; "feat/evil-surround.el"
 	   ;; "feat/flycheck.el"
+	   ;; "feat/flycheck-compcmdsjson.el"
 	   ;; "feat/helpful.el"
 	   ;; "feat/hl-todo.el"
 	   ;; "feat/magit.el"
@@ -45,6 +48,7 @@
 	   ;; "feat/rg.el"
 	   ;; "feat/helm-ag.el"
 	   ;; "feat/embark.el"
+	   ;; "feat/treemacs.el"
 
 	   ;; "auctex.el"
 	   ;; "c++-light-2022.el"
@@ -74,6 +78,7 @@
 	   ;; "vtchcc-eglot.el" ; typescript, yaml
 	   ;; "json.el"
 	   ;; "javascript/js2.el"
+	   ;; "javascript/typescript.el"
 	   ;; "web.el"
 	   ;; "xclip.el"
 	   ;; "zig.el"
@@ -95,7 +100,7 @@
           ;; *ageldama/font-fixed-ko* "Noto Sans Mono CJK KR"
           *ageldama/font-fixed-ko* "D2Coding"
           )
-    (my-set-fixed-fonts))
+    (my-set-fixed-fonts *ageldama/font-fixed-en* *ageldama/font-fixed-ko*))
 
   (set-face-attribute 'default nil :height 125)
   ;;; NOTE 105, 85, 95?
@@ -105,8 +110,14 @@
   (require 'day-and-night)
   (day-and-night/change-theme-by-time)
   (day-and-night/start-timer 30)
+
+  (setq *day-and-night/day-theme* 'modus-operandi-tinted)
+  (setq *day-and-night/night-theme* 'modus-vivendi-tinted)
+
   )
 
+(global-display-line-numbers-mode 1)
+(global-hl-line-mode 1)
 
 ;; 너무 느리면 끄자.
 (when (fboundp 'yas-global-mode)
