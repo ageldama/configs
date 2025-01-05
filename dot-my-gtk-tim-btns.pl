@@ -49,7 +49,16 @@ my $cmds = [
         name => 'fm4u',
         cmd => 'x-terminal-emulator -e fm4u.pl',
         font => 'normal 24px serif',
-        fg => 'cyan',
+        bg => 'darkgrey',
+        fg => 'yellow',
+    },
+
+    {
+        name => 'fm 101.9',
+        cmd => 'x-terminal-emulator -e fm-101.9.sh',
+        font => 'normal 24px serif',
+        bg => 'darkgrey',
+        fg => 'yellow',
     },
 
     {
