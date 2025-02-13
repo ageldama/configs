@@ -131,7 +131,7 @@ format-charging = CHR <animation-charging> <label-charging>
 format-discharging = DSC <animation-discharging> <label-discharging>
 format-discharging-padding = 1
 
-format-full-prefix = "F  "
+format-full-prefix = "F"
 format-full-prefix-foreground = #FFFFFF
 format-full-prefix-background = #00FF00
 
