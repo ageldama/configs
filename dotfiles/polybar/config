@@ -165,15 +165,15 @@ format-warn = <ramp> <label-warn>
 
 label = %temperature-c%
 label-warn = %temperature-c%
-label-warn-background = #dc143c
+label-warn-background = #ff143c
 label-warn-padding = 1
 
 ramp-0 = TEMP=
 ramp-1 = TEMP=
-ramp-foreground = #fffb00
+;ramp-foreground = #ffffff
 format-padding = 1
-label-background = #3f3f3f
-label-underline = #fba922
+label-background = #000000
+label-underline = #000000
 
 [module/pulseaudio]
 type = internal/pulseaudio
