@@ -621,17 +621,13 @@
       </action>
     </keybind>
 
-    <keybind key="W-p">
+    <keybind key="W-S-p">
       <action name="Execute">
-        <command>
-        <![CDATA[
-        TODO xrandr -q |perl -wlne "/^(?<disp>.+) connected/ and print $+{disp}" | xargs -I '{}' xrandr --auto --output '{}'
-        ]]>
-        </command>
+        <command>xrandr-all.sh</command>
       </action>
     </keybind>
 
-    <keybind key="W-S-p">
+    <keybind key="W-p">
       <action name="Execute">
         <command>arandr</command>
       </action>
