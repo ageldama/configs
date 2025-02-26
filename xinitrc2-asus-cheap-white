@@ -1,0 +1,16 @@
+#!/bin/bash
+
+CONNECTED_DISPS=$(xrandr -q | perl -wlne "/^(?<disp>.+) connected/ and print $+{disp}")
+
+if [[ "$CONNECTED_DISPS" == *"HDMI-1"* ]]; then
+  xrandr --output HDMI-1 --auto && xrandr --output eDP-1 --off
+  pkill -USR1 polybar
+  test -x ~/.fehbg && ~/.fehbg
+fi
+
+
+xinput set-prop 'ETPS/2 Elantech Touchpad' 'libinput Tapping Enabled' 1
+
+
+
+
