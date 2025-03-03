@@ -67,7 +67,7 @@ key "XF86LaunchA" rofi -combi-modi drun,window,run -show combi
 key "Super+Tab" rofi -show window
 key "Super+Shift+Tab" rofi -show windowcd
 
-key "Super+Esc" xscreensaver-lock.pl
+key "Super+l" xscreensaver-lock.pl
 
 key "Print" flameshot gui
 key "Super+Shift+p" flameshot gui
