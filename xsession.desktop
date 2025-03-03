@@ -1,0 +1,6 @@
+[Desktop Entry]
+Name=Xsession
+Exec=/etc/X11/xinit/Xsession
+
+# /usr/share/xsessions/xsession.desktop
+
