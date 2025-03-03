@@ -70,7 +70,8 @@ key "Super+Shift+Tab" rofi -show windowcd
 key "Super+l" xscreensaver-lock.pl
 
 key "Print" flameshot gui
-key "Super+Shift+p" flameshot gui
+key "Super+Ctrl+p" flameshot gui
+key "Super+Shift+p" sh -c 'flameshot full -p ~/Pictures'
 
 key "Super+e" x-terminal-emulator -e mc
 key "Super+Shift+e" sh -c 'thunar || pcmanfm'
