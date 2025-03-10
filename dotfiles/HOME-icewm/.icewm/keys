@@ -64,6 +64,11 @@ key "Super+Return" x-terminal-emulator
 key "Super+d" rofi -combi-modi drun,window,run -show combi
 key "XF86LaunchA" rofi -combi-modi drun,window,run -show combi
 
+key "Super+f" scripts-rofi.pl -e -s
+key "XF86LaunchB" scripts-rofi.pl -e -s
+
+key "Super+Shift+F9" scripts-rofi.pl -r -e
+
 key "Super+Tab" rofi -show window
 key "Super+Shift+Tab" rofi -show windowcd
 
@@ -80,10 +85,7 @@ key "Super+Shift+m" x-terminal-emulator -e bashmount
 key "Super+w" wg-whatever.pl
 #key "Super+w" wg.pl
 
-key "Super+Escape" scripts-rofi.pl -e -s
-key "XF86LaunchB" scripts-rofi.pl -e -s
-
-key "Super+Shift+F9" scripts-rofi.pl -r -e
+key "Super+Esc" sh -c 'notify-send FORTUNE "$(fortune -s)"'
 
 key "Super+Shift+v" sh -c 'which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol'
 

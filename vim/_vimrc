@@ -30,7 +30,7 @@ set expandtab	" tab대신 스페이스!
 
 set wrap
 
-set textwidth=250
+"set textwidth=250
 
 set modeline
 
