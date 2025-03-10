@@ -13,42 +13,42 @@
                    "/dot-mini-emacs-2023"))
 
 (let ((l '(
-           ;; "exec-path-from-shell.el"
-           ;; "feat/direnv.el"
+           "exec-path-from-shell.el"
+           "feat/direnv.el"
            ;; "feat/pc-bufsw.el"
            ;; "feat/helm.el"
            ;; "feat/helm-swoop.el"
-           ;; "feat/browse-kill-ring.el"
-	   ;; "feat/company.el"
-	   ;; "feat/deadgrep.el"
-	   ;; "feat/editorconfig.el"
-	   ;; "feat/eldoc.el"
-	   ;; "feat/evil-matchit.el"
-	   ;; "feat/evil-owl.el"
-	   ;; "feat/evil-surround.el"
-	   ;; "feat/flycheck.el"
+           "feat/browse-kill-ring.el"
+	   "feat/company.el"
+	   "feat/deadgrep.el"
+	   "feat/editorconfig.el"
+	   "feat/eldoc.el"
+	   "feat/evil-matchit.el"
+	   "feat/evil-owl.el"
+	   "feat/evil-surround.el"
+	   "feat/flycheck.el"
 	   ;; "feat/flycheck-compcmdsjson.el"
 	   ;; "feat/helpful.el"
-	   ;; "feat/hl-todo.el"
-	   ;; "feat/magit.el"
-	   ;; "feat/markdown-mode.el"
+	   "feat/hl-todo.el"
+	   "feat/magit.el"
+	   "feat/markdown-mode.el"
 	   ;; "feat/moonshot.el"
 	   ;; "feat/multiple-cursors.el"
-	   ;; "feat/plantuml.el"
-	   ;; "feat/projectile.el"
+	   "feat/plantuml.el"
+	   "feat/projectile.el"
            ;; "feat/helm-projectile.el"
-	   ;; "feat/quelpa.el"
+	   "feat/quelpa.el"
 	   ;; "feat/realgud.el"
-	   ;; "feat/string-inflection.el"
-	   ;; "feat/unfill.el"
-	   ;; "feat/vimish-fold.el"
-	   ;; "feat/yas.el"
-	   ;; "feat/counsel.el"
-	   ;; "feat/apheleia.el"
-	   ;; "feat/rg.el"
+	   "feat/string-inflection.el"
+	   "feat/unfill.el"
+	   "feat/vimish-fold.el"
+	   "feat/yas.el"
+	   "feat/counsel.el"
+	   "feat/apheleia.el"
+	   "feat/rg.el"
 	   ;; "feat/helm-ag.el"
-	   ;; "feat/embark.el"
-	   ;; "feat/treemacs.el"
+	   "feat/embark.el"
+	   "feat/treemacs.el"
 
 	   ;; "auctex.el"
 	   ;; "c++-light-2022.el"
@@ -79,7 +79,7 @@
 	   ;; "json.el"
 	   ;; "javascript/js2.el"
 	   ;; "javascript/typescript.el"
-	   ;; "web.el"
+	   "web.el"
 	   ;; "xclip.el"
 	   ;; "zig.el"
            )))
@@ -95,14 +95,24 @@
 
 (when window-system
   (progn
-    (setq *ageldama/font-fixed-en* "DejaVu Sans Mono" 
-          ;; *ageldama/font-fixed-ko* "나눔고딕코딩"
-          ;; *ageldama/font-fixed-ko* "Noto Sans Mono CJK KR"
-          *ageldama/font-fixed-ko* "D2Coding"
-          )
-    (my-set-fixed-fonts *ageldama/font-fixed-en* *ageldama/font-fixed-ko*))
+    (setq
+     ;; *ageldama/font-fixed-en* "Noto Sans Mono" 
+     ;; *ageldama/font-fixed-en* "DejaVu Sans Mono" 
+     ;; *ageldama/font-fixed-en* "Anonymous Pro"
+     *ageldama/font-fixed-en* "JetBrains Mono"
+     ;; *ageldama/font-fixed-en* "Source Code Pro"
+     ;; *ageldama/font-fixed-en* "D2Coding" 
+     ;; *ageldama/font-fixed-en* "HBIOS-SYS" 
+     ;; *ageldama/font-fixed-ko* "나눔고딕코딩"
+     ;; *ageldama/font-fixed-ko* "Noto Sans Mono CJK KR"
+     *ageldama/font-fixed-ko* "D2Coding"
+     ;; *ageldama/font-fixed-ko* "DOSSaemmul"
+     ;; *ageldama/font-fixed-ko* "HBIOS-SYS"
+     )
+    (set-face-attribute 'default nil :height 80)
+    (my-set-fixed-fonts *ageldama/font-fixed-en*
+                        *ageldama/font-fixed-ko*))
 
-  (set-face-attribute 'default nil :height 125)
   ;;; NOTE 105, 85, 95?
 
   ;; (load-theme 'modus-vivendi t)
@@ -116,7 +126,7 @@
 
   )
 
-(global-display-line-numbers-mode 1)
+(global-display-line-numbers-mode -1)
 (global-hl-line-mode 1)
 
 ;; 너무 느리면 끄자.
@@ -127,6 +137,11 @@
 
 ;; (toggle-battery-saving-mode)
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
+
+
+(add-hook 'c-mode-common-hook
+          (lambda () (when (fboundp 'flycheck-mode)
+                       (flycheck-mode -1))))
 
 
 (when (boundp 'native-comp-async-report-warnings-errors)
