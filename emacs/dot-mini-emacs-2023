@@ -811,7 +811,7 @@ treat as N=1."
 
 (evil-global-set-key 'normal (kbd "SPC") 'hydra-mini/body)
 
-(evil-global-set-key 'normal (kbd "M-RET") 'do-lang-mode-hydra)
+(evil-global-set-key 'normal (kbd "\\") 'do-lang-mode-hydra)
 
 (global-set-key (kbd "C-x x") 'hydra-mini/body)
 
