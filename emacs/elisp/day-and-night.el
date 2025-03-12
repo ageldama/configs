@@ -45,4 +45,22 @@
     (setf *day-and-night/idle-timer* nil)))
 
 
+(defun day-and-night/declare-its-night ()
+  (interactive)
+  (let ((now (day-and-night/now)))
+    (setq
+     *day-and-night/day-starting-at* (- now 2)
+     *day-and-night/night-starting-at* (- now 1))
+    (day-and-night/change-theme-by-time)))
+
+
+(defun day-and-night/declare-its-day ()
+  (interactive)
+  (let ((now (day-and-night/now)))
+    (setq
+     *day-and-night/night-starting-at* 9999
+     *day-and-night/day-starting-at* (- now 1))
+    (day-and-night/change-theme-by-time)))
+
+
 (provide 'day-and-night)
