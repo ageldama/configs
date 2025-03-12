@@ -118,12 +118,10 @@
   ;; (load-theme 'modus-vivendi t)
   ;; (load-theme 'modus-operandi-tinted t)
   (require 'day-and-night)
-  (day-and-night/change-theme-by-time)
-  (day-and-night/start-timer 30)
-
   (setq *day-and-night/day-theme* 'modus-operandi-tinted)
   (setq *day-and-night/night-theme* 'modus-vivendi-tinted)
-
+  (day-and-night/change-theme-by-time)
+  (day-and-night/start-timer 30)
   )
 
 (global-display-line-numbers-mode -1)
