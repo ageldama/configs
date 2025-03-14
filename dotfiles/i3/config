@@ -98,7 +98,7 @@ bindsym $mod+space focus mode_toggle
 bindsym $mod+a focus parent
 
 # focus the child container
-#bindsym $mod+d focus child
+bindsym $mod+d focus child
 
 # Define names for default workspaces for which we configure key bindings later on.
 # We use variables to avoid repeating the names in multiple places.
@@ -185,11 +185,11 @@ bindsym $mod+r mode "resize"
 
 
 bindsym $mod+Escape exec "xscreensaver-lock.pl"
-bindsym $mod+d exec "rofi -combi-modi drun,ssh,window,run -show combi"
+bindsym $mod+z exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym XF86LaunchA exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym $mod+Tab exec "rofi -show window"
 bindsym $mod+Shift+w exec "wg-whatever.pl"
-bindsym $mod+Shift+d exec "scripts-rofi.pl -e "
+bindsym $mod+Shift+z exec "scripts-rofi.pl -e "
 bindsym XF86LaunchB exec "scripts-rofi.pl -e "
 #bindsym $mod+F9 exec "scripts-rofi.pl -e "
 #bindsym $mod+Shift+F9 exec "scripts-rofi.pl -r -e"
