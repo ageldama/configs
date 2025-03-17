@@ -93,8 +93,11 @@ if [[ -f ~/.use-ssh-add ]]; then
 
   if [[ ! -z "${SSH_AUTH_SOCK}" ]]; then
     # FreeBSD: `pkg add -y OpenSSH-askpass`
-    SSH_ASKPASS=$(which ssh-askpass)
-    SSH_ASKPASS_REQUIRE=prefer
+    SSH_ASKPASS_=$(which ssh-askpass)
+    if [[ ! -z "${SSH_ASKPASS_}" ]]; then
+      SSH_ASKPASS="${SSH_ASKPASS_}"
+      SSH_ASKPASS_REQUIRE=prefer
+    fi
 
     ssh-add < /dev/null &
   fi
