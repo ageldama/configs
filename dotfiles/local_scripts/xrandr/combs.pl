@@ -3,6 +3,7 @@
 use strict;
 use warnings;
 
+use Getopt::Std;
 use Data::Compare;
 use DDP;
 
@@ -89,6 +90,24 @@ sub find_onoff_disp {
   return $found;
 }
 
+sub build_xrandr_cmd {
+  my ($onoff) = shift;
+  my $cmd = 'xrandr ';
+
+  foreach my $disp ( keys %$onoff ) {
+    my $onoff = $onoff->{$disp};
+    $cmd .= " --output $disp ";
+    if ($onoff) {
+      $cmd .= '--auto';
+    }
+    else {
+      $cmd .= '--off';
+    }
+  }
+
+  return $cmd;
+}
+
 # --- main :
 {
   # 연결된 모든 display 이름: ("HDMI-1", "eDP-1")
@@ -111,6 +130,33 @@ sub find_onoff_disp {
   my $next_idx = $cur_idx + 1;
   $next_idx = 0 if $next_idx >= scalar @onoffs;
 
+  my $next_comb = $onoffs[$next_idx];
+
+  # Getopt:
+  my %opts = ( i => 0, l => 0 );
+  getopts( 'il', \%opts );
+
+  if ( $opts{i} ) {
+    my $cmd = build_xrandr_cmd($next_comb);
+    system($cmd);
+    print $cmd . "\n";
+  }
+  elsif ( $opts{l} ) {
+
+    # print the next candidate first:
+    print build_xrandr_cmd($next_comb), "\n";
+
+    # print the rests:
+    for ( my $idx = 0 ; $idx < scalar @onoffs ; $idx++ ) {
+      next if $idx == $next_idx;
+
+      # p $onoffs[$idx];
+      print build_xrandr_cmd( $onoffs[$idx] ), "\n";
+    }
+  }
+  else {
+    die "Usage: -i == run xrandr immed. / -l == list all\n";
+  }
 }
 
 __DATA__
