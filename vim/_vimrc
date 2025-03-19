@@ -261,6 +261,11 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 
+
+map <C-y> :w !xclip -sel c <CR><CR>
+
+
+
 augroup vimrc-auto-mkdir
   autocmd!
   autocmd BufWritePre * call s:auto_mkdir(expand('<afile>:p:h'), v:cmdbang)

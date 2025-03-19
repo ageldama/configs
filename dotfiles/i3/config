@@ -194,10 +194,12 @@ bindsym XF86LaunchB exec "scripts-rofi.pl -e "
 #bindsym $mod+F9 exec "scripts-rofi.pl -e "
 #bindsym $mod+Shift+F9 exec "scripts-rofi.pl -r -e"
 
+bindsym $mod+p exec "~/local/scripts/xrandr/combs.pl -i"
+
 bindsym Print exec "flameshot gui"
 bindsym Shift+Print exec "flameshot full -p ~/Pictures"
 
-bindsym $mod+p exec "flameshot gui"
+bindsym $mod+Control+p exec "flameshot gui"
 bindsym $mod+Shift+p exec "flameshot full -p ~/Pictures"
 
 bindsym $mod+F10 exec "x-terminal-emulator -e mc"
