@@ -226,6 +226,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'thinca/vim-fontzoom'
 
 
+Plug 'junegunn/goyo.vim'
+
 
 Plug 'liuchengxu/vim-which-key'
 
@@ -271,6 +273,13 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 " journals, memos, plans
 let $diary_dir = "~/P/v3"
 map <Leader>op :e $diary_dir/PLAN.org<cr>
+
+map <Leader>`g :Goyo<cr>
+
+
+" fzf
+map <Leader>zz :FZF<cr>
+"map <Leader>zh :FZF ~<cr>
 
 
 " xorg, clipboard
