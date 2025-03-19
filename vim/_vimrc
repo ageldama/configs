@@ -14,6 +14,13 @@
 "let mapleader=" "
 "nnoremap <SPACE> <Nop>
 
+
+let g:mapleader = "\<Space>"
+let g:maplocalleader = ','
+nnoremap <silent> <leader>      :<c-u>WhichKey '<Space>'<CR>
+nnoremap <silent> <localleader> :<c-u>WhichKey  ','<CR>
+
+
 set paste
 set nocompatible
 syntax on
@@ -261,7 +268,12 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 
 
 
+" journals, memos, plans
+let $diary_dir = "~/P/v3"
+map <Leader>op :e $diary_dir/PLAN.org<cr>
 
+
+" xorg, clipboard
 map <C-y> :w !xclip -sel c <CR><CR>
 
 
