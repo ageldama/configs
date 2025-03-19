@@ -23,7 +23,7 @@ sub highlight_day {
 
 sub cal3 {
     my ($yr, $mon, $day) = @_;
-    
+
     my $today = DateTime->new(
         year       => $yr,
         month      => $mon,
@@ -32,7 +32,7 @@ sub cal3 {
         minute     => 13,
         second     => 42,
     );
-        
+
     my $first_day = $today->clone;
     $first_day->set(day => 1);
 
@@ -76,6 +76,17 @@ EO_HELP
 }
 
 
+sub create_memo_file {
+  my ($filename, $date) = @_;
+
+	open(my $fh, '>', $filename) or die $!;
+	print $fh "#+TITLE: $date\n";
+	print $fh "#+TAGS[]\n";
+	print $fh "\n\n\n";
+	close($fh);
+}
+
+
 my $cur = DateTime->now;
 my $term = Term::ReadLine->new($Script);
 my $OUT = $term->OUT || \*STDOUT;
@@ -105,6 +116,8 @@ while (1){
       my $fn = sprintf("%d-%02d%s/%d-%02d%s-%02d%s.%s",
                        $cur->year, $cur->month, $cur->month_abbr,
                        $cur->year, $cur->month, $cur->month_abbr, $cur->day, $cur->day_abbr, $ext);
+			create_memo_file($fn,
+				sprintf("%d-%02d-%02d", $cur->year, $cur->month, $cur->day)) unless -f $fn;
       my $cmd = $editor . " " . $fn;
       print $cmd . "\n";
       system($cmd);
