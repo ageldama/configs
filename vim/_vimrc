@@ -228,6 +228,8 @@ if !empty(glob("~/.use-vim-go"))
 endif
 
 
+Plug 'jamessan/vim-gnupg'
+
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
