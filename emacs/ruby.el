@@ -13,3 +13,8 @@
 
 (when (fboundp 'web-mode)
   (add-to-list 'auto-mode-alist '("\\.html\\.erb\\'" . web-mode)))
+
+(when (fboundp 'apheleia-mode)
+  (add-hook 'ruby-mode-hook
+            (lambda ()
+              (setq apheleia-formatter 'rubocop))))

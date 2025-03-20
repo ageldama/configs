@@ -81,7 +81,7 @@ sub create_memo_file {
 
 	open(my $fh, '>', $filename) or die $!;
 	print $fh "#+TITLE: $date\n";
-	print $fh "#+TAGS[]\n";
+	print $fh "#+TAGS[]:\n";
 	print $fh "\n\n\n";
 	close($fh);
 }
