@@ -102,6 +102,9 @@ if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
   eval $(perl -Mlocal::lib)
 fi
 
+export PERLDOC="-MPod::Text::Color"
+
+
 
 if [[ -f ~/.zshrc.local2 ]]; then
   source ~/.zshrc.local2
