@@ -480,6 +480,7 @@
       ("w" avy-goto-word-1 "goto-word")
       ("l" avy-goto-line "goto-line")
 
+      ("C-r" recompile-showing-compilation-window "recompile")
       ))
   ) ;; def-hydras
 
