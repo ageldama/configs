@@ -109,9 +109,10 @@
      ;; *ageldama/font-fixed-ko* "DOSSaemmul"
      ;; *ageldama/font-fixed-ko* "HBIOS-SYS"
      )
-    (set-face-attribute 'default nil :height 80)
     (my-set-fixed-fonts *ageldama/font-fixed-en*
-                        *ageldama/font-fixed-ko*))
+                        *ageldama/font-fixed-ko*)
+    (set-face-attribute 'default nil :height 80))
+
 
   ;;; NOTE 105, 85, 95?
 
