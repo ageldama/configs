@@ -1,5 +1,10 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
+(defmacro defined-symbol-value (sym)
+  `(and (boundp ,sym)
+        (symbol-value ,sym)))
+
+
 (setq inhibit-startup-screen t)
 (setq default-input-method   "korean-hangul")
 (prefer-coding-system 'utf-8-unix)
@@ -481,8 +486,15 @@
       ("l" avy-goto-line "goto-line")
 
       ("C-r" recompile-showing-compilation-window "recompile")
-      ))
-  ) ;; def-hydras
+
+      ,@(when (fboundp 'eglot)
+          '(("e" hydra-eglot/body "eglot"))
+
+   )))
+) ;; def-hydras
+
+
+
 
 (defun gen-input(KEYS)
   (setq  unread-command-events (nconc (listify-key-sequence (kbd KEYS)) unread-command-events)))
@@ -531,6 +543,8 @@ treat as N=1."
   ("X"        #'tab-close
    "close" )
   ("SPC" nil))
+
+
 
 
 
