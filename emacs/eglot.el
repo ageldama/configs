@@ -49,7 +49,7 @@ _: K_: shutdown-all     ^ ^                  ^ ^
     ("TAB" #'completion-at-point "completion")
 
     ("e" #'eglot-code-actions "code")
-    ("E i" #'eglot-code-action-organize-imports "code / org-imports")
+    ("E o" #'eglot-code-action-organize-imports "code / org-imports")
     ("E q" #'eglot-code-action-quickfix "code / quickfix")
     ("E x" #'eglot-code-action-extract "code / extract")
     ("E i" #'eglot-code-action-inline "code / inline")
