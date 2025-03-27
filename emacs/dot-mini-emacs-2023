@@ -452,7 +452,7 @@
       ,@(when (fboundp 'counsel-recentf)
           '(("r" counsel-recentf "recentf" )))
 
-      ;; ("M--" hydra-misc-fns/body "misc-fns" )
+      ("M--" hydra-misc-fns/body "misc-fns" )
 
       ("M-q" hydra-misc-toggles/body "toggles" )
 
@@ -490,8 +490,29 @@
       ,@(when (fboundp 'eglot)
           '(("e" hydra-eglot/body "eglot"))
 
-   )))
-) ;; def-hydras
+          )))
+
+  (defhydra hydra-misc-fns ()
+    "
+Misc:^^
+--------------------------
+_p_ : list-proc
+_b_ : bookmarks
+_d_ : search sdcv
+_s_ : del-trail-ws
+_G_ : gc
+
+_SPC_ : cancel
+"
+    ("p"  counsel-list-processes :exit t)
+    ("b"  counsel-bookmark :exit t)
+    ("d"  sdcv-search-input :exit t)
+    ("s"  delete-trailing-whitespace :exit t)
+    ("G"  garbage-collect :exit t)
+
+    ("SPC" nil))
+
+  ) ;; def-hydras
 
 
 
