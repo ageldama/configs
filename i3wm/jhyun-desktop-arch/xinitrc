@@ -86,23 +86,6 @@ fi
 
 
 # ssh / gnome-keyring
-if [[ -f ~/.use-ssh-add ]]; then
-  if [[ -z "${SSH_AUTH_SOCK}" ]]; then
-    eval "$(ssh-agent)"
-  fi
-
-  if [[ ! -z "${SSH_AUTH_SOCK}" ]]; then
-    # FreeBSD: `pkg add -y OpenSSH-askpass`
-    SSH_ASKPASS_=$(which ssh-askpass)
-    if [[ ! -z "${SSH_ASKPASS_}" ]]; then
-      SSH_ASKPASS="${SSH_ASKPASS_}"
-      SSH_ASKPASS_REQUIRE=prefer
-    fi
-
-    ssh-add < /dev/null &
-  fi
-fi
-
 if [[ -f ~/.use-gnome-keyring ]]; then
   case ${OSNAME} in
     Linux)
@@ -115,6 +98,8 @@ if [[ -f ~/.use-gnome-keyring ]]; then
           export GNOME_KEYRING_CONTROL
           export GNOME_KEYRING_PID
         #fi
+      elif [[ -f /etc/fedora-release ]]; then
+        eval $(gnome-keyring-daemon --start)
       else
         if pgrep -u $UID gnome-keyring && [[ -e /run/user/${UID}/keyring/ssh ]]; then
           export SSH_AUTH_SOCK=/run/user/${UID}/keyring/ssh
@@ -138,6 +123,21 @@ if [[ -f ~/.use-gnome-keyring ]]; then
       export SSH_AUTH_SOCK
       ;;
   esac
+elif [[ -f ~/.use-ssh-add ]]; then
+  if [[ -z "${SSH_AUTH_SOCK}" ]]; then
+    eval "$(ssh-agent)"
+  fi
+
+  if [[ ! -z "${SSH_AUTH_SOCK}" ]]; then
+    # FreeBSD: `pkg add -y OpenSSH-askpass`
+    SSH_ASKPASS_=$(which ssh-askpass)
+    if [[ ! -z "${SSH_ASKPASS_}" ]]; then
+      SSH_ASKPASS="${SSH_ASKPASS_}"
+      SSH_ASKPASS_REQUIRE=prefer
+    fi
+
+    ssh-add < /dev/null &
+  fi
 fi
 
 
