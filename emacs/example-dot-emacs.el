@@ -82,6 +82,8 @@
 	   "web.el"
 	   ;; "xclip.el"
 	   ;; "zig.el"
+	   ;; "lsp.el"
+	   "eglot.el"
            )))
   (dolist (i l) (load-file (concat minimi-config-path i)))
   ;;
