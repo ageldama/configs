@@ -351,6 +351,7 @@
       "toggles"
       ("l" display-line-numbers-mode "linum")
       ("s" global-whitespace-mode "whitespaces")
+      ("M-s" server-start "emacs-server")
       ("z" zone "zone")
       ("G" my-gc-toggle-timer "gc-timer")
       ("b" toggle-battery-saving-mode "battery-saving")
