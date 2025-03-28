@@ -185,7 +185,8 @@ mode "resize" {
 bindsym $mod+r mode "resize"
 
 
-bindsym $mod+Escape exec "xscreensaver-lock.pl"
+#bindsym $mod+Escape exec "xscreensaver-lock.pl"
+bindsym $mod+Escape exec "xdg-screensaver activate"
 bindsym $mod+z exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym XF86LaunchA exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym $mod+Tab exec "rofi -show window"
