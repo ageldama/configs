@@ -172,8 +172,17 @@
 (use-package writeroom-mode :ensure t :pin melpa)
 
 
-(use-package telephone-line :ensure t :pin melpa)
-(telephone-line-mode 1)
+;; (use-package telephone-line :ensure t :pin melpa)
+;; (telephone-line-mode 1)
+
+(use-package smart-mode-line :ensure t :pin melpa
+  :config
+  (setq sml/theme
+        ;; 'dark
+        ;; 'light
+        'respectful
+        )
+  (sml/setup))
 
 
 ;;;
