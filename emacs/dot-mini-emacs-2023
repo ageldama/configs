@@ -183,7 +183,9 @@
         ;; 'light
         'respectful
         )
-  (sml/setup))
+  (when window-system
+    (sml/setup))
+  )
 
 
 ;;;
