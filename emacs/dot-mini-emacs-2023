@@ -177,7 +177,8 @@
 
 (use-package smart-mode-line :ensure t :pin melpa
   :config
-  (setq sml/theme
+  (setq sml/no-confirm-load-theme t
+        sml/theme
         ;; 'dark
         ;; 'light
         'respectful
