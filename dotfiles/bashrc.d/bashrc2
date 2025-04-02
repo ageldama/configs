@@ -1,34 +1,12 @@
 #!/bin/bash
 
 
-EXAMPLE_BASHRC=<<EO_EXAMPLE_BASHRC
-if [[ -d "$HOME/.bashrc.d" ]]; then
-  for fn in $HOME/.bashrc.d/*; do
-    source $fn
-  done
-fi
-EO_EXAMPLE_BASHRC
-
-
+export LESS=-R
 export PAGER=less
 export EDITOR=run-editor.sh
 #export EDITOR='emacsclient -a vim'
 
 export PATH=$PATH:~/local/bin:~/.local/bin
-
-alias tmux='tmux -2'
-alias view='vim -R'
-
-if [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
-  source /usr/share/doc/fzf/examples/key-bindings.bash
-elif [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
-  source /usr/share/fzf/shell/key-bindings.bash
-fi
-
-if [ -x "$(command -v zoxide)" ]; then
-  eval "$(zoxide init bash)"
-fi
-
 
 
 if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
@@ -36,6 +14,7 @@ if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
   eval $(perl -Mlocal::lib)
 fi
 
+export PERLDOC="-MPod::Text::Color"
 
 
 if [[ -d $HOME/bin ]]; then
@@ -43,6 +22,32 @@ if [[ -d $HOME/bin ]]; then
 fi
 
 
-export PATH=~/go/bin:$PATH
+if [[ -d $HOME/go/bin ]]; then
+  export PATH=~/go/bin:$PATH
+fi
 
+
+if [ "${-#*i}" == "$-" ]; then
+    echo non_interactive > /dev/stderr
+else
+    alias tmux='tmux -2'
+    alias view='vim -R'
+
+    which bat >& /dev/null || which batcat >& /dev/null && alias bat=batcat 
+    which fdfind >& /dev/null && alias fd=fdfind 
+
+    if [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
+        source /usr/share/doc/fzf/examples/key-bindings.bash
+    elif [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
+        source /usr/share/fzf/shell/key-bindings.bash
+    fi
+
+    if [ -x "$(command -v zoxide)" ]; then
+        eval "$(zoxide init bash)"
+    fi
+
+    source ~/.bashrc.d/sensible.bash
+    source ~/.bashrc.d/git-aliases.bash
+    source ~/.bashrc.d/completion.bash
+fi
 
