@@ -177,6 +177,10 @@ if [[ ! -f ~/.no-screensaver ]]; then
 fi
 
 #
+if [[ -f ~/.use-pipewire ]]; then
+  pipewire &
+fi
+
 if [[ -f ~/.use-pactl-zeroconf-discover ]]; then
   pactl load-module module-zeroconf-discover
 fi
