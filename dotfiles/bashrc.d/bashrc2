@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-export LESS=-R
+export LESS='-R -i'
 export PAGER=less
 export EDITOR=run-editor.sh
 #export EDITOR='emacsclient -a vim'
@@ -25,6 +25,20 @@ fi
 if [[ -d $HOME/go/bin ]]; then
   export PATH=~/go/bin:$PATH
 fi
+
+
+eval "$(~/.local/bin/mise activate bash)"
+
+if [[ -d ~/.local/share/mise/shims ]]; then
+  export PATH=~/.local/share/mise/shims:$PATH
+fi
+
+
+
+if [ -x "$(command -v luarocks)" ]; then
+  eval "$(luarocks path)"
+fi
+
 
 
 if [ "${-#*i}" == "$-" ]; then
