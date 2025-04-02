@@ -28,13 +28,14 @@ fi
 
 
 if [ "${-#*i}" == "$-" ]; then
-    echo non_interactive > /dev/stderr
+    # echo non_interactive > /dev/stderr
+    true
 else
     alias tmux='tmux -2'
     alias view='vim -R'
 
-    which bat >& /dev/null || which batcat >& /dev/null && alias bat=batcat 
-    which fdfind >& /dev/null && alias fd=fdfind 
+    which bat >& /dev/null || which batcat >& /dev/null && alias bat=batcat
+    which fdfind >& /dev/null && alias fd=fdfind
 
     if [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
         source /usr/share/doc/fzf/examples/key-bindings.bash
