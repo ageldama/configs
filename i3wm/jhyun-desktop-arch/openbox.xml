@@ -58,7 +58,7 @@
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
       <name>monospace</name>
-      <size>12</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -67,7 +67,7 @@
     </font>
     <font place="InactiveWindow">
       <name>monospace</name>
-      <size>12</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -76,7 +76,7 @@
     </font>
     <font place="MenuHeader">
       <name>monospace</name>
-      <size>12</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -85,7 +85,7 @@
     </font>
     <font place="MenuItem">
       <name>monospace</name>
-      <size>14</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -94,7 +94,7 @@
     </font>
     <font place="ActiveOnScreenDisplay">
       <name>monospace</name>
-      <size>14</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -103,7 +103,7 @@
     </font>
     <font place="InactiveOnScreenDisplay">
       <name>monospace</name>
-      <size>14</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -405,7 +405,7 @@
       <action name="ToggleShowDesktop"/>
     </keybind>
     -->
-    <keybind key="W-F2">
+    <keybind key="W-Escape">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
@@ -668,7 +668,7 @@
     </keybind>
     -->
 
-    <keybind key="W-Escape">
+    <keybind key="W-l">
       <action name="Execute">
         <command>xdg-screensaver activate</command>
       </action>
