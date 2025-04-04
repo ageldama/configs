@@ -486,7 +486,7 @@
 
     -->
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-z">
+    <keybind key="W-Tab">
       <keybind key="Right">
         <action name="DirectionalCycleWindows">
           <direction>right</direction>
@@ -640,7 +640,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-d XF86LaunchA">
+    <keybind key="W-z XF86LaunchA">
       <action name="Execute">
         <command>rofi -combi-modi drun,window,run -show combi</command>
       </action>
@@ -654,7 +654,7 @@
     </keybind>
     -->
 
-    <keybind key="W-Tab">
+    <keybind key="W-S-Tab">
       <action name="Execute">
         <command>rofi -show window</command>
       </action>
@@ -702,7 +702,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-S-d XF86LaunchB C-A-Delete">
+    <keybind key="W-S-z XF86LaunchB C-A-Delete">
       <action name="Execute">
         <command>scripts-rofi.pl -e -s</command>
       </action>
