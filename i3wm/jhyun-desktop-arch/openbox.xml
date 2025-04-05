@@ -405,21 +405,26 @@
       <action name="ToggleShowDesktop"/>
     </keybind>
     -->
+
     <keybind key="W-Escape">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
     </keybind>
+
     <!-- Keybindings for windows -->
     <keybind key="W-S-S">
       <action name="ToggleShade"/>
     </keybind>
+
     <keybind key="W-S-i">
       <action name="Iconify"/>
     </keybind>
+
     <keybind key="W-S-Q">
       <action name="Close"/>
     </keybind>
+
     <!-- <keybind key="W-S-F2"> -->
     <!--   <action name="ShowMenu"> -->
     <!--     <menu>client-menu</menu> -->
@@ -437,6 +442,7 @@
       </action>
     </keybind>
     -->
+
     <keybind key="A-Tab">
       <action name="NextWindow">
         <finalactions>
@@ -446,6 +452,7 @@
         </finalactions>
       </action>
     </keybind>
+
     <!--
     <keybind key="W-S-z">
       <action name="NextWindow">
@@ -459,91 +466,86 @@
       </action>
     </keybind>
     -->
+
     <keybind key="W-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
       </action>
     </keybind>
-    <!--
-    <keybind key="W-S-Return">
-      <action name="Execute">
-        <command>skippy-xd</command>
-      </action>
-    </keybind>
-    -->
-    <!--
-    <keybind key="W-Return">
-      <action name="Execute">
-        <command>x-terminal-emulator</command>
-      </action>
-    </keybind>
 
-    <keybind key="W-r">
-      <action name="Execute">
-        <command>gmrun</command>
-      </action>
-    </keybind>
 
-    -->
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-Tab">
+    <keybind key="W-x">
       <keybind key="Right">
         <action name="DirectionalCycleWindows">
           <direction>right</direction>
         </action>
       </keybind>
+
       <keybind key="Left">
         <action name="DirectionalCycleWindows">
           <direction>left</direction>
         </action>
       </keybind>
+
       <keybind key="Up">
         <action name="DirectionalCycleWindows">
           <direction>up</direction>
         </action>
       </keybind>
+
       <keybind key="Down">
         <action name="DirectionalCycleWindows">
           <direction>down</direction>
         </action>
       </keybind>
+
       <keybind key="S-Right">
         <action name="DirectionalTargetWindow">
           <direction>right</direction>
         </action>
       </keybind>
+
       <keybind key="S-Left">
         <action name="DirectionalTargetWindow">
           <direction>left</direction>
         </action>
       </keybind>
+
       <keybind key="S-Up">
         <action name="DirectionalTargetWindow">
           <direction>up</direction>
         </action>
       </keybind>
+
       <keybind key="S-Down">
         <action name="DirectionalTargetWindow">
           <direction>down</direction>
         </action>
       </keybind>
+
     </keybind>
+
     <keybind key="W-S-f">
       <action name="ToggleFullscreen"/>
     </keybind>
+
     <keybind key="W-C-x">
       <action name="ToggleMaximize"/>
     </keybind>
+
     <keybind key="W-C-z">
       <action name="ToggleMaximize">
         <direction>vertical</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-c">
       <action name="ToggleMaximize">
         <direction>horizontal</direction>
       </action>
     </keybind>
+
     <keybind key="W-S-F11">
       <action name="ToggleOmnipresent"/>
       <action name="ToggleDecorations"/>
@@ -552,61 +554,80 @@
       <action name="ToggleAlwaysOnBottom"/>
       <!-- <action name="SendToLayer"><layer>bottom</layer></action> -->
     </keybind>
+
     <keybind key="W-A-Up">
       <action name="MoveToEdge">
         <direction>north</direction>
       </action>
     </keybind>
+
     <keybind key="W-A-Down">
       <action name="MoveToEdge">
         <direction>south</direction>
       </action>
     </keybind>
+
     <keybind key="W-A-Right">
       <action name="MoveToEdge">
         <direction>east</direction>
       </action>
     </keybind>
+
     <keybind key="W-A-Left">
       <action name="MoveToEdge">
         <direction>west</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Up">
       <action name="GrowToEdge">
         <direction>north</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Down">
       <action name="GrowToEdge">
         <direction>south</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Right">
       <action name="GrowToEdge">
         <direction>east</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Left">
       <action name="GrowToEdge">
         <direction>west</direction>
       </action>
     </keybind>
+
     <keybind key="W-a">
       <action name="Move"/>
     </keybind>
+
     <keybind key="W-s">
       <action name="Resize"/>
     </keybind>
-    <keybind key="W-S-R">
+
+    <keybind key="W-S-r">
       <action name="Reconfigure"/>
     </keybind>
+
     <keybind key="W-o">
       <action name="MoveResizeTo">
         <!-- move to next monitor -->
         <monitor>next</monitor>
       </action>
     </keybind>
+
+    <keybind key="W-x">
+      <action name="NextWindow">
+        <allDesktops>yes</allDesktops>
+      </action>
+    </keybind>
+
 
     <!-- Keybindings for running applications -->
     <keybind key="W-e">
@@ -654,7 +675,7 @@
     </keybind>
     -->
 
-    <keybind key="W-S-Tab">
+    <keybind key="W-Tab">
       <action name="Execute">
         <command>rofi -show window</command>
       </action>
@@ -808,6 +829,8 @@
       </action>
     </keybind>
     -->
+
+
 
   </keyboard>
   <mouse>
@@ -1115,6 +1138,7 @@
       </mousebind>
       -->
     </context>
+
     <context name="Root">
       <!-- Menus -->
       <mousebind button="Middle" action="Press">
@@ -1128,6 +1152,7 @@
         </action>
       </mousebind>
     </context>
+
     <context name="MoveResize">
       <!--
       <mousebind button="Up" action="Click">
@@ -1152,7 +1177,9 @@
       </mousebind>
       -->
     </context>
+
   </mouse>
+
   <menu>
     <!-- You can specify more than one menu file in here and they are all loaded,
        just don't make menu ids clash or, well, it'll be kind of pointless -->
