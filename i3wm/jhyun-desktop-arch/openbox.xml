@@ -487,13 +487,13 @@
 
 
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-S-c">
+    <keybind key="W-c">
       <action name="NextWindow">
         <allDesktops>yes</allDesktops>
       </action>
     </keybind>
 
-    <keybind key="W-c">
+    <keybind key="W-S-c">
       <keybind key="Right">
         <action name="DirectionalCycleWindows">
           <direction>right</direction>
