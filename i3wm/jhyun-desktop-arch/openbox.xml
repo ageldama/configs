@@ -205,49 +205,49 @@
     <keybind key="W-Left">
       <action name="GoToDesktop">
         <to>left</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-Right">
       <action name="GoToDesktop">
         <to>right</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-Up">
       <action name="GoToDesktop">
         <to>up</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-Down">
       <action name="GoToDesktop">
         <to>down</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Left">
       <action name="SendToDesktop">
         <to>left</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Right">
       <action name="SendToDesktop">
         <to>right</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Up">
       <action name="SendToDesktop">
         <to>up</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Down">
       <action name="SendToDesktop">
         <to>down</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-1">
