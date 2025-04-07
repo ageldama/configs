@@ -16,6 +16,13 @@ my $cmds = [
     },
 
     {
+        name => 'foliate',
+        cmd => 'foliate',
+        font => 'normal 28px serif',
+        fg => 'blue',
+    },
+
+    {
         name => 'calibre',
         cmd => 'calibre',
         font => 'normal 28px serif',
@@ -56,6 +63,14 @@ my $cmds = [
     {
         name => 'fm 101.9',
         cmd => 'x-terminal-emulator -e fm-101.9.sh',
+        font => 'normal 24px serif',
+        bg => 'darkgrey',
+        fg => 'yellow',
+    },
+
+    {
+        name => 'fm kbs classic',
+        cmd => 'x-terminal-emulator -e fm-kbs-classic.sh',
         font => 'normal 24px serif',
         bg => 'darkgrey',
         fg => 'yellow',

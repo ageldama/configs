@@ -26,13 +26,14 @@ if [[ -d $HOME/go/bin ]]; then
   export PATH=~/go/bin:$PATH
 fi
 
+if [[ -x ~/.local/bin/mise ]]; then
+  eval "$(~/.local/bin/mise activate bash)"
+fi
 
-eval "$(~/.local/bin/mise activate bash)"
 
 if [[ -d ~/.local/share/mise/shims ]]; then
   export PATH=~/.local/share/mise/shims:$PATH
 fi
-
 
 
 if [ -x "$(command -v luarocks)" ]; then
