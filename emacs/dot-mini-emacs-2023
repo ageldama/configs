@@ -147,6 +147,20 @@
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance '("crypt")
         org-crypt-key "ageldama@gmail.com")
+
+  (org-babel-do-load-languages
+   'org-babel-load-languages
+   '(
+     (shell . t)
+     (awk . t)
+     (perl . t)
+     (python . t)
+     (dot . t)
+     (plantuml . t)
+     (org . t)
+     (sqlite . t)
+     (C . t)
+     ))
   )
 
 

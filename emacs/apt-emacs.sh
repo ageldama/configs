@@ -31,26 +31,11 @@ elpa-vimish-fold
 elpa-flycheck
 elpa-counsel
 elpa-yasnippet
+elpa-yasnippet-snippets
 elpa-web-mode
 "
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
 echo "INSTALL: $DPKGS ..."
 sudo apt install $DPKGS
-
-TODO=<<'EO_TODO'
-clang flycheck-doc elpa-flx elpa-imenu-list libtext-multimarkdown-perl pandoc
-org-mode-doc ditaa texlive-latex-extra texlive-fonts-recommended texinfo
-elpa-ag exuberant-ctags elpa-solarized-theme elpa-use-package-chords
-elpa-use-package-ensure-system-package elpa-bind-chord
-
-clang flycheck-doc elpa-flx elpa-imenu-list libtext-multimarkdown-perl pandoc
-python3-markdown org-mode-doc ditaa elpa-ag exuberant-ctags
-elpa-solarized-theme elpa-use-package-chords
-elpa-use-package-ensure-system-package elpa-bind-chord
-
-elpa-vertico elpa-smex editorconfig elpa-marginalia markdown | discount |
-libtext-markdown-perl elpa-yasnippet-snippets
-
-EO_TODO
 
