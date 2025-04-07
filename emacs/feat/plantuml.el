@@ -1,19 +1,19 @@
 ;;; PlantUML
 (use-package plantuml-mode :ensure t :pin melpa
   :config
-  (setq plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
-  (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
+  (setq plantuml-jar-path "/usr/share/plantuml/plantuml.jar")
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   (append org-babel-load-languages '((plantuml . t))))
+  ;; (setq org-plantuml-jar-path "/usr/share/java/plantuml/plantuml.jar")
+  ;; (org-babel-do-load-languages
+  ;;  'org-babel-load-languages
+  ;;  (append org-babel-load-languages '((plantuml . t))))
 
-  (setq org-confirm-babel-evaluate nil)
+  ;; (setq org-confirm-babel-evaluate nil)
 
-  (add-hook 'org-babel-after-execute-hook
-            (lambda ()
-              (when org-inline-image-overlays
-                (org-redisplay-inline-images))))
+  ;; (add-hook 'org-babel-after-execute-hook
+  ;;           (lambda ()
+  ;;             (when org-inline-image-overlays
+  ;;               (org-redisplay-inline-images))))
 
   ;; TODO C-c C-,
   ;; <u"<TAB>"

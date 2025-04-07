@@ -141,12 +141,15 @@
 
 (use-package s :ensure t :pin melpa)
 
+
 (use-package org :ensure t :pin org
   :config
   (require 'org-crypt)
   (org-crypt-use-before-save-magic)
   (setq org-tags-exclude-from-inheritance '("crypt")
         org-crypt-key "ageldama@gmail.com")
+
+  ;; (setq org-confirm-babel-evaluate nil)
 
   (org-babel-do-load-languages
    'org-babel-load-languages
@@ -157,11 +160,26 @@
      (python . t)
      (dot . t)
      (plantuml . t)
+     (ditaa . t)
      (org . t)
      (sqlite . t)
      (C . t)
      ))
   )
+
+
+(let ((jar-path "/usr/share/plantuml/plantuml.jar"))
+  (when (and (boundp 'org-plantuml-jar-path)
+             (or (null org-plantuml-jar-path)
+                 (string-empty-p org-plantuml-jar-path))
+             (f-exists? jar-path))
+    (setq org-plantuml-jar-path jar-path)))
+
+
+(let ((jar-path "/usr/share/ditaa/ditaa.jar"))
+  (when (and (boundp 'org-ditaa-jar-path)
+             (not (f-exists? org-ditaa-jar-path)))
+    (setq org-ditaa-jar-path jar-path)))
 
 
 (use-package modus-themes :ensure t :pin melpa)
