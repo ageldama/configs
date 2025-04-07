@@ -6,7 +6,7 @@
   ;; (apheleia-global-mode +1)
   )
 
-(add-hook 'prog-mode-hook 'apheleia-mode)
+;; (add-hook 'prog-mode-hook 'apheleia-mode)
 
 (global-set-key (kbd "C-c M-f") #'apheleia-format-buffer)
 

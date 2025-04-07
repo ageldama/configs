@@ -58,7 +58,7 @@
     <animateIconify>yes</animateIconify>
     <font place="ActiveWindow">
       <name>monospace</name>
-      <size>12</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>Bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -67,7 +67,7 @@
     </font>
     <font place="InactiveWindow">
       <name>monospace</name>
-      <size>12</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>Normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -76,7 +76,7 @@
     </font>
     <font place="MenuHeader">
       <name>monospace</name>
-      <size>12</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -85,7 +85,7 @@
     </font>
     <font place="MenuItem">
       <name>monospace</name>
-      <size>14</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>normal</weight>
       <!-- 'bold' or 'normal' -->
@@ -94,7 +94,7 @@
     </font>
     <font place="ActiveOnScreenDisplay">
       <name>monospace</name>
-      <size>14</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -103,7 +103,7 @@
     </font>
     <font place="InactiveOnScreenDisplay">
       <name>monospace</name>
-      <size>14</size>
+      <size>8</size>
       <!-- font size in points -->
       <weight>bold</weight>
       <!-- 'bold' or 'normal' -->
@@ -205,49 +205,49 @@
     <keybind key="W-Left">
       <action name="GoToDesktop">
         <to>left</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-Right">
       <action name="GoToDesktop">
         <to>right</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-Up">
       <action name="GoToDesktop">
         <to>up</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-Down">
       <action name="GoToDesktop">
         <to>down</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Left">
       <action name="SendToDesktop">
         <to>left</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Right">
       <action name="SendToDesktop">
         <to>right</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Up">
       <action name="SendToDesktop">
         <to>up</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="S-W-Down">
       <action name="SendToDesktop">
         <to>down</to>
-        <wrap>no</wrap>
+        <wrap>yes</wrap>
       </action>
     </keybind>
     <keybind key="W-1">
@@ -405,21 +405,26 @@
       <action name="ToggleShowDesktop"/>
     </keybind>
     -->
-    <keybind key="W-F2">
+
+    <keybind key="W-Escape">
       <action name="ShowMenu">
         <menu>root-menu</menu>
       </action>
     </keybind>
+
     <!-- Keybindings for windows -->
     <keybind key="W-S-S">
       <action name="ToggleShade"/>
     </keybind>
-    <keybind key="W-S-M">
+
+    <keybind key="W-S-i">
       <action name="Iconify"/>
     </keybind>
+
     <keybind key="W-S-Q">
       <action name="Close"/>
     </keybind>
+
     <!-- <keybind key="W-S-F2"> -->
     <!--   <action name="ShowMenu"> -->
     <!--     <menu>client-menu</menu> -->
@@ -437,6 +442,7 @@
       </action>
     </keybind>
     -->
+
     <keybind key="A-Tab">
       <action name="NextWindow">
         <finalactions>
@@ -446,6 +452,7 @@
         </finalactions>
       </action>
     </keybind>
+
     <!--
     <keybind key="W-S-z">
       <action name="NextWindow">
@@ -459,91 +466,104 @@
       </action>
     </keybind>
     -->
+
     <keybind key="W-space">
       <action name="ShowMenu">
         <menu>client-menu</menu>
       </action>
     </keybind>
-    <!--
-    <keybind key="W-S-Return">
-      <action name="Execute">
-        <command>skippy-xd</command>
-      </action>
-    </keybind>
-    -->
-    <!--
-    <keybind key="W-Return">
-      <action name="Execute">
-        <command>x-terminal-emulator</command>
+
+    <keybind key="W-x">
+      <action name="GoToDesktop">
+        <to>last</to>
       </action>
     </keybind>
 
-    <keybind key="W-r">
-      <action name="Execute">
-        <command>gmrun</command>
+    <keybind key="W-S-x">
+      <action name="SendToDesktop">
+        <to>last</to>
       </action>
     </keybind>
 
-    -->
+
     <!-- Keybindings for window switching with the arrow keys -->
-    <keybind key="W-z">
+    <keybind key="W-c">
+      <action name="NextWindow">
+        <allDesktops>yes</allDesktops>
+      </action>
+    </keybind>
+
+    <keybind key="W-S-c">
       <keybind key="Right">
         <action name="DirectionalCycleWindows">
           <direction>right</direction>
         </action>
       </keybind>
+
       <keybind key="Left">
         <action name="DirectionalCycleWindows">
           <direction>left</direction>
         </action>
       </keybind>
+
       <keybind key="Up">
         <action name="DirectionalCycleWindows">
           <direction>up</direction>
         </action>
       </keybind>
+
       <keybind key="Down">
         <action name="DirectionalCycleWindows">
           <direction>down</direction>
         </action>
       </keybind>
+
       <keybind key="S-Right">
         <action name="DirectionalTargetWindow">
           <direction>right</direction>
         </action>
       </keybind>
+
       <keybind key="S-Left">
         <action name="DirectionalTargetWindow">
           <direction>left</direction>
         </action>
       </keybind>
+
       <keybind key="S-Up">
         <action name="DirectionalTargetWindow">
           <direction>up</direction>
         </action>
       </keybind>
+
       <keybind key="S-Down">
         <action name="DirectionalTargetWindow">
           <direction>down</direction>
         </action>
       </keybind>
+
     </keybind>
+
     <keybind key="W-S-f">
       <action name="ToggleFullscreen"/>
     </keybind>
+
     <keybind key="W-C-x">
       <action name="ToggleMaximize"/>
     </keybind>
+
     <keybind key="W-C-z">
       <action name="ToggleMaximize">
         <direction>vertical</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-c">
       <action name="ToggleMaximize">
         <direction>horizontal</direction>
       </action>
     </keybind>
+
     <keybind key="W-S-F11">
       <action name="ToggleOmnipresent"/>
       <action name="ToggleDecorations"/>
@@ -552,55 +572,67 @@
       <action name="ToggleAlwaysOnBottom"/>
       <!-- <action name="SendToLayer"><layer>bottom</layer></action> -->
     </keybind>
+
     <keybind key="W-A-Up">
       <action name="MoveToEdge">
         <direction>north</direction>
       </action>
     </keybind>
+
     <keybind key="W-A-Down">
       <action name="MoveToEdge">
         <direction>south</direction>
       </action>
     </keybind>
+
     <keybind key="W-A-Right">
       <action name="MoveToEdge">
         <direction>east</direction>
       </action>
     </keybind>
+
     <keybind key="W-A-Left">
       <action name="MoveToEdge">
         <direction>west</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Up">
       <action name="GrowToEdge">
         <direction>north</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Down">
       <action name="GrowToEdge">
         <direction>south</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Right">
       <action name="GrowToEdge">
         <direction>east</direction>
       </action>
     </keybind>
+
     <keybind key="W-C-Left">
       <action name="GrowToEdge">
         <direction>west</direction>
       </action>
     </keybind>
+
     <keybind key="W-a">
       <action name="Move"/>
     </keybind>
+
     <keybind key="W-s">
       <action name="Resize"/>
     </keybind>
-    <keybind key="W-S-R">
+
+    <keybind key="W-S-r">
       <action name="Reconfigure"/>
     </keybind>
+
     <keybind key="W-o">
       <action name="MoveResizeTo">
         <!-- move to next monitor -->
@@ -621,13 +653,13 @@
       </action>
     </keybind>
 
-    <keybind key="W-S-p">
+    <keybind key="W-p">
       <action name="Execute">
-        <command>xrandr-all.sh</command>
+				<command>~/local/scripts/xrandr/combs.pl -i</command>
       </action>
     </keybind>
 
-    <keybind key="W-p">
+    <keybind key="W-C-p">
       <action name="Execute">
         <command>arandr</command>
       </action>
@@ -640,7 +672,7 @@
       </action>
     </keybind>
 
-    <keybind key="W-d XF86LaunchA">
+    <keybind key="W-z XF86LaunchA">
       <action name="Execute">
         <command>rofi -combi-modi drun,window,run -show combi</command>
       </action>
@@ -670,19 +702,19 @@
 
     <keybind key="W-l">
       <action name="Execute">
-        <command>xscreensaver-command -lock</command>
+        <command>xdg-screensaver activate</command>
       </action>
     </keybind>
 
-    <keybind key="Print">
+    <keybind key="Print W-M-p">
       <action name="Execute">
-        <command>gnome-screenshot -i</command>
+        <command>flameshot gui</command>
       </action>
     </keybind>
 
-    <keybind key="S-Print">
+    <keybind key="S-Print W-S-p">
       <action name="Execute">
-        <command>gnome-screenshot</command>
+				<command>flameshot full -p ~/Pictures/</command>
       </action>
     </keybind>
 
@@ -702,19 +734,20 @@
       </action>
     </keybind>
 
-    <keybind key="W-F9 XF86LaunchB C-A-Delete">
+    <keybind key="W-S-z XF86LaunchB C-A-Delete">
       <action name="Execute">
         <command>scripts-rofi.pl -e -s</command>
       </action>
     </keybind>
-
-    <keybind key="W-M-F9">
+		<!--
+    <keybind key="W-S-z">
       <action name="Execute">
         <command>scripts-rofi.pl -e -r</command>
       </action>
-    </keybind>
+			</keybind>
+		-->
 
-    <keybind key="W-S-F9">
+    <keybind key="W-S-v">
       <action name="Execute">
         <command>pavucontrol</command>
       </action>
@@ -744,19 +777,19 @@
       </action>
     </keybind>
 
-    <keybind key="XF86AudioMute C-W-m">
+    <keybind key="XF86AudioMute W-m">
       <action name="Execute">
 	<command>pactl-mute.pl sink toggle_default</command>
       </action>
     </keybind>
 
-    <keybind key="XF86AudioLowerVolume C-W-Next">
+    <keybind key="XF86AudioLowerVolume W-Next">
       <action name="Execute">
 	<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pa-get-vol.sh)"'</command>
       </action>
     </keybind>
 
-    <keybind key="XF86AudioRaiseVolume C-W-Prior">
+    <keybind key="XF86AudioRaiseVolume W-Prior">
       <action name="Execute">
 	<command>sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pa-get-vol.sh)"'</command>
       </action>
@@ -764,11 +797,11 @@
 
     <keybind key="W-v">
       <action name="Execute">
-        <command>x-terminal-emulator -e pulsemixer</command>
+        <command>pavucontrol</command>
       </action>
     </keybind>
 
-    <keybind key="W-m">
+    <keybind key="W-S-m">
       <action name="Execute">
         <command>x-terminal-emulator -e bashmount</command>
       </action>
@@ -807,6 +840,8 @@
       </action>
     </keybind>
     -->
+
+
 
   </keyboard>
   <mouse>
@@ -1114,6 +1149,7 @@
       </mousebind>
       -->
     </context>
+
     <context name="Root">
       <!-- Menus -->
       <mousebind button="Middle" action="Press">
@@ -1127,6 +1163,7 @@
         </action>
       </mousebind>
     </context>
+
     <context name="MoveResize">
       <!--
       <mousebind button="Up" action="Click">
@@ -1151,7 +1188,9 @@
       </mousebind>
       -->
     </context>
+
   </mouse>
+
   <menu>
     <!-- You can specify more than one menu file in here and they are all loaded,
        just don't make menu ids clash or, well, it'll be kind of pointless -->
