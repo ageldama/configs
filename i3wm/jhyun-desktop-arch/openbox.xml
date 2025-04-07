@@ -120,7 +120,7 @@
 
        use obconf if you want to change these without having to log out
        and back in -->
-    <number>6</number>
+    <number>10</number>
     <firstdesk>1</firstdesk>
     <names>
       <name>#1</name>
