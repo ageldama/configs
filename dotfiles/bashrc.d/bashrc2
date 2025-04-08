@@ -69,10 +69,10 @@ else
     source ~/.bashrc.d/git-aliases.bash
     source ~/.bashrc.d/completion.bash
 
-    if [[ -n $PS1 && -f ~/.bashrc.d/bash_prompt ]]; then
-      . ~/.bashrc.d/bash_prompt
-      ps1_colorful_theme
-    fi
+    #if [[ -n $PS1 && -f ~/.bashrc.d/bash_prompt ]]; then
+    #  . ~/.bashrc.d/bash_prompt
+    #  ps1_colorful_theme
+    #fi
 
     if [[ -x "$(command -v zoxide)" ]]; then
         eval "$(zoxide init bash)"
