@@ -49,8 +49,13 @@ else
     alias tmux='tmux -2'
     alias view='vim -R'
 
-    which bat >& /dev/null || which batcat >& /dev/null && alias bat=batcat
-    which fdfind >& /dev/null && alias fd=fdfind
+    if [[ -x "$(command -v batcat)" ]]; then
+      alias bat=batcat
+    fi
+
+    if [[ -x "$(command -v fdfind)" ]]; then
+      alias fd=fdfind
+    fi
 
     if [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
         source /usr/share/doc/fzf/examples/key-bindings.bash
@@ -63,6 +68,11 @@ else
     source ~/.bashrc.d/sensible.bash
     source ~/.bashrc.d/git-aliases.bash
     source ~/.bashrc.d/completion.bash
+
+    if [[ -n $PS1 && -f ~/.bashrc.d/bash_prompt ]]; then
+      . ~/.bashrc.d/bash_prompt
+      ps1_colorful_theme
+    fi
 
     if [[ -x "$(command -v zoxide)" ]]; then
         eval "$(zoxide init bash)"
