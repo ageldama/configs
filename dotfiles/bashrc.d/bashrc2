@@ -36,13 +36,13 @@ if [[ -d ~/.local/share/mise/shims ]]; then
 fi
 
 
-if [ -x "$(command -v luarocks)" ]; then
+if [[ -x "$(command -v luarocks)" ]]; then
   eval "$(luarocks path)"
 fi
 
 
 
-if [ "${-#*i}" == "$-" ]; then
+if [[ "${-#*i}" == "$-" ]]; then
     # echo non_interactive > /dev/stderr
     true
 else
@@ -56,14 +56,18 @@ else
         source /usr/share/doc/fzf/examples/key-bindings.bash
     elif [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
         source /usr/share/fzf/shell/key-bindings.bash
-    fi
-
-    if [ -x "$(command -v zoxide)" ]; then
-        eval "$(zoxide init bash)"
+    elif [[ -f /usr/share/fzf/key-bindings.bash ]]; then
+        source /usr/share/fzf/key-bindings.bash
     fi
 
     source ~/.bashrc.d/sensible.bash
     source ~/.bashrc.d/git-aliases.bash
     source ~/.bashrc.d/completion.bash
+
+    if [[ -x "$(command -v zoxide)" ]]; then
+        eval "$(zoxide init bash)"
+    fi
+
+
 fi
 
