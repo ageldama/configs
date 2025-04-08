@@ -168,16 +168,27 @@
   )
 
 
-(let ((jar-path "/usr/share/plantuml/plantuml.jar"))
-  (when (and (boundp 'org-plantuml-jar-path)
+(defmacro file-find-one (&rest file-globs)
+  `(first (append
+           ,@(mapcar (lambda (file-glob)
+                       `(file-expand-wildcards ,file-glob))
+                     file-globs))))
+
+ 
+(let ((jar-path (file-find-one "/usr/share/java/plantuml-*.jar"
+                               "/usr/share/plantuml/plantuml.jar")))
+  (when (and (not (null jar-path))
+             (boundp 'org-plantuml-jar-path)
              (or (null org-plantuml-jar-path)
                  (string-empty-p org-plantuml-jar-path))
              (f-exists? jar-path))
     (setq org-plantuml-jar-path jar-path)))
 
 
-(let ((jar-path "/usr/share/ditaa/ditaa.jar"))
-  (when (and (boundp 'org-ditaa-jar-path)
+(let ((jar-path (file-find-one "/usr/share/java/ditaa-*.jar"
+                               "/usr/share/ditaa/ditaa.jar")))
+  (when (and (not (null jar-path))
+             (boundp 'org-ditaa-jar-path)
              (not (f-exists? org-ditaa-jar-path)))
     (setq org-ditaa-jar-path jar-path)))
 
