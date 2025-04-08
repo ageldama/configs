@@ -208,6 +208,8 @@ bindsym $mod+F10 exec "x-terminal-emulator -e mc"
 bindsym $mod+F9 exec "thunar || pcmanfm "
 bindsym $mod+F8 exec "x-terminal-emulator -e bashmount"
 
+bindsym $mod+F1 exec ~/.config/i3/helpers/i3-keys-rofi.pl
+
 
 bindsym XF86MonBrightnessDown exec ~/.config/i3/helpers/mon-bright-dn.sh
 bindsym XF86MonBrightnessUp exec ~/.config/i3/helpers/mon-bright-up.sh
