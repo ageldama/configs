@@ -78,6 +78,12 @@ else
         eval "$(zoxide init bash)"
     fi
 
+    if [[ -z $DISPLAY ]] && [[ -f ~/.use-startx-auto ]]; then
+      dialog --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
+      if [[ $? == 0 || $? == 255 ]]; then
+        startx &> ~/startx.log
+      fi
+    fi
 
 fi
 
