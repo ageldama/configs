@@ -1,6 +1,6 @@
 #!/bin/sh
 
-zenity --question --text='power-ff?' || exit -1
+yesno.tcl 'power-ff?' || exit -1
 
 xterm -e loginctl poweroff
 pgrep systemd && systemctl poweroff

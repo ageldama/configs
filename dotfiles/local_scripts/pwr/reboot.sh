@@ -1,6 +1,6 @@
 #!/bin/sh
 
-zenity --question --text='reboot?' || exit -1
+yesno.tcl 'reboot?' || exit -1
 
 xterm -e loginctl reboot
 pgrep systemd && systemctl reboot
