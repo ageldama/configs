@@ -169,7 +169,7 @@
 
 
 (defmacro file-find-one (&rest file-globs)
-  `(first (append
+  `(seq-first (append
            ,@(mapcar (lambda (file-glob)
                        `(file-expand-wildcards ,file-glob))
                      file-globs))))
