@@ -74,6 +74,10 @@ else
     #  ps1_colorful_theme
     #fi
 
+    for i in ~/.bashrc.local.d/*; do
+      [[ -f "$i" ]] && source "$i"
+    done
+
     if [[ -x "$(command -v zoxide)" ]]; then
         eval "$(zoxide init bash)"
     fi
@@ -81,6 +85,9 @@ else
     if [[ -z $DISPLAY ]] && [[ -f ~/.use-startx-auto ]]; then
       dialog --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
       if [[ $? == 0 || $? == 255 ]]; then
+        if [[ -f ~/startx.log ]]; then
+          rm -fv ~/startx.log
+        fi
         startx &> ~/startx.log
       fi
     fi
