@@ -8,7 +8,7 @@ requires 'File::Inplace';
 requires 'Set::Scalar';
 requires 'DBI';
 requires 'DBD::SQLite';
-
+requires 'HTML::Escape';
 
 requires 'Calendar::Any';
 requires 'DateTime';
