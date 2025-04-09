@@ -242,14 +242,14 @@
     ;; (global-set-key (kbd "C-'") 'avy-goto-char-timer)
     ;; (global-set-key (kbd "C-\"") 'avy-goto-word-1)
     ;; (global-set-key (kbd "C-:") 'avy-goto-line)
-    (global-set-key (kbd "M-g M-g") 'avy-goto-char-timer)
+    (global-set-key (kbd "M-g SPC") 'avy-goto-char-timer)
     ;; (global-set-key (kbd "M-g M-g") 'goto-line)
     (global-set-key (kbd "M-g l") 'avy-goto-line)
     (global-set-key (kbd "M-g f") 'avy-goto-char)
     (global-set-key (kbd "M-g w") 'avy-goto-word-1)
     (global-set-key (kbd "M-g W") 'avy-goto-word-0)
     ;; (global-set-key (kbd "M-g j") 'hydra-avy-goto/body)
-    (global-set-key (kbd "M-g M-c") 'avy-resume)
+    (global-set-key (kbd "M-g M-g") 'avy-resume)
     (global-set-key (kbd "M-g ,") 'avy-pop-mark)
     ))
 
@@ -398,6 +398,8 @@
                (find-file-literally (buffer-file-name)))
      "cur-lit")
 
+    ("z" counsel-fzf "fzf")
+
     ("M-w" buffer-path-and-line-col "copy-path-linum"))
 
 
@@ -529,7 +531,7 @@
           '(("M-c" hydra-multiple-cursors/body "mcurs" )))
 
       ,@(when (fboundp 'hydra-yas/body)
-          '(("M-s" hydra-yas/body "yas" )))
+          '(("&" hydra-yas/body "yas" )))
 
       ,@(when (fboundp 'hydra-flycheck/body)
           '(("M-c" hydra-flycheck/body "flychk" )))
