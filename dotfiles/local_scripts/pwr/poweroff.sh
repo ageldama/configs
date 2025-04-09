@@ -1,6 +1,6 @@
 #!/bin/sh
 
-yesno.tcl 'power-ff?' || exit -1
+yesno.pl 'power-ff?' || exit -1
 
 xterm -e loginctl poweroff
 pgrep systemd && systemctl poweroff

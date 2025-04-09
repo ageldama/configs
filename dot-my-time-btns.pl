@@ -33,14 +33,14 @@ my $cmds = [
 
     {
         name => 'reboot',
-        cmd => 'sh -c "yesno.tcl \'reboot?\' && sudo reboot"',
+        cmd => 'sh -c "yesno.pl \'reboot?\' && sudo reboot"',
         fg => 'yellow',
         bg => 'red',
     },
 
     {
         name => 'poweroff',
-        cmd => 'sh -c "yesno.tcl \'poweroff?\' && sudo poweroff"',
+        cmd => 'sh -c "yesno.pl \'poweroff?\' && sudo poweroff"',
         fg => 'yellow',
         bg => 'red',
     },
