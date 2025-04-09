@@ -4,8 +4,18 @@ use strict;
 use warnings;
 use Carp;
 use IPC::Open2;
-use HTML::Escape;  # (CPAN) HTML::Escape
+# use HTML::Escape;  # (CPAN) HTML::Escape
 # use DDP;
+
+
+sub escape_html {
+  $_ = shift;
+  s/&/&amp;/g;
+  s/</&lt;/g;
+  s/>/&gt;/g;
+  s/'"'/&quot;/g;
+  return $_;
+}
 
 my @bindsyms = 
   grep(/^bindsym/, # only `bindsym`-s.
