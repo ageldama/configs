@@ -68,6 +68,7 @@ else
     source ~/.bashrc.d/sensible.bash
     source ~/.bashrc.d/git-aliases.bash
     source ~/.bashrc.d/completion.bash
+    source ~/.bashrc.d/prompt.bash
 
     #if [[ -n $PS1 && -f ~/.bashrc.d/bash_prompt ]]; then
     #  . ~/.bashrc.d/bash_prompt
