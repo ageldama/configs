@@ -375,7 +375,7 @@
 
 
 ;;;
-(use-package eshell-toggle :ensure t :pin melpa)
+;; (use-package eshell-toggle :ensure t :pin melpa)
 
 ;;;
 
@@ -496,7 +496,7 @@
 
       ("G" hydra-git/body "git")
 
-      ("'" eshell-toggle "eshell")
+      ("'" eshell "eshell")
 
       ("t" hydra/tab/body "tabs")
       
@@ -604,7 +604,7 @@ treat as N=1."
 
 (def-hydras)
 
-(global-set-key (kbd "C-x x") 'hydra-mini/body)
+(global-set-key (kbd "C-x c") 'hydra-mini/body)
 
 ;;(global-set-key (kbd "C-`") 'hydra-mini/body)
 
@@ -667,7 +667,7 @@ treat as N=1."
 
 (defhydra hydra-expand-region
   (:body-pre (call-interactively 'set-mark-command)
-             :exit t)
+             :exit nil)
   "hydra for mark commands"
   ("=" er/expand-region "expand")
   ("P" er/mark-inside-pairs "in-pair")

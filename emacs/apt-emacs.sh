@@ -40,6 +40,7 @@ elpa-yasnippet
 elpa-yasnippet-snippets
 elpa-web-mode
 elpa-transient
+elpa-writeroom-mode
 "
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
