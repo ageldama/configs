@@ -39,6 +39,7 @@ elpa-counsel
 elpa-yasnippet
 elpa-yasnippet-snippets
 elpa-web-mode
+elpa-transient
 "
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
