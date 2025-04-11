@@ -1,8 +1,9 @@
 #!/bin/sh
 
+# emacs-common-non-dfsg
+
 DPKGS="
 emacs-lucid
-emacs-common-non-dfsg
 graphviz
 plantuml
 sqlite3
@@ -38,6 +39,7 @@ elpa-counsel
 elpa-yasnippet
 elpa-yasnippet-snippets
 elpa-web-mode
+elpa-transient
 "
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')

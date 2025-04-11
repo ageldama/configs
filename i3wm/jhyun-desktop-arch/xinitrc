@@ -31,8 +31,13 @@ export PATH=$PATH:$HOME/local/bin
 
 export TERMINAL=x-terminal-emulator
 
-# fcitx/ibus + hangul
-if [[ -f ~/.use-uim ]]; then
+# ime
+if [[ -f ~/.use-nabi ]]; then
+  export GTK_IM_MODULE=xim
+  export QT_IM_MODULE=xim
+  export XMODIFIERS=@im=nabi
+  nabi &
+elif [[ -f ~/.use-uim ]]; then
   export GTK_IM_MODULE=uim
   export QT_IM_MODULE=uim
   export XMODIFIERS=@im=uim
