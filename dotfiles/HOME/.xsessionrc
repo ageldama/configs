@@ -1,3 +1,0 @@
-eval $(perl -Mlocal::lib)
-gtk-tim-btns.pl
-
