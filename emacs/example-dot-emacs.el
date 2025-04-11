@@ -69,6 +69,7 @@
 	   ;; "org-more.el"
 	   ;; "org-roam.el"
 	   "perl5.el"
+	   "ob-tcl.el"
 	   ;; "proto+grpc.el"
 	   ;; "ruby.el"
 	   ;; "rust.el"
