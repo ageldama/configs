@@ -123,10 +123,11 @@
   ;; (load-theme 'modus-vivendi t)
   ;; (load-theme 'modus-operandi-tinted t)
   (require 'day-and-night)
-  (setq *day-and-night/day-theme* 'modus-operandi-tinted)
-  (setq *day-and-night/night-theme* 'modus-vivendi-tinted)
-  (day-and-night/change-theme-by-time)
-  (day-and-night/start-timer 30)
+  (setq *day-and-night/day-theme* 'modus-operandi)
+  (setq *day-and-night/night-theme* 'modus-vivendi)
+  ;; (day-and-night/change-theme-by-time)
+  ;; (day-and-night/start-timer 30)
+  (day-and-night/declare-its-day)
   )
 
 (global-display-line-numbers-mode -1)
@@ -157,3 +158,4 @@
 ;;   (cl-pushnew cmd moonshot-runners-preset :test #'string=))
 
 ;;;EOF.
+
