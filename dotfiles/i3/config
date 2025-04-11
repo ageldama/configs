@@ -211,11 +211,11 @@ bindsym $mod+F8 exec "x-terminal-emulator -e bashmount"
 bindsym $mod+F1 exec ~/.config/i3/helpers/i3-keys-rofi.pl
 
 
-bindsym XF86MonBrightnessDown exec ~/.config/i3/helpers/mon-bright-dn.sh
-bindsym XF86MonBrightnessUp exec ~/.config/i3/helpers/mon-bright-up.sh
+bindsym XF86MonBrightnessDown exec mon-bright-dn.sh
+bindsym XF86MonBrightnessUp exec mon-bright-up.sh
 
-bindsym XF86KbdBrightnessDown exec ~/.config/i3/helpers/kbd-bright-dn.sh
-bindsym XF86KbdBrightnessUp exec ~/.config/i3/helpers/kbd-bright-up.sh
+bindsym XF86KbdBrightnessDown exec kbd-bright-dn.sh
+bindsym XF86KbdBrightnessUp exec kbd-bright-up.sh
 
 
 
@@ -224,13 +224,13 @@ set $refresh_i3status killall -SIGUSR1 i3status
 
 bindsym $mod+m exec "pactl-mute.pl sink toggle_default"
 
-bindsym XF86AudioRaiseVolume exec ~/.config/i3/helpers/pa-vol-up.sh
-bindsym XF86AudioLowerVolume exec ~/.config/i3/helpers/pa-vol-dn.sh
+bindsym XF86AudioRaiseVolume exec pa-vol-up.sh
+bindsym XF86AudioLowerVolume exec pa-vol-dn.sh
 bindsym XF86AudioMute exec "pactl-mute.pl sink toggle_default"
-bindsym XF86AudioMicMute exec --no-startup-id pactl set-source-mute @DEFAULT_SOURCE@ toggle && $refresh_i3status
+bindsym XF86AudioMicMute exec "pactl-mute.pl source toggle_default"
 
-bindsym $mod+Next exec ~/.config/i3/helpers/pa-vol-dn.sh
-bindsym $mod+Prior exec ~/.config/i3/helpers/pa-vol-up.sh
+bindsym $mod+Next exec pa-vol-dn.sh
+bindsym $mod+Prior exec pa-vol-up.sh
 
 bindsym $mod+Shift+v exec "which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol"
 
