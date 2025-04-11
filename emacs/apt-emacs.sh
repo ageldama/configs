@@ -1,8 +1,9 @@
 #!/bin/sh
 
+# emacs-common-non-dfsg
+
 DPKGS="
 emacs-lucid
-emacs-common-non-dfsg
 graphviz
 plantuml
 sqlite3
