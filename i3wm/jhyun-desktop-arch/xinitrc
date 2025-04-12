@@ -1,24 +1,20 @@
 #!/usr/bin/env bash
 
+if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
+    PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
+    if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
+        perl -Mlocal::lib > "${PERL_LOCAL_LIB_SH}"
+    fi
+    source "${PERL_LOCAL_LIB_SH}"
+fi
+
+
 # ...for opensuse: xdm-xsession
 if [[ "x${MY_XSESSIONRC}" -eq "x" && -x ~/.xsessionrc ]]; then
   source ~/.xsessionrc
 fi
 
 #export LANG=ko_KR.UTF-8
-
-# Run all system xinitrc shell scripts
-FOO=<<'CUT'
-xinitdir="/etc/X11/xinit/xinitrc.d"
-if [ -d "$xinitdir" ]; then
-    for script in $xinitdir/*; do
-        echo "Loading xinit script $script"
-        if [ -x "$script" -a ! -d "$script" ]; then
-            . "$script"
-        fi
-    done
-fi
-CUT
 
 
 OSNAME=`uname`
