@@ -220,6 +220,10 @@ test -f ~/.use-blueman && blueman-applet &
 test -f ~/.use-onboard && onboard &
 
 
+if [[ -f ~/.use-unclutter ]]; then
+  unclutter -noevents -idle 2 -jitter 1 -root &
+fi
+
 # Notification Logging
 if [[ -f ~/.use-notifications-dump ]]; then
     # Prefer `dunstctl history-pop` instead:
