@@ -49,7 +49,7 @@
            ;; "feat/helm-ag.el"
            "feat/embark.el"
            ;; "feat/treemacs.el"
-           ;; "feat/emojify.el"
+           "feat/ivy-emoji.el"
 
            ;; "auctex.el"
            ;; "c++-light-2022.el"
