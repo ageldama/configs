@@ -1,22 +1,22 @@
 
 
-key "Super+KP_Subtract" amixer sset PCM 5%-
-key "Super+KP_Add" amixer sset PCM 5%+
+#key "Super+KP_Subtract" amixer sset PCM 5%-
+#key "Super+KP_Add" amixer sset PCM 5%+
 
-key "XF86AudioLowerVolume" sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pa-get-vol.sh)"'
-key "XF86AudioRaiseVolume" sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pa-get-vol.sh)"'
+key "XF86AudioLowerVolume" pa-vol-dn.sh
+key "XF86AudioRaiseVolume" pa-vol-up.sh
 
-key "Super+Next" sh -c 'pactl set-sink-volume @DEFAULT_SINK@ -5%; notify-send "$(pa-get-vol.sh)"'
-key "Super+Prior" sh -c 'pactl set-sink-volume @DEFAULT_SINK@ +5%; notify-send "$(pa-get-vol.sh)"'
+key "Super+Next" pa-vol-dn.sh
+key "Super+Prior" pa-vol-up.sh
 
 key "XF86AudioMute" pactl-mute.pl sink toggle_default
 key "Super+m" pactl-mute.pl sink toggle_default
 
-key "XF86MonBrightnessDown" sh -c 'notify-send "$(brightnessctl s 5%-)"'
-key "XF86MonBrightnessUp" sh -c 'notify-send "$(brightnessctl s +5%)"'
+key "XF86MonBrightnessDown" mon-bright-dn.sh
+key "XF86MonBrightnessUp" mon-bright-up.sh
 
-key "XF86KbdBrightnessDown" sh -c 'notify-send "$(brightnessctl --device=smc::kbd_backlight s 5%-)"'
-key "XF86KbdBrightnessUp" sh -c 'notify-send "$(brightnessctl --device=smc::kbd_backlight s +5%)"'
+key "XF86KbdBrightnessDown" kbd-bright-dn.sh
+key "XF86KbdBrightnessUp" kbd-bright-up.sh
 
 
 #key "XF86HomePage" xdg-open about:blank
@@ -64,10 +64,10 @@ key "Super+Return" x-terminal-emulator
 key "Super+d" rofi -combi-modi drun,window,run -show combi
 key "XF86LaunchA" rofi -combi-modi drun,window,run -show combi
 
-key "Super+f" scripts-rofi.pl -e -s
-key "XF86LaunchB" scripts-rofi.pl -e -s
-
-key "Super+Shift+F9" scripts-rofi.pl -r -e
+key "Super+f" scripts-rofi.pl -e
+key "XF86LaunchB" scripts-rofi.pl -e
+#key "XF86LaunchB" scripts-rofi.pl -e -s
+#key "Super+Shift+F9" scripts-rofi.pl -r -e
 
 key "Super+Tab" rofi -show window
 key "Super+Shift+Tab" rofi -show windowcd
