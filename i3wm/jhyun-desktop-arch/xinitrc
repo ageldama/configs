@@ -231,9 +231,10 @@ if [[ -f ~/.use-notifications-dump ]]; then
 fi
 
 # Notification growl.
-test -f ~/.use-dunst && dunst &
-
-if [[ -f ~/.use-xfce4-notifyd ]]; then
+if [[ -f ~/.use-dunst ]]; then
+  pkill -u $UID xfce4-notifyd
+  dunst &
+elif [[ -f ~/.use-xfce4-notifyd ]]; then
   systemctl --user start xfce4-notifyd.service
 fi
 
