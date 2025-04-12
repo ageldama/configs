@@ -9,7 +9,7 @@
                   ivy-re-builders-alist
                   '(
                     ;; (swiper      . ivy--regex-plus)
-                    ;; (counsel-M-x . ivy--regex-plus)
+                    (counsel-M-x . ivy--regex-fuzzy)
                     ;; (t           . ivy--regex-fuzzy)
                     (t           . ivy--regex-plus)
                     ))
