@@ -33,14 +33,14 @@ Xcursor.size: 32
 !URxvt.boldItalicFont: xft:Hermit:style=Bold Italic:size=10:antialias=true,\
 !  xft:NanumGothicCoding:size=10:style=Bold Italic
 
-URxvt.font: xft:DejaVu Sans Mono:style=Regular:size=12:antialias=true,\
-  xft:NanumGothicCoding:size=12:style=Regular
-URxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:size=12:antialias=true,\
-  xft:NanumGothicCoding:size=12:style=Bold
-URxvt.italicFont: xft:DejaVu Sans Mono:style=Italic:size=12:antialias=true,\
-  xft:NanumGothicCoding:size=12:style=Italic
-URxvt.boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=12:antialias=true,\
-  xft:NanumGothicCoding:size=12:style=Bold Italic
+URxvt.font: xft:DejaVu Sans Mono:style=Regular:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Regular
+URxvt.boldFont: xft:DejaVu Sans Mono:style=Bold:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Bold
+URxvt.italicFont: xft:DejaVu Sans Mono:style=Italic:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Italic
+URxvt.boldItalicFont: xft:DejaVu Sans Mono:style=Bold Italic:size=10:antialias=true,\
+  xft:NanumGothicCoding:size=10:style=Bold Italic
 
 
 URxvt.letterSpace: -1
@@ -49,48 +49,29 @@ URxvt.geometry: 92x24
 URxvt.internalBorder: 0
 URxvt.cursorBlink: true
 URxvt.cursorUnderline: false
-URxvt.saveline: 2048
 URxvt.scrollBar: false
 URxvt.scrollBar_right: false
+
 URxvt.urgentOnBell: true
+
 URxvt.depth: 24
 URxvt.iso14755: false
 
+URxvt.saveline: 12000
+URxvt.scrollTtyOutput:      false
+URxvt.scrollWithBuffer:     true
+URxvt.scrollTtyKeypress:    true
+
+URxvt.fading: 10
+
+
 !! Copy Paste & Other Extensions
-URxvt*perl-lib: ~/.urxvt/ext
-URxvt.perl-ext-common: default,url-select,keyboard-select,resize-font,\
-eval,confirm-paste,font-size
-
-!,clipboard
-!,font-size
-!! NOTE: not with XIM:
-!URxvt.perl-ext-common: tabbed
+URxvt*perl-lib: ~/.urxvt/ext:/usr/lib/x86_64-linux-gnu/urxvt/perl
+URxvt.perl-ext-common: default,eval,confirm-paste,font-size,searchable-scrollback,url-select,keyboard-select
 
 
-URxvt.keysym.C-plus:	perl:font-size:increase
-URxvt.keysym.C-minus:	perl:font-size:decrease
-URxvt.font-size.step: 1
 
-!URxvt.keysym.C-minus:  resize-font:smaller
-!URxvt.keysym.C-plus:   resize-font:bigger
-
-URxvt.keysym.M-Escape:    builtin-string:
-URxvt.keysym.M-s:         builtin-string:
-URxvt.keysym.M-u:         builtin-string:
-
-URxvt.keysym.C-M-bracketleft: perl:keyboard-select:activate
-! The following line overwrites the default Meta-s binding and allows to
-! activate keyboard-select directly in backward search mode:
-URxvt.keysym.C-M-f: perl:keyboard-select:search
-URxvt.keysym.C-M-r: perl:searchable-scrollback:start
-URxvt.keyboard-select.clipboard: true
-
-
-URxvt.keysym.C-M-u: perl:url-select:select_next
-URxvt.url-select.launcher: xdg-open
-
-!URxvt.kuake.hotkey: F12
-
+! basic keybindings
 URxvt.keysym.C-Shift-Up: eval:scroll_up 1
 URxvt.keysym.C-Shift-Down: eval:scroll_down 1
 URxvt.keysym.M-Home: eval:scroll_to_top
@@ -98,6 +79,37 @@ URxvt.keysym.M-End:  eval:scroll_to_bottom
 
 URxvt.keysym.C-M-V: eval:paste_clipboard
 URxvt.keysym.C-M-C: eval:selection_to_clipboard
+
+! font-size
+URxvt.keysym.C-plus:    perl:font-size:increase
+URxvt.keysym.C-minus:   perl:font-size:decrease
+URxvt.font-size.step:   1
+
+!URxvt.keysym.C-minus:  resize-font:smaller
+!URxvt.keysym.C-plus:   resize-font:bigger
+
+
+! searchable-scrollback : 기존 M-s => C-M-s 으로 변경
+URxvt.keysym.M-s: builtin-string:
+URxvt.keysym.C-M-s: perl:searchable-scrollback:start
+
+
+! keyboard-select : 기존 M-Esc => C-M-[ 으로 변경
+URxvt.keysym.M-Escape: builtin-string:
+URxvt.keysym.C-M-bracketleft: perl:keyboard-select:activate
+!URxvt.keysym.C-M-f: perl:keyboard-select:search
+URxvt.keyboard-select.clipboard: true
+
+
+! url-select : 기존 M-u => C-M-u 으로 변경
+URxvt.keysym.M-u:         builtin-string:
+URxvt.keysym.C-M-u: perl:url-select:select_next
+URxvt.url-select.launcher: xdg-open
+URxvt.url-select.autocopy: true
+URxvt.url-select.underline: true
+
+
+
 
 
 ! Colors
