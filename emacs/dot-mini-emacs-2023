@@ -457,20 +457,20 @@
 
       ("." xref-find-definitions "xref-def")
 
-      ,@(when (fboundp 'helm-resume)
-          '(("," helm-resume "helm-resume" )))
+      ;; ,@(when (fboundp 'helm-resume)
+      ;;     '(("," helm-resume "helm-resume" )))
 
-      ,@(when (fboundp 'helm-bookmarks)
-          '(("B" helm-bookmarks "bookmks" )))
+      ;; ,@(when (fboundp 'helm-bookmarks)
+      ;;     '(("B" helm-bookmarks "bookmks" )))
 
-      ,@(when (fboundp 'counsel-bookmark)
-          '(("B" counsel-bookmark "bookmks" )))
+      ;; ,@(when (fboundp 'counsel-bookmark)
+      ;;     '(("B" counsel-bookmark "bookmks" )))
 
-      ,@(when (fboundp 'helm-imenu)
-          '(("I" helm-imenu "imenu" )))
+      ;; ,@(when (fboundp 'helm-imenu)
+      ;;     '(("I" helm-imenu "imenu" )))
 
       ,@(when (fboundp 'counsel-imenu)
-          '(("I" counsel-imenu "imenu" )))
+          '(("C-i" counsel-imenu "imenu" )))
 
       ,@(when (fboundp 'helm-all-mark-rings)
           '(("R" helm-all-mark-rings "markring" )))
@@ -487,7 +487,7 @@
 
       ("o" hydra-org/body "org")
 
-      ("M-f" hydra-files/body "files" )
+      ("f" hydra-files/body "files" )
 
       ("u" undo-tree-visualize "undo-tree" )
       
@@ -496,11 +496,11 @@
 
       ("G" hydra-git/body "git")
 
-      ("'" eshell "eshell")
+      ("$" eshell "eshell")
 
-      ("t" hydra/tab/body "tabs")
+      ("t" tab/hydra/body "tabs")
       
-      ("T" (lambda () (interactive) (ansi-term shell-file-name)) "term")
+      ("C-$" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
       ,@(when (fboundp 'browse-kill-ring)
           '(("M-k" browse-kill-ring "kill-ring" )))
@@ -516,9 +516,9 @@
       ,@(when (fboundp 'counsel-recentf)
           '(("r" counsel-recentf "recentf" )))
 
-      ("M--" hydra-misc-fns/body "misc-fns" )
+      ("-" hydra-misc-fns/body "misc-fns" )
 
-      ("M-q" hydra-misc-toggles/body "toggles" )
+      ("'" hydra-misc-toggles/body "toggles" )
 
       ,@(when (fboundp 'hydra-moonshot/body)
           '(("x" hydra-moonshot/body "moonshot" )))
