@@ -1,3 +1,6 @@
+(require 'tab-bar)
+(require 'hydra)
+
 
 (defhydra hydra/tab (:exit nil)
   "tabs"
