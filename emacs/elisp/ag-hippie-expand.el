@@ -1,3 +1,8 @@
+
+(require 'advice)
+(require 'hippie-exp)
+
+
 ;;; hippie-expand
 (defadvice hippie-expand (around hippie-expand-case-fold)
   "Try to do case-sensitive matching (not effective with all functions)."
