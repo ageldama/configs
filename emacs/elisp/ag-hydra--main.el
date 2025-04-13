@@ -1,4 +1,36 @@
 
+(require 'find-dired)
+(require 'files)
+(require 'files-x)
+(require 'display-line-numbers)
+(require 'whitespace)
+(require 'server)
+(require 'zone)
+(require 'menu-bar)
+(require 'xref)
+(require 'eshell)
+(require 'simple)
+
+(require 'hydra)
+(require 's)
+(require 'counsel)
+(require 'writeroom-mode)
+(require 'org-agenda)
+(require 'avy)
+(require 'undo-tree)
+(require 'projectile)
+
+(require 'ag-el)
+(require 'ag-gc)
+(require 'ag-battery-saving-mode)
+(require 'ag-evil)
+(require 'ag-diary-impl)
+(require 'ag-diary)
+(require 'ag-mini-git)
+(require 'ag-compile)
+
+
+
 (defun def-hydras ()
 
   (defhydra hydra-files (:exit t)

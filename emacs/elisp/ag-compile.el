@@ -1,5 +1,9 @@
 ;;; compile & recompile
 
+(require 'compile)
+
+
+
 (if (and (>= emacs-major-version 28)
          (fboundp 'ansi-color-compilation-filter))
     ;; then

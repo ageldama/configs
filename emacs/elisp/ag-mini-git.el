@@ -1,5 +1,8 @@
 
 (require 'subr-x)
+(require 'f)
+(require 'ag-el)
+
 
 (defun git/find-nearest-repo ()
   (interactive)
