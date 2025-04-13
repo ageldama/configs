@@ -1,9 +1,10 @@
 #!/bin/sh
 
-# emacs-common-non-dfsg
+# emacs-lucid : 한글 렌더링 버그 있는거 같아서 / Sun 13 Apr 12:44:21 BST 2025
 
 DPKGS="
-emacs-lucid
+emacs-gtk
+emacs-common-non-dfsg
 graphviz
 plantuml
 sqlite3
@@ -41,6 +42,7 @@ elpa-yasnippet-snippets
 elpa-web-mode
 elpa-transient
 elpa-writeroom-mode
+elpa-magit
 "
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
