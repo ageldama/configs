@@ -1,139 +1,36 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
-(defmacro defined-symbol-value (sym)
-  `(and (boundp ,sym)
-        (symbol-value ,sym)))
+;;; setup self
 
+(require 'f)
 
-(setq inhibit-startup-screen t)
-(setq default-input-method   "korean-hangul")
-(prefer-coding-system 'utf-8-unix)
+(message (format "emacs config file: %s" load-file-name))
 
-(setq user-full-name    "Jong-Hyouk Yun")
-(setq user-mail-address "ageldama@gmail.com")
+(setq-local %myself-dir (f-dirname load-file-name))
 
-(column-number-mode  t)
-(display-time-mode   -1)
-(show-paren-mode     t)
-(transient-mark-mode t)
+(defun %add-load-path-under-myself (rel-path)
+  (cl-pushnew (f-join %myself-dir rel-path) load-path
+              :test #'equal))
 
-(global-auto-revert-mode t)
-;;(global-whitespace-mode +1)
-;; (setq-default show-trailing-whitespace t)
+(%add-load-path-under-myself "elisp")
 
+;;; basics
 
-
-;;; hippie-expand
-(defadvice hippie-expand (around hippie-expand-case-fold)
-  "Try to do case-sensitive matching (not effective with all functions)."
-  (let ((case-fold-search nil))
-    ad-do-it))
-
-(ad-activate 'hippie-expand)
-
-(setq hippie-expand-try-functions-list
-      '(try-expand-dabbrev
-        try-expand-dabbrev-all-buffers try-expand-dabbrev-from-kill
-        try-complete-file-name-partially try-complete-file-name
-        try-expand-all-abbrevs try-expand-list try-expand-line
-        try-complete-lisp-symbol-partially try-complete-lisp-symbol))
-
-(global-set-key "\M-/" 'hippie-expand)
-
-;;; no backup files
-(setq make-backup-files nil)
-(setq version-control   nil)   ; backup uses version numbers?
-
-(if window-system
-    (progn
-      (menu-bar-mode   -1)
-      (tool-bar-mode   -1)
-      (scroll-bar-mode -1))
-  (progn
-    (menu-bar-mode   -1)))
-
-;;; +1 -> show it, no need horiz-scrolling:
-(global-visual-line-mode +1)
-
-
-;;; 내장 eldoc
-(global-eldoc-mode -1)
-
-
-;;; GUI fonts
-;; 한글 예시. Ll1| 0Oo@ [] {} 아침 일찍 구름 낀 백제성을 떠나.
-;; NOTE: 화면이 C-p, C-n 등이 느리면 /D2Coding/, 괜찮으면 /Noto Sans Mono CJK/
-
-(defun my-set-fixed-fonts (&optional en-fn ko-fn)
-  (interactive)
-  (let ((en-fn* (or en-fn "DejaVu Sans Mono"))
-        (ko-fn* (or ko-fn "NanumGothicCoding")))
-    ;; default Latin font (e.g. Consolas)
-    ;; but I use Monaco
-    (set-frame-font en-fn* t)
-    (set-face-attribute 'default nil :family en-fn*)
-    ;; default font size (point * 10)
-    ;; WARNING!  Depending on the default font,
-    ;; if the size is not supported very well, the frame will be clipped
-    ;; so that the beginning of the buffer may not be visible correctly.
-    (set-face-attribute 'default nil :height 130)
-    ;; use specific font for Korean charset.
-    ;; if you want to use different font size for specific charset,
-    ;; add :size POINT-SIZE in the font-spec.
-    (set-fontset-font t 'hangul (font-spec :name ko-fn*))))
-
-(when (and t window-system)
-  (cond
-   ;;
-   ((member system-type 
-            '(berkeley-unix gnu/linux darwin))
-    (my-set-fixed-fonts))
-   ;; Windows
-   ((string-equal system-type "windows-nt")
-    (set-face-attribute 'default nil :font "Consolas-11"))
-   (t :unknown)))
-
-;;;
-(if (fboundp 'global-display-line-numbers-mode)
-    (global-display-line-numbers-mode -1)
-  ;; else
-  (global-linum-mode   -1))
-(global-hl-line-mode -1)
-
-
-(global-set-key (kbd "M-`")       'menu-bar-open)
-(global-set-key (kbd "<f10>")       'menu-bar-open)
-
-
-;;;
-(setq-default indent-tabs-mode nil)
-(setq tab-width nil)
-;;; ONLY affects to REAL <TAB>-chars to display.
-;;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ; [tab] inserts two spaces
-(electric-indent-mode +1)
-(setq c-basic-offset 2)
+(require 'ag-el)
+(require 'ag-emacs-sensible)
+(require 'ag-package)
 
 
 
 
 
-;;; packages
-(require 'package)
 
-(let* ((no-ssl (and (memq system-type '(windows-nt ms-dos))
-                    (not (gnutls-available-p))))
-       (proto (if nil "http" "https")))
-  (add-to-list 'package-archives (cons "melpa" (concat proto "://melpa.org/packages/")) t)
-  (add-to-list 'package-archives (cons "org" (concat proto "://orgmode.org/elpa/")) t)
-  (add-to-list 'package-archives (cons "gnu" (concat proto "://elpa.gnu.org/packages/")))
-  (add-to-list 'package-archives (cons "elpa" (concat proto "://elpa.nongnu.org/nongnu/")))
-  )
 
-(package-initialize)
 
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
+
+
+
+
 
 
 
@@ -905,9 +802,6 @@ treat as N=1."
     ))
 
 
-(defun reload-emacs-rc ()
-  (interactive)
-  (load-file "~/.emacs"))
 
 
 (provide 'e-2025)
