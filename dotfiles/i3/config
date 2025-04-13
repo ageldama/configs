@@ -187,6 +187,8 @@ bindsym $mod+r mode "resize"
 
 #bindsym $mod+Escape exec "xscreensaver-lock.pl"
 bindsym $mod+Escape exec "xdg-screensaver activate"
+# xdg-screenaver : xscreensaver, xss-lock+xset-s 모두 지원.
+
 bindsym $mod+z exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym XF86LaunchA exec "rofi -combi-modi drun,ssh,window,run -show combi"
 bindsym $mod+Tab exec "rofi -show window"
