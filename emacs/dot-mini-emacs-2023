@@ -385,12 +385,12 @@
     ("n" find-name-dired "dired-by-name")
 
     ("M-s f" (lambda () (interactive)
-               (find-file (s-concat "/sudo:root@localhost:" (buffer-file-name))))
+               (find-file (s-concat "/sudo:root@localhost:" (or (buffer-file-name) "/"))))
      "sudo:file")
 
     ("M-s d" (lambda () (interactive)
                (find-file (s-concat "/sudo:root@localhost:"
-                                    (file-name-directory (buffer-file-name)))))
+                                    (file-name-directory (or (buffer-file-name) "/")))))
      "sudo:dired")
 
     ("M-l f" find-file-literally "file-lit")
