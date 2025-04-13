@@ -13,6 +13,7 @@
               :test #'equal))
 
 (%add-load-path-under-myself "elisp")
+(%add-load-path-under-myself "feat")
 
 ;;; commons
 
