@@ -1,3 +1,5 @@
+(require 'seq)
+(require 'compile)
 
 
 (defmacro defined-symbol-value (sym)

@@ -2,14 +2,14 @@
 
 ;;; setup self
 
-(require 'f)
+(require 'compat)
 
 (message (format "emacs config file: %s" load-file-name))
 
-(setq-local %myself-dir (f-dirname load-file-name))
+(setq-local %myself-dir (file-name-parent-directory load-file-name))
 
 (defun %add-load-path-under-myself (rel-path)
-  (cl-pushnew (f-join %myself-dir rel-path) load-path
+  (cl-pushnew (concat %myself-dir rel-path) load-path
               :test #'equal))
 
 (%add-load-path-under-myself "elisp")
@@ -17,11 +17,12 @@
 
 ;;; commons
 
+(require 'ag-package)
+(require 'ag-bootstrap)
 (require 'ag-el)
 (require 'ag-emacs-sensible)
 (require 'ag-hippie-expand)
 (require 'ag-font)
-(require 'ag-package)
 ;; (require 'ag-fundamental-mode)
 (require 'ag-gc)
 (require 'ag-battery-saving-mode)
