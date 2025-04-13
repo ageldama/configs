@@ -175,7 +175,7 @@
                      file-globs))))
 
  
-(let ((jar-path (file-find-one "/usr/share/java/plantuml-*.jar"
+(let ((jar-path (glob-first-file "/usr/share/java/plantuml-*.jar"
                                "/usr/share/plantuml/plantuml.jar")))
   (when (and (not (null jar-path))
              (boundp 'org-plantuml-jar-path)
@@ -185,7 +185,7 @@
     (setq org-plantuml-jar-path jar-path)))
 
 
-(let ((jar-path (file-find-one "/usr/share/java/ditaa-*.jar"
+(let ((jar-path (glob-first-file "/usr/share/java/ditaa-*.jar"
                                "/usr/share/ditaa/ditaa.jar")))
   (when (and (not (null jar-path))
              (boundp 'org-ditaa-jar-path)

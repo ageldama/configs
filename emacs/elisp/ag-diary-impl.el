@@ -150,4 +150,7 @@
       (diary/new-or-open-org-file))))
 
 
+;;;
+(provide 'ag-diary-impl)
+
 ;;;EOF.

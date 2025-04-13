@@ -14,14 +14,47 @@
 
 (%add-load-path-under-myself "elisp")
 
-;;; basics
+;;; commons
 
 (require 'ag-el)
 (require 'ag-emacs-sensible)
 (require 'ag-hippie-expand)
 (require 'ag-font)
 (require 'ag-package)
+;; (require 'ag-fundamental-mode)
+(require 'ag-gc)
+(require 'ag-battery-saving-mode)
 
+(require 'ag-org)
+(require 'ag-plantuml)
+(require 'ag-ditaa)
+
+(require 'ag-writeroom-mode)
+
+(require 'ag-modus-themes)
+;; (require 'ag-smart-mode-line)
+
+(require 'ag-dired)
+(require 'ag-avy)
+(require 'ag-hydra)
+(require 'ag-which-key)
+(require 'ag-ace-window)
+(require 'ag-ibuffer)
+
+(require 'ag-expand-region)
+(require 'ag-hydra--expand-region)
+
+(require 'ag-diary)
+
+(require 'ag-wgrep)
+
+(require 'ag-mini-git)
+
+(require 'ag-hydra--main)
+(require 'ag-hydra--tab)
+
+
+(def-hydras)
 
 
 ;;;
