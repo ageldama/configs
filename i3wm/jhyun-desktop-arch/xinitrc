@@ -142,8 +142,21 @@ elif [[ -f ~/.use-ssh-add ]]; then
   fi
 fi
 
+# Notifications
+if [[ -f ~/.use-notifications-dump ]]; then
+    # Prefer `dunstctl history-pop` instead:
+    dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
+fi
 
-test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
+# Notification growl: must be loaded before anything does `notify-send`
+if [[ -f ~/.use-dunst ]]; then
+  pkill -u $UID xfce4-notifyd
+  dunst &
+elif [[ -f ~/.use-xfce4-notifyd ]]; then
+  systemctl --user start xfce4-notifyd.service
+fi
+
+#test -f ~/.dropbox-dist/dropboxd && ~/.dropbox-dist/dropboxd &
 
 # "xev" first.
 # xmodmap -e 'keycode 108 = Hangul'
@@ -229,19 +242,6 @@ if [[ -f ~/.use-unclutter ]]; then
   unclutter -noevents -idle 2 -jitter 1 -root &
 fi
 
-# Notification Logging
-if [[ -f ~/.use-notifications-dump ]]; then
-    # Prefer `dunstctl history-pop` instead:
-    dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
-fi
-
-# Notification growl.
-if [[ -f ~/.use-dunst ]]; then
-  pkill -u $UID xfce4-notifyd
-  dunst &
-elif [[ -f ~/.use-xfce4-notifyd ]]; then
-  systemctl --user start xfce4-notifyd.service
-fi
 
 # hotkeys
 #sxhkd &
