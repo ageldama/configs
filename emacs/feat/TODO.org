@@ -1,15 +1,11 @@
-* TODO ;; "feat/direnv.el"
-* TODO "feat/company.el"
-* TODO "feat/deadgrep.el"
+
+* TODO "feat/hl-todo.el"
+* TODO ;; "feat/flycheck.el"
+* TODO ;; "feat/helpful.el"
 * TODO "feat/editorconfig.el"
-* TODO ;; "feat/eldoc.el"
 * TODO "feat/evil-matchit.el"
 * TODO "feat/evil-owl.el"
 * TODO "feat/evil-surround.el"
-* TODO ;; "feat/flycheck.el"
-* TODO ;; "feat/helpful.el"
-* TODO "feat/hl-todo.el"
-* TODO "feat/magit.el"
 * TODO "feat/markdown-mode.el"
 * TODO ;; "feat/multiple-cursors.el"
 * TODO "feat/plantuml.el"
@@ -19,7 +15,6 @@
 * TODO ;; "feat/yas.el"
 * TODO "feat/counsel.el"
 * TODO ;; "feat/apheleia.el"
-* TODO "feat/rg.el"
 * TODO "feat/embark.el"
 * TODO ;; "feat/treemacs.el"
 * TODO "feat/ivy-emoji-maybe.el"
@@ -27,12 +22,12 @@
 * TODO ;; "proto+grpc.el"
 * TODO "json.el"
 * TODO ;; "javascript/js2.el"
-* TODO "web.el"
 * TODO ;; "zig.el"
 * TODO ;; "eglot.el"
 
 
 * NOT-THIS-TIME
+** "feat/rg.el"
 **   cmake.el
 **   meson.el
 **   mini-slime.el
