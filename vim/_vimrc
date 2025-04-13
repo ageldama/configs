@@ -171,7 +171,8 @@ Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 
 
 if !empty(glob("~/.use-vim-fzf"))
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  "Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug 'junegunn/fzf'
 endif
 
 Plug 'tpope/vim-unimpaired'
