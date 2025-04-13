@@ -1,3 +1,7 @@
+(require 'ag-el)
+(require 'f)
+(require 'ob-ditaa)
+
 
 (let ((jar-path (glob-first-file "/usr/share/java/ditaa-*.jar"
                                "/usr/share/ditaa/ditaa.jar")))

@@ -1,3 +1,9 @@
+(require 'time-date)
+(require 'dash)
+(require 's)
+(require 'f)
+
+
 
 (defun diary/month-name-abbr (time-val)
   (nth (1- (string-to-number (format-time-string "%m" time-val)))

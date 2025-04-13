@@ -1,3 +1,6 @@
+(require 'ag-el)
+(require 'f)
+(require 'ob-plantuml)
 
 (let ((jar-path (glob-first-file "/usr/share/java/plantuml-*.jar"
                                  "/usr/share/plantuml/plantuml.jar")))

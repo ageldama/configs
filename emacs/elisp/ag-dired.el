@@ -1,3 +1,6 @@
+(require 'dired)
+(require 'wdired)
+
 
 (setq dired-dwim-target t
       wdired-confirm-overwrite t
