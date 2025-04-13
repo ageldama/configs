@@ -13,7 +13,7 @@
 
 (push "~/w" load-path)
 
-(push "~/P/configs/emacs" load-path)
+(cl-pushnew "~/P/configs/emacs" load-path :test #'equal)
 
 (unload-feature 'foo)
 
