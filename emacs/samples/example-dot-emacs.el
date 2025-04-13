@@ -9,7 +9,7 @@
 
 (require 'e-2025)
 
-(require 'ag-evil-collection)
+(require 'ag-feat-evil-collection)
 
 
 (when window-system
