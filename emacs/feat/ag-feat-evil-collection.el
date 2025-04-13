@@ -9,4 +9,4 @@
     ))
 
 
-(provide 'ag-evil-collection)
+(provide 'ag-feat-evil-collection)
