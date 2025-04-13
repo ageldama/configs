@@ -47,14 +47,20 @@
 (require 'ag-diary)
 
 (require 'ag-wgrep)
-
 (require 'ag-mini-git)
+(require 'ag-compile)
+(require 'ag-undo-tree)
+(require 'ag-diminish)
+(require 'ag-evil)
+
+(require 'ag-lang-mode)
 
 (require 'ag-hydra--main)
 (require 'ag-hydra--tab)
 
-
 (def-hydras)
+
+(require 'ag-global-keys)
 
 
 ;;;
