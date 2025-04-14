@@ -22,18 +22,25 @@
 ;; (require 'ag-feat-direnv)     ; dpkg=-
 ;; (require 'ag-feat-editorconfig) ; dpkg=elpa-editorconfig
 ;; (require 'ag-feat-plantuml)     ; dpkg=-
-(require 'ag-feat-helpful)  ; dpkg=-
+;; (require 'ag-feat-helpful)  ; dpkg=-
 (require 'ag-feat-counsel)  ; dpkg=elpa-counsel
-(require 'ag-feat-ivy-rich)  ; dpkg=-
-(require 'ag-feat-ivy-hydra)  ; dpkg=-
-(require 'ag-feat-counsel-projectile) ; dpkg=-
-(require 'ag-feat-json) ; dpkg=-
-(require 'ag-feat-toml) ; dpkg=-
-(require 'ag-feat-yaml) ; dpkg=-
+;; (require 'ag-feat-ivy-rich)  ; dpkg=-
+;; (require 'ag-feat-ivy-hydra)  ; dpkg=-
+;; (require 'ag-feat-counsel-projectile) ; dpkg=-
+;; (require 'ag-feat-json) ; dpkg=-
+;; (require 'ag-feat-toml) ; dpkg=-
+;; (require 'ag-feat-yaml) ; dpkg=-
 (require 'ag-feat-vimish-fold) ; dpkg=elpa-vimish-fold
-(require 'ag-feat-evil-vimish-fold) ; dpkg=-
+;; (require 'ag-feat-evil-vimish-fold) ; dpkg=-
+(require 'ag-feat-yas) ; dpkg=elpa-yasnippet-snippets
 
 
+;;; once all loaded, rebuild it:
+
+(require 'ag-hydra--main)
+(def-hydras)
+
+;;;
 
 (when window-system
   (progn
