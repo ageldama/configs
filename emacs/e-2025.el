@@ -14,6 +14,7 @@
 
 (%add-load-path-under-myself "elisp")
 (%add-load-path-under-myself "feat")
+(%add-load-path-under-myself "3rdparty")
 
 ;;; commons
 
