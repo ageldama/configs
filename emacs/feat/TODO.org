@@ -1,11 +1,8 @@
 *   golang-light.el
 *   golang.el
-* "zig.el"
-*   cmake.el
-*   meson.el
-*   auctex.el
-* exec-path-from-shell.el
-* feat/quelpa.el
+
+
+
 
 
 

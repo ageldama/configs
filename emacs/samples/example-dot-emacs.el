@@ -53,6 +53,10 @@
 (require 'ag-feat-eglot) ; dpkg=-
 (require 'ag-feat-realgud) ; dpkg=-
 (require 'ag-feat-unfill) ; dpkg=-
+(require 'ag-feat-exec-path-from-shell) ; dpkg=-
+(require 'ag-feat-quelpa) ; dpkg=-
+(require 'ag-feat-zig) ; dpkg=-
+(require 'ag-feat-meson) ; dpkg=-
 
 
 ;;; once all loaded, rebuild it:
@@ -128,7 +132,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(unfill realgud eglot js2-mode add-node-modules-path evil-matchit evil-owl evil-surround apheleia string-inflection protobuf-mode multiple-cursors ivy-emoji treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
+   '(zig-mode quelpa unfill realgud eglot js2-mode add-node-modules-path evil-matchit evil-owl evil-surround apheleia string-inflection protobuf-mode multiple-cursors ivy-emoji treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
