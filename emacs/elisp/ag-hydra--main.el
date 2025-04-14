@@ -23,7 +23,6 @@
 (require 'ag-el)
 (require 'ag-gc)
 (require 'ag-battery-saving-mode)
-(require 'ag-evil)
 (require 'ag-diary-impl)
 (require 'ag-diary)
 (require 'ag-mini-git)
@@ -72,7 +71,9 @@
       ("b" toggle-battery-saving-mode "battery-saving")
       ,@(when (fboundp 'writeroom-mode)
           '(("w" writeroom-mode "writeroom")))
-      (":" toggle-evil-mode "evil")))
+      ,@(when (fboundp 'toggle-evil-mode)
+          `((":" toggle-evil-mode "evil")))
+      ))
 
 
   (defhydra hydra-org (:exit t)

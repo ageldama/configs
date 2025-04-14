@@ -8,4 +8,4 @@
 
 
 ;;;
-(provide 'ag-smart-mode-line)
+(provide 'ag-feat-smart-mode-line)

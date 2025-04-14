@@ -9,6 +9,18 @@
 
 (require 'e-2025)
 
+(require 'ag-feat-avy) ;; dpkg=elpa-avy
+(require 'ag-feat-ace-window) ;; dpkg=elpa-ace-window
+(require 'ag-feat-undo-tree) ;; dpkg=elpa-undo-tree
+(require 'ag-feat-diminish)  ;; dpkg=elpa-diminish
+(require 'ag-feat-modus-themes) ;; dpkg=elpa-modus-theme
+;; (require 'ag-feat-smart-mode-line) ;; dpkg=-
+;; (require 'ag-feat-fundamental-mode) ;; dpkg=+
+(require 'ag-feat-ob-plantuml) ;; dpkg=+
+(require 'ag-feat-ob-ditaa) ;; dpkg=+
+(require 'ag-feat-expand-region) ; dpkg=elpa-expand-region
+(require 'ag-feat-hydra--expand-region) ; dpkg=elpa-expand-region,elpa-hydra
+(require 'ag-feat-evil) ; dpkg=elpa-evil
 (require 'ag-feat-evil-collection) ; dpkg=-
 (require 'ag-feat-deadgrep) ; dpkg=-
 (require 'ag-feat-eldoc)    ; dpkg=+
@@ -97,7 +109,7 @@
 
   ;; (load-theme 'modus-vivendi t)
   ;; (load-theme 'modus-operandi-tinted t)
-  (require 'day-and-night)
+  (require 'ag-feat-day-and-night)
   (setq *day-and-night/day-theme* 'modus-operandi)
   (setq *day-and-night/night-theme* 'modus-vivendi)
   ;; (day-and-night/change-theme-by-time)

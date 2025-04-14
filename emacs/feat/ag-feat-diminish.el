@@ -9,4 +9,4 @@
 
 
 ;;;
-(provide 'ag-diminish)
+(provide 'ag-feat-diminish)

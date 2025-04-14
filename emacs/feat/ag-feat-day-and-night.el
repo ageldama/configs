@@ -63,4 +63,4 @@
     (day-and-night/change-theme-by-time)))
 
 
-(provide 'day-and-night)
+(provide 'ag-feat-day-and-night)

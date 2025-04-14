@@ -6,4 +6,4 @@
 
 
 ;;;
-(provide 'ag-expand-region)
+(provide 'ag-feat-expand-region)

@@ -31,4 +31,4 @@
 
 
 ;;;
-(provide 'ag-evil)
+(provide 'ag-feat-evil)

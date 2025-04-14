@@ -3,4 +3,4 @@
             (auto-fill-mode +1)))
 
 ;;;
-(provide 'ag-fundamental-mode)
+(provide 'ag-feat-fundamental-mode)

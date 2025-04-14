@@ -21,4 +21,4 @@
     ))
 
 ;;;
-(provide 'ag-avy)
+(provide 'ag-feat-avy)

@@ -4,4 +4,4 @@
 
 
 ;;;
-(provide 'ag-ace-window)
+(provide 'ag-feat-ace-window)

@@ -33,4 +33,4 @@
 
 
 ;;;
-(provide 'ag-hydra--expand-region)
+(provide 'ag-feat-hydra--expand-region)

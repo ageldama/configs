@@ -12,4 +12,4 @@
 
 
 ;;;
-(provide 'ag-ditaa)
+(provide 'ag-feat-ob-ditaa)

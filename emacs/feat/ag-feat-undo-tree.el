@@ -6,4 +6,4 @@
   :config (setq undo-tree-auto-save-history nil))
 
 ;;;
-(provide 'ag-undo-tree)
+(provide 'ag-feat-undo-tree)

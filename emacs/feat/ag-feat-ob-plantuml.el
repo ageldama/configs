@@ -13,4 +13,4 @@
 
 
 ;;;
-(provide 'ag-plantuml)
+(provide 'ag-feat-ob-plantuml)
