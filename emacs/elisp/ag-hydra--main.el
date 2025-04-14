@@ -183,7 +183,7 @@
           '(("M-c" hydra-multiple-cursors/body "mcurs" )))
 
       ,@(when (fboundp 'hydra-yas/body)
-          '(("&" hydra-yas/body "yas" )))
+          '(("y" hydra-yas/body "yas" )))
 
       ,@(when (fboundp 'hydra-flycheck/body)
           '(("M-c" hydra-flycheck/body "flychk" )))
