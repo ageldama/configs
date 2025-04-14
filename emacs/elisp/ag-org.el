@@ -1,27 +1,31 @@
-(use-package org :ensure t :pin org
-  :config
-  (require 'org-crypt)
-  (org-crypt-use-before-save-magic)
-  (setq org-tags-exclude-from-inheritance '("crypt")
-        ;; org-crypt-key "ageldama@gmail.com")
-        org-confirm-babel-evaluate t
-        )
 
-  (org-babel-do-load-languages
-   'org-babel-load-languages
-   '(
-     (shell . t)
-     (awk . t)
-     (perl . t)
-     (python . t)
-     (dot . t)
-     (plantuml . t)
-     (ditaa . t)
-     (org . t)
-     (sqlite . t)
-     (C . t)
-     ))
-  )
+(use-package org :ensure t :pin org)
+
+(use-package org-contrib :ensure t :pin org)
+
+
+(require 'org-crypt)
+(org-crypt-use-before-save-magic)
+
+(setq org-tags-exclude-from-inheritance '("crypt")
+      ;; org-crypt-key "ageldama@gmail.com")
+      org-confirm-babel-evaluate t
+      )
+
+(org-babel-do-load-languages
+ 'org-babel-load-languages
+ '(
+   (shell . t)
+   (awk . t)
+   (perl . t)
+   (python . t)
+   (dot . t)
+   (plantuml . t)
+   (ditaa . t)
+   (org . t)
+   (sqlite . t)
+   (C . t)
+   ))
 
 
 (add-hook 'org-mode-hook

@@ -1,12 +1,8 @@
 
-* TODO "feat/hl-todo.el"
-* TODO ;; "feat/flycheck.el"
 * TODO ;; "feat/helpful.el"
-* TODO "feat/editorconfig.el"
 * TODO "feat/evil-matchit.el"
 * TODO "feat/evil-owl.el"
 * TODO "feat/evil-surround.el"
-* TODO "feat/markdown-mode.el"
 * TODO ;; "feat/multiple-cursors.el"
 * TODO "feat/plantuml.el"
 * TODO "feat/projectile.el"
