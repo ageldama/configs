@@ -50,10 +50,9 @@
                          (concat "perl " (buffer-file-name)))))
 
 ;;;
-(define-key cperl-mode-map (kbd "C-c e") 'run-perl-prove)
-(define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
-(add-hook 'cperl-mode-hook
- 	  (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
+;; (define-key cperl-mode-map (kbd "C-c e") 'run-perl-prove)
+;; (define-key cperl-mode-map (kbd "C-c r") 'cperl-db)
+;; (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 
 
 (defhydra hydra-lang-cperl ()

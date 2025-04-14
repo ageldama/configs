@@ -71,6 +71,8 @@
           '(("w" writeroom-mode "writeroom")))
       ,@(when (fboundp 'toggle-evil-mode)
           `((":" toggle-evil-mode "evil")))
+      ,@(when (fboundp 'treemacs)
+          `(("t" treemacs "treemacs")))
       ))
 
 
