@@ -1,7 +1,5 @@
 
-* TODO ;; "feat/yas.el"
 * TODO "feat/embark.el"
-* TODO ;; "feat/treemacs.el"
 * TODO "feat/ivy-emoji-maybe.el"
 * TODO "feat/evil-matchit.el"
 * TODO "feat/evil-owl.el"

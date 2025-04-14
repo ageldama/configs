@@ -190,11 +190,13 @@
 
       ("M-v" hydra-local-vars/body "local-vars" )
 
-      ,@(when (and (fboundp 'projectile-mode) (fboundp 'helm-projectile))
-          '(("p" helm-projectile "projectile" )))
+      ,@(cond ((and (fboundp 'projectile-mode) (fboundp 'counsel-projectile))
+               '(("p" counsel-projectile "prj" )))
 
-      ,@(when (and (fboundp 'projectile-mode) (fboundp 'counsel-projectile))
-          '(("p" counsel-projectile "prj" )))
+              ((and (fboundp 'projectile-mode) (fboundp 'helm-projectile))
+               '(("p" helm-projectile "projectile" )))
+
+               (t '(("p" projectile-find-file "prj" ))))
 
       ("P" projectile-commander "prj-cmdr" )
 
