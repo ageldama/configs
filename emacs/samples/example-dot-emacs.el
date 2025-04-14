@@ -9,7 +9,30 @@
 
 (require 'e-2025)
 
-(require 'ag-feat-evil-collection)
+(require 'ag-feat-evil-collection) ; dpkg=-
+(require 'ag-feat-deadgrep) ; dpkg=-
+(require 'ag-feat-eldoc)    ; dpkg=-
+(require 'ag-feat-company)  ; dpkg=elpa-company
+(require 'ag-feat-magit)    ; dpkg=elpa-magit
+(require 'ag-feat-web-mode) ; dpkg=elpa-web-mode
+(require 'ag-feat-hl-todo)  ; dpkg=elpa-hl-todo
+(require 'ag-feat-markdown-mode) ; dpkg=elpa-markdown-mode
+(require 'ag-feat-projectile)    ; dpkg=elpa-projectile
+(require 'ag-feat-flycheck)      ; dpkg=elpa-flycheck
+;; (require 'ag-feat-direnv)     ; dpkg=-
+;; (require 'ag-feat-editorconfig) ; dpkg=elpa-editorconfig
+;; (require 'ag-feat-plantuml)     ; dpkg=-
+(require 'ag-feat-helpful)  ; dpkg=-
+(require 'ag-feat-counsel)  ; dpkg=elpa-counsel
+(require 'ag-feat-ivy-rich)  ; dpkg=-
+(require 'ag-feat-ivy-hydra)  ; dpkg=-
+(require 'ag-feat-counsel-projectile) ; dpkg=-
+(require 'ag-feat-json) ; dpkg=-
+(require 'ag-feat-toml) ; dpkg=-
+(require 'ag-feat-yaml) ; dpkg=-
+(require 'ag-feat-vimish-fold) ; dpkg=elpa-vimish-fold
+(require 'ag-feat-evil-vimish-fold) ; dpkg=-
+
 
 
 (when window-system
@@ -30,7 +53,7 @@
      )
     (ag-set-fixed-fonts *ageldama/font-fixed-en*
                         *ageldama/font-fixed-ko*)
-    ;;(set-face-attribute 'default nil :height 80)
+    (set-face-attribute 'default nil :height 88)
     )
 
   ;; (load-theme 'modus-vivendi t)
@@ -69,3 +92,16 @@
 
 
 
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(package-selected-packages
+   '(evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
