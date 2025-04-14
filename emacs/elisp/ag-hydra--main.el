@@ -154,14 +154,12 @@
 
       ("C-$" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
-      ,@(when (fboundp 'browse-kill-ring)
-          '(("M-k" browse-kill-ring "kill-ring" )))
-
-      ,@(when (fboundp 'helm-show-kill-ring)
-          '(("k" helm-show-kill-ring "kill-ring" )))
-
-      ,@(when (fboundp 'counsel-yank-pop)
-          '(("k" counsel-yank-pop "yank-pop" )))
+      ("k" (lambda () (interactive)
+             (cond ((fboundp 'counsel-yank-pop) (counsel-yank-pop))
+                   ((fboundp 'helm-show-kill-ring) (helm-show-kill-ring))
+                   ((fboundp 'browse-kill-ring) (browse-kill-ring))
+                   (t (yank-pop))))
+       "yank-pop")
 
       ("C-k" kill-current-buffer "kill-cur-buf" )
 
