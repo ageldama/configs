@@ -33,30 +33,32 @@
 (require 'ag-feat-vimish-fold) ; dpkg=elpa-vimish-fold
 ;; (require 'ag-feat-evil-vimish-fold) ; dpkg=-
 (require 'ag-feat-yas) ; dpkg=elpa-yasnippet-snippets
-(require 'ag-feat-treemacs) ; dpkg=elpa-treemacs
-(require 'ag-feat-treemacs-projectile)   ; dpkg=elpa-treemacs-projectile
-(require 'ag-feat-treemacs-evil)         ; dpkg=elpa-treemacs-evil
-(require 'ag-feat-treemacs-magit)        ; dpkg=elpa-treemacs-magit
-(require 'ag-feat-treemacs-icons-dired)  ; dpkg=-
+;; (require 'ag-feat-treemacs) ; dpkg=elpa-treemacs
+;; (require 'ag-feat-treemacs-projectile)   ; dpkg=elpa-treemacs-projectile
+;; (require 'ag-feat-treemacs-evil)         ; dpkg=elpa-treemacs-evil
+;; (require 'ag-feat-treemacs-magit)        ; dpkg=elpa-treemacs-magit
+;; (require 'ag-feat-treemacs-icons-dired)  ; dpkg=-
 ;; (require 'ag-feat-perl5) ; dpkg=-
 (require 'ag-feat-ivy-emoji-maybe) ; dpkg=-
 (require 'ag-feat-embark) ; dpkg=-
-(require 'ag-feat-multiple-cursors) ; dpkg=-
-(require 'ag-feat-protobuf-mode) ; dpkg=-
-(require 'ag-feat-string-inflection) ; dpkg=-
-(require 'ag-feat-apheleia) ; dpkg=-
-(require 'ag-feat-evil-surround) ; dpkg=-
+;; (require 'ag-feat-multiple-cursors) ; dpkg=-
+;; (require 'ag-feat-protobuf-mode) ; dpkg=-
+;; (require 'ag-feat-string-inflection) ; dpkg=-
+;; (require 'ag-feat-apheleia) ; dpkg=-
+;; (require 'ag-feat-evil-surround) ; dpkg=-
 (require 'ag-feat-evil-owl) ; dpkg=-
-(require 'ag-feat-evil-matchit) ; dpkg=-
-(require 'ag-feat-add-node-modules-path) ; dpkg=-
-(require 'ag-feat-js2-mode) ; dpkg=-
-(require 'ag-feat-eglot) ; dpkg=-
-(require 'ag-feat-realgud) ; dpkg=-
-(require 'ag-feat-unfill) ; dpkg=-
-(require 'ag-feat-exec-path-from-shell) ; dpkg=-
-(require 'ag-feat-quelpa) ; dpkg=-
-(require 'ag-feat-zig) ; dpkg=-
-(require 'ag-feat-meson) ; dpkg=-
+;; (require 'ag-feat-evil-matchit) ; dpkg=-
+;; (require 'ag-feat-add-node-modules-path) ; dpkg=-
+;; (require 'ag-feat-js2-mode) ; dpkg=-
+;; (require 'ag-feat-eglot) ; dpkg=-
+;; (require 'ag-feat-realgud) ; dpkg=-
+;; (require 'ag-feat-unfill) ; dpkg=-
+;; (require 'ag-feat-exec-path-from-shell) ; dpkg=-
+;; (require 'ag-feat-quelpa) ; dpkg=-
+;; (require 'ag-feat-zig) ; dpkg=-
+;; (require 'ag-feat-meson) ; dpkg=-
+;; (require 'ag-feat-cmake) ; dpkg=-
+;; (require 'ag-feat-golang-light) ; dpkg=-
 
 
 ;;; once all loaded, rebuild it:
@@ -122,20 +124,6 @@
 (when (boundp 'native-comp-async-report-warnings-errors)
   (setq native-comp-async-report-warnings-errors 'silent))
 
-;;; TEMP
 
+;;; ----------------------------------------------------------------------
 
-
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   '(zig-mode quelpa unfill realgud eglot js2-mode add-node-modules-path evil-matchit evil-owl evil-surround apheleia string-inflection protobuf-mode multiple-cursors ivy-emoji treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- )
