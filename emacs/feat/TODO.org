@@ -4,8 +4,6 @@
 * TODO "feat/evil-owl.el"
 * TODO "feat/evil-surround.el"
 * TODO ;; "feat/multiple-cursors.el"
-* TODO "feat/plantuml.el"
-* TODO "feat/projectile.el"
 * TODO "feat/string-inflection.el"
 * TODO "feat/vimish-fold.el"
 * TODO ;; "feat/yas.el"
