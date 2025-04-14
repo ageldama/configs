@@ -190,7 +190,7 @@ if [[ ! -f ~/.no-screensaver ]]; then
     xss-lock -- ~/local/bin/i3lock+dpms.bash &
     # 일단 disable-해서, 자연스럽게 초기화+enable 되도록:
     xset s 0
-    ~/local/bin/xscreensaver-toggle.pl
+    ~/local/bin/xscreensaver-toggle.pl &
   else
     xscreensaver -no-splash &
   fi
