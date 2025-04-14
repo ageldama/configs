@@ -1,47 +1,11 @@
+*   golang-light.el
+*   golang.el
+* "zig.el"
+*   cmake.el
+*   meson.el
+*   auctex.el
+* exec-path-from-shell.el
+* feat/quelpa.el
 
-* TODO ;; "eglot.el"
 
 
-* NOT-THIS-TIME
-** "zig.el"
-** "feat/rg.el"
-**   cmake.el
-**   meson.el
-**   mini-slime.el
-**   lsp.el
-**   feat/moonshot.el
-**   feat/helm-projectile.el
-** feat/quelpa.el
-**   feat/realgud.el
-** feat/unfill.el
-**   feat/pc-bufsw.el
-**   feat/helm.el
-**   feat/helm-swoop.el
-**   feat/browse-kill-ring.el
-**   feat/flycheck-compcmdsjson.el
-**   golang.el
-**   golang-light.el
-**   golang-lsp.el
-**   golang-lsp2.el
-**   goog-c-style.el
-**   lsp-cpp-ccls.el
-**   lsp-cpp-clangd.el
-**   lsp-rust-rls.el
-**   geiser.el
-**   feat/helm-ag.el
-**   auctex.el
-**   c++-light-2022.el
-**   clojure.el
-**   xclip.el
-** exec-path-from-shell.el
-**   ocaml.el
-**   org-more.el
-**   org-roam.el
-** ob-tcl.el
-**   javascript/typescript.el
-**   ruby.el
-**   rust.el
-**   slime.el
-**   sly.el
-**   lang-tcl.el
-**   vtchcc-eglot.el ; typescript, yaml
