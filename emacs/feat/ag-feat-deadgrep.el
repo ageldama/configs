@@ -1,7 +1,7 @@
 ;;; deadgrep
 
 (use-package deadgrep :ensure t :pin melpa
-  :config (global-set-key (kbd "<f6>") 'deadgrep))
+  :config (global-set-key (kbd "C-<f9>") 'deadgrep))
 
 
 (use-package wgrep-deadgrep :ensure t :pin melpa
