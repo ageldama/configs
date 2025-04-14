@@ -1,26 +1,24 @@
 
-* TODO ;; "feat/helpful.el"
+* TODO "feat/vimish-fold.el"
+* TODO ;; "feat/yas.el"
+* TODO "feat/embark.el"
+* TODO ;; "feat/treemacs.el"
+* TODO "feat/ivy-emoji-maybe.el"
 * TODO "feat/evil-matchit.el"
 * TODO "feat/evil-owl.el"
 * TODO "feat/evil-surround.el"
 * TODO ;; "feat/multiple-cursors.el"
 * TODO "feat/string-inflection.el"
-* TODO "feat/vimish-fold.el"
-* TODO ;; "feat/yas.el"
-* TODO "feat/counsel.el"
 * TODO ;; "feat/apheleia.el"
-* TODO "feat/embark.el"
-* TODO ;; "feat/treemacs.el"
-* TODO "feat/ivy-emoji-maybe.el"
 * TODO "perl5.el"
 * TODO ;; "proto+grpc.el"
 * TODO "json.el"
 * TODO ;; "javascript/js2.el"
-* TODO ;; "zig.el"
 * TODO ;; "eglot.el"
 
 
 * NOT-THIS-TIME
+** "zig.el"
 ** "feat/rg.el"
 **   cmake.el
 **   meson.el
