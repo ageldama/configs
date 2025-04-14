@@ -33,12 +33,20 @@
 (require 'ag-feat-vimish-fold) ; dpkg=elpa-vimish-fold
 ;; (require 'ag-feat-evil-vimish-fold) ; dpkg=-
 (require 'ag-feat-yas) ; dpkg=elpa-yasnippet-snippets
+(require 'ag-feat-treemacs) ; dpkg=elpa-treemacs
+(require 'ag-feat-treemacs-projectile)   ; dpkg=elpa-treemacs-projectile
+(require 'ag-feat-treemacs-evil)         ; dpkg=elpa-treemacs-evil
+(require 'ag-feat-treemacs-magit)        ; dpkg=elpa-treemacs-magit
+(require 'ag-feat-treemacs-icons-dired)  ; dpkg=-
 
 
 ;;; once all loaded, rebuild it:
 
 (require 'ag-hydra--main)
 (def-hydras)
+
+;;; treemacs
+(treemacs-start-on-boot)
 
 ;;;
 
@@ -105,7 +113,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
+   '(treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
