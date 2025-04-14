@@ -52,7 +52,7 @@
 ;; (require 'ag-feat-treemacs-icons-dired)  ; dpkg=-
 ;; (require 'ag-feat-perl5) ; dpkg=+
 (require 'ag-feat-ivy-emoji-maybe) ; dpkg=-
-;; FIXME (require 'ag-feat-embark) ; dpkg=elpa-embark
+(require 'ag-feat-embark) ; dpkg=elpa-embark
 ;; (require 'ag-feat-multiple-cursors) ; dpkg=-
 ;; (require 'ag-feat-protobuf-mode) ; dpkg=-
 ;; (require 'ag-feat-string-inflection) ; dpkg=-
