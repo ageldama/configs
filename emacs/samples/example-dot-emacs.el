@@ -39,7 +39,9 @@
 (require 'ag-feat-treemacs-magit)        ; dpkg=elpa-treemacs-magit
 (require 'ag-feat-treemacs-icons-dired)  ; dpkg=-
 ;; (require 'ag-feat-perl5) ; dpkg=-
-(require 'ag-feat-ivy-emoji-maybe)
+(require 'ag-feat-ivy-emoji-maybe) ; dpkg=-
+(require 'ag-feat-embark) ; dpkg=-
+(require 'ag-feat-multiple-cursors) ; dpkg=-
 
 
 ;;; once all loaded, rebuild it:
@@ -115,7 +117,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(ivy-emoji treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
+   '(multiple-cursors ivy-emoji treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

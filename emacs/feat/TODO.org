@@ -1,9 +1,7 @@
 
-* TODO "feat/embark.el"
 * TODO "feat/evil-matchit.el"
 * TODO "feat/evil-owl.el"
 * TODO "feat/evil-surround.el"
-* TODO ;; "feat/multiple-cursors.el"
 * TODO "feat/string-inflection.el"
 * TODO ;; "feat/apheleia.el"
 * TODO ;; "proto+grpc.el"
