@@ -69,6 +69,9 @@
 ;;; treemacs
 (treemacs-start-on-boot)
 
+;;; evil
+(evil-mode +1)
+
 ;;;
 
 (when window-system
