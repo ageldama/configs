@@ -42,6 +42,12 @@
 (require 'ag-feat-ivy-emoji-maybe) ; dpkg=-
 (require 'ag-feat-embark) ; dpkg=-
 (require 'ag-feat-multiple-cursors) ; dpkg=-
+(require 'ag-feat-protobuf-mode) ; dpkg=-
+(require 'ag-feat-string-inflection) ; dpkg=-
+(require 'ag-feat-apheleia) ; dpkg=-
+(require 'ag-feat-evil-surround) ; dpkg=-
+(require 'ag-feat-evil-owl) ; dpkg=-
+(require 'ag-feat-evil-matchit) ; dpkg=-
 
 
 ;;; once all loaded, rebuild it:
@@ -117,7 +123,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
-   '(multiple-cursors ivy-emoji treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
+   '(evil-matchit evil-owl evil-surround apheleia string-inflection protobuf-mode multiple-cursors ivy-emoji treemacs-icons-dired treemacs-magit treemacs-evil treemacs-projectile treemacs evil-vimish-fold toml-mode json-mode ivy-rich counsel-projectile ivy-hydra helpful plantuml-mode wgrep-deadgrep deadgrep evil-collection yasnippet-snippets writeroom-mode which-key wgrep web-mode vimish-fold vertico use-package undo-tree smex smart-mode-line projectile org-contrib modus-themes markdown-mode marginalia magit hydra htmlize hl-todo flycheck expand-region exec-path-from-shell evil eshell-up embark editorconfig diminish counsel consult company ace-window)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

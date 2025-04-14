@@ -1,10 +1,4 @@
 
-* TODO "feat/evil-matchit.el"
-* TODO "feat/evil-owl.el"
-* TODO "feat/evil-surround.el"
-* TODO "feat/string-inflection.el"
-* TODO ;; "feat/apheleia.el"
-* TODO ;; "proto+grpc.el"
 * TODO ;; "javascript/js2.el"
 * TODO ;; "eglot.el"
 
