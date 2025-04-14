@@ -13,12 +13,8 @@
 
 (require 'hydra)
 (require 's)
-(require 'counsel)
 (require 'writeroom-mode)
 (require 'org-agenda)
-(require 'avy)
-(require 'undo-tree)
-(require 'projectile)
 
 (require 'ag-el)
 (require 'ag-gc)
@@ -49,7 +45,8 @@
                (find-file-literally (buffer-file-name)))
      "cur-lit")
 
-    ("z" counsel-fzf "fzf")
+    ,@(when (fboundp 'counsel-fzf)
+        '(("z" counsel-fzf "fzf" )))
 
     ("M-w" buffer-path-and-line-col "copy-path-linum"))
 
@@ -97,8 +94,13 @@
    `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
       "minimi"
 
-      ("<SPC>" avy-goto-char-timer "avy")
-      (";" avy-resume "avy-resume")
+      ,@(when (fboundp 'avy-resume)
+          '(
+            ("<SPC>" avy-goto-char-timer "avy")
+            ("w" avy-goto-word-1 "goto-word")
+            ("l" avy-goto-line "goto-line")
+            (";" avy-resume "avy-resume")
+            ))
 
       ("`" menu-bar-open "menu-bar" )
 
@@ -116,8 +118,8 @@
       ;; ,@(when (fboundp 'helm-bookmarks)
       ;;     '(("B" helm-bookmarks "bookmks" )))
 
-      ;; ,@(when (fboundp 'counsel-bookmark)
-      ;;     '(("B" counsel-bookmark "bookmks" )))
+      ,@(when (fboundp 'counsel-bookmark)
+          '(("B" counsel-bookmark "bookmks" )))
 
       ;; ,@(when (fboundp 'helm-imenu)
       ;;     '(("I" helm-imenu "imenu" )))
@@ -142,7 +144,8 @@
 
       ("f" hydra-files/body "files" )
 
-      ("u" undo-tree-visualize "undo-tree" )
+      ,@(when (fboundp 'undo-tree-visualize)
+          '(("u" undo-tree-visualize "undo-tree" )))
 
       ,@(when (fboundp 'magit-status)
           '(("g" magit-status "magit" )))
@@ -195,12 +198,13 @@
               ((and (fboundp 'projectile-mode) (fboundp 'helm-projectile))
                '(("p" helm-projectile "projectile" )))
 
-               (t '(("p" projectile-find-file "prj" ))))
+              ((fboundp 'projectile-mode)
+               '(("p" projectile-find-file "projectile" )))
 
-      ("P" projectile-commander "prj-cmdr" )
+               (t '(("p" project-find-file "prj" ))))
 
-      ("w" avy-goto-word-1 "goto-word")
-      ("l" avy-goto-line "goto-line")
+      ,@(when (fboundp 'projectile-commander)
+          '(("P" projectile-commander "prj-cmdr" )))
 
       ("C-r" recompile-showing-compilation-window "recompile")
 
@@ -212,25 +216,23 @@
 
           ))
 
-  (defhydra hydra-misc-fns ()
-    "
-Misc:^^
---------------------------
-_p_ : list-proc
-_b_ : bookmarks
-_d_ : search sdcv
-_s_ : del-trail-ws
-_G_ : gc
+  (eval `(defhydra hydra-misc-fns ()
+           "Misc: "
 
-_SPC_ : cancel
-"
-    ("p"  counsel-list-processes :exit t)
-    ("b"  counsel-bookmark :exit t)
-    ("d"  sdcv-search-input :exit t)
-    ("s"  delete-trailing-whitespace :exit t)
-    ("G"  garbage-collect :exit t)
+           ("p"  (lambda () (interactive)
+                   (if (fboundp 'counsel-list-processes)
+                       (counsel-list-processes)
+                     (list-processes)))
+            "proc"
+            :exit t)
 
-    ("SPC" nil))
+           ,@(when (fboundp 'sdcv-search-input)
+               '(("d" sdcv-search-input "sdcv" :exit t)))
+
+           ("s"  delete-trailing-whitespace "delete-trailing-whitespace" :exit t)
+           ("G"  garbage-collect "do-gc" :exit t)
+
+           ("SPC" nil)))
 
   ) ;; def-hydras
 
