@@ -45,6 +45,9 @@ elpa-web-mode
 elpa-transient
 elpa-writeroom-mode
 elpa-magit
+elpa-js2-mode
+elpa-eglot
+elpa-helpful
 "
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')

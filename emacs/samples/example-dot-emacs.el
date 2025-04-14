@@ -11,7 +11,7 @@
 
 (require 'ag-feat-evil-collection) ; dpkg=-
 (require 'ag-feat-deadgrep) ; dpkg=-
-(require 'ag-feat-eldoc)    ; dpkg=-
+(require 'ag-feat-eldoc)    ; dpkg=+
 (require 'ag-feat-company)  ; dpkg=elpa-company
 (require 'ag-feat-magit)    ; dpkg=elpa-magit
 (require 'ag-feat-web-mode) ; dpkg=elpa-web-mode
@@ -22,7 +22,7 @@
 ;; (require 'ag-feat-direnv)     ; dpkg=-
 ;; (require 'ag-feat-editorconfig) ; dpkg=elpa-editorconfig
 ;; (require 'ag-feat-plantuml)     ; dpkg=-
-;; (require 'ag-feat-helpful)  ; dpkg=-
+;; (require 'ag-feat-helpful)  ; dpkg=elpa-helpful
 (require 'ag-feat-counsel)  ; dpkg=elpa-counsel
 ;; (require 'ag-feat-ivy-rich)  ; dpkg=-
 ;; (require 'ag-feat-ivy-hydra)  ; dpkg=-
@@ -38,9 +38,9 @@
 ;; (require 'ag-feat-treemacs-evil)         ; dpkg=elpa-treemacs-evil
 ;; (require 'ag-feat-treemacs-magit)        ; dpkg=elpa-treemacs-magit
 ;; (require 'ag-feat-treemacs-icons-dired)  ; dpkg=-
-;; (require 'ag-feat-perl5) ; dpkg=-
+;; (require 'ag-feat-perl5) ; dpkg=+
 (require 'ag-feat-ivy-emoji-maybe) ; dpkg=-
-(require 'ag-feat-embark) ; dpkg=-
+(require 'ag-feat-embark) ; dpkg=elpa-embark
 ;; (require 'ag-feat-multiple-cursors) ; dpkg=-
 ;; (require 'ag-feat-protobuf-mode) ; dpkg=-
 ;; (require 'ag-feat-string-inflection) ; dpkg=-
@@ -49,11 +49,11 @@
 (require 'ag-feat-evil-owl) ; dpkg=-
 ;; (require 'ag-feat-evil-matchit) ; dpkg=-
 ;; (require 'ag-feat-add-node-modules-path) ; dpkg=-
-;; (require 'ag-feat-js2-mode) ; dpkg=-
-;; (require 'ag-feat-eglot) ; dpkg=-
+;; (require 'ag-feat-js2-mode) ; dpkg=elpa-js2-mode
+;; (require 'ag-feat-eglot) ; dpkg=+|elpa-eglot
 ;; (require 'ag-feat-realgud) ; dpkg=-
 ;; (require 'ag-feat-unfill) ; dpkg=-
-;; (require 'ag-feat-exec-path-from-shell) ; dpkg=-
+;; (require 'ag-feat-exec-path-from-shell) ; dpkg=elpa-exec-path-from-shell
 ;; (require 'ag-feat-quelpa) ; dpkg=-
 ;; (require 'ag-feat-zig) ; dpkg=-
 ;; (require 'ag-feat-meson) ; dpkg=-
