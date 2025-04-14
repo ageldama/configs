@@ -1,9 +1,11 @@
-#!/bin/sh
+#!/bin/bash
 
 # emacs-lucid : 한글 렌더링 버그 있는거 같아서 / Sun 13 Apr 12:44:21 BST 2025
 
+FLAVOR=${1:-lucid}
+
 DPKGS="
-emacs-gtk
+emacs-${FLAVOR}
 emacs-common-non-dfsg
 graphviz
 plantuml
