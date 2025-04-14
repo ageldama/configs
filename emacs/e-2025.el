@@ -45,8 +45,6 @@
 (require 'ag-lang-mode)
 
 (require 'ag-hydra--main)
-(require 'ag-hydra--tab)
-
 (def-hydras)
 
 (require 'ag-global-keys)

@@ -25,7 +25,7 @@
 
 
 
-(global-set-key (kbd "<f7>") 'toggle-evil-mode)
+;; (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
 (evil-global-set-key 'normal (kbd "g D") 'my-evil-jump-other-win)
 

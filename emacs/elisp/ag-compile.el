@@ -41,8 +41,7 @@
              (call-interactively 'compile)))))
 
 
-(global-set-key (kbd "<f5>")
-                #'recompile-showing-compilation-window)
+(global-set-key (kbd "<f5>") #'recompile-showing-compilation-window)
 
 ;; C-u <f5> : ...을 compilation buffer에서 직접 실행하길 원해서.
 ;; (`<esc> g r` 안될 때에)
