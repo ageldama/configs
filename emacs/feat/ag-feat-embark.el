@@ -5,9 +5,9 @@
 
   :bind
   (
-   ;; TODO
-   ;; ("<backtab>" . embark-act)         ;; pick some comfortable binding
-   ;; ("C-<return>" . embark-dwim)        ;; good alternative: M-.
+   ("<backtab>" . embark-act)         ;; pick some comfortable binding
+   ("<f7>" . embark-act)         ;; pick some comfortable binding
+   ("C-<f7>" . embark-dwim)        ;; good alternative: M-.
    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
 
   :init
