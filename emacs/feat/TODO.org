@@ -1,8 +1,0 @@
-*   golang-light.el
-*   golang.el
-
-
-
-
-
-
