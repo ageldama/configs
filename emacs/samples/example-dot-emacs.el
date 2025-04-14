@@ -61,10 +61,10 @@
 ;; (require 'ag-feat-golang-light) ; dpkg=-
 
 
-;;; once all loaded, rebuild it:
+;;; once all loaded, reinit it:
+(require 'ag-reinit)
+(ag-reinit/run-all)
 
-(require 'ag-hydra--main)
-(def-hydras)
 
 ;;; treemacs
 (treemacs-start-on-boot)

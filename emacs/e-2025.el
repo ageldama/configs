@@ -20,6 +20,7 @@
 
 (require 'ag-package)
 (require 'ag-bootstrap)
+(require 'ag-reinit)
 (require 'ag-el)
 (require 'ag-emacs-sensible)
 (require 'ag-hippie-expand)

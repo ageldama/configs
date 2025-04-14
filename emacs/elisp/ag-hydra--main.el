@@ -203,10 +203,13 @@
 
       ("C-r" recompile-showing-compilation-window "recompile")
 
-      ,@(when (fboundp 'eglot)
-          '(("e" hydra-eglot/body "eglot"))
+      ,@(when (fboundp 'hydra-expand-region/body)
+          '(("=" hydra-expand-region/body "exp-region")))
 
-          )))
+      ,@(when (fboundp 'eglot)
+          '(("e" hydra-eglot/body "eglot")))
+
+          ))
 
   (defhydra hydra-misc-fns ()
     "
@@ -229,6 +232,13 @@ _SPC_ : cancel
     ("SPC" nil))
 
   ) ;; def-hydras
+
+
+
+(require 'ag-reinit)
+
+(ag-reinit/add-as-interactive (def-hydras))
+
 
 
 ;;;

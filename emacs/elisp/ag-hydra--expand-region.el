@@ -9,6 +9,10 @@
              :exit nil)
   "hydra for mark commands"
   ("=" er/expand-region "expand")
+  ("-" (lambda () (interactive)
+         (er/expand-region -1)) "-")
+  ("0" (lambda () (interactive)
+         (er/expand-region 0)) "0")
   ("P" er/mark-inside-pairs "in-pair")
   ("Q" er/mark-inside-quotes "in-quote")
   ("p" er/mark-outside-pairs "out-pair")
