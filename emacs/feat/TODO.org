@@ -1,5 +1,4 @@
 
-* TODO "feat/vimish-fold.el"
 * TODO ;; "feat/yas.el"
 * TODO "feat/embark.el"
 * TODO ;; "feat/treemacs.el"
@@ -12,7 +11,6 @@
 * TODO ;; "feat/apheleia.el"
 * TODO "perl5.el"
 * TODO ;; "proto+grpc.el"
-* TODO "json.el"
 * TODO ;; "javascript/js2.el"
 * TODO ;; "eglot.el"
 
