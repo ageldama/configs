@@ -52,7 +52,7 @@
 ;; (require 'ag-feat-treemacs-icons-dired)  ; dpkg=-
 ;; (require 'ag-feat-perl5) ; dpkg=+
 (require 'ag-feat-ivy-emoji-maybe) ; dpkg=-
-(require 'ag-feat-embark) ; dpkg=elpa-embark
+;; FIXME (require 'ag-feat-embark) ; dpkg=elpa-embark
 ;; (require 'ag-feat-multiple-cursors) ; dpkg=-
 ;; (require 'ag-feat-protobuf-mode) ; dpkg=-
 ;; (require 'ag-feat-string-inflection) ; dpkg=-
@@ -82,7 +82,7 @@
 (treemacs-start-on-boot)
 
 ;;; evil
-(evil-mode +1)
+;; (evil-mode +1)
 
 ;;;
 
@@ -119,7 +119,7 @@
   )
 
 (global-display-line-numbers-mode -1)
-(global-hl-line-mode 1)
+(global-hl-line-mode +1)
 
 ;; 너무 느리면 끄자.
 (when (fboundp 'yas-global-mode)
