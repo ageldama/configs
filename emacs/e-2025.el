@@ -8,6 +8,8 @@
 
 (setq-local %myself-dir (file-name-parent-directory load-file-name))
 
+(defvar %ag-myself-dir %myself-dir)
+
 (defun %add-load-path-under-myself (rel-path)
   (cl-pushnew (concat %myself-dir rel-path) load-path
               :test #'equal))
