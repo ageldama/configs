@@ -112,6 +112,7 @@
 
              'ag-diary
 
+             'ag-grep
              'ag-wgrep
              'ag-mini-git
              'ag-compile

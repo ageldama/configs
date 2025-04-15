@@ -29,27 +29,32 @@
 
 (defun def-hydras ()
 
-  (eval `(defhydra hydra-files (:exit t)
-            ("n" find-name-dired "dired-by-name")
+  (eval
+   `(defhydra hydra-files (:exit t)
+      ("n" find-name-dired "dired-by-name")
 
-            ("M-s f" (lambda () (interactive)
-                       (find-file (s-concat "/sudo:root@localhost:" (or (buffer-file-name) "/"))))
-             "sudo:file")
+      ("M-s f" (lambda () (interactive)
+                 (find-file (s-concat "/sudo:root@localhost:"
+                                      (or (buffer-file-name) "/"))))
+       "sudo:file")
 
-            ("M-s d" (lambda () (interactive)
-                       (find-file (s-concat "/sudo:root@localhost:"
-                                            (file-name-directory (or (buffer-file-name) "/")))))
-             "sudo:dired")
+      ("M-s d" (lambda () (interactive)
+                 (find-file (s-concat "/sudo:root@localhost:"
+                                      (file-name-directory
+                                       (or (buffer-file-name) "/")))))
+       "sudo:dired")
 
-            ("M-l f" find-file-literally "file-lit")
-            ("M-l c" (lambda () (interactive)
-                       (find-file-literally (buffer-file-name)))
-             "cur-lit")
+      ("M-l f" find-file-literally "file-lit")
+      ("M-l c" (lambda () (interactive)
+                 (find-file-literally (buffer-file-name)))
+       "cur-lit")
 
-            ,@(when (fboundp 'counsel-fzf)
-                '(("z" counsel-fzf "fzf" )))
+      ,@(when (fboundp 'counsel-fzf)
+          '(("z" counsel-fzf "fzf" )))
 
-            ("M-w" buffer-path-and-line-col "copy-path-linum")))
+      ("C-t" image-dired "image-dired")
+
+      ("M-w" buffer-path-and-line-col "copy-path-linum")))
 
 
   (defhydra hydra-local-vars (:exit t)
