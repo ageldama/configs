@@ -62,7 +62,7 @@
  ;; 'ag-feat-apheleia              ; dpkg=-
  'ag-feat-evil-surround            ; dpkg=-
  'ag-feat-evil-owl                 ; dpkg=-
- ;; 'ag-feat-evil-matchit          ; dpkg=-
+ 'ag-feat-evil-matchit             ; dpkg=-
  ;; 'ag-feat-add-node-modules-path ; dpkg=-
  ;; 'ag-feat-js2-mode              ; dpkg=elpa-js2-mode
  ;; 'ag-feat-eglot ; dpkg=+|elpa-eglot
