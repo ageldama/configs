@@ -80,6 +80,8 @@
           `((":" toggle-evil-mode "evil")))
       ,@(when (fboundp 'treemacs)
           `(("t" treemacs "treemacs")))
+      ,@(when (fboundp 'consult-theme)
+          '(("@" consult-theme "theme")))
       ))
 
 
