@@ -49,8 +49,10 @@
                  (find-file-literally (buffer-file-name)))
        "cur-lit")
 
-      ,@(when (fboundp 'counsel-fzf)
-          '(("z" counsel-fzf "fzf" )))
+      ,@(cond ((fboundp 'consult-fd)
+               '(("z" consult-fd "fd" )))
+              ((fboundp 'counsel-fzf)
+               '(("z" counsel-fzf "fzf" ))))
 
       ("C-t" image-dired "image-dired")
 
@@ -126,27 +128,33 @@
       ;; ,@(when (fboundp 'helm-bookmarks)
       ;;     '(("B" helm-bookmarks "bookmks" )))
 
-      ,@(when (fboundp 'counsel-bookmark)
-          '(("B" counsel-bookmark "bookmks" )))
+      ,@(cond
+         ((fboundp 'consult-bookmark)
+          '(("B" consult-bookmark "bookmks" )))
+         ((fboundp 'counsel-bookmark)
+          '(("B" counsel-bookmark "bookmks" ))))
 
       ;; ,@(when (fboundp 'helm-imenu)
       ;;     '(("I" helm-imenu "imenu" )))
 
-      ,@(when (fboundp 'counsel-imenu)
-          '(("C-i" counsel-imenu "imenu" )))
+      ,@(cond
+         ((fboundp 'consult-imenu)
+          '(("C-i" consult-imenu "imenu" )))
+         ((fboundp 'counsel-imenu)
+          '(("C-i" counsel-imenu "imenu" ))))
 
-      ,@(when (fboundp 'helm-all-mark-rings)
-          '(("R" helm-all-mark-rings "markring" )))
+      ,@(cond
+         ((fboundp 'consult-global-mark)
+          '(("R" consult-global-mark "mark" )))
+         ((fboundp 'counsel-mark-ring)
+          '(("R" counsel-mark-ring "mark" )))
+         ((fboundp 'helm-all-mark-rings)
+          '(("R" helm-all-mark-rings "mark" ))))
 
-      ,@(when (fboundp 'counsel-mark-ring)
-          '(("R" counsel-mark-ring "markring" )))
-
-      ("b" (lambda () (interactive)
-             (if (fboundp 'helm-buffers-list)
-                 (helm-buffers-list)
-               ;; else
-               (ibuffer)))
-       "buf")
+      ,@(cond
+         ((fboundp 'consult-buffer)
+          '(("b" consult-buffer "buf" )))
+         (t (ibuffer)))
 
       ("o" hydra-org/body "org")
 
@@ -167,16 +175,21 @@
       ("C-$" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
       ("k" (lambda () (interactive)
-             (cond ((fboundp 'counsel-yank-pop) (counsel-yank-pop))
-                   ((fboundp 'helm-show-kill-ring) (helm-show-kill-ring))
-                   ((fboundp 'browse-kill-ring) (browse-kill-ring))
-                   (t (yank-pop))))
+             (cond
+              ((fboundp 'consult-yank-pop) (consult-yank-pop))
+              ((fboundp 'counsel-yank-pop) (counsel-yank-pop))
+              ((fboundp 'helm-show-kill-ring) (helm-show-kill-ring))
+              ((fboundp 'browse-kill-ring) (browse-kill-ring))
+              (t (yank-pop))))
        "yank-pop")
 
       ("C-k" kill-current-buffer "kill-cur-buf" )
 
-      ,@(when (fboundp 'counsel-recentf)
-          '(("r" counsel-recentf "recentf" )))
+      ,@(cond
+         ((featurep 'consult)
+          '(("r" consult-recent-file "recent")))
+         ((featurep 'counsel-recentf)
+          '(("r" counsel-recentf "recent" ))))
 
       ("-" hydra-misc-fns/body "misc-fns" )
 
@@ -224,23 +237,26 @@
 
           ))
 
-  (eval `(defhydra hydra-misc-fns ()
-           "Misc: "
+  (eval
+   `(defhydra hydra-misc-fns ()
+      "Misc: "
 
-           ("p"  (lambda () (interactive)
-                   (if (fboundp 'counsel-list-processes)
-                       (counsel-list-processes)
-                     (list-processes)))
-            "proc"
-            :exit t)
+      ("p"  (lambda () (interactive)
+              (if (fboundp 'counsel-list-processes)
+                  (counsel-list-processes)
+                (list-processes)))
+       "proc"
+       :exit t)
 
-           ,@(when (fboundp 'sdcv-search-input)
-               '(("d" sdcv-search-input "sdcv" :exit t)))
+      ,@(when (fboundp 'sdcv-search-input)
+          '(("d" sdcv-search-input "sdcv" :exit t)))
 
-           ("s"  delete-trailing-whitespace "delete-trailing-whitespace" :exit t)
-           ("G"  garbage-collect "do-gc" :exit t)
+      ("s"  delete-trailing-whitespace "delete-trailing-whitespace" :exit t)
+      ("G"  garbage-collect "do-gc" :exit t)
 
-           ("SPC" nil)))
+      ("%" %ag-parse-ag-requires-elapseds "requires-elapseds")
+
+      ("SPC" nil)))
 
   (defhydra hydra/tab (:exit nil)
     "tabs"
