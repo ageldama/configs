@@ -4,9 +4,10 @@
 
 (setq evil-want-integration t
       evil-want-keybinding t)
+
 (evil-set-undo-system 'undo-tree)
 
-(evil-mode +1)
+;; (evil-mode +1)
 
 (setq evil-default-state 'normal) ;;emacs)
 

@@ -22,7 +22,7 @@
     (set-fontset-font t 'hangul (font-spec :name ko-fn*))))
 
 
-(when (and t window-system)
+(when (and nil window-system)
   (cond
    ;;
    ((member system-type
@@ -32,6 +32,15 @@
    ((string-equal system-type "windows-nt")
     (set-face-attribute 'default nil :font "Consolas-11"))
    (t :unknown)))
+
+
+
+(defun ag-set-font-height (ht)
+  (interactive)
+  (when (window-system)
+    (set-face-attribute 'default nil :height ht)))
+
+
 
 
 ;;;

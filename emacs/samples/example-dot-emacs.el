@@ -12,12 +12,12 @@
 (require 'ag-feat-avy) ;; dpkg=elpa-avy
 (require 'ag-feat-ace-window) ;; dpkg=elpa-ace-window
 (require 'ag-feat-undo-tree) ;; dpkg=elpa-undo-tree
-(require 'ag-feat-diminish)  ;; dpkg=elpa-diminish
-(require 'ag-feat-modus-themes) ;; dpkg=elpa-modus-theme
+;; (require 'ag-feat-diminish)  ;; dpkg=elpa-diminish
+;; (require 'ag-feat-modus-themes) ;; dpkg=elpa-modus-theme
 ;; (require 'ag-feat-smart-mode-line) ;; dpkg=-
 ;; (require 'ag-feat-fundamental-mode) ;; dpkg=+
-(require 'ag-feat-ob-plantuml) ;; dpkg=+
-(require 'ag-feat-ob-ditaa) ;; dpkg=+
+;; (require 'ag-feat-ob-plantuml) ;; dpkg=+
+;; (require 'ag-feat-ob-ditaa) ;; dpkg=+
 (require 'ag-feat-expand-region) ; dpkg=elpa-expand-region
 (require 'ag-feat-hydra--expand-region) ; dpkg=elpa-expand-region,elpa-hydra
 (require 'ag-feat-evil) ; dpkg=elpa-evil
@@ -57,7 +57,7 @@
 ;; (require 'ag-feat-protobuf-mode) ; dpkg=-
 ;; (require 'ag-feat-string-inflection) ; dpkg=-
 ;; (require 'ag-feat-apheleia) ; dpkg=-
-;; (require 'ag-feat-evil-surround) ; dpkg=-
+(require 'ag-feat-evil-surround) ; dpkg=-
 (require 'ag-feat-evil-owl) ; dpkg=-
 ;; (require 'ag-feat-evil-matchit) ; dpkg=-
 ;; (require 'ag-feat-add-node-modules-path) ; dpkg=-
@@ -79,33 +79,29 @@
 
 
 ;;; treemacs
-(treemacs-start-on-boot)
+;; (treemacs-start-on-boot)
 
 ;;; evil
-;; (evil-mode +1)
+(evil-mode +1)
 
 ;;;
 
-(when window-system
-  (progn
-    (setq
-     ;; *ageldama/font-fixed-en* "Noto Sans Mono"
-     *ageldama/font-fixed-en* "DejaVu Sans Mono"
-     ;; *ageldama/font-fixed-en* "Anonymous Pro"
-     ;; *ageldama/font-fixed-en* "JetBrains Mono"
-     ;; *ageldama/font-fixed-en* "Source Code Pro"
-     ;; *ageldama/font-fixed-en* "D2Coding"
-     ;; *ageldama/font-fixed-en* "HBIOS-SYS"
-     ;; *ageldama/font-fixed-ko* "나눔고딕코딩"
-     ;; *ageldama/font-fixed-ko* "Noto Sans Mono CJK KR"
-     *ageldama/font-fixed-ko* "D2Coding"
-     ;; *ageldama/font-fixed-ko* "DOSSaemmul"
-     ;; *ageldama/font-fixed-ko* "HBIOS-SYS"
-     )
-    (ag-set-fixed-fonts *ageldama/font-fixed-en*
-                        *ageldama/font-fixed-ko*)
-    (set-face-attribute 'default nil :height 88)
-    )
+(when (and nil (window-system))
+  ;; "Noto Sans Mono"
+  ;; "Anonymous Pro"
+  ;; "JetBrains Mono"
+  ;; "Source Code Pro"
+  ;; "D2Coding"
+  ;; "HBIOS-SYS"
+  ;; "나눔고딕코딩"
+  ;; "Noto Sans Mono CJK KR"
+  ;; "DOSSaemmul"
+  ;; "HBIOS-SYS"
+  (ag-set-fixed-fonts
+   "DejaVu Sans Mono"
+   "D2Coding"
+   )
+  (ag-set-font-height 80)
 
   ;; (load-theme 'modus-vivendi t)
   ;; (load-theme 'modus-operandi-tinted t)
