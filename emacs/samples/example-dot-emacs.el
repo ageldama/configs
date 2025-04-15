@@ -9,6 +9,7 @@
 
 (require 'e-2025)
 
+(require 'ag-feat-recentf) ;; dpkg=+
 (require 'ag-feat-avy) ;; dpkg=elpa-avy
 (require 'ag-feat-ace-window) ;; dpkg=elpa-ace-window
 (require 'ag-feat-undo-tree) ;; dpkg=elpa-undo-tree
@@ -117,11 +118,12 @@
 (global-display-line-numbers-mode -1)
 (global-hl-line-mode +1)
 
-;; 너무 느리면 끄자.
+
+;; 생각보다 무거워서 lazy-init + only-once:
 (when (fboundp 'yas-global-mode)
-  (yas-global-mode +1)
-  ;; (yas-global-mode -1)
-  )
+  (setq ag-feat-yas-global-mode +1)
+  (ag-feat-yas--install-hook))
+
 
 ;; (toggle-battery-saving-mode)
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))

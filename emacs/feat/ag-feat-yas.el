@@ -15,8 +15,28 @@
             ;;       (append hippie-expand-try-functions-list
             ;;               '(yas-hippie-try-expand)))
 
-            ;;
-            (yas-global-mode +1)))
+            ;; NOTE: 생각보다 profiler 돌리면 오래 걸림. ㅎㅎ
+            ;; (yas-global-mode +1)
+            ))
+
+
+(defvar ag-feat-yas-global-mode nil)
+
+
+(defun ag-feat-yas--maybe-activate+only-once--yas-global-mode-maybe ()
+  (interactive)
+  (when (and (not (defined-symbol-value 'yas-global-mode))
+             ag-feat-yas-global-mode)
+    (message ";;; NOTE: yas-global-mode +1")
+    (yas-global-mode +1)))
+
+
+(defun ag-feat-yas--install-hook (&optional hook-sym)
+  "생각보다 무거워서 lazy-init + only-once"
+  (let ((hook-sym* (or hook-sym 'find-file-hook)))
+    (add-hook hook-sym*
+              #'ag-feat-yas--maybe-activate+only-once--yas-global-mode-maybe)))
+
 
 
 (defhydra hydra-yas ()
