@@ -48,12 +48,13 @@
     (message "TMP: %s" tmp-fn)
     (with-current-buffer "*Messages*"
       (write-region nil nil tmp-fn))
-    (compile (format "cat '%s' | perl '%s' ; rm -v '%s'"
-                     tmp-fn
-                     (f-join %ag-myself-dir
-                             "scripts/parse-ag-requires-elapsed.pl")
-                     tmp-fn))
-    ))
+    (let ((sh-cmd (format "cat '%s' | perl '%s' ; rm -v '%s'"
+                          tmp-fn
+                          (concat %ag-myself-dir
+                                  "scripts/parse-ag-requires-elapsed.pl")
+                          tmp-fn)))
+      (shell-command sh-cmd "*ag-requires-elapsed*")
+      )))
 
 
 
