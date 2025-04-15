@@ -25,7 +25,7 @@
   (pcase-let ((`(,el-fn . ,elc-fn) (%ag-lib-elc-file-name lib)))
     `(:el ,el-fn :elc ,elc-fn
           :need-to-compile?
-          ,(not (and (f-exists? elc-fn)
+          ,(not (and (file-exists-p elc-fn)
                      (file-newer-than-file-p elc-fn el-fn))))))
 
 
@@ -55,14 +55,33 @@
 
 (defun ag-requires (&rest require-syms)
   (interactive)
-  (let ((compile? (member :compile-ifneeded? require-syms)))
+  (let ((len-require-syms (length require-syms))
+        (idx 0)
+        (requires-tag :*)
+        (compile? nil))
     (cl-loop for require-sym in require-syms
-             unless (keywordp require-sym)
-             do (progn (when compile?
-                         (%ag-lib-do-compile-maybe require-sym))
-                       (require require-sym)))))
+             do (progn (cl-incf idx)
+                       (cond ((keywordp require-sym)
+                              (message "%s KW [%s/%s]: %s"
+                                       requires-tag idx len-require-syms require-sym)
+                              (cond ((string-prefix-p ":tag-" (symbol-name require-sym))
+                                     (setf requires-tag
+                                           (substring (symbol-name require-sym) (length ":tag-"))))
+                                    ((eql :compile require-sym)
+                                     (setf compile? t))
+                                    ((eql :nocompile require-sym)
+                                     (setf compile? nil))))
+                             ;;
+                             ((symbolp require-sym)
+                              (progn (message "%s Requiring (%s) [%s/%s]:\t%s"
+                                              requires-tag (if compile? "-COMP-" "-NOBC-")
+                                              idx len-require-syms require-sym)
+                                     (if compile?
+                                         (%ag-lib-do-compile-maybe require-sym)
+                                       (require require-sym)))))))))
 
-(ag-requires :compile-ifneeded?
+(ag-requires :tag-:*bootstrap
+             :nocompile
              'ag-package
              'ag-bootstrap
              'ag-reinit
