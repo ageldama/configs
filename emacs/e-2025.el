@@ -100,6 +100,7 @@
              'ag-font
              'ag-gc
              'ag-battery-saving-mode
+             'ag-scrolling
 
              'ag-org
              'ag-writeroom-mode

@@ -14,6 +14,9 @@
 (global-visual-line-mode +1)
 
 
+(setq truncate-lines nil) ; no h-scroll
+
+
 ;;; no backup files
 (setq make-backup-files nil)
 (setq version-control   nil)   ; version numbers for backup-files.
@@ -59,6 +62,80 @@
 (define-key prog-mode-map (kbd "M-n") 'next-error)
 (define-key prog-mode-map (kbd "M-p") 'previous-error)
 
+
+;;; ediff
+(setq ediff-window-setup-function 'ediff-setup-windows-plain
+      ediff-split-window-function 'split-window-horizontally)
+
+
+
+
+;;; "y"/"n", instead of "yes"/"no".
+
+(setq read-answer-short t)
+(if (boundp 'use-short-answers)
+    (setq use-short-answers t)
+  (advice-add 'yes-or-no-p :override #'y-or-n-p))
+
+
+
+;;; printed s-expressions in the message buffer
+(setq eval-expression-print-length nil
+      eval-expression-print-level nil)
+
+
+
+;;; Smoother UI responsiveness
+(setq redisplay-skip-fontification-on-input t)
+
+;; ... By default, Emacs "updates" its ui more often than it needs to
+(setq idle-update-delay 1.0)
+
+
+;;; follow symlinks
+(setq find-file-visit-truename t
+      vc-follow-symlinks t)
+
+
+
+;;; help / apropos : to include vars
+(setq apropos-do-all t)
+
+
+
+;; beeping or blinking
+
+(setq
+ visible-bell nil
+ ring-bell-function #'ignore
+ )
+
+
+;;; commenting
+
+(setq
+ comment-multi-line t
+ comment-empty-lines t
+ )
+
+
+
+;;; misc
+
+;; (setq python-indent-guess-indent-offset-verbose nil)
+
+(setq sh-indent-after-continuation 'always)
+
+
+(setq
+ ;; Disable the obsolete practice of end-of-line spacing from the
+ ;; typewriter era.
+ sentence-end-double-space nil
+
+ ;; According to the POSIX, a line is defined as "a sequence of zero
+ ;; or more non-newline characters followed by a terminating newline".
+ require-final-newline t
+ )
 
 
 ;;;

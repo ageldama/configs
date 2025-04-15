@@ -15,7 +15,6 @@ elpa-use-package
 elpa-f
 elpa-s
 elpa-org
-elpa-org-contrib
 elpa-modus-themes
 elpa-hydra
 elpa-which-key
@@ -49,6 +48,7 @@ elpa-js2-mode
 elpa-eglot
 elpa-helpful
 "
+# elpa-org-contrib
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
 echo "INSTALL: $DPKGS ..."

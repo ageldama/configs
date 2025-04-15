@@ -3,6 +3,16 @@
 (require 'compile)
 
 
+;;;
+
+(setq
+ compilation-always-kill t
+ compilation-ask-about-save t
+ compilation-scroll-output 'first-error
+ )
+
+
+;;; colorize-compilation-buffer
 
 (if (and (>= emacs-major-version 28)
          (fboundp 'ansi-color-compilation-filter))
@@ -16,6 +26,9 @@
         (ansi-color-apply-on-region compilation-filter-start (point))))
     (unless (member 'colorize-compilation-buffer compilation-filter-hook)
       (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))))
+
+
+;;; recompile
 
 (defun recompile-showing-compilation-window ()
   (interactive)
