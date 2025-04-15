@@ -11,6 +11,8 @@
 
 ;;; align-regexp = "; [^;|.]+$"
 (ag-requires
+ :tag-:*feats
+ ;:compile
  'ag-feat-recentf                  ; dpkg=+
  'ag-feat-avy                      ; dpkg=elpa-avy
  'ag-feat-ace-window               ; dpkg=elpa-ace-window
