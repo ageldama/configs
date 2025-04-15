@@ -14,15 +14,17 @@
  :tag-:*feats
  ;:compile
  'ag-feat-recentf                  ; dpkg=+
+ 'ag-feat-savehist                 ; dpkg=+
  'ag-feat-avy                      ; dpkg=elpa-avy
  'ag-feat-ace-window               ; dpkg=elpa-ace-window
  'ag-feat-undo-tree                ; dpkg=elpa-undo-tree
- ;; 'ag-feat-diminish              ; dpkg=elpa-diminish
- ;; 'ag-feat-modus-themes          ; dpkg=elpa-modus-theme
+ 'ag-feat-diminish                 ; dpkg=elpa-diminish
+ 'ag-feat-modus-themes             ; dpkg=elpa-modus-theme
  ;; 'ag-feat-smart-mode-line       ; dpkg=-
  ;; 'ag-feat-fundamental-mode      ; dpkg=+
  ;; 'ag-feat-ob-plantuml           ; dpkg=+
  ;; 'ag-feat-ob-ditaa              ; dpkg=+
+ 'ag-feat-pulsar                   ; dpkg=-
  'ag-feat-expand-region            ; dpkg=elpa-expand-region
  'ag-feat-hydra--expand-region     ; dpkg=elpa-expand-region,elpa-hydra
  'ag-feat-evil                     ; dpkg=elpa-evil
@@ -39,16 +41,20 @@
  ;; 'ag-feat-direnv                ; dpkg=-
  ;; 'ag-feat-editorconfig          ; dpkg=elpa-editorconfig
  ;; 'ag-feat-plantuml              ; dpkg=-
- ;; 'ag-feat-helpful               ; dpkg=elpa-helpful
- 'ag-feat-counsel                  ; dpkg=elpa-counsel
+ 'ag-feat-helpful                  ; dpkg=elpa-helpful
+ 'ag-feat-vertico                  ; dpkg=elpa-vertico
+ 'ag-feat-marginalia               ; dpkg=elpa-marginalia
+ 'ag-feat-orderless                ; dpkg=elpa-orderless
+ 'ag-feat-consult                  ; dpkg=elpa-consult
+ ;; 'ag-feat-counsel               ; dpkg=elpa-counsel
  ;; 'ag-feat-ivy-rich              ; dpkg=-
  ;; 'ag-feat-ivy-hydra             ; dpkg=-
  ;; 'ag-feat-counsel-projectile    ; dpkg=-
- ;; 'ag-feat-json                  ; dpkg=-
- ;; 'ag-feat-toml                  ; dpkg=-
- ;; 'ag-feat-yaml                  ; dpkg=-
+ 'ag-feat-json                     ; dpkg=-
+ 'ag-feat-toml                     ; dpkg=-
+ 'ag-feat-yaml                     ; dpkg=-
  'ag-feat-vimish-fold              ; dpkg=elpa-vimish-fold
- ;; 'ag-feat-evil-vimish-fold      ; dpkg=-
+ 'ag-feat-evil-vimish-fold         ; dpkg=-
  'ag-feat-yas                      ; dpkg=elpa-yasnippet-snippets
  ;; 'ag-feat-treemacs              ; dpkg=elpa-treemacs
  ;; 'ag-feat-treemacs-projectile   ; dpkg=elpa-treemacs-projectile
@@ -56,8 +62,9 @@
  ;; 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
  ;; 'ag-feat-treemacs-icons-dired  ; dpkg=-
  ;; 'ag-feat-perl5                 ; dpkg=+
- 'ag-feat-ivy-emoji-maybe          ; dpkg=-
+ ;; 'ag-feat-ivy-emoji-maybe       ; dpkg=-
  'ag-feat-embark                   ; dpkg=elpa-embark
+ 'ag-feat-embark-consult           ; dpkg=-
  ;; 'ag-feat-multiple-cursors      ; dpkg=-
  ;; 'ag-feat-protobuf-mode         ; dpkg=-
  ;; 'ag-feat-string-inflection     ; dpkg=-
@@ -67,7 +74,7 @@
  'ag-feat-evil-matchit             ; dpkg=-
  ;; 'ag-feat-add-node-modules-path ; dpkg=-
  ;; 'ag-feat-js2-mode              ; dpkg=elpa-js2-mode
- ;; 'ag-feat-eglot ; dpkg=+|elpa-eglot
+ ;; 'ag-feat-eglot                 ; dpkg=+|elpa-eglot
  ;; 'ag-feat-realgud               ; dpkg=-
  ;; 'ag-feat-unfill                ; dpkg=-
  ;; 'ag-feat-exec-path-from-shell  ; dpkg=elpa-exec-path-from-shell
@@ -104,20 +111,25 @@
   ;; "Noto Sans Mono CJK KR"
   ;; "DOSSaemmul"
   ;; "HBIOS-SYS"
+  (set-frame-font
+   "DejaVu Sans Mono"
+   )
+
   (ag-set-fixed-fonts
    "DejaVu Sans Mono"
    "D2Coding"
    )
+
   (ag-set-font-height 80)
 
   ;; (load-theme 'modus-vivendi t)
   ;; (load-theme 'modus-operandi-tinted t)
-  (require 'ag-feat-day-and-night)
-  (setq *day-and-night/day-theme* 'modus-operandi)
-  (setq *day-and-night/night-theme* 'modus-vivendi)
+  ;; (require 'ag-feat-day-and-night)
+  ;; (setq *day-and-night/day-theme* 'modus-operandi)
+  ;; (setq *day-and-night/night-theme* 'modus-vivendi)
   ;; (day-and-night/change-theme-by-time)
   ;; (day-and-night/start-timer 30)
-  (day-and-night/declare-its-day)
+  ;; (day-and-night/declare-its-day)
   ;; (day-and-night/declare-its-night)
   )
 
@@ -142,6 +154,10 @@
 
 (when (boundp 'native-comp-async-report-warnings-errors)
   (setq native-comp-async-report-warnings-errors 'silent))
+
+
+;;; zone
+(zone-when-idle 30)
 
 
 ;;; ----------------------------------------------------------------------

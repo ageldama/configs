@@ -37,7 +37,6 @@ elpa-projectile
 elpa-embark
 elpa-vimish-fold
 elpa-flycheck
-elpa-counsel
 elpa-yasnippet
 elpa-yasnippet-snippets
 elpa-web-mode
@@ -47,8 +46,13 @@ elpa-magit
 elpa-js2-mode
 elpa-eglot
 elpa-helpful
+elpa-vertico
+elpa-marginalia
+elpa-orderless
+elpa-consult
 "
 # elpa-org-contrib
+# elpa-counsel
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
 echo "INSTALL: $DPKGS ..."
