@@ -75,15 +75,17 @@
                                      (setf compile? nil))))
                              ;;
                              ((symbolp require-sym)
-                              (progn (message "%s Requiring (%s) [%s/%s]:\t%s"
-                                              requires-tag (if compile? "-COMP-" "-NOBC-")
-                                              idx len-require-syms require-sym)
-                                     (message "%s [%s/%s]\tElapsed: %s"
-                                              requires-tag idx len-require-syms
-                                              (benchmark-elapse
-                                                (if compile?
-                                                    (%ag-lib-do-compile-maybe require-sym)
-                                                  (require require-sym)))))))))))
+                              (cl-labels ((log-req (msg)
+                                                   (message "%s REQ %s (%s) [%s/%s]:\t%s"
+                                                            requires-tag require-sym
+                                                            (if compile? "-COMP-" "-NOBC-")
+                                                            idx len-require-syms msg)))
+                                (log-req "... requiring")
+                                (log-req (format "elapsed %s"
+                                                 (benchmark-elapse
+                                                   (if compile?
+                                                       (%ag-lib-do-compile-maybe require-sym)
+                                                     (require require-sym))))))))))))
 
 (ag-requires :tag-:*bootstrap
              :nocompile
