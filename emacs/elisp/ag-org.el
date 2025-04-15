@@ -1,7 +1,7 @@
 
 (use-package org :ensure t :pin org)
 
-(use-package org-contrib :ensure t :pin org)
+;; (use-package org-contrib :ensure t )
 
 
 (require 'org-crypt)
