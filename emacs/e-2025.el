@@ -18,36 +18,43 @@
 
 ;;; commons
 
-(require 'ag-package)
-(require 'ag-bootstrap)
-(require 'ag-reinit)
-(require 'ag-el)
-(require 'ag-emacs-sensible)
-(require 'ag-hippie-expand)
-(require 'ag-font)
-(require 'ag-gc)
-(require 'ag-battery-saving-mode)
+(defun ag-requires (&rest require-syms)
+  (interactive)
+  (cl-loop for require-sym in require-syms
+           do (require require-sym)))
 
-(require 'ag-org)
-(require 'ag-writeroom-mode)
+(ag-requires 'ag-package
+          'ag-bootstrap
+          'ag-reinit
+          'ag-el
+          'ag-emacs-sensible
+          'ag-hippie-expand
+          'ag-font
+          'ag-gc
+          'ag-battery-saving-mode
 
-(require 'ag-dired)
-(require 'ag-hydra)
-(require 'ag-which-key)
-(require 'ag-ibuffer)
+          'ag-org
+          'ag-writeroom-mode
 
-(require 'ag-diary)
+          'ag-dired
+          'ag-hydra
+          'ag-which-key
+          'ag-ibuffer
 
-(require 'ag-wgrep)
-(require 'ag-mini-git)
-(require 'ag-compile)
+          'ag-diary
 
-(require 'ag-lang-mode)
+          'ag-wgrep
+          'ag-mini-git
+          'ag-compile
 
-(require 'ag-hydra--main)
+          'ag-lang-mode
+
+          'ag-hydra--main
+          )
+
 (def-hydras)
 
-(require 'ag-global-keys)
+(ag-requires 'ag-global-keys)
 
 
 ;;;
