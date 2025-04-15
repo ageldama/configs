@@ -53,6 +53,8 @@
 
 ;;; commons
 
+(require 'benchmark)
+
 (defun ag-requires (&rest require-syms)
   (interactive)
   (let ((len-require-syms (length require-syms))
@@ -76,9 +78,12 @@
                               (progn (message "%s Requiring (%s) [%s/%s]:\t%s"
                                               requires-tag (if compile? "-COMP-" "-NOBC-")
                                               idx len-require-syms require-sym)
-                                     (if compile?
-                                         (%ag-lib-do-compile-maybe require-sym)
-                                       (require require-sym)))))))))
+                                     (message "%s [%s/%s]\tElapsed: %s"
+                                              requires-tag idx len-require-syms
+                                              (benchmark-elapse
+                                                (if compile?
+                                                    (%ag-lib-do-compile-maybe require-sym)
+                                                  (require require-sym)))))))))))
 
 (ag-requires :tag-:*bootstrap
              :nocompile
@@ -109,11 +114,10 @@
              'ag-lang-mode
 
              'ag-hydra--main
+             'ag-global-keys
              )
 
 (def-hydras)
-
-(ag-requires 'ag-global-keys)
 
 
 ;;;
