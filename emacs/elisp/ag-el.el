@@ -2,6 +2,7 @@
 (require 'compile)
 
 
+
 (defmacro defined-symbol-value (sym)
   "`sym'이 defined이면, 심볼평가한 값 (아니면 nil)"
   `(and (boundp ,sym)
@@ -39,6 +40,7 @@
            (setf ,cmd
                  (read-string "[git-cmd]: " ,cmd)))
          (compile ,cmd)))))
+
 
 
 
