@@ -63,31 +63,35 @@
         (idx 0)
         (requires-tag :*)
         (compile? nil))
+    (cl-labels ((log-req (require-sym msg)
+                  (message "%s REQ %s (%s) [%s/%s]:\t%s"
+                           requires-tag require-sym
+                           (if compile? "-COMP-" "-NOBC-")
+                           idx len-require-syms msg))
+                (log-kw (require-sym)
+                  (message "%s KW [%s/%s]: %s"
+                           requires-tag idx len-require-syms require-sym))
+                (@-kw (require-sym)
+                  (log-kw require-sym)
+                  (cond ((string-prefix-p ":tag-" (symbol-name require-sym))
+                         (setf requires-tag
+                               (substring (symbol-name require-sym) (length ":tag-"))))
+                        ((eql :compile require-sym)
+                         (setf compile? t))
+                        ((eql :nocompile require-sym)
+                         (setf compile? nil))))
+                (@-sym (require-sym)
+                  (log-req require-sym "... requiring")
+                  (log-req require-sym
+                           (format "elapsed %s"
+                                   (benchmark-elapse
+                                     (if compile?
+                                         (%ag-lib-do-compile-maybe require-sym)
+                                       (require require-sym)))))))
     (cl-loop for require-sym in require-syms
              do (progn (cl-incf idx)
-                       (cond ((keywordp require-sym)
-                              (message "%s KW [%s/%s]: %s"
-                                       requires-tag idx len-require-syms require-sym)
-                              (cond ((string-prefix-p ":tag-" (symbol-name require-sym))
-                                     (setf requires-tag
-                                           (substring (symbol-name require-sym) (length ":tag-"))))
-                                    ((eql :compile require-sym)
-                                     (setf compile? t))
-                                    ((eql :nocompile require-sym)
-                                     (setf compile? nil))))
-                             ;;
-                             ((symbolp require-sym)
-                              (cl-labels ((log-req (msg)
-                                                   (message "%s REQ %s (%s) [%s/%s]:\t%s"
-                                                            requires-tag require-sym
-                                                            (if compile? "-COMP-" "-NOBC-")
-                                                            idx len-require-syms msg)))
-                                (log-req "... requiring")
-                                (log-req (format "elapsed %s"
-                                                 (benchmark-elapse
-                                                   (if compile?
-                                                       (%ag-lib-do-compile-maybe require-sym)
-                                                     (require require-sym))))))))))))
+                       (cond ((keywordp require-sym) (@-kw require-sym))
+                             ((symbolp require-sym) (@-sym require-sym))))))))
 
 (ag-requires :tag-:*bootstrap
              :nocompile
