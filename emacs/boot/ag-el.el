@@ -51,7 +51,7 @@
     (let ((sh-cmd (format "cat '%s' | perl '%s' ; rm -v '%s'"
                           tmp-fn
                           (concat %ag-myself-dir
-                                  "scripts/parse-ag-requires-elapsed.pl")
+                                  "../scripts/parse-ag-requires-elapsed.pl")
                           tmp-fn)))
       (shell-command sh-cmd "*ag-requires-elapsed*")
       )))

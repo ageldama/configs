@@ -5,9 +5,17 @@
       org-crypt-key         "ageldama@gmail.com"
     )
 
-(cl-pushnew "~/P/configs/emacs" load-path :test #'equal)
 
-(require 'e-2025)
+;;; core:
+(let ((+root+ (expand-file-name "~/P/configs/emacs")))
+  (dolist (p (list +root+
+		   (concat +root+ "/boot")))
+    (cl-pushnew p load-path :test #'equal)))
+
+
+(require 'e-boot-common-2025)
+(require 'e-core-2025)
+
 
 ;;; align-regexp = "; [^;|.]+$"
 (ag-requires

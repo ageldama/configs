@@ -1,4 +1,3 @@
-;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
 ;;; setup self
 
@@ -49,11 +48,13 @@
 
 ;;; load-paths
 
-(%add-load-path-under-myself "elisp")
-(%add-load-path-under-myself "feat")
-(%add-load-path-under-myself "3rdparty")
+(%add-load-path-under-myself "../elisp")
+(%add-load-path-under-myself "../feat")
+(%add-load-path-under-myself "../3rdparty")
 
-;;; commons
+
+
+;;; requires
 
 (require 'benchmark)
 
@@ -93,44 +94,7 @@
                        (cond ((keywordp require-sym) (@-kw require-sym))
                              ((symbolp require-sym) (@-sym require-sym))))))))
 
-(ag-requires :tag-:*bootstrap
-             :nocompile
-             'ag-package
-             'ag-bootstrap
-             'ag-reinit
-             'ag-el
-             'ag-emacs-sensible
-             'ag-hippie-expand
-             'ag-font
-             'ag-gc
-             'ag-battery-saving-mode
-             'ag-scrolling
-
-             'ag-org
-             'ag-writeroom-mode
-
-             'ag-dired
-             'ag-hydra
-             'ag-which-key
-             'ag-ibuffer
-
-             'ag-diary
-
-             'ag-grep
-             'ag-wgrep
-             'ag-mini-git
-             'ag-compile
-
-             'ag-lang-mode
-
-             'ag-hydra--main
-             'ag-global-keys
-             )
-
-(def-hydras)
 
 
 ;;;
-(provide 'e-2025)
-
-;;; EOF.
+(provide 'ag-00-boot)
