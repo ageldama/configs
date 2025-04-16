@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -x
+
 # emacs-lucid : 한글 렌더링 버그 있는거 같아서 / Sun 13 Apr 12:44:21 BST 2025
 
 FLAVOR=${1:-lucid}
@@ -45,18 +47,28 @@ elpa-writeroom-mode
 elpa-olivetti
 elpa-magit
 elpa-js2-mode
-elpa-eglot
 elpa-helpful
 elpa-vertico
 elpa-marginalia
 elpa-orderless
 elpa-consult
 "
-# TODO elpa-org-contrib (apt 검색해서 있을 때만)
-# TODO emacs -v 실행해서 버전 30 이하일 때에만 eglot 설치
-# elpa-counsel
+# DEPRECATED elpa-counsel
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
 echo "INSTALL: $DPKGS ..."
 sudo apt install $DPKGS
 
+
+# elpa-org-contrib (apt 검색해서 있을 때만)
+apt search elpa-org-contrib && sudo apt install elpa-org-contrib
+
+
+# emacs -v 실행해서 버전 30 이하일 때에만 eglot 설치
+EMACS_LT_V30=$(emacs -nw -Q -batch --eval="(princ (version-list-< (version-to-list emacs-version) '(30 0)))")
+if [[ "${EMACS_LT_V30}" == "t" ]]; then
+    sudo apt install elpa-eglot
+fi
+
+
+# EOF.
