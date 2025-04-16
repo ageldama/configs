@@ -14,7 +14,7 @@
    dired-recursive-copies 'always
 
    dired-listing-switches
-   "-AFhlv --group-directories-first --time-style=long-iso"
+   "-aADFhlv --group-directories-first --time-style=long-iso"
 
    dired-guess-shell-alist-user ; those are the suggestions for ! and & in Dired
    '(("\\.\\(png\\|jpe?g\\|tiff\\)" "feh" "xdg-open")
