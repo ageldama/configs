@@ -256,7 +256,7 @@
       ("s"  delete-trailing-whitespace "delete-trailing-whitespace" :exit t)
       ("G"  garbage-collect "do-gc" :exit t)
 
-      ("%" %ag-parse-ag-requires-elapseds "requires-elapseds")
+      ("%" %ag-parse-ag-requires-elapseds "requires-elapseds" :exit t)
 
       ("SPC" nil)))
 

@@ -10,7 +10,7 @@
 (defvar %ag-myself-dir %myself-dir)
 
 (defun %add-load-path-under-myself (rel-path)
-  (cl-pushnew (concat %myself-dir rel-path) load-path
+  (cl-pushnew (expand-file-name (concat %myself-dir rel-path)) load-path
               :test #'equal))
 
 
@@ -48,10 +48,10 @@
 
 ;;; load-paths
 
-(%add-load-path-under-myself "../elisp")
+(%add-load-path-under-myself "../core")
 (%add-load-path-under-myself "../feat")
 (%add-load-path-under-myself "../3rdparty")
-
+(%add-load-path-under-myself "../elisp") ; empty, but kept.
 
 
 ;;; requires
