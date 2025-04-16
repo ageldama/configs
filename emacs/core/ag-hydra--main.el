@@ -78,7 +78,7 @@
       ,@(when (fboundp 'writeroom-mode)
           '(("w" writeroom-mode "writeroom")))
       ,@(when (fboundp 'olivetti-mode)
-          '(("w" olivetti-mode "olivetti")))
+          '(("o" olivetti-mode "olivetti")))
       ,@(when (fboundp 'toggle-evil-mode)
           `((":" toggle-evil-mode "evil")))
       ,@(when (fboundp 'treemacs)
