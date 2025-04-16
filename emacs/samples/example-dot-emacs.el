@@ -106,6 +106,7 @@
 ;;; evil
 (evil-mode +1)
 
+
 ;;;
 
 (when (and nil (window-system))
@@ -146,7 +147,7 @@
 
 
 ;; 생각보다 무거워서 lazy-init + only-once:
-(when (fboundp 'yas-global-mode)
+(when (and (fboundp 'yas-global-mode) (fboundp 'ag-feat-yas--install-hok))
   (setq ag-feat-yas-global-mode +1)
   (ag-feat-yas--install-hook))
 
