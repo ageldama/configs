@@ -10,6 +10,7 @@
 
              'ag-org
              'ag-writeroom-mode
+             'ag-olivetti
 
              'ag-dired
              'ag-hydra

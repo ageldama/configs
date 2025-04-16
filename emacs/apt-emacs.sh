@@ -42,6 +42,7 @@ elpa-yasnippet-snippets
 elpa-web-mode
 elpa-transient
 elpa-writeroom-mode
+elpa-olivetti
 elpa-magit
 elpa-js2-mode
 elpa-eglot
@@ -51,7 +52,8 @@ elpa-marginalia
 elpa-orderless
 elpa-consult
 "
-# elpa-org-contrib
+# TODO elpa-org-contrib (apt 검색해서 있을 때만)
+# TODO emacs -v 실행해서 버전 30 이하일 때에만 eglot 설치
 # elpa-counsel
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')

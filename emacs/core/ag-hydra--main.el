@@ -15,6 +15,7 @@
 (require 'hydra)
 (require 's)
 (require 'writeroom-mode)
+(require 'olivetti)
 (require 'org-agenda)
 
 (require 'ag-el)
@@ -76,6 +77,8 @@
       ("b" toggle-battery-saving-mode "battery-saving")
       ,@(when (fboundp 'writeroom-mode)
           '(("w" writeroom-mode "writeroom")))
+      ,@(when (fboundp 'olivetti-mode)
+          '(("w" olivetti-mode "olivetti")))
       ,@(when (fboundp 'toggle-evil-mode)
           `((":" toggle-evil-mode "evil")))
       ,@(when (fboundp 'treemacs)
