@@ -28,7 +28,8 @@ XSCREENSAVERS=(/usr/libexec/xscreensaver/abstractile
 /usr/libexec/xscreensaver/tessellimage
 /usr/libexec/xscreensaver/xlyapr)
 
-SELECTED=$(echo "${XSCREENSAVERS}" | xargs shuf -n1 -e)
+SELECTED_IDX=$[$RANDOM % ${#XSCREENSAVERS[@]}]
+SELECTED=${XSCREENSAVERS[$SELECTED_IDX]}
 
 echo "${SELECTED}"
 "${SELECTED}" &
