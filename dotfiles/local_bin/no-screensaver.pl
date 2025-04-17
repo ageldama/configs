@@ -6,6 +6,7 @@ use warnings;
 # xset : blank / dpms
 qx<xset s off>;
 qx<xset s noblank>;
+qx<xset dpms 0>;
 qx<xset -dpms>;
 
 # xautolock
