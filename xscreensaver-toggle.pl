@@ -46,9 +46,13 @@ if(-e "$ENV{HOME}/.use-xautolock"){
 
   if ($cur_xset_s_timeout == 0) {
     system(qq<xset s ${xset_s_setting}>);
+    system(qq<xset s blank>);
     system(qq<xset +dpms>);
+    system(qq<xset dpms ${xset_s_setting}>);
   } else {
     system(qq<xset s off>);
+    system(qq<xset s noblank>);
+    system(qq<xset dpms 0>);
     system(qq<xset -dpms>);
   }
 
