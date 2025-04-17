@@ -11,7 +11,7 @@ for DPKG in xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-b
   XSCREENSAVERS+=(${S})
 done
 
-SELECTED_IDX=$[$RANDOM % ${#XSCREENSAVERS[@]}]
+SELECTED_IDX=$((RANDOM % ${#XSCREENSAVERS[@]}))
 SELECTED=${XSCREENSAVERS[$SELECTED_IDX]}
 
 echo "SELECTED: ${SELECTED}"
@@ -23,9 +23,10 @@ sleep 0.5s
 WID=$(wmctrl -lp | awk "\$3 == ${PID} { print \$1 }")
 echo "WID: ${WID}"
 
-wmctrl -i -r ${WID} -b add,fullscreen
+wmctrl -i -r "${WID}" -b add,fullscreen
 
-trap "kill ${PID}" EXIT
+TRAP_CMD=$(printf "kill '%d'" "${PID}")
+trap "${TRAP_CMD}" EXIT
 
 wait ${PID}
 
