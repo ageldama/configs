@@ -46,8 +46,10 @@ if(-e "$ENV{HOME}/.use-xautolock"){
 
   if ($cur_xset_s_timeout == 0) {
     system(qq<xset s ${xset_s_setting}>);
+    system(qq<xset +dpms>);
   } else {
     system(qq<xset s off>);
+    system(qq<xset -dpms>);
   }
 
   my $new_timeout = xset_q__screensaver_timeout;
