@@ -10,7 +10,7 @@
 (global-auto-revert-mode +1)
 
 (global-whitespace-mode -1)
-(setq-default show-trailing-whitespace -1)
+(setq-default show-trailing-whitespace +1)
 (global-visual-line-mode +1)
 
 
