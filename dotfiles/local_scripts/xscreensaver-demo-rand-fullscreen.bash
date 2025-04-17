@@ -25,11 +25,11 @@ echo "WID: ${WID}"
 
 wmctrl -i -r "${WID}" -b add,fullscreen
 
-function TRAP_KILL () {
+function TRAP_KILL_CHILD () {
   kill "${PID}"
 }
 
-trap TRAP_KILL EXIT
+trap TRAP_KILL_CHILD EXIT
 
 wait ${PID}
 
