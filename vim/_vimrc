@@ -240,6 +240,8 @@ endif
 
 Plug 'jamessan/vim-gnupg'
 
+Plug 'axvr/org.vim'
+
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
