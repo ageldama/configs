@@ -11,7 +11,7 @@ $q = $ARGV[0] if scalar @ARGV >0;
 
 my $pid = open2(
   my $stdout, my $stdin,
-  "rofi -dmenu -p '$q' -sep '\\0' -eh 2 -markup-rows -format i"
+  "rofi -theme-str 'window {width: 200px; height: 150px;}' -dmenu -p '$q' -sep '\\0' -eh 2 -markup-rows -format i"
  ) or confess;
 
 print $stdin "<span size='x-large' weight='heavy'>Yes</span>\0";
