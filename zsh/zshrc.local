@@ -98,8 +98,11 @@ alias zln='zmv -L'
 #fi
 
 if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
-  #echo perl-local-lib
-  eval $(perl -Mlocal::lib)
+    PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
+    if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
+        perl -Mlocal::lib > "${PERL_LOCAL_LIB_SH}"
+    fi
+    source "${PERL_LOCAL_LIB_SH}"
 fi
 
 export PERLDOC="-MPod::Text::Color"
