@@ -241,7 +241,7 @@
       ,@(when (fboundp 'hydra-expand-region/body)
           '(("=" hydra-expand-region/body "exp-region")))
 
-      ,@(when (fboundp 'eglot)
+      ,@(when (fboundp 'hydra-eglot/body)
           '(("e" hydra-eglot/body "eglot")))
 
           ))
