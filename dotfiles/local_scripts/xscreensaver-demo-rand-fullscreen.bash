@@ -2,7 +2,7 @@
 
 
 XSCREENSAVER_DIR=/usr/libexec/xscreensaver
-XSCREENSAVER_DEMO_PID=/tmp/xscreensaver-demo-rand.pid
+XSCREENSAVER_DEMO_PID=/tmp/xscreensaver-demo-rand.${UID}.pid
 
 declare -a XSCREENSAVERS=()
 
