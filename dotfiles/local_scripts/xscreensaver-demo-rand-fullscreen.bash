@@ -2,29 +2,24 @@
 
 
 XSCREENSAVER_DIR=/usr/libexec/xscreensaver
+XSCREENSAVER_DEMO_PID=/tmp/xscreensaver-demo-rand.pid
 
 declare -a XSCREENSAVERS=()
 
-# xscreensaver-gl
-for DPKG in xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod; do
-    mapfile -t S < <(dpkg -L ${DPKG} | grep -E "^${XSCREENSAVER_DIR}/")
-    # echo "LEN: ${#S[@]}"
-    XSCREENSAVERS+=( "${S[@]}" )
-done
-# echo "XSCREENSAVERS: ${#XSCREENSAVERS[@]}"
-
-# FIXME:
-# xscreensaver-auth
-# xscreensaver-getimage
-# xscreensaver-getimage-file
-# xscreensaver-getimage-video
-# xscreensaver-gfx
-# xscreensaver-gl-visual
-# xscreensaver-systemd
-# xscreensaver-text
-
-
-
+# STOP: xscreensaver-gl
+DPKGS="xscreensaver-data xscreensaver-data-extra xscreensaver-screensaver-bsod"
+mapfile -t XSCREENSAVERS < <(
+    echo "${DPKGS[@]}" \
+        | xargs dpkg -L \
+        | grep -E "^${XSCREENSAVER_DIR}/" \
+        | grep -v xscreensaver-auth \
+        | grep -v xscreensaver-getimage \
+        | grep -v xscreensaver-gfx \
+        | grep -v xscreensaver-gl-visual \
+        | grep -v xscreensaver-systemd \
+        | grep -v xscreensaver-text \
+        )
+# echo "${XSCREENSAVERS[@]}"
 
 SELECTED_IDX=$((RANDOM % ${#XSCREENSAVERS[@]}))
 SELECTED=${XSCREENSAVERS[$SELECTED_IDX]}
@@ -33,6 +28,7 @@ echo "SELECTED: [${SELECTED}]"
 "${SELECTED}" &
 PID=$!
 echo "PID: ${PID}"
+echo "${PID}" > "${XSCREENSAVER_DEMO_PID}"
 
 while true; do
     WID=$(wmctrl -lp | awk "\$3 == ${PID} { print \$1 }")
