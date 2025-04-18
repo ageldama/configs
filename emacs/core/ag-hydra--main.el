@@ -109,23 +109,27 @@
    `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
       "minimi"
 
-      ,@(when (fboundp 'avy-resume)
-          '(
-            ("<SPC>" avy-goto-char-timer "avy")
-            ("w" avy-goto-word-1 "goto-word")
-            ("l" avy-goto-line "goto-line")
-            (";" avy-resume "avy-resume")
-            ))
+      ;; ,@(when (fboundp 'avy-resume)
+      ;;     '(
+      ;;       ("SPC" avy-goto-char-timer "avy")
+      ;;       ("w" avy-goto-word-1 "goto-word")
+      ;;       ("l" avy-goto-line "goto-line")
+      ;;       (";" avy-resume "avy-resume")
+      ;;       ))
 
-      ("`" menu-bar-open "menu-bar" )
+      ;; ("`" menu-bar-open "menu-bar" )
 
-      ,@(when (fboundp 'embark-act)
-          '(("<tab>" embark-act "embark" )))
+      ;; ,@(when (fboundp 'embark-act)
+      ;;     '(
+      ;;       ("<tab>" embark-act "embark" )
+      ;;       ("<tab>" embark-act "embark" )
+      ;;       ("<backtab>" embark-select "embark-select")
+      ;;       ))
 
       ,@(when (fboundp 'helm-do-grep-ag)
           '(("\\" helm-do-grep-ag "helm-do-grep-ag" )))
 
-      ("." xref-find-definitions "xref-def")
+      ;; ("." xref-find-definitions "xref-def")
 
       ;; ,@(when (fboundp 'helm-resume)
       ;;     '(("," helm-resume "helm-resume" )))

@@ -4,10 +4,12 @@
 
   :bind
   (
-   ("<backtab>" . embark-act)         ;; pick some comfortable binding
-   ("<f7>" . embark-act)         ;; pick some comfortable binding
-   ("C-<f7>" . embark-dwim)        ;; good alternative: M-.
-   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+   ("<backtab>" . embark-act)
+   ("<f7>"      . embark-act)
+   ("S-<f7>"    . embark-select)
+   ("C-<f7>"    . embark-dwim)
+   ("C-h B"     . embark-bindings)
+   )
 
   :init
 
