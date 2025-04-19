@@ -8,14 +8,15 @@ export EDITOR=run-editor.sh
 
 export PATH=$PATH:~/local/bin:~/.local/bin
 
+eval "$(perl -Mlocal::lib)"
 
-if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
-    PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
-    if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
-        perl -Mlocal::lib > "${PERL_LOCAL_LIB_SH}"
-    fi
-    source "${PERL_LOCAL_LIB_SH}"
-fi
+# if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
+#     PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
+#     if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
+#     fi
+#     echo SOURCE
+#     source "${PERL_LOCAL_LIB_SH}"
+# fi
 
 export PERLDOC="-MPod::Text::Color"
 
