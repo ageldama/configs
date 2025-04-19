@@ -1,5 +1,15 @@
 #!/bin/bash
 
+path-append () {
+    if ! echo "$PATH" | /bin/grep -Eq "(^|:)$1($|:)" ; then
+        if [ "$2" = "before" ] ; then
+            PATH="$1:$PATH"
+        else
+            PATH="$PATH:$1"
+        fi
+    fi
+}
+
 
 export LESS='-R -i'
 export PAGER=less
@@ -8,15 +18,17 @@ export EDITOR=run-editor.sh
 
 export PATH=$PATH:~/local/bin:~/.local/bin
 
-eval "$(perl -Mlocal::lib)"
 
-# if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
-#     PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
-#     if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
-#     fi
-#     echo SOURCE
-#     source "${PERL_LOCAL_LIB_SH}"
-# fi
+PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
+if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
+    if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
+        perl -Mlocal::lib > "${PERL_LOCAL_LIB_SH}"
+    fi
+    # echo SOURCE
+    source "${PERL_LOCAL_LIB_SH}"
+
+fi
+path-append ~/perl5/bin
 
 export PERLDOC="-MPod::Text::Color"
 
