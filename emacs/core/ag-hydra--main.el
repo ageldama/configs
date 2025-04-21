@@ -109,13 +109,13 @@
    `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
       "minimi"
 
-      ;; ,@(when (fboundp 'avy-resume)
-      ;;     '(
-      ;;       ("SPC" avy-goto-char-timer "avy")
+      ,@(when (fboundp 'avy-resume)
+          '(
+            ("SPC" avy-goto-char-timer "avy")
       ;;       ("w" avy-goto-word-1 "goto-word")
       ;;       ("l" avy-goto-line "goto-line")
-      ;;       (";" avy-resume "avy-resume")
-      ;;       ))
+            (";" avy-resume "avy-resume")
+            ))
 
       ;; ("`" menu-bar-open "menu-bar" )
 
