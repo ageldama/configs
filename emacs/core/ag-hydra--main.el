@@ -179,7 +179,7 @@
 
       ("$" eshell "eshell")
 
-      ("t" tab/hydra/body "tabs")
+      ("M-t" hydra/tab-bar/body "tab-bar")
 
       ("C-$" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
@@ -267,8 +267,8 @@
 
       ("SPC" nil)))
 
-  (defhydra hydra/tab (:exit nil)
-    "tabs"
+  (defhydra hydra/tab-bar (:exit nil)
+    "tab-bar"
     ("<left>"   #'tab-previous
      "prev" )
     ("<right>"  #'tab-next
