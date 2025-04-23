@@ -14,8 +14,8 @@
  ;; (global-set-key (kbd "<f8>") 'hydra-mini/body)
  ;; (global-set-key (kbd "<f9>") 'do-lang-mode-hydra)
 
- (global-set-key (kbd "C-z") 'hydra-mini/body)
- (global-set-key (kbd "C-M-z") 'do-lang-mode-hydra)
+ (global-set-key (kbd "C-c SPC") 'hydra-mini/body)
+ (global-set-key (kbd "C-c \\") 'do-lang-mode-hydra)
  )
 
 
