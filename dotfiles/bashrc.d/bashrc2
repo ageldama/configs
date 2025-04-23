@@ -91,14 +91,14 @@ else
     #  ps1_colorful_theme
     #fi
 
-    for i in ~/.bashrc.local.d/*; do
-      [[ -f "$i" ]] && source "$i"
-    done
-
     if [[ -x "$(command -v zoxide)" ]]; then
         eval "$(zoxide init bash)"
     fi
 
 
 fi
+
+for i in ~/.bashrc.local.d/*; do
+    [[ -f "$i" ]] && source "$i"
+done
 
