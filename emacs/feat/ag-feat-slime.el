@@ -1,6 +1,6 @@
 (let ((hyperspec-path
-       (glob-first-file "/usr/share/doc/HyperSpec"
-                        (expand-file-name "~/local/HyperSpec"))))
+       (glob-first-file "/usr/share/doc/hyperspec/"
+                        (expand-file-name "~/local/HyperSpec/"))))
   (when hyperspec-path
     (setq common-lisp-hyperspec-root hyperspec-path)))
 
