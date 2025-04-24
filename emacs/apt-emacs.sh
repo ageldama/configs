@@ -36,7 +36,6 @@ elpa-editorconfig
 elpa-hl-todo
 elpa-markdown-mode
 elpa-projectile
-elpa-embark
 elpa-vimish-fold
 elpa-flycheck
 elpa-yasnippet
@@ -48,12 +47,14 @@ elpa-olivetti
 elpa-magit
 elpa-js2-mode
 elpa-helpful
-elpa-vertico
-elpa-marginalia
-elpa-orderless
-elpa-consult
+elpa-counsel
+elpa-smex
 "
-# DEPRECATED elpa-counsel
+# elpa-vertico
+# elpa-marginalia
+# elpa-orderless
+# elpa-consult
+# elpa-embark
 
 DPKGS=$(echo $DPKGS | sed 's/\n//g')
 echo "INSTALL: $DPKGS ..."

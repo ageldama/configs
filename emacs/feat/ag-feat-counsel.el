@@ -14,7 +14,7 @@
                     ;; (t           . ivy--regex-fuzzy)
                     (t           . ivy--regex-plus)
                     ))
-            (ivy-configure 'counsel-M-x :initial-input "") ;; ^... 지우기귀찮.
+            ;; (ivy-configure 'counsel-M-x :initial-input "") ;; ^... 지우기귀찮.
             (global-set-key "\C-s" 'swiper)
             (global-set-key (kbd "M-s s") 'swiper-thing-at-point)
             (global-set-key (kbd "C-c C-r") 'ivy-resume)
@@ -35,7 +35,20 @@
             ;; (global-set-key (kbd "C-x l") 'counsel-locate)
             ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
             (global-set-key (kbd "M-y") 'counsel-yank-pop)
-            (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)))
+            (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+
+  :bind
+  ( :map global-map
+    ("M-s M-b" . counsel-ibuffer)
+    ("M-s M-g" . counsel-grep)
+    ("M-s M-h" . counsel-command-history)
+    ("M-s M-i" . counsel-imenu)
+    ("M-s M-m" . counsel-mark-ring)
+    ("M-s M-y" . counsel-yank-pop)
+    ("M-s M-s" . counsel-outline)
+    ("M-s M-z" . counsel-fzf)
+    )
+  )
 
 (diminish 'ivy-mode)
 

@@ -85,6 +85,8 @@
           `(("t" treemacs "treemacs")))
       ,@(when (fboundp 'consult-theme)
           '(("@" consult-theme "theme")))
+      ,@(when (fboundp 'counsel-load-theme)
+          '(("@" counsel-load-theme "theme")))
       ))
 
 
@@ -163,7 +165,7 @@
       ,@(cond
          ((fboundp 'consult-buffer)
           '(("b" consult-buffer "buf" )))
-         (t (ibuffer)))
+         (t '(("b" ibuffer "buf"))))
 
       ("o" hydra-org/body "org")
 
@@ -189,7 +191,7 @@
               ((fboundp 'counsel-yank-pop) (counsel-yank-pop))
               ((fboundp 'helm-show-kill-ring) (helm-show-kill-ring))
               ((fboundp 'browse-kill-ring) (browse-kill-ring))
-              (t (yank-pop))))
+              (t 'yank-pop)))
        "yank-pop")
 
       ("C-k" kill-current-buffer "kill-cur-buf" )
@@ -197,7 +199,7 @@
       ,@(cond
          ((featurep 'consult)
           '(("r" consult-recent-file "recent")))
-         ((featurep 'counsel-recentf)
+         ((featurep 'counsel)
           '(("r" counsel-recentf "recent" ))))
 
       ("-" hydra-misc-fns/body "misc-fns" )
