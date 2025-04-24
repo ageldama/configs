@@ -58,7 +58,7 @@
  'ag-feat-ivy-rich                 ; dpkg=-
  'ag-feat-ivy-hydra                ; dpkg=-
  'ag-feat-counsel-projectile       ; dpkg=-
- 'ag-feat-smex                     ; dpkg=-
+ 'ag-feat-smex                     ; dpkg=elpa-smex
  'ag-feat-json                     ; dpkg=-
  'ag-feat-toml                     ; dpkg=-
  'ag-feat-yaml                     ; dpkg=-
