@@ -7,6 +7,8 @@
 
 
 ;;; core:
+(require 'cl-lib)
+
 (let ((+root+ (expand-file-name "~/P/configs/emacs")))
   (dolist (p (list +root+
 		   (concat +root+ "/boot")))
