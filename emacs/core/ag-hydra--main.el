@@ -280,7 +280,7 @@
     ("<down>"   #'tab-new
      "new" )
     ("<up>"     #'tab-list
-     "list" )
+     "list" :exit t)
     ("X"        #'tab-close
      "close" )
     ("SPC" nil))
