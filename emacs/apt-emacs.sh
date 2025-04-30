@@ -14,6 +14,7 @@ plantuml
 sqlite3
 ditaa
 elpa-use-package
+elpa-compat
 elpa-f
 elpa-s
 elpa-org

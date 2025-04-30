@@ -160,9 +160,9 @@
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
 
 
-(add-hook 'c-mode-common-hook
-          (lambda () (when (fboundp 'flycheck-mode)
-                       (flycheck-mode -1))))
+(when (fboundp 'flycheck-mode)
+  (add-hook 'c-mode-common-hook
+            (lambda () (flycheck-mode -1))))
 
 
 (when (boundp 'native-comp-async-report-warnings-errors)
