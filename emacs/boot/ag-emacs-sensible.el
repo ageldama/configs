@@ -121,6 +121,12 @@
  )
 
 
+;;; tab-bar
+
+;; (global-set-key (kbd "C-x <up>") 'tab-list)
+;; (global-set-key (kbd "C-x <down>") 'tab-new)
+
+
 
 ;;; misc
 
