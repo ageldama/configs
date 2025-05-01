@@ -54,10 +54,18 @@
 
 
 ;;; menu-bar
+(require 'menu-bar)
 (require 'tmm)
 
-;; (global-set-key (kbd "M-`")   'tmm-menubar)
-(global-set-key (kbd "<f10>") 'tmm-menubar)
+
+(defun %menu-bar-open ()
+  (interactive)
+  (if (window-system) (menu-bar-open)
+    (tmm-menubar)))
+
+
+(global-set-key (kbd "M-`")   #'%menu-bar-open)
+(global-set-key (kbd "<f10>") #'%menu-bar-open)
 
 
 ;;; prog-mode
