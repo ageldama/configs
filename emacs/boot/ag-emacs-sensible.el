@@ -23,13 +23,20 @@
 
 
 ;;; no menu/tool/scroll-bars
-(if window-system
+
+(defun ag-emacs-sensible-frame-look (&optional frame)
+  (if (eq 'x (window-system frame))
+      (progn
+        (menu-bar-mode   -1)
+        (tool-bar-mode   -1)
+        (scroll-bar-mode -1))
     (progn
-      (menu-bar-mode   -1)
-      (tool-bar-mode   -1)
-      (scroll-bar-mode -1))
-  (progn
-    (menu-bar-mode   -1)))
+      (menu-bar-mode   -1))))
+
+(push #'ag-emacs-sensible-frame-look
+      after-make-frame-functions)
+
+(ag-emacs-sensible-frame-look)
 
 
 ;;; builtin eldoc

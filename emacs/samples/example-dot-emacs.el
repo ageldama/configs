@@ -113,38 +113,53 @@
 
 ;;;
 
-(when (and nil (window-system))
-  ;; "Noto Sans Mono"
-  ;; "Anonymous Pro"
-  ;; "JetBrains Mono"
-  ;; "Source Code Pro"
-  ;; "D2Coding"
-  ;; "HBIOS-SYS"
-  ;; "나눔고딕코딩"
-  ;; "Noto Sans Mono CJK KR"
-  ;; "DOSSaemmul"
-  ;; "HBIOS-SYS"
-  (set-frame-font
-   "DejaVu Sans Mono"
-   )
+(defun %emacsrc-look (&optional frame)
+  (when (and t (window-system frame))
+    ;; "Noto Sans Mono"
+    ;; "Anonymous Pro"
+    ;; "JetBrains Mono"
+    ;; "Source Code Pro"
+    ;; "D2Coding"
+    ;; "HBIOS-SYS"
+    ;; "나눔고딕코딩"
+    ;; "Noto Sans Mono CJK KR"
+    ;; "DOSSaemmul"
+    ;; "HBIOS-SYS"
+    (set-frame-font
+     ;; "DejaVu Sans Mono"
+     "Adwaita Mono"
+     )
 
-  (ag-set-fixed-fonts
-   "DejaVu Sans Mono"
-   "D2Coding"
-   )
+    (ag-set-fixed-fonts
+     ;; "DejaVu Sans Mono"
+     "Adwaita Mono"
+     "Neo둥근모 Code"
+     ;; "D2Coding"
+     )
 
-  (ag-set-font-height 80)
+    (ag-set-font-height 104)
 
-  ;; (load-theme 'modus-vivendi t)
-  ;; (load-theme 'modus-operandi-tinted t)
-  ;; (require 'ag-feat-day-and-night)
-  ;; (setq *day-and-night/day-theme* 'modus-operandi)
-  ;; (setq *day-and-night/night-theme* 'modus-vivendi)
-  ;; (day-and-night/change-theme-by-time)
-  ;; (day-and-night/start-timer 30)
-  ;; (day-and-night/declare-its-day)
-  ;; (day-and-night/declare-its-night)
-  )
+    (load-theme 'leuven-dark t)
+    ;; (load-theme 'modus-operandi-tinted t)
+    ;; (require 'ag-feat-day-and-night)
+    ;; (setq *day-and-night/day-theme* 'modus-operandi)
+    ;; (setq *day-and-night/night-theme* 'modus-vivendi)
+    ;; (day-and-night/change-theme-by-time)
+    ;; (day-and-night/start-timer 30)
+    ;; (day-and-night/declare-its-day)
+    ;; (day-and-night/declare-its-night)
+    ))
+
+(push #'%emacsrc-look after-make-frame-functions)
+
+(%emacsrc-look)
+
+
+
+
+
+
+;;;
 
 (global-display-line-numbers-mode -1)
 (global-hl-line-mode +1)
