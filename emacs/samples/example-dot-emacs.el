@@ -85,7 +85,8 @@
  'ag-feat-evil-matchit             ; dpkg=-
  ;; 'ag-feat-add-node-modules-path ; dpkg=-
  ;; 'ag-feat-js2-mode              ; dpkg=elpa-js2-mode
- ;; 'ag-feat-slime                 ; dpkg=elpa-js2-mode
+ ;; 'ag-feat-sly                   ; dpkg=elpa-sly
+ ;; 'ag-feat-slime                 ; dpkg=elpa-slime
  ;; 'ag-feat-eglot                 ; dpkg=+|elpa-eglot
  ;; 'ag-feat-realgud               ; dpkg=-
  ;; 'ag-feat-unfill                ; dpkg=-
