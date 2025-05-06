@@ -40,6 +40,7 @@
  'ag-feat-evil                     ; dpkg=elpa-evil
  'ag-feat-evil-collection          ; dpkg=-
  'ag-feat-deadgrep                 ; dpkg=-
+ 'ag-feat-rg                       ; dpkg=elpa-rg
  'ag-feat-eldoc                    ; dpkg=+
  'ag-feat-company                  ; dpkg=elpa-company
  'ag-feat-magit                    ; dpkg=elpa-magit
