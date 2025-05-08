@@ -1,0 +1,1 @@
+sudo pkg install p5-Data-Compare p5-Data-Printer p5-File-Inplace p5-Set-Scalar p5-DBI p5-DBD-SQLite p5-DateTime p5-Text-Table p5-Term-ANSIColor p5-Term-ReadLine p5-Term-ReadLine-Perl p5-Term-ReadKey p5-local-lib p5-App-cpanminus p5-LWP-Protocol-https
