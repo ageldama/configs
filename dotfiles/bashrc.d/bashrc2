@@ -90,6 +90,7 @@ else
     source ~/.bashrc.d/git-aliases.bash
     source ~/.bashrc.d/completion.bash
     source ~/.bashrc.d/prompt.bash
+    source ~/.bashrc.d/alias.bash
 
     #if [[ -n $PS1 && -f ~/.bashrc.d/bash_prompt ]]; then
     #  . ~/.bashrc.d/bash_prompt
