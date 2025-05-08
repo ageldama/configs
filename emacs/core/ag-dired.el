@@ -21,6 +21,13 @@
      ("\\.\\(mp[34]\\|m4a\\|ogg\\|flac\\|webm\\|mkv\\)" "mpv" "xdg-open")
      (".*" "xdg-open"))
    )
+
+(when (eq system-type 'berkeley-unix)
+  (setq insert-directory-program "gls"
+        ;; dired-use-ls-dired t
+        ;; dired-listing-switches "-al --group-directories-first"
+        ))
+
   )
 
 
