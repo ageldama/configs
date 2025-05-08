@@ -74,12 +74,16 @@ else
       alias fd=fdfind
     fi
 
-    if [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
-        source /usr/share/doc/fzf/examples/key-bindings.bash
-    elif [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
-        source /usr/share/fzf/shell/key-bindings.bash
-    elif [[ -f /usr/share/fzf/key-bindings.bash ]]; then
-        source /usr/share/fzf/key-bindings.bash
+    if (fzf --help | grep -- --bash) &> /dev/null ; then
+        eval "$(eval fzf --bash)"
+    else
+        if [[ -f /usr/share/doc/fzf/examples/key-bindings.bash ]]; then
+            source /usr/share/doc/fzf/examples/key-bindings.bash
+        elif [[ -f /usr/share/fzf/shell/key-bindings.bash ]]; then
+            source /usr/share/fzf/shell/key-bindings.bash
+        elif [[ -f /usr/share/fzf/key-bindings.bash ]]; then
+            source /usr/share/fzf/key-bindings.bash
+        fi
     fi
 
     source ~/.bashrc.d/sensible.bash
