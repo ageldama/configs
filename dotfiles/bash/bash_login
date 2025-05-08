@@ -1,5 +1,13 @@
 #!/bin/bash
 
+if [[ -f ~/.bash_profile ]]; then
+  . ~/.bash_profile
+elif [[ -f ~/.bashrc ]]; then
+  . ~/.bashrc
+elif [[ -f ~/.profile ]]; then
+  . ~/.profile
+fi
+
 if [[ -z $STARTX_AUTO_ASKED ]] && [[ -z $DISPLAY ]] && [[ -z $SSH_TTY ]] && [[ -f ~/.use-startx-auto ]]; then
   dialog --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
   if [[ $? == 0 || $? == 255 ]]; then
@@ -12,11 +20,5 @@ if [[ -z $STARTX_AUTO_ASKED ]] && [[ -z $DISPLAY ]] && [[ -z $SSH_TTY ]] && [[ -
 fi
 
 export STARTX_AUTO_ASKED=1
-
-if [[ -f ~/.bash_profile ]]; then
-  . ~/.bash_profile
-elif [[ -f ~/.profile ]]; then
-  . ~/.profile
-fi
 
 
