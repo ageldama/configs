@@ -50,6 +50,7 @@ elpa-js2-mode
 elpa-helpful
 elpa-counsel
 elpa-smex
+elpa-rg
 "
 # elpa-vertico
 # elpa-marginalia
