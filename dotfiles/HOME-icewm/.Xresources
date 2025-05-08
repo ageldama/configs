@@ -1,4 +1,1 @@
-! Debian: xcursor-themes
-Xcursor.theme: whiteglass
-Xcursor.size: 32
-
+../../i3wm/xresources
