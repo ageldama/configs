@@ -16,6 +16,7 @@
              'ag-hydra
              'ag-which-key
              'ag-ibuffer
+             'ag-rectangle
 
              'ag-diary
 
