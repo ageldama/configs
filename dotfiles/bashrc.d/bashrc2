@@ -63,6 +63,11 @@ if [[ "${-#*i}" == "$-" ]]; then
     # echo non_interactive > /dev/stderr
     true
 else
+
+  [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
+    source /usr/local/share/bash-completion/bash_completion.sh
+
+
     alias tmux='tmux -2'
     alias view='vim -R'
 
