@@ -8,7 +8,13 @@ elif [[ -f ~/.profile ]]; then
   . ~/.profile
 fi
 
-if [[ -z $STARTX_AUTO_ASKED ]] && [[ -z $DISPLAY ]] && [[ -z $SSH_TTY ]] && [[ -f ~/.use-startx-auto ]]; then
+if [[ -z $FBTERM_AUTO_ASKED ]] && [[ -z $SSH_TTY ]] && [[ -f ~/.use-fbterm-auto ]]; then
+  dialog --title "login" --timeout 5 --yesno "start fbterm? (5 secs auto-ok)" 6 45
+  if [[ $? == 0 || $? == 255 ]]; then
+    export FBTERM_AUTO_ASKED=1
+    fbterm -n D2Coding -s 16 --font-width=8
+  fi
+elif [[ -z $STARTX_AUTO_ASKED ]] && [[ -z $DISPLAY ]] && [[ -z $SSH_TTY ]] && [[ -f ~/.use-startx-auto ]]; then
   dialog --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
   if [[ $? == 0 || $? == 255 ]]; then
     if [[ -f ~/startx.log ]]; then
@@ -19,6 +25,7 @@ if [[ -z $STARTX_AUTO_ASKED ]] && [[ -z $DISPLAY ]] && [[ -z $SSH_TTY ]] && [[ -
   fi
 fi
 
+export FBTERM_AUTO_ASKED=1
 export STARTX_AUTO_ASKED=1
 
 
