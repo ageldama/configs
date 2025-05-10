@@ -161,5 +161,8 @@
  )
 
 
+(setq tags-revert-without-query 1)
+
+
 ;;;
 (provide 'ag-emacs-sensible)
