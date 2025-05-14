@@ -1,8 +1,6 @@
 
-(use-package ggtags :ensure t :pin melpa
-  :config (add-hook 'c-mode-hook
-                    (lambda ()
-                      (ggtags-mode +1))))
+(use-package ggtags :ensure t :pin melpa)
+;; SEE `ag-feat-c.el'
 
 ;;;
 (provide 'ag-feat-ggtags)
