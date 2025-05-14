@@ -2,8 +2,8 @@
 
 (add-hook 'c-mode-hook
           (lambda ()
-            (when (featurep 'hideshow)
-              (hs-minor-mode +1))
+            ;; (when (featurep 'hideshow)
+            ;;   (hs-minor-mode +1))
             (when (featurep 'ggtags)
               (when (featurep 'eldoc)
                 (setq-local eldoc-documentation-function
