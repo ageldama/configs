@@ -49,6 +49,7 @@
  'ag-feat-markdown-mode            ; dpkg=elpa-markdown-mode
  'ag-feat-projectile               ; dpkg=elpa-projectile
  'ag-feat-flycheck                 ; dpkg=elpa-flycheck
+ 'ag-feat-ggtags                   ; dpkg=elpa-ggtags
  ;; 'ag-feat-direnv                ; dpkg=-
  ;; 'ag-feat-editorconfig          ; dpkg=elpa-editorconfig
  ;; 'ag-feat-plantuml              ; dpkg=-
