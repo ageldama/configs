@@ -1,5 +1,6 @@
 (require 'ansi-color)
 
+
 (defun objdump (filename)
   (interactive "f")
   ;; extended-color 은 잘 동작안함.
@@ -8,12 +9,14 @@
                filename))
          (buf (generate-new-buffer (concat "*objdump* -- " cmd))))
     (with-current-buffer buf
-      (call-process-shell-command cmd nil buf t)
-      (ansi-color-apply-on-region (point-min) (point-max))
-      (read-only-mode)
-      (goto-char 0)
-      (display-buffer buf)
-    )))
+      (ansi-color-for-comint-mode-on)
+      (comint-mode)
+      (display-buffer buf))
+    (let ((proc (start-process-shell-command cmd buf cmd)))
+      (set-process-filter proc 'comint-output-filter)
+      (set-process-sentinel
+       proc (lambda (proc evt)
+              (message "objdump: %s" evt))))))
 
 (defun dired-objdump ()
   (interactive)
