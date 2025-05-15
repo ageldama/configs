@@ -28,6 +28,7 @@
              'ag-lang-mode
 
              'ag-hydra--main
+             'ag-dired-lang-mode
              'ag-global-keys
              )
 
