@@ -1,3 +1,4 @@
+(require 'comint)
 (require 'ansi-color)
 
 
@@ -5,7 +6,8 @@
   (interactive "f")
   ;; extended-color 은 잘 동작안함.
   (let* ((cmd (concat
-               "objdump -s -DrwC -L -g -F -GT -x --special-syms -z -S --visualize-jumps=color --disassembler-color=on "
+               "objdump -s -DrwC -L -g -F -GT -x --special-syms -z -S "
+               "--visualize-jumps=color --disassembler-color=on "
                filename))
          (buf (generate-new-buffer (concat "*objdump* -- " cmd))))
     (with-current-buffer buf
