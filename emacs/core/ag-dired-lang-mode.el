@@ -1,9 +1,19 @@
+(require 'ansi-color)
 
 (defun objdump (filename)
   (interactive "f")
-  (shell-command
-   (concat "objdump -s -DrwC -L -g -F -GT -x --special-syms -z -S "
-           filename)))
+  ;; extended-color 은 잘 동작안함.
+  (let* ((cmd (concat
+               "objdump -s -DrwC -L -g -F -GT -x --special-syms -z -S --visualize-jumps=color --disassembler-color=on "
+               filename))
+         (buf (generate-new-buffer (concat "*objdump* -- " cmd))))
+    (with-current-buffer buf
+      (call-process-shell-command cmd nil buf t)
+      (ansi-color-apply-on-region (point-min) (point-max))
+      (read-only-mode)
+      (goto-char 0)
+      (display-buffer buf)
+    )))
 
 (defun dired-objdump ()
   (interactive)
