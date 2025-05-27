@@ -23,7 +23,6 @@ elpa-hydra
 elpa-which-key
 elpa-avy
 elpa-ace-window
-elpa-eshell-up
 elpa-wgrep
 elpa-expand-region
 elpa-undo-tree
@@ -48,6 +47,7 @@ elpa-smex
 elpa-ggtags
 "
 # elpa-writeroom-mode
+# elpa-eshell-up
 #
 # elpa-yasnippet
 # elpa-yasnippet-snippets
