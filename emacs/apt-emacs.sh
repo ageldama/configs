@@ -39,8 +39,6 @@ elpa-markdown-mode
 elpa-projectile
 elpa-vimish-fold
 elpa-flycheck
-elpa-yasnippet
-elpa-yasnippet-snippets
 elpa-web-mode
 elpa-transient
 elpa-writeroom-mode
@@ -52,6 +50,9 @@ elpa-counsel
 elpa-smex
 elpa-ggtags
 "
+# elpa-yasnippet
+# elpa-yasnippet-snippets
+#
 # elpa-vertico
 # elpa-marginalia
 # elpa-orderless
