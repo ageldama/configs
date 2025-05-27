@@ -9,7 +9,7 @@
              'ag-scrolling
 
              'ag-org
-             'ag-writeroom-mode
+             ;; 'ag-writeroom-mode
              'ag-olivetti
 
              'ag-dired
