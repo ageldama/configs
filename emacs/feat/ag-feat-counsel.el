@@ -50,8 +50,9 @@
     )
   )
 
-(diminish 'ivy-mode)
 
+(ag-reinit/add-as-interactive 
+ (diminish 'ivy-mode))
 
 
 (provide 'ag-feat-counsel)

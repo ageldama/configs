@@ -21,11 +21,8 @@ elpa-org
 elpa-modus-themes
 elpa-hydra
 elpa-which-key
-elpa-smart-mode-line
 elpa-avy
 elpa-ace-window
-elpa-ace-window
-elpa-eshell-up
 elpa-wgrep
 elpa-expand-region
 elpa-undo-tree
@@ -39,18 +36,24 @@ elpa-markdown-mode
 elpa-projectile
 elpa-vimish-fold
 elpa-flycheck
-elpa-yasnippet
-elpa-yasnippet-snippets
 elpa-web-mode
 elpa-transient
-elpa-writeroom-mode
 elpa-olivetti
 elpa-magit
 elpa-js2-mode
 elpa-helpful
 elpa-counsel
 elpa-smex
+elpa-ggtags
 "
+# elpa-writeroom-mode
+# elpa-eshell-up
+#
+# elpa-yasnippet
+# elpa-yasnippet-snippets
+#
+# elpa-smart-mode-line
+#
 # elpa-vertico
 # elpa-marginalia
 # elpa-orderless

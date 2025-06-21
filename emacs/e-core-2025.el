@@ -9,7 +9,7 @@
              'ag-scrolling
 
              'ag-org
-             'ag-writeroom-mode
+             ;; 'ag-writeroom-mode
              'ag-olivetti
 
              'ag-dired
@@ -28,6 +28,7 @@
              'ag-lang-mode
 
              'ag-hydra--main
+             'ag-dired-lang-mode
              'ag-global-keys
              )
 
