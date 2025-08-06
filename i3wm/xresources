@@ -161,6 +161,7 @@ Xautolock.time: 10
 
 
 XTerm*cursorColor: #cccc00
+UXTerm*cursorColor: #cccc00
 
 XTerm*renderFont: true
 XTerm*faceName: DejaVu Sans Mono
