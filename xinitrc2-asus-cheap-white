@@ -14,7 +14,7 @@ if [[ -f ~/.no-touchpad ]]; then
     ~/local/scripts/synclient/disable.sh
 else
     ~/local/scripts/synclient/enable.sh
-    ~/local/scripts/synclient/tap-to-click.sh
+    #~/local/scripts/synclient/tap-to-click.sh
 fi
 
 
