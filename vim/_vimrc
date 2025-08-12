@@ -240,7 +240,7 @@ endif
 
 Plug 'jamessan/vim-gnupg'
 
-Plug 'axvr/org.vim'
+"Plug 'axvr/org.vim'
 
 
 " Initialize plugin system
