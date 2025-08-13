@@ -160,7 +160,7 @@ icon_path = /usr/share/icons/gnome/48x48/actions/:/usr/share/icons/gnome/48x48/a
 
 
 
-frame_width = 3
+frame_width = 2
 #frame_color = "#8EC07C"
 frame_color = "#FFFFFF"
 
@@ -189,20 +189,20 @@ context = mod4+shift+ctrl+mod1+F8
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
 frame_color = "#00ff00"
-foreground = "#00ff00"
-background = "#999999"
+foreground = "#ccff00"
+background = "#333333"
 timeout = 4
 
 [urgency_normal]
-frame_color = "#00ffff"
-foreground = "#00ffff"
-background = "#999999"
+frame_color = "#00ff00"
+foreground = "#ffff00"
+background = "#333333"
 timeout = 6
 
 [urgency_critical]
 frame_color = "#ff0000"
 foreground = "#ff0000"
-background = "#999999"
+background = "#333333"
 timeout = 8
 
 
