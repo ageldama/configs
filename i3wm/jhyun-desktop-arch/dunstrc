@@ -188,8 +188,8 @@ context = mod4+shift+ctrl+mod1+F8
 [urgency_low]
 # IMPORTANT: colors have to be defined in quotation marks.
 # Otherwise the "#" and following would be interpreted as a comment.
-frame_color = "#00ff00"
-foreground = "#ccff00"
+frame_color = "#009000"
+foreground = "#909000"
 background = "#333333"
 timeout = 4
 
@@ -201,7 +201,7 @@ timeout = 6
 
 [urgency_critical]
 frame_color = "#ff0000"
-foreground = "#ff0000"
+foreground = "#ff4d00"
 background = "#333333"
 timeout = 8
 
