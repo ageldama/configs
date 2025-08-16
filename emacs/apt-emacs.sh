@@ -67,12 +67,11 @@ sudo apt install $DPKGS
 # elpa-org-contrib (apt 검색해서 있을 때만)
 PAGER= apt search elpa-org-contrib && sudo apt install elpa-org-contrib
 
-sudo apt install elpa-compat
 
 # emacs -v 실행해서 버전 30 이하일 때에만 eglot 설치
 EMACS_LT_V30=$(emacs -nw -Q -batch --eval="(princ (version-list-< (version-to-list emacs-version) '(30 0)))")
 if [[ "${EMACS_LT_V30}" == "t" ]]; then
-    sudo apt install elpa-eglot
+    sudo apt install elpa-eglot elpa-compat
 fi
 
 

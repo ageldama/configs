@@ -14,7 +14,7 @@
 
 (require 'hydra)
 (require 's)
-(require 'writeroom-mode)
+;;(require 'writeroom-mode)
 (require 'olivetti)
 (require 'org-agenda)
 
