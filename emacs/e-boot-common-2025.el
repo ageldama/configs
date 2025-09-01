@@ -9,6 +9,7 @@
              'ag-reinit
              'ag-el
              'ag-emacs-sensible
+             'ag-fortune
              )
 
 
