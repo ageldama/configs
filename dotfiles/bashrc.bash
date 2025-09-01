@@ -2,7 +2,7 @@
 
 [[ ! -f ~/.use-bashrc ]] && exit 0
 
-ln -s $PWD/bash/bash_profile ~/.bash_profile
+#ln -s $PWD/bash/bash_profile ~/.bash_profile
 
 if grep "source ~/.bashrc.d/bashrc2" ~/.bashrc; then
   # echo found
