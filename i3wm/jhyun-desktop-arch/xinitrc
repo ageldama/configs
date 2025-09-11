@@ -172,6 +172,11 @@ fi
 #synclient TapButton2=3
 #xgamma -gamma 0.6
 
+if [[ -f ~/.use-freebsd-synclient ]]; then
+  ~/local/scripts/synclient/enable.sh
+  ~/local/scripts/synclient/tap-to-click.sh
+fi
+
 xset b off
 #xset s on
 #xset s 300
