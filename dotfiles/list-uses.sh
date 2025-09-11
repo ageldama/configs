@@ -1,8 +1,8 @@
 #!/bin/sh
 OPT2=""
 
-if [ "FreeBSD" == $(uname) ]; then
+if [ "$(uname)" = "FreeBSD" ]; then
   OPT2="-S"
 fi
 
-grep -oRSE ${OPT2} --no-filename '\.use-[a-zA-Z0-9_-]+' *  | sort | uniq
+grep -oRE ${OPT2} --no-filename '\.use-[a-zA-Z0-9_-]+' *  | sort | uniq
