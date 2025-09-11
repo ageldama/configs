@@ -86,7 +86,7 @@ key "Super+Shift+m" x-terminal-emulator -e bashmount
 key "Super+w" wg-whatever.pl
 #key "Super+w" wg.pl
 
-key "Super+Esc" sh -c 'notify-send FORTUNE "$(fortune -s)"'
+key "Super+Esc" ~/local/scripts/zzz-acme/xmsg-fortune.sh
 
 key "Super+Shift+v" sh -c 'which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol'
 
