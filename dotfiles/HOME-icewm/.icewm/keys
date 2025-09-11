@@ -60,6 +60,7 @@ key "Super+Shift+Right" icesh -f sizeby  100   0
 
 # launchers
 key "Super+Return" x-terminal-emulator
+key "Super+t" x-terminal-emulator
 
 key "Super+d" rofi -combi-modi drun,window,run -show combi
 key "XF86LaunchA" rofi -combi-modi drun,window,run -show combi
