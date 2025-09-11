@@ -64,8 +64,15 @@ if [[ "${-#*i}" == "$-" ]]; then
     true
 else
 
-  [[ $PS1 && -f /usr/local/share/bash-completion/bash_completion.sh ]] && \
+if [[ $PS1 ]]; then
+  if [[ -f /usr/local/share/bash-completion/bash_completion.sh ]]; then
     source /usr/local/share/bash-completion/bash_completion.sh
+  fi
+
+  for i in /usr/local/etc/bash_completion.d/*; do
+    [[ -f $i ]] && source $i
+  done
+fi
 
 
     alias tmux='tmux -2'
