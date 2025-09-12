@@ -4,7 +4,7 @@ Win95Keys=0 # was 0
 
 ModSuperIsCtrlAlt=0
 
-KeySysWindowList="Super+F1"
+KeySysWindowList="Super+F2"
 
 TimeFormat = "%X, %d %a %b %Y %Z"
 
