@@ -1,0 +1,4 @@
+//  ~/.config/rofi/config.rasi
+
+@theme "/usr/local/share/rofi/themes/gruvbox-dark-soft.rasi"
+
