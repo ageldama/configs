@@ -9,7 +9,7 @@ Xcursor.size: 32
 !URxvt*preeditType: Root
 !URxvt*imLocale: ko_KR.UTF-8
 
-
+URxvt.termName: rxvt-256color
 
 
 !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
