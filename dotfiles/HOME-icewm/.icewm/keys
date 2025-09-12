@@ -1,4 +1,5 @@
 
+key "Super+F1" ~/.icewm/helpers/xmsg-keys.sh
 
 #key "Super+KP_Subtract" amixer sset PCM 5%-
 #key "Super+KP_Add" amixer sset PCM 5%+
