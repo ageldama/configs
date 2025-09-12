@@ -65,8 +65,8 @@ key "Super+t" x-terminal-emulator
 key "Super+z" rofi -combi-modi drun,window,run -show combi
 key "XF86LaunchA" rofi -combi-modi drun,window,run -show combi
 
-key "Super+Shift+z" scripts-rofi.pl -e
-key "XF86LaunchB" scripts-rofi.pl -e
+key "Super+Shift+z" scripts-rofi.pl -e -s
+key "XF86LaunchB" scripts-rofi.pl -e -s
 #key "XF86LaunchB" scripts-rofi.pl -e -s
 #key "Super+Shift+F9" scripts-rofi.pl -r -e
 
