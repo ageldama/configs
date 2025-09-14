@@ -100,6 +100,7 @@
  ;; 'ag-feat-cmake                 ; dpkg=-
  ;; 'ag-feat-golang-light          ; dpkg=-
  ;; 'ag-feat-funky-fonts
+ 'ag-feat-rfc-mode
  )
 
 
