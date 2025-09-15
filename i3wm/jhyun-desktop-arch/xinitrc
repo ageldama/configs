@@ -265,6 +265,9 @@ fi
 # pointerkeys
 test -f ~/.use-keypad-pointer && setxkbmap -option keypad:pointerkeys
 
+# warpd: keyboard driven mouse-pointer navigation
+test -f ~/.use-warpd && warpd &
+
 # urxvtd
 test -f ~/.use-urxvtd && urxvtd --quiet --opendisplay --fork &
 
