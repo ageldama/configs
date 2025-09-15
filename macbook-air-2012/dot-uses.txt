@@ -1,0 +1,8 @@
+.use-bashrc
+.use-dunst
+.use-gnome-keyring
+.use-icewm
+.use-nabi
+.use-startx-auto
+.use-unclutter
+.use-vim-fzf
