@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+if [[ -f ~/.use-libgl-always-software ]]; then
+  export LIBGL_ALWAYS_SOFTWARE=1
+fi
+
 if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
     PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
     if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
