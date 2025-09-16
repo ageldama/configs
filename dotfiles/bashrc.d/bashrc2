@@ -121,3 +121,5 @@ for i in ~/.bashrc.local.d/*; do
     [[ -f "$i" ]] && source "$i"
 done
 
+return 0
+
