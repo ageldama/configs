@@ -1,0 +1,10 @@
+.use-bashrc
+.use-dunst
+.use-icewm
+.use-libgl-always-software
+.use-nabi
+.use-ssh-add
+.use-startx-auto
+.use-unclutter
+.use-urxvt
+.use-urxvtd
