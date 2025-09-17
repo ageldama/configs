@@ -1,0 +1,14 @@
+#!/bin/sh
+
+caps-to-ctrl.sh
+
+#~/local/scripts/synclient/tap-to-click.sh
+#~/local/scripts/synclient/disable.sh
+
+if (xrandr |grep "HDMI1 connected"); then
+  xrandr --output eDP1 --off --output HDMI1 --mode 1920x1080
+
+  ~/.fehbg
+else
+  echo NO-HDMI-1
+fi
