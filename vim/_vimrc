@@ -242,6 +242,8 @@ Plug 'jamessan/vim-gnupg'
 
 "Plug 'axvr/org.vim'
 
+Plug 'mattn/calendar-vim'
+
 
 " Initialize plugin system
 " - Automatically executes `filetype plugin indent on` and `syntax enable`.
@@ -278,6 +280,48 @@ let $diary_dir = "~/P/v3"
 map <Leader>op :e $diary_dir/PLAN.org<cr>
 
 map <Leader>`g :Goyo<cr>
+
+
+let g:calendar_diary_list = [
+      \   {'name': 'Diary', 'path': $HOME.'/P/v3/diary', 'ext': '.org'},
+      \   {'name': 'Memo', 'path': $HOME.'/P/v3/memo', 'ext': '.org'},
+      \ ]
+
+function! GetAbbreviatedMonthName(month_num)
+  let l:month_names_short = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
+  if a:month_num >= 1 && a:month_num <= 12
+    return l:month_names_short[a:month_num - 1]
+  else
+    return "Invalid Month"
+  endif
+endfunction
+
+function MyCalAction(day,month,year,week,dir)
+  " day   : day you actioned
+  " month : month you actioned
+  " year  : year you actioned
+  " week  : day of week (Mo=1 ... Su=7)
+  " dir   : direction of calendar
+  " echo printf("%s-%s-%s == %s", a:year, a:month, a:day, a:dir)
+  let diary_curr = g:calendar_diary_list[g:calendar_diary_list_curr_idx]
+  let diary_basedir = diary_curr['path']
+
+  let dt = strptime('%Y/%m/%d', printf('%d/%02d/%02d', a:year, a:month, a:day))
+  let filepath = strftime("%Y-%m%b/%Y-%m%b-%d%a", dt)
+  let fullpath = diary_basedir . '/' . filepath . '.org'
+
+  echo fullpath
+  execute 'close'
+  execute 'split' fullpath
+
+  if !filereadable(fullpath)
+    let LINE_date = strftime("#+TITLE: %Y-%m-%d", dt)
+    let LINE_tags = '#+TAGS[]:'
+
+    call append(0, [LINE_date, LINE_tags])
+  endif
+endfunction
+let calendar_action = 'MyCalAction'
 
 
 " fzf
