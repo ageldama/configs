@@ -326,6 +326,15 @@ endfunction
 let calendar_action = 'MyCalAction'
 
 
+function InsertDateTime()
+  let dt = strftime("[%Y-%m-%d %a %H:%M]")
+  call append(line('.'), [dt])
+endfunction
+
+
+" datetime
+map <leader>`! :call InsertDateTime()<CR>
+
 " fzf
 map <Leader>zz :FZF<cr>
 "map <Leader>zh :FZF ~<cr>
