@@ -19,7 +19,7 @@ foreach my $l (@pcm_lines) {
 
 # print Dumper(\%pcms);
 my $cur = 0;
-while (1) {
+while (scalar keys(%pcms)) {
   foreach my $pcm (sort(keys %pcms)) {
     if ($cur) {
       my $stdout = qx<mixer -d $pcm>;
