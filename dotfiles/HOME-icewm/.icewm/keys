@@ -4,14 +4,14 @@ key "Super+F1" ~/.icewm/helpers/xmsg-keys.sh
 #key "Super+KP_Subtract" amixer sset PCM 5%-
 #key "Super+KP_Add" amixer sset PCM 5%+
 
-key "XF86AudioLowerVolume" pa-vol-dn.sh
-key "XF86AudioRaiseVolume" pa-vol-up.sh
+key "XF86AudioLowerVolume" snd-vol-dn.sh
+key "XF86AudioRaiseVolume" snd-vol-up.sh
 
-key "Super+Next" pa-vol-dn.sh
-key "Super+Prior" pa-vol-up.sh
+key "Super+Next" snd-vol-dn.sh
+key "Super+Prior" snd-vol-up.sh
 
-key "XF86AudioMute" pactl-mute.pl sink toggle_default
-key "Super+m" pactl-mute.pl sink toggle_default
+key "XF86AudioMute" snd-vol-mute-tog.sh
+key "Super+m" snd-vol-mute-tog.sh
 
 key "XF86MonBrightnessDown" mon-bright-dn.sh
 key "XF86MonBrightnessUp" mon-bright-up.sh
