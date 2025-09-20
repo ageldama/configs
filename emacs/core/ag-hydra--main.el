@@ -240,8 +240,8 @@
 
       ("C-r" recompile-showing-compilation-window "recompile")
 
-      ,@(when (fboundp 'hydra-expand-region/body)
-          '(("=" hydra-expand-region/body "exp-region")))
+      ;; ,@(when (fboundp 'hydra-expand-region/body)
+      ;;     '(("=" hydra-expand-region/body "exp-region")))
 
       ,@(when (fboundp 'hydra-eglot/body)
           '(("e" hydra-eglot/body "eglot")))
