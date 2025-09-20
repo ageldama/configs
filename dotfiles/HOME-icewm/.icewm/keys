@@ -89,7 +89,7 @@ key "Super+w" wg-whatever.pl
 
 key "Super+Shift+f" ~/local/scripts/zzz-acme/xmsg-fortune.sh
 
-key "Super+Shift+v" sh -c 'which pulsemixer && x-terminal-emulator -e pulsemixer || pavucontrol'
+key "Super+Shift+v" snd-mixer-ui.sh
 
 
 #EOF.
