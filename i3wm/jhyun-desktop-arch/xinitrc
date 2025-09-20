@@ -216,7 +216,15 @@ if [[ -f ~/.use-pactl-zeroconf-discover ]]; then
 fi
 
 # Mute all audio input
-pactl-mute.pl source all &
+case $(uname) in
+  FreeBSD)
+    freebsd-mixer-mute-all-rec.pl &
+    ;;
+  *)
+    pactl-mute.pl source all &
+    ;;
+esac
+
 
 # NetworkManager
 nm-applet &
