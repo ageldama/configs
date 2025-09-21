@@ -1,7 +1,5 @@
 # vim: ft=conf
 
-TaskBarAutoHide=1
-
 Win95Keys=0 # was 0
 
 ModSuperIsCtrlAlt=0
