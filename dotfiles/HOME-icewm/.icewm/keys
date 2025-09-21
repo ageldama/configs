@@ -35,6 +35,7 @@ key "Super+Shift+w" icesh -X this -f top
 key "Super+Shift+s" icesh -X this -f bottom
 key "Super+Shift+a" icesh -X this -f left
 key "Super+Shift+d" icesh -X this -f right
+key "Super+Shift+c" icesh -X this -f center
 
 key "Super+Ctrl+j" icesh -f moveby 0 10
 key "Super+Ctrl+k" icesh -f moveby 0 -10
