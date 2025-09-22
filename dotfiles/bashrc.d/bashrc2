@@ -34,6 +34,11 @@ path-append ~/perl5/bin
 export PERLDOC="-MPod::Text::Color"
 
 
+if [[ -d $HOME/local/tcl-pkgs ]]; then
+    export TCLLIBPATH="${TCLLIBPATH} ${HOME}/local/tcl-pkgs"
+fi
+
+
 if [[ -d $HOME/bin ]]; then
   export PATH=$HOME/bin:$PATH
 fi
