@@ -316,7 +316,7 @@ function MyCalAction(day,month,year,week,dir)
 
   echo fullpath
   execute 'close'
-  execute 'split' fullpath
+  execute 'edit' fullpath
 
   if !filereadable(fullpath)
     let LINE_date = strftime("#+TITLE: %Y-%m-%d", dt)
