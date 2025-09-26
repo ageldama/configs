@@ -1,0 +1,150 @@
+#! /usr/bin/env perl
+# solarized
+#
+# implements the Solarized dark and light colorscheme for urxvt.
+# http://ethanschoonover.com/solarized
+use strict;
+use warnings;
+
+my %solarized_colors = (
+    "base03"    => "#002b36",
+    "base02"    => "#073642",
+    "base01"    => "#586e75",
+    "base00"    => "#657b83",
+    "base0"     => "#839496",
+    "base1"     => "#93a1a1",
+    "base2"     => "#eee8d5",
+    "base3"     => "#fdf6e3",
+    "yellow"    => "#b58900",
+    "orange"    => "#cb4b16",
+    "red"       => "#dc322f",
+    "magenta"   => "#d33682",
+    "violet"    => "#6c71c4",
+    "blue"      => "#268bd2",
+    "cyan"      => "#2aa198",
+    "green"     => "#859900"
+);
+
+my %schemes = (
+    "dark" => {
+        "background"       => $solarized_colors{"base03"},
+        "foreground"       => $solarized_colors{"base0"},
+        "cursor"           => $solarized_colors{"base2"},
+        "mouse_background" => $solarized_colors{"base02"},
+        "mouse_foreground" => $solarized_colors{"base1"},
+        "border"           => $solarized_colors{"base03"},
+        "0"                => $solarized_colors{"base02"},
+        "8"                => $solarized_colors{"base03"},
+        "1"                => $solarized_colors{"red"},
+        "9"                => $solarized_colors{"orange"},
+        "2"                => $solarized_colors{"green"},
+        "10"               => $solarized_colors{"base01"},
+        "3"                => $solarized_colors{"yellow"},
+        "11"               => $solarized_colors{"base00"},
+        "4"                => $solarized_colors{"blue"},
+        "12"               => $solarized_colors{"base0"},
+        "5"                => $solarized_colors{"magenta"},
+        "13"               => $solarized_colors{"violet"},
+        "6"                => $solarized_colors{"cyan"},
+        "14"               => $solarized_colors{"base1"},
+        "7"                => $solarized_colors{"base2"},
+        "15"               => $solarized_colors{"base3"}
+    },
+    "light" => {
+        "background"       => $solarized_colors{"base3"},
+        "foreground"       => $solarized_colors{"base00"},
+        "cursor"           => $solarized_colors{"base01"},
+        "mouse_background" => $solarized_colors{"base2"},
+        "mouse_foreground" => $solarized_colors{"base01"},
+        "border"           => $solarized_colors{"base3"},
+        "0"                => $solarized_colors{"base2"},
+        "8"                => $solarized_colors{"base3"},
+        "1"                => $solarized_colors{"red"},
+        "9"                => $solarized_colors{"orange"},
+        "2"                => $solarized_colors{"green"},
+        "10"               => $solarized_colors{"base1"},
+        "3"                => $solarized_colors{"yellow"},
+        "11"               => $solarized_colors{"base0"},
+        "4"                => $solarized_colors{"blue"},
+        "12"               => $solarized_colors{"base00"},
+        "5"                => $solarized_colors{"magenta"},
+        "13"               => $solarized_colors{"violet"},
+        "6"                => $solarized_colors{"cyan"},
+        "14"               => $solarized_colors{"base01"},
+        "7"                => $solarized_colors{"base02"},
+        "15"               => $solarized_colors{"base03"}
+    }
+);
+
+sub on_start {
+    my ($self) = @_;
+
+    my $startup_scheme = $self->x_resource("%.default");
+
+    if(!$startup_scheme || $startup_scheme !~ m/(dark|light)/) {
+        $startup_scheme = "dark";
+    }
+
+    load_scheme($self, \%{$schemes{$startup_scheme}});
+    $self->{current_scheme} = $startup_scheme;
+
+    ()
+}
+
+sub on_user_command {
+    my ($self, $cmd) = @_;
+
+    if ($cmd eq "solarized:toggle") {
+        my $current = $self->{current_scheme};
+
+        if ($current eq "dark") {
+            load_scheme($self, \%{$schemes{"light"}});
+            $self->{current_scheme} = "light";
+        } else {
+            # if "light" or any erroneous value.
+            load_scheme($self, \%{$schemes{"dark"}});
+            $self->{current_scheme} = "dark";
+        }
+    }
+
+    ()
+}
+
+sub load_scheme {
+    my ($self, $colorscheme) = @_;
+    my $command = "";
+    for my $setting (keys %{$colorscheme}) {
+        $command .= get_command($setting, $colorscheme->{$setting});
+    }
+    $self->cmd_parse($command);
+}
+
+sub get_command {
+    my ($key, $value) = @_;
+    if ($key =~ /\d+/) {
+        return gen_osc(4,"$key;$value");
+    } elsif ($key eq "foreground") {
+        return gen_osc(10,$value);
+    } elsif ($key eq "background") {
+        return gen_osc(11,$value);
+    } elsif ($key eq "cursor") {
+        return gen_osc(12,$value);
+    } elsif ($key eq "mouse_foreground") {
+        return gen_osc(13,$value);
+    } elsif ($key eq "mouse_background") {
+        return gen_osc(14,$value);
+    } elsif ($key eq "highlight") {
+        return gen_osc(17,$value);
+    } elsif ($key eq "border") {
+        return gen_osc(708,$value);
+    }
+}
+
+sub gen_osc {
+    my $ESC = "\033";
+    my $BEL = "\007";
+    my $DSC = $ESC."P";
+    my $OSC = $ESC."]";
+    my ($code, $value) = @_;
+    return sprintf $OSC . $code . ";" . $value . $BEL;
+}
