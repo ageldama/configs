@@ -81,13 +81,13 @@ URxvt.fading: 10
 
 !! Copy Paste & Other Extensions
 URxvt*perl-lib: ~/.urxvt/ext:/usr/lib/x86_64-linux-gnu/urxvt/perl
-URxvt.perl-ext-common: default,eval,-confirm-paste,font-size,searchable-scrollback,url-select,keyboard-select,solarized
+URxvt.perl-ext-common: default,eval,-confirm-paste,font-size,searchable-scrollback,url-select,keyboard-select,colorscheme
 !! NB. confirm-paste 때문에 paste시에 no-newline 이슈발생해서 negate.
 
 
 ! solarized
-URxvt.keysym.C-M-t: perl:solarized:toggle
-URxvt.solarized.default: dark
+URxvt.keysym.C-M-t: perl:colorscheme:toggle
+URxvt.colorscheme.default: papercolor
 
 
 ! basic keybindings
