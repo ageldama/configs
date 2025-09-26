@@ -79,6 +79,7 @@ set tm=500
 " color and font
 
 "color gruvbox
+"color zaibatsu
 set bg=light
 
 if !has('gui_running')
@@ -94,7 +95,9 @@ if 1
   "set t_AF=^[[38;5;%dm
   if has('gui_running')
     set guifont=DejaVu\ Sans\ Mono\ 10
-    color koehler
+    "set guifont=M\+CodeLat60\ Nerd\ Font\ Mono\ 10
+    set guifontwide=D2Coding\ 10
+    color zaibatsu
     set bg=dark
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
@@ -105,6 +108,7 @@ if 1
     map <m--> <Plug>(fontzoom-smaller)
     map <m-=> <Plug>(fontzoom-larger)
   else
+    color zaibatsu
     "color default
     "set bg=dark
   endif
