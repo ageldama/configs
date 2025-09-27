@@ -83,7 +83,7 @@ key "Super+Ctrl+p" flameshot gui
 key "Super+Shift+p" sh -c 'flameshot full -p ~/Pictures'
 
 key "Super+e" x-terminal-emulator -e mc
-key "Super+Shift+e" sh -c 'thunar || pcmanfm'
+key "Super+Shift+e" sh -c 'doublecmd || thunar || pcmanfm'
 key "Super+Shift+m" x-terminal-emulator -e bashmount
 
 key "Super+w" wg-whatever.pl
