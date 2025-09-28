@@ -6,239 +6,264 @@ use warnings;
 
 
 my %solarized_colors = (
-  "base03" =>"#002b36",
-  "base02" =>"#073642",
-  "base01" =>"#586e75",
-  "base00" =>"#657b83",
-  "base0"  =>"#839496",
-  "base1"  =>"#93a1a1",
-  "base2"  =>"#eee8d5",
-  "base3"  =>"#fdf6e3",
-  "yellow" =>"#b58900",
-  "orange" =>"#cb4b16",
-  "red"    =>"#dc322f",
-  "magenta"=>"#d33682",
-  "violet" =>"#6c71c4",
-  "blue"   =>"#268bd2",
-  "cyan"   =>"#2aa198",
-  "green"  =>"#859900"
-);
+    "base03" =>"#002b36",
+    "base02" =>"#073642",
+    "base01" =>"#586e75",
+    "base00" =>"#657b83",
+    "base0"  =>"#839496",
+    "base1"  =>"#93a1a1",
+    "base2"  =>"#eee8d5",
+    "base3"  =>"#fdf6e3",
+    "yellow" =>"#b58900",
+    "orange" =>"#cb4b16",
+    "red"    =>"#dc322f",
+    "magenta"=>"#d33682",
+    "violet" =>"#6c71c4",
+    "blue"   =>"#268bd2",
+    "cyan"   =>"#2aa198",
+    "green"  =>"#859900"
+    );
 
 my %nord_colors = (
-  "nord0"  => "#2E3440",
-  "nord1"  => "#3B4252",
-  "nord2"  => "#434C5E",
-  "nord3"  => "#4C566A",
-  "nord4"  => "#D8DEE9",
-  "nord5"  => "#E5E9F0",
-  "nord6"  => "#ECEFF4",
-  "nord7"  => "#8FBCBB",
-  "nord8"  => "#88C0D0",
-  "nord9"  => "#81A1C1",
-  "nord10" => "#5E81AC",
-  "nord11" => "#BF616A",
-  "nord12" => "#D08770",
-  "nord13" => "#EBCB8B",
-  "nord14" => "#A3BE8C",
-  "nord15" => "#B48EAD"
-);
+    "nord0"  => "#2E3440",
+    "nord1"  => "#3B4252",
+    "nord2"  => "#434C5E",
+    "nord3"  => "#4C566A",
+    "nord4"  => "#D8DEE9",
+    "nord5"  => "#E5E9F0",
+    "nord6"  => "#ECEFF4",
+    "nord7"  => "#8FBCBB",
+    "nord8"  => "#88C0D0",
+    "nord9"  => "#81A1C1",
+    "nord10" => "#5E81AC",
+    "nord11" => "#BF616A",
+    "nord12" => "#D08770",
+    "nord13" => "#EBCB8B",
+    "nord14" => "#A3BE8C",
+    "nord15" => "#B48EAD"
+    );
 
 my @schemes = (
-  {
-    "name"             => "solarized_dark",
-    "background"       => $solarized_colors{"base03"},
-    "foreground"       => $solarized_colors{"base0"},
-    "cursor"           => $solarized_colors{"base1"},
-    "mouse_background" => $solarized_colors{"base01"},
-    "mouse_foreground" => $solarized_colors{"base1"},
-    "border"           => $solarized_colors{"base03"},
-    "0"                => $solarized_colors{"base02"},
-    "1"                => $solarized_colors{"red"},
-    "2"                => $solarized_colors{"green"},
-    "3"                => $solarized_colors{"yellow"},
-    "4"                => $solarized_colors{"blue"},
-    "5"                => $solarized_colors{"magenta"},
-    "6"                => $solarized_colors{"cyan"},
-    "7"                => $solarized_colors{"base2"},
-    "8"                => $solarized_colors{"base03"},
-    "9"                => $solarized_colors{"orange"},
-    "10"               => $solarized_colors{"base01"},
-    "11"               => $solarized_colors{"base00"},
-    "12"               => $solarized_colors{"base0"},
-    "13"               => $solarized_colors{"violet"},
-    "14"               => $solarized_colors{"base1"},
-    "15"               => $solarized_colors{"base3"}
-  },
-  {
-    "name"             => "solarized_light",
-    "background"       => $solarized_colors{"base3"},
-    "foreground"       => $solarized_colors{"base00"},
-    "cursor"           => $solarized_colors{"base01"},
-    "mouse_background" => $solarized_colors{"base2"},
-    "mouse_foreground" => $solarized_colors{"base01"},
-    "border"           => $solarized_colors{"base03"},
-    "0"                => $solarized_colors{"base2"},
-    "1"                => $solarized_colors{"red"},
-    "2"                => $solarized_colors{"green"},
-    "3"                => $solarized_colors{"yellow"},
-    "4"                => $solarized_colors{"blue"},
-    "5"                => $solarized_colors{"magenta"},
-    "6"                => $solarized_colors{"cyan"},
-    "7"                => $solarized_colors{"base02"},
-    "8"                => $solarized_colors{"base3"},
-    "9"                => $solarized_colors{"orange"},
-    "10"               => $solarized_colors{"base1"},
-    "11"               => $solarized_colors{"base0"},
-    "12"               => $solarized_colors{"base00"},
-    "13"               => $solarized_colors{"violet"},
-    "14"               => $solarized_colors{"base01"},
-    "15"               => $solarized_colors{"base03"}
-  },
-  {
-    "name"             => "gruvbox",
-    "background"       => "#282828",
-    "foreground"       => "#ebdbb2",
-    "cursor"           => "#a89984",
-    "mouse_background" => "#282828",
-    "mouse_foreground" => "#8ec07c",
-    "border"           => "#282828",
-    "0"                => "#282828",
-    "1"                => "#cc241d",
-    "2"                => "#98971a",
-    "3"                => "#d79921",
-    "4"                => "#458588",
-    "5"                => "#b16286",
-    "6"                => "#689d6a",
-    "7"                => "#a89984",
-    "8"                => "#928374",
-    "9"                => "#fb4934",
-    "10"               => "#b8bb26",
-    "11"               => "#fabd2f",
-    "12"               => "#83a598",
-    "13"               => "#d3869b",
-    "14"               => "#8ec07c",
-    "15"               => "#ebdbb2"
-},
-{
-  "name"             => "papercolor",
-  "background"       => "#1c1c1c",
-  "foreground"       => "#f2f2f2",
-  "cursorColor"      => "#25c3dc",
-  "mouse_background" => "#1c1c1c",
-  "mouse_foreground" => "#25c3dc",
-  "border"           => "#1c1c1c",
-	"0"                => "#2c2c2c",
-	"1"                => "#c62828",
-	"2"                => "#558b2e",
-	"3"                => "#f9a825",
-	"4"                => "#1565c1",
-	"5"                => "#6a1e9a",
-	"6"                => "#00838f",
-	"7"                => "#ffffff",
-	"8"                => "#969694",
-	"9"                => "#f15250",
-	"10"               => "#86bd47",
-	"11"               => "#f8e63a",
-	"12"               => "#77b2f6",
-	"13"               => "#b963c8",
-	"14"               => "#25c3dc",
-	"15"               => "#ffffff"
-},
-{
-  "name"             => "nord",
-  "background"       => $nord_colors{"nord0"},
-  "foreground"       => $nord_colors{"nord4"},
-  "cursorColor"      => $nord_colors{"nord4"},
-  "mouse_background" => $nord_colors{"nord0"},
-  "mouse_foreground" => $nord_colors{"nord4"},
-  "border"           => $nord_colors{"nord0"},
-  "0"                => $nord_colors{"nord1"},
-  "1"                => $nord_colors{"nord11"},
-  "2"                => $nord_colors{"nord14"},
-  "3"                => $nord_colors{"nord13"},
-  "4"                => $nord_colors{"nord9"},
-  "5"                => $nord_colors{"nord15"},
-  "6"                => $nord_colors{"nord8"},
-  "7"                => $nord_colors{"nord5"},
-  "8"                => $nord_colors{"nord3"},
-  "9"                => $nord_colors{"nord11"},
-  "10"               => $nord_colors{"nord14"},
-  "11"               => $nord_colors{"nord13"},
-  "12"               => $nord_colors{"nord9"},
-  "13"               => $nord_colors{"nord15"},
-  "14"               => $nord_colors{"nord7"},
-  "15"               => $nord_colors{"nord6"},
-}
-);
+    {
+        "name"             => "solarized_dark",
+            "background"       => $solarized_colors{"base03"},
+            "foreground"       => $solarized_colors{"base0"},
+            "cursor"           => $solarized_colors{"base1"},
+            "mouse_background" => $solarized_colors{"base01"},
+            "mouse_foreground" => $solarized_colors{"base1"},
+            "border"           => $solarized_colors{"base03"},
+            "0"                => $solarized_colors{"base02"},
+            "1"                => $solarized_colors{"red"},
+            "2"                => $solarized_colors{"green"},
+            "3"                => $solarized_colors{"yellow"},
+            "4"                => $solarized_colors{"blue"},
+            "5"                => $solarized_colors{"magenta"},
+            "6"                => $solarized_colors{"cyan"},
+            "7"                => $solarized_colors{"base2"},
+            "8"                => $solarized_colors{"base03"},
+            "9"                => $solarized_colors{"orange"},
+            "10"               => $solarized_colors{"base01"},
+            "11"               => $solarized_colors{"base00"},
+            "12"               => $solarized_colors{"base0"},
+            "13"               => $solarized_colors{"violet"},
+            "14"               => $solarized_colors{"base1"},
+            "15"               => $solarized_colors{"base3"}
+    },
+    {
+        "name"             => "solarized_light",
+            "background"       => $solarized_colors{"base3"},
+            "foreground"       => $solarized_colors{"base00"},
+            "cursor"           => $solarized_colors{"base01"},
+            "mouse_background" => $solarized_colors{"base2"},
+            "mouse_foreground" => $solarized_colors{"base01"},
+            "border"           => $solarized_colors{"base03"},
+            "0"                => $solarized_colors{"base2"},
+            "1"                => $solarized_colors{"red"},
+            "2"                => $solarized_colors{"green"},
+            "3"                => $solarized_colors{"yellow"},
+            "4"                => $solarized_colors{"blue"},
+            "5"                => $solarized_colors{"magenta"},
+            "6"                => $solarized_colors{"cyan"},
+            "7"                => $solarized_colors{"base02"},
+            "8"                => $solarized_colors{"base3"},
+            "9"                => $solarized_colors{"orange"},
+            "10"               => $solarized_colors{"base1"},
+            "11"               => $solarized_colors{"base0"},
+            "12"               => $solarized_colors{"base00"},
+            "13"               => $solarized_colors{"violet"},
+            "14"               => $solarized_colors{"base01"},
+            "15"               => $solarized_colors{"base03"}
+    },
+    {
+        "name"             => "gruvbox",
+            "background"       => "#282828",
+            "foreground"       => "#ebdbb2",
+            "cursor"           => "#a89984",
+            "mouse_background" => "#282828",
+            "mouse_foreground" => "#8ec07c",
+            "border"           => "#282828",
+            "0"                => "#282828",
+            "1"                => "#cc241d",
+            "2"                => "#98971a",
+            "3"                => "#d79921",
+            "4"                => "#458588",
+            "5"                => "#b16286",
+            "6"                => "#689d6a",
+            "7"                => "#a89984",
+            "8"                => "#928374",
+            "9"                => "#fb4934",
+            "10"               => "#b8bb26",
+            "11"               => "#fabd2f",
+            "12"               => "#83a598",
+            "13"               => "#d3869b",
+            "14"               => "#8ec07c",
+            "15"               => "#ebdbb2"
+    },
+    {
+        "name"             => "papercolor",
+            "background"       => "#1c1c1c",
+            "foreground"       => "#f2f2f2",
+            "cursorColor"      => "#25c3dc",
+            "mouse_background" => "#1c1c1c",
+            "mouse_foreground" => "#25c3dc",
+            "border"           => "#1c1c1c",
+            "0"                => "#2c2c2c",
+            "1"                => "#c62828",
+            "2"                => "#558b2e",
+            "3"                => "#f9a825",
+            "4"                => "#1565c1",
+            "5"                => "#6a1e9a",
+            "6"                => "#00838f",
+            "7"                => "#ffffff",
+            "8"                => "#969694",
+            "9"                => "#f15250",
+            "10"               => "#86bd47",
+            "11"               => "#f8e63a",
+            "12"               => "#77b2f6",
+            "13"               => "#b963c8",
+            "14"               => "#25c3dc",
+            "15"               => "#ffffff"
+    },
+    {
+        "name"             => "nord",
+            "background"       => $nord_colors{"nord0"},
+            "foreground"       => $nord_colors{"nord4"},
+            "cursorColor"      => $nord_colors{"nord4"},
+            "mouse_background" => $nord_colors{"nord0"},
+            "mouse_foreground" => $nord_colors{"nord4"},
+            "border"           => $nord_colors{"nord0"},
+            "0"                => $nord_colors{"nord1"},
+            "1"                => $nord_colors{"nord11"},
+            "2"                => $nord_colors{"nord14"},
+            "3"                => $nord_colors{"nord13"},
+            "4"                => $nord_colors{"nord9"},
+            "5"                => $nord_colors{"nord15"},
+            "6"                => $nord_colors{"nord8"},
+            "7"                => $nord_colors{"nord5"},
+            "8"                => $nord_colors{"nord3"},
+            "9"                => $nord_colors{"nord11"},
+            "10"               => $nord_colors{"nord14"},
+            "11"               => $nord_colors{"nord13"},
+            "12"               => $nord_colors{"nord9"},
+            "13"               => $nord_colors{"nord15"},
+            "14"               => $nord_colors{"nord7"},
+            "15"               => $nord_colors{"nord6"},
+    },
+    {
+        "name"             => "hifi",
+            "background"       => "#000000",
+            "foreground"       => "#969696",
+            "cursorColor"      => "#ffff00",
+            "mouse_background" => "#00ffff",
+            "mouse_foreground" => "#ff0000",
+            "border"           => "#ffffff",
+            "0"                => "#000000", # black
+            "1"                => "#990000", # red
+            "2"                => "#009900", # green
+            "3"                => "#999900", # yellow
+            "4"                => "#000099", # blue
+            "5"                => "#990099", # magenta
+            "6"                => "#009999", # cyan
+            "7"                => "#ffffff", # white
+            "8"                => "#969696", # grey
+            "9"                => "#ff0000", # bright red
+            "10"               => "#00ff00", # bright green
+            "11"               => "#ffff00", # bright yellow
+            "12"               => "#0000ff", # bright blue
+            "13"               => "#ff00ff", # bright magenta
+            "14"               => "#00ffff", # bright cyan
+            "15"               => "#ffffff"  # (light?!) white
+    },
+    );
 
 sub on_start {
-  my ($self) = @_;
-  my $startup_scheme = 0; #solarized_dark
-	my $startup_scheme_name = $self->x_resource("%.default");
-	for (my $idx = 0 ; $idx < scalar @schemes ; $idx ++) {
-		if ($schemes[$idx]->{name} eq $startup_scheme_name) {
-			$startup_scheme = $idx;
-			last;
-		}
-	}
-  $self->{current_scheme} = $startup_scheme;
-  $self->{schemes_count}  = scalar @schemes;
-  load_scheme($self,$startup_scheme);
+    my ($self) = @_;
+    my $startup_scheme = 0; #solarized_dark
+    my $startup_scheme_name = $self->x_resource("%.default");
+    for (my $idx = 0 ; $idx < scalar @schemes ; $idx ++) {
+        if ($schemes[$idx]->{name} eq $startup_scheme_name) {
+            $startup_scheme = $idx;
+            last;
+        }
+    }
+    $self->{current_scheme} = $startup_scheme;
+    $self->{schemes_count}  = scalar @schemes;
+    load_scheme($self,$startup_scheme);
 }
 
 sub on_user_command {
-  my ($self, $cmd) = @_;
-  if ($cmd eq 'colorscheme:toggle') {
-    my $next_theme = ($self->{current_scheme} + 1) % $self->{schemes_count};
-    load_scheme($self,$next_theme);
-    $self->{current_scheme} = $next_theme;
-  } else {
-  }
+    my ($self, $cmd) = @_;
+    if ($cmd eq 'colorscheme:toggle') {
+        my $next_theme = ($self->{current_scheme} + 1) % $self->{schemes_count};
+        load_scheme($self,$next_theme);
+        $self->{current_scheme} = $next_theme;
+    } else {
+    }
 }
 
 sub load_scheme {
-  my ($self,$index) = @_;
-  my %scheme = %{$schemes[$index]};
-  my $command="";
-  for my $setting (keys %scheme) {
-      next if $setting eq "name";
-      $command .= get_command($setting,$scheme{$setting});
-  }
-  $self->cmd_parse($command);
-  my $msg = "Set ".$scheme{"name"};
-  $self->{overlay} = $self->overlay( 0, -1, $self->strwidth($msg) + 1,
-       1, urxvt::OVERLAY_RSTYLE, 0 );
-  $self->{overlay}->set( 0, 0, $msg );
-  $self->{timer} = urxvt::timer->new->after (1)->cb (sub {
-      delete $self->{overlay};
-    });
+    my ($self,$index) = @_;
+    my %scheme = %{$schemes[$index]};
+    my $command="";
+    for my $setting (keys %scheme) {
+        next if $setting eq "name";
+        $command .= get_command($setting,$scheme{$setting});
+    }
+    $self->cmd_parse($command);
+    my $msg = "Set ".$scheme{"name"};
+    $self->{overlay} = $self->overlay( 0, -1, $self->strwidth($msg) + 1,
+                                       1, urxvt::OVERLAY_RSTYLE, 0 );
+    $self->{overlay}->set( 0, 0, $msg );
+    $self->{timer} = urxvt::timer->new->after (1)->cb (sub {
+        delete $self->{overlay};
+                                                       });
 }
 
 sub get_command {
-  my ($key,$value) = @_;
-  if ($key =~ /\d+/) {
-    return gen_osc(4,"$key;$value");
-  } elsif ($key eq "foreground") {
-    return gen_osc(10,$value);
-  } elsif ($key eq "background") {
-    return gen_osc(11,$value);
-  } elsif ($key eq "cursor") {
-    return gen_osc(12,$value);
-  } elsif ($key eq "mouse_foreground") {
-    return gen_osc(13,$value);
-  } elsif ($key eq "mouse_background") {
-    return gen_osc(14,$value);
-  } elsif ($key eq "highlight") {
-    return gen_osc(17,$value);
-  } elsif ($key eq "border") {
-    return gen_osc(708,$value);
-  }
+    my ($key,$value) = @_;
+    if ($key =~ /\d+/) {
+        return gen_osc(4,"$key;$value");
+    } elsif ($key eq "foreground") {
+        return gen_osc(10,$value);
+    } elsif ($key eq "background") {
+        return gen_osc(11,$value);
+    } elsif ($key eq "cursor") {
+        return gen_osc(12,$value);
+    } elsif ($key eq "mouse_foreground") {
+        return gen_osc(13,$value);
+    } elsif ($key eq "mouse_background") {
+        return gen_osc(14,$value);
+    } elsif ($key eq "highlight") {
+        return gen_osc(17,$value);
+    } elsif ($key eq "border") {
+        return gen_osc(708,$value);
+    }
 }
 
 sub gen_osc {
-  my $ESC = "\033";
-  my $OSC = $ESC."]";
-  my $BEL = "\007";
-  my ($code,$value) = @_;
-  return sprintf $OSC.$code.";".$value.$BEL;
+    my $ESC = "\033";
+    my $OSC = $ESC."]";
+    my $BEL = "\007";
+    my ($code,$value) = @_;
+    return sprintf $OSC.$code.";".$value.$BEL;
 }

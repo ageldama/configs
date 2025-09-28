@@ -87,7 +87,7 @@ URxvt.perl-ext-common: default,eval,-confirm-paste,font-size,searchable-scrollba
 
 ! solarized
 URxvt.keysym.C-M-t: perl:colorscheme:toggle
-URxvt.colorscheme.default: gruvbox
+URxvt.colorscheme.default: hifi
 
 
 ! basic keybindings
