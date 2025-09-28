@@ -18,7 +18,13 @@
     ;; (global-set-key (kbd "M-g j") 'hydra-avy-goto/body)
     (global-set-key (kbd "M-g M-g") 'avy-resume)
     (global-set-key (kbd "M-g ,") 'avy-pop-mark)
+
+    (ag-reinit/add-as-interactive
+     (when (and (fboundp 'evil-global-set-key)
+                (fboundp 'avy-goto-char-timer))
+       (evil-global-set-key 'normal "s" 'avy-goto-char-timer)))
     ))
+
 
 ;;;
 (provide 'ag-feat-avy)

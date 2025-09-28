@@ -57,5 +57,14 @@
       )))
 
 
+(defun ag-project/cur-dir ()
+  "현재 버퍼의 project-root-dir OR cwd"
+  (let ((proj-dir (cdr (project-current nil)))) ; nil = no-prompt
+    ;; fallback to directory of current buffer:
+    (unless proj-dir
+      (setf proj-dir (expand-file-name default-directory)))
+    (message "%s" proj-dir)))
+
+
 
 (provide 'ag-el)
