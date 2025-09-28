@@ -101,6 +101,7 @@
  ;; 'ag-feat-meson                 ; dpkg=-
  ;; 'ag-feat-cmake                 ; dpkg=-
  ;; 'ag-feat-golang-light          ; dpkg=-
+ 'ag-feat-rainbow-mode             ; dpkg=-
  ;; 'ag-feat-funky-fonts
  'ag-feat-rfc-mode
  )
