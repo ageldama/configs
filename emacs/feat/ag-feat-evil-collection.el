@@ -5,7 +5,7 @@
     :ensure t :pin melpa
     :config
     (progn (evil-collection-init)
-           (diminish 'evil-collection-unimpaired-mode ""))
+           (diminish 'evil-collection-unimpaired-mode))
     ))
 
 
