@@ -115,7 +115,7 @@
           '(
             ("SPC" avy-goto-char-timer "avy")
       ;;       ("w" avy-goto-word-1 "goto-word")
-      ;;       ("l" avy-goto-line "goto-line")
+            ("l" avy-goto-line "goto-line")
             (";" avy-resume "avy-resume")
             ))
 
