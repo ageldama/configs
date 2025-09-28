@@ -1,3 +1,4 @@
+;;; -*- mode: emacs-lisp; -*-
 
 (setq default-input-method  "korean-hangul"
       user-full-name        "Jong-Hyouk Yun"
@@ -29,6 +30,7 @@
  'ag-feat-ace-window               ; dpkg=elpa-ace-window
  'ag-feat-undo-tree                ; dpkg=elpa-undo-tree
  'ag-feat-diminish                 ; dpkg=elpa-diminish
+ 'ag-feat-base16-theme             ; dpkg=-
  'ag-feat-modus-themes             ; dpkg=elpa-modus-theme
  ;; 'ag-feat-smart-mode-line       ; dpkg=-
  ;; 'ag-feat-fundamental-mode      ; dpkg=+
@@ -145,6 +147,7 @@
     (ag-set-font-height 104)
 
     ;; (load-theme 'leuven-dark t)
+    ;; (load-theme 'base16-greenscreen t)
     ;; (load-theme 'modus-operandi-tinted t)
     (require 'ag-feat-day-and-night)
     (setq *day-and-night/day-theme* 'modus-operandi-tinted)

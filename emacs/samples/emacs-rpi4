@@ -1,3 +1,5 @@
+;;; -*- mode: emacs-lisp; -*-
+
 (setq default-input-method  "korean-hangul"
       user-full-name        "Jong-Hyouk Yun"
       user-mail-address     "ageldama@gmail.com"
