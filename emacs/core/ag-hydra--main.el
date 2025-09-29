@@ -267,6 +267,8 @@
 
       ("%" %ag-parse-ag-requires-elapseds "requires-elapseds" :exit t)
 
+      ("!" ag-misc/insert-time-stamp "time-stamp" :exit t)
+
       ("SPC" nil)))
 
   (defhydra hydra/tab-bar (:exit nil)

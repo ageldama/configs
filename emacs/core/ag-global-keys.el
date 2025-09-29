@@ -17,12 +17,6 @@
  ;; (global-set-key (kbd "<f8>") 'hydra-mini/body)
  ;; (global-set-key (kbd "<f9>") 'do-lang-mode-hydra)
 
- (global-set-key (kbd "M-s g g") 'grep)
- (global-set-key (kbd "M-s g r") 'rgrep)
- (global-set-key (kbd "M-s g l") 'lgrep)
- (global-set-key (kbd "M-s g f") 'grep-find)
- ;; (global-set-key (kbd "M-s g r") 'rg)
- ;; (global-set-key (kbd "M-s g d") 'deadgrep)
  )
 
 

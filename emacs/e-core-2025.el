@@ -30,6 +30,8 @@
              'ag-hydra--main
              'ag-dired-lang-mode
              'ag-global-keys
+
+             'ag-misc
              )
 
 

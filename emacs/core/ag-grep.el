@@ -8,6 +8,12 @@
   :commands (grep lgrep rgrep)
 
   :config
+  (global-set-key (kbd "M-s g g") 'grep)
+  (global-set-key (kbd "M-s g r") 'rgrep)
+  (global-set-key (kbd "M-s g l") 'lgrep)
+  (global-set-key (kbd "M-s g f") 'grep-find)
+  ;; (global-set-key (kbd "M-s g r") 'rg)
+  ;; (global-set-key (kbd "M-s g d") 'deadgrep)
 
   (setq grep-save-buffers nil)
   (setq grep-use-headings t) ; Emacs 30
