@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 # cron example:
 # 0 * * * * ~/.local/bin/reddit-wallpaper

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 
 XSCREENSAVER_DIR=/usr/libexec/xscreensaver
