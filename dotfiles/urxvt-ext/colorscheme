@@ -172,27 +172,27 @@ my @schemes = (
     {
         "name"             => "hifi",
             "background"       => "#000000",
-            "foreground"       => "#969696",
-            "cursorColor"      => "#ffff00",
+            "foreground"       => "#b2b2b2",
+            "cursorColor"      => "#cccc00",
             "mouse_background" => "#00ffff",
             "mouse_foreground" => "#ff0000",
             "border"           => "#ffffff",
             "0"                => "#000000", # black
-            "1"                => "#990000", # red
-            "2"                => "#009900", # green
-            "3"                => "#999900", # yellow
-            "4"                => "#000099", # blue
-            "5"                => "#990099", # magenta
-            "6"                => "#009999", # cyan
-            "7"                => "#ffffff", # white
-            "8"                => "#969696", # grey
-            "9"                => "#ff0000", # bright red
-            "10"               => "#00ff00", # bright green
-            "11"               => "#ffff00", # bright yellow
-            "12"               => "#0000ff", # bright blue
-            "13"               => "#ff00ff", # bright magenta
-            "14"               => "#00ffff", # bright cyan
-            "15"               => "#ffffff"  # (light?!) white
+            "1"                => "#b21818", # red
+            "2"                => "#18b218", # green
+            "3"                => "#b26818", # yellow
+            "4"                => "#1818b2", # blue
+            "5"                => "#b218b2", # magenta
+            "6"                => "#18b2b2", # cyan
+            "7"                => "#b2b2b2", # white
+            "8"                => "#686868", # grey
+            "9"                => "#ff5454", # bright red
+            "10"               => "#54ff54", # bright green
+            "11"               => "#ffff54", # bright yellow
+            "12"               => "#5454ff", # bright blue
+            "13"               => "#ff54ff", # bright magenta
+            "14"               => "#54ffff", # bright cyan
+            "15"               => "#ffffff", # (light?!) white
     },
     );
 

@@ -235,7 +235,7 @@ if($opts{r}){
     }
 
     if($opts{e}){
-      exit system($saved);
+      exec($saved);
     }
 
     exit 0;  # fallback
@@ -301,7 +301,7 @@ if($opts{p}){
 }
 
 if($opts{e}){
-  system($stdout);
+  exec($stdout);
 }
 
 #EOF.
