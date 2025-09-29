@@ -13,7 +13,8 @@ MNT_GID=$(id -g)
 
 read -s -p "SMB Password (for ${SMB_USER} @ ${SMB_IP} == ${SMB_HOST}): " SMB_PASSWD
 
-sudo mount -t cifs -o vers=3.0,user=${SMB_USER},password=${SMB_PASSWD},uid=$MNT_UID,gid=$MNT_GID //${SMB_IP}/${SMB_SHARE} ${HOME}/mnts/${SMB_HOST}-${SMB_SHARE}/
+sudo mount -t smb3 -o vers=3.0,user=${SMB_USER},password=${SMB_PASSWD},uid=$MNT_UID,gid=$MNT_GID //${SMB_IP}/${SMB_SHARE} ${HOME}/mnts/${SMB_HOST}-${SMB_SHARE}/
+#sudo mount -t cifs -o vers=3.0,user=${SMB_USER},password=${SMB_PASSWD},uid=$MNT_UID,gid=$MNT_GID //${SMB_IP}/${SMB_SHARE} ${HOME}/mnts/${SMB_HOST}-${SMB_SHARE}/
 
 
 
