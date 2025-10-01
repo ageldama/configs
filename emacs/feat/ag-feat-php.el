@@ -1,6 +1,9 @@
 (use-package php-mode :ensure t :pin melpa
   :config
+  (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
+
   (ag-reinit/add-as-interactive
+
    (when (boundp 'eglot-server-programs)
      (add-to-list 'eglot-server-programs
                   '(php-mode . ("phpactor.phar" "language-server")))))
