@@ -77,6 +77,7 @@
  ;; 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
  ;; 'ag-feat-treemacs-icons-dired  ; dpkg=-
  'ag-feat-c                        ; dpkg=+
+ ;; 'ag-feat-php                   ; dpkg=+
  ;; 'ag-feat-perl5                 ; dpkg=+
  ;; 'ag-feat-ivy-emoji-maybe       ; dpkg=-
  ;; 'ag-feat-embark                ; dpkg=elpa-embark
