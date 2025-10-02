@@ -34,18 +34,18 @@ InputFontNameXft = "D2Coding:size=9"
 LabelFontNameXft = "D2Coding:size=9"
 
 #  Goes one workspace to the left.
-# KeySysWorkspacePrev="Super+,"
-# KeySysWorkspaceNext="Super+."
-# KeySysWorkspaceLast="Super+x"
-# KeySysWorkspacePrevTakeWin="Super+Shift+,"
-# KeySysWorkspaceNextTakeWin="Super+Shift+."
-# KeySysWorkspaceLastTakeWin="Super+Shift+x"
+KeySysWorkspacePrev="Super+,"
+KeySysWorkspaceNext="Super+."
+KeySysWorkspaceLast="Super+x"
+KeySysWorkspacePrevTakeWin="Super+Shift+,"
+KeySysWorkspaceNextTakeWin="Super+Shift+."
+KeySysWorkspaceLastTakeWin="Super+Shift+x"
 
 # KeySysShowDesktop="Super+F5"
 
-# KeyWinMaximize="Super+Ctrl+x"
-# KeyWinMaximizeVert="Super+Ctrl+z"
-# KeyWinMaximizeHoriz="Super+Ctrl+c"
+KeyWinMaximize="Super+Ctrl+x"
+KeyWinMaximizeVert="Super+Ctrl+z"
+KeyWinMaximizeHoriz="Super+Ctrl+c"
 
 
 # SEE: https://github.com/ice-wm/icewm/blob/master/src/default.h
