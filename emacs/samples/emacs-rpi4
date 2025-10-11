@@ -176,3 +176,6 @@
 ;;; zone
 (zone-when-idle 30)
 
+
+;;; mu4e
+(load-file "~/P/v3/+dot+/mu4e/mu4e.el")
