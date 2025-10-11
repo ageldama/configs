@@ -34,9 +34,9 @@ path-append ~/perl5/bin
 export PERLDOC="-MPod::Text::Color"
 
 
-if [[ -d $HOME/local/tcl-pkgs ]]; then
-    export TCLLIBPATH="${TCLLIBPATH} ${HOME}/local/tcl-pkgs"
-fi
+# if [[ -d $HOME/local/tcl-pkgs ]]; then
+#     export TCLLIBPATH="${TCLLIBPATH} ${HOME}/local/tcl-pkgs"
+# fi
 
 
 if [[ -d $HOME/bin ]]; then
@@ -48,22 +48,27 @@ if [[ -d $HOME/go/bin ]]; then
   export PATH=~/go/bin:$PATH
 fi
 
-if [[ -x ~/.local/bin/mise ]]; then
-  eval "$(~/.local/bin/mise activate bash)"
-fi
+# if [[ -x ~/.local/bin/mise ]]; then
+#   eval "$(~/.local/bin/mise activate bash)"
+# fi
+# 
+# if [[ -d ~/.local/share/mise/shims ]]; then
+#   export PATH=~/.local/share/mise/shims:$PATH
+# fi
+# 
+# if [[ -d ~/.config/composer/vendor/bin ]]; then
+#   export PATH=~/.config/composer/vendor/bin:$PATH
+# fi
 
-if [[ -d ~/.local/share/mise/shims ]]; then
-  export PATH=~/.local/share/mise/shims:$PATH
-fi
 
-if [[ -d ~/.config/composer/vendor/bin ]]; then
-  export PATH=~/.config/composer/vendor/bin:$PATH
-fi
+# if [[ -x "$(command -v luarocks)" ]]; then
+#   eval "$(luarocks path)"
+# fi
 
 
-if [[ -x "$(command -v luarocks)" ]]; then
-  eval "$(luarocks path)"
-fi
+# if which ruby >/dev/null && which gem >/dev/null; then
+#    PATH="$(ruby -rrubygems -e 'puts Gem.user_dir')/bin:$PATH"
+# fi
 
 
 
