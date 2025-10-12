@@ -5,20 +5,16 @@ use warnings;
 use Data::Dumper;
 use File::Find;
 
+
 use constant BASE_DIRS => qw(/usr/share/games/fortunes /usr/local/share/games/fortune);
 
 
 sub remove_ext {
-    my $s = shift;
-    $s =~ s/\.dat$//;
-    return $s;
+    $_ = shift; s/\.dat$//r;
 }
 
 
-my @dirs = ();
-foreach (BASE_DIRS) {
-    push(@dirs, $_) if -d $_;
-}
+my @dirs = grep { -d } BASE_DIRS;
 
 
 my @dat_filenames = ();
