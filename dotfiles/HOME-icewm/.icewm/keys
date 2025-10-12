@@ -91,7 +91,7 @@ key "Super+Shift+m" x-terminal-emulator -e bashmount
 key "Super+w" wg-whatever.pl
 #key "Super+w" wg.pl
 
-key "Super+Shift+f" ~/local/scripts/zzz-acme/xmsg-fortune.sh
+key "Super+Shift+f" ~/local/scripts/zzz-acme/xmsg-fortune.pl
 
 key "Super+Shift+v" snd-mixer-ui.sh
 
