@@ -35,6 +35,8 @@ find(sub {
 
 print STDERR Dumper(@dat_filenames), "\n";
 
+die "$0: no fortune data found" unless 0 < scalar @dat_filenames;
+
 my $dat = $dat_filenames[int(rand(scalar @dat_filenames))];
 
 print STDERR $dat, "\n";
