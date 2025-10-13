@@ -25,6 +25,13 @@
    (org . t)
    (sqlite . t)
    (C . t)
+   (gnuplot . t)
+   (table . t)
+   (makefile . t)
+   (eshell . t)
+   (calc . t)
+   (ruby . t)
+   (sql . t)
    ))
 
 

@@ -3,7 +3,7 @@
 caps-to-ctrl.sh
 
 ~/local/scripts/synclient/tap-to-click.sh
-~/local/scripts/synclient/disable.sh
+# ~/local/scripts/synclient/disable.sh
 
 if (xrandr |grep "HDMI-1 connected"); then
   # (2560x1080     59.98*+  50.00)
