@@ -51,6 +51,12 @@
 (setq org-startup-with-inline-images t)
 
 
+
+
+(setq org-agenda-files (list (expand-file-name "~/P/v3/AGENDA.org"))
+      org-agenda-include-diary t
+      diary-file (expand-file-name "~/P/v3/diary/+emacs-diary+/curr"))
+
 ;;;
 ;; (setq org-todo-keywords
 ;;       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
