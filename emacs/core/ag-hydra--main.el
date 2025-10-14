@@ -171,6 +171,9 @@
 
       ("f" hydra-files/body "files" )
 
+      ,@(when (file-exists-p "~/.use-mu4e")
+          '(("M-m" mu4e "mu4e")))
+
       ,@(when (fboundp 'undo-tree-visualize)
           '(("u" undo-tree-visualize "undo-tree" )))
 
