@@ -53,13 +53,13 @@
 
 
 
-(setq org-agenda-files (list (expand-file-name "~/P/v3/AGENDA.org"))
+(setq org-agenda-files (list (expand-file-name "~/P/v3/AGENDA.org")
+                             (expand-file-name "~/P/v3/AGENDA.org_archive"))
       org-agenda-include-diary t
-      diary-file (expand-file-name "~/P/v3/diary/+emacs-diary+/curr"))
+      diary-file (expand-file-name "~/P/v3/diary/+emacs-diary+/curr")
 
-;;;
-;; (setq org-todo-keywords
-;;       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
+      org-todo-keywords
+      '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
 
 
 ;;;
