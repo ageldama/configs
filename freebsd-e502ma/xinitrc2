@@ -1,6 +1,6 @@
 #!/bin/sh
 
-caps-to-ctrl.sh
+caps-to-ctrl.sh 3s &
 
 ~/local/scripts/synclient/tap-to-click.sh
 # ~/local/scripts/synclient/disable.sh
