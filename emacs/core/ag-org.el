@@ -55,7 +55,7 @@
 
 (setq org-agenda-files (file-expand-wildcards "~/P/v3/AGENDA*.org*")
       org-agenda-include-diary t
-      diary-file (file-expand-wildcards "~/P/v3/diary/+emacs-diary+/*")
+      diary-file (expand-file-name "~/P/v3/diary/+emacs-diary+/curr")
 
       org-todo-keywords
       '((sequence "TODO(t)" "NEXT(n)" "WAITING(w)" "|" "DONE(d)" "CANCELLED(c)")))
