@@ -4,10 +4,19 @@
 
   (ag-reinit/add-as-interactive
 
+   ;; https://github.com/phpactor/phpactor
    (when (boundp 'eglot-server-programs)
      (add-to-list 'eglot-server-programs
                   '(php-mode . ("phpactor.phar" "language-server")))))
   )
+
+
+(use-package ob-php :pin melpa :ensure t
+  :config (require 'ob-php)
+  (add-to-list 'org-babel-load-languages
+               '(php . t))
+  (org-babel-do-load-languages 'org-babel-load-languages
+                               org-babel-load-languages))
 
 
 (provide 'ag-feat-php)
