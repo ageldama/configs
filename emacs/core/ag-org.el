@@ -53,7 +53,9 @@
 
 
 
-(setq org-agenda-files (file-expand-wildcards "~/P/v3/AGENDA*.org*")
+(setq org-agenda-files (append (file-expand-wildcards "~/P/v3/AGENDA*.org*")
+                               (file-expand-wildcards "~/P/v3/PLAN*.org_archive"))
+
       org-agenda-include-diary t
       diary-file (expand-file-name "~/P/v3/diary/+emacs-diary+/curr")
 
