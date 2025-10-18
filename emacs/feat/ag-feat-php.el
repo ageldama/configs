@@ -5,7 +5,7 @@
   (ag-reinit/add-as-interactive
 
    ;; https://github.com/phpactor/phpactor
-   (when (boundp 'eglot-server-programs)
+   (when (require 'eglot nil t)
      (add-to-list 'eglot-server-programs
                   '(php-mode . ("phpactor.phar" "language-server")))))
   )
