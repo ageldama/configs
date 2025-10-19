@@ -92,6 +92,7 @@
 
   (defhydra hydra-org (:exit t)
     ("a" org-agenda "org-agenda")
+    ("M-a" (lambda () (interactive) (find-file "~/P/v3/AGENDA.org")) "agenda")
     ("d" diary/new-or-open-org-file "diary" )
     ("m" diary/new-or-open-memo "memo" )
     ("p" v3/open-plan "plan" ))
