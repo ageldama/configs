@@ -6,7 +6,12 @@
 
 
 
-(setq inferior-lisp-program "ros -Q run")
+
+(setq inferior-lisp-program
+      (cond
+       ((executable-find "ros") "ros -Q run")
+       ((executable-find "sbcl") "sbcl")))
+
 
 
 (use-package sly :ensure t :pin melpa
