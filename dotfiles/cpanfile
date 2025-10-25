@@ -1,4 +1,5 @@
 # Do: cpanm --installdeps .
+requires 'Getopt::Long::Descriptive';
 requires 'Data::Compare';
 requires 'DDP';
 requires 'IPC::Open2';
