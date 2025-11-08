@@ -12,17 +12,22 @@
                                'isearch-backward)
               (message "REPL History: C-c ,")))
 
-  (let ((hyperspec-path
-         (glob-first-file "/usr/share/doc/hyperspec/"
-                          (expand-file-name "~/local/HyperSpec/"))))
-    (when hyperspec-path
-      (setq common-lisp-hyperspec-root hyperspec-path)))
-
-  (setq inferior-lisp-program
-        (cond
-         ((executable-find "ros") "ros -Q run")
-         ((executable-find "sbcl") "sbcl")))
   )
+
+(let ((hyperspec-path
+       (glob-first-file "/usr/share/doc/hyperspec/"
+                        (expand-file-name "~/local/HyperSpec/"))))
+  (when hyperspec-path
+    (setq common-lisp-hyperspec-root hyperspec-path)))
+
+(ag-reinit/add-as-interactive
+ (setq inferior-lisp-program
+       (cond
+        ((executable-find "ros") "ros -Q run")
+        ((executable-find "sbcl") "sbcl")))
+ (message "INF-LISP: %s\n"
+          inferior-lisp-program)
+ )
 
 
 (provide 'ag-feat-sly)
