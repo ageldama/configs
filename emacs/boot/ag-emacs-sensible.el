@@ -16,7 +16,7 @@
 (add-hook 'prog-mode-hook
           (lambda ()
             (setq-local show-trailing-whitespace +1)))
-                            
+
 
 
 (setq truncate-lines nil) ; no h-scroll
@@ -167,6 +167,15 @@
 
 
 (setq tags-revert-without-query 1)
+
+
+
+
+(when (null confirm-kill-emacs)
+  (setf confirm-kill-emacs
+        (lambda (&rest args) (interactive)
+          (yes-or-no-p "Really quit Emacs?"))))
+
 
 
 ;;;
