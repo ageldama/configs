@@ -58,7 +58,7 @@
 
 ;;; tabs, indents
 (setq-default indent-tabs-mode nil)
-(setq tab-width nil)
+(setq tab-width 2)
 ;;; ONLY affects to REAL <TAB>-chars to display.
 ;;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ; [tab] inserts two spaces
 (electric-indent-mode +1)
