@@ -49,6 +49,3 @@ KeyWinMaximizeHoriz="Super+Ctrl+c"
 
 
 # SEE: https://github.com/ice-wm/icewm/blob/master/src/default.h
-
-#  Auto hide task bar after delay.
-TaskBarAutoHide=1 # 0/1
