@@ -109,8 +109,7 @@ if 1
     map <m--> <Plug>(fontzoom-smaller)
     map <m-=> <Plug>(fontzoom-larger)
   else
-    color murphy
-    "color default
+    color default
     "set bg=dark
   endif
 endif
