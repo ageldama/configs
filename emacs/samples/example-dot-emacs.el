@@ -79,8 +79,9 @@
  ;; 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
  ;; 'ag-feat-treemacs-icons-dired  ; dpkg=-
  'ag-feat-c                        ; dpkg=+
+ 'ag-feat-python                   ; dpkg=+
  ;; 'ag-feat-ruby                     ; dpkg=+
- 'ag-feat-ruby-lite                     ; dpkg=+
+ ;; 'ag-feat-ruby-lite                     ; dpkg=+
  ;; 'ag-feat-haskell                  ; dpkg=+
  ;; 'ag-feat-php                   ; dpkg=+
  ;; 'ag-feat-perl5                 ; dpkg=+
