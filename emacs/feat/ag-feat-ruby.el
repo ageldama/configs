@@ -6,11 +6,11 @@
 ;; Ruby must be compiled with Readline support (how to check).
 ;; With Ruby 3.3, the gem readline-ext is also needed.
 
-;; (use-package robe :ensure t :pin melpa
-;;   :config
-;;   (eval-after-load 'company
-;;     '(push 'company-robe company-backends))
-;;   )
+(use-package robe :ensure t :pin melpa
+  :config
+  (eval-after-load 'company
+    '(push 'company-robe company-backends))
+  )
 
 (use-package enh-ruby-mode :ensure t :pin melpa
   :config

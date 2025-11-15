@@ -16,7 +16,7 @@
 (add-hook 'prog-mode-hook
           (lambda ()
             (setq-local show-trailing-whitespace +1)))
-                            
+
 
 
 (setq truncate-lines nil) ; no h-scroll
@@ -58,7 +58,7 @@
 
 ;;; tabs, indents
 (setq-default indent-tabs-mode nil)
-(setq tab-width nil)
+(setq tab-width 2)
 ;;; ONLY affects to REAL <TAB>-chars to display.
 ;;; (global-set-key "\t" (lambda () (interactive) (insert-char 32 2))) ; [tab] inserts two spaces
 (electric-indent-mode +1)
@@ -167,6 +167,15 @@
 
 
 (setq tags-revert-without-query 1)
+
+
+
+
+(when (null confirm-kill-emacs)
+  (setf confirm-kill-emacs
+        (lambda (&rest args) (interactive)
+          (yes-or-no-p "Really quit Emacs?"))))
+
 
 
 ;;;

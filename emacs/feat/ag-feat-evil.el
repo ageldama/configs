@@ -12,6 +12,10 @@
 (setq evil-default-state 'normal) ;;emacs)
 
 
+(add-hook 'evil-mode-hook
+          (lambda () (setq evil-shift-width c-basic-offset)))
+
+
 
 
 (defun toggle-evil-mode ()

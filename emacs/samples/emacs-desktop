@@ -47,6 +47,8 @@
  'ag-feat-company                  ; dpkg=elpa-company
  'ag-feat-magit                    ; dpkg=elpa-magit
  'ag-feat-web-mode                 ; dpkg=elpa-web-mode
+ ;; 'ag-feat-sass-mode             ; dpkg=-
+ ;; 'ag-feat-haml-mode             ; dpkg=-
  'ag-feat-hl-todo                  ; dpkg=elpa-hl-todo
  'ag-feat-markdown-mode            ; dpkg=elpa-markdown-mode
  'ag-feat-projectile               ; dpkg=elpa-projectile
