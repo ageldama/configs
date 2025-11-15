@@ -76,7 +76,7 @@
     (tmm-menubar)))
 
 
-(global-set-key (kbd "M-`")   #'%menu-bar-open)
+(global-set-key (kbd "C-`")   #'%menu-bar-open)
 (global-set-key (kbd "<f10>") #'%menu-bar-open)
 
 
