@@ -1,4 +1,14 @@
 
+;;;
+;;; uv add --dev "python-lsp-server[all]"
+;;;
+;;; -or-
+;;;
+;;; uv add --dev python-lsp-server
+;;;
+
+
+
 (defun -complete--uv-or-python--pylsp-cmd ()
   (append
    (let ((uv-exe (executable-find "uv"))
