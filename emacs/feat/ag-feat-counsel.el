@@ -35,7 +35,12 @@
             ;; (global-set-key (kbd "C-x l") 'counsel-locate)
             ;; (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
             (global-set-key (kbd "M-y") 'counsel-yank-pop)
-            (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history))
+            (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+            (require 'ag-hydra--main)
+            (add-to-list 'hydra-mini/++extras
+                         '("r" counsel-recentf "recent" ))
+            )
 
   :bind
   ( :map global-map

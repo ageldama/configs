@@ -44,6 +44,11 @@
     (dolist (fn '(pulsar-recenter-top pulsar-reveal-entry))
       (add-hook 'consult-after-jump-hook fn)))
 
+  (require 'ag-hydra--main)
+  (add-to-list 'hydra-mini/++extras
+               '("r" consult-recent-file "recent"))
+
+
   )
 
 

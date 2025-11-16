@@ -1,6 +1,7 @@
-;;; Only builtin Eglot, without LSP.
+;;; Only builtin Eglot, without package `lsp'.
 
-(use-package eglot :ensure t)
+(use-package eglot :ensure t
+  :config
 
 (define-key eglot-mode-map (kbd "C-c e p") #'flymake-goto-prev-error)
 (define-key eglot-mode-map (kbd "C-c e n") #'flymake-goto-next-error)
@@ -12,7 +13,7 @@
 (when (fboundp 'defhydra)
   (define-key eglot-mode-map (kbd "C-c e e") #'hydra-eglot/body)
 
-  (defhydra hydra-eglot (:color pink :hint nil :exit t)
+  (eval '(defhydra hydra-eglot (:color pink :hint nil :exit t)
     "
 _SPC_: close
 _=_: fmt                _?_: eldoc
@@ -58,6 +59,12 @@ _: K_: shutdown-all     ^ ^                  ^ ^
     ;; exit
     ("SPC" nil)
     ))
+
+  (require 'ag-hydra--main)
+  (add-to-list 'hydra-mini/++extras
+             '("e" hydra-eglot/body "eglot"))
+
+  ))
 
 
 

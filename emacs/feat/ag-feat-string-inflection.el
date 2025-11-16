@@ -19,6 +19,12 @@ _U_: 'FOO_BAR' upcase
              ("k" string-inflection-kebab-case :exit t)
              ("u" string-inflection-underscore :exit t)
              ("U" string-inflection-upcase :exit t)
-             ("SPC" nil)))))
+             ("SPC" nil)))
+
+    (require 'ag-hydra--main)
+    (add-to-list 'hydra-mini/++extras
+                 '("M-i" hydra-string-inflection/body "infl."))
+
+    ))
 
 (provide 'ag-feat-string-inflection)

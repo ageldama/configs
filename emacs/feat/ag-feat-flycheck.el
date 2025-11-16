@@ -21,7 +21,13 @@
                        ("x" flycheck-disable-checker "Disable-Chker")
                        ("e" flycheck-explain-error-at-point "Explain-Err")
                        ("C-w" flycheck-copy-errors-as-kill "Copy-Err")
-                       ("SPC" nil))))))
+                       ("SPC" nil)))
+
+              (require 'ag-hydra--main)
+              (add-to-list 'hydra-mini/++extras
+                           '("M-c" hydra-flycheck/body "flychk"))
+
+              )))
 
 
 (provide 'ag-feat-flycheck)

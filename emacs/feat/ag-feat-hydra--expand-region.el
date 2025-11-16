@@ -31,6 +31,11 @@
 
 (global-set-key (kbd "C-+") 'hydra-expand-region/body)
 
+(require 'ag-hydra--main)
+(add-to-list 'hydra-mini/++extras
+             '("=" hydra-expand-region/body "exp-region"))
+
+
 
 ;;;
 (provide 'ag-feat-hydra--expand-region)

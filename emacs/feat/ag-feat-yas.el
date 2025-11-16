@@ -39,7 +39,8 @@
 
 
 
-(defhydra hydra-yas ()
+(when (fboundp 'defhydra)
+(eval '(defhydra hydra-yas ()
   "
 Yasnippet^^
 ---------------------------------
@@ -59,7 +60,12 @@ _SPC_ cancel
   ("n" yas-new-snippet :exit t)
   ("v" yas-visit-snippet-file :exit t)
   ("SPC" nil)
-  )
+  ))
+
+  (require 'ag-hydra--main)
+  (add-to-list 'hydra-mini/++extras
+             '("y" hydra-yas/body "yas"))
+)
 
 
 (use-package yasnippet-snippets :ensure t :pin melpa :after yasnippet)
