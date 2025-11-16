@@ -5,6 +5,8 @@
             (global-set-key (kbd "M-s C-f") 'rg)
             (global-set-key (kbd "M-s g M-r") 'rg)
 
+            (require 'ag-el)
+
             (defun ag-rg/dwim+project ()
               (interactive)
               (rg-dwim (ag-project/cur-dir)))
