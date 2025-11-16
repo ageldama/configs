@@ -2,6 +2,8 @@
 (require 'dash)
 (require 's)
 (require 'f)
+(require 'cl-lib)
+(require 'org)
 
 
 
@@ -126,10 +128,11 @@
 (defun diary/memo-types/default ()
   (car diary/memo-types))
 
+
 (defun diary/memo-types/select ()
   (let ((memo-types (cl-loop with idx = 0
                              for item in diary/memo-types
-                             when (evenp idx)
+                             when (cl-evenp idx)
                              collect item
                              do (cl-incf idx))))
     (intern
