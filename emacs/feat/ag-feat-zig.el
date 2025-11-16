@@ -36,15 +36,16 @@
 
 
 
+(when (fboundp 'defhydra)
+  (eval '(defhydra hydra-lang-zig ()
+           "Zig"
 
-(defhydra hydra-lang-zig ()
-  "Zig"
+           ("t" zig/build-tags "ctags" :exit t)
 
-  ("t" zig/build-tags "ctags" :exit t)
+           ("SPC" nil)))
 
-  ("SPC" nil))
-
-(lang-mode-hydra-set 'zig-mode-hook 'hydra-lang-zig/body)
+  (require 'ag-lang-mode)
+  (lang-mode-hydra-set 'zig-mode-hook 'hydra-lang-zig/body))
 
 
 

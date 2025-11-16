@@ -8,30 +8,30 @@
 ;;   (exec-path-from-shell-copy-env "GOROOT")
 ;;   (exec-path-from-shell-copy-env "GOPATH"))
 
+(when (fboundp 'defhydra)
+  (eval '(defhydra hydra-lang-go-light ()
+           "go-light"
 
-(defhydra hydra-lang-go-light ()
-  "go-light"
+           ("r" go-run "run" :exit t)
+           ("t" go-test-current-test "t-curT" :exit t)
+           ("T" go-test-current-file "t-curF" :exit t)
 
-  ("r" go-run "run" :exit t)
-  ("t" go-test-current-test "t-curT" :exit t)
-  ("T" go-test-current-file "t-curF" :exit t)
-  
-  ("f"   gofmt "fmt" :exit t)
+           ("f"   gofmt "fmt" :exit t)
 
-  ("d"   godoc "doc" :exit t)
-  ("M-d" godoc-at-point "doc-pt" :exit t)
+           ("d"   godoc "doc" :exit t)
+           ("M-d" godoc-at-point "doc-pt" :exit t)
 
-  ("D"   godef-describe "desc" :exit t)
-  ("+"   go-import-add "imp+" :exit t)
-  ("."   godef-jump "jmp" :exit t)
+           ("D"   godef-describe "desc" :exit t)
+           ("+"   go-import-add "imp+" :exit t)
+           ("."   godef-jump "jmp" :exit t)
 
-  ("SPC" nil))
+           ;; "g"   'go-goto-map
+           ;; "u"   'go-guru-map
 
-;; "g"   'go-goto-map
-;; "u"   'go-guru-map
+           ("SPC" nil)))
 
-
-(lang-mode-hydra-set 'go-mode-hook 'hydra-lang-go-light/body)
+  (require 'ag-lang-mode)
+  (lang-mode-hydra-set 'go-mode-hook 'hydra-lang-go-light/body))
 
 
 (provide 'ag-feat-golang-light)

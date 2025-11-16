@@ -9,6 +9,8 @@
               (interactive)
               (rg-dwim (ag-project/cur-dir)))
 
+            (require 'ag-reinit)
+
             (ag-reinit/add-as-interactive
              (when (fboundp 'wgrep-commit-file)
                (autoload 'wgrep-rg-setup "wgrep-rg")

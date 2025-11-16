@@ -3,7 +3,7 @@
 (require 'ag-00-boot)
 
 (ag-requires :tag-:*boot
-             :nocompile
+             :compile
              'ag-package
              'ag-package--basic-loads
              'ag-reinit
