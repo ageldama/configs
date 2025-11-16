@@ -19,6 +19,7 @@
     (global-set-key (kbd "M-g M-g") 'avy-resume)
     (global-set-key (kbd "M-g ,") 'avy-pop-mark)
 
+    (require 'ag-reinit)
     (ag-reinit/add-as-interactive
      (when (and (fboundp 'evil-global-set-key)
                 (fboundp 'avy-goto-char-timer))

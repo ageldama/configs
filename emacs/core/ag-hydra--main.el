@@ -298,7 +298,6 @@
 
 
 (require 'ag-reinit)
-
 (ag-reinit/add-as-interactive (def-hydras))
 
 
