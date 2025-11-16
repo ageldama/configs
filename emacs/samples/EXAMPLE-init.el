@@ -23,7 +23,7 @@
 ;;; align-regexp = "; [^;|.]+$"
 (ag-requires
  :tag-:*feats
- :compile
+ :nocompile ;; byte-compile 않는게 더 속편해
  'ag-feat-recentf                  ; dpkg=+
  'ag-feat-savehist                 ; dpkg=+
  'ag-feat-avy                      ; dpkg=elpa-avy
@@ -110,7 +110,7 @@
  ;; 'ag-feat-funky-fonts
  'ag-feat-rfc-mode
 
- :nocompile ;; byte-compile 포기ㅎㅎ
+ ;; :nocompile ;; byte-compile 포기ㅎㅎ
  'ag-feat-rg                       ; dpkg=elpa-rg
  'ag-feat-c                        ; dpkg=+
  'ag-feat-perl5                    ; dpkg=+
