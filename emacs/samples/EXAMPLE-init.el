@@ -23,25 +23,25 @@
 ;;; align-regexp = "; [^;|.]+$"
 (ag-requires
  :tag-:*feats
- ;:compile
+ :compile
  'ag-feat-recentf                  ; dpkg=+
  'ag-feat-savehist                 ; dpkg=+
  'ag-feat-avy                      ; dpkg=elpa-avy
  'ag-feat-ace-window               ; dpkg=elpa-ace-window
  'ag-feat-undo-tree                ; dpkg=elpa-undo-tree
  'ag-feat-diminish                 ; dpkg=elpa-diminish
- ;;'ag-feat-modus-themes           ; dpkg=elpa-modus-theme
+ 'ag-feat-base16-theme             ; dpkg=-
+ 'ag-feat-modus-themes             ; dpkg=elpa-modus-theme
  ;; 'ag-feat-smart-mode-line       ; dpkg=-
- 'ag-feat-fundamental-mode         ; dpkg=+
+ ;; 'ag-feat-fundamental-mode      ; dpkg=+
  ;; 'ag-feat-ob-plantuml           ; dpkg=+
  ;; 'ag-feat-ob-ditaa              ; dpkg=+
- ;;'ag-feat-pulsar                 ; dpkg=-
+ 'ag-feat-pulsar                   ; dpkg=-
  'ag-feat-expand-region            ; dpkg=elpa-expand-region
  'ag-feat-hydra--expand-region     ; dpkg=elpa-expand-region,elpa-hydra
  'ag-feat-evil                     ; dpkg=elpa-evil
  'ag-feat-evil-collection          ; dpkg=-
  ;; 'ag-feat-deadgrep              ; dpkg=-
- 'ag-feat-rg                       ; dpkg=elpa-rg
  'ag-feat-eldoc                    ; dpkg=+
  'ag-feat-company                  ; dpkg=elpa-company
  'ag-feat-magit                    ; dpkg=elpa-magit
@@ -52,7 +52,8 @@
  'ag-feat-markdown-mode            ; dpkg=elpa-markdown-mode
  'ag-feat-projectile               ; dpkg=elpa-projectile
  'ag-feat-flycheck                 ; dpkg=elpa-flycheck
- 'ag-feat-direnv                   ; dpkg=-
+ 'ag-feat-ggtags                   ; dpkg=elpa-ggtags
+ ;; 'ag-feat-direnv                ; dpkg=-
  ;; 'ag-feat-editorconfig          ; dpkg=elpa-editorconfig
  ;; 'ag-feat-plantuml              ; dpkg=-
  ;; 'ag-feat-helpful               ; dpkg=elpa-helpful
@@ -64,41 +65,42 @@
  'ag-feat-ivy-rich                 ; dpkg=-
  'ag-feat-ivy-hydra                ; dpkg=-
  'ag-feat-counsel-projectile       ; dpkg=-
+ 'ag-feat-smex                     ; dpkg=elpa-smex
  'ag-feat-json                     ; dpkg=-
  'ag-feat-toml                     ; dpkg=-
  'ag-feat-yaml                     ; dpkg=-
  'ag-feat-vimish-fold              ; dpkg=elpa-vimish-fold
  'ag-feat-evil-vimish-fold         ; dpkg=-
- ;; 'ag-feat-yas                   ; dpkg=elpa-yasnippet-snippets
+ 'ag-feat-yas                      ; dpkg=elpa-yasnippet-snippets
  ;; 'ag-feat-treemacs              ; dpkg=elpa-treemacs
  ;; 'ag-feat-treemacs-projectile   ; dpkg=elpa-treemacs-projectile
  ;; 'ag-feat-treemacs-evil         ; dpkg=elpa-treemacs-evil
  ;; 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
  ;; 'ag-feat-treemacs-icons-dired  ; dpkg=-
- 'ag-feat-c                        ; dpkg=+
  'ag-feat-python                   ; dpkg=+
- ;; 'ag-feat-ruby-lite                     ; dpkg=+
  ;; 'ag-feat-ruby                     ; dpkg=+
- ;; 'ag-feat-php                   ; dpkg=+
+ ;; 'ag-feat-ruby-lite                     ; dpkg=+
  ;; 'ag-feat-haskell                  ; dpkg=+
- 'ag-feat-perl5                    ; dpkg=+
- 'ag-feat-ivy-emoji-maybe          ; dpkg=-
+ ;; 'ag-feat-php                   ; dpkg=+
+ ;; 'ag-feat-ivy-emoji-maybe       ; dpkg=-
  ;; 'ag-feat-embark                ; dpkg=elpa-embark
  ;; 'ag-feat-embark-consult        ; dpkg=-
  ;; 'ag-feat-multiple-cursors      ; dpkg=-
  ;; 'ag-feat-protobuf-mode         ; dpkg=-
- 'ag-feat-string-inflection        ; dpkg=-
+ ;; 'ag-feat-string-inflection     ; dpkg=-
  ;; 'ag-feat-apheleia              ; dpkg=-
  'ag-feat-evil-surround            ; dpkg=-
  'ag-feat-evil-owl                 ; dpkg=-
  'ag-feat-evil-matchit             ; dpkg=-
  ;; 'ag-feat-add-node-modules-path ; dpkg=-
  ;; 'ag-feat-js2-mode              ; dpkg=elpa-js2-mode
+ ;; 'ag-feat-sly                   ; dpkg=elpa-sly
+ ;; 'ag-feat-slime                 ; dpkg=elpa-slime
  ;; 'ag-feat-eglot                 ; dpkg=+|elpa-eglot
  ;; 'ag-feat-realgud               ; dpkg=-
  ;; 'ag-feat-unfill                ; dpkg=-
- 'ag-feat-exec-path-from-shell     ; dpkg=elpa-exec-path-from-shell
- 'ag-feat-quelpa                   ; dpkg=-
+ ;; 'ag-feat-exec-path-from-shell  ; dpkg=elpa-exec-path-from-shell
+ ;; 'ag-feat-quelpa                ; dpkg=-
  ;; 'ag-feat-zig                   ; dpkg=-
  ;; 'ag-feat-meson                 ; dpkg=-
  ;; 'ag-feat-cmake                 ; dpkg=-
@@ -107,6 +109,11 @@
  ;; 'ag-feat-auto-dim-other-buffers   ; dpkg=-
  ;; 'ag-feat-funky-fonts
  'ag-feat-rfc-mode
+
+ :nocompile ;; byte-compile 포기ㅎㅎ
+ 'ag-feat-rg                       ; dpkg=elpa-rg
+ 'ag-feat-c                        ; dpkg=+
+ 'ag-feat-perl5                    ; dpkg=+
  )
 
 
@@ -124,41 +131,57 @@
 
 ;;;
 
-(when (and t (window-system))
-  ;; "Noto Sans Mono"
-  ;; "Anonymous Pro"
-  ;; "JetBrains Mono"
-  ;; "Source Code Pro"
-  ;; "D2Coding"
-  ;; "HBIOS-SYS"
-  ;; "나눔고딕코딩"
-  ;; "Noto Sans Mono CJK KR"
-  ;; "DOSSaemmul"
-  ;; "HBIOS-SYS"
-  (set-frame-font
-   "DejaVu Sans Mono"
-   )
+(defun %emacsrc-look (&optional frame)
+  (when (and t (window-system frame))
+    ;; "Noto Sans Mono"
+    ;; "Anonymous Pro"
+    ;; "JetBrains Mono"
+    ;; "Source Code Pro"
+    ;; "D2Coding"
+    ;; "HBIOS-SYS"
+    ;; "나눔고딕코딩"
+    ;; "Noto Sans Mono CJK KR"
+    ;; "DOSSaemmul"
+    ;; "HBIOS-SYS"
+    (set-frame-font
+     ;; "DejaVu Sans Mono"
+     "Adwaita Mono"
+     )
 
-  (ag-set-fixed-fonts
-   "DejaVu Sans Mono"
-   "D2Coding"
-   )
+    (ag-set-fixed-fonts
+     ;; "DejaVu Sans Mono"
+     "Adwaita Mono"
+     "Neo둥근모 Code"
+     ;; "D2Coding"
+     )
 
-  (ag-set-font-height 96)
+    (ag-set-font-height 104)
 
-  ;; (load-theme 'modus-vivendi t)
-  ;; (load-theme 'modus-operandi-tinted t)
-  (require 'ag-feat-day-and-night)
-  (setq *day-and-night/day-theme* 'modus-operandi)
-  (setq *day-and-night/night-theme* 'modus-vivendi)
-  (day-and-night/change-theme-by-time)
-  (day-and-night/start-timer 30)
-  ;; (day-and-night/declare-its-day)
-  ;; (day-and-night/declare-its-night)
-  )
+    (load-theme 'leuven-dark t)
+    ;; (load-theme 'base16-greenscreen t)
+    ;; (load-theme 'modus-operandi-tinted t)
+    ;; (require 'ag-feat-day-and-night)
+    ;; (setq *day-and-night/day-theme* 'modus-operandi)
+    ;; (setq *day-and-night/night-theme* 'modus-vivendi)
+    ;; (day-and-night/change-theme-by-time)
+    ;; (day-and-night/start-timer 30)
+    ;; (day-and-night/declare-its-day)
+    ;; (day-and-night/declare-its-night)
+    ))
+
+(push #'%emacsrc-look after-make-frame-functions)
+
+(%emacsrc-look)
+
+
+
+
+
+
+;;;
 
 (global-display-line-numbers-mode -1)
-(global-hl-line-mode -1)
+(global-hl-line-mode +1)
 
 
 ;; 생각보다 무거워서 lazy-init + only-once:
@@ -171,9 +194,9 @@
 ;; (add-hook 'prog-mode-hook (lambda () (company-mode -1)))
 
 
-(add-hook 'c-mode-common-hook
-          (lambda () (when (fboundp 'flycheck-mode)
-                       (flycheck-mode -1))))
+(when (fboundp 'flycheck-mode)
+  (add-hook 'c-mode-common-hook
+            (lambda () (flycheck-mode -1))))
 
 
 (when (boundp 'native-comp-async-report-warnings-errors)
@@ -186,3 +209,6 @@
 
 ;;; mu4e
 ;; (load-file "~/P/v3/+dot+/mu4e/mu4e.el")
+
+;;; ----------------------------------------------------------------------
+
