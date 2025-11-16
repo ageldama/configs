@@ -14,14 +14,12 @@
             (require 'ag-reinit)
             (ag-reinit/add-as-interactive
              (when (fboundp 'wgrep-commit-file)
-               (autoload 'wgrep-rg-setup "wgrep-rg")
+               (require 'wgrep-rg)
+               ;;(autoload 'wgrep-rg-setup "wgrep-rg")
                (add-hook 'rg-mode-hook 'wgrep-rg-setup))
 
              (when (boundp 'evil-lookup-func)
                (setq evil-lookup-func #'ag-rg/dwim+project)))
-
-            )
-  )
-
+            ))
 
 (provide 'ag-feat-rg)

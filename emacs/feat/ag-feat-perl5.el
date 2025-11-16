@@ -55,7 +55,10 @@
 ;; (add-hook 'cperl-mode-hook (lambda () (local-set-key (kbd "C-c t") 'perltidy-dwim)))
 
 (when (fboundp 'defhydra)
-  (eval '(defhydra hydra-lang-cperl ()
+  (require 'cperl-mode)
+
+  (eval '(progn
+           (defhydra hydra-lang-cperl ()
            "perl5"
 
            ("d" cperl-db "dbg" :exit t)
@@ -67,8 +70,10 @@
 
            ("SPC" nil)))
 
-  (require 'ag-lang-mode)
-  (lang-mode-hydra-set 'cperl-mode-hook 'hydra-lang-cperl/body))
+  ;; FIXME (require 'ag-lang-mode)
+  ;; FIXME (lang-mode-hydra-set 'cperl-mode-hook 'hydra-lang-cperl/body)
+
+  ))
 
 
 
