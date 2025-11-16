@@ -68,12 +68,12 @@
            ("m" cperl-build-manpage "cperl-build-man" :exit t)
            ("f" perltidy-dwim "perltidy" :exit t)
 
-           ("SPC" nil)))
+           ("SPC" nil))))
 
-  ;; FIXME (require 'ag-lang-mode)
-  ;; FIXME (lang-mode-hydra-set 'cperl-mode-hook 'hydra-lang-cperl/body)
+  (require 'ag-lang-mode)
+  (lang-mode-hydra-set 'cperl-mode-hook 'hydra-lang-cperl/body)
 
-  ))
+  )
 
 
 

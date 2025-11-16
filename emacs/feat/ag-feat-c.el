@@ -23,7 +23,8 @@
 
   (require 'ag-lang-mode)
   (lang-mode-hydra-set 'c-mode-hook 'hydra-lang-c/body)
-  (lang-mode-hydra-set 'c++-mode-hook 'hydra-lang-c/body))
+  (lang-mode-hydra-set 'c++-mode-hook 'hydra-lang-c/body)
+  )
 
 
 
