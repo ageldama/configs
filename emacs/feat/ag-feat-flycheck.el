@@ -8,6 +8,7 @@
                        (:pre (flycheck-list-errors)
                              :post (quit-windows-on "*Flycheck errors*"))
                        "Errors"
+                       ("l" flycheck-list-errors "list" :exit t)
                        ("f" flycheck-error-list-set-filter "Filter")
                        ("j" flycheck-next-error "Next")
                        ("k" flycheck-previous-error "Previous")
