@@ -93,7 +93,6 @@
  'ag-feat-evil-owl                 ; dpkg=-
  'ag-feat-evil-matchit             ; dpkg=-
  ;; 'ag-feat-add-node-modules-path ; dpkg=-
- ;; 'ag-feat-js2-mode              ; dpkg=elpa-js2-mode
  ;; 'ag-feat-sly                   ; dpkg=elpa-sly
  ;; 'ag-feat-slime                 ; dpkg=elpa-slime
  ;; 'ag-feat-eglot                 ; dpkg=+|elpa-eglot
@@ -114,6 +113,7 @@
  'ag-feat-rg                       ; dpkg=elpa-rg
  'ag-feat-c                        ; dpkg=+
  'ag-feat-perl5                    ; dpkg=+
+ ;; 'ag-feat-js2-mode              ; dpkg=elpa-js2-mode
  )
 
 
