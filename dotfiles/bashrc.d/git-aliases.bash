@@ -192,4 +192,5 @@ alias gwip='git add -A; git rm $(git ls-files --deleted) 2> /dev/null; git commi
 
 # custom aliases
 
-alias gs='git status'
+#alias gs='git status'
+
