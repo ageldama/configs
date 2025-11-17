@@ -1,10 +1,10 @@
 ;;; flycheck.
-(use-package flycheck :ensure t :pin melpa
+(use-package flycheck ;:ensure t :pin melpa
   :config (progn
             (global-flycheck-mode +1)
 
             (when (fboundp 'defhydra)
-              (eval '(defhydra hydra-flycheck
+              (eval '(progn (defhydra hydra-flycheck
                        (:pre (flycheck-list-errors)
                              :post (quit-windows-on "*Flycheck errors*"))
                        "Errors"
@@ -22,13 +22,13 @@
                        ("x" flycheck-disable-checker "Disable-Chker")
                        ("e" flycheck-explain-error-at-point "Explain-Err")
                        ("C-w" flycheck-copy-errors-as-kill "Copy-Err")
-                       ("SPC" nil)))
+                       ("SPC" nil))
 
               (require 'ag-hydra--main)
               (add-to-list 'hydra-mini/++extras
-                           '("M-c" hydra-flycheck/body "flychk"))
+                           '("M-c" hydra-flycheck/body "flychk")))))
 
-              )))
+              ))
 
 
 (provide 'ag-feat-flycheck)

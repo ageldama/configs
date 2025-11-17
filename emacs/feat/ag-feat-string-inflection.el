@@ -1,6 +1,6 @@
 ;; -*- lexical-binding: t; -*-
 
-(use-package string-inflection  :ensure t :pin melpa
+(use-package string-inflection  ;:ensure t :pin melpa
   :config
   (when (fboundp 'defhydra)
     (eval '(progn (defhydra hydra-string-inflection ()
