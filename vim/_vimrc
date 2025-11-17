@@ -251,6 +251,7 @@ Plug 'jamessan/vim-gnupg'
 
 "Plug 'axvr/org.vim'
 
+" <leader>cal -or- <leader>caL
 Plug 'mattn/calendar-vim'
 
 
