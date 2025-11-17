@@ -49,3 +49,12 @@ KeyWinMaximizeHoriz="Super+Ctrl+c"
 
 
 # SEE: https://github.com/ice-wm/icewm/blob/master/src/default.h
+
+TaskBarAutoHide=1
+
+TaskBarShowClock=0
+TaskBarShowMailboxStatus=0
+
+TaskBarShowCPUStatus=0
+TaskBarShowMEMStatus=0
+TaskBarShowNetStatus=0
