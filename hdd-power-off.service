@@ -5,7 +5,7 @@ After=network.target
 [Service]
 Type=oneshot
 User=root
-ExecStart=/bin/bash /home/aamadleg/local/bin/hdparm.sh
+ExecStart=/bin/bash /home/A/local/bin/hdparm.sh
 Restart=no
 
 

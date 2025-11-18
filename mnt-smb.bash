@@ -1,11 +1,11 @@
 #!/bin/bash
 
-SMB_USER=aamadleg
+SMB_USER=A
 #SMB_HOST=freebsd-samsung.local
 #SMB_IP=$(getent hosts $SMB_HOST | head -n1 | awk '{print $1}')
 SMB_IP=10.42.0.1
 SMB_HOST=$SMB_IP
-SMB_SHARE=aamadleg
+SMB_SHARE=A
 
 MNT_UID=$(id -u)
 MNT_GID=$(id -g)
