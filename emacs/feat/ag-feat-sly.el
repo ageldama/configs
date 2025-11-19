@@ -20,6 +20,7 @@
   (when hyperspec-path
     (setq common-lisp-hyperspec-root hyperspec-path)))
 
+(require 'ag-reinit)
 (ag-reinit/add-as-interactive
  (setq inferior-lisp-program
        (cond

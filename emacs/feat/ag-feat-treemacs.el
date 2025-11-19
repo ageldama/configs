@@ -78,7 +78,10 @@
       (`(t . _)
        (treemacs-git-mode 'simple)))
 
-    (treemacs-hide-gitignored-files-mode nil))
+    (treemacs-hide-gitignored-files-mode nil)
+    )
+
+
   :bind
   (:map global-map
         ;; ("M-0"       . treemacs-select-window)
@@ -89,6 +92,13 @@
         ;; ("C-x t C-t" . treemacs-find-file)
         ;; ("C-x t M-t" . treemacs-find-tag)
         ))
+
+
+(require 'ag-hydra--main)
+(dolist (i '(("C-t" treemacs-select-window "treemacs-sel-win")))
+  (add-to-list 'hydra-mini/++extras i))
+
+
 
 
 (provide 'ag-feat-treemacs)

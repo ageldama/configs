@@ -19,10 +19,17 @@
     (global-set-key (kbd "M-g M-g") 'avy-resume)
     (global-set-key (kbd "M-g ,") 'avy-pop-mark)
 
+    (require 'ag-reinit)
     (ag-reinit/add-as-interactive
      (when (and (fboundp 'evil-global-set-key)
                 (fboundp 'avy-goto-char-timer))
        (evil-global-set-key 'normal "s" 'avy-goto-char-timer)))
+
+    (require 'ag-hydra--main)
+    (dolist (i '(("SPC" avy-goto-char-timer "avy")
+                 ("l" avy-goto-line "goto-line")
+                 (";" avy-resume "avy-resume")))
+      (add-to-list 'hydra-mini/++extras i))
     ))
 
 

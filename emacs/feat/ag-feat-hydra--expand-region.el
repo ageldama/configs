@@ -4,7 +4,8 @@
 
 ;;; https://cute-jumper.github.io/emacs/2016/02/22/my-simple-setup-to-avoid-rsi-in-emacs
 
-(defhydra hydra-expand-region
+(when (fboundp 'defhydra)
+  (eval '(defhydra hydra-expand-region
   (:body-pre (call-interactively 'set-mark-command)
              :exit nil)
   "hydra for mark commands"
@@ -26,11 +27,16 @@
   ("m" er/mark-email "email")
   ("s" er/mark-symbol "symbol")
   ("j" (funcall 'set-mark-command t) :exit nil)
-  ("SPC" nil))
+  ("SPC" nil)))
 
 
 (global-set-key (kbd "C-+") 'hydra-expand-region/body)
 
+(require 'ag-hydra--main)
+(add-to-list 'hydra-mini/++extras
+             '("=" hydra-expand-region/body "exp-region"))
+
+) ;; /when (fboundp 'defhydra).
 
 ;;;
 (provide 'ag-feat-hydra--expand-region)

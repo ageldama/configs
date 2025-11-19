@@ -28,6 +28,10 @@
 
 
 
+
+(defvar hydra-mini/++extras '())
+
+
 (defun def-hydras ()
 
   (eval
@@ -112,15 +116,7 @@
    `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
       "minimi"
 
-      ,@(when (fboundp 'avy-resume)
-          '(
-            ("SPC" avy-goto-char-timer "avy")
-      ;;       ("w" avy-goto-word-1 "goto-word")
-            ("l" avy-goto-line "goto-line")
-            (";" avy-resume "avy-resume")
-            ))
-
-      ;; ("`" menu-bar-open "menu-bar" )
+      ("`" menu-bar-open "menu-bar" )
 
       ;; ,@(when (fboundp 'embark-act)
       ;;     '(
@@ -172,20 +168,14 @@
 
       ("f" hydra-files/body "files" )
 
-      ,@(when (file-exists-p "~/.use-mu4e")
-          '(("M-m" mu4e "mu4e")))
-
-      ,@(when (fboundp 'undo-tree-visualize)
-          '(("u" undo-tree-visualize "undo-tree" )))
-
-      ,@(when (fboundp 'magit-status)
-          '(("g" magit-status "magit" )))
+      ;; ,@(when (file-exists-p "~/.use-mu4e")
+      ;;     '(("M-m" mu4e "mu4e")))
 
       ("G" hydra-git/body "git")
 
       ("$" eshell "eshell")
 
-      ("M-t" hydra/tab-bar/body "tab-bar")
+      ("t" hydra/tab-bar/body "tab-bar")
 
       ("C-$" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
@@ -200,31 +190,12 @@
 
       ("C-k" kill-current-buffer "kill-cur-buf" )
 
-      ,@(cond
-         ((featurep 'consult)
-          '(("r" consult-recent-file "recent")))
-         ((featurep 'counsel)
-          '(("r" counsel-recentf "recent" ))))
-
       ("-" hydra-misc-fns/body "misc-fns" )
 
       ("'" hydra-misc-toggles/body "toggles" )
 
-      ,@(when (fboundp 'hydra-moonshot/body)
-          '(("x" hydra-moonshot/body "moonshot" )))
-
-      ,@(when (fboundp 'hydra-string-inflection/body)
-          '(("M-i" hydra-string-inflection/body
-             "infl.")))
-
-      ,@(when (fboundp 'hydra-multiple-cursors/body)
-          '(("M-c" hydra-multiple-cursors/body "mcurs" )))
-
-      ,@(when (fboundp 'hydra-yas/body)
-          '(("y" hydra-yas/body "yas" )))
-
-      ,@(when (fboundp 'hydra-flycheck/body)
-          '(("M-c" hydra-flycheck/body "flychk" )))
+      ;; ,@(when (fboundp 'hydra-moonshot/body)
+      ;;     '(("x" hydra-moonshot/body "moonshot" )))
 
       ("M-v" hydra-local-vars/body "local-vars" )
 
@@ -246,13 +217,9 @@
 
       ("C-r" recompile-showing-compilation-window "recompile")
 
-      ;; ,@(when (fboundp 'hydra-expand-region/body)
-      ;;     '(("=" hydra-expand-region/body "exp-region")))
+      ,@hydra-mini/++extras
 
-      ,@(when (fboundp 'hydra-eglot/body)
-          '(("e" hydra-eglot/body "eglot")))
-
-          ))
+      ))
 
   (eval
    `(defhydra hydra-misc-fns ()
@@ -298,7 +265,6 @@
 
 
 (require 'ag-reinit)
-
 (ag-reinit/add-as-interactive (def-hydras))
 
 

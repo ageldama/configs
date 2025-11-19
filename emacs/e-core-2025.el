@@ -1,7 +1,7 @@
 ;;; -*- mode: emacs-lisp; coding: utf-8; -*-
 
 (ag-requires :tag-:*core
-             :nocompile
+             :compile
              'ag-hippie-expand
              'ag-font
              'ag-gc
@@ -18,6 +18,7 @@
              'ag-ibuffer
              'ag-rectangle
 
+             'ag-diary-impl
              'ag-diary
 
              'ag-grep

@@ -86,9 +86,9 @@
                   (log-req require-sym
                            (format "elapsed %s"
                                    (benchmark-elapse
-                                     (if compile?
-                                         (%ag-lib-do-compile-maybe require-sym)
-                                       (require require-sym)))))))
+                                     (when compile?
+                                         (%ag-lib-do-compile-maybe require-sym))
+                                     (require require-sym))))))
     (cl-loop for require-sym in require-syms
              do (progn (cl-incf idx)
                        (cond ((keywordp require-sym) (@-kw require-sym))

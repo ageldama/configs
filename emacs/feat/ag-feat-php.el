@@ -2,8 +2,8 @@
   :config
   (add-to-list 'auto-mode-alist '("\\.php\\'" . php-mode))
 
+  (require 'ag-reinit)
   (ag-reinit/add-as-interactive
-
    ;; https://github.com/phpactor/phpactor
    (when (require 'eglot nil t)
      (add-to-list 'eglot-server-programs

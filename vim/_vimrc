@@ -98,7 +98,8 @@ if 1
     "set guifont=M\+CodeLat60\ Nerd\ Font\ Mono\ 10
     set guifontwide=D2Coding\ 10
     "color ron
-    color murphy
+    "color murphy
+    color darkblue
     set bg=dark
     set guioptions-=m  "remove menu bar
     set guioptions-=T  "remove toolbar
@@ -249,6 +250,7 @@ Plug 'jamessan/vim-gnupg'
 
 "Plug 'axvr/org.vim'
 
+" <leader>cal -or- <leader>caL
 Plug 'mattn/calendar-vim'
 
 

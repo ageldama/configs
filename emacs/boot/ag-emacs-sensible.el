@@ -49,10 +49,13 @@
 
 
 ;;; line numbers
-(if (fboundp 'global-display-line-numbers-mode)
-    (global-display-line-numbers-mode -1)
-  ;; else
+(when (fboundp 'global-display-line-numbers-mode)
+  (global-display-line-numbers-mode -1))
+
+(when (version< emacs-version "29.1")
+  (require 'linum)
   (global-linum-mode   -1))
+
 (global-hl-line-mode -1)
 
 
@@ -76,7 +79,7 @@
     (tmm-menubar)))
 
 
-(global-set-key (kbd "M-`")   #'%menu-bar-open)
+(global-set-key (kbd "C-`")   #'%menu-bar-open)
 (global-set-key (kbd "<f10>") #'%menu-bar-open)
 
 
@@ -111,7 +114,12 @@
 (setq redisplay-skip-fontification-on-input t)
 
 ;; ... By default, Emacs "updates" its ui more often than it needs to
-(setq idle-update-delay 1.0)
+(if (version< emacs-version "30.1")
+    (setq idle-update-delay 1.0)
+  ;; else: (newer emacs)
+  (progn
+    (require 'which-func)
+    (setq which-func-update-delay 1.0)))
 
 
 ;;; follow symlinks

@@ -4,7 +4,7 @@ set -x
 
 # emacs-lucid : 한글 렌더링 버그 있는거 같아서 / Sun 13 Apr 12:44:21 BST 2025
 
-FLAVOR=${1:-lucid}
+FLAVOR=${1:-gtk}
 
 DPKGS="
 emacs-${FLAVOR}

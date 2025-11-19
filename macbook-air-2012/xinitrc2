@@ -6,13 +6,15 @@ caps-to-ctrl.sh
 #~/local/scripts/synclient/disable.sh
 
 if (xrandr |grep "HDMI1 connected"); then
-#  xrandr --output eDP1 --primary --mode 1440x900 \
-#  --output HDMI1 --mode 1920x1080 --above eDP1
+    #  xrandr --output eDP1 --primary --mode 1440x900 \
+        #  --output HDMI1 --mode 1920x1080 --above eDP1
 
-  xrandr --output eDP1 --off \
-  --output HDMI1 --mode 1920x1080
+    # HDMI_MODE=1680x1050
+    HDMI_MODE=1600x900
+    xrandr --output eDP1 --off \
+        --output HDMI1 --mode ${HDMI_MODE}
 
-  ~/.fehbg
+    ~/.fehbg
 else
-  echo NO-HDMI-1
+    echo NO-HDMI-1
 fi

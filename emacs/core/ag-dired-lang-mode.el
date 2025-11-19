@@ -26,12 +26,17 @@
     (objdump filename)))
 
 
-(defhydra hydra-lang-dired ()
-  "dired"
 
-  ("D" dired-objdump "objdump" :exit t)
+;;; NOTE (PITA) `defhydra' eval-when
+(require 'dired)
+(require 'ag-lang-mode)
 
-  ("SPC" nil))
+(eval '(defhydra hydra-lang-dired ()
+         "dired"
+
+         ("D" dired-objdump "objdump" :exit t)
+
+         ("SPC" nil)))
 
 
 (lang-mode-hydra-set 'dired-mode-hook 'hydra-lang-dired/body)

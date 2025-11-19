@@ -1,6 +1,6 @@
 
 ;;; projectile
-(use-package projectile :pin melpa :ensure t
+(use-package projectile ;:ensure t :pin melpa
   :config
   (progn (projectile-global-mode)
          ;;(diminish 'projectile-mode)

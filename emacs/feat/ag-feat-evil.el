@@ -1,39 +1,36 @@
 
 (let ((evil-want-keybinding nil))
-  (use-package evil :ensure t :pin melpa))
+  (use-package evil :ensure t :pin melpa
+    :config
+    (require 'evil)
 
-(setq evil-want-integration t
-      evil-want-keybinding t)
+    (defun toggle-evil-mode ()
+      (interactive)
+      (evil-mode (if (null evil-state) 1 -1)))
 
-(evil-set-undo-system 'undo-tree)
+    (defun my-evil-jump-other-win ()
+      (interactive)
+      (split-window)
+      (evil-jump-to-tag))
 
-;; (evil-mode +1)
+    (setq evil-want-integration t
+          ;;evil-want-keybinding t
+          )
 
-(setq evil-default-state 'normal) ;;emacs)
+    (evil-set-undo-system 'undo-tree)
 
+    ;; (evil-mode +1)
 
-(add-hook 'evil-mode-hook
-          (lambda () (setq evil-shift-width c-basic-offset)))
+    (setq evil-default-state 'normal) ;;emacs)
 
+    (add-hook 'evil-mode-hook
+              (lambda () (setq evil-shift-width c-basic-offset)))
 
+    ;; (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
+    (evil-global-set-key 'normal (kbd "g D") 'my-evil-jump-other-win)
 
-(defun toggle-evil-mode ()
-  (interactive)
-  (evil-mode (if (null evil-state) 1 -1)))
-
-
-(defun my-evil-jump-other-win ()
-  (interactive)
-  (split-window)
-  (evil-jump-to-tag))
-
-
-
-;; (global-set-key (kbd "<f7>") 'toggle-evil-mode)
-
-(evil-global-set-key 'normal (kbd "g D") 'my-evil-jump-other-win)
-
+    ))
 
 ;;;
 (provide 'ag-feat-evil)

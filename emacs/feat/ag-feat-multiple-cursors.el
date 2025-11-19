@@ -6,8 +6,8 @@
                  (global-set-key (kbd "C-<") 'mc/mark-previous-like-this)
                  (global-set-key (kbd "C-c C-<") 'mc/mark-all-like-this)))
 
-
-(defhydra hydra-multiple-cursors (:hint nil)
+(when (fboundp 'defhydra)
+  (eval '(defhydra hydra-multiple-cursors (:hint nil)
   "
  Up^^             Down^^           Miscellaneous           % 2(mc/num-cursors) cursor%s(if (> (mc/num-cursors) 1) \"s\" \"\")
 ------------------------------------------------------------------
@@ -34,7 +34,13 @@
   ;; Help with click recognition in this hydra
   ("<down-mouse-1>" ignore)
   ("<drag-mouse-1>" ignore)
-  ("q" nil))
+  ("q" nil)))
+
+  (require 'ag-hydra--main)
+  (add-to-list 'hydra-mini/++extras
+               '("M-m" hydra-multiple-cursors/body "mcurs"))
+  )
+
 
 
 (provide 'ag-feat-multiple-cursors)
