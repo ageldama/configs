@@ -54,7 +54,7 @@
 
 (when (version< emacs-version "29.1")
   (require 'linum)
-  (global-linum-mode   -1))
+  (funcall (symbol-function 'global-linum-mode) -1))
 
 (global-hl-line-mode -1)
 
