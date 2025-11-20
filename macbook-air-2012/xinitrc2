@@ -10,7 +10,8 @@ if (xrandr |grep "HDMI1 connected"); then
         #  --output HDMI1 --mode 1920x1080 --above eDP1
 
     # HDMI_MODE=1680x1050
-    HDMI_MODE=1600x900
+    # HDMI_MODE=1600x900
+    HDMI_MODE=1920x1080
     xrandr --output eDP1 --off \
         --output HDMI1 --mode ${HDMI_MODE}
 
