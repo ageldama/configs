@@ -60,16 +60,16 @@ EO_SQL
 
 
 sub list_sorted {
-  my ($self, $base_dir) = @_;
+  my ($self) = @_;
   my $dbh = $self->{dbh};
 
   my $sth = $dbh->prepare_cached(<<'EO_SQL');
 select path from hist
-    where path like ? || '%'
+    where 1=1 /* and path like ? || '%' */
     order by mtime desc, cnt desc
 EO_SQL
 
-  $sth->bind_param(1, $base_dir);
+  # $sth->bind_param(1, $base_dir);
   $sth->execute;
 
   my @result = ();
@@ -101,17 +101,17 @@ EO_SQL
 
 
 sub get_recent {
-  my ($self, $base_dir) = @_;
+  my ($self) = @_;
   my $dbh = $self->{dbh};
 
   my $sth = $dbh->prepare_cached(<<'EO_SQL');
 select path from hist
-    where path like ? || '%'
+    where 1=1
     order by mtime desc
     limit 1
 EO_SQL
 
-  $sth->bind_param(1, $base_dir);
+  # $sth->bind_param(1, $base_dir);
   $sth->execute;
 
   while ( my @row = $sth->fetchrow_array ) {
@@ -130,7 +130,7 @@ package ScriptRofi::HistoryDB::Dummy;
 
 sub open_or_create {
     my ($db_path, $flag_file) = @_;
-    
+
     return bless {
         scripts => [],
         flag_file => $flag_file,
@@ -145,7 +145,7 @@ sub update_paths {
 
 
 sub list_sorted {
-    my ($self, $base_dir) = @_;
+    my ($self) = @_;
     return $self->{scripts};
 }
 
@@ -183,31 +183,37 @@ use File::Find;
 use IPC::Open2;
 use DDP;
 use Getopt::Std;
+use Data::Dumper;
 
 
 our $VERSION = '0.0.1';
 
-my %opts = (p => 0, s => 0, r => 0, e => 1);
-getopts('psre', \%opts);
-
-use constant SCRIPT_DIR => "$ENV{HOME}/local/scripts";
-use constant HISTORY_DB => "$ENV{HOME}/.scripts-rofi.sqlite3";
 use constant NO_HISTORY_DB_FLAG_FILE => "$ENV{HOME}/.no-db-scripts-rofi";
 
+my %opts = (
+  p => 0, s => 0, r => 0, e => 0,
+  S => "$ENV{HOME}/local/scripts:$ENV{HOME}/P/v3/bin",
+  D => "$ENV{HOME}/.scripts-rofi.sqlite3",
+  T => "x-terminal-emulator -e",
+ );
+getopts('psreS:D:T:', \%opts);
+
+# say Dumper(\%opts);
 
 sub HELP_MESSAGE {
   my $fh = shift;
   print $fh <<"EO_HELP";
-SCRIPT_DIR:       ${ \SCRIPT_DIR }
-HISTORY_DB:       ${ \HISTORY_DB }
 NO_DB_FLAG_FILE:  ${ \NO_HISTORY_DB_FLAG_FILE }
 
-List content of [${ \SCRIPT_DIR }] and ask to select:
+List content of SCRIPT_DIRS and ask to select:
 
   -p : print selection
   -s : save selection
   -r : rerun last saved selection
-  -e : execute selection (DEFAULT)
+  -e : execute selection
+  -S SCRIPT_DIRS      : `:'-separated list
+  -D HIST_DB_FILE
+  -T XTERM_COMMAND
 
 Exiting.
 EO_HELP
@@ -216,18 +222,16 @@ EO_HELP
 }
 
 
-
-
 my $USE_HISTORY_DB = ! -r NO_HISTORY_DB_FLAG_FILE;
 
-my $history_db = ScriptRofi::HistoryDB::Dummy::open_or_create(HISTORY_DB, NO_HISTORY_DB_FLAG_FILE);
-$history_db = ScriptRofi::HistoryDB::Sqlite3::open_or_create(HISTORY_DB) if $USE_HISTORY_DB;
+my $history_db = ScriptRofi::HistoryDB::Dummy::open_or_create($opts{D}, NO_HISTORY_DB_FLAG_FILE);
+$history_db = ScriptRofi::HistoryDB::Sqlite3::open_or_create($opts{D}) if $USE_HISTORY_DB;
 #p $history_db;
 
 
 # rerun?
 if($opts{r}){
-  my $saved = $history_db->get_recent(SCRIPT_DIR);
+  my $saved = $history_db->get_recent;
 
   if($saved){
     if($opts{p}){
@@ -247,28 +251,31 @@ if($opts{r}){
 # main
 my @scripts = ();
 
-find(
+foreach my $dir (split /:/, $opts{S}) {
+  find(
     {
-        wanted => sub {
-            my $fn = $File::Find::name;
-            return if -d $fn;
+      wanted => sub {
+        my $fn = $File::Find::name;
+        return if -d $fn;
 
-            push @scripts, $fn;
-        },
-        follow => 1,
+        push @scripts, $fn;
+      },
+      follow => 1,
     },
-    SCRIPT_DIR
+    $dir
    );
-
+}
+# use Data::Dumper;
+# print Dumper(\@scripts), "\n";
 
 
 $history_db->update_paths(\@scripts);
 
-my $scripts_sorted = $history_db->list_sorted(SCRIPT_DIR);
+my $scripts_sorted = $history_db->list_sorted;
 
 
 my $pid = open2(my $chld_out, my $chld_in,
-                'rofi -dmenu -p "Select a script to run"'
+                'rofi -dmenu -p "Select a script to run (Shift-Enter == run-in-terminal)" -kb-accept-alt "" -kb-custom-1 "Shift+Return" '
                ) or die;
 # say "rofi-pid: $pid";
 
@@ -281,13 +288,14 @@ waitpid( $pid, 0 );
 my $child_exit_status = $? >> 8;
 # say "rofi-exitcode: $child_exit_status";
 
-if($child_exit_status != 0){
+if($child_exit_status != 0 && $child_exit_status != 10){
   close($chld_out);
   die 'bye: cancelled';
 }
 
 #
 my $stdout = <$chld_out>;
+# print "[$stdout]\n";
 chomp $stdout;
 
 close($chld_out) or die;
@@ -301,7 +309,11 @@ if($opts{p}){
 }
 
 if($opts{e}){
-  exec($stdout);
+  if($child_exit_status == 10){
+    exec($opts{T} . " " . $stdout);
+  }else{
+    exec($stdout);
+  }
 }
 
 #EOF.
