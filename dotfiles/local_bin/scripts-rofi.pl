@@ -24,14 +24,18 @@ sub update_paths {
   my ($self, $scripts) = @_;
   my $db_path = $self->{db_path};
 
-  $self->{scripts} = retrieve($self->{db_path})
-    or croak "Storable retrieve failed: $!";
+  if(-r $db_path){
+    $self->{scripts} = retrieve($self->{db_path})
+      or carp "Storable retrieve failed: $!";
+  }
   my $h = $self->{scripts};
 
   foreach my $s (@$scripts) {
     if(!exists($h->{$s})){
-      print "UPD: $s\n";
-      $h->{$s} = time;
+      # print "UPD: $s\n";
+      $h->{$s} = {
+        last => time,
+      };
     }
   }
 
@@ -46,19 +50,22 @@ sub list_sorted {
     or croak "Storable retrieve failed: $!";
   my $h = $self->{scripts};
 
-  my @sorted_keys = reverse (sort {$h->{$a} cmp $h->{$b}} keys %$h);
+  my @sorted_keys = reverse (sort {$h->{$a}->{last} cmp $h->{$b}->{last}} keys %$h);
 
   return [@sorted_keys];
 }
 
 
 sub update_sel {
-  my ($self, $sel) = @_;
+  my ($self, $sel, $sel_type) = @_;
 
   my $db_path = $self->{db_path};
   my $h = $self->{scripts};
 
-  $h->{$sel} = time;
+  $h->{$sel}->{last} = time;
+
+  my $sel_type_k = "sel_" . $sel_type;
+  $h->{$sel}->{$sel_type_k} ++;
 
   store($h, $db_path) or croak "Storable store failed: $!";
 }
@@ -95,14 +102,7 @@ sub list_sorted {
 
 
 sub update_sel {
-    my ($self, $sel) = @_;
-    my $fn = $self->{flag_file};
-    open(my $fh, '>', $fn) or die "Could not open file '$fn' $!";
-    print $fh $sel;
-    close $fh;
 }
-
-
 
 
 1; # ScriptRofi::HistoryDB::Dummy;
@@ -213,19 +213,26 @@ chomp $stdout;
 
 close($chld_out) or die;
 
+
+my $sel_type = 0;
+if($child_exit_status == 10){
+  $sel_type = 1;
+}
+
+
 if($opts{s}){
-  $history_db->update_sel($stdout);
+  $history_db->update_sel($stdout, $sel_type);
 }
 
 if($opts{p}){
   print "$stdout\n";
-  if($child_exit_status == 10){
+  if($sel_type == 1){
     print "# with terminal: '$opts{T}'\n";
   }
 }
 
 if($opts{e}){
-  if($child_exit_status == 10){
+  if($sel_type == 1){
     exec($opts{T} . " " . $stdout);
   }else{
     exec($stdout);
