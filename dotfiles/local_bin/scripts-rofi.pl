@@ -71,6 +71,28 @@ sub update_sel {
 }
 
 
+sub most_sel_type {
+  my ($self, $sel) = @_;
+
+  my $db_path = $self->{db_path};
+  my $h = $self->{scripts};
+
+  if(exists($h->{$sel})){
+    my %sels = ();
+    foreach my $k (keys %{$h->{$sel}}) {
+      next unless $k =~ /^sel_(?<sel_type>\d+)/;
+      # print "$k $+{sel_type} \n";
+      $sels{$+{sel_type}} = $h->{$sel}->{"sel_$+{sel_type}"};
+    }
+    if(scalar keys %sels > 0){
+      my @ranked = reverse (sort {$sels{$a} cmp $sels{$b}} keys %sels);
+      return $ranked[0];
+    }
+  }
+
+  return -1; # fallback
+}
+
 
 1;  # ScriptRofi::HistoryDB::Storable
 
@@ -102,6 +124,12 @@ sub list_sorted {
 
 
 sub update_sel {
+}
+
+
+sub most_sel_type {
+  my ($self, $sel) = @_;
+  return -1;
 }
 
 
@@ -218,6 +246,9 @@ my $sel_type = 0;
 if($child_exit_status == 10){
   $sel_type = 1;
 }
+
+
+my $most_sel_type = $history_db->most_sel_type($stdout);
 
 
 if($opts{s}){
