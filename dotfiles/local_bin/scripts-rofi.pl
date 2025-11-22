@@ -226,7 +226,7 @@ my %opts = (
     p => 0,
     s => 0,
     e => 0,
-    S => "$ENV{HOME}/local/scripts:$ENV{HOME}/P/v3/bin",
+    S => "$ENV{HOME}/local/scripts:$ENV{HOME}/local/bin:$ENV{HOME}/P/v3/bin",
     D => "$ENV{HOME}/.scripts-rofi.storable",
     T => "x-terminal-emulator -e",
 );
