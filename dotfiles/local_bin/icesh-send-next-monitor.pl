@@ -6,7 +6,6 @@ package X11::Geometry;
 
 use List::Util qw( min first );
 use Math::Complex;
-use DDP;
 
 sub new {
     my %opt = @_;
@@ -102,7 +101,6 @@ sub move_focused {
 #
 package main;
 
-use DDP;
 
 sub circle_idx {
     my ( $cur_idx, $len ) = @_;

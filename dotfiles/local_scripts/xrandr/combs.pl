@@ -5,7 +5,6 @@ use warnings;
 
 use Getopt::Std;
 use Data::Compare;
-use DDP;
 
 sub xrandr_connected_displays {
   my @results = ();

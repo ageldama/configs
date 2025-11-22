@@ -4,7 +4,6 @@ use warnings;
 use Carp;
 use File::Inplace;
 use Set::Scalar;
-use DDP;
 
 
 my @desired_plugins = qw(fzf zoxide systemd); # docker docker-compose);
@@ -35,7 +34,7 @@ exit 0 unless -f glob('~/.use-zsh');
       }
 
       my $newl = join ' ', $cur->elements;
-      p $newl;
+      print $newl, "\n";
       $editor->replace_line("plugins=($newl)");
     }
   }

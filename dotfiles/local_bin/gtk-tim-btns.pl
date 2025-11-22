@@ -8,7 +8,6 @@ use FindBin qw($RealScript);
 use Gtk3;
 use File::Find;
 
-use DDP;
 
 
 

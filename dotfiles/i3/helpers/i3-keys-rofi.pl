@@ -5,7 +5,6 @@ use warnings;
 use Carp;
 use IPC::Open2;
 # use HTML::Escape;  # (CPAN) HTML::Escape
-# use DDP;
 
 
 sub escape_html {

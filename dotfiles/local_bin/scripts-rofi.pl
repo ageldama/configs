@@ -6,7 +6,6 @@ use strict;
 use warnings;
 
 use DBI;
-use DDP;
 
 
 sub open_or_create {
@@ -181,7 +180,6 @@ use warnings;
 use feature qw(say);
 use File::Find;
 use IPC::Open2;
-use DDP;
 use Getopt::Std;
 use Data::Dumper;
 

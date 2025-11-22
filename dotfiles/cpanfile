@@ -1,5 +1,4 @@
 # Do: cpanm --installdeps .
 requires 'Data::Compare';
-requires 'DDP';
 requires 'File::Inplace';
 requires 'Set::Scalar';

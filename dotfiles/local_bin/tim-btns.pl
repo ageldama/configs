@@ -7,7 +7,6 @@ use warnings;
 use Tk;
 use Tk::Pane;
 
-use DDP;
 
 use constant CONFIG_FILE =>  $ENV{HOME} . "/.my-tim-btns.pl";
 
