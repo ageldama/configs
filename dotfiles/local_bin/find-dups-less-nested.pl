@@ -5,21 +5,21 @@ use strict;
 use warnings;
 
 use File::Find;
-use Getopt::Long::Descriptive;
+use Getopt::Long;
 
+my $really_delete = 0;
+my $show_help = 0;
 
-my ($opt, $usage) = describe_options(
-  '%c %o',
-  [ 'delete|D' => 'Delete dupe-files' ],
+GetOptions(
+  'help|h' => \$show_help,
+  'delete|D' => \$really_delete,
  );
 
 
-if(!$opt || $opt->{help}){
-  print $usage->text;
-  exit;
+if($show_help){
+  print STDERR "$0 [-h|--help] [-D|--delete]\n";
+  exit 255;
 }
-
-my $really_delete = defined $opt->{delete};
 
 
 my %winners = ();
