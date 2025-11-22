@@ -1,6 +1,6 @@
 #!/usr/bin/env perl
 
-package ScriptRofi::HistoryDB::Storable;
+package ScriptsRofi::HistoryDB::Storable;
 
 use strict;
 use warnings;
@@ -94,11 +94,11 @@ sub most_sel_type {
 }
 
 
-1;  # ScriptRofi::HistoryDB::Storable
+1;  # ScriptsRofi::HistoryDB::Storable
 
 
 
-package ScriptRofi::HistoryDB::Dummy;
+package ScriptsRofi::HistoryDB::Dummy;
 
 
 sub new {
@@ -133,7 +133,50 @@ sub most_sel_type {
 }
 
 
-1; # ScriptRofi::HistoryDB::Dummy;
+1; # ScriptsRofi::HistoryDB::Dummy;
+
+
+package ScriptsRofi::Dlg::YesNo;
+
+use strict;
+use warnings;
+
+use builtin qw(true false);
+
+use Carp;
+use IPC::Open2;
+
+
+sub ask_yes_or_no {
+  my ($class, $q) = @_;
+
+  my $pid = open2(
+    my $stdout, my $stdin,
+    "rofi -theme-str 'window {idth: 200px; height: 150px;}' -dmenu -p '$q' -sep '\\0' -format i"
+   ) or confess;
+
+  print $stdin "Yes\0";
+  print $stdin "No\0";
+  close($stdin);
+
+  my $stdout_ = do { local($/); <$stdout> };
+  close($stdout);
+  chomp $stdout_;
+
+  waitpid($pid, 0);
+  my $exit_code = $? >> 8;
+  # print STDERR "exit_code: $exit_code\n";
+
+  if ($exit_code == 0 && $stdout_ == 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+
+
+1; # ScriptsRofi::Dlg::YesNo;
 
 
 
@@ -185,8 +228,8 @@ EO_HELP
 
 my $USE_HISTORY_DB = ! -r NO_HISTORY_DB_FLAG_FILE;
 
-my $history_db = ScriptRofi::HistoryDB::Dummy::new($opts{D}, NO_HISTORY_DB_FLAG_FILE);
-$history_db = ScriptRofi::HistoryDB::Storable::new($opts{D}) if $USE_HISTORY_DB;
+my $history_db = ScriptsRofi::HistoryDB::Dummy::new($opts{D}, NO_HISTORY_DB_FLAG_FILE);
+$history_db = ScriptsRofi::HistoryDB::Storable::new($opts{D}) if $USE_HISTORY_DB;
 #p $history_db;
 
 # main
@@ -249,6 +292,15 @@ if($child_exit_status == 10){
 
 
 my $most_sel_type = $history_db->most_sel_type($stdout);
+if($most_sel_type != -1 && $most_sel_type != $sel_type){
+  my $ans_most_sel_type = ScriptsRofi::Dlg::YesNo->ask_yes_or_no(
+    sprintf('Different selection-type=(%s) from usual=(%s), correct it?',
+            $sel_type, $most_sel_type));
+  if($ans_most_sel_type){
+    print STDERR "CORRECTING: $sel_type => $most_sel_type\n";
+    $sel_type = $most_sel_type;
+  }
+}
 
 
 if($opts{s}){
