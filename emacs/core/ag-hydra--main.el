@@ -160,9 +160,11 @@
           '(("R" helm-all-mark-rings "mark" ))))
 
       ,@(cond
+         ((fboundp 'ivy-switch-buffer)
+          '(("<tab>" ivy-switch-buffer "buf" )))
          ((fboundp 'consult-buffer)
-          '(("b" consult-buffer "buf" )))
-         (t '(("b" ibuffer "buf"))))
+          '(("<tab>" consult-buffer "buf" )))
+         (t '(("<tab>" ibuffer "buf"))))
 
       ("o" hydra-org/body "org")
 
