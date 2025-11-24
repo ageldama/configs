@@ -18,8 +18,7 @@
          ;; (require 'ansi-color-compilation-filter))
          (require 'ansi-color nil t))
     ;; then
-    (unless (member 'ansi-color-compilation-filter compilation-filter-hook)
-      (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter))
+    (add-hook 'compilation-filter-hook 'ansi-color-compilation-filter)
   ;; else
   (progn
     (defun colorize-compilation-buffer ()
