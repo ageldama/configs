@@ -21,7 +21,7 @@
                        ("v" flycheck-verify-setup "Verify-Setup")
                        ("x" flycheck-disable-checker "Disable-Chker")
                        ("e" flycheck-explain-error-at-point "Explain-Err")
-                       ("C-w" flycheck-copy-errors-as-kill "Copy-Err")
+                       ("Y" flycheck-copy-errors-as-kill "Copy-Err")
                        ("SPC" nil))
 
               (require 'ag-hydra--main)
