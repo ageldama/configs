@@ -26,7 +26,7 @@
     (add-hook 'evil-mode-hook
               (lambda () (setq evil-shift-width c-basic-offset)))
 
-    ;; (global-set-key (kbd "<f7>") 'toggle-evil-mode)
+    (global-set-key (kbd "<f7>") 'toggle-evil-mode)
 
     (evil-global-set-key 'normal (kbd "g D") 'my-evil-jump-other-win)
 
