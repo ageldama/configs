@@ -53,9 +53,9 @@ KeyWinMaximizeHoriz="Super+Ctrl+c"
 WorkspaceNames="1","2","3","4" # ,"5","6" #,"7","8","9","10"
 # TaskBarWorkspaceLimit=10
 
-TaskBarAutoHide=1
+TaskBarAutoHide=0
 
-TaskBarShowClock=0
+TaskBarShowClock=1
 TaskBarShowMailboxStatus=0
 
 TaskBarShowCPUStatus=0
