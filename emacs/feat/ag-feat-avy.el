@@ -10,6 +10,7 @@
     ;; (global-set-key (kbd "C-\"") 'avy-goto-word-1)
     ;; (global-set-key (kbd "C-:") 'avy-goto-line)
     (global-set-key (kbd "M-g SPC") 'avy-goto-char-timer)
+    (global-set-key (kbd "M-g g") 'avy-goto-char-timer) ; NOTE changes (default) `M-g g'.
     ;; (global-set-key (kbd "M-g M-g") 'goto-line)
     (global-set-key (kbd "M-g l") 'avy-goto-line)
     (global-set-key (kbd "M-g f") 'avy-goto-char)
