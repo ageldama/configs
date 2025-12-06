@@ -25,7 +25,6 @@ elpa-ace-window
 elpa-wgrep
 elpa-expand-region
 elpa-undo-tree
-elpa-evil
 elpa-diminish
 elpa-exec-path-from-shell
 elpa-company
@@ -39,12 +38,13 @@ elpa-web-mode
 elpa-transient
 elpa-olivetti
 elpa-magit
-elpa-js2-mode
 elpa-helpful
 elpa-counsel
 elpa-smex
 elpa-ggtags
 "
+# elpa-js2-mode
+# elpa-evil
 # elpa-writeroom-mode
 # elpa-eshell-up
 #

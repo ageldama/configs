@@ -39,8 +39,8 @@
  'ag-feat-pulsar                   ; dpkg=-
  'ag-feat-expand-region            ; dpkg=elpa-expand-region
  'ag-feat-hydra--expand-region     ; dpkg=elpa-expand-region,elpa-hydra
- 'ag-feat-evil                     ; dpkg=elpa-evil
- 'ag-feat-evil-collection          ; dpkg=-
+ ;; 'ag-feat-evil                     ; dpkg=elpa-evil
+ ;; 'ag-feat-evil-collection          ; dpkg=-
  ;; 'ag-feat-deadgrep              ; dpkg=-
  'ag-feat-eldoc                    ; dpkg=+
  'ag-feat-company                  ; dpkg=elpa-company
@@ -70,7 +70,7 @@
  'ag-feat-toml                     ; dpkg=-
  'ag-feat-yaml                     ; dpkg=-
  'ag-feat-vimish-fold              ; dpkg=elpa-vimish-fold
- 'ag-feat-evil-vimish-fold         ; dpkg=-
+ ;; 'ag-feat-evil-vimish-fold         ; dpkg=-
  'ag-feat-yas                      ; dpkg=elpa-yasnippet-snippets
  ;; 'ag-feat-treemacs              ; dpkg=elpa-treemacs
  ;; 'ag-feat-treemacs-projectile   ; dpkg=elpa-treemacs-projectile
@@ -89,9 +89,9 @@
  ;; 'ag-feat-protobuf-mode         ; dpkg=-
  ;; 'ag-feat-string-inflection     ; dpkg=-
  ;; 'ag-feat-apheleia              ; dpkg=-
- 'ag-feat-evil-surround            ; dpkg=-
- 'ag-feat-evil-owl                 ; dpkg=-
- 'ag-feat-evil-matchit             ; dpkg=-
+ ;; 'ag-feat-evil-surround            ; dpkg=-
+ ;; 'ag-feat-evil-owl                 ; dpkg=-
+ ;; 'ag-feat-evil-matchit             ; dpkg=-
  ;; 'ag-feat-add-node-modules-path ; dpkg=-
  ;; 'ag-feat-sly                   ; dpkg=elpa-sly
  ;; 'ag-feat-slime                 ; dpkg=elpa-slime
@@ -126,7 +126,7 @@
 ;; (treemacs-start-on-boot)
 
 ;;; evil
-(evil-mode +1)
+;; (evil-mode +1)
 
 
 ;;;
