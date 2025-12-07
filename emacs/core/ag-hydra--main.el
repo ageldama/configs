@@ -118,6 +118,8 @@
 
       ("`" menu-bar-open "menu-bar" )
 
+      ("z" do-lang-mode-hydra "cur-lang")
+
       ;; ,@(when (fboundp 'embark-act)
       ;;     '(
       ;;       ("<tab>" embark-act "embark" )
