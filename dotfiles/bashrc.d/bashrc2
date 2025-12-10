@@ -17,7 +17,7 @@ export PAGER=less
 export EDITOR=run-editor.sh
 #export EDITOR='emacsclient -a vim'
 
-export PATH=$PATH:~/local/bin:~/.local/bin
+export PATH=~/local/bin:~/.local/bin:$PATH
 
 
 PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
