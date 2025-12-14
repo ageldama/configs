@@ -53,7 +53,8 @@ KeyWinMaximizeHoriz="Super+Ctrl+c"
 WorkspaceNames="1","2","3","4" # ,"5","6" #,"7","8","9","10"
 # TaskBarWorkspaceLimit=10
 
-TaskBarAutoHide=1
+ShowTaskBar=0 # 0/1
+TaskBarAutoHide=0 # 0/1
 
 TaskBarShowClock=0
 TaskBarShowMailboxStatus=0
@@ -61,3 +62,9 @@ TaskBarShowMailboxStatus=0
 TaskBarShowCPUStatus=0
 TaskBarShowMEMStatus=0
 TaskBarShowNetStatus=0
+
+#  Keep the task bar below regular windows.
+TaskBarKeepBelow=1 # 0/1
+
+#  Auto show task bar when fullscreen window active.
+TaskBarFullscreenAutoShow=0 # 0/1
