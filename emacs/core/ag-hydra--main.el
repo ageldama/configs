@@ -153,6 +153,9 @@
          ((fboundp 'counsel-imenu)
           '(("C-i" counsel-imenu "imenu" ))))
 
+      ,@(when (fboundp 'counsel-kmacro)
+          '(("M-m" counsel-kmacro)))
+
       ,@(cond
          ((fboundp 'consult-global-mark)
           '(("R" consult-global-mark "mark" )))
