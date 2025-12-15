@@ -4,12 +4,12 @@
 
 
 (ag-reinit/add-as-interactive
- (when (fboundp 'evil-global-set-key)
-   (evil-global-set-key 'normal (kbd "SPC") 'hydra-mini/body)
-   (evil-global-set-key 'normal (kbd "\\") 'do-lang-mode-hydra))
-
- ;; NOTE it overrides `suspend-emacs':
- ;; (global-set-key (kbd "C-z") 'hydra-mini/body)
+ (if (fboundp 'evil-global-set-key)
+     (progn (evil-global-set-key 'normal (kbd "SPC") 'hydra-mini/body)
+            (evil-global-set-key 'normal (kbd "\\") 'do-lang-mode-hydra))
+   ;; else:
+   (global-set-key (kbd "C-z") 'hydra-mini/body) ;; NOTE overrides `suspend-emacs'.
+   ))
 
  ;; (global-set-key (kbd "C-c SPC") 'hydra-mini/body)
  ;; (global-set-key (kbd "C-c \\") 'do-lang-mode-hydra)
