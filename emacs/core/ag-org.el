@@ -44,6 +44,7 @@
                   org-adapt-indentation t
                   )
             (auto-fill-mode +1)
+            (electric-quote-local-mode)
             ))
 
 
