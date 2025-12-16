@@ -186,5 +186,18 @@
 
 
 
+;;; windmove keys
+(require 'windmove nil t)
+
+(when (fboundp 'windmove-mode)
+  (dolist (dir '(left right up down))
+    (let ((dir-str (symbol-name dir)))
+      (global-set-key (kbd (format "C-x C-<%s>" dir-str))
+                      (intern (format "windmove-%s" dir-str)))
+      (global-set-key (kbd (format "C-x C-S-<%s>" dir-str))
+                      (intern (format "windmove-swap-states-%s" dir-str))))))
+
+
+
 ;;;
 (provide 'ag-emacs-sensible)
