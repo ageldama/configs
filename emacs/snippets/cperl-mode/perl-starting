@@ -1,0 +1,19 @@
+# -*- mode: snippet -*-
+# name: perl-starting
+# key: #!perl
+# --
+#!/usr/bin/env perl
+
+use utf8;
+use strict;
+use warnings;
+
+use builtin ':5.40';
+
+no warnings "experimental::try";
+no warnings "experimental::defer";
+
+use feature qw(say try defer);
+
+
+
