@@ -2,3 +2,4 @@
 requires 'Data::Compare';
 requires 'File::Inplace';
 requires 'Set::Scalar';
+#requires 'Term::ANSIColor';
