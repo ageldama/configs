@@ -199,5 +199,17 @@
 
 
 
+;;; chmod +x
+(defun chmod+x-this-file ()
+  (interactive)
+  (let* ((fn (buffer-file-name))
+         (new-mode (logior (file-modes fn) #o111)))
+    (chmod fn new-mode)
+    (message "chmod %s %s" new-mode fn)))
+
+
+
+
+
 ;;;
 (provide 'ag-emacs-sensible)

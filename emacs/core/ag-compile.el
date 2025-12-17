@@ -62,5 +62,14 @@
 (define-key compilation-minor-mode-map (kbd "<f5>") #'recompile)
 
 
+
+(defun compile-this-file ()
+  (interactive)
+  (let ((fn (buffer-file-name)))
+    (compile fn)))
+
+
+
+
 ;;;
 (provide 'ag-compile)

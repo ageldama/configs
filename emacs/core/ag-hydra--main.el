@@ -61,6 +61,10 @@
 
       ("C-t" image-dired "image-dired")
 
+      ("M-x" chmod+x-this-file "chmod +x")
+
+      ("r" compile-this-file "run(compile)")
+
       ("M-w" buffer-path-and-line-col "copy-path-linum")))
 
 
