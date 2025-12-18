@@ -9,7 +9,7 @@
     ;; (global-set-key (kbd "C-'") 'avy-goto-char-timer)
     ;; (global-set-key (kbd "C-\"") 'avy-goto-word-1)
     ;; (global-set-key (kbd "C-:") 'avy-goto-line)
-    (global-set-key (kbd "M-g SPC") 'avy-goto-char-timer)
+    (global-set-key (kbd "M-g t") 'avy-goto-char-timer)
     ;; (global-set-key (kbd "M-g g") 'avy-goto-char-timer) ; NOTE changes (default) `M-g g'.
     ;; (global-set-key (kbd "M-g M-g") 'goto-line)
     (global-set-key (kbd "M-g l") 'avy-goto-line)
@@ -17,7 +17,7 @@
     (global-set-key (kbd "M-g w") 'avy-goto-word-1)
     (global-set-key (kbd "M-g W") 'avy-goto-word-0)
     ;; (global-set-key (kbd "M-g j") 'hydra-avy-goto/body)
-    (global-set-key (kbd "M-g M-g") 'avy-resume)
+    (global-set-key (kbd "M-g ;") 'avy-resume)
     (global-set-key (kbd "M-g ,") 'avy-pop-mark)
 
     (require 'ag-reinit)
