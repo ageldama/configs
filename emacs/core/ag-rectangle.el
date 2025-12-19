@@ -10,5 +10,7 @@
 
 (global-set-key (kbd "C-x r C-y") #'my-insert-rectangle-push-lines)
 
+;; DEPRECATED: [2025-12-19 Fri] 무쓸모.
+
 
 (provide 'ag-rectangle)
