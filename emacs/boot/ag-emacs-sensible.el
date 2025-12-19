@@ -209,6 +209,9 @@
 
 
 
+;;; zap
+(global-set-key (kbd "M-z") 'zap-up-to-char)
+
 
 
 ;;;
