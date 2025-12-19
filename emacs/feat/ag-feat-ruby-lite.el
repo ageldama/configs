@@ -7,4 +7,18 @@
 
 
 
+(when (fboundp 'defhydra)
+  (eval '(defhydra hydra-lang-ruby ()
+           "ruby"
+
+           ("f" (lambda () (interactive) (compile (format "rubocop -a %s" (buffer-file-name)))) "rubocop -a" :exit t)
+
+           ("SPC" nil)))
+
+  (require 'ag-lang-mode)
+  (lang-mode-hydra-set 'ruby-mode-hook 'hydra-lang-ruby/body))
+
+
+
+
 (provide 'ag-feat-ruby-lite)
