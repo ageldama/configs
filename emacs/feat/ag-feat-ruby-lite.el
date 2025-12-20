@@ -5,6 +5,16 @@
 
 (use-package rbs-mode :ensure t)
 
+(use-package inf-ruby :ensure t :pin melpa
+  :config
+  (autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
+  ;; (add-hook 'ruby-mode-hook 'inf-ruby-minor-mode)
+  (add-hook 'enh-ruby-mode-hook 'inf-ruby-minor-mode)
+  ;;
+  ;; (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter)
+  (add-hook 'compilation-filter-hook 'inf-ruby-auto-enter-and-focus)
+  )
+
 
 
 (when (fboundp 'defhydra)
