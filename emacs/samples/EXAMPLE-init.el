@@ -185,9 +185,11 @@
 
 
 ;; 생각보다 무거워서 lazy-init + only-once:
-(when (and (fboundp 'yas-global-mode) (fboundp 'ag-feat-yas--install-hok))
-  (setq ag-feat-yas-global-mode +1)
-  (ag-feat-yas--install-hook))
+;; (when (and (fboundp 'yas-global-mode) (fboundp 'ag-feat-yas--install-hok))
+;;   (setq ag-feat-yas-global-mode +1)
+;;   (ag-feat-yas--install-hook))
+
+(yas-global-mode +1)
 
 
 ;; (toggle-battery-saving-mode)
