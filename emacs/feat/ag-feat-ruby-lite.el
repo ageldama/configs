@@ -51,6 +51,7 @@
 
            ("f" rubocop-auto "rubocop -a" :exit t)
            ("M-$" ri-server "ri-server" :exit t)
+           ("?" yari "ri" :exit t)
 
            ("SPC" nil)))
 
