@@ -5,6 +5,8 @@
 
 (use-package rbs-mode :ensure t)
 
+(use-package yari :ensure t)
+
 (use-package inf-ruby :ensure t :pin melpa
   :config
   (autoload 'inf-ruby-minor-mode "inf-ruby" "Run an inferior Ruby process" t)
