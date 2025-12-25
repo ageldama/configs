@@ -1,27 +1,34 @@
 
+
 # EX-G pro 유무선 하이스펙 트랙볼 마우스 M-XPT1MRBK
-"xdotool key Prior" # wheel <-
+#
+#
+#       L      WHL     R
+#      (1)     (2)    (3)
+#
+# (10) (9)     ^4     (11)
+#      (8)  (6)v5(7)
+#
+#              (12)
+#
+
+"xdotool key Prior"
   b:6
-"xdotool key Next"  # wheel ->
+"xdotool key Next"
   b:7
 
-# most left/right-buttons
-"xdotool key alt+Left"
+"xdotool key Up"
+  b:9
+"xdotool key Down"
+  b:8
+
+"xdotool key Left"
   b:10
-"xdotool key alt+Right"
+"xdotool key Right"
   b:11
 
-# the center btn
-"xdotool key Next"
+"xdotool key space"
   b:12
-
-# two up/down btns
-#"xdotool key alt+Right"
-"xdotool key Next" # wheel ->
-  b:8
-#"xdotool key alt+Left"
-"xdotool key Prior" # wheel <-
-  b:9
 
 
 "xbindkeys_show"
