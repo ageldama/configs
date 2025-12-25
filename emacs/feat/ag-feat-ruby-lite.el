@@ -19,11 +19,38 @@
 
 
 
+(defcustom ri-server-port 8214
+  "Port number: `ri --server=${PORT}'."
+  :type 'integer
+  :group 'ri-server)
+
+
+(require 'simple)
+(require 'browse-url)
+
+
+(defun ri-server (port browse-p)
+  (interactive (list (read-number "Port number: " ri-server-port)
+                     (y-or-n-p "Browse the index page?")
+                     ))
+  (let ((cmd (format "ri --server=%d" port)))
+    (async-shell-command cmd (generate-new-buffer-name "*ri server*"))
+    (when browse-p
+      (browse-url (format "http://localhost:%d" port)))))
+
+
+(defun rubocop-auto ()
+  (interactive)
+  (compile (format "rubocop -a %s" (buffer-file-name))))
+
+
+
 (when (fboundp 'defhydra)
   (eval '(defhydra hydra-lang-ruby ()
            "ruby"
 
-           ("f" (lambda () (interactive) (compile (format "rubocop -a %s" (buffer-file-name)))) "rubocop -a" :exit t)
+           ("f" rubocop-auto "rubocop -a" :exit t)
+           ("M-$" ri-server "ri-server" :exit t)
 
            ("SPC" nil)))
 
