@@ -1,6 +1,7 @@
 
 key "Super+Shift+q" icesh -f close
-key "Super+Shift+f" icesh -f fullscreen
+key "Super+Shift+f" icesh-tog-fullscreen.sh
+
 
 key "Super+F1" ~/.icewm/helpers/xmsg-keys.sh
 
