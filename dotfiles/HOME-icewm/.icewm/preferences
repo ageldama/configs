@@ -48,7 +48,7 @@ KeyWinMaximizeVert="Super+Ctrl+z"
 KeyWinMaximizeHoriz="Super+Ctrl+c"
 
 
-KeyWinClose="Super+Shift+q"
+#KeyWinClose="Super+Shift+q"
 
 
 # SEE: https://github.com/ice-wm/icewm/blob/master/src/default.h

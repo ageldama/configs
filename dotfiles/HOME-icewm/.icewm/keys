@@ -1,4 +1,6 @@
 
+key "Super+Shift+q" icesh -f close
+
 key "Super+F1" ~/.icewm/helpers/xmsg-keys.sh
 
 #key "Super+KP_Subtract" amixer sset PCM 5%-
