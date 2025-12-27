@@ -1,5 +1,6 @@
 
 key "Super+Shift+q" icesh -f close
+key "Super+Shift+f" icesh -f fullscreen
 
 key "Super+F1" ~/.icewm/helpers/xmsg-keys.sh
 
@@ -93,7 +94,7 @@ key "Super+Shift+m" x-terminal-emulator -e bashmount
 key "Super+w" wg-whatever.pl
 #key "Super+w" wg.pl
 
-key "Super+Shift+f" ~/local/scripts/zzz-acme/xmsg-fortune.pl
+# key "Super+Shift+f" ~/local/scripts/zzz-acme/xmsg-fortune.pl
 
 key "Super+Shift+v" snd-mixer-ui.sh
 
