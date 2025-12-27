@@ -197,13 +197,9 @@ package ScriptsRofi::Dlg::YesNo;
         my $exit_code = $? >> 8;
 
         # print STDERR "exit_code: $exit_code\n";
+        # print STDERR "output: [$stdout_]\n";
 
-        if ( $exit_code == 0 && $stdout_ == 0 ) {
-            return true;
-        }
-        else {
-            return false;
-        }
+        return ($exit_code == 0, $stdout_);
     }
 }
 1;    # ScriptsRofi::Dlg::YesNo;
@@ -229,8 +225,9 @@ my %opts = (
     S => "$ENV{HOME}/local/scripts:$ENV{HOME}/local/bin:$ENV{HOME}/P/v3/bin",
     D => "$ENV{HOME}/.scripts-rofi.storable",
     T => "x-terminal-emulator -e",
+    P => 0,
 );
-getopts( 'psreS:D:T:', \%opts );
+getopts( 'psrePS:D:T:', \%opts );
 
 # say Dumper(\%opts);
 
@@ -247,6 +244,7 @@ List content of SCRIPT_DIRS and ask to select:
   -S SCRIPT_DIRS      : `:'-separated list
   -D HIST_DB_FILE
   -T XTERM_COMMAND
+  -P : Dump stored history/freqs and exit
 
 Exiting.
 EO_HELP
@@ -260,6 +258,14 @@ my $history_db =
   ScriptsRofi::HistoryDB::Dummy->new( $opts{D}, NO_HISTORY_DB_FLAG_FILE );
 $history_db = ScriptsRofi::HistoryDB::Storable->new( $opts{D} )
   if $USE_HISTORY_DB;
+
+if($opts{P}){
+  my $scripts = $history_db->list_sorted;
+  foreach my $script (@$scripts) {
+    printf "%s\t%s\n", $script, $history_db->most_sel_type($script);
+  }
+  exit 0;
+}
 
 #p $history_db;
 
@@ -327,17 +333,19 @@ if ( $child_exit_status == ScriptsRofi::Consts::ROFI_EXITCODE_ALT_1 ) {
 }
 
 my $most_sel_type = $history_db->most_sel_type($stdout);
+# printf STDERR "mostly[%d] sel[%d]\n", $most_sel_type, $sel_type;
 if (   $most_sel_type != ScriptsRofi::Consts::SELECTION_UNDEF
     && $most_sel_type != $sel_type )
 {
-    my $ans_most_sel_type = ScriptsRofi::Dlg::YesNo->ask_yes_or_no(
+    my ($answered, $most_or_sel_idx) = ScriptsRofi::Dlg::YesNo->ask_yes_or_no(
         'Different selection, use ...',
         ScriptsRofi::Consts::selection_to_str($most_sel_type),
         ScriptsRofi::Consts::selection_to_str($sel_type)
-    );
-    if ($ans_most_sel_type) {
+       );
+    # say "ANS_MODified:", $answered;
+    if ($answered) {
         print STDERR "CORRECTING: $sel_type => $most_sel_type\n";
-        $sel_type = $most_sel_type;
+        $sel_type = ($most_sel_type, $sel_type)[$most_or_sel_idx];
     }
 }
 
