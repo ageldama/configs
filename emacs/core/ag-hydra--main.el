@@ -168,12 +168,12 @@
          ((fboundp 'helm-all-mark-rings)
           '(("R" helm-all-mark-rings "mark" ))))
 
-      ,@(cond
-         ((fboundp 'ivy-switch-buffer)
-          '(("<tab>" ivy-switch-buffer "buf" )))
-         ((fboundp 'consult-buffer)
-          '(("<tab>" consult-buffer "buf" )))
-         (t '(("<tab>" ibuffer "buf"))))
+      ;; ,@(cond
+      ;;    ((fboundp 'ivy-switch-buffer)
+      ;;     '(("<tab>" ivy-switch-buffer "buf" )))
+      ;;    ((fboundp 'consult-buffer)
+      ;;     '(("<tab>" consult-buffer "buf" )))
+      ;;    (t '(("<tab>" ibuffer "buf"))))
 
       ("o" hydra-org/body "org")
 

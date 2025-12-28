@@ -27,7 +27,7 @@
        (evil-global-set-key 'normal "s" 'avy-goto-char-timer)))
 
     (require 'ag-hydra--main)
-    (dolist (i '(("SPC" avy-goto-char-timer "avy")
+    (dolist (i '(("<tab>" avy-goto-char-timer "avy")
                  ("l" avy-goto-line "goto-line")
                  (";" avy-resume "avy-resume")))
       (add-to-list 'hydra-mini/++extras i))
