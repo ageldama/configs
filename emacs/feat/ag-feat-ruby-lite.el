@@ -44,6 +44,31 @@
       (browse-url (format "http://localhost:%d" port)))))
 
 
+(require 'dash)
+(require 's)
+
+(defun ri-ruby ()
+  (interactive)
+  (let* ((ruby-rdoc-list
+          (-filter (lambda (s) (and (not (s-starts-with? "#" s))
+                                    (not (s-blank? s))))
+                   (split-string
+                    (shell-command-to-string "ri -T -fmarkdown ruby:")
+                    "\n")))
+         (selected (completing-read "Select: " ruby-rdoc-list nil t)))
+    (message "SEL: %s" selected)
+    (let ((buf (generate-new-buffer (format "*rdoc ruby:%s*" selected))))
+      (shell-command (format "ri -T -fmarkdown ruby:%s" selected) buf)
+      ;;
+      (switch-to-buffer-other-window buf)
+      (read-only-mode)
+      (markdown-mode)
+      (view-mode))))
+
+
+
+
+
 (defun rubocop-auto ()
   (interactive)
   (compile (format "rubocop -a %s" (buffer-file-name))))
@@ -57,6 +82,7 @@
            ("f" rubocop-auto "rubocop -a" :exit t)
            ("M-$" ri-server "ri-server" :exit t)
            ("?" yari "ri" :exit t)
+           ("M-?" ri-ruby "ri:ruby" :exit t)
 
            ("SPC" nil)))
 
