@@ -46,8 +46,9 @@
 
 (require 'dash)
 (require 's)
+(require 'ansi-color)
 
-(defun ri-ruby ()
+(defun ri-ruby-builtin ()
   (interactive)
   (let* ((ruby-rdoc-list
           (-filter (lambda (s) (and (not (s-starts-with? "#" s))
@@ -58,11 +59,11 @@
          (selected (completing-read "Select: " ruby-rdoc-list nil t)))
     (message "SEL: %s" selected)
     (let ((buf (generate-new-buffer (format "*rdoc ruby:%s*" selected))))
-      (shell-command (format "ri -T -fmarkdown ruby:%s" selected) buf)
+      (shell-command (format "ri -T -fansi ruby:%s" selected) buf)
       ;;
       (switch-to-buffer-other-window buf)
+      (ansi-color-apply-on-region (point-min) (point-max))
       (read-only-mode)
-      (markdown-mode)
       (view-mode))))
 
 
@@ -82,7 +83,7 @@
            ("f" rubocop-auto "rubocop -a" :exit t)
            ("M-$" ri-server "ri-server" :exit t)
            ("?" yari "ri" :exit t)
-           ("M-?" ri-ruby "ri:ruby" :exit t)
+           ("M-?" ri-ruby-builtin "ri:ruby" :exit t)
 
            ("SPC" nil)))
 
