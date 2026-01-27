@@ -157,6 +157,8 @@ fi
 if [[ -f ~/.use-dunst ]]; then
   pkill -u $UID xfce4-notifyd
   dunst &
+elif [[ -f ~/.use-notification-daemon ]]; then
+  gtk-launch notification-daemon
 elif [[ -f ~/.use-xfce4-notifyd ]]; then
   systemctl --user start xfce4-notifyd.service
 fi
