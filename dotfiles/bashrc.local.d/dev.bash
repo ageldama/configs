@@ -8,7 +8,7 @@ if [[ -d ~/.local/share/mise/shims ]]; then
     export PATH=~/.local/share/mise/shims:$PATH
 fi
 
-which direnv > /dev/null && eval "$(direnv hook bash)"
+command -v direnv > /dev/null && eval "$(direnv hook bash)"
 
 
 
