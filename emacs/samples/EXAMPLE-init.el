@@ -46,14 +46,14 @@
  'ag-feat-company                  ; dpkg=elpa-company
  'ag-feat-magit                    ; dpkg=elpa-magit
  'ag-feat-web-mode                 ; dpkg=elpa-web-mode
- ;; 'ag-feat-sass-mode             ; dpkg=-
+ 'ag-feat-sass-mode             ; dpkg=-
  ;; 'ag-feat-haml-mode             ; dpkg=-
  'ag-feat-hl-todo                  ; dpkg=elpa-hl-todo
  'ag-feat-markdown-mode            ; dpkg=elpa-markdown-mode
  'ag-feat-projectile               ; dpkg=elpa-projectile
  'ag-feat-flycheck                 ; dpkg=elpa-flycheck
- 'ag-feat-ggtags                   ; dpkg=elpa-ggtags
- ;; 'ag-feat-direnv                ; dpkg=-
+ ;; 'ag-feat-ggtags                   ; dpkg=elpa-ggtags
+ 'ag-feat-direnv                ; dpkg=-
  ;; 'ag-feat-editorconfig          ; dpkg=elpa-editorconfig
  ;; 'ag-feat-plantuml              ; dpkg=-
  ;; 'ag-feat-helpful               ; dpkg=elpa-helpful
@@ -69,25 +69,25 @@
  'ag-feat-json                     ; dpkg=-
  'ag-feat-toml                     ; dpkg=-
  'ag-feat-yaml                     ; dpkg=-
- 'ag-feat-vimish-fold              ; dpkg=elpa-vimish-fold
+ ;; 'ag-feat-vimish-fold              ; dpkg=elpa-vimish-fold
  ;; 'ag-feat-evil-vimish-fold         ; dpkg=-
  'ag-feat-yas                      ; dpkg=elpa-yasnippet-snippets
- ;; 'ag-feat-treemacs              ; dpkg=elpa-treemacs
- ;; 'ag-feat-treemacs-projectile   ; dpkg=elpa-treemacs-projectile
+ 'ag-feat-treemacs              ; dpkg=elpa-treemacs
+ 'ag-feat-treemacs-projectile   ; dpkg=elpa-treemacs-projectile
  ;; 'ag-feat-treemacs-evil         ; dpkg=elpa-treemacs-evil
- ;; 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
- ;; 'ag-feat-treemacs-icons-dired  ; dpkg=-
+ 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
+ 'ag-feat-treemacs-icons-dired  ; dpkg=-
  'ag-feat-python                   ; dpkg=+
  ;; 'ag-feat-ruby                     ; dpkg=+
  ;; 'ag-feat-ruby-lite                     ; dpkg=+
  ;; 'ag-feat-haskell                  ; dpkg=+
  ;; 'ag-feat-php                   ; dpkg=+
- ;; 'ag-feat-ivy-emoji-maybe       ; dpkg=-
+ 'ag-feat-ivy-emoji-maybe       ; dpkg=-
  ;; 'ag-feat-embark                ; dpkg=elpa-embark
  ;; 'ag-feat-embark-consult        ; dpkg=-
  ;; 'ag-feat-multiple-cursors      ; dpkg=-
  ;; 'ag-feat-protobuf-mode         ; dpkg=-
- ;; 'ag-feat-string-inflection     ; dpkg=-
+ 'ag-feat-string-inflection     ; dpkg=-
  ;; 'ag-feat-apheleia              ; dpkg=-
  ;; 'ag-feat-evil-surround            ; dpkg=-
  ;; 'ag-feat-evil-owl                 ; dpkg=-
@@ -98,8 +98,8 @@
  ;; 'ag-feat-eglot                 ; dpkg=+|elpa-eglot
  ;; 'ag-feat-realgud               ; dpkg=-
  ;; 'ag-feat-unfill                ; dpkg=-
- ;; 'ag-feat-exec-path-from-shell  ; dpkg=elpa-exec-path-from-shell
- ;; 'ag-feat-quelpa                ; dpkg=-
+ 'ag-feat-exec-path-from-shell  ; dpkg=elpa-exec-path-from-shell
+ 'ag-feat-quelpa                ; dpkg=-
  ;; 'ag-feat-zig                   ; dpkg=-
  ;; 'ag-feat-meson                 ; dpkg=-
  ;; 'ag-feat-cmake                 ; dpkg=-
@@ -144,27 +144,27 @@
     ;; "DOSSaemmul"
     ;; "HBIOS-SYS"
     (set-frame-font
-     ;; "DejaVu Sans Mono"
-     "Adwaita Mono"
+     "DejaVu Sans Mono"
+     ;; "Adwaita Mono"
      )
 
     (ag-set-fixed-fonts
-     ;; "DejaVu Sans Mono"
-     "Adwaita Mono"
-     "Neo둥근모 Code"
-     ;; "D2Coding"
+     "DejaVu Sans Mono"
+     ;; "Adwaita Mono"
+     ;; "Neo둥근모 Code"
+     "D2Coding"
      )
 
     (ag-set-font-height 104)
 
-    (load-theme 'leuven-dark t)
+    ;; (load-theme 'leuven-dark t)
     ;; (load-theme 'base16-greenscreen t)
     ;; (load-theme 'modus-operandi-tinted t)
-    ;; (require 'ag-feat-day-and-night)
-    ;; (setq *day-and-night/day-theme* 'modus-operandi)
-    ;; (setq *day-and-night/night-theme* 'modus-vivendi)
-    ;; (day-and-night/change-theme-by-time)
-    ;; (day-and-night/start-timer 30)
+    (require 'ag-feat-day-and-night)
+    (setq *day-and-night/day-theme* 'modus-operandi-tinted)
+    (setq *day-and-night/night-theme* 'modus-vivendi-tinted)
+    (day-and-night/change-theme-by-time)
+    (day-and-night/start-timer 30)
     ;; (day-and-night/declare-its-day)
     ;; (day-and-night/declare-its-night)
     ))
@@ -206,7 +206,7 @@
 
 
 ;;; zone
-(zone-when-idle 30)
+;; (zone-when-idle 30)
 
 
 ;;; mu4e
