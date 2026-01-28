@@ -1,0 +1,138 @@
+ThemeDescription="Win 3.1 Theme v0.1 + Iosevka"
+ThemeAuthor="linko + Richard F."
+Look=metal
+
+TitleButtonsLeft="x"
+TitleButtonsRight="mi"
+TitleButtonsSupported="sxmi"	
+TitleBarJustify=50
+TitleBarHeight=19
+ShowMenuButtonIcon=1
+DesktopBackgroundColor="rgb:00/20/40"
+BorderSizeX=4
+BorderSizeY=4
+CornerSizeX=23
+CornerSizeY=23
+DlgBorderSizeX=1
+DlgBorderSizeY=1
+
+ColorNormalButton="#ffffff"
+ColorNormalButtonText="#000000"
+ColorActiveButton="#c0c0c0"
+ColorActiveButtonText="#000000"
+
+ColorNormalTitleBarText="#000000"
+ColorActiveTitleBarText="#ffffff"
+ColorActiveBorder="#000000"
+ColorNormalBorder="#000000"
+
+ColorDialog="#ffffff"
+ColorListBox="#ffffff"
+ColorListBoxText="#000000"
+ColorListBoxSelection="#000080"
+ColorListBoxSelectionText="#ffffff"
+ColorScrollBar="#c0c0c0"
+ColorScrollBarSlider="#b0b0b0"
+ColorScrollBarButton="#c0c0c0"
+ColorScrollBarButtonArrow="#000000"
+ColorLabel="#ffffff"
+ColorLabelText="#000000"
+
+ColorNormalMenu="#ffffff"
+ColorActiveMenuItem="#408080"
+ColorNormalMenuItemText="#000000"
+ColorActiveMenuItemText="#ffffff"
+ColorDisabledMenuItemText="#c0c0c0"
+
+ColorDefaultTaskBar="#ffffff"
+ColorNormalTaskBarApp="#ffffff"
+ColorNormalTaskBarAppText="#000000"
+ColorActiveTaskBarApp="#c0c0c0"
+ColorActiveTaskBarAppText="#000000"
+ColorMinimizedTaskBarApp="#ffffff"
+ColorMinimizedTaskBarAppText="#000000"
+
+ColorInput="#ffffff"
+ColorInputText="#000000"
+ColorClock="#ffffff"
+ColorClockText="#000000"
+
+
+ColorApm="#ffffff"
+ColorApmText="rgb:c0/c0/c0"
+
+#  User load on the CPU monitor
+ ColorCPUStatusUser="#4444ff"
+
+#  System load on the CPU monitor
+ ColorCPUStatusSystem="#cc4444"
+
+#  Interrupts on the CPU monitor
+ ColorCPUStatusInterrupts="rgb:FF/FF/00"
+
+#  IO Wait on the CPU monitor
+ ColorCPUStatusIoWait="rgb:60/00/60"
+
+#  Soft Interrupts on the CPU monitor
+ ColorCPUStatusSoftIrq="rgb:00/FF/FF"
+
+#  Nice load on the CPU monitor
+ ColorCPUStatusNice="rgb:00/00/FF"
+
+#  Idle (non) load on the CPU monitor, leave empty to force transparency
+ ColorCPUStatusIdle="#c0c0c0"
+
+#  Outgoing load on the network monitor
+ ColorNetSend="#333333"
+
+#  Incoming load on the network monitor
+ ColorNetReceive="#777777"
+
+#  Idle (non) load on the network monitor, leave empty to force transparency
+ ColorNetIdle="#c0c0c0"
+
+
+ColorToolTip="#ffffff"
+ColorToolTipText="#000000"
+ColorMoveSizeStatus="#ffffff"
+ColorMoveSizeStatusText="#000000"
+ColorQuickSwitch="#ffffff"
+ColorQuickSwitchText="#000000"
+
+TitleFontNameXft	   = 	"Iosevka SS03:size=12:italic"
+MenuFontNameXft	           =    "Iosevka SS03:size=12"
+MinimizedWindowFontNameXft =    "Iosevka SS03:size=12"
+ActiveButtonFontNameXft    =    "Iosevka SS03:size=12:bold"
+NormalButtonFontNameXft    =    "Iosevka SS03:size=12"
+QuickSwitchFontNameXft     =    "Iosevka SS03:size=12"
+ListBoxFontNameXft         =    "Iosevka SS03:size=12"
+StatusFontNameXft          =    "Iosevka SS03:size=12"
+ToolTipFontNameXft         =    "Iosevka SS03:size=12"
+ActiveTaskBarFontNameXft   =    "Iosevka SS03:size=12:bold"
+NormalTaskBarFontNameXft   =    "Iosevka SS03:size=12"
+ClockFontNameXft           =    "Iosevka SS03:size=12:bold"
+ApmFontNameXft             =    "Iosevka SS03:size=12"
+NormalWorkspaceFontNameXft =    "Iosevka SS03:size=12"
+ActiveWorkspaceFontNameXft =    "Iosevka SS03:size=12:bold"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
