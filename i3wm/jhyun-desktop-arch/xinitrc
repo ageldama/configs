@@ -289,6 +289,8 @@ test -f ~/.use-urxvtd && urxvtd --quiet --opendisplay --fork &
 #
 test -f ~/.xinitrc2 && ~/.xinitrc2
 
+test -f ~/.screenlayout/default.sh && ~/.screenlayout/default.sh
+
 
 #
 #xprop -root -f _NET_DESKTOP_LAYOUT 32cccc -set _NET_DESKTOP_LAYOUT 0,5,2,0
