@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 
+
 if [[ -x ~/.local/bin/mise ]]; then
     eval "$(~/.local/bin/mise activate bash)"
 fi

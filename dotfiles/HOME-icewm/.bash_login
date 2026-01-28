@@ -1,3 +1,6 @@
+#!/usr/bin/env bash
+
+
 OSNAME=`uname`
 
 function zlogin_startx_dialog () {
@@ -33,5 +36,4 @@ if [[ -z $TMUX ]]; then
     ;;
   esac
 fi
-
 
