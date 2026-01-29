@@ -2,9 +2,9 @@
 
 [[ ! -f ~/.use-bashrc ]] && exit 0
 
-if [[ -f $HOME/.profile && ! -f $HOME/.bash_profile ]]; then
-  ln -s $HOME/.profile $HOME/.bash_profile
-fi
+# if [[ -f $HOME/.profile && ! -f $HOME/.bash_profile ]]; then
+#   ln -s $HOME/.profile $HOME/.bash_profile
+# fi
 
 if grep "source ~/.bashrc.d/bashrc2" ~/.bashrc; then
   # echo found

@@ -1,0 +1,23 @@
+#!/bin/bash
+
+if [[ -f ~/.bashrc ]]; then
+    . ~/.bashrc
+fi
+
+if [[ $SHLVL = 1 ]] && [[ -z $SSH_TTY ]]; then
+    if [[ -f ~/.use-fbterm-auto ]]; then
+        dialog --title "login" --timeout 5 --yesno "start fbterm? (5 secs auto-ok)" 6 45
+        if [[ $? == 0 || $? == 255 ]]; then
+            fbterm -n D2Coding -s 16 --font-width=8
+        fi
+    elif [[ -z $DISPLAY ]] && [[ -f ~/.use-startx-auto ]]; then
+        dialog --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
+        if [[ $? == 0 || $? == 255 ]]; then
+            if [[ -f ~/startx.log ]]; then
+                rm -fv ~/startx.log
+            fi
+            startx &> ~/startx.log
+        fi
+    fi
+fi
+
