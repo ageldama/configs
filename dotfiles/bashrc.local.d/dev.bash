@@ -12,5 +12,5 @@ fi
 command -v direnv > /dev/null && eval "$(direnv hook bash)"
 
 
-[[ -f ~/.rbenv/bin/rbenv ]] && eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
+# [[ -f ~/.rbenv/bin/rbenv ]] && eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
 
