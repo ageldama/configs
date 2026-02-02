@@ -213,6 +213,10 @@ if [[ -f ~/.use-pipewire ]]; then
   pipewire &
 fi
 
+if [[ -f ~/.use-pulseaudio ]]; then
+  pulseaudio -D
+fi
+
 if [[ -f ~/.use-pactl-zeroconf-discover ]]; then
   pactl load-module module-zeroconf-discover
 fi
