@@ -14,3 +14,7 @@ command -v direnv > /dev/null && eval "$(direnv hook bash)"
 
 # [[ -f ~/.rbenv/bin/rbenv ]] && eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
 
+# Added by `rbenv init` on Tue Mar 10 10:43:16 PM KST 2026
+#eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
+
+

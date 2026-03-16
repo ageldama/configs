@@ -21,3 +21,4 @@ if [[ $SHLVL = 1 ]] && [[ -z $SSH_TTY ]]; then
     fi
 fi
 
+

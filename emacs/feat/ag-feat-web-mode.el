@@ -1,5 +1,7 @@
 (use-package web-mode :ensure t :pin melpa
   :config
+  (setq web-mode-enable-engine-detection t)
+
   (add-to-list 'auto-mode-alist '("\\.html?\\'" . web-mode))
 
   (setq web-mode-engines-alist
