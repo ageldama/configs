@@ -1,6 +1,7 @@
 
 ! Debian: xcursor-themes
-Xcursor.theme: redglass
+!Xcursor.theme: redglass
+Xcursor.theme: whiteglass
 Xcursor.size: 32
 
 !! Colorscheme
