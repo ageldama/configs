@@ -66,7 +66,7 @@
 (defun compile-this-file ()
   (interactive)
   (let ((fn (buffer-file-name)))
-    (compile fn)))
+    (compile (shell-quote-argument fn))))
 
 
 
