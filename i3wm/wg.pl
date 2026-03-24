@@ -2,6 +2,7 @@
 use strict;
 use warnings;
 use feature qw<say>;
+use Cwd     qw(abs_path);
 
 #use Glib::Object::Introspection;
 
@@ -13,6 +14,12 @@ use feature qw<say>;
           qx<find -L ~/P/wg/ -type f -not -path '*/\.git/*'>;
         say scalar @files;
         $pick = $files[ rand @files ] or die;
+        $pick = abs_path $pick;
+        say $pick;
+    }
+    else {
+        say 1;
+        $pick = abs_path $pick;
         say $pick;
     }
 
@@ -27,13 +34,12 @@ use feature qw<say>;
         );
     }
     else {
-      my $feh_opts = '--bg-fill';
+        my $feh_opts = '--bg-fill';
 
-      if( $pick =~ qr{/tile} ){
-        # print STDERR "TILE: $pick\n";
-        $feh_opts = '--bg-tile';
-      }
-      system("feh ${feh_opts} \'${pick}\'");
+        if ( $pick =~ qr{/tile} ) {
+            $feh_opts = '--bg-tile';
+        }
+        system("feh ${feh_opts} \'${pick}\'");
     }
 
     #
