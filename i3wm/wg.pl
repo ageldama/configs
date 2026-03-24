@@ -27,7 +27,13 @@ use feature qw<say>;
         );
     }
     else {
-        system("feh --bg-fill \'${pick}\'");
+      my $feh_opts = '--bg-fill';
+
+      if( $pick =~ qr{/tile} ){
+        # print STDERR "TILE: $pick\n";
+        $feh_opts = '--bg-tile';
+      }
+      system("feh ${feh_opts} \'${pick}\'");
     }
 
     #
