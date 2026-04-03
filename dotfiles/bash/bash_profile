@@ -16,10 +16,10 @@ if [[ $SHLVL = 1 ]] && [[ -z $SSH_TTY ]]; then
             if [[ -f ~/startx.log ]]; then
                 rm -fv ~/startx.log
             fi
-            if [[ -f ~/.no-startx.log ]]; then
-                startx
-            else
+            if [[ -f ~/.use-startx.log ]]; then
                 startx &> ~/startx.log
+            else
+                startx
             fi
         fi
     fi
