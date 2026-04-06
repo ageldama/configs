@@ -27,18 +27,19 @@ use Cwd     qw(abs_path);
 `gsettings get org.gnome.desktop.interface color-scheme | grep -o \\\\-dark`
       || undef;
 
+   my $feh_opts = '--bg-fill';
+
+   if ( $pick =~ qr{/tile} ) {
+	  $feh_opts = '--bg-tile';
+   }
+
     if ( defined $color_dark ) {
         chomp $color_dark;
         system(
-"pgrep -u $ENV{USER} '^gnome-shell\$' && gsettings set org.gnome.desktop.background picture-uri${color_dark} \'${pick}\' || feh --bg-fill \'${pick}\'"
+"pgrep -u $ENV{USER} '^gnome-shell\$' && gsettings set org.gnome.desktop.background picture-uri${color_dark} \'${pick}\' || feh ${feh_opts} \'${pick}\'"
         );
     }
     else {
-        my $feh_opts = '--bg-fill';
-
-        if ( $pick =~ qr{/tile} ) {
-            $feh_opts = '--bg-tile';
-        }
         system("feh ${feh_opts} \'${pick}\'");
     }
 
