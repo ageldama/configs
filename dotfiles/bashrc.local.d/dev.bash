@@ -18,3 +18,4 @@ command -v direnv > /dev/null && eval "$(direnv hook bash)"
 #eval "$(~/.rbenv/bin/rbenv init - --no-rehash bash)"
 
 #export PATH=~/local/sbcl/bin:$PATH
+
