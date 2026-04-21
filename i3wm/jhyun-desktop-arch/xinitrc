@@ -31,6 +31,16 @@ export PATH=$PATH:$HOME/local/bin
 
 export TERMINAL=x-terminal-emulator
 
+# xdg-desktop-portal
+if [[ -f ~/.use-xdg-desktop-portal-gtk ]]; then
+    # NOTE brute!
+    systemctl --user stop xdg-desktop-portal
+    systemctl --user mask xdg-desktop-portal
+
+    /usr/libexec/xdg-desktop-portal-gtk -r &
+fi
+
+
 # ime
 if [[ -f ~/.use-nabi ]]; then
   export GTK_IM_MODULE=xim
