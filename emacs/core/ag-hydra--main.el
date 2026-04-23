@@ -31,6 +31,8 @@
 
 (defvar hydra-mini/++extras '())
 
+(defvar hydra-mini/misc/++extras '())
+
 
 (defun def-hydras ()
 
@@ -252,6 +254,8 @@
       ("%" %ag-parse-ag-requires-elapseds "requires-elapseds" :exit t)
 
       ("!" ag-misc/insert-time-stamp "time-stamp" :exit t)
+
+      ,@hydra-mini/misc/++extras
 
       ("SPC" nil)))
 
