@@ -77,6 +77,7 @@
  ;; 'ag-feat-treemacs-evil         ; dpkg=elpa-treemacs-evil
  'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
  'ag-feat-treemacs-icons-dired  ; dpkg=-
+ 'ag-feat-dwim-shell-command    ; dpkg=-
  'ag-feat-python                   ; dpkg=+
  ;; 'ag-feat-ruby                     ; dpkg=+
  ;; 'ag-feat-ruby-lite                     ; dpkg=+
