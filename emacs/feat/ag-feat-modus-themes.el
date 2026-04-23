@@ -33,14 +33,14 @@
 
 (when (fboundp 'defhydra)
   (eval '(progn
-           (defhydra hydra-modus-themes (:color green)
-             "modus-themes"
+           (defhydra hydra-modus-themes (:hint nil)
+             "
+ef or modus themes: %(prin1-to-string custom-enabled-themes)
+"
 
              ("r" modus-themes-rotate "rotate")
              ("s" modus-themes-select "select" :exit t)
-             ("RET" modus-themes-load-random "random" )
-
-             ("SPC" nil))
+             ("RET" modus-themes-load-random "random" ))
 
            (add-to-list 'hydra-mini/misc/++extras
                         '("@"  hydra-modus-themes/body "themes" :exit t)))))

@@ -93,10 +93,6 @@
           `((":" toggle-evil-mode "evil")))
       ,@(when (fboundp 'treemacs)
           `(("t" treemacs "treemacs")))
-      ,@(when (fboundp 'consult-theme)
-          '(("@" consult-theme "theme")))
-      ,@(when (fboundp 'counsel-load-theme)
-          '(("@" counsel-load-theme "theme")))
       ))
 
 
@@ -248,6 +244,8 @@
        "proc"
        :exit t)
 
+      ("C-k" kill-process "kill-proc" :exit t)
+
       ,@(when (fboundp 'sdcv-search-input)
           '(("d" sdcv-search-input "sdcv" :exit t)))
 
@@ -261,6 +259,11 @@
       ,@hydra-mini/misc/++extras
 
       ("t" current-themes "cur-themes?" :exit t)
+
+      ,@(when (fboundp 'consult-theme)
+          '(("C-t" consult-theme "theme")))
+      ,@(when (fboundp 'counsel-load-theme)
+          '(("C-t" counsel-load-theme "theme")))
 
       ("SPC" nil)))
 
