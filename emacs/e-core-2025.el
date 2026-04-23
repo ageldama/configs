@@ -2,6 +2,7 @@
 
 (ag-requires :tag-:*core
              :compile
+             'ag-input-method-stack
              'ag-hippie-expand
              'ag-font
              'ag-gc
