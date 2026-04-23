@@ -214,5 +214,14 @@
 
 
 
+
+;;; themes
+(defun current-themes ()
+  (interactive)
+  (message "CURRENT-THEME: %s" custom-enabled-themes))
+
+
+
+
 ;;;
 (provide 'ag-emacs-sensible)

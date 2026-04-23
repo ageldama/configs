@@ -260,6 +260,8 @@
 
       ,@hydra-mini/misc/++extras
 
+      ("t" current-themes "cur-themes?" :exit t)
+
       ("SPC" nil)))
 
   (defhydra hydra/tab-bar (:exit nil)
