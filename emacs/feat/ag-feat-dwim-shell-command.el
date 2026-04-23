@@ -18,7 +18,7 @@
   (eval '(defhydra hydra-lang-dired ()
            "dired"
 
-           ("d" dwim-shell-command--completing-read "dwim-shell-command" :exit t)
+           ("RET" dwim-shell-command--completing-read "dwim-shell-command" :exit t)
 
            ("SPC" nil)))
 
