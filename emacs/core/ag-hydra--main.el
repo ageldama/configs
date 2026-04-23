@@ -119,7 +119,10 @@
 
 
   (eval
-   `(defhydra hydra-mini (:exit t) ;;(global-map "<f12>" :exit t)
+   `(defhydra hydra-mini
+      (:exit t
+             :pre (deactivate-input-method)
+             ) ;;(global-map "<f12>" :exit t)
       "minimi"
 
       ("`" menu-bar-open "menu-bar" )

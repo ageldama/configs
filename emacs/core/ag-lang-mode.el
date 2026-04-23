@@ -12,7 +12,8 @@
 (defun do-lang-mode-hydra ()
   (interactive)
   (if lang-mode-hydra
-      (call-interactively lang-mode-hydra)
+      (progn (deactivate-input-method)
+             (call-interactively lang-mode-hydra))
     ;; else
     (message "Null lang-mode-hydra local-var")))
 
