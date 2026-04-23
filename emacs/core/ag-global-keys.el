@@ -17,10 +17,10 @@
  ;; (global-set-key (kbd "C-c 9") 'do-lang-mode-hydra)
 
  (global-set-key (kbd "C-c 8") 'hydra-mini/body)
- (global-set-key (kbd "C-c C-c 8") 'do-lang-mode-hydra)
+ (global-set-key (kbd "C-c 9") 'do-lang-mode-hydra)
 
  (global-set-key (kbd "<f8>") 'hydra-mini/body)
- (global-set-key (kbd "C-<f8>") 'do-lang-mode-hydra)
+ (global-set-key (kbd "<f9>") 'do-lang-mode-hydra)
 
  (global-set-key (kbd "M-s d") 'find-name-dired)
  )
