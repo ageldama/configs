@@ -163,11 +163,11 @@
 
       ,@(cond
          ((fboundp 'consult-global-mark)
-          '(("R" consult-global-mark "mark" )))
+          '(("M" consult-global-mark "mark" )))
          ((fboundp 'counsel-mark-ring)
-          '(("R" counsel-mark-ring "mark" )))
+          '(("M" counsel-mark-ring "mark" )))
          ((fboundp 'helm-all-mark-rings)
-          '(("R" helm-all-mark-rings "mark" ))))
+          '(("M" helm-all-mark-rings "mark" ))))
 
       ;; ,@(cond
       ;;    ((fboundp 'ivy-switch-buffer)
