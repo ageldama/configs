@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+
+yt-dlp -x -t mp3 \
+       --embed-metadata --embed-thumbnail \
+       -o "%(artist)s  %(uploader)s - %(title)s.%(ext)s" \
+       "$@"

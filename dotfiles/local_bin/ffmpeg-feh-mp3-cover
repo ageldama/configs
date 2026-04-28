@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+TMPFILE=$(mktemp -t ffmpeg-mp3-tmp.XXXXXXXXXX.png)
+trap 'rm -fv "$TMPFILE"' EXIT
+
+rm -fv "$TMPFILE" # "overwrite"-prompt prevention.
+ffmpeg -i "$@" -an -vcodec copy "$TMPFILE"
+
+feh "$TMPFILE"
