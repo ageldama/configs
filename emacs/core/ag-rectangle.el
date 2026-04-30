@@ -1,16 +1,16 @@
-(defun my-insert-rectangle-push-lines ()
-  "Yank a rectangle as if it was an ordinary kill."
+
+(defun my-yank-rectangle-as-lines ()
+  "Yank a rectangle as if it was an ordinary kill (as lines)."
   (interactive "*")
-  (when (and (use-region-p) (delete-selection-mode))
-    (delete-region (region-beginning) (region-end)))
-  (save-restriction
-    (narrow-to-region (point) (mark))
-    (yank-rectangle)))
+  (let ((rect (car kill-ring)))
+    ;; Check if the last thing killed was a rectangle
+    (if (string-match-p "\n" rect)
+        (insert rect) ;; Insert normally if it's already multi-line
+      (yank-rectangle))))
 
 
-(global-set-key (kbd "C-x r C-y") #'my-insert-rectangle-push-lines)
+(global-set-key (kbd "C-x r M-y") #'my-yank-rectangle-as-lines)
 
-;; DEPRECATED: [2025-12-19 Fri] 무쓸모.
 
 
 (provide 'ag-rectangle)
