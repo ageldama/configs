@@ -205,6 +205,7 @@ Plug 'kien/ctrlp.vim'
 
 
 "Plug 'letorbi/vim-colors-modern-borland'
+Plug 'caglartoklu/borlandp.vim'
 
 
 Plug 'jlanzarotta/bufexplorer'
