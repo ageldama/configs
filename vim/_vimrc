@@ -201,7 +201,11 @@ Plug 'arthurxavierx/vim-caser'
 Plug 'kien/ctrlp.vim'
 
 "Plug 'vim-airline/vim-airline'
-Plug 'itchyny/lightline.vim'
+"Plug 'itchyny/lightline.vim'
+
+
+"Plug 'letorbi/vim-colors-modern-borland'
+
 
 Plug 'jlanzarotta/bufexplorer'
 
