@@ -215,6 +215,12 @@
 
 
 
+;;; duplicate
+(global-set-key (kbd "C-x M-d") 'duplicate-dwim)
+
+
+
+
 ;;; themes
 (defun current-themes ()
   (interactive)
