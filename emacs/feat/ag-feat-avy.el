@@ -9,6 +9,8 @@
     ;; (global-set-key (kbd "C-'") 'avy-goto-char-timer)
     ;; (global-set-key (kbd "C-\"") 'avy-goto-word-1)
     ;; (global-set-key (kbd "C-:") 'avy-goto-line)
+    (global-set-key (kbd "M-g \\") 'avy-prev)
+    (global-set-key (kbd "M-g RET") 'avy-next)
     (global-set-key (kbd "M-g t") 'avy-goto-char-timer)
     (global-set-key (kbd "M-g M-g") 'avy-goto-char-timer)
     (global-set-key (kbd "M-g g") 'goto-line)
@@ -22,16 +24,18 @@
     (global-set-key (kbd "M-g ,") 'avy-pop-mark)
 
     (require 'ag-reinit)
-    (ag-reinit/add-as-interactive
-     (when (and (fboundp 'evil-global-set-key)
-                (fboundp 'avy-goto-char-timer))
+
+    (when (and (fboundp 'evil-global-set-key)
+               (fboundp 'avy-goto-char-timer))
+      (ag-reinit/add-as-interactive
        (evil-global-set-key 'normal "s" 'avy-goto-char-timer)))
 
-    (require 'ag-hydra--main)
-    (dolist (i '(("<tab>" avy-goto-char-timer "avy")
-                 ("l" avy-goto-line "goto-line")
-                 (";" avy-resume "avy-resume")))
-      (add-to-list 'hydra-mini/++extras i))
+    ;; (require 'ag-hydra--main)
+    ;; (dolist (i '(("<tab>" avy-goto-char-timer "avy")
+    ;;              ("l" avy-goto-line "goto-line")
+    ;;              (";" avy-resume "avy-resume")))
+    ;;   (add-to-list 'hydra-mini/++extras i))
+
     ))
 
 
