@@ -210,7 +210,7 @@
 
 
 ;;; zap
-(global-set-key (kbd "C-z") 'zap-up-to-char)
+(global-set-key (kbd "M-z") 'zap-up-to-char)
 
 
 
