@@ -9,7 +9,9 @@
    (evil-global-set-key 'normal (kbd "\\") 'do-lang-mode-hydra))
 
 
- (global-set-key (kbd "C-z") 'hydra-mini/body) ;; NOTE overrides `suspend-emacs'.
+ (global-set-key (kbd "M-z") 'hydra-mini/body)
+
+ ;; NOTE overrides `suspend-emacs' (or) `zap-to-char'
 
  ;; (global-set-key (kbd "C-c SPC") 'hydra-mini/body)
  ;; (global-set-key (kbd "C-c \\") 'do-lang-mode-hydra)
