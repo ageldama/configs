@@ -1,6 +1,7 @@
 
 
 (require 'cl-lib)
+(require 's)
 
 
 
@@ -9,6 +10,15 @@
   "recompile 적용될 mode 이름
 
 (add-to-list 'recompile-buffer-modes 'xxx-mode)")
+
+
+
+(defvar recompile-executable-buffer-p-list
+  (list (lambda (buf)
+          (s-ends-with? ".exe"
+                        (s-downcase (buffer-name buf))))
+        (lambda (buf)
+          (file-executable-p (buffer-file-name buf)))))
 
 
 
@@ -81,6 +91,15 @@
 
 
 
+(defun recompile%executable-buffer-p (buf)
+  (cl-block blk-preds
+    (cl-loop for pred in recompile-executable-buffer-p-list
+             when (funcall pred buf)
+             do (cl-return-from blk-preds t)
+             end)
+    ;; fallback:
+    nil))
+
 
 (defun recompile-visible-compilation-window ()
   (interactive)
@@ -90,7 +109,11 @@
     (let* ((frame.window-list (recompile%applicable-window-list)))
       (cl-case (length frame.window-list)
         (0 (progn (message "no comile-buffer found")
-                  (call-interactively 'compile)))
+                  ;; currently: executable file?
+                  (if (recompile%executable-buffer-p (current-buffer))
+                      (compile (buffer-file-name (current-buffer)))
+                      ;; else:
+                      (call-interactively 'compile))))
         (1 (recompile%do-recompile
             (cl-first frame.window-list)))
         (t (recompile%select-and-recompile frame.window-list))))))

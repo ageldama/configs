@@ -9,6 +9,7 @@
    (evil-global-set-key 'normal (kbd "\\") 'do-lang-mode-hydra))
 
  (global-set-key (kbd "<f5>") #'recompile-visible-compilation-window)
+ (global-set-key (kbd "C-<f5>") #'my-run-debugger)
 
  (global-set-key (kbd "C-z") 'hydra-mini/body)
  ;; NOTE overrides `suspend-emacs' (or) `zap-to-char'

@@ -65,5 +65,58 @@
 
 
 
+
+;;; C-<f5>
+
+
+
+(defvar *command-filter-list*
+  (list "db$")
+  "리스트의 각 요소는 `string-match'-pattern 문자열이거나,
+ 심볼이름 문자열에 대한 predicate이거나.")
+
+
+
+(require 'cl)
+
+
+
+(defun command-filtered-list ()
+  (let (commands)
+    (mapatoms (lambda (s)
+                (when (commandp s)
+                  (push s commands))))
+    ;;
+    (cl-loop for cmd in commands
+             as cmd-name = (symbol-name cmd)
+             append (cl-loop for filter in *command-filter-list*
+                             when (and (stringp filter)
+                                       (string-match filter
+                                                     cmd-name))
+                             collect cmd
+                             end
+                             when (and (functionp filter)
+                                       (funcall filter
+                                                cmd-name))
+                             collect cmd
+                             end))))
+
+
+(defun my-run-debugger ()
+  (interactive)
+  (let ((cmd (completing-read "Which command? "
+                              (command-filtered-list))))
+    (call-interactively cmd)))
+
+
+
+
+
+
+
+
+
+
+
 ;;;
 (provide 'ag-compile)
