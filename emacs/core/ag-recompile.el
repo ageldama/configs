@@ -110,12 +110,12 @@
       (cl-case (length frame.window-list)
         (0 (progn (message "no comile-buffer found")
                   ;; currently: executable file?
-                  (if (recompile%executable-buffer-p (current-buffer))
-                      (let ((fn (buffer-file-name (current-buffer))))
-                        (when (y-or-n-p (message "M-x compile %s" fn))
-                          (compile fn)))
-                      ;; else:
-                      (call-interactively 'compile))))
+                  (cond
+                   ((eq 'dired-mode major-mode)
+                    (ag/compile-current-dired-file))
+                   ((recompile%executable-buffer-p (current-buffer))
+                    (ag/compile-current-buffer))
+                   (t (call-interactively 'compile)))))
         (1 (recompile%do-recompile
             (cl-first frame.window-list)))
         (t (recompile%select-and-recompile frame.window-list))))))

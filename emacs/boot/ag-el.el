@@ -67,4 +67,24 @@
 
 
 
+(defun ag/compile-on-file (filename)
+  (when (and filename
+             (y-or-n-p (message "M-x compile %s" filename)))
+    (compile filename)))
+
+
+(defun ag/compile-current-buffer ()
+  (interactive)
+  (let ((fn (buffer-file-name (current-buffer))))
+    (ag/compile-on-file fn)))
+
+
+(defun ag/compile-current-dired-file ()
+  (interactive)
+  (let ((fn (dired-get-filename)))
+    (ag/compile-on-file fn)))
+
+
+
+
 (provide 'ag-el)
