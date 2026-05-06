@@ -28,38 +28,32 @@
       (add-hook 'compilation-filter-hook 'colorize-compilation-buffer))))
 
 
+
+;; [2026-05-06 Wed 16:59] 뭔가 버퍼이름을 바꾸면 `recompile'시 이상한 일이 벌어진다. 냅두자.
+;; 그냥 손으로 `rename-buffer' (C-x x r) 하자.
+;;
+;; (setq compilation-buffer-name-function 
+;;       (lambda (mode)
+;;         (message "*%s (%s)*"
+;;                  compile-command default-directory)))
+
+
+
+
+
+(setq compilation-scroll-output t)
+
+
+
+
+
+
 ;;; recompile
-
-(defun recompile-showing-compilation-window ()
-  (interactive)
-  (let* ((frm+wnd-lst
-          (apply #'append
-                 (mapcar (lambda (frm)
-                           (with-selected-frame frm
-                             (mapcar (lambda (wnd) (cons frm wnd))
-                                     (window-list))))
-                         (visible-frame-list))))
-         (comp-frm-wnd (seq-find #'(lambda (frm-wnd)
-                                     (with-selected-frame (car frm-wnd)
-                                       (with-current-buffer (window-buffer (cdr frm-wnd))
-                                         (or (member major-mode '(compilation-mode grep-mode go-test-mode))
-                                             )
-                                         )))
-                                 frm+wnd-lst)))
-    (if comp-frm-wnd
-        (progn (with-selected-frame (car comp-frm-wnd)
-                 (with-current-buffer (window-buffer (cdr comp-frm-wnd)) (recompile))))
-      ;; else
-      (progn (message "no comile-buffer found")
-             (call-interactively 'compile)))))
-
-
-(global-set-key (kbd "<f5>") #'recompile-showing-compilation-window)
 
 ;; C-u <f5> : ...을 compilation buffer에서 직접 실행하길 원해서.
 ;; (`<esc> g r` 안될 때에)
-(define-key compilation-mode-map (kbd "<f5>") #'recompile)
-(define-key compilation-minor-mode-map (kbd "<f5>") #'recompile)
+;; (define-key compilation-mode-map (kbd "<f5>") #'recompile)
+;; (define-key compilation-minor-mode-map (kbd "<f5>") #'recompile)
 
 
 

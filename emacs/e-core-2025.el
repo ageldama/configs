@@ -25,6 +25,7 @@
              'ag-grep
              'ag-wgrep
              'ag-mini-git
+             'ag-recompile
              'ag-compile
 
              'ag-lang-mode
