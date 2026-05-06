@@ -111,7 +111,9 @@
         (0 (progn (message "no comile-buffer found")
                   ;; currently: executable file?
                   (if (recompile%executable-buffer-p (current-buffer))
-                      (compile (buffer-file-name (current-buffer)))
+                      (let ((fn (buffer-file-name (current-buffer))))
+                        (when (y-or-n-p (message "M-x compile %s" fn))
+                          (compile fn)))
                       ;; else:
                       (call-interactively 'compile))))
         (1 (recompile%do-recompile

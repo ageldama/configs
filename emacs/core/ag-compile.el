@@ -111,6 +111,16 @@
 
 
 
+;;; dired `K'
+
+
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "K")
+              (lambda ()
+                (interactive)
+                (let ((fn (dired-get-filename)))
+                  (when (y-or-n-p (message "M-x compile %s" fn))
+                    (compile fn))))))
 
 
 
