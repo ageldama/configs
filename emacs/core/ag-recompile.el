@@ -16,7 +16,7 @@
 (defvar recompile-executable-buffer-p-list
   (list (lambda (buf)
           (s-ends-with? ".exe"
-                        (s-downcase (buffer-name buf))))
+                        (s-downcase (buffer-file-name buf))))
         (lambda (buf)
           (file-executable-p (buffer-file-name buf)))))
 
@@ -93,6 +93,8 @@
 
 (defun recompile%executable-buffer-p (buf)
   (cl-block blk-preds
+    (when (null (buffer-file-name buf))
+      (cl-return-from blk-preds nil))
     (cl-loop for pred in recompile-executable-buffer-p-list
              when (funcall pred buf)
              do (cl-return-from blk-preds t)
