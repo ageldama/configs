@@ -134,29 +134,11 @@
 
 (defun %emacsrc-look (&optional frame)
   (when (and t (window-system frame))
-    ;; "Noto Sans Mono"
-    ;; "Anonymous Pro"
-    ;; "JetBrains Mono"
-    ;; "Source Code Pro"
-    ;; "D2Coding"
-    ;; "HBIOS-SYS"
-    ;; "나눔고딕코딩"
-    ;; "Noto Sans Mono CJK KR"
-    ;; "DOSSaemmul"
-    ;; "HBIOS-SYS"
-    (set-frame-font
-     "DejaVu Sans Mono"
-     ;; "Adwaita Mono"
-     )
-
-    (ag-set-fixed-fonts
-     "DejaVu Sans Mono"
-     ;; "Adwaita Mono"
-     ;; "Neo둥근모 Code"
-     "D2Coding"
-     )
-
-    (ag-set-font-height 104)
+    (let ((en-fn "Input Mono Condensed")
+          (kr-fn "D2Coding"))
+      (set-frame-font en-fn)
+      (ag-set-fixed-fonts en-fn kr-fn)
+      (ag-set-font-height 95))
 
     ;; (load-theme 'leuven-dark t)
     ;; (load-theme 'base16-greenscreen t)
