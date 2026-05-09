@@ -65,6 +65,8 @@
 
       ("M-x" chmod+x-this-file "chmod +x")
 
+      ("C-x" chmod+x-and-compile-this-file "chmod +x & run")
+
       ("r" compile-this-file "run(compile)")
 
       ("M-w" buffer-path-and-line-col "copy-path-linum")))

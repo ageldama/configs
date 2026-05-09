@@ -65,6 +65,12 @@
 
 
 
+(defun chmod+x-and-compile-this-file ()
+  (interactive)
+  (chmod+x-this-file)
+  (compile-this-file))
+
+
 
 ;;; C-<f5>
 
