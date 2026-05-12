@@ -57,26 +57,30 @@
  ;; 'ag-feat-editorconfig          ; dpkg=elpa-editorconfig
  ;; 'ag-feat-plantuml              ; dpkg=-
  ;; 'ag-feat-helpful               ; dpkg=elpa-helpful
- ;; 'ag-feat-vertico               ; dpkg=elpa-vertico
+
+ 'ag-feat-vertico               ; dpkg=elpa-vertico
  ;; 'ag-feat-marginalia            ; dpkg=elpa-marginalia
- ;; 'ag-feat-orderless             ; dpkg=elpa-orderless
- ;; 'ag-feat-consult               ; dpkg=elpa-consult
- 'ag-feat-counsel                  ; dpkg=elpa-counsel
- 'ag-feat-ivy-rich                 ; dpkg=-
- 'ag-feat-ivy-hydra                ; dpkg=-
- 'ag-feat-counsel-projectile       ; dpkg=-
- 'ag-feat-smex                     ; dpkg=elpa-smex
+ 'ag-feat-consult               ; dpkg=elpa-consult
+
+ ;; 'ag-feat-counsel                  ; dpkg=elpa-counsel
+ ;; 'ag-feat-counsel-projectile       ; dpkg=-
+ ;; 'ag-feat-ivy-rich                 ; dpkg=-
+ ;; 'ag-feat-ivy-hydra                ; dpkg=-
+ ;; 'ag-feat-ivy-emoji-maybe          ; dpkg=-
+
+ ;; 'ag-feat-smex                     ; dpkg=elpa-smex
+
  'ag-feat-json                     ; dpkg=-
  'ag-feat-toml                     ; dpkg=-
  'ag-feat-yaml                     ; dpkg=-
  ;; 'ag-feat-vimish-fold              ; dpkg=elpa-vimish-fold
  ;; 'ag-feat-evil-vimish-fold         ; dpkg=-
  'ag-feat-yas                      ; dpkg=elpa-yasnippet-snippets
- 'ag-feat-treemacs              ; dpkg=elpa-treemacs
- 'ag-feat-treemacs-projectile   ; dpkg=elpa-treemacs-projectile
+ ;; 'ag-feat-treemacs              ; dpkg=elpa-treemacs
+ ;; 'ag-feat-treemacs-projectile   ; dpkg=elpa-treemacs-projectile
  ;; 'ag-feat-treemacs-evil         ; dpkg=elpa-treemacs-evil
- 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
- 'ag-feat-treemacs-icons-dired  ; dpkg=-
+ ;; 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
+ ;; 'ag-feat-treemacs-icons-dired  ; dpkg=-
  'ag-feat-dwim-shell-command    ; dpkg=-
  'ag-feat-python                   ; dpkg=+
  ;; 'ag-feat-ruby                     ; dpkg=+
@@ -143,11 +147,11 @@
     ;; (load-theme 'leuven-dark t)
     ;; (load-theme 'base16-greenscreen t)
     ;; (load-theme 'modus-operandi-tinted t)
-    (require 'ag-feat-day-and-night)
-    (setq *day-and-night/day-theme* 'modus-operandi-tinted)
-    (setq *day-and-night/night-theme* 'modus-vivendi-tinted)
-    (day-and-night/change-theme-by-time)
-    (day-and-night/start-timer 30)
+    ;; (require 'ag-feat-day-and-night)
+    ;; (setq *day-and-night/day-theme* 'modus-operandi-tinted)
+    ;; (setq *day-and-night/night-theme* 'modus-vivendi-tinted)
+    ;; (day-and-night/change-theme-by-time)
+    ;; (day-and-night/start-timer 30)
     ;; (day-and-night/declare-its-day)
     ;; (day-and-night/declare-its-night)
     ))
