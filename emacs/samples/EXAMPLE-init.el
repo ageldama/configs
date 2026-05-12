@@ -58,17 +58,17 @@
  ;; 'ag-feat-plantuml              ; dpkg=-
  ;; 'ag-feat-helpful               ; dpkg=elpa-helpful
 
- 'ag-feat-vertico               ; dpkg=elpa-vertico
+ ;; 'ag-feat-vertico               ; dpkg=elpa-vertico
+ ;; 'ag-feat-consult               ; dpkg=elpa-consult
  ;; 'ag-feat-marginalia            ; dpkg=elpa-marginalia
- 'ag-feat-consult               ; dpkg=elpa-consult
 
- ;; 'ag-feat-counsel                  ; dpkg=elpa-counsel
- ;; 'ag-feat-counsel-projectile       ; dpkg=-
- ;; 'ag-feat-ivy-rich                 ; dpkg=-
- ;; 'ag-feat-ivy-hydra                ; dpkg=-
- ;; 'ag-feat-ivy-emoji-maybe          ; dpkg=-
+ 'ag-feat-counsel                  ; dpkg=elpa-counsel
+ 'ag-feat-counsel-projectile       ; dpkg=-
+ 'ag-feat-ivy-rich                 ; dpkg=-
+ 'ag-feat-ivy-hydra                ; dpkg=-
+ 'ag-feat-ivy-emoji-maybe          ; dpkg=-
 
- ;; 'ag-feat-smex                     ; dpkg=elpa-smex
+ 'ag-feat-smex                     ; dpkg=elpa-smex
 
  'ag-feat-json                     ; dpkg=-
  'ag-feat-toml                     ; dpkg=-
@@ -87,7 +87,6 @@
  ;; 'ag-feat-ruby-lite                     ; dpkg=+
  ;; 'ag-feat-haskell                  ; dpkg=+
  ;; 'ag-feat-php                   ; dpkg=+
- 'ag-feat-ivy-emoji-maybe       ; dpkg=-
  ;; 'ag-feat-embark                ; dpkg=elpa-embark
  ;; 'ag-feat-embark-consult        ; dpkg=-
  ;; 'ag-feat-multiple-cursors      ; dpkg=-
