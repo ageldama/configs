@@ -149,6 +149,12 @@
  )
 
 
+
+;;; register
+
+(setq register-use-preview 'fancy)
+
+
 ;;; tab-bar
 
 ;; (global-set-key (kbd "C-x <up>") 'tab-list)
