@@ -41,7 +41,7 @@ KeySysWorkspacePrevTakeWin="Super+Shift+,"
 KeySysWorkspaceNextTakeWin="Super+Shift+."
 KeySysWorkspaceLastTakeWin="Super+Shift+x"
 
-# KeySysShowDesktop="Super+F5"
+KeySysShowDesktop="Super+d"
 
 KeyWinMaximize="Super+Ctrl+x"
 KeyWinMaximizeVert="Super+Ctrl+z"
