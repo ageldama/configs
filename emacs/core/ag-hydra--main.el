@@ -191,7 +191,7 @@
 
       ("$" eshell "eshell")
 
-      ("t" hydra/tab-bar/body "tab-bar")
+      ;; `C-x t' is better: ("t" hydra/tab-bar/body "tab-bar")
 
       ("C-$" (lambda () (interactive) (ansi-term shell-file-name)) "term")
 
