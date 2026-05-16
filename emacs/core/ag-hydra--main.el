@@ -248,7 +248,7 @@
        "proc"
        :exit t)
 
-      ("C-k" kill-process "kill-proc" :exit t)
+      ("k" kill-process "kill-proc" :exit t)
 
       ,@(when (fboundp 'sdcv-search-input)
           '(("d" sdcv-search-input "sdcv" :exit t)))
