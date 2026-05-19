@@ -225,19 +225,19 @@ namespace eval gui {
         ::tout printnl "$cmd"
     }
 
-    proc select_xy {} {
+    proc _select_xy {vname} {
         set d [::shell ask_location]
-        return "[dict get $d x],[dict get $d y]"
+        set g "[dict get $d x],[dict get $d y]"
+        variable $vname
+        set $vname "$g"
     }
 
     proc select_from_xy {} {
-        variable from_xy
-        set from_xy [select_xy]
+        _select_xy from_xy
     }
 
     proc select_to_xy {} {
-        variable to_xy
-        set to_xy [select_xy]
+        _select_xy to_xy
     }
 
     namespace ensemble create
