@@ -26,6 +26,12 @@
  (global-set-key (kbd "<f9>") 'do-lang-mode-hydra)
 
  (global-set-key (kbd "M-s d") 'find-name-dired)
+
+ ;;; to be a bit more Windows-ish:
+ (global-set-key (kbd "C-S-t") 'tab-new)
+ (global-set-key (kbd "C-S-w") 'tab-close)
+ (global-set-key (kbd "C-S-n") 'make-frame-command)
+
  )
 
 
