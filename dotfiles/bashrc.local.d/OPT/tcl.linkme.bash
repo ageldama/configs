@@ -7,3 +7,6 @@ if [ -z "$TCLLIBPATH" ]; then
 else
     export TCLLIBPATH="$TCLLIBPATH $DIR"
 fi
+
+export PATH=$PATH:$HOME/local/tcl/bin
+
