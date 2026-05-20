@@ -88,6 +88,7 @@ namespace eval shell {
         variable _print_nonewline_cb
         variable _running_cb
         variable _finished_cb
+        variable _expecting_result_file
 
         constructor {args} {
             set defaults {
@@ -95,6 +96,7 @@ namespace eval shell {
                 print_nonewline_cb {{txt} {}}
                 running_cb         {{} {}}
                 finished_cb        {{} {}}
+                expecting_result_file ""
             }
 
             set args_ [dict merge $defaults $args]
@@ -106,6 +108,7 @@ namespace eval shell {
             my variable _print_nonewline_cb
             my variable _running_cb
             my variable _finished_cb
+            my variable _expecting_result_file
 
             dict with args_ {
                 set _cmd $cmd
@@ -114,6 +117,7 @@ namespace eval shell {
                 set _print_nonewline_cb $print_nonewline_cb
                 set _running_cb $running_cb
                 set _finished_cb $finished_cb
+                set _expecting_result_file $expecting_result_file
             }
         }
 
@@ -158,6 +162,14 @@ namespace eval shell {
                 if {[catch {close $ch} errmsg]} {
                     my println "\nEXITED: $errmsg"
                 }
+
+                my variable _expecting_result_file
+                if {[file exists $_expecting_result_file]} {
+                    tout println "RESULT-FILE: $_expecting_result_file // size= [file size $_expecting_result_file]"
+                } else {
+                    tout println "NO-RESULT-FILE: $_expecting_result_file"
+                }
+
                 my destroy
             } else {
                 set data [read $ch 100]
@@ -378,9 +390,11 @@ namespace eval gui {
         }
 
         variable command
+        variable output_filename
         set shcmd_rdr_ffmpeg \
             [::shell::ShCommandReader new \
                  cmd "$command" \
+                 expecting_result_file [file tildeexpand $output_filename] \
                  println_cb {{txt} { ::tout println "$txt" }} \
                  print_nonewline_cb {{txt} { ::tout print "$txt" }} \
                  running_cb {{} {
@@ -488,7 +502,6 @@ gui set_xorg_display [shell check_xorg_display]
 
 gui makewin
 
-# TODO result file size
 # TODO mpv it
 # TODO see overlay
 
