@@ -521,53 +521,65 @@ namespace eval gui {
         variable to_xy
         lassign [::geom calc_width_height $from_xy $to_xy] w h
         lassign [::geom x_and_y $from_xy] x y
-        show_overlay $x $y $w $h
+        if {[catch {show_overlay $x $y $w $h} errmsg]} {
+            tk_messageBox -message $errmsg -icon warning
+        }
     }
 
     proc show_overlay {x y win_w win_h} {
         set mw .mw
+        set mw_ok false
 
         if {[winfo exists $mw]} {
             return
         }
 
-        toplevel $mw
+        try {
+            toplevel $mw
 
-        wm overrideredirect $mw 1
-        wm attributes $mw -topmost 1
+            wm overrideredirect $mw 1
+            wm attributes $mw -topmost 1
 
-        wm geometry $mw "${win_w}x${win_h}+${x}+${y}"
+            wm geometry $mw "${win_w}x${win_h}+${x}+${y}"
+            tkwait visibility $mw
 
-        global tcl_platform
-        set os $tcl_platform(os)
+            global tcl_platform
+            set os $tcl_platform(os)
 
-        if {$os eq "Windows NT"} {
-            $mw configure -bg magenta
-            wm attributes $mw -transparentcolor magenta
-        } else {
-            $mw configure -bg "#111111"
-            wm attributes $mw -alpha 0.6
+            if {$os eq "Windows NT"} {
+                $mw configure -bg magenta
+                wm attributes $mw -transparentcolor magenta
+            } else {
+                $mw configure -bg "#111111"
+                wm attributes $mw -alpha 0.6
+            }
+
+            if {$os eq "Windows NT"} {
+                set canvas_bg magenta
+            } else {
+                set canvas_bg "#111111"
+            }
+
+            set c [canvas $mw.canvas -bg $canvas_bg -highlightthickness 0]
+            pack $c -fill both -expand 1
+
+            set cx [expr {$win_w / 2}]
+            set cy [expr {$win_h / 2}]
+            set len 30
+
+            $c create line [expr {$cx - $len}] $cy [expr {$cx + $len}] $cy -fill "#ffffff" -width 2
+            $c create line $cx [expr {$cy - $len}] $cx [expr {$cy + $len}] -fill "#ffffff" -width 2
+
+            $c create text $cx [expr {$win_h - 40}] -text "종료하려면 클릭 / Click to dismiss" -fill "#aaaaaa" -font {Helvetica 12 bold}
+
+            bind $mw <Button-1> [list destroy $mw]
+
+            set mw_ok true
+        } finally {
+            if {!$mw_ok} {
+                catch [list destroy $mw]
+            }
         }
-
-        if {$os eq "Windows NT"} {
-            set canvas_bg magenta
-        } else {
-            set canvas_bg "#111111"
-        }
-
-        set c [canvas $mw.canvas -bg $canvas_bg -highlightthickness 0]
-        pack $c -fill both -expand 1
-
-        set cx [expr {$win_w / 2}]
-        set cy [expr {$win_h / 2}]
-        set len 30
-
-        $c create line [expr {$cx - $len}] $cy [expr {$cx + $len}] $cy -fill "#ffffff" -width 2
-        $c create line $cx [expr {$cy - $len}] $cx [expr {$cy + $len}] -fill "#ffffff" -width 2
-
-        $c create text $cx [expr {$win_h - 40}] -text "종료하려면 클릭 / Click to dismiss" -fill "#aaaaaa" -font {Helvetica 12 bold}
-
-        bind $mw <Button-1> [list destroy $mw]
     }
 }
 
