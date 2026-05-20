@@ -366,9 +366,13 @@ namespace eval gui {
         button $c.btn_show_overlay  -text "Show Region" \
             -command "[namespace current]::show_overlay_auto"
 
+        button $c.btn_run_player  -text "Play Output File" \
+            -command "[namespace current]::play_output_file"
+
         pack $c.btn_start -side left {*}$pads
         pack $c.btn_stop -side left {*}$pads
         pack $c.btn_show_overlay -side left {*}$pads
+        pack $c.btn_run_player -side left {*}$pads
 
         # --- frame: output
         frame .f_console
@@ -447,6 +451,11 @@ namespace eval gui {
         } else {
             set "[namespace current]::output_filename" $file_path
         }
+    }
+
+    proc play_output_file {} {
+        variable output_filename
+        exec vlc [file tildeexpand $output_filename] &
     }
 
     proc vtrace {n1 n2 op} {
@@ -570,5 +579,4 @@ gui set_xorg_display [shell check_xorg_display]
 
 gui makewin
 
-# TODO mpv it
 
