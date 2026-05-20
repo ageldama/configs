@@ -1,7 +1,8 @@
 #!/usr/bin/env wish9.0
 
 namespace eval shell {
-    namespace export check_command ask_location
+    namespace export check_command ask_mouse_location run_shell_command kill_shell_command kill_process
+    namespace ensemble create
 
     proc is_command_available {cmd} {
         global tcl_platform
@@ -28,7 +29,7 @@ namespace eval shell {
         }
     }
 
-    proc ask_location {args} {
+    proc ask_mouse_location {args} {
         tk_messageBox -message {Move Mouse Pointer and Press Enter...} -icon info
         set s [exec xdotool getmouselocation]
         set s [string map {":" " "} $s]
@@ -36,13 +37,86 @@ namespace eval shell {
         return [dict create {*}$s]
     }
 
-    namespace ensemble create
+    variable shcmd_pipe
+
+    # TODO ui-states
+
+    proc run_shell_command {shcmd} {
+        variable shcmd_pipe
+
+        set shcmd_pipe [open "|$shcmd 2>@1" r]
+        fconfigure $shcmd_pipe \
+            -blocking 0 -buffering full \
+            -translation binary
+        fileevent $shcmd_pipe readable "[namespace current]::shcmd_pipe_onread $shcmd_pipe"
+    }
+
+    proc shcmd_pipe_onread {ch} {
+        if {[eof $ch]} {
+            tout println "\n--- EOF: $ch ---"
+            catch {close $ch}
+        } else {
+            set data [read $ch 100]
+            tout print $data
+        }
+    }
+
+    proc kill_shell_command {} {
+        variable shcmd_pipe
+
+        if {[string length $shcmd_pipe] == 0} {return}
+
+        try {
+            set pids [pid $shcmd_pipe]
+            tout println "--- KILL: $pids ---"
+
+            catch [list [namespace current]::kill_process $pids 1]
+        } on error {err erropts} {
+            tout println "--- WARN: $err ---"
+        }
+
+        set shcmd_pipe ""
+    }
+
+    proc kill_process {name_or_pid {is_pid 0}} {
+        global tcl_platform
+        set os $tcl_platform(os)
+
+        switch -glob $os {
+            "Windows*" {
+                if {$is_pid} {
+                    set cmd [list exec taskkill /F /PID $name_or_pid]
+                } else {
+                    set cmd [list exec taskkill /F /IM $name_or_pid /T]
+                }
+            }
+            "Darwin" -
+            "Linux" {
+                if {$is_pid} {
+                    set cmd [list exec kill -9 $name_or_pid]
+                } else {
+                    set cmd [list exec pkill -9 $name_or_pid]
+                }
+                #catch {exec pkill -P {*}$pids}
+                #catch {exec kill {*}$pids}
+            }
+            default {
+                error "Unsupported OS: $os"
+            }
+        }
+
+        # 실행 및 에러 처리
+        if {[catch { {*}$cmd } msg]} {
+            error "ERROR: $msg"
+        }
+    }
 }
 
 namespace eval tout {
-    namespace export print printnl cls
+    namespace export print println cls
+    namespace ensemble create
 
-    proc printnl {txt} {
+    proc println {txt} {
         print "$txt"
         print "\n"
     }
@@ -61,24 +135,22 @@ namespace eval tout {
         $tout delete 1.0 end
         $tout configure -state disabled
     }
-
-    namespace ensemble create
 }
 
 namespace eval geom {
     namespace export calc_by_from_to
+    namespace ensemble create
 
     proc calc_by_from_to {from_xy to_xy} {
         lassign [split $from_xy ","] fromx fromy
         lassign [split $to_xy ","] tox toy
         return "[expr $tox - $fromx]x[expr $toy - $fromy]"
     }
-
-    namespace ensemble create
 }
 
 namespace eval gui {
     namespace export makewin
+    namespace ensemble create
 
     variable seconds 10
     variable framerate 30
@@ -177,7 +249,8 @@ namespace eval gui {
         set c .f_btns
         pack $c -expand false {*}$pads
 
-        button $c.btn_start -text Start
+        button $c.btn_start -text Start \
+            -command {shell run_shell_command "$gui::command"}
         button $c.btn_stop  -text Stop
 
         pack $c.btn_start -side left {*}$pads
@@ -200,14 +273,14 @@ namespace eval gui {
         pack $c.yscr -side right -expand false -fill y
         pack $c.tout -side left -expand true -fill both
 
-        tout printnl Ready.
+        tout println Ready.
     }
 
     proc select_output_filename {} {
         set file_path [tk_getSaveFile]
 
         if {$file_path eq ""} {
-            puts "파일 선택이 취소되었습니다."
+            puts "Canceled."
         } else {
             set "[namespace current]::output_filename" $file_path
         }
@@ -219,26 +292,32 @@ namespace eval gui {
         }
         variable command
 
-        set geom [::geom::calc_by_from_to $from_xy $to_xy]
+        set geom "???"
+        catch {
+            set geom [::geom::calc_by_from_to $from_xy $to_xy]
+        }
 
-        set cmd "ffmpeg -f x11grab -video_size $geom -framerate $framerate -i $from_xy -t $seconds '$output_filename'"
+        set output_filename2 $output_filename
+        catch {
+            set output_filename2 [file tildeexpand $output_filename2]
+        }
+
+        set cmd "ffmpeg -f x11grab -video_size $geom -framerate $framerate -i $from_xy -t $seconds '$output_filename2'"
         set command "$cmd"
 
-        ::tout printnl {--- [New command] ---}
-        ::tout printnl "$cmd"
+        ::tout println {--- [New command] ---}
+        ::tout println "$cmd"
     }
 
     foreach namepart {from_xy to_xy} {
         set code [subst -nocommands {proc select_${namepart} {} {
-            set d [::shell ask_location]
+            set d [::shell ask_mouse_location]
             set g "[dict get \$d x],[dict get \$d y]"
             variable $namepart
             set $namepart "\$g"
         }}]
         eval $code
     }
-
-    namespace ensemble create
 }
 
 
@@ -248,3 +327,5 @@ shell check_command ffmpeg xdotool
 
 gui makewin
 
+
+# TODO ${DISPLAY}.${SCREEN}
