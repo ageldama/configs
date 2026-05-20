@@ -231,7 +231,9 @@
       ,@(when (fboundp 'projectile-commander)
           '(("P" projectile-commander "prj-cmdr" )))
 
-      ("C-r" recompile-showing-compilation-window "recompile")
+      ("C-r"
+       recompile-visible-compilation-window
+       "recompile")
 
       ,@hydra-mini/++extras
 

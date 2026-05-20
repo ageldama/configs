@@ -15,10 +15,9 @@ font create FNT -family "DSEG7 Modern" -size 12 -weight bold -slant italic
 set fg #fb7c00
 set bg #222222
 
-entry .txt -textvariable clk \
+label .txt -textvariable clk \
     -justify center -state readonly \
     -fg $fg -bg $bg \
-    -disabledforeground $fg -readonlybackground $bg \
     -font FNT \
     -borderwidth 0 -highlightthickness 0 -relief flat
 
