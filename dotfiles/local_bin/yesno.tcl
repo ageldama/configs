@@ -1,6 +1,9 @@
 #!/usr/bin/env tclsh
 
 set q "really???"
+if { $argc > 0 } {
+    set q [lindex $argv [expr $argc - 1]]
+}
 
 set ch [open [list | rofi {*}[list \
   -theme-str "window { width: 200px; height: 150px; }" \
@@ -10,7 +13,7 @@ fconfigure $ch -buffering none
 
 puts $ch "<span size='x-large' weight='heavy'>Yes</span>"
 puts $ch "<span size='x-large' weight='heavy'>No</span>"
-# flush ch
+close $ch write ;# 이렇게 해야 rofi 렌더링 즉시.
 
 proc reader {ch} {
   catch {
