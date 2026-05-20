@@ -221,22 +221,36 @@ namespace eval tout {
 }
 
 namespace eval geom {
-    namespace export calc_by_from_to calc_width_height x_and_y
+    namespace export calc_by_from_to calc_xywh x_and_y
     namespace ensemble create
 
     proc x_and_y {xy} {
         split $xy ","
     }
 
-    proc calc_width_height {from_xy to_xy} {
-        lassign [x_and_y $from_xy] fromx fromy
-        lassign [x_and_y $to_xy] tox toy
-        return [list [expr $tox - $fromx] [expr $toy - $fromy]]
+    proc ordered_ab {a b} {
+        if {[expr $a > $b]} {
+            return [list $b $a]
+        }
+        return [list $a $b]
+    }
+
+    proc calc_xywh {from_xy to_xy} {
+        lassign [x_and_y $from_xy] xf yf
+        lassign [x_and_y $to_xy] xt yt
+
+        lassign [ordered_ab $xf $xt] x1 x2
+        lassign [ordered_ab $yf $yt] y1 y2
+
+        return [dict create x $x1 y $y1 \
+                w [expr $x2 - $x1] \
+                h [expr $y2 - $y1]]
     }
 
     proc calc_by_from_to {from_xy to_xy} {
-        lassign [calc_width_height $from_xy $to_xy] w h
-        return "${w}x${h}"
+        set d [calc_xywh $from_xy $to_xy]
+        return [dict create wh "[dict get $d w]x[dict get $d h]" \
+                    xy "[dict get $d x],[ dict get $d y]"]
     }
 }
 
@@ -468,7 +482,7 @@ namespace eval gui {
         }
         variable command
 
-        set geom "???"
+        set geom [dict create wh "0x0" xy "0+0"]
         catch {
             set geom [::geom::calc_by_from_to $from_xy $to_xy]
         }
@@ -476,7 +490,8 @@ namespace eval gui {
         tout println $xorg_display
         tout println $xorg_screen_from_xy
         tout println $from_xy
-        set from_xy2 "${xorg_display}.${xorg_screen_from_xy}+${from_xy}"
+        set xy "${xorg_display}.${xorg_screen_from_xy}+[dict get $geom xy]"
+        set wh [dict get $geom wh]
 
         set output_filename2 $output_filename
         catch {
@@ -485,7 +500,7 @@ namespace eval gui {
 
         # -an : no-audio
         # -n  : no-overwriting
-        set cmd "ffmpeg -f x11grab -video_size $geom -framerate $framerate -i $from_xy2 -t $seconds -an -n $output_filename2"
+        set cmd "ffmpeg -f x11grab -video_size $wh -framerate $framerate -i $xy -t $seconds -an -n $output_filename2"
         set command "$cmd"
 
         ::tout println {--- [New command] ---}
@@ -519,10 +534,11 @@ namespace eval gui {
     proc show_overlay_auto {} {
         variable from_xy
         variable to_xy
-        lassign [::geom calc_width_height $from_xy $to_xy] w h
-        lassign [::geom x_and_y $from_xy] x y
-        if {[catch {show_overlay $x $y $w $h} errmsg]} {
-            tk_messageBox -message $errmsg -icon warning
+        set geom [::geom calc_xywh $from_xy $to_xy]
+        dict with geom {
+            if {[catch {show_overlay $x $y $w $h} errmsg]} {
+                tk_messageBox -message $errmsg -icon warning
+            }
         }
     }
 
