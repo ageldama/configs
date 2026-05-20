@@ -16,7 +16,7 @@ set fg #fb7c00
 set bg #222222
 
 label .txt -textvariable clk \
-    -justify center -state readonly \
+    -justify center \
     -fg $fg -bg $bg \
     -font FNT \
     -borderwidth 0 -highlightthickness 0 -relief flat
