@@ -221,19 +221,29 @@ namespace eval tout {
 }
 
 namespace eval geom {
-    namespace export calc_by_from_to
+    namespace export calc_by_from_to calc_width_height x_and_y
     namespace ensemble create
 
+    proc x_and_y {xy} {
+        split $xy ","
+    }
+
+    proc calc_width_height {from_xy to_xy} {
+        lassign [x_and_y $from_xy] fromx fromy
+        lassign [x_and_y $to_xy] tox toy
+        return [list [expr $tox - $fromx] [expr $toy - $fromy]]
+    }
+
     proc calc_by_from_to {from_xy to_xy} {
-        lassign [split $from_xy ","] fromx fromy
-        lassign [split $to_xy ","] tox toy
-        return "[expr $tox - $fromx]x[expr $toy - $fromy]"
+        lassign [calc_width_height $from_xy $to_xy] w h
+        return "${w}x${h}"
     }
 }
 
 namespace eval gui {
     namespace export makewin set_xorg_display check_before_flight \
-        state_as_ready state_as_running kill_recording
+        state_as_ready state_as_running kill_recording \
+        show_overlay_auto
     namespace ensemble create
 
     variable seconds 10
@@ -241,7 +251,7 @@ namespace eval gui {
     variable output_filename ~/w/output.mp4
     variable command "..."
     variable from_xy "0,0"
-    variable to_xy   "10,10"
+    variable to_xy   "300,200"
     variable xorg_display
     variable xorg_screen_from_xy "0"
     variable xorg_screen_to_xy   "0"
@@ -353,8 +363,12 @@ namespace eval gui {
         button $c.btn_stop  -text Stop \
             -command "[namespace current]::kill_recording"
 
+        button $c.btn_show_overlay  -text "Show Region" \
+            -command "[namespace current]::show_overlay_auto"
+
         pack $c.btn_start -side left {*}$pads
         pack $c.btn_stop -side left {*}$pads
+        pack $c.btn_show_overlay -side left {*}$pads
 
         # --- frame: output
         frame .f_console
@@ -491,6 +505,56 @@ namespace eval gui {
             set $namepart "\$g"
         }}]
         eval $code
+    }
+
+    proc show_overlay_auto {} {
+        variable from_xy
+        variable to_xy
+        lassign [::geom calc_width_height $from_xy $to_xy] w h
+        lassign [::geom x_and_y $from_xy] x y
+        show_overlay $x $y $w $h
+    }
+
+    proc show_overlay {x y win_w win_h} {
+        set mw .mw
+
+        toplevel $mw
+
+        wm overrideredirect $mw 1
+        wm attributes $mw -topmost 1
+
+        wm geometry $mw "${win_w}x${win_h}+${x}+${y}"
+
+        global tcl_platform
+        set os $tcl_platform(os)
+
+        if {$os eq "Windows NT"} {
+            $mw configure -bg magenta
+            wm attributes $mw -transparentcolor magenta
+        } else {
+            $mw configure -bg "#111111"
+            wm attributes $mw -alpha 0.6
+        }
+
+        if {$os eq "Windows NT"} {
+            set canvas_bg magenta
+        } else {
+            set canvas_bg "#111111"
+        }
+
+        set c [canvas $mw.canvas -bg $canvas_bg -highlightthickness 0]
+        pack $c -fill both -expand 1
+
+        set cx [expr {$win_w / 2}]
+        set cy [expr {$win_h / 2}]
+        set len 30
+
+        $c create line [expr {$cx - $len}] $cy [expr {$cx + $len}] $cy -fill "#ffffff" -width 2
+        $c create line $cx [expr {$cy - $len}] $cx [expr {$cy + $len}] -fill "#ffffff" -width 2
+
+        $c create text $cx [expr {$win_h - 40}] -text "종료하려면 클릭 / Click to dismiss" -fill "#aaaaaa" -font {Helvetica 12 bold}
+
+        bind $mw <Button-1> [list destroy $mw]
     }
 }
 
