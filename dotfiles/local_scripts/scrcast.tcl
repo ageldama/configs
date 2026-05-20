@@ -518,6 +518,10 @@ namespace eval gui {
     proc show_overlay {x y win_w win_h} {
         set mw .mw
 
+        if {[winfo exists $mw]} {
+            return
+        }
+
         toplevel $mw
 
         wm overrideredirect $mw 1
@@ -567,5 +571,4 @@ gui set_xorg_display [shell check_xorg_display]
 gui makewin
 
 # TODO mpv it
-# TODO see overlay
 
