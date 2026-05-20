@@ -77,7 +77,7 @@
 
 
 (defvar *command-filter-list*
-  (list "db$")
+  (list "db$" "^realgud:" "^gud-")
   "리스트의 각 요소는 `string-match'-pattern 문자열이거나,
  심볼이름 문자열에 대한 predicate이거나.")
 

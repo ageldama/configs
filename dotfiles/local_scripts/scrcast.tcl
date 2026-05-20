@@ -94,6 +94,9 @@ namespace eval gui {
             trace add variable "[namespace current]::${vname}" write "[namespace current]::build_command"
         }
 
+        #
+        set pads {-padx 3 -pady 3}
+
         # --- frame: inputs
         frame .f_form
         set c .f_form
@@ -105,8 +108,8 @@ namespace eval gui {
         label $c.lbl_seconds -text Seconds:
         entry $c.ent_seconds -textvariable "[namespace current]::seconds"
 
-        grid $c.lbl_seconds -row $row -column 0 -padx 5 -pady 5 -sticky w
-        grid $c.ent_seconds -row $row -column 1 -padx 5 -pady 5 -sticky ew
+        grid $c.lbl_seconds -row $row -column 0 {*}$pads -sticky w
+        grid $c.ent_seconds -row $row -column 1 {*}$pads -sticky ew
 
         # framerate = 30
         incr row
@@ -114,8 +117,8 @@ namespace eval gui {
         label $c.lbl_framerate -text {Frame rate:}
         entry $c.ent_framerate -textvariable "[namespace current]::framerate"
 
-        grid $c.lbl_framerate -row $row -column 0 -padx 5 -pady 5 -sticky w
-        grid $c.ent_framerate -row $row -column 1 -padx 5 -pady 5 -sticky ew
+        grid $c.lbl_framerate -row $row -column 0 {*}$pads -sticky w
+        grid $c.ent_framerate -row $row -column 1 {*}$pads -sticky ew
 
         # output filename
         incr row
@@ -125,9 +128,9 @@ namespace eval gui {
         button $c.btn_output_filename -text "Select" \
             -command "[namespace current]::select_output_filename"
 
-        grid $c.lbl_output_filename -row $row -column 0 -padx 5 -pady 5 -sticky w
-        grid $c.ent_output_filename -row $row -column 1 -padx 5 -pady 5 -sticky ew
-        grid $c.btn_output_filename -row $row -column 2 -padx 5 -pady 5 -sticky e
+        grid $c.lbl_output_filename -row $row -column 0 {*}$pads -sticky w
+        grid $c.ent_output_filename -row $row -column 1 {*}$pads -sticky ew
+        grid $c.btn_output_filename -row $row -column 2 {*}$pads -sticky e
 
         # from XxY
         incr row
@@ -137,9 +140,9 @@ namespace eval gui {
         button $c.btn_from_xy -text "Select" \
             -command "[namespace current]::select_from_xy"
 
-        grid $c.lbl_from_xy -row $row -column 0 -padx 5 -pady 5 -sticky w
-        grid $c.ent_from_xy -row $row -column 1 -padx 5 -pady 5 -sticky ew
-        grid $c.btn_from_xy -row $row -column 2 -padx 5 -pady 5 -sticky e
+        grid $c.lbl_from_xy -row $row -column 0 {*}$pads -sticky w
+        grid $c.ent_from_xy -row $row -column 1 {*}$pads -sticky ew
+        grid $c.btn_from_xy -row $row -column 2 {*}$pads -sticky e
 
         # to   XxY
         incr row
@@ -149,9 +152,9 @@ namespace eval gui {
         button $c.btn_to_xy -text "Select" \
             -command "[namespace current]::select_to_xy"
 
-        grid $c.lbl_to_xy -row $row -column 0 -padx 5 -pady 5 -sticky w
-        grid $c.ent_to_xy -row $row -column 1 -padx 5 -pady 5 -sticky ew
-        grid $c.btn_to_xy -row $row -column 2 -padx 5 -pady 5 -sticky e
+        grid $c.lbl_to_xy -row $row -column 0 {*}$pads -sticky w
+        grid $c.ent_to_xy -row $row -column 1 {*}$pads -sticky ew
+        grid $c.btn_to_xy -row $row -column 2 {*}$pads -sticky e
 
         # command
         incr row
@@ -159,8 +162,8 @@ namespace eval gui {
         label $c.lbl_command -text {Command:}
         entry $c.ent_command -textvariable "[namespace current]::command"
 
-        grid $c.lbl_command -row $row -column 0 -padx 5 -pady 5 -sticky w
-        grid $c.ent_command -row $row -column 1 -padx 5 -pady 5 -sticky ew
+        grid $c.lbl_command -row $row -column 0 {*}$pads -sticky w
+        grid $c.ent_command -row $row -column 1 {*}$pads -sticky ew
 
         #
         grid columnconfigure $c 1 -weight 1
@@ -172,18 +175,18 @@ namespace eval gui {
         # --- frame: buttons
         frame .f_btns
         set c .f_btns
-        pack $c -expand false
+        pack $c -expand false {*}$pads
 
         button $c.btn_start -text Start
         button $c.btn_stop  -text Stop
 
-        pack $c.btn_start -side left
-        pack $c.btn_stop -side left
+        pack $c.btn_start -side left {*}$pads
+        pack $c.btn_stop -side left {*}$pads
 
         # --- frame: output
         frame .f_console
         set c .f_console
-        pack $c -expand true -fill both
+        pack $c -expand true -fill both {*}$pads
 
         text $c.tout -font TkFixedFont \
             -bg black -fg #00ff00 \
@@ -194,8 +197,8 @@ namespace eval gui {
         ttk::scrollbar $c.yscr -orient vertical \
             -command [list $c.tout yview]
 
-        pack $c.yscr -side right -expand 0 -fill y
-        pack $c.tout -side left -expand TRUE -fill both
+        pack $c.yscr -side right -expand false -fill y
+        pack $c.tout -side left -expand true -fill both
 
         tout printnl Ready.
     }
@@ -225,19 +228,14 @@ namespace eval gui {
         ::tout printnl "$cmd"
     }
 
-    proc _select_xy {vname} {
-        set d [::shell ask_location]
-        set g "[dict get $d x],[dict get $d y]"
-        variable $vname
-        set $vname "$g"
-    }
-
-    proc select_from_xy {} {
-        _select_xy from_xy
-    }
-
-    proc select_to_xy {} {
-        _select_xy to_xy
+    foreach namepart {from_xy to_xy} {
+        set code [subst -nocommands {proc select_${namepart} {} {
+            set d [::shell ask_location]
+            set g "[dict get \$d x],[dict get \$d y]"
+            variable $namepart
+            set $namepart "\$g"
+        }}]
+        eval $code
     }
 
     namespace ensemble create
