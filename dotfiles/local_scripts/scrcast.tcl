@@ -49,10 +49,10 @@ namespace eval shell {
 
     variable shcmd_pipe
 
-    # TODO ui-states
-
     proc run_shell_command {shcmd} {
         variable shcmd_pipe
+
+        gui state_as_running
 
         set shcmd_pipe [open "|$shcmd 2>@1" r]
         fconfigure $shcmd_pipe \
@@ -63,8 +63,12 @@ namespace eval shell {
 
     proc shcmd_pipe_onread {ch} {
         if {[eof $ch]} {
+            gui state_as_ready
+
             tout println "\n--- EOF: $ch ---"
-            catch {close $ch}
+            if {[catch {close $ch} errmsg]} {
+                tout println "\nEXITED: $errmsg"
+            }
         } else {
             set data [read $ch 100]
             tout print $data
@@ -159,7 +163,7 @@ namespace eval geom {
 }
 
 namespace eval gui {
-    namespace export makewin set_xorg_display check_before_flight
+    namespace export makewin set_xorg_display check_before_flight state_as_ready state_as_running
     namespace ensemble create
 
     variable seconds 10
@@ -179,6 +183,11 @@ namespace eval gui {
 
     proc makewin {} {
         wm title . "ffmpeg screencast capture"
+
+        wm protocol . WM_DELETE_WINDOW {
+            catch {shell kill_shell_command}
+            exit
+        }
 
         foreach vname {seconds framerate output_filename from_xy to_xy} {
             trace add variable "[namespace current]::${vname}" write "[namespace current]::build_command"
@@ -273,7 +282,10 @@ namespace eval gui {
                     shell run_shell_command "$gui::command"
                 }
             }
-        button $c.btn_stop  -text Stop
+        button $c.btn_stop  -text Stop \
+            -command {
+                shell kill_shell_command
+            }
 
         pack $c.btn_start -side left {*}$pads
         pack $c.btn_stop -side left {*}$pads
@@ -295,7 +307,19 @@ namespace eval gui {
         pack $c.yscr -side right -expand false -fill y
         pack $c.tout -side left -expand true -fill both
 
+        state_as_ready
+
         tout println Ready.
+    }
+
+    proc state_as_ready {} {
+        .f_btns.btn_start configure -state normal
+        .f_btns.btn_stop configure -state disabled
+    }
+
+    proc state_as_running {} {
+        .f_btns.btn_start configure -state disabled
+        .f_btns.btn_stop configure -state normal
     }
 
     proc select_output_filename {} {
@@ -330,7 +354,8 @@ namespace eval gui {
         }
 
         # -an : no-audio
-        set cmd "ffmpeg -f x11grab -video_size $geom -framerate $framerate -i $from_xy2 -t $seconds -an $output_filename2"
+        # -n  : no-overwriting
+        set cmd "ffmpeg -f x11grab -video_size $geom -framerate $framerate -i $from_xy2 -t $seconds -an -n $output_filename2"
         set command "$cmd"
 
         ::tout println {--- [New command] ---}
@@ -370,5 +395,5 @@ gui set_xorg_display [shell check_xorg_display]
 
 gui makewin
 
-
-# TODO exit-code & result file?
+# TODO result file size
+# TODO mpv it
