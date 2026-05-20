@@ -396,4 +396,7 @@ gui set_xorg_display [shell check_xorg_display]
 gui makewin
 
 # TODO result file size
+# TODO tcloo <- shcmd
 # TODO mpv it
+# TODO see overlay
+
