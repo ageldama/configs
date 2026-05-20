@@ -112,7 +112,9 @@
   (interactive)
   (let ((cmd (completing-read "Which command? "
                               (command-filtered-list))))
-    (call-interactively cmd)))
+    ;; (message "%s / %s" (type-of cmd) (pp-to-string cmd))
+    (call-interactively (intern cmd))))
+
 
 
 
