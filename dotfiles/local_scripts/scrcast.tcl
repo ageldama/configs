@@ -1,7 +1,9 @@
 #!/usr/bin/env wish9.0
 
 namespace eval shell {
-    namespace export check_command ask_mouse_location run_shell_command kill_shell_command kill_process
+    namespace export check_command check_xorg_display \
+        ask_mouse_location \
+        run_shell_command kill_shell_command kill_process
     namespace ensemble create
 
     proc is_command_available {cmd} {
@@ -27,6 +29,14 @@ namespace eval shell {
                 exit -1
             }
         }
+    }
+
+    proc check_xorg_display {} {
+        if {[catch {set display $::env(DISPLAY)} errmsg]} {
+            tk_messageBox -message "need Xorg DISPLAY!" -icon error
+            exit -1
+        }
+        return $display
     }
 
     proc ask_mouse_location {args} {
@@ -149,7 +159,7 @@ namespace eval geom {
 }
 
 namespace eval gui {
-    namespace export makewin
+    namespace export makewin set_xorg_display check_before_flight
     namespace ensemble create
 
     variable seconds 10
@@ -158,6 +168,14 @@ namespace eval gui {
     variable command "..."
     variable from_xy
     variable to_xy
+    variable xorg_display
+    variable xorg_screen_from_xy "0"
+    variable xorg_screen_to_xy   "0"
+
+    proc set_xorg_display {display} {
+        variable xorg_display
+        set xorg_display $display
+    }
 
     proc makewin {} {
         wm title . "ffmpeg screencast capture"
@@ -250,7 +268,11 @@ namespace eval gui {
         pack $c -expand false {*}$pads
 
         button $c.btn_start -text Start \
-            -command {shell run_shell_command "$gui::command"}
+            -command {
+                if {[gui check_before_flight]} {
+                    shell run_shell_command "$gui::command"
+                }
+            }
         button $c.btn_stop  -text Stop
 
         pack $c.btn_start -side left {*}$pads
@@ -287,7 +309,7 @@ namespace eval gui {
     }
 
     proc build_command {n1 n2 op} {
-        foreach vname {seconds framerate output_filename from_xy to_xy} {
+        foreach vname {seconds framerate output_filename from_xy to_xy xorg_display xorg_screen_from_xy} {
             variable $vname
         }
         variable command
@@ -297,21 +319,41 @@ namespace eval gui {
             set geom [::geom::calc_by_from_to $from_xy $to_xy]
         }
 
+        tout println $xorg_display
+        tout println $xorg_screen_from_xy
+        tout println $from_xy
+        set from_xy2 "${xorg_display}.${xorg_screen_from_xy}+${from_xy}"
+
         set output_filename2 $output_filename
         catch {
             set output_filename2 [file tildeexpand $output_filename2]
         }
 
-        set cmd "ffmpeg -f x11grab -video_size $geom -framerate $framerate -i $from_xy -t $seconds '$output_filename2'"
+        # -an : no-audio
+        set cmd "ffmpeg -f x11grab -video_size $geom -framerate $framerate -i $from_xy2 -t $seconds -an $output_filename2"
         set command "$cmd"
 
         ::tout println {--- [New command] ---}
         ::tout println "$cmd"
     }
 
+    proc check_before_flight {} {
+        variable xorg_screen_from_xy
+        variable xorg_screen_to_xy
+        if {![string equal $xorg_screen_from_xy $xorg_screen_to_xy]} {
+            tk_messageBox -message "Does not support different Xorg screens (from: $xorg_screen_to_xy, to: $xorg_screen_to_xy)" -icon warning
+            return false
+        }
+        return true
+    }
+
     foreach namepart {from_xy to_xy} {
         set code [subst -nocommands {proc select_${namepart} {} {
             set d [::shell ask_mouse_location]
+
+            variable xorg_screen_$namepart
+            set xorg_screen_$namepart [dict get \$d screen]
+
             set g "[dict get \$d x],[dict get \$d y]"
             variable $namepart
             set $namepart "\$g"
@@ -324,8 +366,9 @@ namespace eval gui {
 # main:
 
 shell check_command ffmpeg xdotool
+gui set_xorg_display [shell check_xorg_display]
 
 gui makewin
 
 
-# TODO ${DISPLAY}.${SCREEN}
+# TODO exit-code & result file?
