@@ -3,7 +3,8 @@
 namespace eval shell {
     namespace export check_command check_xorg_display \
         ask_mouse_location \
-        run_shell_command kill_shell_command kill_process
+        run_shell_command kill_shell_command kill_process \
+        ShCommandReader
     namespace ensemble create
 
     proc is_command_available {cmd} {
@@ -47,51 +48,6 @@ namespace eval shell {
         return [dict create {*}$s]
     }
 
-    variable shcmd_pipe
-
-    proc run_shell_command {shcmd} {
-        variable shcmd_pipe
-
-        gui state_as_running
-
-        set shcmd_pipe [open "|$shcmd 2>@1" r]
-        fconfigure $shcmd_pipe \
-            -blocking 0 -buffering full \
-            -translation binary
-        fileevent $shcmd_pipe readable "[namespace current]::shcmd_pipe_onread $shcmd_pipe"
-    }
-
-    proc shcmd_pipe_onread {ch} {
-        if {[eof $ch]} {
-            gui state_as_ready
-
-            tout println "\n--- EOF: $ch ---"
-            if {[catch {close $ch} errmsg]} {
-                tout println "\nEXITED: $errmsg"
-            }
-        } else {
-            set data [read $ch 100]
-            tout print $data
-        }
-    }
-
-    proc kill_shell_command {} {
-        variable shcmd_pipe
-
-        if {[string length $shcmd_pipe] == 0} {return}
-
-        try {
-            set pids [pid $shcmd_pipe]
-            tout println "--- KILL: $pids ---"
-
-            catch [list [namespace current]::kill_process $pids 1]
-        } on error {err erropts} {
-            tout println "--- WARN: $err ---"
-        }
-
-        set shcmd_pipe ""
-    }
-
     proc kill_process {name_or_pid {is_pid 0}} {
         global tcl_platform
         set os $tcl_platform(os)
@@ -122,6 +78,107 @@ namespace eval shell {
         # 실행 및 에러 처리
         if {[catch { {*}$cmd } msg]} {
             error "ERROR: $msg"
+        }
+    }
+
+    oo::class create ShCommandReader {
+        variable _cmd
+        variable _pipe
+        variable _println_cb
+        variable _print_nonewline_cb
+        variable _running_cb
+        variable _finished_cb
+
+        constructor {args} {
+            set defaults {
+                println_cb         {{txt} {}}
+                print_nonewline_cb {{txt} {}}
+                running_cb         {{} {}}
+                finished_cb        {{} {}}
+            }
+
+            set args_ [dict merge $defaults $args]
+            # puts $args_
+
+            my variable _cmd
+            my variable _pipe
+            my variable _println_cb
+            my variable _print_nonewline_cb
+            my variable _running_cb
+            my variable _finished_cb
+
+            dict with args_ {
+                set _cmd $cmd
+                set _pipe ""
+                set _println_cb $println_cb
+                set _print_nonewline_cb $print_nonewline_cb
+                set _running_cb $running_cb
+                set _finished_cb $finished_cb
+            }
+        }
+
+        method println {args} {
+            variable _println_cb
+            apply $_println_cb {*}$args
+        }
+
+        method print_nonewline {args} {
+            variable _print_nonewline_cb
+            apply $_print_nonewline_cb {*}$args
+        }
+
+        method set_as_running {} {
+            variable _running_cb
+            apply $_running_cb
+        }
+
+        method set_as_finished {} {
+            variable _finished_cb
+            apply $_finished_cb
+        }
+
+        method start {} {
+            variable _pipe
+            variable _cmd
+
+            my set_as_running
+
+            set _pipe [open "|$_cmd 2>@1" r]
+            fconfigure $_pipe \
+                -blocking 0 -buffering full \
+                -translation binary
+            fileevent $_pipe readable [callback _onread $_pipe]
+        }
+
+        method _onread {ch} {
+            if {[eof $ch]} {
+                my set_as_finished
+
+                my println "\n--- EOF: $ch ---"
+                if {[catch {close $ch} errmsg]} {
+                    my println "\nEXITED: $errmsg"
+                }
+                my destroy
+            } else {
+                set data [read $ch 100]
+                my print_nonewline $data
+            }
+        }
+
+        method kill {} {
+            my variable _pipe
+
+            if {[string length $_pipe] == 0} {return}
+
+            try {
+                set pids [pid $_pipe]
+                my println "--- KILL: $pids ---"
+                catch [list [namespace current]::kill_process $pids 1]
+            } on error {err erropts} {
+                my println "--- WARN: $err ---"
+            }
+
+            set _pipe ""
         }
     }
 }
@@ -163,18 +220,21 @@ namespace eval geom {
 }
 
 namespace eval gui {
-    namespace export makewin set_xorg_display check_before_flight state_as_ready state_as_running
+    namespace export makewin set_xorg_display check_before_flight \
+        state_as_ready state_as_running kill_recording
     namespace ensemble create
 
     variable seconds 10
     variable framerate 30
-    variable output_filename output.mp4
+    variable output_filename ~/w/output.mp4
     variable command "..."
-    variable from_xy
-    variable to_xy
+    variable from_xy "0,0"
+    variable to_xy   "10,10"
     variable xorg_display
     variable xorg_screen_from_xy "0"
     variable xorg_screen_to_xy   "0"
+
+    variable shcmd_rdr_ffmpeg ""
 
     proc set_xorg_display {display} {
         variable xorg_display
@@ -185,12 +245,12 @@ namespace eval gui {
         wm title . "ffmpeg screencast capture"
 
         wm protocol . WM_DELETE_WINDOW {
-            catch {shell kill_shell_command}
+            catch "[namespace current]::kill_recording"
             exit
         }
 
         foreach vname {seconds framerate output_filename from_xy to_xy} {
-            trace add variable "[namespace current]::${vname}" write "[namespace current]::build_command"
+            trace add variable "[namespace current]::${vname}" write "[namespace current]::vtrace"
         }
 
         #
@@ -277,15 +337,9 @@ namespace eval gui {
         pack $c -expand false {*}$pads
 
         button $c.btn_start -text Start \
-            -command {
-                if {[gui check_before_flight]} {
-                    shell run_shell_command "$gui::command"
-                }
-            }
+            -command "[namespace current]::start_recording"
         button $c.btn_stop  -text Stop \
-            -command {
-                shell kill_shell_command
-            }
+            -command "[namespace current]::kill_recording"
 
         pack $c.btn_start -side left {*}$pads
         pack $c.btn_stop -side left {*}$pads
@@ -307,9 +361,44 @@ namespace eval gui {
         pack $c.yscr -side right -expand false -fill y
         pack $c.tout -side left -expand true -fill both
 
+        build_command
         state_as_ready
 
         tout println Ready.
+    }
+
+    proc start_recording {} {
+        if {![gui check_before_flight]} {
+            return
+        }
+
+        variable shcmd_rdr_ffmpeg
+        if {![string equal $shcmd_rdr_ffmpeg ""]} {
+            return
+        }
+
+        variable command
+        set shcmd_rdr_ffmpeg \
+            [::shell::ShCommandReader new \
+                 cmd "$command" \
+                 println_cb {{txt} { ::tout println "$txt" }} \
+                 print_nonewline_cb {{txt} { ::tout print "$txt" }} \
+                 running_cb {{} {
+                     ::gui state_as_running
+                 }} \
+                 finished_cb {{} {
+                     ::gui state_as_ready
+                     ::gui kill_recording
+                 }}]
+        $shcmd_rdr_ffmpeg start
+    }
+
+    proc kill_recording {} {
+        variable shcmd_rdr_ffmpeg
+        if {![string equal $shcmd_rdr_ffmpeg ""]} {
+            $shcmd_rdr_ffmpeg kill
+            set shcmd_rdr_ffmpeg ""
+        }
     }
 
     proc state_as_ready {} {
@@ -326,13 +415,17 @@ namespace eval gui {
         set file_path [tk_getSaveFile]
 
         if {$file_path eq ""} {
-            puts "Canceled."
+            # puts "Canceled."
         } else {
             set "[namespace current]::output_filename" $file_path
         }
     }
 
-    proc build_command {n1 n2 op} {
+    proc vtrace {n1 n2 op} {
+        build_command
+    }
+
+    proc build_command {} {
         foreach vname {seconds framerate output_filename from_xy to_xy xorg_display xorg_screen_from_xy} {
             variable $vname
         }
@@ -396,7 +489,6 @@ gui set_xorg_display [shell check_xorg_display]
 gui makewin
 
 # TODO result file size
-# TODO tcloo <- shcmd
 # TODO mpv it
 # TODO see overlay
 
