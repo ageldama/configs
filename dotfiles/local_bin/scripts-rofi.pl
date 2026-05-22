@@ -168,7 +168,7 @@ package ScriptsRofi::Dlg::YesNo;
     use strict;
     use warnings;
 
-    use builtin qw(true false);
+    #use builtin qw(true false);
 
     use Carp;
     use IPC::Open2 qw(open2);
