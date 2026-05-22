@@ -82,7 +82,7 @@ URxvt.fading: 10
 
 !! Copy Paste & Other Extensions
 URxvt*perl-lib: ~/.urxvt/ext:/usr/lib/x86_64-linux-gnu/urxvt/perl
-URxvt.perl-ext-common: default,eval,-confirm-paste,font-size,searchable-scrollback,url-select,keyboard-select,colorscheme
+URxvt.perl-ext-common: default,eval,-confirm-paste,resize-font,searchable-scrollback,url-select,keyboard-select,colorscheme
 !! NB. confirm-paste 때문에 paste시에 no-newline 이슈발생해서 negate.
 
 
@@ -105,12 +105,12 @@ URxvt.keysym.C-M-C: perl:clipboard:paste
 
 
 ! font-size
-URxvt.keysym.C-plus:    perl:font-size:increase
-URxvt.keysym.C-minus:   perl:font-size:decrease
+!URxvt.keysym.C-plus:    perl:font-size:increase
+!URxvt.keysym.C-minus:   perl:font-size:decrease
 URxvt.font-size.step:   1
 
-!URxvt.keysym.C-minus:  resize-font:smaller
-!URxvt.keysym.C-plus:   resize-font:bigger
+URxvt.keysym.C-minus:  resize-font:smaller
+URxvt.keysym.C-plus:   resize-font:bigger
 
 
 ! searchable-scrollback : 기존 M-s => C-M-s 으로 변경
