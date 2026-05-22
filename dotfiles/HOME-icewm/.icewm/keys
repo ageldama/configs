@@ -84,9 +84,9 @@ key "Super+Shift+Tab" rofi -show windowcd
 
 key "Super+Esc" xscreensaver-lock.pl
 
-key "Print" ~/.icewm/helpers/flameshot.sh gui
-key "Super+Ctrl+p"  ~/.icewm/helpers/flameshot.sh gui
-key "Super+Shift+p" sh -c '~/.icewm/helpers/flameshot.sh full -p ~/Pictures'
+key "Print" flameshot.sh gui
+key "Super+Ctrl+p"  flameshot.sh gui
+key "Super+Shift+p" sh -c 'flameshot.sh full -p ~/Pictures'
 
 key "Super+e" x-terminal-emulator -e mc
 key "Super+Shift+e" sh -c 'doublecmd || thunar || pcmanfm'
