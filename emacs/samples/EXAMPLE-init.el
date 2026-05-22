@@ -169,6 +169,7 @@
 (global-display-line-numbers-mode -1)
 (global-hl-line-mode +1)
 
+(setq tcl-application "tclsh9.0")
 
 ;; 생각보다 무거워서 lazy-init + only-once:
 ;; (when (and (fboundp 'yas-global-mode) (fboundp 'ag-feat-yas--install-hok))
