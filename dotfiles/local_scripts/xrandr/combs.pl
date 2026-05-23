@@ -4,7 +4,7 @@ use strict;
 use warnings;
 
 use Getopt::Std;
-use Data::Compare;
+
 
 sub xrandr_connected_displays {
   my @results = ();
@@ -77,13 +77,31 @@ sub onoff_combinations {
   return @results;
 }
 
+sub compare_hash {
+  my ($a, $b) = @_;
+
+  my @keys_a = sort (keys %$a);
+  my @keys_b = sort (keys %$b);
+  return 0 if scalar @keys_a != scalar @keys_b;
+  return 0 if @keys_a != @keys_b;
+
+  foreach my $k (@keys_a) {
+    return 0 if $a->{$k} ne $b->{$k};
+  }
+
+  # all eq.
+  return 1;
+}
+
 sub find_onoff_disp {
   my ( $disp_combs, $onoff_disp ) = @_;
   my $found = undef;
 
   for ( my $idx = 0 ; $idx < scalar @$disp_combs ; $idx++ ) {
     my $disp_comb = $disp_combs->[$idx];
-    return $idx if Compare( $disp_comb, $onoff_disp );
+
+    # NOTE: 0 = ne, 1 = eq.
+    return $idx if compare_hash( $disp_comb, $onoff_disp );
   }
 
   return $found;
