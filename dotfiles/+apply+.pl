@@ -32,8 +32,11 @@ use IO::File;
         # otherwise: SRC    DEST   PRED
         my ($dot_dir, $dst_dir, $pred) = split /\s+/, $line;
 
+        my $ok_to_go = 0;
+
         qx/$pred/;
-        my $ok_to_go = $? == 0;
+        $ok_to_go = $? == 0;
+
         print "* [[ $dot_dir ]]\n";
         print "\t- PRED:\t$pred\n";
         print "\t- DEST:\t$dst_dir\n";
