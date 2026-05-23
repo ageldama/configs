@@ -1,3 +1,0 @@
-[submodule "emacs/org-more"]
-	path = emacs/org-more
-	url = git@github.com:ageldama/org-more.git
