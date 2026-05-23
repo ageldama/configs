@@ -1,0 +1,44 @@
+=head2 Sat May 23 11:28:42 2026: C<Module> L<Set::Scalar|Set::Scalar>
+
+=over 4
+
+=item *
+
+C<installed into: /home/aamadleg/P/configs/dotfiles/perl5/lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.29>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
+=head2 Sat May 23 11:28:45 2026: C<Module> L<File::Inplace|File::Inplace>
+
+=over 4
+
+=item *
+
+C<installed into: /home/aamadleg/P/configs/dotfiles/perl5/lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.20>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+
