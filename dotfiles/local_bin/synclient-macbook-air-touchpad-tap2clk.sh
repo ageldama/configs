@@ -1,1 +1,2 @@
-../../synclient-macbook-air-touchpad-tap2clk.sh
+synclient TapButton1=1
+

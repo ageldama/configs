@@ -1,1 +1,1 @@
-../../xdotool-capslock.sh
+xdotool key Caps_Lock

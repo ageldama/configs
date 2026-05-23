@@ -1,1 +1,4 @@
-../../stop-xscreensaver.sh
+#!/bin/sh
+xset s off
+xscreensaver-command -exit
+
