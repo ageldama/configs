@@ -122,6 +122,7 @@ namespace eval options {
 
     variable OPT_LIST \
         [list \
+             "-e" [list type flag desc "Execute Selection" default 0] \
              "-s" [list type flag desc "Save Selection" default 0] \
              "-p" [list type flag desc "Print Selection" default 0] \
              "-S" [list type arg1 desc "SCRIPT DIRS (':'-separated)" default $SCRIPT_DIRS] \
@@ -565,9 +566,11 @@ if {[string is false $selection]} {
         puts stdout $cmd
     }
 
-    if {[string equal $runtype [::historydb::running_type_in_term]]} {
-        set cmd [list {*}[$optp get -T] {*}$cmd]
+    if {[$optp get -e]} {
+        if {[string equal $runtype [::historydb::running_type_in_term]]} {
+            set cmd [list {*}[$optp get -T] {*}$cmd]
+        }
+        ::posix::execvp {*}$cmd
+        # should never reach here
     }
-    ::posix::execvp {*}$cmd
-    # should never reach here
 }
