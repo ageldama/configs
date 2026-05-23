@@ -1,4 +1,0 @@
-# /usr/share/icons/gnome/32x32/apps
-
-prog "tim-btns.pl" volume-knob.png gtk-tim-btns.pl
-

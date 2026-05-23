@@ -1,6 +1,0 @@
-#!/bin/sh
-
-urxvtd -q &
-
-~/local/bin/caps-to-ctrl.sh
-

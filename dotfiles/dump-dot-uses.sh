@@ -1,2 +1,5 @@
 #!/bin/sh
-for i in $(ls ~/.use-*); do basename $i; done
+for i in $(ls ~/.use-*); do
+    echo -n "touch ~/"
+    basename $i
+done
