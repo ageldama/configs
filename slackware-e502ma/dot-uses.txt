@@ -1,9 +1,9 @@
-[0m[00m.use-bashrc[0m
-[00m.use-dunst[0m
-[00m.use-ibus[0m
-[00m.use-icewm[0m
-[00m.use-pulseaudio[0m
-[00m.use-ssh-add[0m
-[00m.use-startx-auto[0m
-[00m.use-urxvt[0m
-[00m.use-xorg[0m
+touch ~/.use-bashrc
+touch ~/.use-dunst
+touch ~/.use-ibus
+touch ~/.use-icewm
+touch ~/.use-pulseaudio
+touch ~/.use-ssh-add
+touch ~/.use-startx-auto
+touch ~/.use-urxvt
+touch ~/.use-xorg
