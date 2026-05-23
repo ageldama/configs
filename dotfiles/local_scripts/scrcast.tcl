@@ -92,11 +92,11 @@ namespace eval shell {
 
         constructor {args} {
             set defaults {
-                println_cb         {{txt} {}}
-                print_nonewline_cb {{txt} {}}
-                running_cb         {{} {}}
-                finished_cb        {{} {}}
-                expecting_result_file ""
+                -println_cb         {{txt} {}}
+                -print_nonewline_cb {{txt} {}}
+                -running_cb         {{} {}}
+                -finished_cb        {{} {}}
+                -expecting_result_file ""
             }
 
             set args_ [dict merge $defaults $args]
@@ -111,13 +111,13 @@ namespace eval shell {
             my variable _expecting_result_file
 
             dict with args_ {
-                set _cmd $cmd
+                set _cmd ${-cmd}
                 set _pipe ""
-                set _println_cb $println_cb
-                set _print_nonewline_cb $print_nonewline_cb
-                set _running_cb $running_cb
-                set _finished_cb $finished_cb
-                set _expecting_result_file $expecting_result_file
+                set _println_cb ${-println_cb}
+                set _print_nonewline_cb ${-print_nonewline_cb}
+                set _running_cb ${-running_cb}
+                set _finished_cb ${-finished_cb}
+                set _expecting_result_file ${-expecting_result_file}
             }
         }
 
@@ -425,14 +425,14 @@ namespace eval gui {
         variable output_filename
         set shcmd_rdr_ffmpeg \
             [::shell::ShCommandReader new \
-                 cmd "$command" \
-                 expecting_result_file [file tildeexpand $output_filename] \
-                 println_cb {{txt} { ::tout println "$txt" }} \
-                 print_nonewline_cb {{txt} { ::tout print "$txt" }} \
-                 running_cb {{} {
+                 -cmd "$command" \
+                 -expecting_result_file [file tildeexpand $output_filename] \
+                 -println_cb {{txt} { ::tout println "$txt" }} \
+                 -print_nonewline_cb {{txt} { ::tout print "$txt" }} \
+                 -running_cb {{} {
                      ::gui state_as_running
                  }} \
-                 finished_cb {{} {
+                 -finished_cb {{} {
                      ::gui state_as_ready
                      ::gui kill_recording
                  }}]
