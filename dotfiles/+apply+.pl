@@ -4,6 +4,7 @@ use warnings;
 use Data::Dumper;
 use Getopt::Std;
 use IO::File;
+use File::Glob ':bsd_glob';
 
 {
     my %opts = (u => 0);
@@ -34,8 +35,13 @@ use IO::File;
 
         my $ok_to_go = 0;
 
-        qx/$pred/;
-        $ok_to_go = $? == 0;
+        if ($pred =~ /^F:(.*)/) {
+          my $use_file = $1;
+          $ok_to_go = 1 if -r bsd_glob($use_file);
+        } else {
+          qx/$pred/;
+          $ok_to_go = $? == 0;
+        }
 
         print "* [[ $dot_dir ]]\n";
         print "\t- PRED:\t$pred\n";
