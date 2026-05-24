@@ -58,5 +58,23 @@
   (setq image-dired-thumbs-per-row 4))
 
 
+
+(defun etags+find ()
+  (interactive)
+  (let* ((cur-dir (if (eq major-mode 'dired-mode)
+                      dired-directory default-directory))
+         (dir (read-directory-name "In Directory (etags + find): " cur-dir))
+         (cmd (read-string "Command: "(format "find '%s' -type f | xargs etags" dir))))
+    (compile cmd)))
+
+
+
+
+(with-eval-after-load 'dired
+  (define-key dired-mode-map (kbd "C-c t") 'etags+find))
+
+
+
+
 ;;;
 (provide 'ag-dired)
