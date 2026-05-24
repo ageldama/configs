@@ -400,8 +400,9 @@ my %opts = (
     T => "x-terminal-emulator -e",
     P => 0,
     W => '',
+    '/' => '',
 );
-getopts( 'psrePS:D:T:W:', \%opts );
+getopts( 'psrePS:D:T:W:/:', \%opts );
 
 # say Dumper(\%opts);
 
@@ -420,6 +421,7 @@ List content of SCRIPT_DIRS and ask to select:
   -T XTERM_COMMAND
   -P : Dump stored history/freqs and exit
   -W : execute wrapper (like 'wine')
+  -/ : filename matching regex
 
 Exiting.
 EO_HELP
@@ -454,7 +456,15 @@ foreach my $dir ( split /:/, $opts{S} ) {
                 my $fn = $File::Find::name;
                 return if -d $fn;
 
-                push @scripts, $fn;
+                if ($opts{'/'}){
+                  my $regex = $opts{'/'};
+                  if ($fn =~ /$regex/) {
+                    # print "M: $fn -- $regex\n";
+                    push @scripts, $fn;
+                  }
+                }else{
+                  push @scripts, $fn;
+                }
             },
             follow => 1,
         },
