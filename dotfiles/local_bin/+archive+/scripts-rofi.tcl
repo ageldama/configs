@@ -320,9 +320,7 @@ namespace eval libc {
 }
 
 namespace eval posix {
-    namespace export execv nullptr
-
-    variable nullptr [::cffi::pointer make 0]
+    namespace export execv
 
     proc make_string_ptr_array_with_nullptr_ending {strings} {
         set n [llength $strings]
@@ -337,7 +335,7 @@ namespace eval posix {
             incr i
         }
         variable nullptr
-        cffi::memory set $arr_ptr {pointer nullok} $nullptr $i
+        cffi::memory set $arr_ptr {pointer novaluechecks} NULL $i
         return [list $arr_ptr $string_ptrs]
     }
 
