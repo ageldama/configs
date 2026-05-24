@@ -12,3 +12,5 @@ export PATH=$PATH:$LOCAL_TCL_DIR/bin
 export TCL9_0_TM_PATH=$LOCAL_TCL_DIR/tm
 
 
+export TCLLIBPATH="$TCLLIBPATH $HOME/local/tcl-cffi/lib"
+
