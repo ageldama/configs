@@ -401,8 +401,9 @@ my %opts = (
     P => 0,
     W => '',
     '/' => '',
+    'i' => 0,
 );
-getopts( 'psrePS:D:T:W:/:', \%opts );
+getopts( 'psrePS:D:T:W:/:i', \%opts );
 
 # say Dumper(\%opts);
 
@@ -422,6 +423,7 @@ List content of SCRIPT_DIRS and ask to select:
   -P : Dump stored history/freqs and exit
   -W : execute wrapper (like 'wine')
   -/ : filename matching regex
+  -i : ignorecase
 
 Exiting.
 EO_HELP
@@ -479,10 +481,13 @@ $history_db->update_paths( \@scripts );
 
 my $scripts_sorted = $history_db->list_sorted;
 
+my $ignorecase = "";
+$ignorecase = "-i" if $opts{i};
+
 my $pid = open2(
     my $chld_out,
     my $chld_in,
-'rofi -dmenu -p "Select a script to run (Shift-Enter == run-in-terminal)" -kb-accept-alt "" -kb-custom-1 "Shift+Return" '
+"rofi -dmenu $ignorecase -p \"Select a script to run (Shift-Enter == run-in-terminal)\" -kb-accept-alt \"\" -kb-custom-1 \"Shift+Return\" "
 ) or die;
 
 # say "rofi-pid: $pid";
