@@ -78,7 +78,7 @@ sub do_inst_or_uninst {
         # Script?
         if($line =~ m/^CUSTOM:\s+(?<custom_script>.+)$/){
           my $script = $+{custom_script};
-          print "------------------- [CUSTOM] $script $inst_or_uninst\n";
+          print "------------------- [ *CUSTOM* ] $script $inst_or_uninst\n";
           system("$script $inst_or_uninst");
           print "\n\n";
           next;
