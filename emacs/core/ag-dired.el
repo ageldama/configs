@@ -64,7 +64,7 @@
   (let* ((cur-dir (if (eq major-mode 'dired-mode)
                       dired-directory default-directory))
          (dir (read-directory-name "In Directory (etags + find): " cur-dir))
-         (cmd (read-string "Command: "(format "find '%s' -type f | xargs etags" dir))))
+         (cmd (read-string "Command: "(format "cd '%s' && find . -type f | xargs etags" dir))))
     (compile cmd)))
 
 
