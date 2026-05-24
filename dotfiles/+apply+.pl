@@ -23,9 +23,9 @@ sub do_inst_or_uninst {
   # dst_Dir
   if ( $inst_or_uninst eq 'i' ) {
     my @created = make_path($dst_dir);
-    print "INSTALL: $dst_dir ... mkdir_p: " . Dumper( \@created ) . "\n";
+    print "|- MKDIR: $dst_dir : " . Dumper( \@created ) . "\n";
   } else {
-    print "UNINSTALL: $dst_dir ... (did nothing)\n";
+    # print "UNINSTALL: $dst_dir ... (did nothing)\n";
   }
 
   tie my %dir, 'IO::Dir', $src_dir;
@@ -43,16 +43,16 @@ sub do_inst_or_uninst {
 
     # install -or- uninstall :
     if ( $inst_or_uninst eq 'i' ) {
-      print "INSTALL: $src_fn\t-->\t$dst_fn ... ";
+      print "|- INSTALL:\t$src_fn\n\t-->\t$dst_fn\n";
       if ( -e $dst_fn ) {
-        print "SKIPPING (existing)\n";
+        print "\t\t* ALREADY EXISTING *\n";
       } else {
         symlink( $src_fn, $dst_fn ) or warn "$! : $src_fn => $dst_fn";
-        print "SYMLINK\n";
+        print "\t\t* SYMLINKED *\n";
       }
     } else {
       my $unlinked = unlink $dst_fn;
-      print "UNINSTALL: $dst_fn ... $unlinked\n";
+      print "|- UNINSTALL:\t$dst_fn\n\t\t* UNLINKED($unlinked) *\n";
     }
   }
 }
@@ -78,7 +78,7 @@ sub do_inst_or_uninst {
         # Script?
         if($line =~ m/^CUSTOM:\s+(?<custom_script>.+)$/){
           my $script = $+{custom_script};
-          print "[CUSTOM] $script $inst_or_uninst\n";
+          print "------------------- [CUSTOM] $script $inst_or_uninst\n";
           system("$script $inst_or_uninst");
           print "\n\n";
           next;
@@ -97,10 +97,10 @@ sub do_inst_or_uninst {
           $ok_to_go = $? == 0;
         }
 
-        print "[[[ $dot_dir ]]]\n";
-        print "\t- PRED:\t$pred\n";
-        print "\t- DEST:\t$dst_dir\n";
-        print "\t- ", ($ok_to_go ? "APPLYING ..." : "SKIPPING."), "\n";
+        print "------------------- [ $dot_dir ]\n";
+        print "|- PRED:\t$pred\n";
+        print "|- DEST:\t$dst_dir\n";
+        print "|- ", ($ok_to_go ? "APPLYING ..." : "SKIPPING."), "\n";
         if ($ok_to_go) {
           do_inst_or_uninst($inst_or_uninst, $dot_dir, $dst_dir);
         }

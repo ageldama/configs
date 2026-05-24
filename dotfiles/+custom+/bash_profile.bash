@@ -3,8 +3,9 @@
 [[ ! -f ~/.use-bashrc ]] && exit 0
 
 if [[ ! -f ~/.bash_profile ]]; then
-  ln -sv $PWD/bash/bash_profile ~/.bash_profile
+    echo "|- SYMLINKING"
+    ln -sv $PWD/bash/bash_profile ~/.bash_profile
 else
-  echo EXISTS: ~/.bash_profile
+    echo "|- EXISTS: ~/.bash_profile"
 fi
 

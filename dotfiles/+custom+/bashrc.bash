@@ -6,11 +6,11 @@
 #   ln -s $HOME/.profile $HOME/.bash_profile
 # fi
 
-if grep "source ~/.bashrc.d/bashrc2" ~/.bashrc; then
-  # echo found
+if grep -q "source ~/.bashrc.d/bashrc2" ~/.bashrc; then
+  echo "|- ALREADY APPLIED."
   exit 0
 else
-  # echo not-found
+  echo "|- APPLYING."
   printf "\nsource ~/.bashrc.d/bashrc2\n\n" >> ~/.bashrc
 fi
 
