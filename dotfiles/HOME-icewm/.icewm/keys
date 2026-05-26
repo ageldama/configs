@@ -4,6 +4,7 @@ key "Super+Shift+f" icesh-tog-fullscreen.sh
 
 
 key "Super+F1" ~/.icewm/helpers/xmsg-keys.sh
+# key "Super+F5" tmux send-keys '!!' Enter
 
 #key "Super+KP_Subtract" amixer sset PCM 5%-
 #key "Super+KP_Add" amixer sset PCM 5%+
