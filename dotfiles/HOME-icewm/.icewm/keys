@@ -74,10 +74,10 @@ key "XF86LaunchA" rofi -modes combi -combi-modi drun,window,run -show combi
 
 key "Super+c" gmrun
 
-key "Super+Shift+z" scripts-rofi.pl -e -s
-key "XF86LaunchB" scripts-rofi.pl -e -s
-#key "XF86LaunchB" scripts-rofi.pl -e -s
-#key "Super+Shift+F9" scripts-rofi.pl -r -e
+key "Super+Shift+z" scripts-rofi -e -s
+key "XF86LaunchB" scripts-rofi -e -s
+#key "XF86LaunchB" scripts-rofi -e -s
+#key "Super+Shift+F9" scripts-rofi -r -e
 
 key "Super+Tab" rofi -show window
 key "Super+Shift+Tab" rofi -show windowcd
