@@ -61,9 +61,11 @@
 
 
 (defun recompile%do-recompile (frame.window)
-  (recompile%with-frame.window
-   (f w) frame.window
-   (recompile)))
+  (interactive)
+  (let ((current-prefix-arg current-prefix-arg))
+    (recompile%with-frame.window
+     (f w) frame.window
+     (call-interactively #'recompile))))
 
 
 (defun recompile%name-frame.window (frame.window)
@@ -105,22 +107,23 @@
 
 (defun recompile-visible-compilation-window ()
   (interactive)
-  (if (member major-mode recompile-buffer-modes)
-      (recompile)
-    ;; else:
-    (let* ((frame.window-list (recompile%applicable-window-list)))
-      (cl-case (length frame.window-list)
-        (0 (progn (message "no comile-buffer found")
-                  ;; currently: executable file?
-                  (cond
-                   ((eq 'dired-mode major-mode)
-                    (ag/compile-current-dired-file))
-                   ((recompile%executable-buffer-p (current-buffer))
-                    (ag/compile-current-buffer))
-                   (t (call-interactively 'compile)))))
-        (1 (recompile%do-recompile
-            (cl-first frame.window-list)))
-        (t (recompile%select-and-recompile frame.window-list))))))
+  (let ((current-prefix-arg current-prefix-arg))
+    (if (member major-mode recompile-buffer-modes)
+        (call-interactively #'recompile)
+      ;; else:
+      (let* ((frame.window-list (recompile%applicable-window-list)))
+        (cl-case (length frame.window-list)
+          (0 (progn (message "no comile-buffer found")
+                    ;; currently: executable file?
+                    (cond
+                     ((eq 'dired-mode major-mode)
+                      (ag/compile-current-dired-file))
+                     ((recompile%executable-buffer-p (current-buffer))
+                      (ag/compile-current-buffer))
+                     (t (call-interactively #'compile)))))
+          (1 (recompile%do-recompile
+              (cl-first frame.window-list)))
+          (t (recompile%select-and-recompile frame.window-list)))))))
 
 
 

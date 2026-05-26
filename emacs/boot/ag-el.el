@@ -68,21 +68,25 @@
 
 
 (defun ag/compile-on-file (filename)
+  (interactive)
   (when (and filename
              (y-or-n-p (message "M-x compile %s" filename)))
-    (compile filename)))
+    (let ((current-prefix-arg current-prefix-arg))
+      (call-interactively #'compile filename))))
 
 
 (defun ag/compile-current-buffer ()
   (interactive)
-  (let ((fn (buffer-file-name (current-buffer))))
-    (ag/compile-on-file fn)))
+  (let ((fn (buffer-file-name (current-buffer)))
+        (current-prefix-arg current-prefix-arg))
+    (call-interactively #'ag/compile-on-file fn)))
 
 
 (defun ag/compile-current-dired-file ()
   (interactive)
-  (let ((fn (dired-get-filename)))
-    (ag/compile-on-file fn)))
+  (let ((fn (dired-get-filename))
+        (current-prefix-arg current-prefix-arg))
+    (call-interactively #'ag/compile-on-file fn)))
 
 
 
