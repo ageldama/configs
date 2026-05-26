@@ -6,19 +6,28 @@ fi
 
 if [[ $SHLVL = 1 ]] && [[ -z $SSH_TTY ]]; then
 
-    DIALOG=dialog
-    if [[ -x "$(command -v cdialog)" ]]; then
-        DIALOG=cdialog
-    fi
+    prompt_timeout() {
+        local msg="$1"
+        local timeout="$2"
+        local default="$3"
+        local reply
+
+        if read -t "$timeout" -p "$msg ($timeout seconds): " reply; then
+            echo "$reply"
+        else
+            echo -e "\n[Timed out]"
+            echo "$default"
+        fi
+    }
 
     if [[ -f ~/.use-fbterm-auto ]]; then
-        $DIALOG --title "login" --timeout 5 --yesno "start fbterm? (5 secs auto-ok)" 6 45
-        if [[ $? == 0 || $? == 255 ]]; then
+        confirm=$(prompt_timeout "Fbterm? (y/n)" 5 "y")
+        if [[ "$confirm" == "y" || "$confirm" == "" ]]; then
             fbterm -n D2Coding -s 16 --font-width=8
         fi
-    elif [[ -z $DISPLAY ]] && [[ -f ~/.use-startx-auto ]]; then
-        $DIALOG --title "login" --timeout 5 --yesno "start X session? (5 secs auto-ok)" 6 45
-        if [[ $? == 0 || $? == 255 ]]; then
+    elif [[ -f ~/.use-startx-auto ]]; then
+        confirm=$(prompt_timeout "Startx? (y/n)" 5 "y")
+        if [[ "$confirm" == "y" || "$confirm" == "" ]]; then
             if [[ -f ~/startx.log ]]; then
                 rm -fv ~/startx.log
             fi
