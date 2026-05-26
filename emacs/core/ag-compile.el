@@ -38,7 +38,8 @@
 ;;                  compile-command default-directory)))
 
 
-
+(when (boundp 'compilation-max-output-line-length)
+  (setq compilation-max-output-line-length nil))
 
 
 (setq compilation-scroll-output t)
