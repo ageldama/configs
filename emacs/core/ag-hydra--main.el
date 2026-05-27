@@ -69,6 +69,8 @@
 
       ("r" compile-this-file "run(compile)")
 
+      ("t" ag/touch-current-file "touch")
+
       ("M-w" buffer-path-and-line-col "copy-path-linum")))
 
 

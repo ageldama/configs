@@ -85,5 +85,10 @@
 
 
 
+(defun ag/touch-current-file ()
+  (interactive)
+  (set-file-times (buffer-file-name)))
+
+
 
 (provide 'ag-el)
