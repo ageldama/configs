@@ -42,7 +42,7 @@
   (setq compilation-max-output-line-length nil))
 
 
-(setq compilation-scroll-output t)
+(setq compilation-scroll-output nil)
 
 
 
