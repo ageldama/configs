@@ -67,6 +67,8 @@
 (electric-indent-mode +1)
 (setq c-basic-offset 2)
 
+(setq c-default-style "gnu")
+
 
 ;;; menu-bar
 (require 'menu-bar)
