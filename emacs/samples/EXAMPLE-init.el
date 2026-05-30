@@ -116,7 +116,7 @@
  ;; :nocompile ;; byte-compile 포기ㅎㅎ
  'ag-feat-rg                       ; dpkg=elpa-rg
  'ag-feat-c                        ; dpkg=+
- 'ag-feat-disaster                 ; dpkg=+
+ ;; 'ag-feat-disaster                 ; dpkg=+
  'ag-feat-perl5                    ; dpkg=+
  ;; 'ag-feat-js2-mode              ; dpkg=elpa-js2-mode
  )
