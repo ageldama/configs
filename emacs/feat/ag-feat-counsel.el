@@ -15,6 +15,7 @@
                     (t           . ivy--regex-plus)
                     ))
             ;; (ivy-configure 'counsel-M-x :initial-input "") ;; ^... 지우기귀찮.
+            ;; (global-set-key (kbd "C-x b") 'counsel-buffer-or-recentf)
             (global-set-key "\C-s" 'swiper)
             (global-set-key (kbd "M-s s") 'swiper-thing-at-point)
             (global-set-key (kbd "C-c C-r") 'ivy-resume)

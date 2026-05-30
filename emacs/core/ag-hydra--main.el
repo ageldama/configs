@@ -237,6 +237,9 @@
        recompile-visible-compilation-window
        "recompile")
 
+      ,@(when (fboundp 'counsel-buffer-or-recentf)
+          '(("<tab>" counsel-buffer-or-recentf "buffer|recent")))
+
       ,@hydra-mini/++extras
 
       ))
