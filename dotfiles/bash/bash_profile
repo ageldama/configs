@@ -15,7 +15,6 @@ if [[ $SHLVL = 1 ]] && [[ -z $SSH_TTY ]]; then
         if read -t "$timeout" -p "$msg ($timeout seconds): " reply; then
             echo "$reply"
         else
-            echo -e "\n[Timed out]"
             echo "$default"
         fi
     }
