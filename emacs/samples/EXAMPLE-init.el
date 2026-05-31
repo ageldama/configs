@@ -30,13 +30,13 @@
  'ag-feat-ace-window               ; dpkg=elpa-ace-window
  'ag-feat-undo-tree                ; dpkg=elpa-undo-tree
  'ag-feat-diminish                 ; dpkg=elpa-diminish
- 'ag-feat-base16-theme             ; dpkg=-
+ ;; 'ag-feat-base16-theme             ; dpkg=-
  'ag-feat-modus-themes             ; dpkg=elpa-modus-theme
  ;; 'ag-feat-smart-mode-line       ; dpkg=-
  ;; 'ag-feat-fundamental-mode      ; dpkg=+
  ;; 'ag-feat-ob-plantuml           ; dpkg=+
  ;; 'ag-feat-ob-ditaa              ; dpkg=+
- 'ag-feat-pulsar                   ; dpkg=-
+ ;; 'ag-feat-pulsar                   ; dpkg=-
  'ag-feat-expand-region            ; dpkg=elpa-expand-region
  'ag-feat-hydra--expand-region     ; dpkg=elpa-expand-region,elpa-hydra
  ;; 'ag-feat-evil                     ; dpkg=elpa-evil
@@ -46,14 +46,14 @@
  'ag-feat-company                  ; dpkg=elpa-company
  'ag-feat-magit                    ; dpkg=elpa-magit
  'ag-feat-web-mode                 ; dpkg=elpa-web-mode
- 'ag-feat-sass-mode             ; dpkg=-
+ ;; 'ag-feat-sass-mode             ; dpkg=-
  ;; 'ag-feat-haml-mode             ; dpkg=-
  'ag-feat-hl-todo                  ; dpkg=elpa-hl-todo
  'ag-feat-markdown-mode            ; dpkg=elpa-markdown-mode
  'ag-feat-projectile               ; dpkg=elpa-projectile
  'ag-feat-flycheck                 ; dpkg=elpa-flycheck
  ;; 'ag-feat-ggtags                   ; dpkg=elpa-ggtags
- 'ag-feat-direnv                ; dpkg=-
+ ;; 'ag-feat-direnv                ; dpkg=-
  ;; 'ag-feat-editorconfig          ; dpkg=elpa-editorconfig
  ;; 'ag-feat-plantuml              ; dpkg=-
  ;; 'ag-feat-helpful               ; dpkg=elpa-helpful
@@ -70,9 +70,9 @@
 
  'ag-feat-smex                     ; dpkg=elpa-smex
 
- 'ag-feat-json                     ; dpkg=-
- 'ag-feat-toml                     ; dpkg=-
- 'ag-feat-yaml                     ; dpkg=-
+ ;; 'ag-feat-json                     ; dpkg=-
+ ;; 'ag-feat-toml                     ; dpkg=-
+ ;; 'ag-feat-yaml                     ; dpkg=-
  ;; 'ag-feat-vimish-fold              ; dpkg=elpa-vimish-fold
  ;; 'ag-feat-evil-vimish-fold         ; dpkg=-
  'ag-feat-yas                      ; dpkg=elpa-yasnippet-snippets
@@ -82,7 +82,7 @@
  ;; 'ag-feat-treemacs-magit        ; dpkg=elpa-treemacs-magit
  ;; 'ag-feat-treemacs-icons-dired  ; dpkg=-
  'ag-feat-dwim-shell-command    ; dpkg=-
- 'ag-feat-python                   ; dpkg=+
+ ;; 'ag-feat-python                   ; dpkg=+
  ;; 'ag-feat-ruby                     ; dpkg=+
  ;; 'ag-feat-ruby-lite                     ; dpkg=+
  ;; 'ag-feat-haskell                  ; dpkg=+
