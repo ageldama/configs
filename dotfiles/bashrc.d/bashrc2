@@ -28,6 +28,11 @@ if [[ "${-#*i}" == "$-" ]]; then
     true
 else
 
+
+for i in ~/.bashrc.local.d/*; do
+    [[ -f "$i" ]] && source "$i"
+done
+
 if [[ $PS1 ]]; then
   if [[ -f /usr/local/share/bash-completion/bash_completion.sh ]]; then
     source /usr/local/share/bash-completion/bash_completion.sh
@@ -71,9 +76,6 @@ fi
     fi
 fi
 
-for i in ~/.bashrc.local.d/*; do
-    [[ -f "$i" ]] && source "$i"
-done
 
 return 0
 
