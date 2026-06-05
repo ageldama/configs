@@ -111,7 +111,7 @@
  'ag-feat-rainbow-mode             ; dpkg=-
  ;; 'ag-feat-auto-dim-other-buffers   ; dpkg=-
  ;; 'ag-feat-funky-fonts
- 'ag-feat-rfc-mode
+ ;; 'ag-feat-rfc-mode
 
  ;; :nocompile ;; byte-compile 포기ㅎㅎ
  'ag-feat-rg                       ; dpkg=elpa-rg
