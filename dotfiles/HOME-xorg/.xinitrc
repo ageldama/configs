@@ -201,9 +201,13 @@ xset b off
 # `xset r rate N R` :: after N-ms, repeats R-times :
 xset r rate 400 40
 
-test -f ~/.use-xset-noblank && ~/local/bin/xset-noblank.sh &
+if [[ -f ~/.use-xset-noblank ]]; then
+    ~/local/bin/xset-noblank.sh &
+fi
 
-test -f ~/.Xresources && xrdb -merge $HOME/.Xresources &
+if [[ -f ~/.Xresources ]]; then
+    xrdb -merge $HOME/.Xresources &
+fi
 
 if [[ ! -f ~/.no-screensaver ]]; then
   if [[ -f ~/.use-xautolock ]]; then
@@ -243,10 +247,14 @@ esac
 
 
 # NetworkManager
-nm-applet &
+if [[ -f ~/.use-nm ]]; then
+    nm-applet &
+fi
 
 # volume
-test -f ~/.use-volumeicon && volumeicon &
+if [[ -f ~/.use-volumeicon ]]; then
+    volumeicon &
+fi
 
 # Redshift
 if [[ -f ~/.use-redshift ]]; then
@@ -265,11 +273,15 @@ if [[ -f ~/.use-picom ]]; then
 fi
 
 # Bluetooth
-test -f ~/.use-blueman && blueman-applet &
+if [[ -f ~/.use-blueman ]]; then
+    blueman-applet &
+fi
 
 
 # Onboard
-test -f ~/.use-onboard && onboard &
+if [[ -f ~/.use-onboard ]]; then
+    onboard &
+fi
 
 
 if [[ -f ~/.use-unclutter ]]; then
@@ -292,18 +304,28 @@ fi
 ~/local/bin/caps-to-ctrl.sh 2 &
 
 # pointerkeys
-test -f ~/.use-keypad-pointer && setxkbmap -option keypad:pointerkeys
+if [[ -f ~/.use-keypad-pointer ]]; then
+    setxkbmap -option keypad:pointerkeys
+fi
 
 # warpd: keyboard driven mouse-pointer navigation
-test -f ~/.use-warpd && warpd &
+if [[ -f ~/.use-warpd ]]; then
+    warpd &
+fi
 
 # urxvtd
-test -f ~/.use-urxvtd && urxvtd --quiet --opendisplay --fork &
+if [[ -f ~/.use-urxvtd ]]; then
+    urxvtd --quiet --opendisplay --fork &
+fi
 
 #
-test -f ~/.xinitrc2 && ~/.xinitrc2
+if [[ -f ~/.xinitrc2 ]]; then
+    ~/.xinitrc2
+fi
 
-test -f ~/.screenlayout/default.sh && ~/.screenlayout/default.sh
+if [[ -f ~/.screenlayout/default.sh ]]; then
+    ~/.screenlayout/default.sh
+fi
 
 
 #
