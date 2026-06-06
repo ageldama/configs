@@ -236,6 +236,10 @@
 
 
 
+;;; gpg / gnupg
+(setq epg-gpg-program "gpg2")
+;;(setq epg-pinentry-mode 'loopback)
+
 
 ;;;
 (provide 'ag-emacs-sensible)
