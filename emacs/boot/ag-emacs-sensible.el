@@ -241,5 +241,9 @@
 ;;(setq epg-pinentry-mode 'loopback)
 
 
+;;; good ol' bookmarks
+(setq bookmark-save-flag 1)
+
+
 ;;;
 (provide 'ag-emacs-sensible)
