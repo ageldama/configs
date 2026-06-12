@@ -43,7 +43,6 @@ proc updclk {} {
     set full_time "${time_string}.[string range [format %03d $millis] 0 0]"
 
     set clk $full_time
-    after 100 updclk
 }
 
 
@@ -54,7 +53,6 @@ proc icesh_me {} {
         puts stderr "$errmsg"
     }
 }
-
 
 #after 1000 icesh_me
 
@@ -104,6 +102,11 @@ bind . <Double-Button-3> {
     exit
 }
 
+proc every {ms body} {
+    eval $body
+    after $ms [info level 0]
+}
 
-updclk
+
+every 100 {updclk}
 after 500 move_to_bottom_right
