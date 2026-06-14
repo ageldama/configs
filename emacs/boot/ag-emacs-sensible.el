@@ -245,5 +245,11 @@
 (setq bookmark-save-flag 1)
 
 
+;;; view-mode
+(with-eval-after-load 'view
+  (define-key view-mode-map (kbd "j") 'View-scroll-line-forward)
+  (define-key view-mode-map (kbd "k") 'View-scroll-line-backward))
+
+
 ;;;
 (provide 'ag-emacs-sensible)
