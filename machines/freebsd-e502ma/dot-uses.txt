@@ -1,10 +1,11 @@
 touch ~/.use-bashrc
 touch ~/.use-dunst
+touch ~/.use-emacs-yas
+touch ~/.use-ibus
 touch ~/.use-icewm
-touch ~/.use-libgl-always-software
-touch ~/.use-nabi
 touch ~/.use-ssh-add
 touch ~/.use-startx-auto
 touch ~/.use-unclutter
 touch ~/.use-urxvt
 touch ~/.use-urxvtd
+touch ~/.use-xorg
