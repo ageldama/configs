@@ -22,11 +22,11 @@
      (".*" "xdg-open"))
    )
 
-(when (eq system-type 'berkeley-unix)
-  (setq ;; insert-directory-program "gls"
-        ;; dired-use-ls-dired t
-        ;; dired-listing-switches "-al --group-directories-first"
-        ))
+  (when (eq system-type 'berkeley-unix)
+    (setq insert-directory-program "gls"
+          dired-use-ls-dired t
+          ;; dired-listing-switches "-al --group-directories-first"
+          ))
 
   )
 
