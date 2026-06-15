@@ -26,7 +26,7 @@ __prompt_command() {
   local RCol='\[\e[0m\]'
 
   PS1="${debian_chroot:+($debian_chroot)}${BBlue}\u@\h${RCol} [\t]"
-  # PS1="$PS1 ${BPurple}$(__prompt_parse_git_branch)${RCol}${BCyan}$(__prompt_parse_git_dirty)${RCol}"
+  PS1="$PS1 ${BPurple}$(__prompt_parse_git_branch)${RCol}${BCyan}$(__prompt_parse_git_dirty)${RCol}"
   if [[ "$curr_exit" != 0 ]]; then
     PS1="$PS1 <exit: ${BYellow}$curr_exit${RCol}>"
   fi
