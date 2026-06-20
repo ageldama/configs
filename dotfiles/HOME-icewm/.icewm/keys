@@ -98,7 +98,7 @@ key "Super+w" wg-whatever.pl
 
 # key "Super+Shift+f" ~/local/scripts/zzz-acme/xmsg-fortune.pl
 
-key "Super+Shift+v" snd-mixer-ui.sh
-
+# key "Super+Shift+v" snd-mixer-ui.sh
+key "Super+Shift+v" pavucontrol
 
 #EOF.
