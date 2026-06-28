@@ -1,0 +1,17 @@
+#!/bin/sh
+logger -t "rc.suspend.local" "System is going to sleep now"
+
+# Loop through all logged-in users on local displays
+for user in $(who | awk '{print $1}' | sort -u); do
+    user_home=$(eval echo "~$user")
+    user_script="$user_home/.acpi-suspend.sh"
+
+    # Run the user's script securely as that user if it exists
+    if [ -x "$user_script" ]; then
+        su -l "$user" -c "$user_script" &
+    fi
+done
+
+# Allow background screen lockers a moment to initialize before system freezes
+sleep 1
+
