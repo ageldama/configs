@@ -1,8 +1,9 @@
+touch ~/.use-asmctl
 touch ~/.use-bashrc
 touch ~/.use-dunst
 touch ~/.use-emacs-yas
-touch ~/.use-ibus
 touch ~/.use-icewm
+touch ~/.use-nabi
 touch ~/.use-ssh-add
 touch ~/.use-startx-auto
 touch ~/.use-unclutter
