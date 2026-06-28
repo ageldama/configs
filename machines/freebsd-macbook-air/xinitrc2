@@ -1,0 +1,47 @@
+#!/bin/sh
+
+xmodmap -e 'keycode 94 = grave asciitilde'
+
+caps-to-ctrl.sh 3s &
+
+~/local/scripts/synclient/tap-to-click.sh
+# ~/local/scripts/synclient/disable.sh
+
+if (xrandr |grep "HDMI-1 connected"); then
+  # (2560x1080     59.98*+  50.00)
+  #xrandr --output eDP-1 --off --output HDMI-1 --mode 2560x1080
+
+    # xrandr --output eDP-1 --mode 1366x768 --primary \
+    #     --output HDMI-1 --mode 2560x1080 --right-of eDP-1
+
+  # (1920x1080     60.00    50.00    59.94)
+  #xrandr --output eDP-1 --off --output HDMI-1 --mode 1920x1080
+
+  ~/.fehbg
+else
+  echo NO-HDMI-1
+fi
+
+
+
+exit 0
+
+################################################################################
+CONNECTED_DISPS=$(xrandr -q | perl -wlne "/^(?<disp>.+) connected/ and print $+{disp}")
+
+if [[ -f ~/.screenlayout/dual.sh ]]; then
+  ~/.screenlayout/dual.sh
+elif [[ "$CONNECTED_DISPS" == *"HDMI-1"* ]]; then
+  xrandr --output HDMI-1 --auto && xrandr --output eDP-1 --off
+  pkill -USR1 polybar
+  test -x ~/.fehbg && ~/.fehbg
+fi
+
+if [[ -f ~/.no-touchpad ]]; then
+    ~/local/scripts/synclient/disable.sh
+else
+    ~/local/scripts/synclient/enable.sh
+    #~/local/scripts/synclient/tap-to-click.sh
+fi
+
+
