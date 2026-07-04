@@ -7,4 +7,5 @@ touch ~/.use-unclutter
 touch ~/.use-vim-fzf
 touch ~/.use-xorg
 touch ~/.use-ssh-add
+touch ~/.use-emacs-yas
 
