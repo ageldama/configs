@@ -6,3 +6,4 @@ touch ~/.use-nabi
 touch ~/.use-startx-auto
 touch ~/.use-unclutter
 touch ~/.use-vim-fzf
+touch ~/.use-xorg
