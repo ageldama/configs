@@ -102,7 +102,7 @@
  ;; 'ag-feat-eglot                 ; dpkg=+|elpa-eglot
  ;; 'ag-feat-realgud               ; dpkg=-
  ;; 'ag-feat-unfill                ; dpkg=-
- 'ag-feat-exec-path-from-shell  ; dpkg=elpa-exec-path-from-shell
+ ;; 'ag-feat-exec-path-from-shell  ; dpkg=elpa-exec-path-from-shell
  'ag-feat-quelpa                ; dpkg=-
  ;; 'ag-feat-zig                   ; dpkg=-
  ;; 'ag-feat-meson                 ; dpkg=-
