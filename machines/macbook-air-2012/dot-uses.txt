@@ -1,8 +1,11 @@
 touch ~/.use-bashrc
 touch ~/.use-dunst
-touch ~/.use-gnome-keyring
+touch ~/.use-emacs-yas
 touch ~/.use-icewm
 touch ~/.use-nabi
+touch ~/.use-ssh-add
 touch ~/.use-startx-auto
 touch ~/.use-unclutter
+touch ~/.use-urxvt
 touch ~/.use-vim-fzf
+touch ~/.use-xorg

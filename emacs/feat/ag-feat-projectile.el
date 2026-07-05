@@ -1,8 +1,10 @@
 
 ;;; projectile
 (use-package projectile ;:ensure t :pin melpa
+  :init
+  (projectile-mode +1)
   :config
-  (progn (projectile-global-mode)
+  (progn ;;(projectile-global-mode)
          ;;(diminish 'projectile-mode)
          (setq projectile-mode-line-prefix " Prj")
          (define-key projectile-mode-map (kbd "C-c p")
