@@ -2,5 +2,7 @@
 
 yesno.pl 'log-ff?' || exit -1
 
-xterm -e loginctl terminate-session ${XDG_SESSION_ID}
+xterm -e loginctl terminate-session ${XDG_SESSION_ID} &
+
+xterm -e icesh logout &
 
