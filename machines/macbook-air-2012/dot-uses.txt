@@ -9,3 +9,5 @@ touch ~/.use-unclutter
 touch ~/.use-urxvt
 touch ~/.use-vim-fzf
 touch ~/.use-xorg
+touch ~/.use-gpg-agent
+

@@ -9,3 +9,4 @@ touch ~/.use-unclutter
 touch ~/.use-urxvt
 touch ~/.use-urxvtd
 touch ~/.use-xorg
+touch ~/.use-gpg-agent
