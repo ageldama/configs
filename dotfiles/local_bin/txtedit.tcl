@@ -33,11 +33,10 @@ proc send_text {} {
     exit 0
 }
 
-chk_shell_command xdo
 chk_shell_command xdotool
 chk_shell_command xclip
 
-set WID [exec xdo id]
+set WID [exec xdotool getactivewindow]
 
 
 package require Tk
