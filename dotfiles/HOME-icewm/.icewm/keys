@@ -101,7 +101,7 @@ key "Super+w" wg-whatever.pl
 # key "Super+Shift+v" snd-mixer-ui.sh
 key "Super+Shift+v" pavucontrol
 
-key "Super+;" foo.sh
+key "Super+;" txtedit.tcl
 
 
 #EOF.
