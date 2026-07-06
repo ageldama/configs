@@ -95,6 +95,7 @@ wine-mono
 winetricks
 xbacklight
 xbrightness
+xclip
 xcursor-themes
 xdg-utils
 xdo
