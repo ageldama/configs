@@ -2,7 +2,7 @@
 
 xmodmap -e 'keycode 94 = grave asciitilde'
 
-caps-to-ctrl.sh 3s &
+caps-to-ctrl.sh 1
 
 ~/local/scripts/synclient/tap-to-click.sh
 # ~/local/scripts/synclient/disable.sh
