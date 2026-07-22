@@ -33,12 +33,12 @@ mkdir "$ENV{HOME}/.gnupg" or warn "mkdir; $!";
 
 my $fn = "$ENV{HOME}/.gnupg/gpg-agent.conf";
 
-exit 0 if grep_file_1st($fn, '^pinentry-program');
+exit 0 if -f $fn and grep_file_1st($fn, '^pinentry-program');
 
 
 
 
-my $pinentry = one_of_executable "/usr/local/bin/pinentry-gtk-2", "/usr/bin/pinenetry-gtk-2";
+my $pinentry = one_of_executable "/usr/local/bin/pinentry-gtk-2", "/usr/bin/pinentry-gtk-2";
 # print STDERR $pinentry;
 
 open(my $fh, '>>', $fn) or die "Could not open '$fn': $!";
