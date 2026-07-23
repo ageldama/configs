@@ -1,0 +1,19 @@
+package require tcltest
+namespace import ::tcltest::*
+
+source "[file dirn [file norm [info scr]]]/00.prologue.tcl"
+
+::tcommon begin
+
+test sum_two {} -body {
+    expr 41 + 1
+} -result 42
+
+
+::tcommon finish
+
+
+# Local Variables:
+# mode: tcl
+# fill-column: 80
+# End:
