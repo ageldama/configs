@@ -1,4 +1,4 @@
 
 (use-package olivetti :ensure t :pin melpa)
 
-(provide 'ag-olivetti)
+(provide 'ag-feat-olivetti)

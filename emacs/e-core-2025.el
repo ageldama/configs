@@ -10,8 +10,6 @@
              'ag-scrolling
 
              'ag-org
-             ;; 'ag-writeroom-mode
-             'ag-olivetti
 
              'ag-dired
              'ag-hydra
@@ -36,9 +34,6 @@
 
              'ag-misc
              )
-
-
-
 
 ;;;
 (provide 'e-core-2025)

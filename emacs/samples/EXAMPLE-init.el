@@ -30,6 +30,7 @@
  'ag-feat-ace-window               ; dpkg=elpa-ace-window
  'ag-feat-undo-tree                ; dpkg=elpa-undo-tree
  'ag-feat-diminish                 ; dpkg=elpa-diminish
+ 'ag-feat-olivetti                 ;
  ;; 'ag-feat-base16-theme             ; dpkg=-
  'ag-feat-modus-themes             ; dpkg=elpa-modus-theme
  ;; 'ag-feat-smart-mode-line       ; dpkg=-
