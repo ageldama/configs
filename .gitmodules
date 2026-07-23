@@ -1,3 +1,0 @@
-[submodule "submods/c-scripts-rofi"]
-	path = submods/c-scripts-rofi
-	url = git@github.com:ageldama/c-scripts-rofi.git
