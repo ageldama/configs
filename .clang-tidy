@@ -1,0 +1,19 @@
+---
+# Enable all checks by default, then disable specific ones
+Checks: '-*,bugprone-*,modernize-*,performance-*,readability-*,misc-include-cleaner,clang-analyzer-*'
+
+# Treat all warnings from these checks as errors
+WarningsAsErrors: 'bugprone-*,performance-*'
+
+# Filter which headers are analyzed (often set to include project headers only)
+
+HeaderFilterRegex: 'include/.*'
+ExcludeHeaderFilterRegex: 'vnd/.*'
+
+# Check-specific options
+CheckOptions:
+  - key:             readability-identifier-naming.VariableCase
+    value:           lower_case
+  - key:             modernize-use-trailing-return-type.Enabled
+    value:           0
+...
