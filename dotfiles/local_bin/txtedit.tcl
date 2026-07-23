@@ -40,6 +40,7 @@ set WID [exec xdotool getactivewindow]
 
 
 package require Tk
+#ttk::style theme use alt
 
 wm geometry . 300x200
 
@@ -49,7 +50,7 @@ pack .fbtns -side bottom -expand FALSE -fill none
 
 set c .fbtns
 
-button $c.btn_send -text "Send (Ctrl-d)" -command send_text
+ttk::button $c.btn_send -text "Send (Ctrl-d)" -command send_text
 bind . <Control-d> send_text
 
 pack $c.btn_send
@@ -60,9 +61,10 @@ pack .fedit -side top -expand TRUE -fill both
 
 set c .fedit
 
-text $c.t -font TkFixedFont \
-    -yscrollcommand [list $c.yscr set]
-$c.t configure -wrap char
+text $c.t -font {TkFixedFont 12} \
+    -yscrollcommand [list $c.yscr set] \
+    -fg {#cccccc} -bg {#333355}
+$c.t configure -wrap char -insertbackground yellow
 
 ttk::scrollbar $c.yscr -orient vertical \
     -command {.feditt yview}
