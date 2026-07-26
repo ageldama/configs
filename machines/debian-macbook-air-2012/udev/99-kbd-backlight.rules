@@ -1,0 +1,5 @@
+SUBSYSTEM=="leds", KERNEL=="smc::kbd_backlight", RUN+="/bin/chmod 666 /sys/class/leds/smc::kbd_backlight/brightness"
+
+# /etc/udev/rules.d/
+
+# sudo udevadm control --reload-rules && sudo udevadm trigger
