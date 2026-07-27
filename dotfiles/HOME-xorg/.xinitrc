@@ -301,7 +301,7 @@ fi
 
 
 # caps->ctrl
-~/local/bin/caps-to-ctrl.sh 2 &
+~/local/bin/caps-to-ctrl.sh -1 &
 
 # pointerkeys
 if [[ -f ~/.use-keypad-pointer ]]; then
