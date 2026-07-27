@@ -10,7 +10,15 @@ use File::Path   qw(make_path);
 use File::Basename;
 use IO::Dir;
 
-
+sub chk_link_ok {
+  my $link = shift;
+  if (-l $link) {
+    # -e _ cached lstat (will be true)
+    # stat($link) attempts to follow the link to its target
+    return stat($link);
+  }
+  return 0;
+}
 
 sub do_inst_or_uninst {
   local $Data::Dumper::Indent = 0;
@@ -44,12 +52,20 @@ sub do_inst_or_uninst {
     # install -or- uninstall :
     if ( $inst_or_uninst eq 'i' ) {
       print "|- INSTALL:\t$src_fn\n\t-->\t$dst_fn\n";
-      if ( -e $dst_fn ) {
-        print "\t\t* ALREADY EXISTING *\n";
-      } else {
-        symlink( $src_fn, $dst_fn ) or warn "$! : $src_fn => $dst_fn";
-        print "\t\t* SYMLINKED *\n";
+      if ( -l $dst_fn or -e $dst_fn ) {
+        my $link_ok = chk_link_ok $dst_fn;
+        if ($link_ok) {
+          print "\t\t* ALREADY EXISTING *\n";
+          next;
+        } else {
+          # broken link: remove it & relink
+          print "\t\t* BROKEN LINK, REMOVING *\n";
+          unlink($dst_fn);
+        }
       }
+      #
+      symlink( $src_fn, $dst_fn ) or warn "$! : $src_fn => $dst_fn";
+      print "\t\t* SYMLINKED *\n";
     } else {
       my $unlinked = unlink $dst_fn;
       print "|- UNINSTALL:\t$dst_fn\n\t\t* UNLINKED($unlinked) *\n";
