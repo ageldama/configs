@@ -4,7 +4,7 @@ if [[ -f ~/.use-libgl-always-software ]]; then
   export LIBGL_ALWAYS_SOFTWARE=1
 fi
 
-if [[ -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
+if [[ -f ~/.use-startx-perl-local-lib && -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
     PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
     if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
         perl -Mlocal::lib > "${PERL_LOCAL_LIB_SH}"
@@ -14,14 +14,14 @@ fi
 
 
 # ...for opensuse: xdm-xsession
-if [[ "x${MY_XSESSIONRC}" -eq "x" && -x ~/.xsessionrc ]]; then
-  source ~/.xsessionrc
+if [[ -z "${MY_XSESSIONRC}" && -x ~/.xsessionrc ]]; then
+  source "$HOME/.xsessionrc"
 fi
 
 #export LANG=ko_KR.UTF-8
 
 
-OSNAME=`uname`
+OSNAME=$(uname)
 
 export PATH=$PATH:$HOME/local/bin
 
@@ -84,7 +84,7 @@ elif [[ -f ~/.use-fcitx5 ]]; then
 elif [[ -f /usr/share/im-config/xinputrc.common ]]; then
   . /usr/share/im-config/xinputrc.common
   if [[ -f ~/.xinputrc ]]; then
-    . ~/.xinputrc
+    . "$HOME/.xinputrc"
   fi
 fi
 
@@ -109,14 +109,14 @@ if [[ -f ~/.use-gnome-keyring ]]; then
       if (! pgrep -u $UID ssh-agent ) && (! pgrep -u $UID gnome-keyring ); then
         #if [[ "$XDG_SESSION_TYPE" -eq "tty" ]]; then
           dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
-          eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+          eval "$(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
           export SSH_AUTH_SOCK
           export GPG_AGENT_INFO
           export GNOME_KEYRING_CONTROL
           export GNOME_KEYRING_PID
         #fi
       elif [[ -f /etc/fedora-release ]]; then
-        eval $(gnome-keyring-daemon --start)
+        eval "$(gnome-keyring-daemon --start)"
       else
         if pgrep -u $UID gnome-keyring && [[ -e /run/user/${UID}/keyring/ssh ]]; then
           export SSH_AUTH_SOCK=/run/user/${UID}/keyring/ssh
@@ -124,7 +124,7 @@ if [[ -f ~/.use-gnome-keyring ]]; then
           ssh-add < /dev/null &
         else
           dbus-update-activation-environment --all --verbose #--systemd DISPLAY  # for `gnome-keyring-daemon'
-          eval $(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+          eval "$(dbus-launch /usr/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
           export SSH_AUTH_SOCK
           export GPG_AGENT_INFO
           export GNOME_KEYRING_CONTROL
@@ -134,9 +134,9 @@ if [[ -f ~/.use-gnome-keyring ]]; then
       ;;
 
     FreeBSD)
-      eval $(dbus-launch --sh-syntax)
+      eval "$(dbus-launch --sh-syntax)"
       #dbus-update-activation-environment --systemd DISPLAY  # for `gnome-keyring-daemon'
-      eval $(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)
+      eval "$(/usr/local/bin/gnome-keyring-daemon --start --components=pkcs11,secrets,ssh)"
       export SSH_AUTH_SOCK
       ;;
   esac
@@ -149,8 +149,8 @@ elif [[ -f ~/.use-ssh-add ]]; then
     # FreeBSD: `pkg add -y OpenSSH-askpass`
     SSH_ASKPASS_=$(which ssh-askpass)
     if [[ ! -z "${SSH_ASKPASS_}" ]]; then
-      SSH_ASKPASS="${SSH_ASKPASS_}"
-      SSH_ASKPASS_REQUIRE=prefer
+      export SSH_ASKPASS="${SSH_ASKPASS_}"
+      export SSH_ASKPASS_REQUIRE=prefer
     fi
 
     ssh-add < /dev/null &
@@ -160,7 +160,7 @@ fi
 # Notifications
 if [[ -f ~/.use-notifications-dump ]]; then
     # Prefer `dunstctl history-pop` instead:
-    dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> /tmp/notifications-${USER}-${INVOCATION_ID}.log &
+    dbus-monitor "interface='org.freedesktop.Notifications', member='Notify'" >> "/tmp/notifications-${USER}-${INVOCATION_ID}.log" &
 fi
 
 # Notification growl: must be loaded before anything does `notify-send`
@@ -206,7 +206,7 @@ if [[ -f ~/.use-xset-noblank ]]; then
 fi
 
 if [[ -f ~/.Xresources ]]; then
-    xrdb -merge $HOME/.Xresources &
+    xrdb -merge "$HOME/.Xresources" &
 fi
 
 if [[ ! -f ~/.no-screensaver ]]; then
@@ -259,8 +259,7 @@ fi
 # Redshift
 if [[ -f ~/.use-redshift ]]; then
     SEOUL_POS=37.566:126.977 # Seoul
-    which redshift-gtk
-    if [[ $? -eq 0 ]]; then
+    if which redshift-gtk; then
         redshift-gtk -l $SEOUL_POS &
     else
         redshift -l $SEOUL_POS &
