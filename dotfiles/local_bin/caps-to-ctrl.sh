@@ -16,5 +16,7 @@ while [ -n "$1" ] && [ "$1" -eq -1 ]; do
     if xmodmap -pm|grep -q -E '^control.+0x42'; then
         exit 0
     fi
+    echo RETRY
     map_capslock_as_control
+    sleep 1
 done
