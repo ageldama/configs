@@ -9,6 +9,7 @@ if [[ -f ~/.use-startx-perl-local-lib && -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
     if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
         perl -Mlocal::lib > "${PERL_LOCAL_LIB_SH}"
     fi
+    # shellcheck disable=SC1090
     source "${PERL_LOCAL_LIB_SH}"
 fi
 
@@ -82,10 +83,12 @@ elif [[ -f ~/.use-fcitx5 ]]; then
     pgrep fcitx5 || fcitx5 -s 5 -r -d &
   fi
 elif [[ -f /usr/share/im-config/xinputrc.common ]]; then
-  . /usr/share/im-config/xinputrc.common
-  if [[ -f ~/.xinputrc ]]; then
-    . "$HOME/.xinputrc"
-  fi
+    # shellcheck disable=SC1091
+    . /usr/share/im-config/xinputrc.common
+    if [[ -f ~/.xinputrc ]]; then
+        # shellcheck disable=SC1091
+        . "$HOME/.xinputrc"
+    fi
 fi
 
 if [[ -f ~/.use-ibus-daemon-only ]]; then
