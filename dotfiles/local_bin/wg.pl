@@ -6,6 +6,19 @@ use Cwd     qw(abs_path);
 
 #use Glib::Object::Introspection;
 
+
+sub save_fehbg {
+    my $cmd = shift;
+
+    open( my $fh, ">", "$ENV{HOME}/.fehbg" ) || die;
+    print $fh "#!/bin/sh\n";
+    print $fh "$cmd\n";
+    close($fh);
+
+    chmod( 0777, "$ENV{HOME}/.fehbg" );
+}
+
+
 {
     my $pick = shift;
 
@@ -18,9 +31,16 @@ use Cwd     qw(abs_path);
         say $pick;
     }
     else {
-        say 1;
-        $pick = abs_path $pick;
-        say $pick;
+      if ($pick =~ /^#/) {
+        my $cmd = "hsetroot -solid '$pick'";
+        save_fehbg $cmd;
+        system $cmd;
+        exit 0;
+      }
+
+      say 1;
+      $pick = abs_path $pick;
+      say $pick;
     }
 
     my $color_dark =
