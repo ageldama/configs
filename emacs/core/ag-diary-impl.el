@@ -100,11 +100,21 @@
 
 (defvar diary/fn-initial-content #'diary/initial-diary-content)
 
+(defvar diary/fn-prompt? nil)
+
 
 (defun diary/new-or-open-org-file ()
   (interactive)
   (let* ((yyyy-mm-dd (org-read-date))
          (file-name (funcall diary/fn-make-file-name yyyy-mm-dd)))
+    (when diary/fn-prompt?
+      (setf file-name
+            (read-file-name "FILENAME: "
+                            (f-dirname file-name) ;; DIR
+                            file-name             ;; DEFAULT-FILENAME
+                            nil                   ;; MUSTMATCH
+                            file-name             ;; INITIAL
+                            )))
     (if (f-exists? file-name)
         (progn (message "FOUND: %s" file-name)
                (find-file file-name))
@@ -156,7 +166,8 @@
            (plist-get sel :tags))
           (diary/make-diary-file-name/base-dir
            (plist-get sel :base-dir)))
-      (diary/new-or-open-org-file))))
+      (let ((diary/fn-prompt? t))
+            (diary/new-or-open-org-file)))))
 
 
 ;;;
