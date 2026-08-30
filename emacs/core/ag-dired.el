@@ -75,6 +75,16 @@
 
 
 
+;;;
+
+(defun dired-current-buffer (&optional close-current-p)
+  (interactive "P")
+  (let ((fn (buffer-file-name)))
+    (when fn
+      (when close-current-p (kill-current-buffer))
+      (dired fn))))
+
+
 
 ;;;
 (provide 'ag-dired)

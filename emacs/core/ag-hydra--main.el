@@ -38,6 +38,8 @@
    `(defhydra hydra-files (:exit t)
       ("n" find-name-dired "dired-by-name")
 
+      ("d" dired-current-buffer "dired-it")
+
       ("M-s f" (lambda () (interactive)
                  (find-file (s-concat "/sudo:root@localhost:"
                                       (or (buffer-file-name) "/"))))
