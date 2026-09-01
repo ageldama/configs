@@ -24,7 +24,7 @@ plain_text = yes
 #   %I  iconname (without its path)
 #   %p  progress value if set ([  0%] to [100%]) or nothing
 # Markup is allowed
-format = "*** %i %a ***\n\n%s\n\n%b %p"
+format = "%s\n\n%b %p\n\n*** %i %a ***"
 
 # Sort messages by urgency.
 sort = no
