@@ -56,7 +56,7 @@
  ;; 'ag-feat-ggtags                   ; dpkg=elpa-ggtags
  ;; 'ag-feat-direnv                ; dpkg=-
  ;; 'ag-feat-editorconfig          ; dpkg=elpa-editorconfig
- ;; 'ag-feat-plantuml              ; dpkg=-
+ ;; DEPRECATED 'ag-feat-plantuml              ; dpkg=-
  ;; 'ag-feat-helpful               ; dpkg=elpa-helpful
 
  ;; 'ag-feat-vertico               ; dpkg=elpa-vertico

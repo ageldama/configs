@@ -1,3 +1,4 @@
+;;; DEPRECATED => USE ag-feat-ob-plantuml.el
 
 ;;; PlantUML
 (use-package plantuml-mode :ensure t :pin melpa
