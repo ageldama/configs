@@ -1,0 +1,35 @@
+
+
+
+.PHONY: all clean help
+
+all: xtextpad
+
+
+
+.PHONY: help
+help: ## Show this help
+	@grep -E -h '\s##\s' $(MAKEFILE_LIST) | sort | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+
+
+
+
+
+CC = gcc
+CFLAGS += -g
+CFLAGS += -Wall $(shell pkg-config --cflags gtk+-3.0 gdk-x11-3.0 x11)
+LIBS += $(shell pkg-config --libs gtk+-3.0 gdk-x11-3.0 x11)
+
+SRCS = xtextpad.c
+OBJS = $(SRCS:.c=.o)
+
+
+
+clean:
+	-$(RM) xtextpad $(OBJS)
+
+
+xtextpad: $(OBJS)
+	$(CC) -o $@ $^ $(LIBS)
+
+
