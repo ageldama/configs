@@ -47,7 +47,7 @@ KeyWinMaximize="Super+Ctrl+x"
 KeyWinMaximizeVert="Super+Ctrl+z"
 KeyWinMaximizeHoriz="Super+Ctrl+c"
 
-KeyWinHide="Super+_"
+KeyWinHide="Super+Shift+Space"
 
 
 #KeyWinClose="Super+Shift+q"
