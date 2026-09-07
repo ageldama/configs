@@ -1,0 +1,10 @@
+# -*- mode: snippet -*-
+# name: local-vars
+# key: local-vars
+# --
+* Local Variables :noexport:
+# Local Variables:
+# fill-column: 99999
+# org-confirm-babel-evaluate: nil
+# eval: (dolist (i '("INCLUDE.org")) (org-babel-lob-ingest i))
+# End:
