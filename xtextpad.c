@@ -166,7 +166,7 @@ static void app_activate(GtkApplication *app, gpointer user_data) {
   gtk_window_set_default_size(GTK_WINDOW(window), 400, 300);
 
   // vbox
-  GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 10);
+  GtkWidget *vbox = gtk_box_new(GTK_ORIENTATION_VERTICAL, 2);
   gtk_container_set_border_width(GTK_CONTAINER(vbox), 2);
   gtk_container_add(GTK_CONTAINER(window), vbox);
 
