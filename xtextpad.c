@@ -214,7 +214,7 @@ int main(int argc, char **argv) {
   }
 
   Window wind = get_active_window_gtk(display);
-  fprintf(stderr, "active-window: %p\n", (void *)wind);
+  //fprintf(stderr, "active-window: %p\n", (void *)wind);
 
   // gtk
   GtkApplication *app = gtk_application_new("io.github.ageldama.XTextPad", G_APPLICATION_DEFAULT_FLAGS);
