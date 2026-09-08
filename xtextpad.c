@@ -103,7 +103,6 @@ static void copy_buffer_to_clipboard(GtkTextBuffer *buffer) {
   /* g_print("--- COPIED ---\n%s\n----------------------\n", text); */
 
   g_free(text);
-
 }
 
 
@@ -117,7 +116,9 @@ typedef struct {
 
 static gboolean delayed_exit_callback(gpointer user_data) {
     AppWidgets *app = (AppWidgets *)user_data;
-    g_application_quit(G_APPLICATION(app->app));
+    GtkApplication *gapp = app->app;
+    g_free(app);
+    g_application_quit(G_APPLICATION(gapp));
     return G_SOURCE_CONTINUE; // G_SOURCE_REMOVE?
 }
 
@@ -138,16 +139,33 @@ static gboolean on_key_press(GtkWidget *widget, GdkEventKey *event, gpointer use
   AppWidgets *widgets = (AppWidgets *)user_data;
 
   guint modifiers = gtk_accelerator_get_default_mod_mask();
+
+  // Ctrl+w || Ctrl+q || Ctrl+c
   if ((event->state & modifiers) == GDK_CONTROL_MASK &&
-      (event->keyval == GDK_KEY_d || event->keyval == GDK_KEY_D)) {
+      (event->keyval == GDK_KEY_c || event->keyval == GDK_KEY_C ||
+       event->keyval == GDK_KEY_w || event->keyval == GDK_KEY_W ||
+       event->keyval == GDK_KEY_q || event->keyval == GDK_KEY_Q)) {
+    goto L_abort;
+  }
 
-    gtk_button_clicked(GTK_BUTTON(widgets->button));
-
-    // stop propagation
-    return TRUE;
+  // Ctrl+d || Ctrl+Return
+  if ((event->state & modifiers) == GDK_CONTROL_MASK &&
+      (event->keyval == GDK_KEY_d || event->keyval == GDK_KEY_D ||
+       event->keyval == GDK_KEY_Return || event->keyval == GDK_KEY_KP_Enter)) {
+    goto L_commit;
   }
 
   return FALSE; // passthru
+
+L_commit:
+  gtk_button_clicked(GTK_BUTTON(widgets->button));
+  return TRUE; // stop propagation
+
+ L_abort:
+  GtkApplication *gapp = widgets->app;
+  g_free(widgets);
+  g_application_quit(G_APPLICATION(gapp));
+  return TRUE; // stop propagation
 }
 
 static void app_activate(GtkApplication *app, gpointer user_data) {
