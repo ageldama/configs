@@ -1,0 +1,1 @@
+/home/aamadleg/P/configs/dotfiles/local_bin/txtedit.tcl
