@@ -12,7 +12,7 @@
 
 #define SCRIPT_ROFI_NO_DB_FILE "~/.no-db-c-scripts-rofi"
 #define SCRIPT_ROFI_DB_FILE "~/.c-scripts-rofi.hist"
-#define SCRIPT_ROFI_XTERM_COMMAND "x-terminal-emulator -e"
+#define SCRIPT_ROFI_XTERM_COMMAND "x-terminal-emulator -hold -e"
 #define SCRIPT_ROFI_SCRIPT_DIRS                                               \
   "~/local/scripts:~/local/bin:~/.screenlayout:~/P/v3/bin"
 #define SCRIPT_ROFI_RUN_ALT_TAG " <span color='#FF69B4'>[TERM]</span>"
