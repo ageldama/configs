@@ -1,0 +1,47 @@
+#! /usr/bin/env perl
+
+use strict;
+use warnings;
+
+### Show nice message on child-exit with OPTION_HOLD (`-hold`)
+
+package urxvt::ext::hold_exit;
+
+sub on_child_exit {
+    my ( $self, $status ) = @_;
+
+    if ( $self->option( $urxvt::OPTION{hold} ) ) {
+        $self->{is_holding} = 1;
+
+        my $exit_code = $status >> 8;
+        my $signal    = $status & 127;
+
+        my $title_str =
+          $signal
+          ? sprintf( "[TERM] Terminated by signal %d", $signal )
+          : sprintf( "[TERM] Exited with code %d",     $exit_code );
+
+        $self->cmd_parse("\e]2;${title_str}\a");
+
+#$self->cmd_parse("\r\n\e[1;33;5m${title_str} (Press Ctrl+C to close)\e[0m\r\n");
+        $self->cmd_parse(
+            "\r\n\e[30;106;5m${title_str} (Press Ctrl+C to close)\e[0m\r\n");
+    }
+
+    ();
+}
+
+sub on_tt_write {
+  my $self = shift;
+  return () unless $self->{is_holding};
+
+  my ($octets) = @_;
+
+  # Ctrl+C
+  if ($octets =~ /\x03/) {
+    $self->destroy;
+    return 1;
+  }
+
+  ();
+}

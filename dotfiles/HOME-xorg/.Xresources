@@ -82,7 +82,7 @@ URxvt.fading: 10
 
 !! Copy Paste & Other Extensions
 URxvt*perl-lib: ~/.urxvt/ext:/usr/lib/x86_64-linux-gnu/urxvt/perl
-URxvt.perl-ext-common: default,eval,-confirm-paste,resize-font,searchable-scrollback,url-select,keyboard-select,colorscheme
+URxvt.perl-ext-common: default,eval,-confirm-paste,resize-font,searchable-scrollback,url-select,keyboard-select,colorscheme,hold_exit
 !! NB. confirm-paste 때문에 paste시에 no-newline 이슈발생해서 negate.
 
 
