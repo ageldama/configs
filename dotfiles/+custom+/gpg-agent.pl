@@ -29,7 +29,8 @@ sub one_of_executable {
 
 
 
-mkdir "$ENV{HOME}/.gnupg" or warn "mkdir; $!";
+mkdir "$ENV{HOME}/.gnupg" or warn "mkdir: $!";
+chmod 0700, "$ENV{HOME}/.gnupg" or warn "chmod: $!";
 
 my $fn = "$ENV{HOME}/.gnupg/gpg-agent.conf";
 
