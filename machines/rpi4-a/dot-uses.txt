@@ -10,4 +10,4 @@ touch ~/.use-urxvt
 touch ~/.use-vim-fzf
 touch ~/.use-xorg
 touch ~/.use-gpg-agent
-
+touch ~/.use-xdg-desktop-portal-gtk
