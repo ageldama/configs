@@ -6,4 +6,4 @@ else
     ifconfig
 fi
 
-read -n 1 -s -p ">>> Press any key"
+# read -n 1 -s -p ">>> Press any key"
