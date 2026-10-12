@@ -27,7 +27,13 @@ set(CMAKE_C_EXTENSIONS OFF)
 file(GLOB_RECURSE SOURCES "${CMAKE_CURRENT_SOURCE_DIR}/src/*.c")
 
 add_compile_options(-Wall -Wextra -Wpedantic)
-set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -ggdb3 -fstack-protector -fsanitize=address,undefined")
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux" AND CMAKE_SYSTEM_PROCESSOR MATCHES "aarch64")
+  # asan /  cat /boot/config-$(uname -r) | grep CONFIG_ARM64_VA_BITS
+  # ... CONFIG_ARM64_VA_BITS_39=y
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -ggdb3 -fstack-protector -fsanitize=undefined")
+else()
+  set(CMAKE_C_FLAGS_DEBUG "${CMAKE_C_FLAGS_DEBUG} -O0 -ggdb3 -fstack-protector -fsanitize=address,undefined")
+endif()
 
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 
