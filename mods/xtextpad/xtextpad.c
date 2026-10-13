@@ -140,9 +140,9 @@ static gboolean on_key_press(GtkWidget *widget, GdkEventKey *event, gpointer use
 
   guint modifiers = gtk_accelerator_get_default_mod_mask();
 
-  // Ctrl+w || Ctrl+q || Ctrl+c
+  // Ctrl+w || Ctrl+q
   if ((event->state & modifiers) == GDK_CONTROL_MASK &&
-      (event->keyval == GDK_KEY_c || event->keyval == GDK_KEY_C ||
+      (//event->keyval == GDK_KEY_c || event->keyval == GDK_KEY_C ||
        event->keyval == GDK_KEY_w || event->keyval == GDK_KEY_W ||
        event->keyval == GDK_KEY_q || event->keyval == GDK_KEY_Q)) {
     goto L_abort;
@@ -169,8 +169,8 @@ L_commit:
 }
 
 static void app_activate(GtkApplication *app, gpointer user_data) {
-  g_object_set(gtk_settings_get_default(), 
-               "gtk-application-prefer-dark-theme", TRUE, 
+  g_object_set(gtk_settings_get_default(),
+               "gtk-application-prefer-dark-theme", TRUE,
                NULL);
 
   AppWidgets *widgets = g_new0(AppWidgets, 1);
