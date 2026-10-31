@@ -4,15 +4,6 @@ if [[ -f ~/.use-libgl-always-software ]]; then
   export LIBGL_ALWAYS_SOFTWARE=1
 fi
 
-if [[ -f ~/.use-startx-perl-local-lib && -z "${PERL_LOCAL_LIB_ROOT}" ]]; then
-    PERL_LOCAL_LIB_SH=~/perl5/local-lib.sh
-    if [[ ! -f "${PERL_LOCAL_LIB_SH}" ]]; then
-        perl -Mlocal::lib > "${PERL_LOCAL_LIB_SH}"
-    fi
-    # shellcheck disable=SC1090
-    source "${PERL_LOCAL_LIB_SH}"
-fi
-
 
 # ...for opensuse: xdm-xsession
 if [[ -z "${MY_XSESSIONRC}" && -x ~/.xsessionrc ]]; then

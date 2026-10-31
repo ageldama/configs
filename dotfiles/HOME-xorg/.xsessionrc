@@ -2,6 +2,5 @@
 
 export MY_XSESSIONRC=$0
 
-test -d ~/perl5 && eval $(perl -Mlocal::lib)
 
 
